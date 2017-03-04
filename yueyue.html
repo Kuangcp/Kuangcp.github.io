@@ -13,6 +13,12 @@
     <script src="js/me/signup.js"></script>
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js"></script>
+	
+	<script type="text/javascript"> 
+		$youziku.load("body", "5d7aff954d0d4b4da8f340eb17bf4fb8", "NaiYou");
+		$youziku.load("#Search", "5d7aff954d0d4b4da8f340eb17bf4fb8", "NaiYou"); /*．．．*/ $youziku.draw();
+	</script>
 	</head>
 <body>
 	
@@ -31,8 +37,8 @@
         </ul>
 
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="输入搜索信息"><!--动态生成，将最热的默认填入，不改就直接搜默认填入的内容-->
-          <button class="btn btn-primary my-2 my-sm-0" type="submit">搜索</button>
+          <input class="form-control mr-sm-2" type="text" placeholder=""><!--动态生成，将最热的默认填入，不改就直接搜默认填入的内容-->
+          <button class="btn btn-primary my-2 my-sm-0" type="submit" id="Search">搜索</button>
         </form>
         <!--如果已经登录就显示用户名 头像-->
         <!-- <a href="登录URL"><button class="btn btn-outline-success" style="margin-left: 10px;">登录</button></a> -->
@@ -42,11 +48,10 @@
     </nav>
 	<div class="container" >
 	
+	<!-- 图片区域 -->
 		<div style="margin-top:30px"></div><br/>
 		<img src="./image/2017-03-03-001.jpg" width="360px" height="500px" />
-		<img src="./image/2017-03-03-002.jpg" width="360px" height="500px"/>
-	
-	<br/>
+		<img src="./image/2017-03-03-002.jpg" width="360px" height="500px"/><br/>
 		<!-- <textarea class="InputMessage">
 			
 		</textarea> -->
@@ -62,7 +67,14 @@
 					<p>
 						&nbsp;&nbsp;&nbsp;&nbsp;悦悦说得对，我们不能沉沦于精神和肉体的碰撞啊，为了我们的未来为了我要给你的家，只有现在去好好的提升自己的价值，以后才能让我们过上更好的生活~ 要成为互相激励互相协持的小情侣~略略略~
 					</p>
+					<!-- 2017年3月4日 17:07:32 -->
 				</div>
+				<!-- 2017年3月5日 00:07:14 -->
+				<div>
+					<h4>关于悦悦和师叔</h4>
+					<p></p>
+				</div>
+				
 			</div>
 		</div>
 		
