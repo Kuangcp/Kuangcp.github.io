@@ -1,0 +1,56 @@
+.box{
+    background-color:#c2c2c2;
+    height:100px;
+    text-align:center;
+    margin-bottom: 5px;
+    margin-right: -25px;
+    border-radius: 8px;
+}
+.text{
+    padding-top: 30px;
+    font-size: 30px;
+    color:#0084FF;
+}
+.main{
+    z-index: 5;
+    margin: 5px 30px 0 5px;
+
+}
+.menu{
+    top: 0;
+    position: fixed;
+    z-index: 10;
+}
+.menu-button{
+    position: fixed;
+    background-color: #c2c2c2;
+    border-radius: 5px;
+    bottom:10px;
+    left: 20px;
+    /* width: 60px; */
+    /* left: 46%; */
+}
+.menu-element{
+    width: 60px;
+}
+.menu-list1{
+    bottom:20px;
+}
+.menu-list2{
+    bottom:50px;
+}
+.menu-list3{
+    bottom:80px;
+}
+.menu-list4{
+    bottom:110px;
+}
+.menu-circle{
+    /* position: fixed; */
+    margin-top: -170px;
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+    background-color: red;
+    border-radius: 0 200px 0px 0px;
+}
