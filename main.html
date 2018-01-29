@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="css/u/bootstrap.min.css" rel="stylesheet"/>
+<style>
+    body{
+        background-image: url("image/5710000097.jpg");
+        background-size: fixed;
+        margin: 5px 30px 0 5px;
+    }
+    .box{
+        background-color:#c2c2c2;
+        height:100px;
+        text-align:center;
+        margin-bottom: 5px;
+        margin-right: -25px;
+    }
+    .text{
+        padding-top: 30px;
+        font-size: 30px;
+        /* font-family:  */
+        color:#0084FF;
+    }
+</style>
+</head>
+<body>
+    <main id="main"></main>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/me/main.data.js"></script>
+<script>
+$(function(){
+    temp='<div class="row">'
+    count=0
+    list.data.forEach(function(value){
+        count++
+        console.log(value.title, value.url)
+        temp+='<div class="col-md-'+list.colNum+'">'+
+            '<a href="'+value.url+'" style="text-decoration: none;">'+
+            '<div class="box"><div class="text">'+value.title+'</div></div></div></a>'
+        if(count%list.col==0){
+            temp+='</div><div class="row">'
+        }
+    })
+    temp+='</div>'
+    $("#main").html(temp)
+});
+</script>
+</body>
+</html>
