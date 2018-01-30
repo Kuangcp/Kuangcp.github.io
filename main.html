@@ -6,9 +6,10 @@
     <title>Home</title>
     <link href="css/u/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/me/main.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <style>
     body{
-        background-image: url("image/5710000097.jpg");
+        background-image: url("image/5710000090.jpg");
         background-size: fixed;
     }
 </style>
@@ -16,37 +17,56 @@
 <body>
     <main id="main" class="main"></main>
     <div id="menu" class="menu">
-        <!-- <div id="menu-button" class="menu-button">
-            <img src="image/menu.png" width="30px;"/>
-        </div> -->
         <div class="menu-button menu-list1 menu-element" data-type="code">
-            Code
+            <!-- <embed src="image/svg/app.svg" type="image/svg+xml" class="svg-pic" />  -->
+            <img src="image/svg/app.png" class="svg-pic"/>
         </div>
         <div class="menu-button menu-list2 menu-element" data-type="platform">
-            Platform
+            <!-- <embed src="image/svg/cloud.svg" type="image/svg+xml" class="svg-pic" />  -->
+            <img src="image/svg/cloud.png" class="svg-pic"/>
         </div>
-        <div class="menu-button menu-list3 menu-element" data-type="fun">
-            Fun
+        <div class="menu-button menu-list3 menu-element" data-type="read">
+            <img src="image/svg/read.png" class="svg-pic"/>
+        </div>
+        <div class="menu-button menu-list4 menu-element" data-type="fun">
+            <!-- <embed src="image/svg/happy.svg" type="image/svg+xml" class="svg-pic" />  -->
+            <img src="image/svg/happy.png" class="svg-pic"/>
         </div>
     </div>
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="js/me/main.data.js"></script>
 <script>
+    $(".menu-element").on('click', function(){
+    type = $(this).data('type')
+    // console.log('click', type)
+    if(type=='fun'){
+        insertData(list.fun)
+    }else if(type=='code'){
+        insertData(list.code)
+    }else if(type=='platform'){
+        insertData(list.platform)
+    }else if(type=='read'){
+        insertData(list.read)
+    }
+    })
+
+function insertData(lists){
+    temp='<div class="row">'
+    count=0
+    lists.forEach(function(value){
+        count++
+        // console.log(value.title, value.url)
+        temp+='<div class="col-md-'+config.colNum+'" style="width=50%;">'+
+            '<a href="'+value.url+'" style="text-decoration: none;">'+
+            '<div class="box"><div class="text">'+value.title+'</div></div></div></a>'
+        if(count%config.col==0){
+            temp+='</div><div class="row">'
+        }
+    })
+    temp+='</div>'
+    $("#main").html(temp)
+}
 $(function(){
-    // temp='<div class="row">'
-    // count=0
-    // list.code.forEach(function(value){
-    //     count++
-    //     console.log(value.title, value.url)
-    //     temp+='<div class="col-md-'+list.colNum+'" style="width=50%;">'+
-    //         '<a href="'+value.url+'" style="text-decoration: none;">'+
-    //         '<div class="box"><div class="text">'+value.title+'</div></div></div></a>'
-    //     if(count%list.col==0){
-    //         temp+='</div><div class="row">'
-    //     }
-    // })
-    // temp+='</div>'
-    // $("#main").html(temp)
     insertData(list.code)
 });
 </script>

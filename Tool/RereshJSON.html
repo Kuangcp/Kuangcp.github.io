@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>add</title>
+</head>
+<body>
+    <main id="main">
+
+    </main>
+    <script src="../js/jquery-3.0.0.min.js"></script>
+    <script src="../js/me/main.data.js"></script>
+<script>
+function show(list, lists){
+    lists.forEach(function(value){
+        console.log(value)
+        console.log()
+    })
+}
+// show(list, list[1])
+
+for (var o in list){
+    console.log(o)
+    if (typeof list[o] == 'object' && list[o] != null) {
+        console.log(">>>>"+list[o])
+        for(var line in list[o]){
+            console.log(list[o][line].title, list[o][line].url)
+        }
+    }
+}
+
+// var array = {
+//     "a": "abc",
+//     "b": [1, 2, 3, 4, 5, 6],
+//     "c": 3,
+//     "d": {
+//         "name": "james",
+//         "age": 28
+//     },
+//     "e": null,
+//     "f": true
+// };
+
+// //遍历array方式1
+// for (var x in array) {
+//     if (typeof array[x] == 'object' && array[x] != null) {
+//         for (var y in array[x]) {
+//             console.log(">>key = " + y + " value = " + array[x][y]);
+//         }
+//     } else {
+//         console.log("key = " + x + " value = " + array[x]); // 非array object
+//     }
+// }
+</script>
+</body>
+</html>

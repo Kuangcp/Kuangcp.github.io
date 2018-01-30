@@ -1,14 +1,19 @@
-list={
+config={
     "col":"6",
     "colNum":"2",
     button:[{
         "title":"",
         "":"",
-    },{
-
     }],
+    type:['fun', 'plarform', 'read', 'code']
+}
+list={
     fun:[{
         "title":"知乎","url":"https://www.zhihu.com/"
+    },{
+        "title":"BiliBili","url":"https://www.bilibili.com/#!"
+    },{
+        "title":"网易云音乐","url":"http://music.163.com/"
     }],
     platform:[{
         "title":"微云","url":"https://www.weiyun.com/disk#m=recent"
@@ -20,15 +25,23 @@ list={
         "title":"微信","url":"https://wx.qq.com/"
     },{
         "title":"WebQQ","url":"http://w.qq.com/"
-    }],
-    code:[{
-        "img":"","title":"Github","url":"https://github.com/Kuangcp"
     },{
-        "title":"SUMMARY.md","url":"https://github.com/Kuangcp/Notes/blob/master/SUMMARY.md"
+        "title":"ICO转换","url":"https://convertico.com/"
+    }],
+    read:[{
+        "title":"Spring","url":"https://spring.io/"
+    }
+    ],
+    code:[{
+        "title":"Github","url":"https://github.com/Kuangcp"
+    },{
+        "title":"笔记仓库","url":"https://github.com/Kuangcp/Notes/blob/master/SUMMARY.md"
     },{
         "title":"码云","url":"https://gitee.com/kcp1104"
     },{
         "title":"阿里邮箱","url":"https://mail.aliyun.com/alimail/"
+    },{
+        "title":"Outlook","url":"https://outlook.live.com/mail/#/inbox"
     },{
         "title":"CSDN","url":"http://blog.csdn.net/kcp606"
     },{
@@ -39,88 +52,21 @@ list={
         "title":"常用软件","url":"https://github.com/Kuangcp/Notes/blob/master/Soft_List.md"
     },{
         "title":"常用平台","url":"https://github.com/Kuangcp/Notes/blob/master/Platform.md"
+    },{
+        "title":"Miu图标","url":"https://linhpham.me/miu/"
+    },{
+        "title":"阿里图标库","url":"http://www.iconfont.cn/"
     }
     // ,{
-    //     "title":" ","url":" "
+    //     "title":"","url":""
     // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-    // ,{
-    //     "title":" ","url":" "
-    // }
-
     ]
-}
-
-$(".menu-element").on('click', function(){
-    type = $(this).data('type')
-    console.log('click', type)
-    
-    if(type=='fun'){
-        insertData(list.fun)
-    }else if(type=='code'){
-        insertData(list.code)
-    }else if(type=='platform'){
-        insertData(list.platform)
-    }
-})
-
-function insertData(lists){
-    temp='<div class="row">'
-    count=0
-    lists.forEach(function(value){
-        count++
-        // console.log(value.title, value.url)
-        temp+='<div class="col-md-'+list.colNum+'" style="width=50%;">'+
-            '<a href="'+value.url+'" style="text-decoration: none;">'+
-            '<div class="box"><div class="text">'+value.title+'</div></div></div></a>'
-        if(count%list.col==0){
-            temp+='</div><div class="row">'
-        }
-    })
-    temp+='</div>'
-    $("#main").html(temp)
+    // https://www.shiyanlou.com/user/60578/
+    // https://console.bce.baidu.com/bae/?_=1492954589734#/bae/app/list
+    // https://www.codacy.com/projects
+    // https://translate.google.cn/
+    // https://www.gitbook.com/@kuangcp/dashboard
+    // https://home.console.aliyun.com/new#/
+    // https://bitbucket.org/
+    // https://gitlab.com/
 }
