@@ -4,54 +4,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>add</title>
-</head>
-<body>
-    <main id="main">
+    <style>
+        .title {
+            width: 120px;
+        }
 
-    </main>
+        .url {
+            width: 200px;
+        }
+
+        .add-line {
+            margin: 5px 0 0 80px;
+            width: 200px;
+        }
+
+        .main {
+            margin-left: 24%;
+            width: 450px;
+            text-align: center;
+            /* float: left; */
+        }
+
+        .out {
+            /* float: left; */
+            margin: 10px 0 0 10%;
+            width: 80%;
+            height: 80%;
+        }
+
+        .body {
+            height: 99%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <main id="main" class="main">
+            <div id="input"></div>
+            <button class="add-line">新增一行</button>
+            <button class="showJSON">输出</button>
+        </main>
+        <textarea id="out" class="out"></textarea>
+    </div>
     <script src="../js/jquery-3.0.0.min.js"></script>
     <script src="../js/me/main.data.js"></script>
-<script>
-function show(list, lists){
-    lists.forEach(function(value){
-        console.log(value)
-        console.log()
-    })
-}
-// show(list, list[1])
+    <script>
+        selectDom = ''
+        config.type.forEach(function (value) {
+            selectDom += '<option value="' + value + '">' + value + '</option>'
+        })
+        var Num = 0
+        var Total = 0
 
-for (var o in list){
-    console.log(o)
-    if (typeof list[o] == 'object' && list[o] != null) {
-        console.log(">>>>"+list[o])
-        for(var line in list[o]){
-            console.log(list[o][line].title, list[o][line].url)
+        function addLine() {
+            Num++
+            Total++
+            $("#input").append('<select class="link-type" id="type' + Total + '">' + selectDom + '</select>' +
+                '<input id="title' + Total + '" class="title"/><input id="url' + Total + '" class="url"/><br/>')
         }
-    }
-}
+        $(".add-line").on('click', function () {
+            addLine()
+        })
 
-// var array = {
-//     "a": "abc",
-//     "b": [1, 2, 3, 4, 5, 6],
-//     "c": 3,
-//     "d": {
-//         "name": "james",
-//         "age": 28
-//     },
-//     "e": null,
-//     "f": true
-// };
 
-// //遍历array方式1
-// for (var x in array) {
-//     if (typeof array[x] == 'object' && array[x] != null) {
-//         for (var y in array[x]) {
-//             console.log(">>key = " + y + " value = " + array[x][y]);
-//         }
-//     } else {
-//         console.log("key = " + x + " value = " + array[x]); // 非array object
-//     }
-// }
-</script>
+        var dict = new Array()
+
+        function readInput() {
+            for (var i = 1; i <= Total; i++) {
+                dict['title' + i] = $("#title" + i).val()
+                dict['type' + i] = $("#type" + i).val()
+                dict['url' + i] = $("#url" + i).val()
+                // console.log(dict['type'+i]+"|"+dict['title'+i]+"|"+dict['url'+i]+"total:"+Total)
+            }
+        }
+
+        function appendJSON() {
+            readInput()
+            // JSON拼接
+            temp = 'list={\n'
+            for (var o in list) {
+                temp += '  ' + o + ':[\n'
+                if (typeof list[o] == 'object' && list[o] != null) {
+                    for (var line in list[o]) {
+                        temp += '    {"title":"' + list[o][line].title + '","url":"' + list[o][line].url + '"},\n';
+                    }
+                    // 因为定义了var,所以不是局部变量, 所以就不会有重复出现!!
+                    for (var i = 1; i <= Num; i++) {
+                        if (dict['type' + i] === o) {
+                            temp += '    {"title":"' + dict['title' + i] + '","url":"' + dict['url' + i] + '"},\n';
+                        }
+                    }
+                }
+                temp += '],\n'
+            }
+            temp += '}'
+            // console.log(temp)
+            $("#out").val('')
+            $("#out").val(temp)
+        }
+        $("#out").val('')
+        $(".showJSON").on('click', function () {
+            appendJSON()
+        })
+        var Num = 0
+        $(".body").on('click', function () {
+            Num++
+            console.log(Num)
+            if (Num > 1) {
+                window.location = '../main.html'
+            }
+        })
+    </script>
 </body>
+
 </html>
