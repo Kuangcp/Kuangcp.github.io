@@ -28,7 +28,7 @@
                 <!-- <embed src="image/svg/app.svg" type="image/svg+xml" class="svg-pic" />  -->
                 <img src="image/svg/app.png" class="svg-pic" />
             </div>
-            <div class="menu-button menu-list2 menu-element" data-type="platform">
+            <div class="menu-button menu-list2 menu-element" data-type="cloud">
                 <!-- <embed src="image/svg/cloud.svg" type="image/svg+xml" class="svg-pic" />  -->
                 <img src="image/svg/cloud.png" class="svg-pic" />
             </div>
@@ -44,17 +44,27 @@
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/me/main.data.js"></script>
     <script>
+        var fun = 0        
         $(".menu-element").on('click', function () {
             type = $(this).data('type')
             // console.log('click', type)
+
+            if (type == 'fun') {
+                fun++
+            }else{
+                fun = 0                
+            }
             if (type == 'fun') {
                 insertData(list.fun)
             } else if (type == 'code') {
                 insertData(list.code)
-            } else if (type == 'platform') {
-                insertData(list.platform)
+            } else if (type == 'cloud') {
+                insertData(list.cloud)
             } else if (type == 'read') {
                 insertData(list.read)
+            }
+            if(fun>2){
+                window.location = 'Tool/RereshJSON.html'
             }
         })
 
@@ -77,14 +87,6 @@
         $(function () {
             insertData(list.code)
         });
-        var Num = 0
-        $(".body").on('click', function () {
-            Num++
-            console.log(Num)
-            if (Num > 1) {
-                window.location = 'Tool/RereshJSON.html'
-            }
-        })
     </script>
 </body>
 

@@ -5,7 +5,7 @@ config={
         "title":"",
         "":"",
     }],
-    type:['fun', 'platform', 'read', 'code']
+    type:['code', 'cloud', 'read',  'fun']
 }
 
 list={
@@ -15,15 +15,16 @@ list={
       {"title":"网易云音乐","url":"http://music.163.com/"},
       {"title":"腾讯视频","url":"https://v.qq.com/"},
   ],
-    platform:[
+    cloud:[
       {"title":"微云","url":"https://www.weiyun.com/disk#m=recent"},
-      {"title":"百度网盘","url":"https://pan.baidu.com/disk/home?#list/path=%2F&vmode=list"},
+      {"title":"百度网盘","url":"https://pan.baidu.com/disk/home"},
       {"title":"七牛云","url":"https://portal.qiniu.com/create"},
       {"title":"微信","url":"https://wx.qq.com/"},
       {"title":"WebQQ","url":"http://w.qq.com/"},
       {"title":"ICO转换","url":"https://convertico.com/"},
       {"title":"阿里云","url":"https://home.console.aliyun.com/new#/"},
-      {"title":"百度云","url":"https://console.bce.baidu.com/bae/?_=1492954589734#/bae/app/list"},
+      {"title":"百度云","url":"https://console.bce.baidu.com/bae/"},
+      {"title":"草料二维码","url":"https://cli.im/url"},
   ],
     read:[
       {"title":"Spring","url":"https://spring.io/"},
