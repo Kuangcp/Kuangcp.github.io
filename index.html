@@ -1,59 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Signin Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/u/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/me/signin.css" rel="stylesheet">
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script>
-        var date = new Date();
-//        console.log(date.getDate());
-        function login() {
-            if($("#inputEmail").val()==date.getDate()){
-                window.location="tree.html";
-            }
-        }
-    </script>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <meta name="description" content="">
+ <meta name="author" content="">
+ <title>Myth.Kuang</title>
+ <link href="css/u/bootstrap.min.css" rel="stylesheet"/>
+ <style>
+  a {font-size:16px;color:black;}
+  a:link {/* color: blue;  */text-decoration:none;} /* 未访问：蓝色、无下划线 */
+  a:active{/* color: red; */ } /* //激活：红色 */
+  a:visited {/* color:purple; */text-decoration:none;} /* //已访问：purple、无下划线 */
+  a:hover {/* color: red; */ /* text-decoration:underline; */text-decoration:none;}/*  //鼠标移近：红色、下划线  */
+  body{
+    background-size: auto 768px
+  }
+  .button-area button{
+    margin: 0 2px 0 0 
+  }
+ </style>
+ <script src="js/jquery-3.0.0.min.js"></script>
+ <script src="js/tether.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
 </head>
 
-<body >
+<body background="image/back_index.jpg" >
+  <!--顶部按钮-->
+  <nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <a class="navbar-brand" href="#">Myth.Kuang</a>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+    <li class="nav-item active"></li>
+    </ul>
 
-<div class="container" style="margin-top:100px;">
+    <div class="btn-group">
+      <button type="button" class="btn btn-info">Tools</button>
+      <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
 
-    <form class="form-signin">
-        <h2 class="form-signin-heading" onclick="login()">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me">
-                 Remember me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary  " type="submit">Sign in</button>
-        <a href="register.html"><button class="btn btn-lg btn-primary" type="button">Register</button></a>
-    </form>
+      <ul class="dropdown-menu" style="text-align: center;">
+        <li><a href="Tool/DuiZhang.html">对账</a></li>
+      </ul>
+    </div>
 
-</div> <!-- /container -->
+    <div class="button-area">
+      <a href="main.html"><button class="btn">导航</button></a>
+      <a href="page/yueyue.html"><button class="btn btn-primary">小悦悦</button></a>
+      <a href="love/2017-04-09/LoveYouForever.html"><button class="btn btn-danger">Lover</button></a>
+      <a href="/page/choice.html"><button class="btn btn-danger">Choice</button></a>
+    </div>
+  </div>
+  </nav>
 
-<footer  style="margin-top: 200px">
-    <a href="tree.html" style="text-decoration: none;"><p>&copy; Myth 2017</p></a>
-</footer>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="js/ie10-viewport-bug-workaround.js"></script>
+  <div class="container" >
+  <hr>
+  <footer>
+    <a href="" style="text-decoration: none;"><p>&copy; Myth 2017</p></a>
+  </footer>
+  </div>
+
 </body>
 </html>

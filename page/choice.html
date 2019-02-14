@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Choice</title>
+    <link href="/css/u/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="/js/jquery-3.0.0.min.js"></script>
+    <script src="/js/tether.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <style>
+        .main-button{
+            text-align: center;
+            margin-top: 70%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-button" id="main-button">
+        <button class="btn btn-primary">我才不会点这里呢</button>
+    </div>
+
+    <div id="question-area">
+
+    </div>
+    <script>
+        $('#main-button').on('click', function () {
+            var button = $('#main-button')
+            i = 69
+            var timer = setInterval(function () {
+                i--
+                // console.log(i);
+                if(i < -20){
+                    clearInterval(timer)
+                    question()
+                }
+
+                button.css('margin-top', i+"%");
+                button.css('opacity', (i+19)/100+'')
+            }, 15);
+        })
+
+        function question() {
+            $("#question-area")
+            .append('<div style="font-size:20px;margin-top:40%;text-align:center;">悦悦喜不喜欢傻宝宝 ')
+            .append('<button class="btn btn-success">好喜欢</button>')
+            .append('<button class="btn btn-danger" id="reject">不喜欢,下一个会更乖</button>')
+            .append('</div>')
+
+            var timer = setInterval(function () {
+
+            // 随机线性运动
+            },10);
+
+        }
+    </script>
+</body>
+</html>
