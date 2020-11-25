@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java中的测试 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Java的测试 断言 正式代码 测试代码 单元测试 测试框架 Junit Idea上Junit的使用 TestNG Mock框架 Mockito EasyMock DBUnit 基准测试 JMH 感悟 目录 end|2020-05-06 01:45| Java的测试" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/test/javatest/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java中的测试" />
+<meta property="og:description" content="目录 start Java的测试 断言 正式代码 测试代码 单元测试 测试框架 Junit Idea上Junit的使用 TestNG Mock框架 Mockito EasyMock DBUnit 基准测试 JMH 感悟 目录 end|2020-05-06 01:45| Java的测试" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/test/javatest/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="Java中的测试">
+<meta itemprop="description" content="目录 start Java的测试 断言 正式代码 测试代码 单元测试 测试框架 Junit Idea上Junit的使用 TestNG Mock框架 Mockito EasyMock DBUnit 基准测试 JMH 感悟 目录 end|2020-05-06 01:45| Java的测试">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="2037">
+
+
+
+<meta itemprop="keywords" content="测试," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java中的测试"/>
+<meta name="twitter:description" content="目录 start Java的测试 断言 正式代码 测试代码 单元测试 测试框架 Junit Idea上Junit的使用 TestNG Mock框架 Mockito EasyMock DBUnit 基准测试 JMH 感悟 目录 end|2020-05-06 01:45| Java的测试"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java中的测试</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 2037 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#断言">断言</a>
+      <ul>
+        <li><a href="#正式代码">正式代码</a></li>
+        <li><a href="#测试代码">测试代码</a></li>
+      </ul>
+    </li>
+    <li><a href="#单元测试">单元测试</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#junit">Junit</a>
+      <ul>
+        <li><a href="#idea上junit的使用">Idea上Junit的使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#testng">TestNG</a></li>
+    <li><a href="#mock框架">Mock框架</a>
+      <ul>
+        <li><a href="#mockito">Mockito</a></li>
+        <li><a href="#easymock">EasyMock</a></li>
+      </ul>
+    </li>
+    <li><a href="#dbunit">DBUnit</a></li>
+    <li><a href="#基准测试">基准测试</a>
+      <ul>
+        <li><a href="#jmh">JMH</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#java%E7%9A%84%E6%B5%8B%E8%AF%95">Java的测试</a>
+<ol>
+<li><a href="#%E6%96%AD%E8%A8%80">断言</a>
+<ol>
+<li><a href="#%E6%AD%A3%E5%BC%8F%E4%BB%A3%E7%A0%81">正式代码</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81">测试代码</a></li>
+</ol>
+</li>
+<li><a href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">单元测试</a></li>
+</ol>
+</li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6">测试框架</a>
+<ol>
+<li><a href="#junit">Junit</a>
+<ol>
+<li><a href="#idea%E4%B8%8Ajunit%E7%9A%84%E4%BD%BF%E7%94%A8">Idea上Junit的使用</a></li>
+</ol>
+</li>
+<li><a href="#testng">TestNG</a></li>
+<li><a href="#mock%E6%A1%86%E6%9E%B6">Mock框架</a>
+<ol>
+<li><a href="#mockito">Mockito</a></li>
+<li><a href="#easymock">EasyMock</a></li>
+</ol>
+</li>
+<li><a href="#dbunit">DBUnit</a></li>
+<li><a href="#%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95">基准测试</a>
+<ol>
+<li><a href="#jmh">JMH</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E6%84%9F%E6%82%9F">感悟</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-05-06 01:45</em>|</p>
+<hr>
+<h1 id="java的测试">Java的测试</h1>
+<blockquote>
+<p><a href="/Skills/Base/Test.md">测试的基础理论</a></p>
+</blockquote>
+<h2 id="断言">断言</h2>
+<h3 id="正式代码">正式代码</h3>
+<p><a href="https://yq.aliyun.com/ziliao/131292">参考: Java陷阱之assert关键字详解_java</a>
+<a href="http://www.cnblogs.com/mylove7/articles/3457157.html">java 中assert的使用</a></p>
+<p>首先可以用在单元测试代码中。junit侵入性是很强的，如果整个工程大量的代码都使用了junit，就难以去掉或者是选择另外一个框架。如果单元测试代码 很多，并且想复用这些单元测试案例，应该选择assert而不是junit，便于使用别的单元测试框架，比如TestNG。同理正式的功能代码根本就不应 该出现Junit，应该使用assert.</p>
+<p>assert主要适合在基类，框架类，接口类，核心代码类，工具类中。换言之，当你的代码的调用者是另外一个程序员写得业务代码，或者是另外一个子系统时，就很有必要使用它。比如你做了一个快速排序的算法</p>
+<p>这种情况下，如果不检查传入参数的正确性，会抛出一个莫名其妙的空指针错误。你的调用者可能并不清楚你代码的细节，在一个系统的深处调试一个空指针错误是很浪费时间的。就应该直接明确的告诉你的调用者是传入的参数有问题。否则他会怀疑你的代码有BUG。使用assert可以避免两个程序员之间互相指责对方写的代码有问题。
+assert适用那些你知道具体是什么错误，你和你的调用者已经约定应该由你的调用者去排除或检查的错误。你通过一个断言告诉你的调用者。assert不适用那些外部系统造成的错误，比如用户输入数据的错误，某个外部文件格式错误。这些错误不是你的调用者而是用户造成的，甚至于不属于异常，因为出现输入错误和文件格式错误是经常的，这些错误应该由业务代码去检查。</p>
+<p>assert比较适合于被频繁调用的 基类，框架代码，工具类，核心代码，接口代码中，这正是它在运行时被去掉的原因。测试代码应该在测试阶段开启-ea参数，便于对系统深处的核心代码做仔细的测试。</p>
+<p>Java较少使用assert的原因是Java有很完整的OO体系，强制类型转换出现得较少，所以不需要类似c那样需要频繁的检查指针的类型是否正确，指针是否为空。同时Java也很少直接管理内存或缓冲区，所以不需要频繁的检查传入的缓冲区是否为空或者是已经越界。</p>
+<p>但使用好assert有助于提高框架代码的正确性和减少框架代码的使用者的调试时间。</p>
+<p>assert要达到的目的是让程序员方便的发现自己的逻辑错误，并且不影响程序的效率。assert所发现的错误，是完全不应该出现的，是不能用异常代替的。异常，那是系统所允许的，或者是系统不可控的“错误”，它不是程序员的逻辑问题。</p>
+<p>assert应该是开发阶段打开，而在发布后关闭。</p>
+<h3 id="测试代码">测试代码</h3>
+<blockquote>
+<p>测试中必须要通过断言来得知测试是否通过,</p>
+</blockquote>
+<h2 id="单元测试">单元测试</h2>
+<blockquote>
+<p>单元测试(unit testing)，是指对软件中的最小可测试单元进行检查和验证。</p>
+</blockquote>
+<ul>
+<li>Assert.assertEquals(a,b) 断言两个对象是相等的</li>
+<li>assert(expression) 断言表达式为真</li>
+</ul>
+<hr>
+<h1 id="测试框架">测试框架</h1>
+<h2 id="junit">Junit</h2>
+<blockquote>
+<p><a href="https://junit.org/junit4/">Junit4官网</a>|<a href="https://junit.org/junit5/">Junit5官网</a>| <a href="/MyBlog/how-to-use-junit.md">如何上手Junit</a> | <a href="/MyBlog/how-to-use-junit5.md">如何上手Junit5</a></p>
+</blockquote>
+<ul>
+<li>
+<p>Before Test 执行顺序：</p>
+<ul>
+<li>Before在Test之前执行是毋庸置疑的，但是如果有多个Before的话，按定义的先后逆序执行，也就是说AB顺序定义，BA顺序执行</li>
+<li><code>注意</code> Before的执行顺序不是平常想的那样，如果你有一个共享的对象，需要在两个Before中完成初始化，是办不到的，必然空指针</li>
+</ul>
+</li>
+<li>
+<p>遇到的问题:</p>
+<ul>
+<li>如果在加了Test注解的方法中像Main方法一样的去开多个子线程对象并运行起来,并不会得到想要的结果</li>
+<li>这几个线程都是开了就立马关闭了,而且也是正常的退出码 0</li>
+<li>原因:</li>
+</ul>
+</li>
+</ul>
+<h3 id="idea上junit的使用">Idea上Junit的使用</h3>
+<p><em>可以使用TestMe插件</em></p>
+<ul>
+<li>Ctrl Shift T 生成测试类 结合Mockit可以更好的模拟测试环境</li>
+</ul>
+<h2 id="testng">TestNG</h2>
+<blockquote>
+<p><a href="https://github.com/chanjarster/spring-test-examples">Spring、Spring Boot和TestNG测试指南</a></p>
+</blockquote>
+<hr>
+<h2 id="mock框架">Mock框架</h2>
+<blockquote>
+<p>mock 模拟 , 也就是说对需要测试的模块, 将该模块依赖的相关对象给修改成自己期望的行为方式(伪造一个假对象), 以移除依赖性, 从而针对性的测试该模块
+但主要还是适用于单元测试，在集成测试，性能测试，自动化测试等其他测试领域使用并不多</p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.vogella.com/tutorials/Mockito/article.html#testing-with-mock-objects">JMockit官方文档</a></p>
+</blockquote>
+<ul>
+<li><a href="http://blog.csdn.net/chjttony/article/details/17838693">入门博客</a>
+<a href="http://www.baeldung.com/mockito-void-methods">http://www.baeldung.com/mockito-void-methods</a>
+<a href="https://www.tutorialspoint.com/mockito/mockito_quick_guide.htm">https://www.tutorialspoint.com/mockito/mockito_quick_guide.htm</a>
+<a href="http://static.javadoc.io/org.mockito/mockito-core/2.19.0/org/mockito/Mockito.html#1">http://static.javadoc.io/org.mockito/mockito-core/2.19.0/org/mockito/Mockito.html#1</a></li>
+</ul>
+<h3 id="mockito">Mockito</h3>
+<blockquote>
+<p><a href="http://site.mockito.org/">Officail Site</a> | <a href="https://github.com/mockito/mockito">Github:mockito</a>
+<a href="https://www.tutorialspoint.com/mockito/index.htm">Mockito Tutorial</a>
+<a href="http://www.vogella.com/tutorials/Mockito/article.html">Unit tests with Mockito - Tutorial</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/happyframework/p/3595547.html">参考: TDD：什么是桩（stub）和模拟（mock）？</a>
+<a href="http://www.testclass.net/mockito/">参考: mockito</a>
+<a href="http://static.javadoc.io/org.mockito/mockito-core/2.19.0/org/mockito/Mockito.html#1">mockito</a></p>
+</blockquote>
+<blockquote>
+<p>官网提示:</p>
+<ol>
+<li>Do not mock types you don’t own</li>
+<li>Don’t mock value objects</li>
+<li>Don’t mock everything</li>
+<li>Show love with your tests!</li>
+</ol>
+</blockquote>
+<ol>
+<li><strong>常规使用</strong> when(mock.get(anyInt())).thenReturn(null);</li>
+<li><strong>对void方法的mock</strong> doThrow(new RuntimeException()).when(mock).someVoidMethod(anyObject());</li>
+<li><strong>使用规则去校验</strong> verify(mock).someMethod(contains(&ldquo;foo&rdquo;));</li>
+</ol>
+<blockquote>
+<p>切忌 不可对非Mock对象使用 mock 的系列方法, 不然会报出南辕北辙的错误,这是首先要排查的一点</p>
+</blockquote>
+<p>一般不用对 void 方法打桩, 事后 verify 就行<br>
+测试代码针对 mock  对象的 void 方法调用本来就没有什么效果，所以一般也无须用 doNothing(), 况且 void 提供不了返回值作进一步 mock，只需要在事后用 verify() 进行验证一下。</p>
+<h3 id="easymock">EasyMock</h3>
+<blockquote>
+<p><a href="https://github.com/easymock/easymock">Github</a></p>
+</blockquote>
+<hr>
+<h2 id="dbunit">DBUnit</h2>
+<blockquote>
+<p>基于Junit的一个数据库测试框架, 方便测试dao层
+<a href="https://github.com/sebastianbergmann/dbunit">Github</a><code>但是已经停止维护了</code></p>
+</blockquote>
+<hr>
+<h2 id="基准测试">基准测试</h2>
+<h3 id="jmh">JMH</h3>
+<blockquote>
+<p><a href="/Java/Test/JMH.md">详情</a></p>
+</blockquote>
+<hr>
+<h1 id="感悟">感悟</h1>
+<blockquote>
+<ol>
+<li>好的测试能大大节省时间, 坏的测试大量延误时间</li>
+<li>应该在项目主体架构明确后, 才大量书写测试, 验证程序, 避免编写大量无用测试代码</li>
+<li>单元测试有多难写, 你的代码就有多高的耦合度</li>
+</ol>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/advancedlearning/javaannotation/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Java中的注解</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/javainheritedandinterface/">
+            <span class="next-text nav-default">Java中的继承与接口</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

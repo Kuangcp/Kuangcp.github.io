@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>测试基础理论 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 测试 为何要使用测试 基础知识 测试替身 虚设对象 存根对象 伪装替身 模拟对象 软件测试方法 黑盒测试 白盒测试 静态测试 动态测试 GUI测试 测试级别 单元测" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/test/testtheory/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="测试基础理论" />
+<meta property="og:description" content="目录 start 测试 为何要使用测试 基础知识 测试替身 虚设对象 存根对象 伪装替身 模拟对象 软件测试方法 黑盒测试 白盒测试 静态测试 动态测试 GUI测试 测试级别 单元测" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/test/testtheory/" />
+<meta property="article:published_time" content="2018-12-20T10:25:07+00:00" />
+<meta property="article:modified_time" content="2018-12-20T10:25:07+00:00" />
+<meta itemprop="name" content="测试基础理论">
+<meta itemprop="description" content="目录 start 测试 为何要使用测试 基础知识 测试替身 虚设对象 存根对象 伪装替身 模拟对象 软件测试方法 黑盒测试 白盒测试 静态测试 动态测试 GUI测试 测试级别 单元测">
+<meta itemprop="datePublished" content="2018-12-20T10:25:07+00:00" />
+<meta itemprop="dateModified" content="2018-12-20T10:25:07+00:00" />
+<meta itemprop="wordCount" content="6176">
+
+
+
+<meta itemprop="keywords" content="测试,基础," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="测试基础理论"/>
+<meta name="twitter:description" content="目录 start 测试 为何要使用测试 基础知识 测试替身 虚设对象 存根对象 伪装替身 模拟对象 软件测试方法 黑盒测试 白盒测试 静态测试 动态测试 GUI测试 测试级别 单元测"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">测试基础理论</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-20 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%B5%8B%E8%AF%95/"> 测试 </a>
+            </div>
+          <span class="more-meta"> 6176 words </span>
+          <span class="more-meta"> 13 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为何要使用测试">为何要使用测试</a></li>
+    <li><a href="#基础知识">基础知识</a>
+      <ul>
+        <li><a href="#测试替身">测试替身</a></li>
+      </ul>
+    </li>
+    <li><a href="#软件测试方法">软件测试方法</a>
+      <ul>
+        <li><a href="#黑盒测试">黑盒测试</a></li>
+        <li><a href="#白盒测试">白盒测试</a></li>
+        <li><a href="#静态测试">静态测试</a></li>
+        <li><a href="#动态测试">动态测试</a></li>
+        <li><a href="#gui测试">GUI测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#测试级别">测试级别</a>
+      <ul>
+        <li><a href="#单元测试">单元测试</a></li>
+        <li><a href="#组件测试">组件测试</a></li>
+        <li><a href="#集成测试">集成测试</a></li>
+        <li><a href="#系统测试">系统测试</a></li>
+        <li><a href="#alpha测试">Alpha测试</a></li>
+        <li><a href="#beta测试">Beta测试</a></li>
+        <li><a href="#验收测试">验收测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#测试类型">测试类型</a>
+      <ul>
+        <li><a href="#安装测试">安装测试</a></li>
+        <li><a href="#开发测试">开发测试</a></li>
+        <li><a href="#可用性测试">可用性测试</a></li>
+        <li><a href="#完整性测试">完整性测试</a></li>
+        <li><a href="#冒烟测试">冒烟测试</a></li>
+        <li><a href="#回归测试">回归测试</a></li>
+        <li><a href="#破坏性测试">破坏性测试</a></li>
+        <li><a href="#恢复测试">恢复测试</a></li>
+        <li><a href="#自动化测试">自动化测试</a></li>
+        <li><a href="#兼容性测试">兼容性测试</a></li>
+        <li><a href="#性能测试">性能测试</a></li>
+        <li><a href="#安全测试">安全测试</a></li>
+        <li><a href="#可访问性测试">可访问性测试</a></li>
+        <li><a href="#国际化和本地化测试">国际化和本地化测试</a></li>
+        <li><a href="#ab测试">A/B测试</a></li>
+        <li><a href="#冒烟测试-1">冒烟测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#tdd-测试驱动开发">TDD 测试驱动开发</a>
+      <ul>
+        <li><a href="#什么是tdd">什么是TDD</a></li>
+        <li><a href="#tdd实践">TDD实践</a></li>
+      </ul>
+    </li>
+    <li><a href="#mock">Mock</a></li>
+    <li><a href="#bdd">BDD</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E6%B5%8B%E8%AF%95">测试</a>
+<ol>
+<li><a href="#%E4%B8%BA%E4%BD%95%E8%A6%81%E4%BD%BF%E7%94%A8%E6%B5%8B%E8%AF%95">为何要使用测试</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">基础知识</a>
+<ol>
+<li><a href="#%E6%B5%8B%E8%AF%95%E6%9B%BF%E8%BA%AB">测试替身</a>
+<ol>
+<li><a href="#%E8%99%9A%E8%AE%BE%E5%AF%B9%E8%B1%A1">虚设对象</a></li>
+<li><a href="#%E5%AD%98%E6%A0%B9%E5%AF%B9%E8%B1%A1">存根对象</a></li>
+<li><a href="#%E4%BC%AA%E8%A3%85%E6%9B%BF%E8%BA%AB">伪装替身</a></li>
+<li><a href="#%E6%A8%A1%E6%8B%9F%E5%AF%B9%E8%B1%A1">模拟对象</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95">软件测试方法</a>
+<ol>
+<li><a href="#%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95">黑盒测试</a></li>
+<li><a href="#%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95">白盒测试</a></li>
+<li><a href="#%E9%9D%99%E6%80%81%E6%B5%8B%E8%AF%95">静态测试</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E6%B5%8B%E8%AF%95">动态测试</a></li>
+<li><a href="#gui%E6%B5%8B%E8%AF%95">GUI测试</a></li>
+</ol>
+</li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E7%BA%A7%E5%88%AB">测试级别</a>
+<ol>
+<li><a href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">单元测试</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95">组件测试</a></li>
+<li><a href="#%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95">集成测试</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95">系统测试</a></li>
+<li><a href="#alpha%E6%B5%8B%E8%AF%95">Alpha测试</a></li>
+<li><a href="#beta%E6%B5%8B%E8%AF%95">Beta测试</a></li>
+<li><a href="#%E9%AA%8C%E6%94%B6%E6%B5%8B%E8%AF%95">验收测试</a></li>
+</ol>
+</li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%9E%8B">测试类型</a>
+<ol>
+<li><a href="#%E5%AE%89%E8%A3%85%E6%B5%8B%E8%AF%95">安装测试</a></li>
+<li><a href="#%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95">开发测试</a></li>
+<li><a href="#%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95">可用性测试</a></li>
+<li><a href="#%E5%AE%8C%E6%95%B4%E6%80%A7%E6%B5%8B%E8%AF%95">完整性测试</a></li>
+<li><a href="#%E5%86%92%E7%83%9F%E6%B5%8B%E8%AF%95">冒烟测试</a></li>
+<li><a href="#%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95">回归测试</a></li>
+<li><a href="#%E7%A0%B4%E5%9D%8F%E6%80%A7%E6%B5%8B%E8%AF%95">破坏性测试</a></li>
+<li><a href="#%E6%81%A2%E5%A4%8D%E6%B5%8B%E8%AF%95">恢复测试</a></li>
+<li><a href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95">自动化测试</a></li>
+<li><a href="#%E5%85%BC%E5%AE%B9%E6%80%A7%E6%B5%8B%E8%AF%95">兼容性测试</a></li>
+<li><a href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95">性能测试</a></li>
+<li><a href="#%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95">安全测试</a></li>
+<li><a href="#%E5%8F%AF%E8%AE%BF%E9%97%AE%E6%80%A7%E6%B5%8B%E8%AF%95">可访问性测试</a></li>
+<li><a href="#%E5%9B%BD%E9%99%85%E5%8C%96%E5%92%8C%E6%9C%AC%E5%9C%B0%E5%8C%96%E6%B5%8B%E8%AF%95">国际化和本地化测试</a></li>
+<li><a href="#ab%E6%B5%8B%E8%AF%95">A/B测试</a>
+<ol>
+<li><a href="#ab%E6%B5%8B%E8%AF%95%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">A/B测试的应用场景</a>
+<ol>
+<li><a href="#%E5%85%83%E7%B4%A0%E6%8E%A7%E4%BB%B6%E5%B1%82%E9%9D%A2">元素/控件层面</a></li>
+<li><a href="#%E5%8A%9F%E8%83%BD%E5%B1%82%E9%9D%A2">功能层面</a></li>
+<li><a href="#%E4%BA%A7%E5%93%81%E5%B1%82%E9%9D%A2">产品层面</a></li>
+<li><a href="#%E5%85%AC%E5%8F%B8%E5%B1%82%E9%9D%A2">公司层面</a></li>
+</ol>
+</li>
+<li><a href="#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98">相关问题</a></li>
+</ol>
+</li>
+<li><a href="#%E5%86%92%E7%83%9F%E6%B5%8B%E8%AF%95">冒烟测试</a></li>
+</ol>
+</li>
+<li><a href="#tdd-%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91">TDD 测试驱动开发</a>
+<ol>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFtdd">什么是TDD</a></li>
+<li><a href="#tdd%E5%AE%9E%E8%B7%B5">TDD实践</a></li>
+</ol>
+</li>
+<li><a href="#mock">Mock</a></li>
+<li><a href="#bdd">BDD</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="测试">测试</h1>
+<blockquote>
+<p><a href="http://www.yinwang.org/blog-cn/2016/09/14/tests">参考: 测试的道理</a>
+<a href="https://www.thebalancecareers.com/all-you-need-to-know-about-software-testing-methods-4019921">参考: Everything You Need to Know About Software Testing Methods</a></p>
+</blockquote>
+<h2 id="为何要使用测试">为何要使用测试</h2>
+<ol>
+<li>帮助理解需求
+<ul>
+<li>单元测试应该反映Use Case，把被测单元当成黑盒测试其外部行为。</li>
+</ul>
+</li>
+<li>提高实现质量
+<ul>
+<li>单元测试不保证程序做正确的事，但能帮助保证程序正确地做事，从而提高实现质量。</li>
+</ul>
+</li>
+<li>测试成本低
+<ul>
+<li>相比集成测试、验收测试，单元测试所依赖的外部环境少，自动化程度高，时间短，节约了测试成本。</li>
+</ul>
+</li>
+<li>反馈速度快
+<ul>
+<li>单元测试提供快速反馈，把bug消灭在开发阶段，减少问题流到集成测试、验收测试和用户，降低了软件质量控制的成本。</li>
+</ul>
+</li>
+<li>利于重构
+<ul>
+<li>由于有单元测试作为回归测试用例，有助于预防在重构过程中引入bug。</li>
+</ul>
+</li>
+<li>文档作用
+<ul>
+<li>单元测试提供了被测单元的使用场景，起到了使用文档的作用。</li>
+</ul>
+</li>
+<li>对设计的反馈
+<ul>
+<li>一个模块很难进行单元测试通常是不良设计的信号，单元测试可以反过来指导设计出高内聚、低耦合的模块。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="基础知识">基础知识</h2>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513524&amp;idx=1&amp;sn=8967771a4ac2a2b3b9bca019207e275a&amp;chksm=80d67a77b7a1f36167ca66f9bdad810202d8790be1f15977dacd03348ee2b139f65ba58e4187&amp;scene=21#wechat_redirect">码农翻身: 张大胖和单元测试</a></p>
+</blockquote>
+<ul>
+<li><a href="/Java/AdvancedLearning/ProgramThinking.md#tdd-%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91">个人笔记: TDD 测试驱动开发</a></li>
+</ul>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/129036/unit-testing-code-with-a-file-system-dependency">参考: Unit testing code with a file system dependency</a><code>如何编写脱离外部依赖的真正单元测试</code></p>
+</blockquote>
+<h3 id="测试替身">测试替身</h3>
+<blockquote>
+<p>泛指任何出于测试目的的替换真实对象的假冒对象，为了解决测试代码的依赖项问题。<br>
+四种方式： 虚设，伪装，存根，模拟</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p286.jpg" alt="p286"></p>
+<h4 id="虚设对象">虚设对象</h4>
+<ul>
+<li>他是用来填充参数列表，填补那些总也不会用的必填域。大多数情况下，甚至可以传入null，就是把需要的参数虚拟出来
+<ul>
+<li>只是为了避免NPE，让代码能跑起来</li>
+</ul>
+</li>
+</ul>
+<h4 id="存根对象">存根对象</h4>
+<ul>
+<li>用来代替真实环境对象，需要有做出相同响应的对象，就是存根对象
+<ul>
+<li>将一些外部类或三方资源，写一个类，以及对应的方法，来提供测试运行</li>
+</ul>
+</li>
+</ul>
+<h4 id="伪装替身">伪装替身</h4>
+<ul>
+<li>伪装替身，可以看作是存根的升级。他做的工作几乎是和生产代码是一样的，单位了满足测试需求也会使用便捷的方式
+<ul>
+<li>例如 内存数据库HSQLDB 的使用，</li>
+</ul>
+</li>
+</ul>
+<h4 id="模拟对象">模拟对象</h4>
+<ul>
+<li>
+<p>存根对象的调用通常会返回形同的结果。所以不能模拟任何与状态有关的行为，模拟对象就能够更好的胜任</p>
+<ul>
+<li>在准备要用的模拟对象时，告诉他会有哪些调用，以及对应的相应，模拟会和DI结合更好。可以用一个虚拟的对象，这个对象完全按照已知方式行动</li>
+</ul>
+</li>
+<li>
+<p>模拟类库：<a href="http://mockito.org">Mockito官网</a></p>
+<ul>
+<li>调用mock()方法创建模拟对象，并将模拟目标类型的class对象作为参数传进去。</li>
+<li>然后要把模拟对象需要的行为记录下来，通过 when方法表明要记录哪些方法的行为，然后用thenReturn方法指定期望结果。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="软件测试方法">软件测试方法</h2>
+<p>以下是用于判断产品行为和性能的不同方法。黑盒子和白盒测试是两种基本方法。</p>
+<h3 id="黑盒测试">黑盒测试</h3>
+<blockquote>
+<p>也称为功能或基于规范的测试，此方法侧重于输出。测试人员不关心内部机制。他们只检查软件是否符合预期。编码知识不是必需的，测试人员在用户界面级别工作。</p>
+</blockquote>
+<h3 id="白盒测试">白盒测试</h3>
+<blockquote>
+<p>此方法使用编码技术作为测试过程的一部分。当产品发生故障时，测试人员会根据需要深入到代码中以找到原因。软件开发人员自己这样做，因为他们确定产品应该如何工作。基于结构和玻璃盒测试是此方法的其他名称。</p>
+</blockquote>
+<h3 id="静态测试">静态测试</h3>
+<blockquote>
+<p>测试人员检查软件的代码和文档，但不执行程序。在验证过程中，静态测试在产品开发的早期开始。</p>
+</blockquote>
+<h3 id="动态测试">动态测试</h3>
+<blockquote>
+<p>软件使用各种输入执行，测试人员使用此方法将输出与预期行为进行比较。</p>
+</blockquote>
+<h3 id="gui测试">GUI测试</h3>
+<blockquote>
+<p>测试GUI特性 - 文本格式，文本框，按钮，列表，布局，颜色，字体，字体大小等。GUI测试非常耗时，第三方公司经常承担这项任务而不是开发人员。</p>
+</blockquote>
+<h2 id="测试级别">测试级别</h2>
+<p>这些对于识别软件开发生命周期的每个阶段中的弱点和重叠区域是必要的。</p>
+<h3 id="单元测试">单元测试</h3>
+<blockquote>
+<p>开发人员测试代码的最基本部分，如类，接口和函数/过程。他们知道他们的代码应该如何响应，并可以根据输出进行调整。</p>
+</blockquote>
+<ul>
+<li>3A 原则:
+<ul>
+<li>Arrange: 初始化测试对象或者准备测试数据</li>
+<li>Act : 调用被测方法</li>
+<li>Assert: 断言</li>
+</ul>
+</li>
+</ul>
+<h3 id="组件测试">组件测试</h3>
+<blockquote>
+<p>其他名称是模块或程序测试。它与单元测试类似，但包含更高级别的集成。对软件模块进行缺陷测试，以验证其各自的功能。</p>
+</blockquote>
+<h3 id="集成测试">集成测试</h3>
+<blockquote>
+<p>这可以在集成模块时识别错误。不同的集成测试是自下而上，自顶向下和功能增量。</p>
+</blockquote>
+<blockquote>
+<p><a href="https://zeroturnaround.com/rebellabs/the-correct-way-to-use-integration-tests-in-your-build-process/">The correct way to use integration tests in your build process</a></p>
+</blockquote>
+<h3 id="系统测试">系统测试</h3>
+<blockquote>
+<p>使用此方法在不同环境中对项目的组件进行整体测试。它属于黑盒方法，是该过程中的最终测试之一。它确定系统是否能够满足业务和用户需求。</p>
+</blockquote>
+<h3 id="alpha测试">Alpha测试</h3>
+<blockquote>
+<p>内部员工在模拟或实际环境中在开发人员的站点测试软件。之后，开发人员纠正错误和其他问题。</p>
+</blockquote>
+<h3 id="beta测试">Beta测试</h3>
+<blockquote>
+<p>也称为现场测试，客户端在实际条件下在自己的站点上测试产品。客户可以为一组最终用户提供通过预发布版或测试版测试软件的机会。然后将关于可能改进的反馈发送给开发人员。</p>
+</blockquote>
+<h3 id="验收测试">验收测试</h3>
+<blockquote>
+<p>在黑盒测试的范围内，客户端测试软件以确定开发人员是否已根据所需规范创建程序。</p>
+</blockquote>
+<h2 id="测试类型">测试类型</h2>
+<blockquote>
+<p>这些软件测试侧重于特定目标。</p>
+</blockquote>
+<h3 id="安装测试">安装测试</h3>
+<blockquote>
+<p>软件测试工程师和配置管理器进行此测试以确保最终用户可以安装和运行该程序。它涵盖了安装文件，安装位置和管理权限等区域。</p>
+</blockquote>
+<h3 id="开发测试">开发测试</h3>
+<blockquote>
+<p>这实现了一系列同步策略来检测和防止缺陷。它包括静态代码分析，同行代码审查，可追溯性和指标分析。目的是降低风险并节省成本。</p>
+</blockquote>
+<h3 id="可用性测试">可用性测试</h3>
+<blockquote>
+<p>通过此测试，用户体验受到关注。它衡量GUI的设计和易用性。该测试检查功能的准确性和效率以及测试对象的情绪反应。</p>
+</blockquote>
+<h3 id="完整性测试">完整性测试</h3>
+<blockquote>
+<p>这表明软件是否值得花时间和成本继续进一步测试。太多的缺陷和更激进的测试不遵循。</p>
+</blockquote>
+<h3 id="冒烟测试">冒烟测试</h3>
+<blockquote>
+<p>冒烟测试揭示了严重到足以防止释放的基本故障。当在新构建上执行此操作时，它称为构建验证测试。</p>
+</blockquote>
+<blockquote>
+<p>冒烟测试源自硬件行业，对一个硬件或者硬件组件改动后，直接给设备加电，看看设备会不会冒烟，没冒烟，就表示待测组件是通过了测试。<br>
+目的是确认软件基本功能正常，可以进行后续的正式测试工作。</p>
+</blockquote>
+<h3 id="回归测试">回归测试</h3>
+<blockquote>
+<p>当系统进行修改时，回归测试会监控意外行为。它指出了对模块或组件的不利影响。</p>
+</blockquote>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Regression_testing">wiki: regression testing</a></p>
+</blockquote>
+<h3 id="破坏性测试">破坏性测试</h3>
+<blockquote>
+<p>测试人员输入异常条目并识别软件管理意外输入的能力。这向开发人员展示了程序在错误管理方面的稳健性。</p>
+</blockquote>
+<h3 id="恢复测试">恢复测试</h3>
+<blockquote>
+<p>当硬件或其他功能出现故障时，此测试显示软件恢复和继续运行的程度。</p>
+</blockquote>
+<h3 id="自动化测试">自动化测试</h3>
+<blockquote>
+<p>这会执行难以手动实现的功能。它使用特定的软件来运行测试并提供实际与预期结果的数据。</p>
+</blockquote>
+<h3 id="兼容性测试">兼容性测试</h3>
+<blockquote>
+<p>软件必须在不同的计算环境中运行，因此这将检查与不同系统的兼容性。例如，该软件是否适用于各种操作系统和Web浏览器？</p>
+</blockquote>
+<h3 id="性能测试">性能测试</h3>
+<blockquote>
+<p>这是一项深入测试，用于检查不同场景下的软件性能。收集有关响应性，稳定性，资源分配和速度的信息。此外，诸如体积，容量和尖峰测试等子测试在此过程中起作用。</p>
+</blockquote>
+<h3 id="安全测试">安全测试</h3>
+<blockquote>
+<p>衡量软件保护用户安全的能力。这意味着授权功能，身份验证，机密性，完整性，可用性和不可否认性。</p>
+</blockquote>
+<h3 id="可访问性测试">可访问性测试</h3>
+<blockquote>
+<p>这与可用性测试不同。这决定了包含学习和身体残疾的不同能力的用户可以使用该软件的程度。</p>
+</blockquote>
+<h3 id="国际化和本地化测试">国际化和本地化测试</h3>
+<blockquote>
+<p>结果显示软件如何适应不同的语言和区域需求。这包括为特定位置添加组件和翻译文本。</p>
+</blockquote>
+<h3 id="ab测试">A/B测试</h3>
+<blockquote>
+<p>对照实验，也叫随机实验和 A/B测试 <a href="https://www.zhihu.com/question/20045543">参考来源:知乎问题</a> | <a href="http://www.appadhoc.com/">相关三方平台</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.optimizely.com/optimization-glossary/ab-testing/">参考 ab-testing</a></p>
+</blockquote>
+<blockquote>
+<p>A/B测试其实是一种“先验”的实验体系，属于预测型结论，与“后验”的归纳性结论差别巨大。A/B测试的目的在于通过科学的实验设计、采样样本代表性、流量分割与小流量测试等方式来获得具有代表性的实验结论，并确信该结论在推广到全部流量可信。<br>
+说句题外话，大量的大数据公司都在尝试通过“后验”结论进行未来行为预测，个人觉得然并卵，主要是因为数据不全、脏数据、随机事件、建模人为因素等等影响，方向无比正确，现实无比残酷</p>
+</blockquote>
+<h4 id="ab测试的应用场景">A/B测试的应用场景</h4>
+<ul>
+<li>A/B测试这种方法论的应用非常广泛，这里讨论在Web产品、移动产品、数字广告优化领域的应用。应用场景由小到大可以可以分为：
+<ul>
+<li>元素/控件层面</li>
+<li>功能层面</li>
+<li>产品层面</li>
+<li>公司层面</li>
+</ul>
+</li>
+</ul>
+<h5 id="元素控件层面">元素/控件层面</h5>
+<p>灰度发布 和 A/B测试：重要页面的修改和流程上的调优，通过灰度发布到1%或者5%的用户，看其实际对用户的数据影响（访问时间增加、留存提高、下单率提高等），决定此修改到底是100%发布还是被砍掉
+Google：
+每个月从上百个A/B测试中找到十几个有效方案，月营收提升2%左右，10亿美元的规模
+广告位左移一个像素带来X%的增收，左移两个像素带来Y%的亏损
+任何产品改动需要A/B测试才能上线
+Facebook：
+6个月内所有版本完全线上灰度发布，通过不断进行用户流量分割的方式进行实验，获得无Bug口碑</p>
+<blockquote>
+<p>灰度发布就是,先把一部分线上的业务分流到新系统上, 然后看情况, 再判断是否全部上线</p>
+</blockquote>
+<h5 id="功能层面">功能层面</h5>
+<p>无论是推荐算法还是定价策略
+为了简单理解，说个定价策略，如上图。
+一个价格包含这个几个因素：</p>
+<blockquote>
+<p>1.价格区间：<br>
+用我最朴素的理解，人类是喜欢折扣的不理性动物：人们明显更乐意花45折买一个价值900块钱的东西而不是花67折买一个价值600块的东西，尽管东西一样，最终价格一样都是400块。<br>
+所以你看电商广告都是打折配合几个垫背的低价来卖。。。</p>
+</blockquote>
+<blockquote>
+<p>2.价格精度：<br>
+以前去超市经常能发现2.99元或者8.99，现在都变成2.32或者4.23，这是弄啥嘞？<br>
+这里面太多心理学与营销的东西就不说了，在某些情况下，即使几分钱的价格变化对用户转化的影响是巨大的，比如一个东西原来卖400元，那现在改成399还是401可能对总营收的影响并不巨大，但是配合用户转化率的变化，可能营收的差异就天差地别了。</p>
+</blockquote>
+<blockquote>
+<p>3.价格周期：<br>
+伴随着产品迭代、促销等等因素影响，什么时候降价是对自己最有利的策略，完全可以A/B测试来解决</p>
+</blockquote>
+<h5 id="产品层面">产品层面</h5>
+<p>A/B测试在产品层面的应用主要是通过“灰度发布”来实现的。
+就目前移动端的产品来说，iOS的应用商店审核期是个大大大坑，任何BUG打补丁还得再来一遍，也就意味着补丁的审核期内用户带着BUG使用，这个太致命了，用户的获取成本高的吓人，因为这个流失太不值得了，基于A/B测试的灰度发布更重要的不是优化，而是保护性发布，先通过小流量的实际用户测试，有BUG或者新版本体验不好，可以立即回滚到老版本，简单有效。</p>
+<h5 id="公司层面">公司层面</h5>
+<p>A/B测试其实也是谷歌管理方法论，具体文章请参考：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxMjYyNDQxMQ==&amp;mid=207326881&amp;idx=1&amp;sn=1819eb391b8892ee44b2412df7e3e24b&amp;scene=1&amp;key=0acd51d81cb052bc0a3d80b5d616574c3980264cc57e79a82de989417043424df4559c1bdf2c5fcb4ed9236d4b71ec26&amp;ascene=0&amp;uin=NzEwNzE5MDIw&amp;devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.10.4+build(14E46)&amp;version=11020113&amp;pass_ticket=N7rowGeMgSIo27M2UKuWi1JsLuQ2wgA2f6hPaARrza5teBqjdjGkx5S6hAcmdLxo">Google 的产品策略：两边下注 </a></li>
+</ul>
+<h4 id="相关问题">相关问题</h4>
+<blockquote>
+<p>辛普森悖论（Simpson&rsquo;s Paradox）亦有人译为辛普森诡论，为英国统计学家E.H.辛普森（E.H.Simpson）于1951年提出的悖论，即在某个条件下的两组数据，分别讨论时都会满足某种性质，可是一旦合并考虑，却可能导致相反的结论。<br>
+<a href="https://www.guokr.com/article/6222/">相关:辛普森悖论：诡异的男女比例</a></p>
+</blockquote>
+<p>大多数的产品或功能上线前都会进行测试，实际上很多的测试行为并不科学，特别是很多定向的用户测试经常会有这个弊端，简单来说，如果新上线的一个功能，所有的研发工程师都说好，那是不是意味着所有的用户都觉得好？很多情况下是否定的。当然这个例子比较简单，实际上很多A/B测试方法并没有考虑到这个问题，以至于最后得出的结论跟实际情况差异巨大。
+要解决这个问题，对采样、聚类、流量分割等要求非常的高，这也是为什么A/B测试工具不能像很多统计工具一样，埋个点看数据，再根据数据反推业务逻辑，而是要充分与业务结合，从一开始就应该考虑业务策略，让用户去选择适合其口味的产品。
+现在的创业者面临着前所未有的竞争压力，好的想法与用户接受的想法有着各种不可逾越的鸿沟。特别是伴随着激烈的竞争，谁能领先一步可能就变成了赢者通吃的局面。</p>
+<blockquote>
+<p>相关专栏: <a href="https://zhuanlan.zhihu.com/milmax/20394728">[A/B]那些年，我们追过的AB Testing （一）</a> | <a href="https://zhuanlan.zhihu.com/milmax/20507473">[A/B]那些年，我们追过的AB Testing （二）从“People you may know”到growth hacking</a></p>
+</blockquote>
+<hr>
+<h3 id="冒烟测试-1">冒烟测试</h3>
+<hr>
+<h2 id="tdd-测试驱动开发">TDD 测试驱动开发</h2>
+<blockquote>
+<p>Java程序员修炼之道 测试驱动开发章节</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p276.jpg" alt="p276.jpg"></p>
+<p><code>TDD带来的好处</code></p>
+<ul>
+<li>更清晰的代码 只写需要的代码</li>
+<li>更好的设计  有些开发人员管TDD叫测试驱动的设计</li>
+<li>更出色的灵活性 TDD会鼓励按接口编码</li>
+<li>更快速的反馈  不会直到系统上线才知道bug的存在</li>
+</ul>
+<p><code>红 - 绿 - 重构循环</code></p>
+<ul>
+<li>
+<p>先编写不能通过测试的红色代码，就是一个简单的思路编写</p>
+</li>
+<li>
+<p>然后修改，让测试通过，然后完善设计，进行重构编写，又进入红绿阶段，然后再重构</p>
+</li>
+<li>
+<p>重构是为了通过测试你写的快速实现，重构减轻自己和别人的技术债务(临时凑合出来的设计或代码将来会付出更多的工作)</p>
+<ul>
+<li>有了通过测试， 就可以放心的重构，应该实现的业务逻辑就不可能会被忽视</li>
+</ul>
+</li>
+<li>
+<p><code>多个测试用例 为了覆盖更多情况</code></p>
+<ul>
+<li>按照TDD风格，就应该为之前编写的测试用例，进行多路径全覆盖，这个测试依然是红绿重构循环。</li>
+</ul>
+</li>
+</ul>
+<p><code>深入思考 红 绿 重构循环</code></p>
+<ul>
+<li>失败测试（红）
+<ul>
+<li>一些开发人员喜欢编写编译失败的测试，喜欢等到绿色步骤才提供实现代码</li>
+<li>也有一些开发人员喜欢先把测试调用的方法签名写出来，这样虽然编译能通过，但还是失败</li>
+</ul>
+</li>
+<li>通过测试
+<ul>
+<li>这一步应该尽量少写代码，只要能测试通过即可。</li>
+</ul>
+</li>
+<li>重构
+<ul>
+<li>许多地方需要重构，一般是： 去掉硬编码的变量，</li>
+<li>或把大方法拆分，对于面向对象来说应该遵循 SOLID 原则 <a href="/Java/%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%A6%85.md">解释SOLID原则</a></li>
+<li>可以把通用的设置和拆卸代码提取出来。可以重命名测试，以便于更准确地反应他的意图，根据静态分析工具例如<code>CheckStyle</code> <code>FindBugs</code>
+<img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p283.jpg" alt="p283.jpg"></li>
+</ul>
+</li>
+<li>应该尽可能的遵守单个测试循环的开发模型，不要同时开多个测试循环，一堆红色</li>
+</ul>
+<h3 id="什么是tdd">什么是TDD</h3>
+<blockquote>
+<p><a href="http://baike.baidu.com/item/TDD/9064369">百度百科词条</a>, 简单来讲就是红绿循环, 红 绿 红&hellip;<br>
+TDD是测试驱动开发（Test-Driven Development）的英文简称，是敏捷开发中的一项核心实践和技术，也是一种设计方法论。<br>
+TDD的原理是在开发功能代码之前，先编写单元测试用例代码，测试代码确定需要编写什么产品代码。TDD虽是敏捷方法的核心实践，但不只适用于XP（Extreme Programming），同样可以适用于其他开发方法和过程。</p>
+</blockquote>
+<ul>
+<li>个人理解：引用Mockito框架中的 &ldquo;when thenReturn&rdquo; and &ldquo;when thenThrow“ 由预定输入，运行方法或模块后，需要返回预定的数据或者抛出预定的异常，这就是已经写好了测试</li>
+<li>然后根据测试原型，去思考真正的功能代码的实现，当代码实现后，能够通过之前写的测试就代表着一个方法或模块的开发成功，然后开发下一个</li>
+<li>要想做到这样的地步，首先基础的环境要思考好，耦合的问题要明确，确定公共模块之后，再一个个的TDD进行开发。一个很好的思想，不用担心你之后的改动会让代码变得丑陋不堪</li>
+</ul>
+<blockquote>
+<p>优点：在任意一个开发节点都可以拿出一个可以使用，含少量bug并具一定功能和能够发布的产品。<br>
+缺点：增加代码量。测试代码是系统代码的两倍或更多，但是同时节省了调试程序及挑错时间。</p>
+</blockquote>
+<pre><code>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作。
+比如对函数abs()，我们可以编写出以下几个测试用例：
+输入正数，比如1、1.2、0.99，期待返回值与输入相同；
+输入负数，比如-1、-1.2、-0.99，期待返回值与输入相反；
+输入0，期待返回0；
+输入非数值类型，比如None、[]、{}，期待抛出TypeError。
+把上面的测试用例放到一个测试模块里，就是一个完整的单元测试。
+</code></pre>
+<h3 id="tdd实践">TDD实践</h3>
+<p><a href="https://my.oschina.net/bysu/blog/1635549">java测试驱动开发(TDD)之《井字游戏》 </a></p>
+<hr>
+<h2 id="mock">Mock</h2>
+<blockquote>
+<p><a href="http://www.uml.org.cn/Test/201708143.asp?artid=19745">参考: 面向开发的测试技术（一）：Mock </a></p>
+</blockquote>
+<p>既然使用模拟技术, 就要让模块的设计更易于测试, 也就是耦合更低, 之间的依赖更少, 一个正向循环呢</p>
+<ol>
+<li>Mockito <a href="https://site.mockito.org/">Official Site</a> 该框架有多种语言的实现 Java Python &hellip;</li>
+<li>Easy Mock <a href="http://easymock.org/">Official Site</a></li>
+</ol>
+<hr>
+<h2 id="bdd">BDD</h2>
+<blockquote>
+<p>行为驱动开发  behavior-driven development 作为TDD的一个变种</p>
+</blockquote>
+<blockquote>
+<p><a href="https://docs.cucumber.io/bdd/">cucumber about bdd</a></p>
+</blockquote>
+<p>它的重点是描述程序的行为, 而不是一组需要通过的单元测试</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+          <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/tool/maven/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Maven</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/tool/eclipse/">
+            <span class="next-text nav-default">Eclipse</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Debian基础 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Debian 配置 配置语言环境 软件管理 软件源列表 包管理器 源码编译安装 目录 end|2020-04-27 23:42| Debian 很古老但是很好用的系统 官网 参考: Debian8最小安装 奇怪的是我在虚" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/debian/debian/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Debian基础" />
+<meta property="og:description" content="目录 start Debian 配置 配置语言环境 软件管理 软件源列表 包管理器 源码编译安装 目录 end|2020-04-27 23:42| Debian 很古老但是很好用的系统 官网 参考: Debian8最小安装 奇怪的是我在虚" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/debian/debian/" />
+<meta property="article:published_time" content="2018-12-15T11:29:14+00:00" />
+<meta property="article:modified_time" content="2018-12-15T11:29:14+00:00" />
+<meta itemprop="name" content="Debian基础">
+<meta itemprop="description" content="目录 start Debian 配置 配置语言环境 软件管理 软件源列表 包管理器 源码编译安装 目录 end|2020-04-27 23:42| Debian 很古老但是很好用的系统 官网 参考: Debian8最小安装 奇怪的是我在虚">
+<meta itemprop="datePublished" content="2018-12-15T11:29:14+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T11:29:14+00:00" />
+<meta itemprop="wordCount" content="804">
+
+
+
+<meta itemprop="keywords" content="Debian," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Debian基础"/>
+<meta name="twitter:description" content="目录 start Debian 配置 配置语言环境 软件管理 软件源列表 包管理器 源码编译安装 目录 end|2020-04-27 23:42| Debian 很古老但是很好用的系统 官网 参考: Debian8最小安装 奇怪的是我在虚"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Debian基础</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 804 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#配置">配置</a>
+      <ul>
+        <li><a href="#配置语言环境">配置语言环境</a></li>
+      </ul>
+    </li>
+    <li><a href="#软件管理">软件管理</a>
+      <ul>
+        <li><a href="#软件源列表">软件源列表</a></li>
+        <li><a href="#包管理器">包管理器</a></li>
+        <li><a href="#源码编译安装">源码编译安装</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#debian">Debian</a>
+<ol>
+<li><a href="#%E9%85%8D%E7%BD%AE">配置</a>
+<ol>
+<li><a href="#%E9%85%8D%E7%BD%AE%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83">配置语言环境</a></li>
+</ol>
+</li>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86">软件管理</a>
+<ol>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E6%BA%90%E5%88%97%E8%A1%A8">软件源列表</a></li>
+<li><a href="#%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8">包管理器</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">源码编译安装</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="debian">Debian</h1>
+<blockquote>
+<p>很古老但是很好用的系统 <a href="https://www.debian.org/index.zh-cn.html">官网</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.howtoforge.com/tutorial/debian-8-jessie-minimal-server/">参考: Debian8最小安装</a></p>
+</blockquote>
+<ul>
+<li>奇怪的是我在虚拟机里装了好几个好几次装不上, 装完一登录就只有壁纸</li>
+</ul>
+<p><em>服务器</em></p>
+<ul>
+<li>2018-04-01 17:19:50 作为服务器系统安装完Debian8.2 85M内存占用 docker 是1.6</li>
+<li>2018-04-10 10:35:54 服务器安装Ubuntu16.04 71M内存 docker是1.13</li>
+</ul>
+<h2 id="配置">配置</h2>
+<h3 id="配置语言环境">配置语言环境</h3>
+<ol>
+<li>apt install locales</li>
+<li>dpkg-reconfigure locales</li>
+<li>进入选择界面 <code>zh_CN.UTF-8 UTF-8</code> 空格选择, 换行 继续</li>
+</ol>
+<h2 id="软件管理">软件管理</h2>
+<h3 id="软件源列表">软件源列表</h3>
+<ul>
+<li>
+<p>apt 的默认配置文件是 <code>/etc/apt/source.list</code></p>
+<ul>
+<li>以及 sources.list.d/ 目录下的 *.list 文件 (最好将list文件都进行备份 备份文件为 *.save)</li>
+</ul>
+</li>
+<li>
+<p><a href="https://hacpai.com/article/1482807364546?p=1&amp;m=0">参考博客 阿里云的软件源</a></p>
+</li>
+<li>
+<p><a href="http://wiki.ubuntu.com.cn/%E6%BA%90%E5%88%97%E8%A1%A8">wiki-源列表说明</a></p>
+</li>
+</ul>
+<ol>
+<li>
+<p>源 URL 后的单词:</p>
+<ol>
+<li>main: 完全的自由软件。</li>
+<li>restricted: 不完全的自由软件。</li>
+<li>universe: Ubuntu官方不提供支持与补丁，全靠社区支持。</li>
+<li>multiverse: 非自由软件，完全不提供支持和补丁。</li>
+</ol>
+</li>
+<li>
+<p>添加私有源ppa</p>
+<ul>
+<li>若不能添加私有源ppa：
+<ul>
+<li>debain：<code>sudo apt install software-properties-common python-software-properties</code></li>
+<li>Ubuntu <code>sudo apt install python-software-properties</code></li>
+</ul>
+</li>
+<li>添加：<code>sudo add-apt-repository ppa:dotcloud/lxc-docker </code></li>
+<li>删除ppa : <code>cd  /etc/apt/sources.list.d/</code> 打开该目录下文件把对应的ppa的一行注释掉或删掉就行了</li>
+</ul>
+</li>
+<li>
+<p>添加一个源列表</p>
+<ul>
+<li>例如添加 nginx: 新建文件 <code>/etc/apt/sources.list.d/nginx.list</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    deb http://nginx.org/packages/mainline/debian/ jessie nginx
+    deb-src http://nginx.org/packages/mainline/debian/ jessie nginx
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>curl http://nginx.org/keys/nginx_signing.key | apt-key add -</code>
+<ul>
+<li>把签名添加进来才能正常 apt update</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="包管理器">包管理器</h3>
+<p><strong><code>dpkg</code></strong></p>
+<ol>
+<li>查看已安装的应用 <code>dpkg --list</code></li>
+<li>显示已安装包的详情 <code>dpkg -s package</code></li>
+<li>安装deb包
+<ul>
+<li><code> sudo  dpkg  -i  *.deb</code></li>
+</ul>
+</li>
+</ol>
+<p><strong><code>apt-get / apt</code></strong></p>
+<ol>
+<li>
+<p><code>install 包名</code>  安装指定包的最新版</p>
+<ul>
+<li><code>-y</code> 参数可以省去确认</li>
+<li><code>-s</code> 模拟安装</li>
+<li><code>package=version</code> 安装指定版本的包</li>
+</ul>
+</li>
+<li>
+<p>list 列出所有可安装的包</p>
+<ul>
+<li>&ndash;installed 已安装的包</li>
+<li>package 列出已安装的 该package 的信息 <code>加上 -a</code>: 所有版本</li>
+</ul>
+</li>
+<li>
+<p>只卸载程序，保留配置文件 <code>sudo apt remove 包名</code></p>
+<ul>
+<li>彻底卸载应用 <code>sudo apt--purge remove 包名</code></li>
+<li>若已经卸载, 清理配置: <code>apt purge 包名</code> (不会清理home/.config里的内容)</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>apt-cache showpkg/policy/madison/show package
+<ul>
+<li>showpkg (特别详细) 列出所有版本以及来源, MD5 &hellip;</li>
+<li>policy (基本信息) 列出所有版本以及来源</li>
+<li>madison (简略显示) 内容同上</li>
+<li>show 查询指定包的详情(已安装的版本信息)</li>
+<li>search 搜索包</li>
+</ul>
+</li>
+</ul>
+<p><strong><code>snap</code></strong></p>
+<ul>
+<li><a href="https://snapcraft.io/docs/core/usage">official doc: snap</a> <code>提供一个类似容器的环境,将所有依赖打包，隔离运行</code></li>
+</ul>
+<h3 id="源码编译安装">源码编译安装</h3>
+<ol>
+<li>make install 源代码安装
+<ul>
+<li>1.解压缩 <code>tar -zxf nagios-4.0.2.tar.gz </code></li>
+<li>2.进入目录 <code>cd nagios-4.0.2</code></li>
+<li>3.配置 <code>./configure --prefix=/usr/local/nagios  </code></li>
+<li>4.编译 <code>make all</code></li>
+<li>5.安装 <code>make install &amp;&amp; make install-init &amp;&amp; make install-commandmode &amp;&amp; make install-config</code></li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/debian/">Debian</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/debian/ubuntu/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Ubuntu</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/container/kubernetes/">
+            <span class="next-text nav-default">Kubernetes</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

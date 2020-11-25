@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Spring 配置使用 通过构建工具 注解方式 xml文件配置 常用的注解 xml方式 xml方式和注解方式的比较 Spring技巧 获取Context上下文环境" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/spring/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring" />
+<meta property="og:description" content="目录 start Spring 配置使用 通过构建工具 注解方式 xml文件配置 常用的注解 xml方式 xml方式和注解方式的比较 Spring技巧 获取Context上下文环境" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/spring/" />
+<meta property="article:published_time" content="2018-12-21T10:46:01+00:00" />
+<meta property="article:modified_time" content="2018-12-21T10:46:01+00:00" />
+<meta itemprop="name" content="Spring">
+<meta itemprop="description" content="目录 start Spring 配置使用 通过构建工具 注解方式 xml文件配置 常用的注解 xml方式 xml方式和注解方式的比较 Spring技巧 获取Context上下文环境">
+<meta itemprop="datePublished" content="2018-12-21T10:46:01+00:00" />
+<meta itemprop="dateModified" content="2018-12-21T10:46:01+00:00" />
+<meta itemprop="wordCount" content="4007">
+
+
+
+<meta itemprop="keywords" content="Spring," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring"/>
+<meta name="twitter:description" content="目录 start Spring 配置使用 通过构建工具 注解方式 xml文件配置 常用的注解 xml方式 xml方式和注解方式的比较 Spring技巧 获取Context上下文环境"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Spring</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 4007 words </span>
+          <span class="more-meta"> 8 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#配置使用">配置使用</a>
+      <ul>
+        <li><a href="#通过构建工具">通过构建工具</a></li>
+        <li><a href="#注解方式">注解方式</a></li>
+        <li><a href="#xml方式">xml方式</a></li>
+      </ul>
+    </li>
+    <li><a href="#spring技巧">Spring技巧</a>
+      <ul>
+        <li><a href="#获取context上下文环境">获取Context上下文环境</a></li>
+        <li><a href="#spring-和-servletcontextlist">Spring 和 ServletContextList</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#bean概述">Bean概述</a></li>
+    <li><a href="#bean生命周期">Bean生命周期</a>
+      <ul>
+        <li><a href="#spring容器的扩展点">Spring容器的扩展点</a></li>
+      </ul>
+    </li>
+    <li><a href="#bean的作用域">Bean的作用域</a></li>
+    <li><a href="#iocdi-控制反转">IOC/DI 控制反转</a></li>
+    <li><a href="#scheduling">Scheduling</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#websocket">Websocket</a>
+      <ul>
+        <li><a href="#maven配置">maven配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#utils">Utils</a>
+      <ul>
+        <li><a href="#reflectionutils">ReflectionUtils</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#spring">Spring</a>
+<ol>
+<li><a href="#%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8">配置使用</a>
+<ol>
+<li><a href="#%E9%80%9A%E8%BF%87%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7">通过构建工具</a></li>
+<li><a href="#%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F">注解方式</a>
+<ol>
+<li><a href="#xml%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE">xml文件配置</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B3%A8%E8%A7%A3">常用的注解</a></li>
+</ol>
+</li>
+<li><a href="#xml%E6%96%B9%E5%BC%8F">xml方式</a>
+<ol>
+<li><a href="#xml%E6%96%B9%E5%BC%8F%E5%92%8C%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F%E7%9A%84%E6%AF%94%E8%BE%83">xml方式和注解方式的比较</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#spring%E6%8A%80%E5%B7%A7">Spring技巧</a>
+<ol>
+<li><a href="#%E8%8E%B7%E5%8F%96context%E4%B8%8A%E4%B8%8B%E6%96%87%E7%8E%AF%E5%A2%83">获取Context上下文环境</a>
+<ol>
+<li><a href="#%E5%9C%A8jsp%E6%88%96servlet%E4%B8%AD%E8%8E%B7%E5%8F%96">在JSP或Servlet中获取</a></li>
+</ol>
+</li>
+<li><a href="#spring-%E5%92%8C-servletcontextlist">Spring 和 ServletContextList</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E5%9F%BA%E7%A1%80">基础</a>
+<ol>
+<li><a href="#bean%E6%A6%82%E8%BF%B0">Bean概述</a></li>
+<li><a href="#bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">Bean生命周期</a>
+<ol>
+<li><a href="#spring%E5%AE%B9%E5%99%A8%E7%9A%84%E6%89%A9%E5%B1%95%E7%82%B9">Spring容器的扩展点</a></li>
+</ol>
+</li>
+<li><a href="#bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">Bean的作用域</a></li>
+<li><a href="#iocdi-%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC">IOC/DI 控制反转</a></li>
+<li><a href="#scheduling">Scheduling</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#websocket">Websocket</a>
+<ol>
+<li><a href="#maven%E9%85%8D%E7%BD%AE">maven配置</a></li>
+</ol>
+</li>
+<li><a href="#utils">Utils</a>
+<ol>
+<li><a href="#reflectionutils">ReflectionUtils</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#web%E5%BC%80%E5%8F%91%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">Web开发的最佳实践</a></li>
+<li><a href="#tips">Tips</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-08-25 16:24</em>|</p>
+<hr>
+<h1 id="spring">Spring</h1>
+<blockquote>
+<p><a href="https://spring.io/">Spring官网</a> | <a href="http://www.spring4all.com/">spring4all社区</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.spring4all.com/article/558">Spring For All 社区 -&gt;  Spring 官方教程翻译</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.tutorialspoint.com/spring/index.htm">Spring Tutorial</a></p>
+</blockquote>
+<h2 id="配置使用">配置使用</h2>
+<blockquote>
+<p><strong>通过原始的复制jar方式 :</strong> 官网下载对应的jar, 添加到ide中</p>
+</blockquote>
+<h3 id="通过构建工具">通过构建工具</h3>
+<p>Maven 中 pom.xml 中, Gradle是 build.gradle 添加以下等依赖:</p>
+<p><em>核心依赖</em></p>
+<ol>
+<li>spring-core</li>
+<li>spring-beans</li>
+<li>spring-context</li>
+</ol>
+<p><em>其他,可选</em></p>
+<ol>
+<li>spring-aop</li>
+<li>spring-websocket</li>
+<li>spring-jdbc</li>
+<li>spring-tx</li>
+<li>spring-web</li>
+<li>spring-webmvc</li>
+<li>spring-test</li>
+</ol>
+<h3 id="注解方式">注解方式</h3>
+<blockquote>
+<p>需要在配置文件 xml配置文件 中配置包扫描 才能生效</p>
+</blockquote>
+<h4 id="xml文件配置">xml文件配置</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="c">&lt;!-- 头部分要添加Context --&gt;</span>
+    <span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+    <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
+         <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+         <span class="na">xmlns:context=</span><span class="s">&#34;http://www.springframework.org/schema/context&#34;</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
+</span><span class="s">             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+</span><span class="s">             http://www.springframework.org/schema/context
+</span><span class="s">             http://www.springframework.org/schema/context/spring-context-3.0.xsd&#34;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- 对使用了注解的包进行扫描 --&gt;</span>
+        <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;com.github.kuangcp&#34;</span><span class="nt">&gt;&lt;/context:component-scan&gt;</span>
+    <span class="nt">&lt;/beans&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><strong>注意</strong> 只需要这个配置文件就可以使用注解来使用Spring框架</p>
+</blockquote>
+<h4 id="常用的注解">常用的注解</h4>
+<ul>
+<li>
+<p>标注为bean</p>
+<ul>
+<li><code>@Component([value=]&quot;id&quot;) </code>不写则默认是当前类名</li>
+<li>@Entity</li>
+<li>@Service</li>
+<li>@Repository</li>
+<li>@Controller 和 @RestController</li>
+</ul>
+</li>
+<li>
+<p>自动注入</p>
+<ul>
+<li><code>@Resource([value=]&quot;id&quot;)</code> 按名字注入</li>
+<li><code>@Autowried</code> 根据类型自动注入（只对单例起作用）和 <code>Resource(类名首字母小写)</code> 等价
+<ul>
+<li>通过阅读源码还可以知道 可以将符合条件的Bean注入到 List 和 Map 中去, 甚至 Optional</li>
+</ul>
+</li>
+<li><code>@Qualifier(&quot;id&quot;) </code>自动注入后的进一步精确（多个Bean的情况：）</li>
+</ul>
+</li>
+<li>
+<p><strong>注意 :</strong> 关于自动注入, 在属性上打 @Autowried 注解是不建议的, 作者建议采用构造器方式:  <a href="http://olivergierke.de/2013/11/why-field-injection-is-evil/">Why field injection is evil</a></p>
+<ul>
+<li>如果使用了 lombok 那么可以在类上使用
+<ul>
+<li><code>@RequiredArgsConstructor(onConstructor = @__(@Autowired))</code></li>
+<li>然后注入的属性打上 <code>@NonNull</code> 注解</li>
+<li>本质上是帮你自动生成了一个将所有 <code>@NonNull</code> 注解属性作为参数的构造器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>AOP</p>
+<ul>
+<li>@Aspect 注明是切面类</li>
+<li>@Before(&ldquo;execution(public void com.wjt276.dao.impl.UserDaoImpl.save(com.wjt276.model.User))&quot;) 和xml方式的before对应</li>
+</ul>
+</li>
+<li>
+<p>bean扫描</p>
+<ul>
+<li>ComponentScan 扫描指定包下Spring注解的类</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="http://olivergierke.de/2013/11/why-field-injection-is-evil/">参考: Why field injection is evil</a></p>
+</blockquote>
+<hr>
+<h3 id="xml方式">xml方式</h3>
+<ul>
+<li>只用到bean的头，主要配置内容：<code>&lt;bean&gt;&lt;property&gt;&lt;/property&gt;&lt;/bean&gt;</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="c">&lt;!-- 对使用了注解的包进行扫描 --&gt;</span>
+	<span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;cn.spring.aop&#34;</span><span class="nt">&gt;&lt;/context:component-scan&gt;</span>
+       <span class="c">&lt;!-- 一般而言，bean都是单实例的 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;person&#34;</span> <span class="na">class=</span><span class="s">&#34;cn.spring.entity.Person&#34;</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;name&#34;</span> <span class="na">value=</span><span class="s">&#34;myth&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;addr&#34;</span> <span class="na">value=</span><span class="s">&#34;vol&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;construct&#34;</span> <span class="na">class=</span><span class="s">&#34;cn.spring.entity.ConstructorEntity&#34;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- 如果是不同的类型的参数 顺序可以随意，但是数据类型一样的话就要严格按顺序了--&gt;</span>
+    <span class="nt">&lt;constructor-arg</span> <span class="na">type=</span><span class="s">&#34;java.lang.String&#34;</span> <span class="na">value=</span><span class="s">&#34;String_1&#34;</span><span class="nt">&gt;&lt;/constructor-arg&gt;</span>
+        <span class="c">&lt;!-- 注意引用类型是要写全路径，基本数据类型是可以直接写小写 --&gt;</span>
+    <span class="nt">&lt;constructor-arg</span> <span class="na">type=</span><span class="s">&#34;int&#34;</span> <span class="na">value=</span><span class="s">&#34;2&#34;</span><span class="nt">&gt;&lt;/constructor-arg&gt;</span>
+        <span class="c">&lt;!-- &lt;constructor-arg type=&#34;java.lang.String&#34; value=&#34;String_2&#34;&gt;&lt;/constructor-arg&gt; --&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;TestConstruct&#34;</span> <span class="na">class=</span><span class="s">&#34;cn.spring.entity.TestConstruct&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;entity&#34;</span> <span class="na">ref=</span><span class="s">&#34;construct&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="c">&lt;!-- 加载属性文件 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;property_config&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;locations&#34;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;list&gt;</span>
+                <span class="nt">&lt;value&gt;</span>cn/spring/entity/db.properties<span class="nt">&lt;/value&gt;</span>
+            <span class="nt">&lt;/list&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="c">&lt;!-- 测试获取属性文件 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;show_db&#34;</span> <span class="na">class=</span><span class="s">&#34;cn.spring.entity.TestProperties&#34;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- 特别注意大小写问题 --&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driver&#34;</span> <span class="na">value=</span><span class="s">&#34;${driver}&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;${username}&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;${password}&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;${url}&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="xml方式和注解方式的比较">xml方式和注解方式的比较</h4>
+<ul>
+<li>当你确定切面是实现一个给定需求的最佳方法时，你如何选择是使用Spring AOP还是AspectJ，以及选择 Aspect语言（代码）风格、@AspectJ声明风格或XML风格？</li>
+<li>这个决定会受到多个因素的影响，包括应用的需求、 开发工具和小组对AOP的精通程度。</li>
+<li><strong>个人理解</strong>：使用bean的时候使用注解，AOP使用xml方式，更直观</li>
+</ul>
+<hr>
+<h2 id="spring技巧">Spring技巧</h2>
+<h3 id="获取context上下文环境">获取Context上下文环境</h3>
+<h4 id="在jsp或servlet中获取">在JSP或Servlet中获取</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="n">WebApplicationContextUtils</span><span class="o">.</span><span class="na">getWebApplicationContext</span><span class="o">(</span><span class="n">config</span><span class="o">.</span><span class="na">getServletContext</span><span class="o">());</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="spring-和-servletcontextlist">Spring 和 ServletContextList</h3>
+<ul>
+<li>想要启动Tomcat之后，初始化运行一些方法，把数据从数据库拿出放入redis中，然后使用了ServletContextListener
+<ul>
+<li>然后还是按照往常一样的使用Spring自动注入的便利，来使用service层获取数据，但是忽略了启动顺序</li>
+<li><strong>context-param -&gt; listener -&gt; filter -&gt; servlet</strong></li>
+<li>所以在启动这个初始化方法的时候，其实Spring的环境是还没有加载的，所以没有扫描，也就没有了自动注入，也就有了空指针异常</li>
+<li>所以要使用如下方法得到Spring的Context（上下文），获取bean，再操作</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">contextInitialized</span><span class="o">(</span><span class="n">ServletContextEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span> 
+        <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="n">WebApplicationContextUtils</span><span class="o">.</span><span class="na">getWebApplicationContext</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getServletContext</span><span class="o">());</span>
+        <span class="c1">//....
+</span><span class="c1"></span>    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="基础">基础</h1>
+<h2 id="bean概述">Bean概述</h2>
+<p>在容器内bean的定义包含以下信息:</p>
+<ul>
+<li><code>包限定的类名</code>：通常定义ben的实现类</li>
+<li><code>bean的行为元素</code>:包含bean的范围、生命周期等</li>
+<li><code>依赖项</code>：该bean所引用的依赖项</li>
+<li><code>设置其他属性配置</code>：如配置连接池bean中使用的连接数等</li>
+</ul>
+<h2 id="bean生命周期">Bean生命周期</h2>
+<ul>
+<li>
+<p>初始化(当一个bean配置和了多个生命周期时，执行顺序如下顺序)</p>
+<ul>
+<li>在方法上使用<code>@PostConstruct</code>注解(推荐使用，同xml中的<code>init-method</code>属性一致)</li>
+<li>实现接口<code>InitializingBean</code>，在方法<code>afterPropertiesSet()</code>中可进行bean的初始化操作(在容器设置完bean的必须属性后执行，不建议使用接口，推荐使用注解或xml配置)</li>
+<li>在bean的xml配置中在<code>&lt;beans&gt;</code>标签上使用类似于属性<code>default-init-method=&quot;init&quot;</code>的配置后,在beans下配置的bean会在初始化时调用bean中定义的方法名为<code>init</code>的方法</li>
+<li>实现接口<code>BeanPostProcessor</code>中的<code>postProcessBeforeInitialization</code>及<code>postProcessAfterInitialization</code>方法。该接口会处理他可以找到的所有回调接口</li>
+</ul>
+</li>
+<li>
+<p>销毁(当一个bean配置和了多个生命周期时，执行顺序如下顺序)</p>
+<ul>
+<li>在方法上使用<code>@PreDestroy</code>注解(同上，及与xml配置中的<code>destroy-method</code>属性一致)</li>
+<li>实现接口<code>DisposableBean</code>,在方法<code>destroy()</code>中，可进行bean的销毁时的操作</li>
+<li>在bean的xml配置中在<code>&lt;beans&gt;</code>标签上使用类似于属性<code>default-destroy-method=&quot;destroy&quot;</code>的配置后,在beans下配置的bean会在销毁时调用bean中定义的方法名为<code>destroy</code>的方法</li>
+</ul>
+</li>
+<li>
+<p>关闭与启动</p>
+<ul>
+<li>实现接口<code>Lifecycle</code></li>
+</ul>
+</li>
+<li>
+<p>在非Web应用中关闭spring IOC容器</p>
+<ul>
+<li>调用<code>ConfigurableApplicationContext</code>中的<code>registerShutdownHook()</code>方法，这样便就能调用销毁的回调函数</li>
+</ul>
+</li>
+<li>
+<p>为Bean提供<code>ApplicationContext</code>实例</p>
+<ul>
+<li>实现<code>ApplicationContextAware</code>,则就可以为该bean实例获取<code>ApplicationContext</code></li>
+</ul>
+</li>
+<li>
+<p>让Bean获取自身在BeanFactory中的名称(id或name)</p>
+<ul>
+<li>实现<code>BeanNameAware</code>接口中,则咎可以获取名称(该方法在初始化之前)</li>
+</ul>
+</li>
+</ul>
+<h3 id="spring容器的扩展点">Spring容器的扩展点</h3>
+<ul>
+<li><a href="https://github.com/dragonhht/Notes/blob/master/Java/Spring%E5%AE%B9%E5%99%A8%E6%89%A9%E5%B1%95%E7%82%B9%E4%B9%8BBeanPostProcessor.md">BeanPostProcessor</a></li>
+</ul>
+<h2 id="bean的作用域">Bean的作用域</h2>
+<p>在Spring2.0之前spring中bean的作用域只有<code>singleton（単例）</code>及<code>prototype（原型）</code>两种。在Spring2.0后便又增加了<code>request</code>、<code>session</code>及<code>application</code>三种作用域，且这三种作用域都只用于基于web的Spring ApplicationContext。直到现在，Spring又增加了作用与<code>webSocket</code>的作用域，该作用域与2.0之后增加的三种作用域一样都只作用与基于web的Spring ApplicationContext。一下便依次介绍者六中作用域</p>
+<ul>
+<li>
+<p><code>singleton</code>: 该作用域是Spring bean默认的作用域；使用该作用域时，在Spring IOC容器中只会存在一个共享的bean实例。所有的对该bean的请求（如通过注入或getBean方法获取实例）都只会获取同一个实例。针对于该作用域，Spring容器可进行比较全面的生命周期的管理</p>
+</li>
+<li>
+<p><code>prototype</code>: 使用该作用域时，所有对于该bean的请求都会返回一个新的实例，即每次请求，都会创建一个新的实例</p>
+</li>
+<li>
+<p><code>request</code>: 该作用域将bean的作用范围限定在单个HTTP请求中，即每次HTTP请求都会创建一个新的bean实例，是的每次HTTP请求都有一个自己的实例。该作用域只用于基于web的Spring ApplicationContext。</p>
+</li>
+<li>
+<p><code>session</code>: 该作用域将bean的作用范围限定在HTTP请求中的Session的生命周期内。即bean的生命周期与Session一致，当Session存活时，该bean的实例也存活，但当Session销毁时，该Session内的bean实例也将被销毁。适合于基于web的Spring ApplicationContext</p>
+</li>
+<li>
+<p><code>application</code>: 使用该作用域时，在整个web程序中，只会存在一个该bean的实例。如果只存在一个web应用，则该bean的作用域与<code>singleton</code>类似。适合于基于web的Spring ApplicationContext。</p>
+</li>
+<li>
+<p><code>websocket</code>： 该作用域是Spring新增的作用域，该作用域将该bean实例作用范围限定在一个生命周期的WebSocket中。适合于基于web的Spring ApplicationContext。</p>
+</li>
+</ul>
+<hr>
+<h2 id="iocdi-控制反转">IOC/DI 控制反转</h2>
+<ul>
+<li>DI 译为依赖注入 所有的bean都在IOC容器中（单例的）多例的不在该容器中进行管理</li>
+<li>通过注入 可以注入基本属性 对象属性，集合属性，构造器，properties等</li>
+<li>不采用Spring的IOC容器使用Java基础来实现：
+<ul>
+<li><strong>静态代理</strong>
+<ul>
+<li>针对每个具体类分别编写代理类</li>
+<li>针对一个接口编写一个代理类</li>
+</ul>
+</li>
+<li><strong>动态代理</strong>
+<ul>
+<li>针对一个方面编写一个InvocationHandler，然后借用JDK反射包中的Proxy类为各种接口动态生成相应的代理类</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>属性上 @Autowired 即可, 但是现在不建议直接在属性上使用注解, 而是建议用在构造器上<br>
+这是为了避免NPE: 当手动使用 new 实例化Bean, 里面本该注入的属性是会为null</p>
+<p><code>使用Lombok简化该方式</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Component</span>
+    <span class="nd">@RequiredArgsConstructor</span><span class="o">(</span><span class="n">onConstructor</span> <span class="o">=</span> <span class="nd">@__</span><span class="o">(</span><span class="nd">@Autowired</span><span class="o">))</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span><span class="o">{</span>
+        <span class="nd">@NonNull</span>
+        <span class="kd">private</span> <span class="n">B</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="scheduling">Scheduling</h2>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/integration.html#scheduling">Official Doc</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.baeldung.com/spring-scheduled-tasks">参考: The @Scheduled Annotation in Spring</a><br>
+<a href="http://qinghua.github.io/spring-scheduler/">参考: Spring Scheduler的使用与坑</a>
+<a href="https://www.cnblogs.com/jingmoxukong/p/5825806.html#%E5%AE%8C%E6%95%B4%E8%8C%83%E4%BE%8B">参考: [Spring]支持注解的Spring调度器</a>
+<a href="https://blog.csdn.net/yyx1025988443/article/details/78698046">参考: spring scheduled的动态线程池调度和任务进度的监控</a></p>
+</blockquote>
+<p>其主体是 TaskExecutor 和 TaskScheduler 组成的, 也就是调度和执行</p>
+<ul>
+<li><a href="http://www.cronmaker.com/">cron maker</a></li>
+</ul>
+<hr>
+<h2 id="events">Events</h2>
+<blockquote>
+<p><a href="https://www.baeldung.com/spring-events">Spring Events</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.keyup.eu/en/blog/101-synchronous-and-asynchronous-spring-events-in-one-application">Synchronous and Asynchronous Spring Events in One Application</a><br>
+<a href="https://stackoverflow.com/questions/37179426/eventlistener-with-async-in-spring">@EventListener with @Async in Spring</a></p>
+</blockquote>
+<p>异步事件处理</p>
+<ul>
+<li>类上 @EnableAsync 方法上 @Async 并指定配置的线程池名字</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cnblogs.com/duanxz/p/9435343.html">参考: spring线程池(同步、异步）</a></p>
+</blockquote>
+<h2 id="websocket">Websocket</h2>
+<h3 id="maven配置">maven配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">  <span class="nt">&lt;dependency&gt;</span>
+     <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+     <span class="nt">&lt;artifactId&gt;</span>spring-websocket<span class="nt">&lt;/artifactId&gt;</span>
+     <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+   <span class="nt">&lt;/dependency&gt;</span>
+   <span class="nt">&lt;dependency&gt;</span>
+     <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+     <span class="nt">&lt;artifactId&gt;</span>spring-messaging<span class="nt">&lt;/artifactId&gt;</span>
+     <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+   <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="utils">Utils</h2>
+<h3 id="reflectionutils">ReflectionUtils</h3>
+<hr>
+<h1 id="web开发的最佳实践">Web开发的最佳实践</h1>
+<ul>
+<li>使用AOP来简化开发MVC的代码</li>
+<li>繁杂的代码如何简化</li>
+</ul>
+<h1 id="tips">Tips</h1>
+<ul>
+<li>不要对有@Configuration注解的配置类进行Field级的依赖注入 否则容易引发循环依赖 <a href="https://blog.mythsman.com/post/5d838c7c2db8a452e9b7082c/">Spring循环依赖问题分析</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spring/">Spring</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring/spring5/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Spring5</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/skills/cs/time/">
+            <span class="next-text nav-default">时间</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SSH使用总结 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start SSH 安装 建立连接 复制粘贴建立密钥对 使用 ssh-copy-id 脚本 SSH客户端配置 多密钥对 服务端配置 访问图形化 SSH登录并执行一系列命令 通过SSH执行命令时的" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/ssh/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SSH使用总结" />
+<meta property="og:description" content="目录 start SSH 安装 建立连接 复制粘贴建立密钥对 使用 ssh-copy-id 脚本 SSH客户端配置 多密钥对 服务端配置 访问图形化 SSH登录并执行一系列命令 通过SSH执行命令时的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/ssh/" />
+<meta property="article:published_time" content="2018-12-15T11:20:07+00:00" />
+<meta property="article:modified_time" content="2018-12-15T11:20:07+00:00" />
+<meta itemprop="name" content="SSH使用总结">
+<meta itemprop="description" content="目录 start SSH 安装 建立连接 复制粘贴建立密钥对 使用 ssh-copy-id 脚本 SSH客户端配置 多密钥对 服务端配置 访问图形化 SSH登录并执行一系列命令 通过SSH执行命令时的">
+<meta itemprop="datePublished" content="2018-12-15T11:20:07+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T11:20:07+00:00" />
+<meta itemprop="wordCount" content="1950">
+
+
+
+<meta itemprop="keywords" content="工具使用经验," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SSH使用总结"/>
+<meta name="twitter:description" content="目录 start SSH 安装 建立连接 复制粘贴建立密钥对 使用 ssh-copy-id 脚本 SSH客户端配置 多密钥对 服务端配置 访问图形化 SSH登录并执行一系列命令 通过SSH执行命令时的"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SSH使用总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 1950 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#建立连接">建立连接</a>
+      <ul>
+        <li><a href="#复制粘贴建立密钥对">复制粘贴建立密钥对</a></li>
+        <li><a href="#使用-ssh-copy-id-脚本">使用 ssh-copy-id 脚本</a></li>
+      </ul>
+    </li>
+    <li><a href="#ssh客户端配置">SSH客户端配置</a>
+      <ul>
+        <li><a href="#多密钥对">多密钥对</a></li>
+      </ul>
+    </li>
+    <li><a href="#服务端配置">服务端配置</a></li>
+    <li><a href="#访问图形化">访问图形化</a></li>
+    <li><a href="#ssh登录并执行一系列命令">SSH登录并执行一系列命令</a>
+      <ul>
+        <li><a href="#通过ssh执行命令时的环境变量问题">通过SSH执行命令时的环境变量问题</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#保持ssh连接稳定">保持SSH连接稳定</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#ssh">SSH</a>
+<ol>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5">建立连接</a>
+<ol>
+<li><a href="#%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%BB%BA%E7%AB%8B%E5%AF%86%E9%92%A5%E5%AF%B9">复制粘贴建立密钥对</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-ssh-copy-id-%E8%84%9A%E6%9C%AC">使用 ssh-copy-id 脚本</a></li>
+</ol>
+</li>
+<li><a href="#ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE">SSH客户端配置</a>
+<ol>
+<li><a href="#%E5%A4%9A%E5%AF%86%E9%92%A5%E5%AF%B9">多密钥对</a></li>
+</ol>
+</li>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE">服务端配置</a></li>
+<li><a href="#%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%BD%A2%E5%8C%96">访问图形化</a></li>
+<li><a href="#ssh%E7%99%BB%E5%BD%95%E5%B9%B6%E6%89%A7%E8%A1%8C%E4%B8%80%E7%B3%BB%E5%88%97%E5%91%BD%E4%BB%A4">SSH登录并执行一系列命令</a>
+<ol>
+<li><a href="#%E9%80%9A%E8%BF%87ssh%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E6%97%B6%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98">通过SSH执行命令时的环境变量问题</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#tips">Tips</a>
+<ol>
+<li><a href="#%E4%BF%9D%E6%8C%81ssh%E8%BF%9E%E6%8E%A5%E7%A8%B3%E5%AE%9A">保持SSH连接稳定</a></li>
+</ol>
+</li>
+<li><a href="#mosh">Mosh</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-07-21 20:07</em>|</p>
+<hr>
+<h1 id="ssh">SSH</h1>
+<blockquote>
+<p>Secure Shell</p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/linghe301/article/details/8211305">Linux启动或禁止SSH用户及IP的登录</a>
+<a href="http://blog.chinaunix.net/uid-26517277-id-4055228.html">ssh和ssh2之间的免密码登陆详解</a>
+<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html">SSH原理与运用（一）：远程登录</a>
+<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_port_forwarding.html">SSH原理与运用（二）：远程操作与端口转发</a></p>
+</blockquote>
+<ul>
+<li>默认22端口登录系统<code>ssh user@host</code> | 指定端口登录 <code>ssh -p port user@host</code></li>
+<li>测试能否登录上 <code>ssh -T user@host</code></li>
+</ul>
+<blockquote>
+<p><code>ssh -i 私钥绝对路径 user@host</code> 采用指定私钥登录(一般默认是<code>.ssh/id_rsa</code>)</p>
+<blockquote>
+<p>私钥一定要是 600 权限<br>
+去除私钥的口令 <code>openssl rsa -in ~/.ssh/id_rsa -out ~/.ssh/id_rsa_new</code> <em>在GitForWindows里面虽然有openssl,但是这个命令却执行不了</em></p>
+</blockquote>
+</blockquote>
+<p>使用密码方式免去密码登录</p>
+<blockquote>
+<ol>
+<li>安装sshpass <a href="https://linux.cn/article-8086-1.html">完整教程</a></li>
+<li>sshpass -p &lsquo;密码&rsquo; 后接正常的ssh命令 ssh user@host</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>ssh登录然后执行一系列命令, sudo会执行不了 需要加 -t 参数才行</p>
+</blockquote>
+<hr>
+<h2 id="安装">安装</h2>
+<p><em>客户端</em></p>
+<ul>
+<li><code>sudo apt-get install openssh-client</code></li>
+<li>生成密钥对 <code>ssh-keygen</code> 可以设置密码，为了方便也可以全部采用默认(不安全)</li>
+</ul>
+<p><em>服务端</em></p>
+<ul>
+<li>安装：<code>sudo apt-get install openssh-server</code></li>
+<li>启动：<code>sudo /etc/init.d/ssh start</code> 或者 <code>service ssh start</code></li>
+<li>更改配置文件修改默认端口 <code>/etc/ssh/sshd_config</code></li>
+<li>查看对否启动sshd<code>ps -e |grep ssh</code></li>
+<li>关闭服务 <code>/etc/init.d/ssh stop</code></li>
+</ul>
+<h2 id="建立连接">建立连接</h2>
+<h3 id="复制粘贴建立密钥对">复制粘贴建立密钥对</h3>
+<p><em>客户端</em></p>
+<ul>
+<li>进入.ssh文件夹下 <code>gedit id_rsa.pub</code> 然后复制该公钥内容
+<ul>
+<li>或者 <code>cat ~/.ssh/id_rsa.pub | xclip -sel clip</code> 将文件复制到剪贴板</li>
+<li>或者 <code>cat ~/.ssh/id_rsa.pub | xsel -b</code> 也是文件复制到剪贴板</li>
+</ul>
+</li>
+<li>在各种平台服务上添加这个公钥即可免密登录</li>
+</ul>
+<p><em>服务器端</em></p>
+<ul>
+<li>进入.ssh文件夹下 <code>sudo vim authorized_keys</code> 粘贴客户端公钥内容</li>
+<li>更改文件权限 <code>sudo chmod 600 authorized_keys</code>
+<ul>
+<li>注意 该文件 group 和 other 位不能有 w 权限</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用-ssh-copy-id-脚本">使用 ssh-copy-id 脚本</h3>
+<ul>
+<li>
+<p>两方安装好软件 客户端生成好了秘钥对之后</p>
+</li>
+<li>
+<p>默认端口:<code>ssh-copy-id &quot;username@host&quot;</code> 输密码就可以了</p>
+</li>
+<li>
+<p>指定端口 <code>ssh-copy-id ”-p port username@host“</code></p>
+<ul>
+<li>或者:<code>ssh-copy-id &quot; username@host&quot; -p port</code></li>
+</ul>
+</li>
+<li>
+<p>成功后 客户端登录 <code>ssh -p 22 username@ip</code></p>
+<ul>
+<li>root用户一般需要修改:</li>
+<li><code>/etc/ssh/sshd_confg</code> 文件中PermitRootLogin  no 改为yes 重新启动ssh服务。</li>
+</ul>
+</li>
+<li>
+<p>注意:</p>
+<ul>
+<li>一个端口和IP如果之前记录过相关信息,然后服务器重装了系统或者别的原因, 修改了服务器秘钥</li>
+<li>再次连接新的系统按着提示来运行一条命令即可</li>
+<li>例如 <code>ssh-keygen -f &quot;/home/kcp/.ssh/known_hosts&quot; -R 120.78.154.52</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="ssh客户端配置">SSH客户端配置</h2>
+<p><code>~/.ssh/config</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    Host aliyun
+        HostName www.ttlsa.com
+        Port 22
+        User root
+        IdentityFile  ~/.ssh/id_rsa.pub
+        IdentitiesOnly yes
+</code></pre></td></tr></table>
+</div>
+</div><p><em>参数解释</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    HostName 指定登录的主机名或IP地址
+    Port 指定登录的端口号
+    User 登录用户名
+    IdentityFile 登录的公/私钥文件 奇怪的是有时候用公有时候用私??
+    IdentitiesOnly 只接受SSH key 登录
+    PubkeyAuthentication
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>ssh aliyun</code> 即可登录 但是要输入生成公钥时的密码， <em>方便多公钥的情况</em>
+<ul>
+<li>如果生成公钥时_没有_设置密码就要错三次，然后输入用户密码，</li>
+<li>不觉得有多方便，还不如 alias进行配置</li>
+</ul>
+</li>
+</ul>
+<h3 id="多密钥对">多密钥对</h3>
+<blockquote>
+<p><a href="http://blog.csdn.net/black_ox/article/details/17753943">参考博客</a></p>
+</blockquote>
+<ol>
+<li><code>ssh-keygen</code> 生成SSH密钥对 在询问中输入新的文件名</li>
+<li><code>ssh-add 私钥文件绝对路径</code>
+<ul>
+<li>若执行ssh-add时出现Could not open a connection to your authentication agent</li>
+<li>就先执行 <code>ssh-agent bash</code> 对应自己的解释器环境</li>
+</ul>
+</li>
+<li>如上 创建配置文件 config
+<ul>
+<li>在git项目中使用别名:正常的项目，我们clone下来之后，origin对应的URL假设为: <code>git@git.:Rusher/helloworld</code></li>
+<li>现在需要做个改动，将git, 要换成rusher_gitlab:
+<ul>
+<li><code>git remote set-url origin git@rusher_gitlab:Rusher/helloworld</code></li>
+</ul>
+</li>
+<li>如果是root用户的项目:
+<ul>
+<li><code>git remote set-url origin git@root_gitlab:root/helloworld</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><em>config</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    Host default
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/default_id_rsa.pub
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>测试配置是否正确: <code>ssh -T git@default</code></li>
+</ul>
+<h2 id="服务端配置">服务端配置</h2>
+<blockquote>
+<p>修改登录后的欢迎信息 /etc/motd</p>
+</blockquote>
+<p>一般需要重启ssh服务才生效<code>/etc/ssh/sshd_config</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    #禁用密码验证 
+    PasswordAuthentication no
+    #启用密钥验证
+    RSAAuthentication yes
+    PubkeyAuthentication yes
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="访问图形化">访问图形化</h2>
+<p>在<code>/etc/ssh/sshd_config</code>添加以下信息，然后重启ssh服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    X11Forwarding yes
+    X11DisplayOffset 10
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>ssh -X -p port user@host</code> 登录即可
+<ul>
+<li>使用过一次,发现了严重的内存泄露,也不知道是什么原因</li>
+</ul>
+</li>
+</ul>
+<h2 id="ssh登录并执行一系列命令">SSH登录并执行一系列命令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    ssh user@host <span class="s1">&#39;cmd \
+</span><span class="s1">        &amp;&amp; cmd \&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="通过ssh执行命令时的环境变量问题">通过SSH执行命令时的环境变量问题</h3>
+<p>详细在于不同的shell中 Linux 环境变量加载的不同</p>
+<ul>
+<li>简单方式: 手动加载环境变量 <code>ssh name@host &quot;source ~/.bashrc &amp;&amp; java -version&quot;</code></li>
+</ul>
+<hr>
+<h1 id="tips">Tips</h1>
+<blockquote>
+<p>终端抛出<code>ssh_exchange_identification: Connection closed by remote host</code> 错误:</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nb">echo</span> <span class="s2">&#34;PermitRootLogin without-password&#34;</span> &gt;&gt; /etc/ssh/sshd_config <span class="p">;</span><span class="se">\
+</span><span class="se"></span>    <span class="nb">echo</span> <span class="s2">&#34;PermitRootLogin yes&#34;</span> &gt;&gt; /etc/ssh/sshd_config <span class="p">;</span><span class="se">\
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>或者尝试 <code>echo &quot;sshd: ALL&quot; &gt;&gt; /etc/hosts.allow &amp;&amp; service sshd restart</code></li>
+</ul>
+<h2 id="保持ssh连接稳定">保持SSH连接稳定</h2>
+<blockquote>
+<p>man ssh_config</p>
+</blockquote>
+<p>服务端和客户端配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ServerAliveInterval 60
+    ServerAliveCountMax 3
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<blockquote>
+<p>连接时提示错误信息 前提：配置好了公钥，即使有这个信息，但是却已经连上了</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ ssh -p <span class="m">8888</span> git@184.170.220.117
+    The authenticity of host <span class="s1">&#39;[184.170.220.117]:8888 ([184.170.220.117]:8888)&#39;</span> can<span class="s1">&#39;t be established.
+</span><span class="s1">    ECDSA key fingerprint is SHA256:Ha9k9dsMxtTaDgN4maUy1VoNzzsm+uMb84zcib6U5jU.
+</span><span class="s1">    Are you sure you want to continue connecting (yes/no)? yes
+</span><span class="s1">    Warning: Permanently added &#39;</span><span class="o">[</span>184.170.220.117<span class="o">]</span>:8888<span class="err">&#39;</span> <span class="o">(</span>ECDSA<span class="o">)</span> to the list of known hosts.
+    PTY allocation request failed on channel <span class="m">0</span>
+    Welcome to GitLab, Carlsiry Chen!
+    Connection to 184.170.220.117 closed.
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<blockquote>
+<p>SSH: Could not load host key: /etc/ssh/ssh_host_rsa_key</p>
+</blockquote>
+<ul>
+<li><code>/usr/bin/ssh-keygen -A</code> 生成所有方式的密钥对</li>
+</ul>
+<hr>
+<h1 id="mosh">Mosh</h1>
+<blockquote>
+<p><a href="https://mosh.org/">Official Site</a></p>
+</blockquote>
+<p>采用UDP协议实现, 对带宽需求更小, 但是设计上有很明显的优点和缺点&hellip;</p>
+<ul>
+<li>优点: 占用带宽小, 速度快, 无连接的
+<ul>
+<li>会话的中断不会导致当前正在前端执行的命令中断，相当于你所有的操作都是在screen命令中一样在后台执行。</li>
+<li>会话在中断过后，不会立刻退出，而是启用一个计时器，当网络恢复后会自动重新连接，同时会延续之前的会话，不会重新开启一个。</li>
+</ul>
+</li>
+<li>缺点: 连接是一次性的, 往往需要额外配置UDP端口</li>
+</ul>
+<p>简易使用</p>
+<ol>
+<li>服务端使用指定端口启动, <code>mosh-server -p 6005</code> 默认是随机在 60001-61000
+<ul>
+<li>复制好启动输出的秘钥</li>
+</ul>
+</li>
+<li>客户端 <code>MOSH_KEY=秘钥 mosh-client ip port</code></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%8F%E9%AA%8C/">工具使用经验</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/redhat/centosbase/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Centos</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/base/releaseexperience/">
+            <span class="next-text nav-default">Linux发行版</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

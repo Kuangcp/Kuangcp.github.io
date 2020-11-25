@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SpringBoot - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start SpringBoot 思考 参考教程 系列 简易使用 使用SpringBootCLI 测试模块 Profils 多种配置文件并切换 yml方式 yml和properties结合 应用配置" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/springboot/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SpringBoot" />
+<meta property="og:description" content="目录 start SpringBoot 思考 参考教程 系列 简易使用 使用SpringBootCLI 测试模块 Profils 多种配置文件并切换 yml方式 yml和properties结合 应用配置" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/springboot/" />
+<meta property="article:published_time" content="2018-12-21T10:49:39+00:00" />
+<meta property="article:modified_time" content="2018-12-21T10:49:39+00:00" />
+<meta itemprop="name" content="SpringBoot">
+<meta itemprop="description" content="目录 start SpringBoot 思考 参考教程 系列 简易使用 使用SpringBootCLI 测试模块 Profils 多种配置文件并切换 yml方式 yml和properties结合 应用配置">
+<meta itemprop="datePublished" content="2018-12-21T10:49:39+00:00" />
+<meta itemprop="dateModified" content="2018-12-21T10:49:39+00:00" />
+<meta itemprop="wordCount" content="3264">
+
+
+
+<meta itemprop="keywords" content="SpringBoot," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SpringBoot"/>
+<meta name="twitter:description" content="目录 start SpringBoot 思考 参考教程 系列 简易使用 使用SpringBootCLI 测试模块 Profils 多种配置文件并切换 yml方式 yml和properties结合 应用配置"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SpringBoot</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 3264 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#思考">思考</a></li>
+    <li><a href="#参考教程">参考教程</a>
+      <ul>
+        <li><a href="#系列">系列</a></li>
+      </ul>
+    </li>
+    <li><a href="#简易使用">简易使用</a></li>
+    <li><a href="#使用springbootcli">使用SpringBootCLI</a></li>
+    <li><a href="#测试模块">测试模块</a></li>
+    <li><a href="#profils">Profils</a>
+      <ul>
+        <li><a href="#多种配置文件并切换">多种配置文件并切换</a></li>
+        <li><a href="#应用配置文件">应用配置文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#logging">Logging</a></li>
+    <li><a href="#web模块">Web模块</a>
+      <ul>
+        <li><a href="#lisener">Lisener</a></li>
+        <li><a href="#上传下载文件">上传下载文件</a></li>
+        <li><a href="#错误页面跳转配置">错误页面跳转配置</a></li>
+        <li><a href="#跨域">跨域</a></li>
+      </ul>
+    </li>
+    <li><a href="#全局异常处理">全局异常处理</a></li>
+    <li><a href="#https的配置">HTTPS的配置</a></li>
+    <li><a href="#线程池">线程池</a></li>
+    <li><a href="#运行和部署">运行和部署</a>
+      <ul>
+        <li><a href="#直接运行">直接运行</a></li>
+        <li><a href="#编译打包jarwar">编译打包jar/war</a></li>
+        <li><a href="#构建docker镜像">构建Docker镜像</a></li>
+        <li><a href="#热部署">热部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#springboot">SpringBoot</a>
+<ol>
+<li><a href="#%E6%80%9D%E8%80%83">思考</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E6%95%99%E7%A8%8B">参考教程</a>
+<ol>
+<li><a href="#%E7%B3%BB%E5%88%97">系列</a></li>
+</ol>
+</li>
+<li><a href="#%E7%AE%80%E6%98%93%E4%BD%BF%E7%94%A8">简易使用</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8springbootcli">使用SpringBootCLI</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9D%97">测试模块</a></li>
+<li><a href="#profils">Profils</a>
+<ol>
+<li><a href="#%E5%A4%9A%E7%A7%8D%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%B9%B6%E5%88%87%E6%8D%A2">多种配置文件并切换</a>
+<ol>
+<li><a href="#yml%E6%96%B9%E5%BC%8F">yml方式</a></li>
+<li><a href="#yml%E5%92%8Cproperties%E7%BB%93%E5%90%88">yml和properties结合</a></li>
+</ol>
+</li>
+<li><a href="#%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">应用配置文件</a></li>
+</ol>
+</li>
+<li><a href="#events">Events</a></li>
+<li><a href="#logging">Logging</a></li>
+<li><a href="#web%E6%A8%A1%E5%9D%97">Web模块</a>
+<ol>
+<li><a href="#lisener">Lisener</a>
+<ol>
+<li><a href="#servletcontextlistener">ServletContextListener</a></li>
+</ol>
+</li>
+<li><a href="#%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6">上传下载文件</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%E9%85%8D%E7%BD%AE">错误页面跳转配置</a></li>
+<li><a href="#%E8%B7%A8%E5%9F%9F">跨域</a></li>
+</ol>
+</li>
+<li><a href="#%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86">全局异常处理</a></li>
+<li><a href="#https%E7%9A%84%E9%85%8D%E7%BD%AE">HTTPS的配置</a></li>
+<li><a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0">线程池</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8C%E5%92%8C%E9%83%A8%E7%BD%B2">运行和部署</a>
+<ol>
+<li><a href="#%E7%9B%B4%E6%8E%A5%E8%BF%90%E8%A1%8C">直接运行</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85jarwar">编译打包jar/war</a>
+<ol>
+<li><a href="#war">war</a></li>
+<li><a href="#jar">jar</a></li>
+</ol>
+</li>
+<li><a href="#%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F">构建Docker镜像</a>
+<ol>
+<li><a href="#%E6%89%8B%E5%8A%A8%E6%96%B9%E5%BC%8F">手动方式</a></li>
+<li><a href="#gradle%E7%BB%93%E5%90%88docker">Gradle结合Docker</a></li>
+</ol>
+</li>
+<li><a href="#%E7%83%AD%E9%83%A8%E7%BD%B2">热部署</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="springboot">SpringBoot</h1>
+<blockquote>
+<p><a href="https://spring.io/projects/spring-boot#learn">首页</a></p>
+</blockquote>
+<blockquote>
+<p>一个简化Spring开发的框架,微服务SpringCloud的基础
+<a href="https://docs.spring.io/spring-boot/docs/1.5.14.RELEASE/reference/htmlsingle/">1.5.14 官方文档</a></p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/spring-projects/spring-boot/releases">Github:Springboot</a></li>
+</ul>
+<h2 id="思考">思考</h2>
+<ul>
+<li>
+<p><a href="https://www.zhihu.com/question/39483566">SpringBoot优缺点</a></p>
+<ul>
+<li><code>大大降低编程门槛, 但是, 将大量细节隐藏在默认配置中, 需要详细阅读文档和源码才能更好的玩转SpringBoot, 不然到处是坑</code></li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.cnblogs.com/trgl/p/7353782.html">SpringBoot启动流程解析</a><code>原理才是王道</code></p>
+</li>
+<li>
+<p><a href="https://yq.aliyun.com/articles/6056">spring boot应用启动原理分析 </a></p>
+</li>
+<li>
+<p>Spring 是单例模式, 全部使用IOC容器进行管理, 那么怎么处理并发呢,</p>
+<ul>
+<li>答案是 ? 多线程 然后 ThreadLocal 分别存储了各自的数据, 所以才说, 不能在Controller层 放置属性, 使其具有状态, 从而导致并发问题</li>
+<li>那么WebSocket服务器, 处理并发会不会有并发问题?</li>
+</ul>
+</li>
+<li>
+<p><a href="http://www.ityouknow.com/springboot/2018/06/12/spring-boo-java-simple.html">为什么说 Java 程序员到了必须掌握 Spring Boot 的时候？</a></p>
+</li>
+</ul>
+<h2 id="参考教程">参考教程</h2>
+<ul>
+<li><a href="http://springboot.fun/">SpringBoot中文索引</a></li>
+<li><a href="http://www.spring4all.com/article/246">参考: Spring Boot 入门系列</a></li>
+<li><a href="https://juejin.im/post/598dd709f265da3e213f0c57">Springboot探索</a></li>
+<li><a href="http://blog.csdn.net/jsyxcjw/article/details/46763639">SpringBoot入门</a></li>
+</ul>
+<blockquote>
+<p><a href="https://spring.io/guides/gs/actuator-service/">Guide</a>
+<a href="https://github.com/mercyblitz/thinking-in-spring-boot-samples">小马哥书籍《Spring Boot 编程思想》示例工程 </a></p>
+</blockquote>
+<h3 id="系列">系列</h3>
+<ul>
+<li><a href="https://github.com/guoxiaoxu/guo-projects/tree/master/guns-admin/note">一系列专栏</a></li>
+<li><a href="http://tengj.top/tags/Spring-Boot/">个人博客专栏: SpringBoot干货系列</a></li>
+<li><a href="http://www.ityouknow.com/spring-boot">SpringBoot系列文章</a></li>
+<li><a href="https://www.jianshu.com/u/092df3f77bca">恒宇少年</a><code>大量Boot博客</code></li>
+</ul>
+<hr>
+<h2 id="简易使用">简易使用</h2>
+<blockquote>
+<p>使用Idea的话就可以直接创建项目 使用别的可以下载zip进行导入 | <a href="http://start.spring.io/">官方初始项目构建 下载地址</a></p>
+</blockquote>
+<p><em>目录结构最好如下</em> <code>*Application类要处于所有用了Springboot注解的类的顶级目录, 这样默认才能扫描到</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ├── config/
+    ├── controller/
+    ├── dao/
+    ├── domain/
+    ├── GraduateApplication.java
+    ├── service/
+    ├── ServletInitializer.java
+    └── util/
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="使用springbootcli">使用SpringBootCLI</h2>
+<ul>
+<li>使用 SDKMAN 进行安装
+<ul>
+<li>使用git bash运行  <code>curl -s get.sdkman.io | bash</code></li>
+<li><code>source &quot;/Users/{yourname}/.sdkman/bin/sdkman-init.sh&quot; </code>根据实际目录去运行</li>
+<li>spring &ndash;version</li>
+</ul>
+</li>
+<li>官方下载地址 <a href="https://repo.spring.io/release/org/springframework/boot/spring-boot-cli/">所有版本</a></li>
+</ul>
+<h2 id="测试模块">测试模块</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 了解这些测试注解 的作用和使用场景</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 依赖于Springboot环境的测试类的必备注解
+</span><span class="c1"></span>    <span class="nd">@RunWith</span><span class="o">(</span><span class="n">SpringRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="nd">@SpringBootTest</span>
+
+    <span class="c1">// 使用内存数据库测试
+</span><span class="c1"></span>    <span class="nd">@ComponentScan</span><span class="o">(</span><span class="s">&#34;com.github.kuagncp&#34;</span><span class="o">)</span> <span class="c1">// 如果有类没注入需要手动设置扫面
+</span><span class="c1"></span>    <span class="nd">@RunWith</span><span class="o">(</span><span class="n">SpringJUnit4ClassRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="nd">@DataJpaTest</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>可以使用MockMvc来测试Controller层的代码</li>
+<li>可以使用MockMvc的SpringSecurity支持来测试安全模块</li>
+<li>使用 WebIntegraionTest 测试运行中的Web容器
+<ul>
+<li>启动嵌入式的Servlet容器来进行测试，下断言</li>
+</ul>
+</li>
+<li>使用随机端口启动服务器 配置local.server.port=0</li>
+<li>使用Selenium来测试HTML页面，模拟浏览器的动作，查看系统运行状态</li>
+</ul>
+<hr>
+<h2 id="profils">Profils</h2>
+<blockquote>
+<p><a href="https://www.baeldung.com/spring-profiles">Spring Profiles</a></p>
+</blockquote>
+<blockquote>
+<p>配置文件(<code>application.properties或者yml</code>) 加载顺序 | <a href="https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#boot-features-external-config-application-property-files">官方文档说明</a></p>
+<ol>
+<li>当前Jar/War目录下的/config目录 <code>./config/</code></li>
+<li>当前目录 <code>./</code></li>
+<li>classpath 里的/config目录 <code>classpath:/config/</code></li>
+<li>classpath 根目录 <code>classpath:/</code></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>自定义配置文件名就要运行时加参数</p>
+<ol>
+<li><code>java -jar myproject.jar --spring.config.name=myproject</code></li>
+<li><code>java -jar myproject.jar --spring.config.location=classpath:/default.properties,classpath:/override.properties</code></li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p><a href="http://www.itwendao.com/article/detail/391009.html">配置文件的使用</a></p>
+</li>
+<li>
+<p><a href="https://www.tuicool.com/articles/veUjQba">Spring boot配置文件 application.properties</a></p>
+</li>
+<li>
+<p><a href="https://my.oschina.net/wangnian/blog/666641">SpringBoot常用配置</a></p>
+</li>
+<li>
+<p><a href="https://segmentfault.com/a/1190000008968295">使用Gradle整合SpringBoot+Vue.js-开发调试与打包</a></p>
+</li>
+<li>
+<p><a href="https://yq.aliyun.com/articles/182720">配置文件加密</a></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/java-zhao/p/5542154.html">自定义配置文件</a><code>将应用配置外置并注入成bean</code></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/xiaoqi/p/6955288.html">配置文件外置</a></p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://www.hifreud.com/2017/06/23/spring-boot-05-Externalized-Configuration/">参考: Spring Boot(五) - 外化配置</a></p>
+</blockquote>
+<h3 id="多种配置文件并切换">多种配置文件并切换</h3>
+<h4 id="yml方式">yml方式</h4>
+<ul>
+<li>单文件<code>配置文件 application.yml</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="w">	</span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l">development</span><span class="w"> </span><span class="c"># 选用开发模式</span><span class="w">
+</span><span class="w">    </span>---<span class="w">
+</span><span class="w">    </span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">development</span><span class="w">
+</span><span class="w">      </span><span class="l">//一系列配置</span><span class="w">
+</span><span class="w">    </span>---<span class="w">
+</span><span class="w">    </span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">profiles</span><span class="p">:</span><span class="w"> </span><span class="l">production</span><span class="w">
+</span><span class="w">      </span><span class="l">// 一系列配置</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>或者 多文件放 <code>application-{profile}.yml</code></li>
+</ul>
+<h4 id="yml和properties结合">yml和properties结合</h4>
+<ul>
+<li>格式：<code>application-{profile}.properties</code></li>
+<li>将上面的开发部分，发行部分的配置创建两个配置文件 <code>application-dev.properties</code> 和 <code>application-prod.properties</code></li>
+<li>在主配置文件<code>application.yml</code>中指明</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="w">    </span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l">dev或者是prod</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="应用配置文件">应用配置文件</h3>
+<blockquote>
+<p>依赖于 <code>org.springframework.boot:spring-boot-configuration-processor</code></p>
+</blockquote>
+<p>配置对应的实体类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Data</span>
+    <span class="nd">@Component</span>
+    <span class="nd">@ConfigurationProperties</span><span class="o">(</span><span class="n">prefix</span> <span class="o">=</span> <span class="s">&#34;graduate.main&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainConfig</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="n">String</span> <span class="n">delimiter</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>应用配置类</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Configuration</span>
+    <span class="nd">@EnableConfigurationProperties</span><span class="o">(</span><span class="n">MainConfig</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">AutoCustomConfig</span> <span class="o">{</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>application.yml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">graduate</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">main</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">delimiter</span><span class="p">:</span><span class="w"> </span><span class="p">,</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="events">Events</h2>
+<blockquote>
+<p><a href="/Java/Spring/Spring.md#Events">Note: Spring Events</a></p>
+</blockquote>
+<p>配置成异步并使用线程池</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Configuration</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">AsynchronousSpringEventsConfig</span> <span class="o">{</span>
+        <span class="nd">@Bean</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;applicationEventMulticaster&#34;</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="n">ApplicationEventMulticaster</span> <span class="nf">simpleApplicationEventMulticaster</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">SimpleApplicationEventMulticaster</span> <span class="n">eventMulticaster</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleApplicationEventMulticaster</span><span class="o">();</span>
+
+            <span class="n">SimpleAsyncTaskExecutor</span> <span class="n">taskExecutor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleAsyncTaskExecutor</span><span class="o">();</span>
+            <span class="n">eventMulticaster</span><span class="o">.</span><span class="na">setTaskExecutor</span><span class="o">(</span><span class="n">taskExecutor</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">eventMulticaster</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="logging">Logging</h2>
+<p>默认可以通过 application.properties 配置框架的日志,以及应用具体到包和类的日志等级,日志文件等等</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/lixuwu/p/5804793.html">参考: Spring boot——logback 基础使用篇（一）</a>
+<a href="https://springframework.guru/using-logback-spring-boot/">参考: springboot use logback</a><code>能根据Profile配置,还能写if</code><br>
+<a href="https://www.baeldung.com/spring-boot-logging">spring boot logging</a></p>
+</blockquote>
+<p>使用 logback 则需要配置 logback.xml 或者 logback-spring.xml 建议使用后者</p>
+<ul>
+<li><input disabled="" type="checkbox"> 思考: 能否不同的包使用不同的pattern <a href="https://stackoverflow.com/questions/30571319/spring-boot-logging-pattern">pattern</a></li>
+</ul>
+<p>配置 pattern 并引用 MDC <code>logging.pattern.level=%X{mdcData}%5p</code></p>
+<hr>
+<h2 id="web模块">Web模块</h2>
+<h3 id="lisener">Lisener</h3>
+<h4 id="servletcontextlistener">ServletContextListener</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@WebListener</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApplicationContext</span> <span class="kd">implements</span> <span class="n">ServletContextListener</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">contextInitialized</span><span class="o">(</span><span class="n">ServletContextEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Servlet容器初始化&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">contextDestroyed</span><span class="o">(</span><span class="n">ServletContextEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Servlet容器销毁&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="上传下载文件">上传下载文件</h3>
+<blockquote>
+<p>第一种直接上传到应用的webroot或者resources目录下，第二种上传到数据库中，第三种使用ftp。</p>
+</blockquote>
+<ul>
+<li><a href="http://www.cnblogs.com/studyCenter/p/6665171.html">Springboot上传文件</a></li>
+<li>上传文件有大小限制，使用如下方法进行配置 <a href="http://makaidong.com/studyDetail/11882_45833.html">参考博客</a></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">MultipartConfigElement</span> <span class="nf">multipartConfigElement</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">MultipartConfigFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MultipartConfigFactory</span><span class="o">();</span>
+    <span class="c1">//单个文件最大
+</span><span class="c1"></span>    <span class="n">factory</span><span class="o">.</span><span class="na">setMaxFileSize</span><span class="o">(</span><span class="s">&#34;80MB&#34;</span><span class="o">);</span> <span class="c1">//KB,MB
+</span><span class="c1"></span>    <span class="c1">// 设置总上传数据总大小
+</span><span class="c1"></span>    <span class="n">factory</span><span class="o">.</span><span class="na">setMaxRequestSize</span><span class="o">(</span><span class="s">&#34;102400KB&#34;</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">factory</span><span class="o">.</span><span class="na">createMultipartConfig</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="错误页面跳转配置">错误页面跳转配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MvcConfig</span> <span class="kd">extends</span> <span class="n">WebMvcConfigurerAdapter</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">EmbeddedServletContainerCustomizer</span> <span class="nf">containerCustomizer</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">container</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">ErrorPage</span> <span class="n">error401Page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorPage</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">FORBIDDEN</span><span class="o">,</span> <span class="s">&#34;/403.html&#34;</span><span class="o">);</span>
+            <span class="n">ErrorPage</span> <span class="n">error404Page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorPage</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">NOT_FOUND</span><span class="o">,</span> <span class="s">&#34;/404.html&#34;</span><span class="o">);</span>
+            <span class="n">ErrorPage</span> <span class="n">error500Page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorPage</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">INTERNAL_SERVER_ERROR</span><span class="o">,</span> <span class="s">&#34;/500.html&#34;</span><span class="o">);</span>
+            <span class="n">container</span><span class="o">.</span><span class="na">addErrorPages</span><span class="o">(</span><span class="n">error401Page</span><span class="o">,</span> <span class="n">error404Page</span><span class="o">,</span> <span class="n">error500Page</span><span class="o">);</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="跨域">跨域</h3>
+<blockquote>
+<p>不同的域名（主机）端口都会导致跨域问题</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CorsConfig</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">CorsConfiguration</span> <span class="nf">buildConfig</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">CorsConfiguration</span> <span class="n">corsConfiguration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CorsConfiguration</span><span class="o">();</span>
+        <span class="n">corsConfiguration</span><span class="o">.</span><span class="na">addAllowedOrigin</span><span class="o">(</span><span class="s">&#34;*&#34;</span><span class="o">);</span> <span class="c1">// 允许任何域名使用
+</span><span class="c1"></span>        <span class="n">corsConfiguration</span><span class="o">.</span><span class="na">addAllowedHeader</span><span class="o">(</span><span class="s">&#34;*&#34;</span><span class="o">);</span> <span class="c1">// 允许任何头
+</span><span class="c1"></span>        <span class="n">corsConfiguration</span><span class="o">.</span><span class="na">addAllowedMethod</span><span class="o">(</span><span class="s">&#34;*&#34;</span><span class="o">);</span> <span class="c1">// 允许任何方法（post、get等）
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">corsConfiguration</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">CorsFilter</span> <span class="nf">corsFilter</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">UrlBasedCorsConfigurationSource</span> <span class="n">source</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UrlBasedCorsConfigurationSource</span><span class="o">();</span>
+        <span class="n">source</span><span class="o">.</span><span class="na">registerCorsConfiguration</span><span class="o">(</span><span class="s">&#34;/**&#34;</span><span class="o">,</span> <span class="n">buildConfig</span><span class="o">());</span> <span class="c1">// 4
+</span><span class="c1"></span>        <span class="k">return</span> <span class="k">new</span> <span class="n">CorsFilter</span><span class="o">(</span><span class="n">source</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="全局异常处理">全局异常处理</h2>
+<ol>
+<li>新建类, 加上注解 ControllerAdvice</li>
+<li>方法上使用注解 <code>ExceptionHandler(Exception.class)</code> 处理所有异常</li>
+<li>然后返回值的写法和普通Controller一样, 返回JSON就<code>ResponseBody</code></li>
+</ol>
+<hr>
+<h2 id="https的配置">HTTPS的配置</h2>
+<blockquote>
+<p><a href="https://www.drissamri.be/blog/java/enable-https-in-spring-boot/">参考博客</a></p>
+</blockquote>
+<ul>
+<li>签发证书：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">keytool -genkey -alias tomcat -storetype PKCS12 -keyalg RSA -keysize <span class="m">2048</span> -keystore keystore.p12 -validity <span class="m">3650</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">server</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">context-path</span><span class="p">:</span><span class="w"> </span><span class="l">/myth</span><span class="w">
+</span><span class="w">  </span><span class="nt">ssl</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">key-store</span><span class="p">:</span><span class="w"> </span><span class="l">classpath:keystore.p12</span><span class="w">
+</span><span class="w">    </span><span class="nt">key-store-password</span><span class="p">:</span><span class="w"> </span><span class="l">demo1429336</span><span class="w">
+</span><span class="w">    </span><span class="nt">key-store-type</span><span class="p">:</span><span class="w"> </span><span class="l">PKCS12</span><span class="w">
+</span><span class="w">    </span><span class="nt">key-alias</span><span class="p">:</span><span class="w"> </span><span class="l">tomcat</span><span class="w">
+</span><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">
+</span><span class="w">  </span><span class="nt">session</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="m">3000</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>任意的一个@Configuration注解类里添加</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">TomcatEmbeddedServletContainerFactory</span> <span class="nf">servletContainerFactory</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">TomcatEmbeddedServletContainerFactory</span> <span class="n">factory</span> <span class="o">=</span>
+        <span class="k">new</span> <span class="n">TomcatEmbeddedServletContainerFactory</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">postProcessContext</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">//SecurityConstraint必须存在，可以通过其为不同的URL设置不同的重定向策略。
+</span><span class="c1"></span>                <span class="n">SecurityConstraint</span> <span class="n">securityConstraint</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SecurityConstraint</span><span class="o">();</span>
+                <span class="n">securityConstraint</span><span class="o">.</span><span class="na">setUserConstraint</span><span class="o">(</span><span class="s">&#34;CONFIDENTIAL&#34;</span><span class="o">);</span>
+                <span class="n">SecurityCollection</span> <span class="n">collection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SecurityCollection</span><span class="o">();</span>
+                <span class="n">collection</span><span class="o">.</span><span class="na">addPattern</span><span class="o">(</span><span class="s">&#34;/*&#34;</span><span class="o">);</span>
+                <span class="n">securityConstraint</span><span class="o">.</span><span class="na">addCollection</span><span class="o">(</span><span class="n">collection</span><span class="o">);</span>
+                <span class="n">context</span><span class="o">.</span><span class="na">addConstraint</span><span class="o">(</span><span class="n">securityConstraint</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+    <span class="n">factory</span><span class="o">.</span><span class="na">addAdditionalTomcatConnectors</span><span class="o">(</span><span class="n">createHttpConnector</span><span class="o">());</span>
+    <span class="k">return</span> <span class="n">factory</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">Connector</span> <span class="nf">createHttpConnector</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">Connector</span> <span class="n">connector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Connector</span><span class="o">(</span><span class="s">&#34;org.apache.coyote.http11.Http11NioProtocol&#34;</span><span class="o">);</span>
+    <span class="n">connector</span><span class="o">.</span><span class="na">setScheme</span><span class="o">(</span><span class="s">&#34;http&#34;</span><span class="o">);</span>
+    <span class="n">connector</span><span class="o">.</span><span class="na">setSecure</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="n">connector</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="n">8887</span><span class="o">);</span><span class="c1">//http端口（这是要新增加的一个端口）
+</span><span class="c1"></span>    <span class="n">connector</span><span class="o">.</span><span class="na">setRedirectPort</span><span class="o">(</span><span class="n">8888</span><span class="o">);</span><span class="c1">// https 端口配置文件中tomcat启动的默认端口
+</span><span class="c1"></span>    <span class="k">return</span> <span class="n">connector</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>另一种方式 <a href="http://www.cnblogs.com/xinzhao/p/4950689.html">参考博客</a>
+<code>方式不一样，没有成功</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1">############ 证书颁发机构</span>
+    <span class="c1"># CA机构私钥</span>
+    openssl genrsa -out ca.key <span class="m">2048</span>
+    <span class="c1"># CA证书</span>
+    openssl req -x509 -new -key ca.key -out ca.crt
+    <span class="c1">############ 服务端</span>
+    <span class="c1"># 生成服务端私钥</span>
+    openssl genrsa -out server.key <span class="m">2048</span>
+    <span class="c1"># 生成服务端证书请求文件</span>
+    openssl req -new -key server.key -out server.csr
+    <span class="c1"># 使用CA证书生成服务端证书  关于sha256，默认使用的是sha1，在新版本的chrome中会被认为是不安全的，因为使用了过时的加密算法。</span>
+    openssl x509 -req -sha256 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days <span class="m">3650</span> -out server.crt    
+    <span class="c1"># 打包服务端的资料为pkcs12格式(非必要，只是换一种格式存储上一步生成的证书) 生成过程中，需要创建访问密码，请记录下来。</span>
+    openssl pkcs12 -export -in server.crt -inkey server.key -out server.pkcs12
+    <span class="c1"># 生成服务端的keystore（.jks文件, 非必要，Java程序通常使用该格式的证书） 生成过程中，需要创建访问密码，请记录下来。</span>
+    keytool -importkeystore -srckeystore server.pkcs12 -destkeystore server.jks -srcstoretype pkcs12
+    <span class="c1"># 把ca证书放到keystore中（非必要）</span>
+    keytool -importcert -keystore server.jks -file ca.crt
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="线程池">线程池</h2>
+<ul>
+<li><a href="https://hacpai.com/article/1501152977477?p=1&amp;m=0">参考博客</a></li>
+<li>多线程以及异常处理 <a href="http://www.liuhaihua.cn/archives/496733.html">参考博客</a>
+<ul>
+<li>因为多线程的特性，所以异常只能在子线程中处理不能抛出到主线程里，但是 Spring实现的线程池可以返回一个异常信息对象</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="运行和部署">运行和部署</h2>
+<h3 id="直接运行">直接运行</h3>
+<ul>
+<li><a href="https://docs.spring.io/spring-boot/docs/2.1.9.RELEASE/maven-plugin/run-mojo.html">Spring Boot Maven Plugin</a></li>
+<li>例如开启远程调试 <code>mvn spring-boot:run -Dspring-boot.run.jvmArguments=&quot;-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000&quot;</code></li>
+</ul>
+<h3 id="编译打包jarwar">编译打包jar/war</h3>
+<h4 id="war">war</h4>
+<ul>
+<li>部署为war必须的类，一般在创建项目时选war就会自动生成，选jar就要手动添加</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServletInitializer</span> <span class="kd">extends</span> <span class="n">SpringBootServletInitializer</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="n">SpringApplicationBuilder</span> <span class="nf">configure</span><span class="o">(</span><span class="n">SpringApplicationBuilder</span> <span class="n">application</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">application</span><span class="o">.</span><span class="na">sources</span><span class="o">(</span><span class="n">DemoApplication</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>maven： <code>mvn war</code> 即可 mvn package -DskipTests</li>
+<li>gradle: <code>gradle war</code> 然后 <code>gradle bootRepackage</code> 即可</li>
+</ul>
+<h4 id="jar">jar</h4>
+<ul>
+<li>没有特殊的配置，打包即用
+<ul>
+<li>maven: <code>mvn package</code> 即可生成可执行的jar</li>
+<li>gradle:<code>gradle jar</code> 然后 <code>gradle bootRepackage</code> 也生成可执行jar</li>
+</ul>
+</li>
+</ul>
+<h3 id="构建docker镜像">构建Docker镜像</h3>
+<blockquote>
+<p><a href="https://spring.io/guides/gs/spring-boot-docker/">Official Doc: spring boot docker</a></p>
+</blockquote>
+<h4 id="手动方式">手动方式</h4>
+<ul>
+<li>先构建得到war或jar，然后根据dockerfile构建一个镜像</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile">    FROM frolvlad/alpine-oraclejdk8:slim<span class="err">
+</span><span class="err"></span>    ADD weixin-1.0.0.war app.war<span class="err">
+</span><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;java&#34;</span>,<span class="s2">&#34;-jar&#34;</span>,<span class="s2">&#34;/app.war&#34;</span><span class="o">]</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="gradle结合docker">Gradle结合Docker</h4>
+<h3 id="热部署">热部署</h3>
+<blockquote>
+<p><a href="https://nilzzzz.github.io/2017/11/SpringBoot1/">参考: SpringBoot热部署</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/springboot/">SpringBoot</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring/springboot2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SpringBoot2 新特性</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/spring/springaop/">
+            <span class="next-text nav-default">Spring AOP</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

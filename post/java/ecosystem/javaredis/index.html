@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JavaRedis - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Java使用redis Jedis jedis遇到的异常 Redisson Lettuce vertx-redis-client 目录 end|2020-06-24 02:06| Java使用redis Official List Jedis Github: Jedis 简单直接 maven依赖(Spring 4.1." /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/ecosystem/javaredis/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="JavaRedis" />
+<meta property="og:description" content="目录 start Java使用redis Jedis jedis遇到的异常 Redisson Lettuce vertx-redis-client 目录 end|2020-06-24 02:06| Java使用redis Official List Jedis Github: Jedis 简单直接 maven依赖(Spring 4.1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/ecosystem/javaredis/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="JavaRedis">
+<meta itemprop="description" content="目录 start Java使用redis Jedis jedis遇到的异常 Redisson Lettuce vertx-redis-client 目录 end|2020-06-24 02:06| Java使用redis Official List Jedis Github: Jedis 简单直接 maven依赖(Spring 4.1.">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="514">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaRedis"/>
+<meta name="twitter:description" content="目录 start Java使用redis Jedis jedis遇到的异常 Redisson Lettuce vertx-redis-client 目录 end|2020-06-24 02:06| Java使用redis Official List Jedis Github: Jedis 简单直接 maven依赖(Spring 4.1."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">JavaRedis</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        
+          <span class="more-meta"> 514 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#jedis">Jedis</a>
+      <ul>
+        <li><a href="#jedis遇到的异常">jedis遇到的异常</a></li>
+      </ul>
+    </li>
+    <li><a href="#redisson">Redisson</a></li>
+    <li><a href="#lettuce">Lettuce</a></li>
+    <li><a href="#vertx-redis-client">vertx-redis-client</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#java%E4%BD%BF%E7%94%A8redis">Java使用redis</a>
+<ol>
+<li><a href="#jedis">Jedis</a>
+<ol>
+<li><a href="#jedis%E9%81%87%E5%88%B0%E7%9A%84%E5%BC%82%E5%B8%B8">jedis遇到的异常</a></li>
+</ol>
+</li>
+<li><a href="#redisson">Redisson</a></li>
+<li><a href="#lettuce">Lettuce</a></li>
+<li><a href="#vertx-redis-client">vertx-redis-client</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-06-24 02:06</em>|</p>
+<hr>
+<h1 id="java使用redis">Java使用redis</h1>
+<blockquote>
+<p><a href="https://redis.io/clients#java">Official List</a></p>
+</blockquote>
+<h2 id="jedis">Jedis</h2>
+<blockquote>
+<p><a href="https://github.com/xetorthio/jedis">Github: Jedis</a> 简单直接</p>
+</blockquote>
+<ul>
+<li>maven依赖(Spring 4.1.7)：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.data<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-data-redis<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.6.0.RELEASE<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>redis.clients<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>jedis<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>2.9.0<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;type&gt;</span>jar<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>compile<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.apache.commons<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>commons-lang3<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>3.3.2<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Spring配置文件</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="c">&lt;!--
+</span><span class="c">        加载redis配置文件 
+</span><span class="c">        如果已经加载了一个文件，那么第一个就要写这个配置项，
+</span><span class="c">        &lt;property name=&#34;ignoreUnresolvablePlaceholders&#34; value=&#34;true&#34;/&gt;
+</span><span class="c">        第二个要加 后面的配置 
+</span><span class="c">        不然就只会加载前面那个文件
+</span><span class="c">    --&gt;</span>
+    <span class="nt">&lt;context:property-placeholder</span> <span class="na">location=</span><span class="s">&#34;classpath:redis.properties&#34;</span> <span class="na">ignore-unresolvable=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- redis连接池的配置 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;jedisPoolConfig&#34;</span> <span class="na">class=</span><span class="s">&#34;redis.clients.jedis.JedisPoolConfig&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;maxActive&#34;</span> <span class="na">value=</span><span class="s">&#34;${redis.pool.maxActive}&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;maxIdle&#34;</span> <span class="na">value=</span><span class="s">&#34;${redis.pool.maxIdle}&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;minIdle&#34;</span> <span class="na">value=</span><span class="s">&#34;${redis.pool.minIdle}&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;maxWait&#34;</span> <span class="na">value=</span><span class="s">&#34;${redis.pool.maxWait}&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;testOnBorrow&#34;</span> <span class="na">value=</span><span class="s">&#34;${redis.pool.testOnBorrow}&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;testOnReturn&#34;</span> <span class="na">value=</span><span class="s">&#34;${redis.pool.testOnReturn}&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="c">&lt;!-- redis的连接池pool，不是必选项：timeout/password  --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id =</span> <span class="s">&#34;jedisPool&#34;</span> <span class="na">class=</span><span class="s">&#34;redis.clients.jedis.JedisPool&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">index=</span><span class="s">&#34;0&#34;</span> <span class="na">ref=</span><span class="s">&#34;jedisPoolConfig&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">index=</span><span class="s">&#34;1&#34;</span> <span class="na">value=</span><span class="s">&#34;${redis.host}&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">index=</span><span class="s">&#34;2&#34;</span> <span class="na">value=</span><span class="s">&#34;${redis.port}&#34;</span> <span class="na">type=</span><span class="s">&#34;int&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">index=</span><span class="s">&#34;3&#34;</span> <span class="na">value=</span><span class="s">&#34;${redis.timeout}&#34;</span> <span class="na">type=</span><span class="s">&#34;int&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">index=</span><span class="s">&#34;4&#34;</span> <span class="na">value=</span><span class="s">&#34;${redis.password}&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>java实际测试类<a href="https://github.com/Kuangcp/Maven_SSM/blob/master/src/test/java/redis/JedisUtilTest.java">JedisUtilsTest.java</a></p>
+</li>
+<li>
+<p>jedis 使用后要disconnect释放连接,最新版本close就不用了，使用连接池就不用</p>
+</li>
+<li>
+<p>jedis 的事务 使用exec释放事务</p>
+</li>
+</ul>
+<h3 id="jedis遇到的异常">jedis遇到的异常</h3>
+<ul>
+<li>Invocation of init method failed; nested exception is java.lang.NoSuchMethodError: org.springframework.core.serializer.support.DeserializingConverter</li>
+<li>版本对不上，要Spring和Spring-data-redis 和 redis和commons-lang3对应</li>
+<li>目前是4.1.7 + 1.6.0 + 2.9.0 + 3.3.2 编译通过了</li>
+</ul>
+<h2 id="redisson">Redisson</h2>
+<blockquote>
+<p><a href="https://github.com/redisson/redisson">Github: Redisson</a></p>
+</blockquote>
+<hr>
+<h2 id="lettuce">Lettuce</h2>
+<blockquote>
+<p><a href="https://lettuce.io/">Official</a> | <a href="https://github.com/lettuce-io/lettuce-core">Github:</a></p>
+</blockquote>
+<p>和 Spring Netty 结合紧密， 适合 Spring 系， 没有Jedis简洁</p>
+<h2 id="vertx-redis-client">vertx-redis-client</h2>
+<blockquote>
+<p><a href="https://github.com/vert-x3/vertx-redis-client">Github: vertx-redis-client</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/advancedlearning/java7/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Java7</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/frontend/javascript/">
+            <span class="next-text nav-default">JavaScript</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

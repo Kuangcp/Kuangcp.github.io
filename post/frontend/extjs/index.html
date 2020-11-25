@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Extjs学习笔记 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Extjs的使用 相关组件的使用 1, 对话框 2,窗体组件 3,表单 4,文本框 5,按钮 6,单选框和复选框 7,下拉列表 8,联动下拉列表 9,上传图片" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/frontend/extjs/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Extjs学习笔记" />
+<meta property="og:description" content="目录 start Extjs的使用 相关组件的使用 1, 对话框 2,窗体组件 3,表单 4,文本框 5,按钮 6,单选框和复选框 7,下拉列表 8,联动下拉列表 9,上传图片" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/frontend/extjs/" />
+<meta property="article:published_time" content="2019-05-31T09:30:51+00:00" />
+<meta property="article:modified_time" content="2019-05-31T09:30:51+00:00" />
+<meta itemprop="name" content="Extjs学习笔记">
+<meta itemprop="description" content="目录 start Extjs的使用 相关组件的使用 1, 对话框 2,窗体组件 3,表单 4,文本框 5,按钮 6,单选框和复选框 7,下拉列表 8,联动下拉列表 9,上传图片">
+<meta itemprop="datePublished" content="2019-05-31T09:30:51+00:00" />
+<meta itemprop="dateModified" content="2019-05-31T09:30:51+00:00" />
+<meta itemprop="wordCount" content="8423">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Extjs学习笔记"/>
+<meta name="twitter:description" content="目录 start Extjs的使用 相关组件的使用 1, 对话框 2,窗体组件 3,表单 4,文本框 5,按钮 6,单选框和复选框 7,下拉列表 8,联动下拉列表 9,上传图片"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Extjs学习笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-05-31 </span>
+        
+          <span class="more-meta"> 8423 words </span>
+          <span class="more-meta"> 17 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-对话框">1, 对话框</a></li>
+    <li><a href="#2窗体组件">2,窗体组件</a></li>
+    <li><a href="#3表单">3,表单</a></li>
+    <li><a href="#4文本框">4,文本框</a></li>
+    <li><a href="#5按钮">5,按钮</a></li>
+    <li><a href="#6单选框和复选框">6,单选框和复选框</a></li>
+    <li><a href="#7下拉列表">7,下拉列表</a></li>
+    <li><a href="#8联动下拉列表">8,联动下拉列表</a></li>
+    <li><a href="#9上传图片">9,上传图片</a></li>
+    <li><a href="#10文本编辑器">10,文本编辑器</a></li>
+    <li><a href="#11布局">11,布局</a>
+      <ul>
+        <li><a href="#1containerlayout">1,ContainerLayout</a></li>
+        <li><a href="#2formlayout">2,FormLayout</a></li>
+        <li><a href="#3columnlayout">3,ColumnLayout</a></li>
+        <li><a href="#4borderlayout">4,BorderLayout</a></li>
+        <li><a href="#5accordionlayout">5,AccordionLayout</a></li>
+        <li><a href="#6fitlayout">6,FitLayout</a></li>
+        <li><a href="#7tablelayout">7,TableLayout</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#extjs%E7%9A%84%E4%BD%BF%E7%94%A8">Extjs的使用</a></li>
+<li><a href="#%E7%9B%B8%E5%85%B3%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8">相关组件的使用</a>
+<ol>
+<li><a href="#1-%E5%AF%B9%E8%AF%9D%E6%A1%86">1, 对话框</a></li>
+<li><a href="#2%E7%AA%97%E4%BD%93%E7%BB%84%E4%BB%B6">2,窗体组件</a></li>
+<li><a href="#3%E8%A1%A8%E5%8D%95">3,表单</a></li>
+<li><a href="#4%E6%96%87%E6%9C%AC%E6%A1%86">4,文本框</a></li>
+<li><a href="#5%E6%8C%89%E9%92%AE">5,按钮</a></li>
+<li><a href="#6%E5%8D%95%E9%80%89%E6%A1%86%E5%92%8C%E5%A4%8D%E9%80%89%E6%A1%86">6,单选框和复选框</a></li>
+<li><a href="#7%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8">7,下拉列表</a></li>
+<li><a href="#8%E8%81%94%E5%8A%A8%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8">8,联动下拉列表</a></li>
+<li><a href="#9%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87">9,上传图片</a></li>
+<li><a href="#10%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8">10,文本编辑器</a></li>
+<li><a href="#11%E5%B8%83%E5%B1%80">11,布局</a>
+<ol>
+<li><a href="#1containerlayout">1,ContainerLayout</a></li>
+<li><a href="#2formlayout">2,FormLayout</a></li>
+<li><a href="#3columnlayout">3,ColumnLayout</a></li>
+<li><a href="#4borderlayout">4,BorderLayout</a></li>
+<li><a href="#5accordionlayout">5,AccordionLayout</a></li>
+<li><a href="#6fitlayout">6,FitLayout</a></li>
+<li><a href="#7tablelayout">7,TableLayout</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="extjs的使用">Extjs的使用</h1>
+<ul>
+<li>引入相关文件</li>
+</ul>
+<blockquote>
+<p>ext-all.js<br>
+extjs文件夹中的resource文件夹内的所有文件</p>
+</blockquote>
+<ul>
+<li>使用入口</li>
+</ul>
+<blockquote>
+<p>Ext.onReady():ExtJS Application的入口&hellip;就相当于Java或C#的main函数.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;script type=&#34;text/javascript&#34;&gt;
+        Ext.onReady(function () {
+            Ext.MessageBox.alert(&#39;标题&#39;, &#39;Hello World!&#39;);
+        });
+ &lt;/script&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="相关组件的使用">相关组件的使用</h1>
+<h2 id="1-对话框">1, 对话框</h2>
+<blockquote>
+<p>Ext.MessageBox.alert(&lsquo;标题&rsquo;, &lsquo;Hello World!');</p>
+</blockquote>
+<h2 id="2窗体组件">2,窗体组件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">var win = new Ext.Window({
+                title: &#39;窗口&#39;,
+                width: 476,
+                height: 374,
+                html: &#39;&lt;div&gt;这里是窗体内容&lt;/div&gt;&#39;,
+                resizable: true,
+                modal: true,
+                closable: true,
+                maximizable: true,
+                minimizable: true
+            });
+            win.show();
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>说明</li>
+</ul>
+<blockquote>
+<p>(1)var win = new Ext.Window({}):创建一个新的Window窗体对象。<br>
+(2)title: &lsquo;窗口&rsquo;：窗体的标题。<br>
+(3)width: 476,height: 374：宽度及高度。<br>
+(4)html: &lsquo;&lt;div&gt;这里是窗体内容&lt;/div&gt;'：窗体内部显示的html内容。<br>
+(5)resizable: true：是否可以调整窗体的大小，这里设置为 true。<br>
+(6)modal: true：是否为模态窗体[什么是模态窗体？当你打开这个窗体以后，如果不能对其他的窗体进行操作，那么这个窗体就是模态窗体，否则为非模态窗体]。<br>
+(7)closable:true：是否可以关闭，也可以理解为是否显示关闭按钮。<br>
+(8)maximizable: true：是否可以最大化，也可以理解为是否显示最大化按钮。<br>
+(9)minimizable: true：是否可以最小化，也可以理解为是否显示最小化按钮。<br>
+(10)win.show()：窗体展示。</p>
+</blockquote>
+<h2 id="3表单">3,表单</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"> var form = new Ext.form.FormPanel({
+                    frame: true,
+                    title: &#39;表单标题&#39;,
+                    style: &#39;margin:10px&#39;,
+                    html: &#39;&lt;div style=&#34;padding:10px&#34;&gt;这里表单内容&lt;/div&gt;&#39;
+                });
+                var win = new Ext.Window({
+                    title: &#39;窗口&#39;,
+                    width: 476,
+                    height: 374,
+                    html: &#39;&lt;div&gt;这里是窗体内容&lt;/div&gt;&#39;,
+                    resizable: true,
+                    modal: true,
+                    closable: true,
+                    maximizable: true,
+                    minimizable: true,
+                    items: form
+                });
+                win.show();
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>说明</li>
+</ul>
+<blockquote>
+<p>(1)var form = new Ext.form.FormPanel({}):创建一个新的form表单对象。<br>
+(2)title: &lsquo;表单标题&rsquo;：表单的标题，如果不加的话，不会出现上面的浅色表单标题栏。<br>
+(3)style: &lsquo;margin:10px&rsquo;:表单的样式，加了个外10px的外边距。<br>
+(4)html: &lsquo;&lt;div style=&ldquo;padding:10px&rdquo;&gt;这里表单内容&lt;/div&gt;'：表单内显示html的内容。</p>
+</blockquote>
+<h2 id="4文本框">4,文本框</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//初始化标签中的Ext:Qtip属性。
+            Ext.QuickTips.init();
+            Ext.form.Field.prototype.msgTarget = &#39;side&#39;;
+            //用户名input
+            var txtusername = new Ext.form.TextField({
+                width: 140,
+                allowBlank: false,
+                maxLength: 20,
+                name: &#39;username&#39;,
+                fieldLabel: &#39;用户名称&#39;,
+                blankText: &#39;请输入用户名&#39;,
+                maxLengthText: &#39;用户名不能超过20个字符&#39;
+            });
+            //密码input
+            var txtpassword = new Ext.form.TextField({
+                width: 140,
+                allowBlank: false,
+                maxLength: 20,
+                inputType: &#39;password&#39;,
+                name: &#39;password&#39;,
+                fieldLabel: &#39;密码&#39;,
+                blankText: &#39;请输入密码&#39;,
+                maxLengthText: &#39;密码不能超过20个字符&#39;
+            });
+            //表单
+            var form = new Ext.form.FormPanel({
+                frame: true,
+                title: &#39;表单标题&#39;,
+                style: &#39;margin:10px&#39;,
+                html: &#39;&lt;div style=&#34;padding:10px&#34;&gt;这里表单内容&lt;/div&gt;&#39;,
+                items: [txtusername, txtpassword]
+            });
+            //窗体
+            var win = new Ext.Window({
+                title: &#39;窗口&#39;,
+                width: 476,
+                height: 374,
+                html: &#39;&lt;div&gt;这里是窗体内容&lt;/div&gt;&#39;,
+                resizable: true,
+                modal: true,
+                closable: true,
+                maximizable: true,
+                minimizable: true,
+                items: form
+            });
+            win.show();
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>说明</li>
+</ul>
+<blockquote>
+<p>(1)Ext.QuickTips.init()：QuickTips的作用是初始化标签中的Ext:Qtip属性，并为它赋予显示提示的动作。<br>
+(2)Ext.form.Field.prototype.msgTarget = &lsquo;side&rsquo;：TextField的提示方式为：在右边缘，如上图所示，参数枚举值为&quot;qtip&quot;,&ldquo;title&rdquo;,&ldquo;under&rdquo;,&ldquo;side&rdquo;,id(元素id)，
+side方式用的较多，右边出现红色感叹号，鼠标上去出现错误提示。<br>
+(3)var txtusername = new Ext.form.TextField():创建一个新的TextField文本框对象。<br>
+(4)allowBlank: false：不允许文本框为空。<br>
+(5)maxLength: 20：文本框的最大长度为20个字符，当超过20个字符时仍然可以继续输入，但是Ext会提示警告信息。<br>
+(6)name: &lsquo;password&rsquo;：表单名称，这个比较重要，因为我们在与服务器交互的时候，服务端是按name接收post的参数值。<br>
+(7)fieldLabel: &lsquo;用户名&rsquo;：文本框前面显示的文字标题，如“用户名”，“密码”等。<br>
+(8)blankText: &lsquo;请输入用户名&rsquo;：当非空校验没有通过时的提示信息。<br>
+(9) maxLengthText: &lsquo;用户不能超过20个字符&rsquo;：当最大长度校验没有通过时的提示信息。</p>
+</blockquote>
+<h2 id="5按钮">5,按钮</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"> //初始化标签中的Ext:Qtip属性。
+            Ext.QuickTips.init();
+            Ext.form.Field.prototype.msgTarget = &#39;side&#39;;
+            //提交按钮处理方法
+            var btnsubmitclick = function () {
+                Ext.MessageBox.alert(&#39;提示&#39;, &#39;你点了确定按钮!&#39;);
+            }
+            //重置按钮&#34;点击时&#34;处理方法
+            var btnresetclick = function () {
+                Ext.MessageBox.alert(&#39;提示&#39;, &#39;你点了重置按钮!&#39;);
+            }
+            //重置按钮&#34;鼠标悬停&#34;处理方法
+            var btnresetmouseover = function () {
+                Ext.MessageBox.alert(&#39;提示&#39;, &#39;你鼠标悬停在重置按钮之上!&#39;);
+            }
+            //提交按钮
+            var btnsubmit = new Ext.Button({
+                text: &#39;提交&#39;,
+                handler: btnsubmitclick
+            });
+            //重置按钮
+            var btnreset = new Ext.Button({
+                text: &#39;重置&#39;,
+                listeners: {
+                    &#39;mouseover&#39;: btnresetmouseover,
+                    &#39;click&#39;: btnresetclick
+                }
+            });
+            //用户名input
+            var txtusername = new Ext.form.TextField({
+                width: 140,
+                allowBlank: false,
+                maxLength: 20,
+                name: &#39;username&#39;,
+                fieldLabel: &#39;用户名称&#39;,
+                blankText: &#39;请输入用户名&#39;,
+                maxLengthText: &#39;用户名不能超过20个字符&#39;
+            });
+            //密码input
+            var txtpassword = new Ext.form.TextField({
+                width: 140,
+                allowBlank: false,
+                maxLength: 20,
+                inputType: &#39;password&#39;,
+                name: &#39;password&#39;,
+                fieldLabel: &#39;密码&#39;,
+                blankText: &#39;请输入密码&#39;,
+                maxLengthText: &#39;密码不能超过20个字符&#39;
+            });
+            //表单
+            var form = new Ext.form.FormPanel({
+                frame: true,
+                title: &#39;表单标题&#39;,
+                style: &#39;margin:10px&#39;,
+                html: &#39;&lt;div style=&#34;padding:10px&#34;&gt;这里表单内容&lt;/div&gt;&#39;,
+                items: [txtusername, txtpassword],
+                buttons: [btnsubmit, btnreset]
+            });
+            //窗体
+            var win = new Ext.Window({
+                title: &#39;窗口&#39;,
+                width: 476,
+                height: 374,
+                html: &#39;&lt;div&gt;这里是窗体内容&lt;/div&gt;&#39;,
+                resizable: true,
+                modal: true,
+                closable: true,
+                maximizable: true,
+                minimizable: true,
+                buttonAlign: &#39;center&#39;,
+                items: form
+            });
+            win.show();
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>说明</li>
+</ul>
+<blockquote>
+<p>(1)var btnsubmit = new Ext.Button():创建一个新的Button按钮对象。<br>
+(2)handler: btnsubmitclick：当用户点击的时候[即js中的onclick事件]执行方法btnsubmitclick。<br>
+(3)listeners: {&lsquo;mouseover&rsquo;: btnresetmouseover,&lsquo;click&rsquo;: btnresetclick}：当用户点击的时候[即js中的onclick事件]执行方法btnresetclick，<br>
+鼠标悬停时执行方法btnresetmouseover。<br>
+(4)handler与listeners的区别：<br>
+handler:执行的是首发事件，click是button这个组件的首发事件。这就是handler的运行方式：被某个组件的首要event所触发。<br>
+handler是一个特殊的listener。<br>
+listener：是一个事件名 + 处理函数的组合，事件监听，如上例代码所示，我们监听了两个事件&quot;click&quot;，与&quot;mouseover&quot;事件，并且会顺序执行。</p>
+</blockquote>
+<h2 id="6单选框和复选框">6,单选框和复选框</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//----------------------单选组开始----------------------//
+            var radiogroup = new Ext.form.RadioGroup({
+                fieldLabel: &#39;性别&#39;,
+                width: 100,
+                items: [{
+                    name: &#39;sex&#39;,
+                    inputValue: &#39;0&#39;,
+                    boxLabel: &#39;男&#39;,
+                    checked: true
+                }, {
+                    name: &#39;sex&#39;,
+                    inputValue: &#39;1&#39;,
+                    boxLabel: &#39;女&#39;
+                }]
+            });
+            //获取单选组的值
+            radiogroup.on(&#39;change&#39;, function (rdgroup, checked) {
+                alert(checked.getRawValue());
+            });
+            //----------------------单选组结束----------------------//
+            //----------------------复选组开始----------------------//
+            var checkboxgroup = new Ext.form.CheckboxGroup({
+                fieldLabel: &#39;兴趣爱好&#39;,
+                width: 170,
+                items: [{
+                    boxLabel: &#39;看书&#39;,
+                    inputValue: &#39;0&#39;
+                }, {
+                    boxLabel: &#39;上网&#39;,
+                    inputValue: &#39;1&#39;
+                }, {
+                    boxLabel: &#39;听音乐&#39;,
+                    inputValue: &#39;2&#39;
+                }]
+            });
+            //获取复选组的值
+            checkboxgroup.on(&#39;change&#39;, function (cbgroup, checked) {
+                for (var i = 0; i &lt; checked.length; i++) {
+                    alert(checked[i].getRawValue());
+                }
+            });
+            //----------------------复选组结束----------------------//
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>说明</li>
+</ul>
+<blockquote>
+<p>(1)var radiogroup = new Ext.form.RadioGroup():创建一个新的单选按钮组。<br>
+(2)name: &lsquo;sex&rsquo;：单选按钮组是按照 name 属性来区分的，同一组中的单选按钮才能单选，<br>
+如果name属性设置错误，该按钮将会被认为是其他组。<br>
+(3)inputValue: &lsquo;0&rsquo;：选择框的值。<br>
+(4)boxLabel: &lsquo;男&rsquo;:选择框后面的文字说明。<br>
+(5)checked.getRawValue()：获取选择框的选中值，由于单选框只有一个选中值，可以直接获取，<br>
+而复选框可以多选，所以要循环取出。</p>
+</blockquote>
+<h2 id="7下拉列表">7,下拉列表</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//----------------------下拉列表开始----------------------//
+            //创建数据源[数组数据源]
+            var combostore = new Ext.data.ArrayStore({
+                fields: [&#39;id&#39;, &#39;name&#39;],
+                data: [[1, &#39;团员&#39;], [2, &#39;党员&#39;], [3, &#39;其他&#39;]]
+            });
+            //创建Combobox
+            var combobox = new Ext.form.ComboBox({
+                fieldLabel: &#39;政治面貌&#39;,
+                store: combostore,
+                displayField: &#39;name&#39;,
+                valueField: &#39;id&#39;,
+                triggerAction: &#39;all&#39;,
+                emptyText: &#39;请选择...&#39;,
+                allowBlank: false,
+                blankText: &#39;请选择政治面貌&#39;,
+                editable: false,
+                mode: &#39;local&#39;
+            });
+            //Combobox获取值
+            combobox.on(&#39;select&#39;, function () {
+                alert(combobox.getValue());
+            })
+            //----------------------下拉列表结束----------------------//
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>说明</li>
+</ul>
+<blockquote>
+<p>(1)var combostore = new Ext.data.ArrayStore():创建一个新的数组数据源。<br>
+(2)fields: [&lsquo;id&rsquo;, &lsquo;name&rsquo;]：数据源包含两列，列名分别为&rsquo;id&rsquo;,&lsquo;name&rsquo;。<br>
+(3)data: [[1, &lsquo;团员&rsquo;], [2, &lsquo;党员&rsquo;], [3, &lsquo;其他&rsquo;]]:数据源对应的数据，例：id:1,name:团员。<br>
+(4)var combobox = new Ext.form.ComboBox()：创建一个新的下拉列表。<br>
+(5)store: combostore:数据源为上面创建的数据源，这个属性是combobox的必需属性。<br>
+(6)displayField: &lsquo;name&rsquo;,valueField: &lsquo;id&rsquo;：combobox对应数据源的显示列与值列，这两个属性也是必须的。<br>
+(7)mode: &lsquo;local&rsquo;：指定数据源为本地数据源，如果是本地创建的数据源，该属性也是必须的，如果数据源来自于服务器，<br>
+(8)triggerAction: &lsquo;all&rsquo;：请设置为”all”,否则默认 为”query”的情况下，你选择某个值后，再此下拉时，只出现匹配选项，<br>
+如果设为all的话，每次下拉均显示全部选项。<br>
+(9)editable: false:默认情况下，combobox的内容是可以编辑的，该属性设置为false，
+使下拉列表只能选择不能编辑。<br>
+(10)combobox.on(&lsquo;select&rsquo;, function () {alert(combobox.getValue());}):选择时alert出下拉列表的值。</p>
+</blockquote>
+<h2 id="8联动下拉列表">8,联动下拉列表</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//----------------------下拉列表开始----------------------//
+            //创建市数据源
+            var combocitystore = new Ext.data.Store({
+                //设定读取的地址
+                proxy: new Ext.data.HttpProxy({ url: &#39;/App_Ashx/Demo/City.ashx&#39; }),
+                //设定读取的格式
+                reader: new Ext.data.JsonReader({ root: &#39;data&#39; },
+                    [{ name: &#39;id&#39; }, { name: &#39;name&#39;}])
+            });
+            //创建区数据源
+            var comboareastore = new Ext.data.Store({
+                //设定读取的地址
+                proxy: new Ext.data.HttpProxy({ url: &#39;/App_Ashx/Demo/Area.ashx&#39; }),
+                reader: new Ext.data.JsonReader({ root: &#39;data&#39; },
+                    [{ name: &#39;id&#39; }, { name: &#39;name&#39;}])
+            });
+            //创建市Combobox
+            var comboboxcity = new Ext.form.ComboBox({
+                id: &#39;comboboxcity&#39;,
+                fieldLabel: &#39;市&#39;,
+                width: 120,
+                store: combocitystore,
+                displayField: &#39;name&#39;,
+                valueField: &#39;id&#39;,
+                triggerAction: &#39;all&#39;,
+                emptyText: &#39;请选择...&#39;,
+                allowBlank: false,
+                blankText: &#39;请选择市&#39;,
+                editable: false,
+                mode: &#39;local&#39;, //该属性和以下方法为了兼容ie8
+                listeners: {
+                    &#39;render&#39;: function () {
+                        combocitystore.load();
+                    }
+                }
+            });
+
+            //创建区Combobox
+            var comboareacity = new Ext.form.ComboBox({
+                fieldLabel: &#39;区&#39;,
+                width: 120,
+                store: comboareastore,
+                displayField: &#39;name&#39;,
+                valueField: &#39;id&#39;,
+                triggerAction: &#39;all&#39;,
+                emptyText: &#39;请选择...&#39;,
+                allowBlank: false,
+                blankText: &#39;请选择区&#39;,
+                editable: false
+            });
+            //联动的实现
+            comboboxcity.on(&#39;select&#39;, function () {
+                comboareastore.baseParams.id = comboboxcity.getValue();
+                comboareacity.setValue(&#39;&#39;);
+                comboareastore.load();
+            })
+            //----------------------下拉列表结束----------------------//
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>说明</li>
+</ul>
+<blockquote>
+<p>(1)var combocitystore = new Ext.data.Store():创建一个新的数据源。<br>
+(2)proxy: new Ext.data.HttpProxy({ url: &lsquo;/App_Ashx/Demo/City.ashx&rsquo; })：数据代理为http代理，地址为/App_Ashx/Demo/City.ashx。<br>
+(3)reader: new Ext.data.JsonReader({ root: &lsquo;data&rsquo; },[{ name: &lsquo;id&rsquo; }, { name: &lsquo;name&rsquo;}]):读取json返回值根节点为data，对象列为id和name。<br>
+这里要结合client与service观察,我在service端的输出如下：{data:[{id:1,name:&lsquo;北京&rsquo;},{id:2,name:&lsquo;上海&rsquo;}]}
+(4)comboboxcity.on(&lsquo;select&rsquo;, function () {}：市选择变化时触发事件。<br>
+(5)comboareastore.baseParams.id = comboboxcity.getValue()：注意，前面的comboareastore是区的数据源，<br>
+当市变化时，我们给区的数据源加上个向service端发送的参数。<br>
+(6)comboareacity.setValue('')：把区的下拉列表设置为空，由于非空验证，Ext会提示用户“请选择区”，这个地方也可以把加载出来的第一个区<br>
+显示在区的下拉列表中，具体请自行实现吧。<br>
+(7)comboareastore.load()：区的数据源重新加载。</p>
+</blockquote>
+<h2 id="9上传图片">9,上传图片</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">//创建div组件
+            var imagebox = new Ext.BoxComponent({
+                autoEl: {
+                    style: &#39;width:150px;height:150px;margin:0px auto;border:1px solid #ccc; text-align:center;padding-top:20px;margin-bottom:10px&#39;,
+                    tag: &#39;div&#39;,
+                    id: &#39;imageshow&#39;,
+                    html: &#39;暂无图片&#39;
+                }
+            });
+            //创建文本上传域
+            var file = new Ext.form.TextField({
+                name: &#39;imgFile&#39;,
+                fieldLabel: &#39;文件上传&#39;,
+                inputType: &#39;file&#39;,
+                allowBlank: false,
+                blankText: &#39;请浏览图片&#39;
+            });
+            //提交按钮处理方法
+            var btnsubmitclick = function () {
+                if (form.getForm().isValid()) {
+                    form.getForm().submit({
+                        waitTitle: &#34;请稍候&#34;,
+                        waitMsg: &#39;正在上传...&#39;,
+                        success: function (form, action) {
+                            Ext.MessageBox.alert(&#34;提示&#34;, &#34;上传成功！&#34;);
+                            document.getElementById(&#39;imageshow&#39;).innerHTML = &#39;&lt;img style=&#34;width:150px;height:150px&#34; src=&#34;&#39; + action.result.path + &#39;&#34;/&gt;&#39;;
+                        },
+                        failure: function () {
+                            Ext.MessageBox.alert(&#34;提示&#34;, &#34;上传失败！&#34;);
+                        }
+                    });
+                }
+            }
+            //重置按钮&#34;点击时&#34;处理方法
+            var btnresetclick = function () {
+                form.getForm().reset();
+            }
+            //表单
+            var form = new Ext.form.FormPanel({
+                frame: true,
+                fileUpload: true,
+                url: &#39;/App_Ashx/Demo/Upload.ashx&#39;,
+                title: &#39;表单标题&#39;,
+                style: &#39;margin:10px&#39;,
+                items: [imagebox, file],
+                buttons: [{
+                    text: &#39;保存&#39;,
+                    handler: btnsubmitclick
+                }, {
+                    text: &#39;重置&#39;,
+                    handler: btnresetclick
+                }]
+            });
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>说明</li>
+</ul>
+<blockquote>
+<p>(1)var imagebox = new Ext.BoxComponent():创建一个新的html标记。<br>
+官方解释如下：<br>
+This may then be added to a Container as a child item.
+To create a BoxComponent based around a HTML element to be created at render time, use the autoEl config option which takes the form of a DomHelper specification:<br>
+(2) autoEl: {style: &lsquo;',tag: &lsquo;div&rsquo;,id: &lsquo;imageshow&rsquo;, html: &lsquo;暂无图片&rsquo;}定义这个html标记的属性，如 标记为：div，id是多少等。<br>
+官方实例为：<br>
+var myImage = new Ext.BoxComponent({<br>
+autoEl: {<br>
+tag: &lsquo;img&rsquo;,<br>
+src: &lsquo;/images/my-image.jpg&rsquo;<br>
+}<br>
+});<br>
+(3)var file = new Ext.form.TextField()：创建一个新的文件上传域。<br>
+(4)name: &lsquo;imgFile&rsquo;:名称，重要，因为service端要根据这个名称接收图片。<br>
+(5)inputType: &lsquo;file&rsquo;：表单类型为文件类型。<br>
+(6)waitTitle: &ldquo;请稍候&rdquo;,waitMsg: &lsquo;正在上传&hellip;',：上传等待过程中的提示信息。<br>
+(7)document.getElementById(&lsquo;imageshow&rsquo;).innerHTML = &lsquo;<!-- raw HTML omitted -->';这个是原生态的js，把imageshow的值换成图片。</p>
+</blockquote>
+<h2 id="10文本编辑器">10,文本编辑器</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"> //创建文本上传域
+            var exteditor = new Ext.form.HtmlEditor({
+                fieldLabel: &#39;员工描述&#39;
+            });
+            //整合KE编辑器
+            var keeditor = new Ext.form.TextArea({
+                id: &#39;keeditor&#39;,
+                fieldLabel: &#39;员工描述&#39;,
+                width: 700,
+                height: 200
+            });
+
+            //表单
+            var form = new Ext.form.FormPanel({
+                frame: true,
+                title: &#39;表单标题&#39;,
+                style: &#39;margin:10px&#39;,
+                items: [exteditor, keeditor],
+                listeners: {
+                    &#39;render&#39;: function () {
+                        KE.show({
+                            id: &#39;keeditor&#39;,
+                            imageUploadJson: &#39;/App_Ashx/Upload.ashx&#39;
+                        });
+                        setTimeout(&#34;KE.create(&#39;keeditor&#39;);&#34;, 1000);
+                    }
+                }
+            });
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>说明</li>
+</ul>
+<blockquote>
+<p>(1) var exteditor = new Ext.form.HtmlEditor():创建一个新的html编辑器。<br>
+(2) var keeditor = new Ext.form.TextArea()：创建一个新的TextArea。<br>
+(3) listeners: {<br>
+&lsquo;render&rsquo;: function () {<br>
+KE.show({<br>
+id: &lsquo;keeditor&rsquo;,<br>
+imageUploadJson: &lsquo;/App_Ashx/Upload.ashx&rsquo;<br>
+});<br>
+setTimeout(&ldquo;KE.create(&lsquo;keeditor&rsquo;);&rdquo;, 1000);<br>
+}<br>
+}<br>
+监听表单的 render 事件，创建 KE Editor.(2)，(3)中的id 要统一，否则无法显示。<br>
+imageUploadJson: &lsquo;/App_Ashx/Upload.ashx&rsquo;，keeditor上传图片的后台执行文件</p>
+</blockquote>
+<h2 id="11布局">11,布局</h2>
+<p><img src="http://pic002.cnblogs.com/images/2012/414533/2012062621054135.jpg" alt="enter description here"></p>
+<h3 id="1containerlayout">1,ContainerLayout</h3>
+<p><img src="./images/2017-04-11%2019-29-21%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="enter description here" title="2017-04-11 19-29-21屏幕截图"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;ContainerLayout&#34; style=&#34;float: left; width: 300px&#34;&gt;
+    ContainerLayout：垂直方式放置
+&lt;/div&gt;
+
+var box1 = new Ext.createWidget({
+                autoEl: {
+                    tag: &#39;div&#39;,
+                    style: &#39;background:red;width:300px;height:30px&#39;,
+                    html: &#39;box1&#39;
+                }
+            });
+            var box2 = new Ext.createWidget({
+                autoEl: {
+                    tag: &#39;div&#39;,
+                    style: &#39;background:yellow;width:300px;height:30px&#39;,
+                    html: &#39;box2&#39;
+                }
+            });
+            var box3 = new Ext.createWidget({
+                autoEl: {
+                    tag: &#39;div&#39;,
+                    style: &#39;background:blue;width:300px;height:30px;color:#fff&#39;,
+                    html: &#39;box3&#39;
+                }
+            });
+            var containerlayout = new Ext.Container({
+                layout: &#39;form&#39;,
+                items: [box1, box2, box3],
+                renderTo: &#39;ContainerLayout&#39;
+            });
+            //------ContainerLayout结束-----//
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2formlayout">2,FormLayout</h3>
+<p><img src="./images/FormLayout.png" alt="enter description here" title="FormLayout"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;FormLayout&#34; style=&#34;float: left; width: 240px; padding-left: 10px;&#34;&gt;
+&lt;/div&gt;
+
+ //------FormLayout开始------//
+            var formlayout = new Ext.Panel({
+                title: &#39;FormLayout&#39;,
+                layout: &#39;form&#39;,
+                items: [
+                    new Ext.form.TextField({ fieldLabel: &#39;用户名&#39; }),
+                    new Ext.form.TextField({ fieldLabel: &#39;密码&#39; }),
+                    new Ext.form.TextField({ fieldLabel: &#39;重复密码&#39; })
+                ],
+                renderTo: &#39;FormLayout&#39;
+            });
+            //------FormLayout结束------//
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3columnlayout">3,ColumnLayout</h3>
+<p><img src="./images/ColumnLayout.png" alt="enter description here" title="ColumnLayout"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;ColumnLayout&#34; style=&#34;float: left; width: 500px; padding-left: 10px;&#34;&gt;
+&lt;/div&gt;
+
+//------ColumnLayout开始------//
+            var ColumnLayout = new Ext.Panel({
+                width: 600,
+                title: &#39;ColumnLayout&#39;,
+                layout: &#39;column&#39;,
+                items: [
+                    new Ext.form.FormPanel({ title: &#39;第一列&#39;, columnWidth: .33, labelWidth: 50, items: [
+                        new Ext.form.TextField({ fieldLabel: &#39;用户名&#39; })]
+                    }),
+                    new Ext.form.FormPanel({ title: &#39;第二列&#39;, columnWidth: .33, labelWidth: 50, items: [
+                        new Ext.form.TextField({ fieldLabel: &#39;密码&#39; })]
+                    }),
+                    new Ext.form.FormPanel({ title: &#39;第三列&#39;, columnWidth: .34, labelWidth: 80, items: [
+                        new Ext.form.TextField({ fieldLabel: &#39;重复密码&#39; })]
+                    })
+                ],
+                renderTo: &#39;ColumnLayout&#39;
+            });
+            //------ColumnLayout结束------//
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4borderlayout">4,BorderLayout</h3>
+<p><img src="./images/BorderLayout.png" alt="enter description here" title="BorderLayout"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;BorderLayout&#34; style=&#34;padding: 10px 0px; clear: both&#34;&gt;
+&lt;/div&gt;
+
+//------BorderLayout开始------//
+            var BorderLayout = new Ext.Panel({
+                title: &#39;BorderLayout&#39;,
+                layout: &#39;border&#39;,
+                width: 1100,
+                height: 300,
+                items: [
+                    new Ext.Panel({ title: &#39;上北&#39;, region: &#39;north&#39;, html: &#39;可以放个logo什么的&#39; }),
+                    new Ext.Panel({ title: &#39;下南&#39;, region: &#39;south&#39;, html: &#39;版权信息？&#39;, autoEl: &#39;center&#39; }),
+                    new Ext.Panel({ title: &#39;中间&#39;, region: &#39;center&#39;, html: &#39;主面板&#39; }),
+                    new Ext.Panel({ title: &#39;左东&#39;, region: &#39;west&#39;, html: &#39;树型菜单或是手风琴&#39; }),
+                    new Ext.Panel({ title: &#39;右西&#39;, region: &#39;east&#39;, html: &#39;常用功能或是去掉？&#39; })
+                ],
+                renderTo: &#39;BorderLayout&#39;
+            });
+            //------BorderLayout结束------//
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5accordionlayout">5,AccordionLayout</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;AccordionLayout&#34; style=&#34;width: 300px; float: left; height: 200px&#34;&gt;
+&lt;/div&gt;
+
+//------AccordionLayout开始------//
+            var AccordionLayout = new Ext.Panel({
+                title: &#39;AccordionLayout&#39;,
+                layout: &#39;accordion&#39;,
+                height: 200,
+                items: [
+                    new Ext.Panel({ title: &#39;用户管理&#39;, items: [new Ext.createWidget({ autoEl: { tag: &#39;div&#39;, html: &#39;用户管理&#39;} })] }),
+                    new Ext.Panel({ title: &#39;角色管理&#39;, items: [new Ext.createWidget({ autoEl: { tag: &#39;div&#39;, html: &#39;角色管理&#39;} })] }),
+                    new Ext.Panel({ title: &#39;系统管理&#39;, items: [new Ext.createWidget({ autoEl: { tag: &#39;div&#39;, html: &#39;系统管理&#39;} })] })
+                ],
+                renderTo: &#39;AccordionLayout&#39;
+            });
+            //------AccordionLayout结束------//
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="6fitlayout">6,FitLayout</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;FitLayout&#34; style=&#34;width: 300px; float: left; height: 200px; padding-left: 10px;&#34;&gt;
+&lt;/div&gt;
+
+//------FitLayout结束------//
+            var FitLayout = new Ext.Panel({
+                title: &#39;FitLayout&#39;,
+                height: 100,
+                renderTo: &#39;FitLayout&#39;,
+                layout: &#39;fit&#39;,
+                items: [
+                    new Ext.Panel({ bodyStyle: &#39;background:red&#39;, html: &#39;使用了fit布局,填充满&#39; }),
+                    new Ext.Panel({ bodyStyle: &#39;background:yellow&#39;, html: &#39;这个panel不会显示，因为是fit布局&#39; })
+                ]
+            });
+            var NoFitLayout = new Ext.Panel({
+                title: &#39;NoFitLayout&#39;,
+                height: 100,
+                renderTo: &#39;FitLayout&#39;,
+                items: [
+                    new Ext.Panel({ bodyStyle: &#39;background:yellow&#39;, html: &#39;未使用了fit布局,没有填充满&#39; })
+                ]
+            });
+            //------FitLayout结束------//
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="7tablelayout">7,TableLayout</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;TableLayout&#34; style=&#34;width: 400px; float: left; padding-left: 10px;&#34;&gt;
+&lt;/div&gt;
+
+//------TableLayout开始------//
+            var TableLayout = new Ext.Panel({
+                title: &#39;TableLayout&#39;,
+                layout: &#39;table&#39;,
+                layoutConfig: { columns: 3 },
+                defaults: {
+                    width: 133,
+                    height: 100,
+                    autoEl: &#39;center&#39;
+                },
+                defaultType: &#39;panel&#39;,
+                items: [
+                    { html: &#39;行1列1&#39; },
+                    { html: &#39;行1列2&#39; },
+                    { html: &#39;行[1,2]列3&#39;, rowspan: 2, height: 180 },
+                    { html: &#39;行2列[1,2]&#39;, colspan: 2, width: 266 }
+                ],
+                renderTo: &#39;TableLayout&#39;
+            });
+            //------TableLayout结束------//
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-05-31
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/python/python%E6%A0%B8%E5%BF%83%E5%AD%A6%E4%B9%A0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python核心学习.md</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/distributed/dataprocessingengine/flink/">
+            <span class="next-text nav-default">Flink</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java中保证同步的方式 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 保证同步的方式 关键字 synchronized 使用wait() notify() 和 notifyAll() 使用Lock 4、使用读写锁实现同步数据访问 5、使用Condition 1、信号量：Semap" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/sync/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java中保证同步的方式" />
+<meta property="og:description" content="目录 start 保证同步的方式 关键字 synchronized 使用wait() notify() 和 notifyAll() 使用Lock 4、使用读写锁实现同步数据访问 5、使用Condition 1、信号量：Semap" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/sync/" />
+<meta property="article:published_time" content="2019-06-04T19:44:41+00:00" />
+<meta property="article:modified_time" content="2019-06-04T19:44:41+00:00" />
+<meta itemprop="name" content="Java中保证同步的方式">
+<meta itemprop="description" content="目录 start 保证同步的方式 关键字 synchronized 使用wait() notify() 和 notifyAll() 使用Lock 4、使用读写锁实现同步数据访问 5、使用Condition 1、信号量：Semap">
+<meta itemprop="datePublished" content="2019-06-04T19:44:41+00:00" />
+<meta itemprop="dateModified" content="2019-06-04T19:44:41+00:00" />
+<meta itemprop="wordCount" content="5289">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java中保证同步的方式"/>
+<meta name="twitter:description" content="目录 start 保证同步的方式 关键字 synchronized 使用wait() notify() 和 notifyAll() 使用Lock 4、使用读写锁实现同步数据访问 5、使用Condition 1、信号量：Semap"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java中保证同步的方式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-06-04 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 5289 words </span>
+          <span class="more-meta"> 11 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用wait-notify-和-notifyall">使用wait() notify() 和 notifyAll()</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E4%BF%9D%E8%AF%81%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F">保证同步的方式</a></li>
+<li><a href="#%E5%85%B3%E9%94%AE%E5%AD%97-synchronized">关键字 synchronized</a>
+<ol>
+<li><a href="#%E4%BD%BF%E7%94%A8wait-notify-%E5%92%8C-notifyall">使用wait() notify() 和 notifyAll()</a></li>
+</ol>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8lock">使用Lock</a></li>
+<li><a href="#4%E3%80%81%E4%BD%BF%E7%94%A8%E8%AF%BB%E5%86%99%E9%94%81%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE">4、使用读写锁实现同步数据访问</a></li>
+<li><a href="#5%E3%80%81%E4%BD%BF%E7%94%A8%60condition%60">5、使用<code>Condition</code></a></li>
+<li><a href="#1%E3%80%81%E4%BF%A1%E5%8F%B7%E9%87%8F%60semaphore%60">1、信号量：<code>Semaphore</code></a></li>
+<li><a href="#2%E3%80%81%E4%BD%BF%E7%94%A8%60countdownlatch%60%E7%AD%89%E5%BE%85%E5%B9%B6%E5%8F%91%E4%BA%8B%E4%BB%B6%E5%AE%8C%E6%88%90">2、使用<code>CountDownLatch</code>等待并发事件完成</a></li>
+<li><a href="#3%E3%80%81%E4%BD%BF%E7%94%A8%60cyclicbarrier%60%E8%AE%A9%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5">3、使用<code>CyclicBarrier</code>让多个线程同步</a></li>
+<li><a href="#4%E3%80%81%E4%BD%BF%E7%94%A8%60phaser%60%E6%8E%A7%E5%88%B6%E5%B9%B6%E5%8F%91%E9%98%B6%E6%AE%B5%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C">4、使用<code>Phaser</code>控制并发阶段任务的运行</a></li>
+<li><a href="#5%E3%80%81%E4%BD%BF%E7%94%A8%60exchanger%60%E6%8E%A7%E5%88%B6%E5%B9%B6%E5%8F%91%E4%BB%BB%E5%8A%A1%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2">5、使用<code>Exchanger</code>控制并发任务间的数据交换</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="保证同步的方式">保证同步的方式</h1>
+<h1 id="关键字-synchronized">关键字 synchronized</h1>
+<ul>
+<li>
+<p>一个对象使用synchronized关键字声明，则只有一个执行线程可访问它，如果其他线程试图访问，这些线程将会被挂起，直到第一个拥有的的线程执行完</p>
+</li>
+<li>
+<p>当使用synchronized修饰一个对象的非静态方法时，当一个线程访问该方法时，其他线程不能访问该对象的其他被synchronized修饰的方法，但可以访问未被synchronized修饰的方法</p>
+</li>
+<li>
+<p>当使用synchronized修饰静态方法时，该方法同时只能被同一线程访问，但其他线程可访问该对象的其他非静态方法</p>
+</li>
+</ul>
+<h2 id="使用wait-notify-和-notifyall">使用wait() notify() 和 notifyAll()</h2>
+<ul>
+<li>
+<p><code>wait()</code>方法可让线程挂起</p>
+</li>
+<li>
+<p><code>notify()</code>和<code>notifyAll()</code>用于唤醒线程</p>
+</li>
+<li>
+<p>使用队列实现生产-消费者模型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WaitAndNotify</span> <span class="o">{</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 模拟存储的队列.
+</span><span class="cm">    */</span>
+    <span class="nd">@Data</span>
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Storage</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxSize</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">data</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="nf">Storage</span><span class="o">(</span><span class="kt">int</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">maxSize</span> <span class="o">=</span> <span class="n">maxSize</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+        <span class="o">}</span>
+
+        <span class="cm">/**
+</span><span class="cm">        * 添加数据.
+</span><span class="cm">        */</span>
+        <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">Integer</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">data</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;队列已满&#34;</span><span class="o">);</span>
+                    <span class="n">wait</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;添加数据&#34;</span><span class="o">);</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">data</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+            <span class="n">notifyAll</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="cm">/**
+</span><span class="cm">         * 获取数据
+</span><span class="cm">         */</span>
+        <span class="kd">public</span> <span class="kd">synchronized</span> <span class="n">Integer</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">data</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;队列已空&#34;</span><span class="o">);</span>
+                    <span class="n">wait</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="n">Integer</span> <span class="n">result</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">data</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;获取数据: &#34;</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
+            <span class="n">notifyAll</span><span class="o">();</span>
+            <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+        <span class="n">Storage</span> <span class="n">storage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Storage</span><span class="o">(</span><span class="n">20</span><span class="o">);</span>
+        <span class="n">Thread</span> <span class="n">producer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">100</span><span class="o">);</span>
+                <span class="n">storage</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+        <span class="n">Thread</span> <span class="n">consumer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">storage</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="o">});</span>
+        <span class="n">producer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">consumer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">WaitAndNotify</span> <span class="n">test</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WaitAndNotify</span><span class="o">();</span>
+        <span class="n">test</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h1 id="使用lock">使用Lock</h1>
+<blockquote>
+<p>Java除了使用<code>synchronized</code>实现同步代码块外，还提供了另一种同步代码块机制，这种机制基于<code>Lock</code>及其实现类(如：ReentrantLock)</p>
+</blockquote>
+<ul>
+<li>
+<p><code>Lock</code>与<code>synchronized</code>的区别</p>
+<ul>
+<li>
+<p><code>Lock</code>更加灵活：使用<code>synchronized</code>关键字，只能在同一块<code>synchronized</code>块结构中获取和释放。而<code>Lock</code>可实现更复杂的临界结构，如获取和释放不再同一块结构中</p>
+</li>
+<li>
+<p><code>Lock</code>提供了更多的功能：如<code>tryLock()</code></p>
+</li>
+<li>
+<p><code>Lock</code>接口允许读写分离操作，允许多个读线程和一个写线程</p>
+</li>
+<li>
+<p><code>Lock</code>的性能更好</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="4使用读写锁实现同步数据访问">4、使用读写锁实现同步数据访问</h1>
+<blockquote>
+<p>接口<code>ReadWriteLock</code>和其唯一实现类<code>ReentrantReadWriteLock</code>(该类有两个锁，分别为读操作锁和写操作锁)可实现读写锁</p>
+</blockquote>
+<ul>
+<li>
+<p>读写锁示例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReadAndWriter</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">price1</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">price2</span><span class="o">;</span>
+
+    <span class="n">ReadWriteLock</span> <span class="n">readWriteLock</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ReadAndWriter</span><span class="o">(</span><span class="kt">int</span> <span class="n">price1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">price2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price1</span> <span class="o">=</span> <span class="n">price1</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price2</span> <span class="o">=</span> <span class="n">price2</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">readWriteLock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantReadWriteLock</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 获取数据(使用读操作锁)
+</span><span class="cm">    * @return
+</span><span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPrice1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">readWriteLock</span><span class="o">.</span><span class="na">readLock</span><span class="o">().</span><span class="na">lock</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">price</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">price1</span><span class="o">;</span>
+        <span class="n">readWriteLock</span><span class="o">.</span><span class="na">readLock</span><span class="o">().</span><span class="na">unlock</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">price</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 获取数据(使用读操作锁)
+</span><span class="cm">    * @return
+</span><span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPrice2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">readWriteLock</span><span class="o">.</span><span class="na">readLock</span><span class="o">().</span><span class="na">lock</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">price</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">price2</span><span class="o">;</span>
+        <span class="n">readWriteLock</span><span class="o">.</span><span class="na">readLock</span><span class="o">().</span><span class="na">unlock</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">price</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">    * 设置数据(使用写操作锁)
+</span><span class="cm">    * @param price1
+</span><span class="cm">    * @param price2
+</span><span class="cm">    */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPrices</span><span class="o">(</span><span class="kt">int</span> <span class="n">price1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">price2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">readWriteLock</span><span class="o">.</span><span class="na">writeLock</span><span class="o">().</span><span class="na">lock</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price1</span> <span class="o">=</span> <span class="n">price1</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price2</span> <span class="o">=</span> <span class="n">price2</span><span class="o">;</span>
+        <span class="n">readWriteLock</span><span class="o">.</span><span class="na">writeLock</span><span class="o">().</span><span class="na">unlock</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ReadAndWriter</span> <span class="n">readAndWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReadAndWriter</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span>
+        <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">3</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;writer&#34;</span><span class="o">);</span>
+                <span class="n">readAndWriter</span><span class="o">.</span><span class="na">setPrices</span><span class="o">(</span><span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">10000</span><span class="o">),</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">10000</span><span class="o">));</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;modified&#34;</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">2000</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">5</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; : &#34;</span> <span class="o">+</span> <span class="n">readAndWriter</span><span class="o">.</span><span class="na">getPrice1</span><span class="o">());</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; : &#34;</span> <span class="o">+</span> <span class="n">readAndWriter</span><span class="o">.</span><span class="na">getPrice2</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h1 id="5使用condition">5、使用<code>Condition</code></h1>
+<blockquote>
+<p>一个锁可能关联一个或多个条件，这些条件通过<code>Condition</code>接口声明，<code>Condition</code>接口提供了线程的挂起和唤醒机制</p>
+</blockquote>
+<ul>
+<li>
+<p>与锁绑定的条件对象都是通过<code>Lock</code>接口声明的<code>newCondition()</code>方法创建的。</p>
+</li>
+<li>
+<p>在使用条件时，必须拥有绑定的锁，即，所有带条件的代码必须在调用<code>Lock</code>对象的<code>lock()</code>和<code>unlock()</code>方法之间</p>
+</li>
+<li>
+<p>当线程调用条件<code>await()</code>时，会自动释放绑定的锁</p>
+</li>
+<li>
+<p>如果调用了条件<code>await()</code>，但没有调用他的<code>signal()</code>，这个线程将会永远休眠</p>
+</li>
+<li>
+<p>生产-消费者模型</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConditionTest</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Storage</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">storage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxSize</span><span class="o">;</span>
+        <span class="c1">// 创建Lock
+</span><span class="c1"></span>        <span class="kd">private</span> <span class="n">Lock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span><span class="o">();</span>
+        <span class="kd">private</span> <span class="n">Condition</span> <span class="n">producer</span> <span class="o">=</span> <span class="n">lock</span><span class="o">.</span><span class="na">newCondition</span><span class="o">();</span>
+        <span class="kd">private</span> <span class="n">Condition</span> <span class="n">consumer</span> <span class="o">=</span> <span class="n">lock</span><span class="o">.</span><span class="na">newCondition</span><span class="o">();</span>
+
+        <span class="kd">public</span> <span class="nf">Storage</span><span class="o">(</span><span class="kt">int</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">maxSize</span> <span class="o">=</span> <span class="n">maxSize</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="n">Double</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">Double</span> <span class="n">n</span> <span class="o">=</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">;</span>
+            <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">while</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">storage</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;等待生产&#34;</span><span class="o">);</span>
+                    <span class="n">consumer</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; consumer&#34;</span> <span class="o">);</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">storage</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+                <span class="n">producer</span><span class="o">.</span><span class="na">signalAll</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+                <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="n">n</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">Double</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">while</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">storage</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="o">.</span><span class="na">maxSize</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;等待消费&#34;</span><span class="o">);</span>
+                    <span class="n">producer</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; producer&#34;</span> <span class="o">);</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">storage</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+                <span class="n">consumer</span><span class="o">.</span><span class="na">signalAll</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+                <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Storage</span> <span class="n">storage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Storage</span><span class="o">(</span><span class="n">20</span><span class="o">);</span>
+            <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">storage</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">storage</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+                    <span class="o">}</span>
+                <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+            <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="1信号量semaphore">1、信号量：<code>Semaphore</code></h1>
+<blockquote>
+<p>信号量是一个计数器，用来保护一个或多个共享资源的访问。当线程访问一个一个共享资源时，它必须得先获取信号量，如果信号量大于0，则信号量减一，该线程允许访问共享资源。当信号量等于0,则线程将会被置于休眠，直到信号量大于0</p>
+</blockquote>
+<ul>
+<li>
+<p>注意：<code>当线程用完某个共享资源后，信号量必须释放，释放操作将会是信号量的内部计数器加1</code></p>
+</li>
+<li>
+<p>使用<code>二进制信号量</code>控制队列中数据的添加和获取的同步(此处使用<code>公平模式</code>，在非公平模式下，多个死循环线程中出现信号量一直被一个线程占用的情况)</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SemaphoreTest</span> <span class="o">{</span>
+
+    <span class="cm">/** 声明一个信号量对象. */</span>
+    <span class="kd">private</span> <span class="n">Semaphore</span> <span class="n">semaphore</span><span class="o">;</span>
+    <span class="cm">/** 存储数据. */</span>
+    <span class="kd">private</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">storage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+    <span class="cm">/** 存储的最大数量. */</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxSize</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">SemaphoreTest</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 此处传入的参数为1，则该信号量为二进制信号量，即信号量的计数器的值只有0和1
+</span><span class="c1"></span>        <span class="c1">// 第二个参数表示是否公平
+</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">semaphore</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Semaphore</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 添加
+</span><span class="cm">     * @param d
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">Double</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="c1">// 获取信号量
+</span><span class="c1"></span>            <span class="n">semaphore</span><span class="o">.</span><span class="na">acquire</span><span class="o">();</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span><span class="s">&#34;: add start&#34;</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">storage</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">maxSize</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">storage</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">1000</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span><span class="s">&#34;: add end&#34;</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="c1">// 释放信号量
+</span><span class="c1"></span>            <span class="n">semaphore</span><span class="o">.</span><span class="na">release</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 获取
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">Double</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="c1">// 获取信号量
+</span><span class="c1"></span>            <span class="n">semaphore</span><span class="o">.</span><span class="na">acquire</span><span class="o">();</span>
+            <span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span><span class="s">&#34;: get start&#34;</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">storage</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span> <span class="o">)</span> <span class="o">{</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">storage</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">1000</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span><span class="s">&#34;: get end&#34;</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">d</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="k">return</span> <span class="n">0</span><span class="o">.</span><span class="na">0</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="c1">// 释放信号量
+</span><span class="c1"></span>            <span class="n">semaphore</span><span class="o">.</span><span class="na">release</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SemaphoreTest</span> <span class="n">test</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SemaphoreTest</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">3</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">test</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">3</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">test</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>除二进制信号量外，信号量还可以让实现被多个线程同时访问的临界区</li>
+</ul>
+<h1 id="2使用countdownlatch等待并发事件完成">2、使用<code>CountDownLatch</code>等待并发事件完成</h1>
+<ul>
+<li>
+<p><code>CountDownLatch</code>可以完成一组正在其他线程中执行的操作前，允许他一直等待</p>
+</li>
+<li>
+<p>实例：在20个线程完全准备好前，让线程等待</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CountDownLatchTest</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+        <span class="c1">// 创建CountDownLatch对象
+</span><span class="c1"></span>        <span class="n">CountDownLatch</span> <span class="n">latch</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CountDownLatch</span><span class="o">(</span><span class="n">size</span><span class="o">);</span>
+        <span class="n">Lock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">20</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;等待线程全部准备...&#34;</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="c1">// 为了 latch.getCount() 顺序所以加锁控制
+</span><span class="c1"></span>                        <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+                        <span class="c1">// 减一操作，表示该线程以准备完成
+</span><span class="c1"></span>                        <span class="n">latch</span><span class="o">.</span><span class="na">countDown</span><span class="o">();</span>
+                        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;还有 &#34;</span> <span class="o">+</span> <span class="n">latch</span><span class="o">.</span><span class="na">getCount</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; 个线程需准备&#34;</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+                        <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+                    <span class="o">}</span>
+                    <span class="c1">// 等待其他线程准备
+</span><span class="c1"></span>                    <span class="n">latch</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;: 准备完成, 开始执行任务...&#34;</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="3使用cyclicbarrier让多个线程同步">3、使用<code>CyclicBarrier</code>让多个线程同步</h1>
+<ul>
+<li>
+<p><code>CyclicBarrier</code>与<code>CountDownLatch</code>很相似，但<code>CyclicBarrier</code>的功能要更强大些。<code>CyclicBarrier</code>除了可以让线程在某个集合点同步外，还能在所有线程都达到集合点后再运行一个新的线程。这可以很好的实现分治思想</p>
+</li>
+<li>
+<p><code>CyclicBarrier</code>可使用<code>reset()</code>方法，将内部计数器重置为初始化的值。重置后，正在await()方法中等待的线程将会收到<code>BrokenBarrierException</code>异常，这是可处理异常或将操作重新执行或恢复到被中断时的状态</p>
+</li>
+<li>
+<p><code>损坏的CyclicBarrier</code>：Cyclicbarrier对象有一种特殊的状态即<code>损坏状态(Broken)</code>。当很多线程在<code>await()</code>方法上等待的时候，如果其中一个线程被中断，这个线程将抛出<code>Interruptedexception</code>异常，其他的等待线程将抛出<code>Brokenbarrierexception</code>异常，于是Cyclicbarrier对象就处于损坏状态了。Cyclicbarrier类提供了<code>isBroken()</code>方法，如果处于损坏状态就返回true,否则返回false。</p>
+</li>
+<li>
+<p>使用<code>CyclicBarrier</code>，计算某个数值再二维数组中出现的次数(先将二维数组分为若干个一维数组，每个线程计算各自分配的一维数组中数值出现的次数。当所有线程计算完各自一维数组后，再使用另一个线程计算前面每个线程所计算出的数量的总和)</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CyclicBarrierStudy</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">storage</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">CyclicBarrierStudy</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">,</span> <span class="kt">int</span> <span class="n">length</span><span class="o">,</span> <span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 初始化二维数组数据，并记录所要查找的数字出现的次数
+</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">storage</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">size</span><span class="o">][</span><span class="n">length</span><span class="o">];</span>
+        <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">storage</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">150</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">storage</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">count</span><span class="o">++;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="c1">// 打印正确结果信息，用于后面的校验
+</span><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;需查找的数值 %d 共出现 %d 次发\n&#34;</span><span class="o">,</span> <span class="n">number</span><span class="o">,</span> <span class="n">count</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">getData</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">storage</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">10</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="n">50</span><span class="o">,</span> <span class="n">number</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">countData</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+        <span class="n">CyclicBarrierStudy</span> <span class="n">study</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CyclicBarrierStudy</span><span class="o">(</span><span class="n">size</span><span class="o">,</span> <span class="n">length</span><span class="o">,</span> <span class="n">number</span><span class="o">);</span>
+
+        <span class="c1">// 创建CyclicBarrier对象，并指定等待 size个线程结束，结束后运行另一个线程计算总数
+</span><span class="c1"></span>        <span class="n">CyclicBarrier</span> <span class="n">cyclicBarrier</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CyclicBarrier</span><span class="o">(</span><span class="n">size</span><span class="o">,</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="c1">// 计算总数
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">:</span> <span class="n">countData</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="n">n</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;查找结束，数值 %d 共出现 %d 次\n&#34;</span><span class="o">,</span> <span class="n">number</span><span class="o">,</span> <span class="n">count</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="c1">// 用线程计算每组的出现的数量
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+            <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="c1">// 将二维数组分组进行查询
+</span><span class="c1"></span>                <span class="kt">int</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="na">getData</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+                <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">:</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">count</span><span class="o">++;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="c1">// 保存该组数组中出现指定数据的次数
+</span><span class="c1"></span>                <span class="n">countData</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">count</span><span class="o">;</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; search end&#34;</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="c1">// 等待其他线程完成，当其他线程都完成后，await()方法后面的代码才会执行
+</span><span class="c1"></span>                    <span class="n">cyclicBarrier</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="o">|</span> <span class="n">BrokenBarrierException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="4使用phaser控制并发阶段任务的运行">4、使用<code>Phaser</code>控制并发阶段任务的运行</h1>
+<ul>
+<li>
+<p><code>Phaser</code>在每一步结束的位置对线程进行同步，当所有线程都完成到该处后，才允许执行下一步</p>
+</li>
+<li>
+<p>必须对<code>Phaser</code>中参与同步操作的任务数进行初始化，我们可以动态的添加和减少任务数</p>
+</li>
+<li>
+<p>几个重要方法:</p>
+<ul>
+<li>
+<p><code>arriveAndAwaitAdvance()</code>: 当一个线程调用该方法后，<code>Phaser</code>对象减一，并且把该线程置为休眠状态，直到其他线程完成该阶段</p>
+</li>
+<li>
+<p><code>arriveAndDeregister()</code>: 该方法主要用于通知<code>Phaser</code>参与同步的线程数减一，表示不参与下一阶段的任务，因此<code>Phaser</code>在开始下一阶段时不会等待该线程</p>
+</li>
+<li>
+<p><code>onAdvance</code>: <code>Phaser</code>提供的一个方法，可覆盖该方法。<code>onAdvance()</code>会在阶段改变的时候被调用。方法的返回值，<code>true</code>表示<code>phaser</code>已经执行完成并进入了终止态，<code>false</code>表示<code>phaser</code>在继续执行。我们可通过覆盖<code>onAdvance</code>方法，在每个阶段改变的时候执行某些操作</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Phaser</code>示例，控制各阶段的同步</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PhaserTest</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">20</span><span class="o">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+        <span class="c1">// 创建Phaser,有20个参与线程
+</span><span class="c1"></span>        <span class="n">Phaser</span> <span class="n">phaser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Phaser</span><span class="o">(</span><span class="n">len</span><span class="o">);</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">len</span><span class="o">][</span><span class="n">size</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">2</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kd">final</span> <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+            <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="c1">// 让所有线程在都创建完成后运行
+</span><span class="c1"></span>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;: 准备第一阶段&#34;</span><span class="o">);</span>
+                <span class="n">phaser</span><span class="o">.</span><span class="na">arriveAndAwaitAdvance</span><span class="o">();</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">[</span><span class="n">index</span><span class="o">][</span><span class="n">0</span><span class="o">]</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; : 当前线程已结束&#34;</span><span class="o">);</span>
+                    <span class="n">phaser</span><span class="o">.</span><span class="na">arriveAndDeregister</span><span class="o">();</span>
+                    <span class="k">return</span><span class="o">;</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; : 已完成第二阶段&#34;</span><span class="o">);</span>
+                    <span class="n">phaser</span><span class="o">.</span><span class="na">arriveAndAwaitAdvance</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;: 开始第三阶段&#34;</span><span class="o">);</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;: &#34;</span> <span class="o">+</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">data</span><span class="o">[</span><span class="n">index</span><span class="o">]));</span>
+            <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="5使用exchanger控制并发任务间的数据交换">5、使用<code>Exchanger</code>控制并发任务间的数据交换</h1>
+<ul>
+<li>
+<p><code>Exchanger</code>允许在两个线程之间定义同步点，当两个线程都到达同步点时，他们交换数据</p>
+</li>
+<li>
+<p>消费者与生产者交换数据</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExchangerTest</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">producerData</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">consumerData</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">Exchanger</span><span class="o">&lt;</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">exchanger</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Exchanger</span><span class="o">&lt;&gt;();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Producer</span><span class="o">(</span><span class="n">producerData</span><span class="o">,</span> <span class="n">exchanger</span><span class="o">)).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Consumer</span><span class="o">(</span><span class="n">consumerData</span><span class="o">,</span> <span class="n">exchanger</span><span class="o">)).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Producer</span> <span class="kd">implements</span> <span class="n">Runnable</span><span class="o">{</span>
+        <span class="kd">private</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">data</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="n">Exchanger</span><span class="o">&lt;</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">exchanger</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="nf">Producer</span><span class="o">(</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">data</span><span class="o">,</span> <span class="n">Exchanger</span><span class="o">&lt;</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">exchangerData</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">exchanger</span> <span class="o">=</span> <span class="n">exchangerData</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+            <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">0</span><span class="o">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;生产者第 %d 次交换\n&#34;</span><span class="o">,</span> <span class="n">index</span><span class="o">);</span>
+                <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;生产的数据: &#34;</span> <span class="o">+</span> <span class="n">n</span><span class="o">);</span>
+                <span class="n">data</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="c1">// 与消费者交换数据
+</span><span class="c1"></span>                    <span class="n">data</span> <span class="o">=</span> <span class="n">exchanger</span><span class="o">.</span><span class="na">exchange</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;消费者现有数据数量: &#34;</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+                <span class="n">index</span><span class="o">++;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Consumer</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+
+        <span class="kd">private</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">data</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="n">Exchanger</span><span class="o">&lt;</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">exchanger</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="nf">Consumer</span><span class="o">(</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">data</span><span class="o">,</span> <span class="n">Exchanger</span><span class="o">&lt;</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">exchanger</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">exchanger</span> <span class="o">=</span> <span class="n">exchanger</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">0</span><span class="o">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;消费者第 %d 次交换\n&#34;</span><span class="o">,</span> <span class="n">index</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="c1">// 与生产者交换数据
+</span><span class="c1"></span>                    <span class="n">data</span> <span class="o">=</span> <span class="n">exchanger</span><span class="o">.</span><span class="na">exchange</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;消费的数据: &#34;</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="na">poll</span><span class="o">());</span>
+                <span class="n">index</span><span class="o">++;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-06-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/advancedlearning/concurrency/forkandjoin/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Fork/Join</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/concurrency/atomic/">
+            <span class="next-text nav-default">Java中的原子类</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

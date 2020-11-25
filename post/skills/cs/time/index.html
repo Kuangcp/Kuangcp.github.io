@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>时间 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 时间 基础概念 GMT UTC CST DST 目录 end|2020-06-24 02:06| 时间 基础概念 GMT 格林尼治标准时间（Greenwich Mean Time，GMT）是指位于伦敦郊区的皇家格林尼治天文台" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/cs/time/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="时间" />
+<meta property="og:description" content="目录 start 时间 基础概念 GMT UTC CST DST 目录 end|2020-06-24 02:06| 时间 基础概念 GMT 格林尼治标准时间（Greenwich Mean Time，GMT）是指位于伦敦郊区的皇家格林尼治天文台" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/cs/time/" />
+<meta property="article:published_time" content="2018-12-20T10:44:57+00:00" />
+<meta property="article:modified_time" content="2018-12-20T10:44:57+00:00" />
+<meta itemprop="name" content="时间">
+<meta itemprop="description" content="目录 start 时间 基础概念 GMT UTC CST DST 目录 end|2020-06-24 02:06| 时间 基础概念 GMT 格林尼治标准时间（Greenwich Mean Time，GMT）是指位于伦敦郊区的皇家格林尼治天文台">
+<meta itemprop="datePublished" content="2018-12-20T10:44:57+00:00" />
+<meta itemprop="dateModified" content="2018-12-20T10:44:57+00:00" />
+<meta itemprop="wordCount" content="435">
+
+
+
+<meta itemprop="keywords" content="Time," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="时间"/>
+<meta name="twitter:description" content="目录 start 时间 基础概念 GMT UTC CST DST 目录 end|2020-06-24 02:06| 时间 基础概念 GMT 格林尼治标准时间（Greenwich Mean Time，GMT）是指位于伦敦郊区的皇家格林尼治天文台"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">时间</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-20 </span>
+        <div class="post-category">
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
+            </div>
+          <span class="more-meta"> 435 words </span>
+          <span class="more-meta"> 1 min read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础概念">基础概念</a>
+      <ul>
+        <li><a href="#gmt">GMT</a></li>
+        <li><a href="#utc">UTC</a></li>
+        <li><a href="#cst">CST</a></li>
+        <li><a href="#dst">DST</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E6%97%B6%E9%97%B4">时间</a>
+<ol>
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5">基础概念</a>
+<ol>
+<li><a href="#gmt">GMT</a></li>
+<li><a href="#utc">UTC</a></li>
+<li><a href="#cst">CST</a></li>
+<li><a href="#dst">DST</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-06-24 02:06</em>|</p>
+<hr>
+<h1 id="时间">时间</h1>
+<h2 id="基础概念">基础概念</h2>
+<h3 id="gmt">GMT</h3>
+<blockquote>
+<p>格林尼治标准时间（Greenwich Mean Time，GMT）是指位于伦敦郊区的皇家格林尼治天文台的标准时间，因为本初子午线被定义在通过那里的经线。</p>
+</blockquote>
+<p>为了方便，在不需要精确到秒的情况下，通常将 GMT 和 UTC 视作等同。但 UTC 更加科学更加精确，它是以原子时为基础，在时刻上尽量接近世界时的一种时间计量系统。它的出现是现代社会对于精确计时的需要。</p>
+<h3 id="utc">UTC</h3>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">Coordinated Universal Time</a></p>
+</blockquote>
+<p>协调世界时，又称世界统一时间、世界标准时间、国际协调时间, 也会被称为&quot;Zulu time&quot;</p>
+<h3 id="cst">CST</h3>
+<blockquote>
+<p>中国处于东八区 所以是 UTC+8</p>
+</blockquote>
+<p>但是CST其实可以表示四个时区, 被MySQL中的CST坑了才发现到这个<code>十四个小时问题</code>, 但是Linux以及大多数软件中的CST都是指UTC+8</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">时间</th>
+<th style="text-align:left">全称</th>
+<th style="text-align:left">时区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">美国中部时间</td>
+<td style="text-align:left">Central Standard Time (USA)</td>
+<td style="text-align:left">UTC-6:00</td>
+</tr>
+<tr>
+<td style="text-align:left">澳大利亚中部时间</td>
+<td style="text-align:left">Central Standard Time (Australia)</td>
+<td style="text-align:left">UTC+9:30</td>
+</tr>
+<tr>
+<td style="text-align:left">中国标准时间</td>
+<td style="text-align:left">China Standard Time</td>
+<td style="text-align:left">UTC+8:00</td>
+</tr>
+<tr>
+<td style="text-align:left">古巴标准时间</td>
+<td style="text-align:left">Cuba Standard Time</td>
+<td style="text-align:left">UTC-4:00</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dst">DST</h3>
+<blockquote>
+<p>DST是Daylight Saving Time的缩写，称为阳光节约时，在我国称为夏时制，又称夏令时，是一种为节约能源而人为调整地方时间的制度。</p>
+</blockquote>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Daylight_saving_time">Daylight saving time</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/time/">Time</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring/spring/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Spring</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/designpattern/">
+            <span class="next-text nav-default">设计模式</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

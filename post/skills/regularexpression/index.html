@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>正则表达式 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 正则表达式学习 基本字符 特殊字符 变量 零宽断言 先行断言 后发断言 负向零宽断言 编程语言 Python Shell Tips 目录 end|2020-06-24 16:51| 正则表达式学习 Regular Expression Language - Quick Reference shell regex 正则匹配的本" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/regularexpression/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="正则表达式" />
+<meta property="og:description" content="目录 start 正则表达式学习 基本字符 特殊字符 变量 零宽断言 先行断言 后发断言 负向零宽断言 编程语言 Python Shell Tips 目录 end|2020-06-24 16:51| 正则表达式学习 Regular Expression Language - Quick Reference shell regex 正则匹配的本" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/regularexpression/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="正则表达式">
+<meta itemprop="description" content="目录 start 正则表达式学习 基本字符 特殊字符 变量 零宽断言 先行断言 后发断言 负向零宽断言 编程语言 Python Shell Tips 目录 end|2020-06-24 16:51| 正则表达式学习 Regular Expression Language - Quick Reference shell regex 正则匹配的本">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="947">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="正则表达式"/>
+<meta name="twitter:description" content="目录 start 正则表达式学习 基本字符 特殊字符 变量 零宽断言 先行断言 后发断言 负向零宽断言 编程语言 Python Shell Tips 目录 end|2020-06-24 16:51| 正则表达式学习 Regular Expression Language - Quick Reference shell regex 正则匹配的本"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">正则表达式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"> 基础知识 </a>
+            </div>
+          <span class="more-meta"> 947 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本字符">基本字符</a></li>
+    <li><a href="#特殊字符">特殊字符</a></li>
+    <li><a href="#变量">变量</a></li>
+    <li><a href="#零宽断言">零宽断言</a>
+      <ul>
+        <li><a href="#先行断言">先行断言</a></li>
+        <li><a href="#后发断言">后发断言</a></li>
+        <li><a href="#负向零宽断言">负向零宽断言</a></li>
+      </ul>
+    </li>
+    <li><a href="#编程语言">编程语言</a>
+      <ul>
+        <li><a href="#python">Python</a></li>
+        <li><a href="#shell">Shell</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0">正则表达式学习</a>
+<ol>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E5%AD%97%E7%AC%A6">基本字符</a></li>
+<li><a href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6">特殊字符</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F">变量</a></li>
+<li><a href="#%E9%9B%B6%E5%AE%BD%E6%96%AD%E8%A8%80">零宽断言</a>
+<ol>
+<li><a href="#%E5%85%88%E8%A1%8C%E6%96%AD%E8%A8%80">先行断言</a></li>
+<li><a href="#%E5%90%8E%E5%8F%91%E6%96%AD%E8%A8%80">后发断言</a></li>
+<li><a href="#%E8%B4%9F%E5%90%91%E9%9B%B6%E5%AE%BD%E6%96%AD%E8%A8%80">负向零宽断言</a></li>
+</ol>
+</li>
+<li><a href="#%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">编程语言</a>
+<ol>
+<li><a href="#python">Python</a></li>
+<li><a href="#shell">Shell</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#tips">Tips</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-06-24 16:51</em>|</p>
+<hr>
+<h1 id="正则表达式学习">正则表达式学习</h1>
+<blockquote>
+<p><a href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">Regular Expression Language - Quick Reference</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://man.linuxde.net/docs/shell_regex.html">shell regex</a></p>
+</blockquote>
+<p>正则匹配的本质是<a href="https://baike.baidu.com/item/%E8%87%AA%E5%8A%A8%E6%9C%BA">自动机</a></p>
+<h2 id="基本字符">基本字符</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模式</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>^</code></td>
+<td style="text-align:left">匹配输入字符串的开始位置，除非在方括号表达式中使用，此时它表示不接受该字符集合。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>$</code></td>
+<td style="text-align:left">匹配输入字符串的结尾位置。如果设置了 RegExp 对象的 Multiline 属性，则 $ 也匹配 &lsquo;\n&rsquo; 或 &lsquo;\r&rsquo;。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>( )</code></td>
+<td style="text-align:left">标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用：<code>([0-9]{3})?</code> 匹配出现三个数字连着的字符串</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>{N}</code></td>
+<td style="text-align:left">匹配前面出现的子表达式 N 次</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>{N,M}</code></td>
+<td style="text-align:left">匹配前面的子表达式 N-M 次</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[...]</code></td>
+<td style="text-align:left">匹配字符集的任一单个字符 ： <code>[abcdejk]</code>就是匹配里面任一单个字符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[^...]</code></td>
+<td style="text-align:left">不匹配此集合中任一字符，包括某一范围的字符：<code>[^0-9]</code> 字符串中不含数字</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[x-y]</code></td>
+<td style="text-align:left">匹配x-y范围内单一字符 ： <code>[0-9] [a-z]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>*</code></td>
+<td style="text-align:left">匹配前面的子表达式 0或多次。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>+</code></td>
+<td style="text-align:left">匹配前面的子表达式 1或多次。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>?</code></td>
+<td style="text-align:left">匹配前面的子表达式 0或1次，或指明一个非贪婪限定符。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.</code></td>
+<td style="text-align:left">匹配除换行符 <code>\n</code>之外的任何 单个字符。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\</code></td>
+<td style="text-align:left">将下一个字符标记为或转义字符、或原义字符、或向后引用、或八进制转义符。'\n' 匹配换行符。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>|</code></td>
+<td style="text-align:left">指明两项之间的一个选择。</td>
+</tr>
+</tbody>
+</table>
+<p><code>以上字符 要想表示原字符都需转义</code></p>
+<hr>
+<h2 id="特殊字符">特殊字符</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模式</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>\d</code></td>
+<td style="text-align:left">匹配任何十进制数字 与<code>[0-9]</code>相同 <code>\D</code>与之相反</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\w</code></td>
+<td style="text-align:left">匹配任何字母数字字符 与 <code>[a-zA-Z0-9_]</code> 相同， <code>\W</code>与之相反</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\s</code></td>
+<td style="text-align:left">匹配任何空字符(空格 tab 回车) 与 <code>[\n\t\r\v\f]</code> 相同 <code>\S</code>与之相反</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\b</code></td>
+<td style="text-align:left">匹配任何单词的边界 <code>\B</code>与之相反</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\N</code></td>
+<td style="text-align:left">匹配已保存的子组N次 <code>name\100</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\c</code></td>
+<td style="text-align:left">逐字匹配任何特殊字符 <code>c</code> 就是转义字符的使用</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\A \Z</code></td>
+<td style="text-align:left">匹配字符串的开始或结束</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>构造正则表达式的方法和创建数学表达式的方法一样。也就是用多种元字符与操作符将小的表达式结合在一起来创建更大的表达式。
+正则表达式的组件可以是单个的字符、字符集合、字符范围、字符间的选择或者所有这些组件的任意组合。</p>
+</blockquote>
+<hr>
+<h2 id="变量">变量</h2>
+<p>常用于正则替换</p>
+<ol>
+<li><code>(\w*)_(\w*)_(\w*)</code> =&gt; <code>\l$1\u$2\u$3</code>
+<ul>
+<li>user_name_flag =&gt; userNameFlag</li>
+</ul>
+</li>
+</ol>
+<h2 id="零宽断言">零宽断言</h2>
+<blockquote>
+<p>用于查找在某些内容(但并不包括这些内容)之前或之后的东西，也就是说它们像 \b, ^, $, &lt;, &gt;, 那样用于指定一个位置<br>
+这个位置应该满足一定的条件(即断言)，因此它们也被称为零宽断言</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.cnblogs.com/shangdawei/p/4673117.html">参考: 零宽断言</a></p>
+</blockquote>
+<h3 id="先行断言">先行断言</h3>
+<p>(?=exp)也叫零宽度正预测先行断言</p>
+<h3 id="后发断言">后发断言</h3>
+<p>(?&lt;=exp)也叫零宽度正回顾后发断言</p>
+<h3 id="负向零宽断言">负向零宽断言</h3>
+<hr>
+<h2 id="编程语言">编程语言</h2>
+<h3 id="python">Python</h3>
+<ul>
+<li><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/python/re.jpg" alt="re.jpg"></li>
+</ul>
+<h3 id="shell">Shell</h3>
+<ul>
+<li><a href="http://man.linuxde.net/docs/shell_regex.html">Shell正则表达式</a></li>
+</ul>
+<h1 id="tips">Tips</h1>
+<ul>
+<li>连续重复字符的匹配 <code>(.)\1+</code> <a href="http://www.aijquery.cn/Html/jqueryjiqiao/181.html">正则表达式匹配重复的字符串</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/algorithm/algorithm/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">数据结构和算法</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/distributed/mq/mq/">
+            <span class="next-text nav-default">消息队列</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

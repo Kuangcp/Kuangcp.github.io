@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JavaScript - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start JavaScript 数据类型 字符串 函数 函数传值 JSON 常用功能小模块 输入校验 Ajax 事件 鼠标 滚轮 常用库和框架 Jquery Ajax form插件 echarts 资源文件 图片 目录 end|2020-06-24 02:06| JavaScript 数据类型 虽然是弱" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/frontend/javascript/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="JavaScript" />
+<meta property="og:description" content="目录 start JavaScript 数据类型 字符串 函数 函数传值 JSON 常用功能小模块 输入校验 Ajax 事件 鼠标 滚轮 常用库和框架 Jquery Ajax form插件 echarts 资源文件 图片 目录 end|2020-06-24 02:06| JavaScript 数据类型 虽然是弱" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/frontend/javascript/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="JavaScript">
+<meta itemprop="description" content="目录 start JavaScript 数据类型 字符串 函数 函数传值 JSON 常用功能小模块 输入校验 Ajax 事件 鼠标 滚轮 常用库和框架 Jquery Ajax form插件 echarts 资源文件 图片 目录 end|2020-06-24 02:06| JavaScript 数据类型 虽然是弱">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="902">
+
+
+
+<meta itemprop="keywords" content="基础," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript"/>
+<meta name="twitter:description" content="目录 start JavaScript 数据类型 字符串 函数 函数传值 JSON 常用功能小模块 输入校验 Ajax 事件 鼠标 滚轮 常用库和框架 Jquery Ajax form插件 echarts 资源文件 图片 目录 end|2020-06-24 02:06| JavaScript 数据类型 虽然是弱"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">JavaScript</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/javascript/"> JavaScript </a>
+            </div>
+          <span class="more-meta"> 902 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#数据类型">数据类型</a>
+      <ul>
+        <li><a href="#字符串">字符串</a></li>
+      </ul>
+    </li>
+    <li><a href="#函数">函数</a>
+      <ul>
+        <li><a href="#函数传值">函数传值</a></li>
+      </ul>
+    </li>
+    <li><a href="#json">JSON</a></li>
+    <li><a href="#常用功能小模块">常用功能小模块</a>
+      <ul>
+        <li><a href="#输入校验">输入校验</a></li>
+      </ul>
+    </li>
+    <li><a href="#ajax">Ajax</a></li>
+    <li><a href="#事件">事件</a>
+      <ul>
+        <li><a href="#鼠标">鼠标</a></li>
+      </ul>
+    </li>
+    <li><a href="#常用库和框架">常用库和框架</a>
+      <ul>
+        <li><a href="#jquery">Jquery</a></li>
+        <li><a href="#echarts">echarts</a></li>
+      </ul>
+    </li>
+    <li><a href="#资源文件">资源文件</a>
+      <ul>
+        <li><a href="#图片">图片</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#javascript">JavaScript</a>
+<ol>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>
+<ol>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a></li>
+</ol>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0">函数</a>
+<ol>
+<li><a href="#%E5%87%BD%E6%95%B0%E4%BC%A0%E5%80%BC">函数传值</a></li>
+</ol>
+</li>
+<li><a href="#json">JSON</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E5%B0%8F%E6%A8%A1%E5%9D%97">常用功能小模块</a>
+<ol>
+<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%A1%E9%AA%8C">输入校验</a></li>
+</ol>
+</li>
+<li><a href="#ajax">Ajax</a></li>
+<li><a href="#%E4%BA%8B%E4%BB%B6">事件</a>
+<ol>
+<li><a href="#%E9%BC%A0%E6%A0%87">鼠标</a>
+<ol>
+<li><a href="#%E6%BB%9A%E8%BD%AE">滚轮</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%BA%93%E5%92%8C%E6%A1%86%E6%9E%B6">常用库和框架</a>
+<ol>
+<li><a href="#jquery">Jquery</a>
+<ol>
+<li><a href="#ajax">Ajax</a></li>
+<li><a href="#form%E6%8F%92%E4%BB%B6">form插件</a></li>
+</ol>
+</li>
+<li><a href="#echarts">echarts</a></li>
+</ol>
+</li>
+<li><a href="#%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6">资源文件</a>
+<ol>
+<li><a href="#%E5%9B%BE%E7%89%87">图片</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-06-24 02:06</em>|</p>
+<hr>
+<h1 id="javascript">JavaScript</h1>
+<h2 id="数据类型">数据类型</h2>
+<blockquote>
+<p>虽然是弱类型,但还是要注意一下</p>
+</blockquote>
+<h3 id="字符串">字符串</h3>
+<ul>
+<li>字符串转码:
+<ul>
+<li><a href="http://www.cnblogs.com/xcsn/archive/2013/05/15/3079373.html">参考博客:JS字符串相关转码函数</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="函数">函数</h2>
+<h3 id="函数传值">函数传值</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">    <span class="kd">function</span> <span class="nx">handlerGet</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">role</span><span class="p">,</span> <span class="nx">success</span><span class="p">,</span> <span class="nx">fail</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+        <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+        <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;xxx&#39;</span><span class="o">+</span><span class="nx">url</span>
+    <span class="p">});</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="nx">success</span><span class="p">);</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">fail</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">testRole</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">handlerGet</span><span class="p">(</span><span class="s1">&#39;/world&#39;</span><span class="p">,</span> <span class="s1">&#39;student&#39;</span><span class="p">,</span>
+            <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">layer</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">&#39;获取成功&#39;</span><span class="p">);</span>
+            <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">layer</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">&#39;身份认证已过期， 请重新登录&#39;</span><span class="p">);</span>
+            <span class="p">})</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="json">JSON</h2>
+<blockquote>
+<p><a href="http://blog.51yip.com/jsjquery/1583.html">json 数据 添加 删除 排序</a></p>
+</blockquote>
+<ul>
+<li>
+<p>直接点引用属性或者a[&lsquo;b&rsquo;]的方式,</p>
+<ul>
+<li>迭代集合:自带foreach循环 <code>data.forEach(function(value){})</code></li>
+</ul>
+</li>
+<li>
+<p>但是有时候不能使用，会undefined，eval('('+data+')')解析后才能用</p>
+<ul>
+<li>原因在于Response Headers 的 <code>Content-Type:application/json;charset=UTF-8</code> 如果回应的类型是 text/plain 就需要使用 eval('('+data+')')才能用</li>
+<li>如果设置成JSON就可以直接点引用和循环迭代, <em>并且不需要强制的JSON规范, 值为数字时不加双引号也是正常解析的</em></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&#34;a&#34;</span><span class="o">:</span> <span class="s2">&#34;abc&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;b&#34;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+        <span class="s2">&#34;c&#34;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&#34;d&#34;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;james&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;age&#34;</span><span class="o">:</span> <span class="mi">28</span>
+        <span class="p">},</span>
+        <span class="s2">&#34;e&#34;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="s2">&#34;f&#34;</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">};</span>
+
+    <span class="c1">//遍历array方式1
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="k">in</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">y</span> <span class="k">in</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;key = &#34;</span> <span class="o">+</span> <span class="nx">y</span> <span class="o">+</span> <span class="s2">&#34; value = &#34;</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">][</span><span class="nx">y</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;key = &#34;</span> <span class="o">+</span> <span class="nx">x</span> <span class="o">+</span> <span class="s2">&#34; value = &#34;</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">]);</span> <span class="c1">// 非array object
+</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="常用功能小模块">常用功能小模块</h2>
+<h3 id="输入校验">输入校验</h3>
+<ul>
+<li><a href="http://yuncode.net/code/c_5039bb4a3fccf28">Blog:关于Input的输入校验</a><code>数字,字母汉字等限制</code></li>
+</ul>
+<h2 id="ajax">Ajax</h2>
+<blockquote>
+<p><a href="https://segmentfault.com/q/1010000005162727">js 原生 post请求</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch">参考: 使用 Fetch</a></p>
+</blockquote>
+<h2 id="事件">事件</h2>
+<h3 id="鼠标">鼠标</h3>
+<h4 id="滚轮">滚轮</h4>
+<blockquote>
+<p><a href="https://www.web-tinker.com/article/20037.html">JavaScript 鼠标滚轮事件</a></p>
+</blockquote>
+<h2 id="常用库和框架">常用库和框架</h2>
+<ul>
+<li>lozad.js 懒加载
+<a href="https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/group-by-criteria.html">网页底部的浏览 </a></li>
+</ul>
+<h3 id="jquery">Jquery</h3>
+<blockquote>
+<p>jquery有是slim版(没有ajax的精简版 ) <a href="http://jquery.com/">JQuery官网</a> | <a href="http://www.w3school.com.cn/jquery/index.asp">Jquery教程</a></p>
+</blockquote>
+<ul>
+<li>事件绑定 <code>$('#Button').on('click', function(){})</code></li>
+<li>在HTML的DOM上绑定数据:设置 <code>data-*</code> 属性 然后jq拿到元素直接调用 <code>$(this).data('id')</code>拿到值就可以避免函数传值</li>
+</ul>
+<p><em>原生方式异步提交</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">    <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#set-form&#34;</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;prepare submit&#39;</span><span class="p">)</span>
+    <span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="ajax-1">Ajax</h4>
+<blockquote>
+<p><a href="https://api.jquery.com/jQuery.ajax/">ajax文档</a></p>
+</blockquote>
+<h4 id="form插件">form插件</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">    <span class="c1">// 使用jquery 的 form插件进行异步提交
+</span><span class="c1"></span>    <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;.submit&#34;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dfs&#39;</span><span class="p">)</span>
+        <span class="c1">// var jk = $(&#34;#contents&#34;).submit()
+</span><span class="c1"></span>        <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="c1">// target:&#39;#contents&#39;, //后台将把传递过来的值赋给该元素
+</span><span class="c1"></span>            <span class="nx">url</span><span class="o">:</span><span class="s1">&#39;../teacher/topic/add&#39;</span><span class="p">,</span> <span class="c1">//提交给哪个执行
+</span><span class="c1"></span>            <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+            <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+            <span class="p">}</span> <span class="c1">//显示操作提示
+</span><span class="c1"></span>        <span class="p">};</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#contents&#39;</span><span class="p">).</span><span class="nx">ajaxSubmit</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+    <span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="echarts">echarts</h3>
+<blockquote>
+<p><a href="http://echarts.baidu.com/index.html">官网</a> | 做图表展示很简单</p>
+</blockquote>
+<hr>
+<h2 id="资源文件">资源文件</h2>
+<h3 id="图片">图片</h3>
+<blockquote>
+<p><a href="http://www.cnblogs.com/wujingtao/p/5196836.html">参考: JS 图片转Base64</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/ecosystem/javaredis/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">JavaRedis</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/javaio/">
+            <span class="next-text nav-default">Java中的IO</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

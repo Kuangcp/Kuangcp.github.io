@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Docker进阶 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2020-04-27 23:42| Docker Advance 文件系统 Dock" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/container/dockeradvance/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Docker进阶" />
+<meta property="og:description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2020-04-27 23:42| Docker Advance 文件系统 Dock" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/dockeradvance/" />
+<meta property="article:published_time" content="2018-12-15T11:25:27+00:00" />
+<meta property="article:modified_time" content="2018-12-15T11:25:27+00:00" />
+<meta itemprop="name" content="Docker进阶">
+<meta itemprop="description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2020-04-27 23:42| Docker Advance 文件系统 Dock">
+<meta itemprop="datePublished" content="2018-12-15T11:25:27+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T11:25:27+00:00" />
+<meta itemprop="wordCount" content="908">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker进阶"/>
+<meta name="twitter:description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2020-04-27 23:42| Docker Advance 文件系统 Dock"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Docker进阶</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/docker/"> Docker </a>
+            </div>
+          <span class="more-meta"> 908 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#文件系统">文件系统</a>
+      <ul>
+        <li><a href="#aufs">AUFS</a></li>
+        <li><a href="#overlayfs">OverlayFS</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置">配置</a>
+      <ul>
+        <li><a href="#更改数据的存放目录">更改数据的存放目录</a></li>
+        <li><a href="#提供底层接口访问">提供底层接口访问</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#孤儿进程以及僵死进程">孤儿进程以及僵死进程</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#docker-advance">Docker Advance</a>
+<ol>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a>
+<ol>
+<li><a href="#aufs">AUFS</a></li>
+<li><a href="#overlayfs">OverlayFS</a></li>
+</ol>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE">配置</a>
+<ol>
+<li><a href="#%E6%9B%B4%E6%94%B9%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AD%98%E6%94%BE%E7%9B%AE%E5%BD%95">更改数据的存放目录</a></li>
+<li><a href="#%E6%8F%90%E4%BE%9B%E5%BA%95%E5%B1%82%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE">提供底层接口访问</a>
+<ol>
+<li><a href="#%E6%9A%B4%E9%9C%B2%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%AB%AF%E5%8F%A3">暴露守护进程端口</a></li>
+<li><a href="#%E6%8C%81%E6%9C%89%E5%A5%97%E6%8E%A5%E5%AD%97%E6%96%87%E4%BB%B6">持有套接字文件</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#tips">Tips</a>
+<ol>
+<li><a href="#%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B%E4%BB%A5%E5%8F%8A%E5%83%B5%E6%AD%BB%E8%BF%9B%E7%A8%8B">孤儿进程以及僵死进程</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="docker-advance">Docker Advance</h1>
+<h2 id="文件系统">文件系统</h2>
+<blockquote>
+<p>Docker支持 AUFS、Btrfs、Device mapper、OverlayFS、Overlay2FS、ZFS</p>
+</blockquote>
+<h3 id="aufs">AUFS</h3>
+<blockquote>
+<p>Docker旧版本 采用的是 AUFS 文件系统</p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.infoq.com/cn/articles/analysis-of-docker-file-system-aufs-and-devicemapper">参考: 剖析Docker文件系统：Aufs与Devicemapper</a>
+<a href="http://www.cnblogs.com/sammyliu/p/5931383.html">参考: 理解Docker（7）：Docker 存储 - AUFS</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://sthbrx.github.io/blog/2015/10/30/docker-just-stop-using-aufs/">参考: Docker: Just Stop Using AUFS</a></p>
+</blockquote>
+<h3 id="overlayfs">OverlayFS</h3>
+<blockquote>
+<p>最新的Docker都是采用这种文件系统, 并具有 overlay overlay2 两代驱动</p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/u010278923/article/details/79215828">参考: docker 存储驱动之overlay</a></p>
+</blockquote>
+<blockquote>
+<p>查看占用大小 docker system df</p>
+</blockquote>
+<hr>
+<h2 id="配置">配置</h2>
+<blockquote>
+<p><a href="https://github.com/moby/moby/blob/master/contrib/check-config.sh">官方检查配置的脚本</a></p>
+</blockquote>
+<h3 id="更改数据的存放目录">更改数据的存放目录</h3>
+<blockquote>
+<p>docker 默认是将数据放在了 <code>/var/lib/docker</code> 下, 包括所有的镜像, 容器, 卷&hellip;</p>
+</blockquote>
+<ol>
+<li><code>挂载新的目录到 /var/lib/docker 上</code></li>
+</ol>
+<blockquote>
+<p><a href="http://dockone.io/question/531">参考: Docker数据将跟分区磁盘占满了 </a>
+<a href="https://www.lsproc.com/post/docker-faq/#toc_1">参考: Docker 常见问题 (FAQ)</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">service docker stop
+cp -prf /var/lib/docker /data/
+rm -rf /var/lib/docker
+
+vi /etc/fstab <span class="c1"># 追加一下内容：</span>
+/data/docker /var/lib/docker none <span class="nb">bind</span> <span class="m">0</span> <span class="m">0</span>
+mount -a
+service docker start
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>还尝试过将文件复制出去, 然后用软链接的方式, 但是失败了 报的错也没怎么看懂</li>
+<li>修改配置文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">-g, --graph=&#34;&#34;
+  Path to use as the root of the Docker runtime. Default is /var/lib/docker.
+
+如 docker -d --graph=/opt/docker
+docker daemon 的启动参数修改方法
+
+rhel/centos 下, 默认启动参数在 /etc/sysconfig/docker, 如:
+
+6.x:
+other_args=&#34;--graph=/opt/docker &#34;
+
+7.x: (update: 2015-01-21)
+OPTIONS=&#34;--graph=/opt/docker &#34;
+
+debian/ubuntu 下, 默认启动参数在 /etc/default/docker, 如:
+DOCKER_OPTS=&#34;--graph=/opt/docker &#34;
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="提供底层接口访问">提供底层接口访问</h3>
+<h4 id="暴露守护进程端口">暴露守护进程端口</h4>
+<ol>
+<li>systemctl edit docker.service</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="k">[Service]</span>
+    <span class="na">ExecStart</span><span class="o">=</span><span class="s">
+</span><span class="s">    ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock </span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>以上所处文件为: /etc/systemd/system/docker.service.d/override.conf</p>
+<blockquote>
+<p>注意: <code>-H unix:///var/run/docker.sock</code> 如果少了这个配置, Docker客户端就失效了, 什么都干不了</p>
+</blockquote>
+</blockquote>
+<ol start="2">
+<li>systemctl restart docker</li>
+</ol>
+<blockquote>
+<p>而那些不是使用systemd管理服务的才要在 /etc/docker/ 下配置 daemon.json <a href="https://docs.docker.com/engine/reference/commandline/dockerd/">official doc</a></p>
+</blockquote>
+<h4 id="持有套接字文件">持有套接字文件</h4>
+<blockquote>
+<p>将 <code>/var/run/docker.sock</code> 的访问权限 提供给使用方即可</p>
+</blockquote>
+<h1 id="tips">Tips</h1>
+<blockquote>
+<p>WARNING: No swap limit support</p>
+</blockquote>
+<ol>
+<li>Edit the /etc/default/grub file.</li>
+</ol>
+<ul>
+<li>Set the GRUB_CMDLINE_LINUX value as follows:</li>
+<li>GRUB_CMDLINE_LINUX=&ldquo;cgroup_enable=memory swapaccount=1&rdquo;</li>
+</ul>
+<ol>
+<li>sudo update-grub</li>
+<li>Reboot your system.</li>
+</ol>
+<h2 id="孤儿进程以及僵死进程">孤儿进程以及僵死进程</h2>
+<blockquote>
+<p><a href="/Linux/Base/LinuxBase.md#%E8%BF%9B%E7%A8%8B">进程相关知识</a><br>
+当父进程结束后,原来的僵死子进程, 会成为孤儿进程且是僵死进程, 此时会被1号进程收养</p>
+</blockquote>
+<blockquote>
+<p><a href="https://yq.aliyun.com/articles/61894">参考: Docker和孤儿进程、僵死进程 </a><br>
+在 Docker 中, 由于没有 init 这个1号进程(往往是应用进程作为1号进程) 很有可能子进程称为僵死进程且一直存在<br>
+Docker1.11之前的版本，孤儿进程是否有可能成为僵死进程取决于容器内pid为1的进程是否在子进程退出时调用wait/waitpid<br>
+Docker1.11版本之后孤儿进程不会成为僵死进程</p>
+</blockquote>
+<p><strong>解决策略</strong></p>
+<blockquote>
+<p><a href="https://github.com/krallin/tini#using-tini">tini</a>  <code>tini 轻量级init进程 更好的管理进程等资源</code></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/container/dockerfiles/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">DockerFile</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/container/docker/">
+            <span class="next-text nav-default">Docker</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

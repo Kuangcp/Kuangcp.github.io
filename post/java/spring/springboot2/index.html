@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SpringBoot2 新特性 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start SringBoot2 从1迁移到2 新特性 Web模块 Web容器 Tomcat Jetty 跨域 SpringBoot上下文事件监听 数据库模块 Relation Database 多数据源 No Relation Database 目录 end|2020-04-27 23:42| SringBoot2 官方文档 springboot gradle 从" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/springboot2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SpringBoot2 新特性" />
+<meta property="og:description" content="目录 start SringBoot2 从1迁移到2 新特性 Web模块 Web容器 Tomcat Jetty 跨域 SpringBoot上下文事件监听 数据库模块 Relation Database 多数据源 No Relation Database 目录 end|2020-04-27 23:42| SringBoot2 官方文档 springboot gradle 从" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/springboot2/" />
+<meta property="article:published_time" content="2018-12-21T10:49:53+00:00" />
+<meta property="article:modified_time" content="2018-12-21T10:49:53+00:00" />
+<meta itemprop="name" content="SpringBoot2 新特性">
+<meta itemprop="description" content="目录 start SringBoot2 从1迁移到2 新特性 Web模块 Web容器 Tomcat Jetty 跨域 SpringBoot上下文事件监听 数据库模块 Relation Database 多数据源 No Relation Database 目录 end|2020-04-27 23:42| SringBoot2 官方文档 springboot gradle 从">
+<meta itemprop="datePublished" content="2018-12-21T10:49:53+00:00" />
+<meta itemprop="dateModified" content="2018-12-21T10:49:53+00:00" />
+<meta itemprop="wordCount" content="685">
+
+
+
+<meta itemprop="keywords" content="SpringBoot," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SpringBoot2 新特性"/>
+<meta name="twitter:description" content="目录 start SringBoot2 从1迁移到2 新特性 Web模块 Web容器 Tomcat Jetty 跨域 SpringBoot上下文事件监听 数据库模块 Relation Database 多数据源 No Relation Database 目录 end|2020-04-27 23:42| SringBoot2 官方文档 springboot gradle 从"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SpringBoot2 新特性</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 685 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#从1迁移到2">从1迁移到2</a></li>
+    <li><a href="#新特性">新特性</a></li>
+    <li><a href="#web模块">Web模块</a>
+      <ul>
+        <li><a href="#web容器">Web容器</a></li>
+        <li><a href="#跨域">跨域</a></li>
+        <li><a href="#springboot上下文事件监听">SpringBoot上下文事件监听</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据库模块">数据库模块</a>
+      <ul>
+        <li><a href="#relation-database">Relation Database</a></li>
+        <li><a href="#no-relation-database">No Relation Database</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#sringboot2">SringBoot2</a>
+<ol>
+<li><a href="#%E4%BB%8E1%E8%BF%81%E7%A7%BB%E5%88%B02">从1迁移到2</a></li>
+<li><a href="#%E6%96%B0%E7%89%B9%E6%80%A7">新特性</a></li>
+<li><a href="#web%E6%A8%A1%E5%9D%97">Web模块</a>
+<ol>
+<li><a href="#web%E5%AE%B9%E5%99%A8">Web容器</a>
+<ol>
+<li><a href="#tomcat">Tomcat</a></li>
+<li><a href="#jetty">Jetty</a></li>
+</ol>
+</li>
+<li><a href="#%E8%B7%A8%E5%9F%9F">跨域</a></li>
+<li><a href="#springboot%E4%B8%8A%E4%B8%8B%E6%96%87%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC">SpringBoot上下文事件监听</a></li>
+</ol>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9D%97">数据库模块</a>
+<ol>
+<li><a href="#relation-database">Relation Database</a>
+<ol>
+<li><a href="#%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90">多数据源</a></li>
+</ol>
+</li>
+<li><a href="#no-relation-database">No Relation Database</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="sringboot2">SringBoot2</h1>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/htmlsingle/">官方文档</a></p>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/gradle-plugin/reference/html/">springboot gradle </a></p>
+</blockquote>
+<h2 id="从1迁移到2">从1迁移到2</h2>
+<blockquote>
+<p>变化比较大 <a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide">官方说明对比1所更改的文档</a></p>
+</blockquote>
+<p><a href="https://blog.csdn.net/freexyxyz/article/details/79003438">spring boot 2.0 半月的实战_阶段性总结1</a>
+<a href="https://blog.csdn.net/tianyaleixiaowu/article/details/78905149">SpringBoot2.0 jpa多数据源配置 </a>
+<a href="https://my.oschina.net/tangdu/blog/1625336">Springboot2.0 升级（Gradle工程) </a>
+<a href="https://my.oschina.net/go4it/blog/1623004">使用精简版jdk9在docker上运行springboot2 </a>
+<a href="http://www.54tianzhisheng.cn/2018/03/06/SpringBoot2-Migration-Guide/"> Spring Boot 2.0系列文章(一)：Spring Boot 2.0 迁移指南 </a></p>
+<h2 id="新特性">新特性</h2>
+<blockquote>
+<p><a href="http://www.54tianzhisheng.cn/2018/03/06/SpringBoot2-new-features/">Spring Boot 2.0系列文章(二)：Spring Boot 2.0 新特性详解 </a>
+<a href="https://mp.weixin.qq.com/s/EWmuzsgHueHcSB0WH-3AQw">参考: Spring Boot 2.0 新特性和发展方向 </a></p>
+</blockquote>
+<h2 id="web模块">Web模块</h2>
+<h3 id="web容器">Web容器</h3>
+<h4 id="tomcat">Tomcat</h4>
+<blockquote>
+<p>org.springframework.boot:spring-boot-starter-web 依赖中默认包含了Tomcat</p>
+</blockquote>
+<h4 id="jetty">Jetty</h4>
+<blockquote>
+<p><a href="https://howtodoinjava.com/spring/spring-boot/configure-jetty-server/">Spring Boot – Configure Jetty Server</a></p>
+</blockquote>
+<h3 id="跨域">跨域</h3>
+<blockquote>
+<p><a href="https://blog.csdn.net/kcp606/article/details/80036420">SpringBoot2的跨域配置</a>
+最终是采用的Nginx进行反向代理，将后台服务放在前台服务子路径下</p>
+</blockquote>
+<h3 id="springboot上下文事件监听">SpringBoot上下文事件监听</h3>
+<ul>
+<li>直接看 源码中 <code>ApplicationContextEvent</code> 类的 继承结构, 就能发现 有四个子类
+<ul>
+<li>ContextCloseEvent</li>
+<li>ContextRefreshEvent</li>
+<li>ContextStopEvent</li>
+<li>ContextStartEvent</li>
+</ul>
+</li>
+</ul>
+<p><em>在任意的Component中添加如下类似的方法就能监听到如上事件</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">   <span class="nd">@EventListener</span>
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleContextClosedEvent</span><span class="o">(</span><span class="n">ContextClosedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+       <span class="c1">// todo 
+</span><span class="c1"></span>   <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Listener</span> <span class="kd">implements</span> <span class="n">ApplicationListener</span> <span class="o">{</span>
+ <span class="nd">@Override</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onApplicationEvent</span><span class="o">(</span><span class="n">ApplicationEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+   <span class="c1">// 在这里可以监听到Spring Boot的生命周期
+</span><span class="c1"></span>   <span class="k">if</span> <span class="o">(</span><span class="n">event</span> <span class="k">instanceof</span> <span class="n">ContextRefreshedEvent</span><span class="o">)</span> <span class="o">{</span>
+     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;应用刷新&#34;</span><span class="o">);</span>
+   <span class="o">}</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">event</span> <span class="k">instanceof</span> <span class="n">ContextStartedEvent</span><span class="o">)</span> <span class="o">{</span>
+     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;应用启动&#34;</span><span class="o">);</span>
+
+   <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span> <span class="k">instanceof</span> <span class="n">ContextStoppedEvent</span><span class="o">)</span> <span class="o">{</span>
+     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;应用停止&#34;</span><span class="o">);</span>
+
+   <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span> <span class="k">instanceof</span> <span class="n">ContextClosedEvent</span><span class="o">)</span> <span class="o">{</span>
+     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;应用关闭&#34;</span><span class="o">);</span>
+   <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>但是只有应用刷新, 应用启动完成, 应用关闭是能够正常监听到的</li>
+</ul>
+<h2 id="数据库模块">数据库模块</h2>
+<h3 id="relation-database">Relation Database</h3>
+<h4 id="多数据源">多数据源</h4>
+<ul>
+<li><a href="https://my.oschina.net/chinesedragon/blog/1647846">参考: Spring Boot 2.0 多数据源编程 原</a> | <a href="https://gitee.com/shupengluo/SpringBoot2.0-MultiDataSource">源码</a></li>
+</ul>
+<h3 id="no-relation-database">No Relation Database</h3>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/springboot/">SpringBoot</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring/springbootdatabase/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SpringBoot数据库相关</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/spring/springboot/">
+            <span class="next-text nav-default">SpringBoot</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

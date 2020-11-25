@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring容器扩展点之BeanFactoryPostProcessor.md - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Spring容器扩展点之BeanFactoryPostProcessor 目录 end|2020-04-27 23:42| Spring容器扩展点之BeanFactoryPost" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/spring%E5%AE%B9%E5%99%A8%E6%89%A9%E5%B1%95%E7%82%B9%E4%B9%8Bbeanfactorypostprocessor/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring容器扩展点之BeanFactoryPostProcessor.md" />
+<meta property="og:description" content="目录 start Spring容器扩展点之BeanFactoryPostProcessor 目录 end|2020-04-27 23:42| Spring容器扩展点之BeanFactoryPost" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/spring%E5%AE%B9%E5%99%A8%E6%89%A9%E5%B1%95%E7%82%B9%E4%B9%8Bbeanfactorypostprocessor/" />
+<meta property="article:published_time" content="2019-10-19T17:04:25+00:00" />
+<meta property="article:modified_time" content="2019-10-19T17:04:25+00:00" />
+<meta itemprop="name" content="Spring容器扩展点之BeanFactoryPostProcessor.md">
+<meta itemprop="description" content="目录 start Spring容器扩展点之BeanFactoryPostProcessor 目录 end|2020-04-27 23:42| Spring容器扩展点之BeanFactoryPost">
+<meta itemprop="datePublished" content="2019-10-19T17:04:25+00:00" />
+<meta itemprop="dateModified" content="2019-10-19T17:04:25+00:00" />
+<meta itemprop="wordCount" content="1100">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring容器扩展点之BeanFactoryPostProcessor.md"/>
+<meta name="twitter:description" content="目录 start Spring容器扩展点之BeanFactoryPostProcessor 目录 end|2020-04-27 23:42| Spring容器扩展点之BeanFactoryPost"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Spring容器扩展点之BeanFactoryPostProcessor.md</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-19 </span>
+        
+          <span class="more-meta"> 1100 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#spring%E5%AE%B9%E5%99%A8%E6%89%A9%E5%B1%95%E7%82%B9%E4%B9%8Bbeanfactorypostprocessor">Spring容器扩展点之BeanFactoryPostProcessor</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="spring容器扩展点之beanfactorypostprocessor">Spring容器扩展点之BeanFactoryPostProcessor</h1>
+<p><code>BeanFactoryPostProcessor</code>?怎么命名与前面讲过<a href="https://github.com/dragonhht/Notes/blob/master/Java/Spring%E5%AE%B9%E5%99%A8%E6%89%A9%E5%B1%95%E7%82%B9%E4%B9%8BBeanPostProcessor.md">BeanPostProcessor</a>那么像呢?<br>
+没错，他们都是Spring用于初始化Bean的扩展点，但他们的触发时间可是完全不一样的哦。<code>BeanFactoryPostProcessor</code>的执行时间是在Spring容器对bean进行实例化之前，而<code>BeanPostProcessor</code>的时间则是在Spring容器对bean进行实例化之后。<br>
+<code>BeanFactoryPostProcessor</code>允许对bean的定义(配置的元数据)进行修改。例如我们常见的下列配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;!--加载配置文件--&gt;
+&lt;context:property-placeholder        location=&#34;classpath:jdbc.properties&#34;/&gt;
+
+&lt;!--配置c3p0连接池--&gt;
+&lt;bean id=&#34;dataSource&#34; class=&#34;com.mchange.v2.c3p0.ComboPooledDataSource&#34;&gt;
+    &lt;property name=&#34;driverClass&#34; value=&#34;${jdbc.driver}&#34;/&gt;
+    &lt;property name=&#34;jdbcUrl&#34; value=&#34;${jdbc.url}&#34;/&gt;
+    &lt;property name=&#34;user&#34; value=&#34;${jdbc.user}&#34;/&gt;
+    &lt;property name=&#34;password&#34; value=&#34;${jdbc.password}&#34;/&gt;
+&lt;/bean&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>在以上对于数据库的配置中，我们引用了配置文件<code>jdbc.properties</code>中的值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">jdbc.driver = com.mysql.jdbc.Driver
+jdbc.url = jdbc:mysql:///BookManager
+jdbc.user = root
+jdbc.password =123
+</code></pre></td></tr></table>
+</div>
+</div><p>那么问题来了，在Spring将bean实例化时是如何将配置元数据中的<code>${jdbc.driver}</code>替换成真实的<code>com.mysql.jdbc.Driver</code>的呢？这便就是<code>BeanFactoryPostProcessor</code>在Spring容器中的最典型的使用场景之一。该处理的实现类为<code>PropertyPlaceholderConfigurer</code>，它实现了接口<code>BeanFactoryPostProcessor</code>中的<code>postProcessBeanFactory</code>方法，负责在bean实例化之前将配置元数据中的如同<code>${jdbc.driver}</code>的配置替换为它真实的值，然后Spring便就可以正常的实例化了。</p>
+<ul>
+<li>在<code>PropertyPlaceholderConfigurer</code>中<code>postProcessBeanFactory</code>方法的实现如下：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">    * {@linkplain #mergeProperties Merge}, {@linkplain #convertProperties convert} and
+</span><span class="cm">    * {@linkplain #processProperties process} properties against the given bean factory.
+</span><span class="cm">    * @throws BeanInitializationException if any properties cannot be loaded
+</span><span class="cm">    */</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">postProcessBeanFactory</span><span class="o">(</span><span class="n">ConfigurableListableBeanFactory</span> <span class="n">beanFactory</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">BeansException</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">// 读取配置中配置的properties文件
+</span><span class="c1"></span>        <span class="n">Properties</span> <span class="n">mergedProps</span> <span class="o">=</span> <span class="n">mergeProperties</span><span class="o">();</span>
+
+        <span class="c1">// Convert the merged properties, if necessary.
+</span><span class="c1"></span>        <span class="n">convertProperties</span><span class="o">(</span><span class="n">mergedProps</span><span class="o">);</span>
+
+        <span class="c1">// Let the subclass process the properties.
+</span><span class="c1"></span>        <span class="n">processProperties</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">,</span> <span class="n">mergedProps</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">BeanInitializationException</span><span class="o">(</span><span class="s">&#34;Could not load properties&#34;</span><span class="o">,</span> <span class="n">ex</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>其中<code>processProperties</code>方法在<code>PropertyPlaceholderConfigurer</code>中的实现为</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">    * Visit each bean definition in the given bean factory and attempt to replace ${...} property
+</span><span class="cm">    * placeholders with values from the given properties.
+</span><span class="cm">    */</span>
+<span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">processProperties</span><span class="o">(</span><span class="n">ConfigurableListableBeanFactory</span> <span class="n">beanFactoryToProcess</span><span class="o">,</span> <span class="n">Properties</span> <span class="n">props</span><span class="o">)</span>
+        <span class="kd">throws</span> <span class="n">BeansException</span> <span class="o">{</span>
+
+    <span class="n">StringValueResolver</span> <span class="n">valueResolver</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PlaceholderResolvingStringValueResolver</span><span class="o">(</span><span class="n">props</span><span class="o">);</span>
+    <span class="n">doProcessProperties</span><span class="o">(</span><span class="n">beanFactoryToProcess</span><span class="o">,</span> <span class="n">valueResolver</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>好了，如果有兴趣的同学可以去仔细看看源码哦，这里只是简单的阐述下<code>BeanFactoryPostProcessor</code>的使用场景</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-10-19
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring/spring%E5%AE%B9%E5%99%A8%E6%89%A9%E5%B1%95%E7%82%B9%E4%B9%8Baware%E6%8E%A5%E5%8F%A3/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Spring容器扩展点之Aware接口.md</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/spring/spring%E5%AE%B9%E5%99%A8%E6%89%A9%E5%B1%95%E7%82%B9%E4%B9%8Bbeanpostprocessor/">
+            <span class="next-text nav-default">Spring容器扩展点之BeanPostProcessor.md</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

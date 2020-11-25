@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>开发中的团队协作 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 协作 代码规范 Code Review 目录 end|2020-04-27 23:42| 协作 代码规范 Google Guide| FaceBook Guide | 阿里巴巴Java开发手册 | Twitter Java Style Guide Code Review 知乎: 大家的公司的 Code Review 都是怎么做的？遇到过哪些问题" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/work/cooperation/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="开发中的团队协作" />
+<meta property="og:description" content="目录 start 协作 代码规范 Code Review 目录 end|2020-04-27 23:42| 协作 代码规范 Google Guide| FaceBook Guide | 阿里巴巴Java开发手册 | Twitter Java Style Guide Code Review 知乎: 大家的公司的 Code Review 都是怎么做的？遇到过哪些问题" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/work/cooperation/" />
+<meta property="article:published_time" content="2019-01-27T23:37:38+00:00" />
+<meta property="article:modified_time" content="2019-01-27T23:37:38+00:00" />
+<meta itemprop="name" content="开发中的团队协作">
+<meta itemprop="description" content="目录 start 协作 代码规范 Code Review 目录 end|2020-04-27 23:42| 协作 代码规范 Google Guide| FaceBook Guide | 阿里巴巴Java开发手册 | Twitter Java Style Guide Code Review 知乎: 大家的公司的 Code Review 都是怎么做的？遇到过哪些问题">
+<meta itemprop="datePublished" content="2019-01-27T23:37:38+00:00" />
+<meta itemprop="dateModified" content="2019-01-27T23:37:38+00:00" />
+<meta itemprop="wordCount" content="1491">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="开发中的团队协作"/>
+<meta name="twitter:description" content="目录 start 协作 代码规范 Code Review 目录 end|2020-04-27 23:42| 协作 代码规范 Google Guide| FaceBook Guide | 阿里巴巴Java开发手册 | Twitter Java Style Guide Code Review 知乎: 大家的公司的 Code Review 都是怎么做的？遇到过哪些问题"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">开发中的团队协作</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-27 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%9B%A2%E9%98%9F/"> 团队 </a>
+            </div>
+          <span class="more-meta"> 1491 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#代码规范">代码规范</a></li>
+    <li><a href="#code-review">Code Review</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E5%8D%8F%E4%BD%9C">协作</a>
+<ol>
+<li><a href="#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83">代码规范</a></li>
+<li><a href="#code-review">Code Review</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="协作">协作</h1>
+<h2 id="代码规范">代码规范</h2>
+<blockquote>
+<p><a href="https://google.github.io/styleguide/javaguide.html">Google Guide</a>| <a href="https://github.com/facebook/jcommon/wiki/Coding-Standards">FaceBook Guide</a> | <a href="https://github.com/alibaba/p3c">阿里巴巴Java开发手册</a> | <a href="https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md">Twitter Java Style Guide</a></p>
+</blockquote>
+<h2 id="code-review">Code Review</h2>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/41089988/">知乎: 大家的公司的 Code Review 都是怎么做的？遇到过哪些问题？</a></p>
+</blockquote>
+<blockquote>
+<p>相关工具</p>
+</blockquote>
+<ul>
+<li>Crucible Atlassian 内部使用</li>
+<li>Gerrit Google 开源</li>
+<li>PullRequest, LGTM, Reviewable, Sider : Github体系基于PullRequest模型</li>
+<li>Phabricator Facebook 开源的</li>
+<li><a href="https://www.jetbrains.com/upsource/download/#section=docker">Upsource</a><code>JetBrain</code></li>
+</ul>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU4NzU0MDIzOQ==&amp;mid=2247489170&amp;idx=1&amp;sn=e47dcf2227517172ff97105e8a0543d0&amp;chksm=fdeb24f2ca9cade4985b11abd05d4c8e2fdf2cf9b5a73dbe27d320a036d684563679e8d5c565&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1586018672545&amp;sharer_shareid=246c4b52c1cb45eaa580c985c95107f3#rd">Code Review 是一场苦涩但有意思的修行</a></p>
+</blockquote>
+<ul>
+<li>
+<p>代码是讲道理的</p>
+<ul>
+<li>优秀的代码，就是在小流量、单线程没有问题，在高流量、高并发时还是没有问题，你的限流，你的容灾，你的降级各种导弹防御系统一样自动打开并正确地发挥价值。很多人的思维觉得，代码只要在场景和逻辑上没有问题就行，那是因为夜路走得不够多，还没有碰到鬼。</li>
+</ul>
+</li>
+<li>
+<p>每一行代码的存在是有意义的</p>
+<ul>
+<li>更加严格地说，每一个字符的存在都应该是有意义的。如果某行代码的存在完全是可有可无的，这个时候，我们考虑过 JVM 的感受吗？凭白无故地要编译这些字节码，然后栈进栈出的忙活一阵子，然后告诉它，你的劳动是没有任何价值的。</li>
+</ul>
+</li>
+<li>
+<p>多个 return 的语句，概率高的一定先进行判定</p>
+<ul>
+<li>if(condition1) return; if(condition2) return; if(condition3) return ;</li>
+<li>那么需要评估一下 condition1/2/3 出现概率的大小，概念大的在最前边，尽可能快地进行 return ，不需要进行后续无谓的匹配。</li>
+</ul>
+</li>
+<li>
+<p>我们比拼的不是代码行数</p>
+<ul>
+<li>如果在同样的效果上， 3 行代码能够实现功能的价值，就不应该用 4 行来实现。我们经常说晒出代码行数，并非是单纯地鼓励代码行数多，而是提倡大家去写代码，写优质的代码，优质的代码一定是少即是多的原则。</li>
+</ul>
+</li>
+<li>
+<p>用户视角的成功与失败</p>
+<ul>
+<li>后台调用服务失败，就应该明确告诉前台，服务出错了，这个用户有没有数据。</li>
+<li>系统出错的信息给用户看，合适吗？不合适。前后端的用户交界面上，往往飞着两类信息：错误码、错误信息。这样够了吗？
+<ul>
+<li>用户提示需要额外地再给出来，往往根据不同的错误码，有不同的用户提示，可能是一个多对多的关系。</li>
+<li>多个错误码，提示给用户的信息：请输入必填项。多个用户信息，可能也对应一个错误码。一般来说后台承包这三者的联动关系， json 串推送给前端时，前端拿来主义即可。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>有重复使用的量一定要找个地方集中隔离</p>
+<ul>
+<li>不管是变量，还是常量，工具类，如果是多个地方同时用到，那么如果硬编码在代码或者沉淀在包里，未来一定是一个灾难。</li>
+</ul>
+</li>
+<li>
+<p>单测没必要代码 Code Review ?</p>
+<ul>
+<li>单测是否需要 MOCK ，是否进行边界值测试，是否用例覆盖到业务场景，这都也是 CR 的一部分。单测写得好， BUG 肯定少。</li>
+</ul>
+</li>
+<li>
+<p>良好的日志和异常机制，是不应该出现调试的。</p>
+<ul>
+<li>打日志和抛异常，一定要把上下文给出来，否则，等于在毁灭命案现场，把后边处理问题的人，往歪路上带。</li>
+<li>别人传一个参数进来，发现是 null ，立马抛出来一个参数异常提示，然后也不返回哪一个参数是 null ，这在调用参数很多的情况下，简直就是字谜游戏一样。</li>
+<li>到底是抛异常，还是抛错误码？我不管抛什么，反正错了什么东西，都应该透明出来。到底是抛受检异常，还是非受检异常，我只想说，没有充足的理由，不要乱抛受检异常。异常抛出时，一定要自己消化干净，告诉别人说我的方法签名抛的是 AbcException ，实际运行中，代码某个地方直接抛出 EfgException ，这也是不负责任的。</li>
+</ul>
+</li>
+<li>
+<p>吝啬空行</p>
+<ul>
+<li>感觉空行是廉价的，到处乱扔是一种；另一种是感觉空行是昂贵的，舍不得用，这种情况更多见。50 行代码没有一个空行，就像英语 50 句话，没有任何标点符号一样。既然标点符号起到隔断和语义区分作用，我们的空行不是同一个道理吗？</li>
+<li>在以下情形：
+<ol>
+<li>在方法的 return、break、continue、这样断开性语句后必须是空行。</li>
+<li>在不同语义块之间。</li>
+<li>循环之前和之后一般有空行。另外，方法和类定义下方就不需要空行了吧。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>命名太随意</p>
+<ul>
+<li>英语不好的同学，要么用错英文单词，要么翻词典，整出一个专八的词汇，任何人都不认得这个单词，在 CR 时，还需要打开在线翻译时的命名，绝对不是好命名。 当然如果在线翻译都翻不出来的时候，那更头疼。如果表意错误，那更要命。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-01-27
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/blog/use-maven-create-web-project/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用maven新建Java Web3.0项目</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/javaproxy/">
+            <span class="next-text nav-default">Java中的代理</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

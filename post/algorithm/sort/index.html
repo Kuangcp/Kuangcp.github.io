@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>常见排序算法 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 排序算法 冒泡 插入 选择 归并 希尔 快速 基数 堆 Tim 目录 end|2020-04-27 23:42| 排序算法 Github： Java 实现 | Python 实现 参考: 十大经典排序算法 Github: 十大经典排序算法 排序算法 平" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/algorithm/sort/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="常见排序算法" />
+<meta property="og:description" content="目录 start 排序算法 冒泡 插入 选择 归并 希尔 快速 基数 堆 Tim 目录 end|2020-04-27 23:42| 排序算法 Github： Java 实现 | Python 实现 参考: 十大经典排序算法 Github: 十大经典排序算法 排序算法 平" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/algorithm/sort/" />
+<meta property="article:published_time" content="2019-05-02T00:47:43+00:00" />
+<meta property="article:modified_time" content="2019-05-02T00:47:43+00:00" />
+<meta itemprop="name" content="常见排序算法">
+<meta itemprop="description" content="目录 start 排序算法 冒泡 插入 选择 归并 希尔 快速 基数 堆 Tim 目录 end|2020-04-27 23:42| 排序算法 Github： Java 实现 | Python 实现 参考: 十大经典排序算法 Github: 十大经典排序算法 排序算法 平">
+<meta itemprop="datePublished" content="2019-05-02T00:47:43+00:00" />
+<meta itemprop="dateModified" content="2019-05-02T00:47:43+00:00" />
+<meta itemprop="wordCount" content="907">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="常见排序算法"/>
+<meta name="twitter:description" content="目录 start 排序算法 冒泡 插入 选择 归并 希尔 快速 基数 堆 Tim 目录 end|2020-04-27 23:42| 排序算法 Github： Java 实现 | Python 实现 参考: 十大经典排序算法 Github: 十大经典排序算法 排序算法 平"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">常见排序算法</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-05-02 </span>
+        
+          <span class="more-meta"> 907 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#冒泡">冒泡</a></li>
+    <li><a href="#插入">插入</a></li>
+    <li><a href="#选择">选择</a></li>
+    <li><a href="#归并">归并</a></li>
+    <li><a href="#希尔">希尔</a></li>
+    <li><a href="#快速">快速</a></li>
+    <li><a href="#基数">基数</a></li>
+    <li><a href="#堆">堆</a></li>
+    <li><a href="#tim">Tim</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">排序算法</a>
+<ol>
+<li><a href="#%E5%86%92%E6%B3%A1">冒泡</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5">插入</a></li>
+<li><a href="#%E9%80%89%E6%8B%A9">选择</a></li>
+<li><a href="#%E5%BD%92%E5%B9%B6">归并</a></li>
+<li><a href="#%E5%B8%8C%E5%B0%94">希尔</a></li>
+<li><a href="#%E5%BF%AB%E9%80%9F">快速</a></li>
+<li><a href="#%E5%9F%BA%E6%95%B0">基数</a></li>
+<li><a href="#%E5%A0%86">堆</a></li>
+<li><a href="#tim">Tim</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="排序算法">排序算法</h1>
+<blockquote>
+<p>Github： <a href="https://github.com/Kuangcp/JavaBase/tree/algorithms/src/main/java/com/github/kuangcp/sort">Java 实现</a> | <a href="https://github.com/Kuangcp/PythonLearn/tree/master/algorithm/sort">Python 实现</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.runoob.com/w3cnote/ten-sorting-algorithm.html">参考: 十大经典排序算法</a><br>
+<a href="https://github.com/hustcc/JS-Sorting-Algorithm">Github: 十大经典排序算法</a></p>
+</blockquote>
+<hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">排序算法</th>
+<th style="text-align:left">平均时间复杂度</th>
+<th style="text-align:left">最好情况</th>
+<th style="text-align:left">最坏情况</th>
+<th style="text-align:left">空间复杂度</th>
+<th style="text-align:left">排序方式</th>
+<th style="text-align:center">稳定性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">冒泡</td>
+<td style="text-align:left">n^2</td>
+<td style="text-align:left">n</td>
+<td style="text-align:left">n^2</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">In</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:left">插入</td>
+<td style="text-align:left">n^2</td>
+<td style="text-align:left">n</td>
+<td style="text-align:left">n^2</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">In</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:left">选择</td>
+<td style="text-align:left">n^2</td>
+<td style="text-align:left">n^2</td>
+<td style="text-align:left">n^2</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">In</td>
+<td style="text-align:center">\</td>
+</tr>
+<tr>
+<td style="text-align:left">希尔</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">In</td>
+<td style="text-align:center">\</td>
+</tr>
+<tr>
+<td style="text-align:left">归并</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">n</td>
+<td style="text-align:left">Out</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:left">快速</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">n^2</td>
+<td style="text-align:left">log n</td>
+<td style="text-align:left">In</td>
+<td style="text-align:center">\</td>
+</tr>
+<tr>
+<td style="text-align:left">堆</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">n log n</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">In</td>
+<td style="text-align:center">\</td>
+</tr>
+<tr>
+<td style="text-align:left">计数</td>
+<td style="text-align:left">n + k</td>
+<td style="text-align:left">n + k</td>
+<td style="text-align:left">n + k</td>
+<td style="text-align:left">k</td>
+<td style="text-align:left">Out</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:left">桶</td>
+<td style="text-align:left">n + k</td>
+<td style="text-align:left">n + k</td>
+<td style="text-align:left">n^2</td>
+<td style="text-align:left">n + k</td>
+<td style="text-align:left">Out</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:left">基数</td>
+<td style="text-align:left">n * k</td>
+<td style="text-align:left">n * k</td>
+<td style="text-align:left">n * k</td>
+<td style="text-align:left">n + k</td>
+<td style="text-align:left">Out</td>
+<td style="text-align:center">稳定</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>n：数据规模</li>
+<li>k：&ldquo;桶&quot;的个数</li>
+<li>In-place：占用常数内存，不占用额外内存</li>
+<li>Out-place：占用额外内存</li>
+<li>稳定性：排序后 2 个相等键值的顺序和排序之前它们的顺序相同</li>
+</ul>
+<hr>
+<h2 id="冒泡">冒泡</h2>
+<blockquote>
+<p>步骤</p>
+</blockquote>
+<ol>
+<li>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</li>
+<li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。
+<ul>
+<li>这步做完后，最后的元素会是最大的数。</li>
+</ul>
+</li>
+<li>针对所有的元素重复以上的步骤，除了最后一个。</li>
+<li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
+</ol>
+<blockquote>
+<p>优缺点</p>
+</blockquote>
+<ol>
+<li>优点：实现简单</li>
+<li>缺点：性能略差</li>
+</ol>
+<blockquote>
+<p>极端情况</p>
+</blockquote>
+<ol>
+<li>最好：数据已经有序</li>
+<li>最坏：数据全反序</li>
+</ol>
+<blockquote>
+<p>优化策略</p>
+</blockquote>
+<ol>
+<li>在每次遍历的时候加上一个检查， 判断是否已经有序，有序就直接退出排序</li>
+</ol>
+<h2 id="插入">插入</h2>
+<blockquote>
+<p>步骤</p>
+</blockquote>
+<ol>
+<li>首先将第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列。
+<ul>
+<li>随着算法执行有序序列逐渐替换掉未排序序列</li>
+</ul>
+</li>
+<li>从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置，实现无序向有序的转换
+<ul>
+<li>如果待插入的元素与有序序列中的某个元素相等，则将待插入元素插入到相等元素的后面。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>优缺点</p>
+</blockquote>
+<ol>
+<li>优点：实现简单</li>
+<li>缺点：性能略差</li>
+</ol>
+<blockquote>
+<p>极端情况</p>
+</blockquote>
+<ol>
+<li>最好：数据已经有序</li>
+<li>最坏：数据全反序</li>
+</ol>
+<blockquote>
+<p>优化算法</p>
+</blockquote>
+<ol>
+<li>拆半插入</li>
+</ol>
+<h2 id="选择">选择</h2>
+<blockquote>
+<p>步骤</p>
+</blockquote>
+<blockquote>
+<p>优缺点</p>
+</blockquote>
+<ol>
+<li>优点：</li>
+<li>缺点：</li>
+</ol>
+<blockquote>
+<p>极端情况</p>
+</blockquote>
+<ol>
+<li>最好：</li>
+<li>最坏：</li>
+</ol>
+<blockquote>
+<p>优化算法</p>
+</blockquote>
+<h2 id="归并">归并</h2>
+<blockquote>
+<p>步骤</p>
+</blockquote>
+<blockquote>
+<p>优缺点</p>
+</blockquote>
+<ol>
+<li>优点：</li>
+<li>缺点：</li>
+</ol>
+<blockquote>
+<p>极端情况</p>
+</blockquote>
+<ol>
+<li>最好：</li>
+<li>最坏：</li>
+</ol>
+<blockquote>
+<p>优化算法</p>
+</blockquote>
+<h2 id="希尔">希尔</h2>
+<blockquote>
+<p>步骤</p>
+</blockquote>
+<blockquote>
+<p>优缺点</p>
+</blockquote>
+<ol>
+<li>优点：</li>
+<li>缺点：</li>
+</ol>
+<blockquote>
+<p>极端情况</p>
+</blockquote>
+<ol>
+<li>最好：</li>
+<li>最坏：</li>
+</ol>
+<blockquote>
+<p>优化算法</p>
+</blockquote>
+<h2 id="快速">快速</h2>
+<blockquote>
+<p>步骤</p>
+</blockquote>
+<blockquote>
+<p>优缺点</p>
+</blockquote>
+<ol>
+<li>优点：</li>
+<li>缺点：</li>
+</ol>
+<blockquote>
+<p>极端情况</p>
+</blockquote>
+<ol>
+<li>最好：</li>
+<li>最坏：</li>
+</ol>
+<blockquote>
+<p>优化算法</p>
+</blockquote>
+<h2 id="基数">基数</h2>
+<blockquote>
+<p>步骤</p>
+</blockquote>
+<blockquote>
+<p>优缺点</p>
+</blockquote>
+<ol>
+<li>优点：</li>
+<li>缺点：</li>
+</ol>
+<blockquote>
+<p>极端情况</p>
+</blockquote>
+<ol>
+<li>最好：</li>
+<li>最坏：</li>
+</ol>
+<blockquote>
+<p>优化算法</p>
+</blockquote>
+<h2 id="堆">堆</h2>
+<blockquote>
+<p>步骤</p>
+</blockquote>
+<blockquote>
+<p>优缺点</p>
+</blockquote>
+<ol>
+<li>优点：</li>
+<li>缺点：</li>
+</ol>
+<blockquote>
+<p>极端情况</p>
+</blockquote>
+<ol>
+<li>最好：</li>
+<li>最坏：</li>
+</ol>
+<blockquote>
+<p>优化算法</p>
+</blockquote>
+<h2 id="tim">Tim</h2>
+<blockquote>
+<p>步骤</p>
+</blockquote>
+<blockquote>
+<p>优缺点</p>
+</blockquote>
+<ol>
+<li>优点：</li>
+<li>缺点：</li>
+</ol>
+<blockquote>
+<p>极端情况</p>
+</blockquote>
+<ol>
+<li>最好：</li>
+<li>最坏：</li>
+</ol>
+<blockquote>
+<p>优化算法</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-05-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/ecosystem/dubbo/dubbo/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Dubbo</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/skills/document/uml/">
+            <span class="next-text nav-default">UML</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SpringSecurity - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start SpringSecurity 配置 配置静态口令使用 使用该配置即可自定义用户名密码 SpringBoot的集成Demo 创建单用户单角色的安全控制 多用户多角色的实现思路" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/springsecurity/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SpringSecurity" />
+<meta property="og:description" content="目录 start SpringSecurity 配置 配置静态口令使用 使用该配置即可自定义用户名密码 SpringBoot的集成Demo 创建单用户单角色的安全控制 多用户多角色的实现思路" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/springsecurity/" />
+<meta property="article:published_time" content="2018-12-21T10:53:23+00:00" />
+<meta property="article:modified_time" content="2018-12-21T10:53:23+00:00" />
+<meta itemprop="name" content="SpringSecurity">
+<meta itemprop="description" content="目录 start SpringSecurity 配置 配置静态口令使用 使用该配置即可自定义用户名密码 SpringBoot的集成Demo 创建单用户单角色的安全控制 多用户多角色的实现思路">
+<meta itemprop="datePublished" content="2018-12-21T10:53:23+00:00" />
+<meta itemprop="dateModified" content="2018-12-21T10:53:23+00:00" />
+<meta itemprop="wordCount" content="2166">
+
+
+
+<meta itemprop="keywords" content="Spring," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SpringSecurity"/>
+<meta name="twitter:description" content="目录 start SpringSecurity 配置 配置静态口令使用 使用该配置即可自定义用户名密码 SpringBoot的集成Demo 创建单用户单角色的安全控制 多用户多角色的实现思路"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SpringSecurity</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 2166 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#配置">配置</a>
+      <ul>
+        <li><a href="#配置静态口令使用">配置静态口令使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#springboot的集成demo">SpringBoot的集成Demo</a>
+      <ul>
+        <li><a href="#创建单用户单角色的安全控制">创建单用户单角色的安全控制</a></li>
+        <li><a href="#多用户多角色的实现思路">多用户多角色的实现思路</a></li>
+      </ul>
+    </li>
+    <li><a href="#jwt-和-spring">JWT 和 Spring</a>
+      <ul>
+        <li><a href="#跨域问题">跨域问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#oauth">Oauth</a></li>
+    <li><a href="#实现细节">实现细节</a>
+      <ul>
+        <li><a href="#关于注解的几种使用方式">关于注解的几种使用方式</a></li>
+        <li><a href="#保护方法应用">保护方法应用</a></li>
+      </ul>
+    </li>
+    <li><a href="#社交登录">社交登录</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#springsecurity">SpringSecurity</a>
+<ol>
+<li><a href="#%E9%85%8D%E7%BD%AE">配置</a>
+<ol>
+<li><a href="#%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81%E5%8F%A3%E4%BB%A4%E4%BD%BF%E7%94%A8">配置静态口令使用</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E8%AF%A5%E9%85%8D%E7%BD%AE%E5%8D%B3%E5%8F%AF%E8%87%AA%E5%AE%9A%E4%B9%89%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81">使用该配置即可自定义用户名密码</a>
+<ol>
+<li><a href="#springboot%E7%9A%84%E9%9B%86%E6%88%90demo">SpringBoot的集成Demo</a>
+<ol>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%8D%95%E7%94%A8%E6%88%B7%E5%8D%95%E8%A7%92%E8%89%B2%E7%9A%84%E5%AE%89%E5%85%A8%E6%8E%A7%E5%88%B6">创建单用户单角色的安全控制</a></li>
+<li><a href="#%E5%A4%9A%E7%94%A8%E6%88%B7%E5%A4%9A%E8%A7%92%E8%89%B2%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF">多用户多角色的实现思路</a>
+<ol>
+<li><a href="#%E6%AF%8F%E4%B8%AA%E8%BA%AB%E4%BB%BD%E9%83%BD%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E5%AE%9E%E4%BD%93%E7%B1%BB">每个身份都使用一个登录实体类</a></li>
+<li><a href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E6%80%9D%E8%B7%AF">另一种思路：</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#jwt-%E5%92%8C-spring">JWT 和 Spring</a>
+<ol>
+<li><a href="#%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98">跨域问题</a></li>
+</ol>
+</li>
+<li><a href="#oauth">Oauth</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82">实现细节</a>
+<ol>
+<li><a href="#%E5%85%B3%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%87%A0%E7%A7%8D%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F">关于注解的几种使用方式</a>
+<ol>
+<li><a href="#@secured">@Secured</a></li>
+<li><a href="#@rolesallowed">@RolesAllowed</a></li>
+<li><a href="#springsecurity30-%E5%BC%80%E5%A7%8B%E6%8F%90%E4%BE%9B%E4%BA%86-spel%E8%A1%A8%E8%BE%BE%E5%BC%8F">SpringSecurity3.0 开始提供了 SpEL表达式</a></li>
+</ol>
+</li>
+<li><a href="#%E4%BF%9D%E6%8A%A4%E6%96%B9%E6%B3%95%E5%BA%94%E7%94%A8">保护方法应用</a></li>
+</ol>
+</li>
+<li><a href="#%E7%A4%BE%E4%BA%A4%E7%99%BB%E5%BD%95">社交登录</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-11-09 22:52</em>|</p>
+<hr>
+<h1 id="springsecurity">SpringSecurity</h1>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-security/site/docs/5.0.6.RELEASE/reference/htmlsingle">Spring Security 5.0.6 doc</a></p>
+</blockquote>
+<p><a href="http://www.spring4all.com/article/428">参考: Spring Security 入门系列</a></p>
+<h2 id="配置">配置</h2>
+<h3 id="配置静态口令使用">配置静态口令使用</h3>
+<p>当添加了Security依赖之后, 只会生成一个默认的随机密码, 如下简单配置:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="c1"># 使用该配置即可自定义用户名密码</span>
+<span class="na">spring.security.user.name</span><span class="o">=</span><span class="s">admin</span>
+<span class="na">spring.security.user.password</span><span class="o">=</span><span class="s">secret</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果要用 curl 访问则是 <code>curl -i  -u admin:secret  http://tomcat.kcp/hi</code></p>
+<blockquote>
+<p>注意 : 前提是要关闭 crsf 校验</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@EnableWebSecurity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebSecurityConfig</span> <span class="kd">extends</span> <span class="n">WebSecurityConfigurerAdapter</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">http</span><span class="o">.</span><span class="na">csrf</span><span class="o">().</span><span class="na">disable</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="springboot的集成demo">SpringBoot的集成Demo</h2>
+<h3 id="创建单用户单角色的安全控制">创建单用户单角色的安全控制</h3>
+<ol>
+<li>Gradle : <code>compile('org.springframework.boot:spring-boot-starter-security')</code></li>
+<li><a href="https://gitee.com/kcp1104/codes/n2berl0tfg8wq9s4ko7xa78#SecurityConfig.java">Security主要配置类</a></li>
+<li><a href="https://gitee.com/kcp1104/codes/n2berl0tfg8wq9s4ko7xa78#Reader.java">登录实体类</a></li>
+<li>Jpa实现的Dao层 <code>public interface ReaderRepository extends JpaRepository&lt;Reader, String&gt; {}</code></li>
+</ol>
+<hr>
+<h3 id="多用户多角色的实现思路">多用户多角色的实现思路</h3>
+<ul>
+<li>
+<p>使用多个实体类（实现了UserDetails接口），一个权限类，再一个多对多连接，就得到了多用户，多权限的控制</p>
+<ul>
+<li>在页面上加上角色的判断来控制数据显示，业务操作等功能</li>
+</ul>
+</li>
+<li>
+<p>根据书上案例代码，可以得出结论，用户表，角色表，用户角色关联表，用户表是可以多张的，角色公用一张即可，然后关联表也对应的多张，就能实现具体的业务需求</p>
+<ul>
+<li>例如：一个网上在线阅读书城，作家和读者以及编辑，网站后台管理员等角色的不同权限对应的页面甚至页面上细分的各个模块</li>
+<li><code>Author</code> <code>Admin</code> <code>Reader</code> 三个类</li>
+</ul>
+</li>
+<li>
+<p><code>继承了UserDetails接口的实体类的配置</code> <a href="https://gitee.com/kcp1104/codes/n2berl0tfg8wq9s4ko7xa78#Readers.java">代码片段</a></p>
+</li>
+</ul>
+<h4 id="每个身份都使用一个登录实体类">每个身份都使用一个登录实体类</h4>
+<ul>
+<li>然后使用不同的dao层查询，显然的实体类登录查询的效率及其低且不易扩展</li>
+<li>设置好<code>spirng.jpa.hibernate.ddl-auto=update</code></li>
+<li>第一次运行还会有没有实体对应的表这样的提示,说明了他正在根据多对多映射创建实体表，也体现了这个多种用户模式下需要实体等量的连接表</li>
+<li>所以这个是要查询多张表了
+<ul>
+<li>（除非UserDetailService接口的loadUserByUsername能收到表类别的参数）</li>
+<li>也可以考虑使用一个字符串，然后用<code>特殊字符</code>把类型放进去，然后正则取出来</li>
+<li>登录页面就需要自定义一个函数进行拼接（或者使用校验来拼接？）</li>
+</ul>
+</li>
+</ul>
+<h4 id="另一种思路">另一种思路：</h4>
+<ul>
+<li>使用一个登录用户表（序列id，用户名，密码，用户编码（对应多张表））
+<ul>
+<li>角色表（序列id，用户编码，角色）</li>
+<li>这样的话扩展就只要加表，使用同一个主键生成策略就可以了</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>思考：</li>
+<li>其实这个安全框架使用的是角色控制，而不是权限控制，目前的了解，达不到Oracle那样的权限加角色的精细化控制</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="jwt-和-spring">JWT 和 Spring</h2>
+<blockquote>
+<p><a href="/Skills/Base/WebSecurity.md#jwt">JWT相关原理</a> | <a href="https://github.com/Kuangcp/SpringBoot2-Security-Jwt">Github SpringBoot2使用Security整合Jwt案例项目</a></p>
+</blockquote>
+<ul>
+<li><a href="https://gitee.com/kcp1104/codes/kw31qf40iz9p8mt2x7bcd49">个人代码片段</a>  |</li>
+</ul>
+<blockquote>
+<p><a href="http://www.saily.top/2016/12/08/spring-boot-jwt/">集成JWT到Spring Boot项目</a> | <a href="https://segmentfault.com/a/1190000009231329">使用JWT保护你的Spring Boot应用</a>
+<a href="https://juejin.im/post/58c29e0b1b69e6006bce02f4">重拾后端之Spring Boot（四）：使用JWT和Spring Security保护REST API</a>
+<a href="http://www.cnblogs.com/grissom007/p/6294746.html">开箱即用 - jwt 无状态分布式授权</a></p>
+</blockquote>
+<h3 id="跨域问题">跨域问题</h3>
+<blockquote>
+<p><a href="https://segmentfault.com/q/1010000005067552">跨域(CORS) 解决方案中，为什么 Access-Control-Allow-Methods 不起作用？</a>
+<a href="https://bbs.csdn.net/topics/392006333">WEB应用前后端分离实践 关键词：rest架构+跨域访问+JWT校验</a></p>
+</blockquote>
+<p><a href="https://docs.spring.io/spring-security/site/docs/5.0.6.RELEASE/reference/htmlsingle/#csrf">csrf</a></p>
+<hr>
+<h2 id="oauth">Oauth</h2>
+<blockquote>
+<p><a href="https://github.com/spring-projects/spring-security-oauth">oauth</a></p>
+</blockquote>
+<hr>
+<h2 id="实现细节">实现细节</h2>
+<h3 id="关于注解的几种使用方式">关于注解的几种使用方式</h3>
+<h4 id="secured">@Secured</h4>
+<ul>
+<li>这是基于Spring特定的注解</li>
+</ul>
+<h4 id="rolesallowed">@RolesAllowed</h4>
+<ul>
+<li>JSR-250的@RolesAllowed Java标准定义的注解，与上面的注解是差不多的</li>
+<li>但是都是有局限性，只能判断请求是否有权限，不能进行更多的自定义判断</li>
+</ul>
+<h4 id="springsecurity30-开始提供了-spel表达式">SpringSecurity3.0 开始提供了 SpEL表达式</h4>
+<p><code>需要先配置这个配置类，后面的注解才会生效</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Configuration</span>
+    <span class="nd">@EnableGlobalMethodSecurity</span><span class="o">(</span><span class="n">prePostEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MethodSecurityConfig</span> <span class="kd">extends</span> <span class="n">GlobalMethodSecurityConfiguration</span><span class="o">{}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p><code>@PreAuthorize</code> 方法调用前，基于表达式的计算结果来限制方法的访问</p>
+</li>
+<li>
+<p><code>@PostAuthorize</code> 允许方法调用，如果表达式是false 抛出安全异常</p>
+</li>
+<li>
+<p><code>@PostFilter</code> 允许方法调用，按照表达式来过滤方法的结果</p>
+</li>
+<li>
+<p><code>@PreFilter</code> 允许方法调用，必须进入方法前过滤输入值</p>
+</li>
+<li>
+<p>方法调用前验证权限，示例:</p>
+<ul>
+<li><code>@PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)</code> 只允许该权限的用户访问</li>
+<li>方法入参user，限定读者用户的text长度小于140，或者是作家用户无限制</li>
+<li><code>@PreAuthorize(&quot;(hasRole('ROLE_READER') and #user.text.length()&lt;=140 ) or hasRole('ROLE_AUTHOR')&quot;) </code></li>
+</ul>
+</li>
+<li>
+<p>方法调用之后验证权限，示例;</p>
+<ul>
+<li><code>@PostAuthorize(&quot;returnObject.spitter.username == principal.username&quot;)</code></li>
+<li>public Spittle getSpittleById(long id){}</li>
+<li>保护方法，只有当返回的对象就是当前登录的用户时，才返回，不然抛出安全异常
+<code>以上是保护方法的调用，但是有时候保护的是数据的输入输出：</code></li>
+</ul>
+</li>
+<li>
+<p>过滤方法的输入输出</p>
+<ul>
+<li>事后对方法的返回值进行过滤
+<ul>
+<li><code>@PreAuthorize(&quot;hasAnyRole({'ROLE_ADMIN','ROLE_USER'})&quot;)</code></li>
+<li><code>@PostFilter(&quot;hasRole('ROLE_ADMIN') || filterObject.user.username == principal.name&quot;)</code></li>
+<li><code>public List&lt;User&gt; getUsers(){}</code></li>
+<li>该示例就是限制了如果是管理员可以获取到所有数据，普通用户只能看到自己</li>
+<li>但是这种实现是不好的，只是一个例子，只获取自己，重载方法加个id参数就好了，上面的实现，把数据全拿出来再判断，性能上。。。</li>
+</ul>
+</li>
+<li>事先对方法的参数进行过滤
+<ul>
+<li><code>@PreAuthorize(&quot;hasAnyRole({'ROLE_ADMIN','ROLE_USER'})&quot;)</code></li>
+<li><code>@PreFilter(&quot;hasRole('ROLE_ADMIN') || targetObject.user.username == principal.name&quot;)</code></li>
+<li><code>public void deleteUsers(){List&lt;User&gt; users}</code></li>
+<li>示例实现了传入一个集合，要删除的用户，但是当前用户只能删除自己，管理员才能删除集合里所有的用户</li>
+</ul>
+</li>
+<li>定义许可计算器
+<ul>
+<li><code>@PreFilter(&quot;hasPermission(targetObject,'delete')&quot;)</code> 用户是否有权限删除目标对象？</li>
+<li>使用了自定义的计算器类来实现这个判断，表达式简洁，但是自定义类不好写</li>
+<li>实现PermissionEvaluator接口，新建hasPermission方法，功能就是判断是否有权限，其实就是对比目标对象是不是当前用户</li>
+<li>创建好类后，重载GlobalMethodSecurityConfiguration配置类的createExpressionHalder方法，注册进去</li>
+<li><code>DefaultMethodSecurityExperssionHandler ex = new De...();</code></li>
+<li><code>ex.setPermissionEvaluator(new 自定义类);</code></li>
+<li><code>return ex;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="保护方法应用">保护方法应用</h3>
+<ul>
+<li>@Secured 注解限制方法调用</li>
+</ul>
+<hr>
+<h2 id="社交登录">社交登录</h2>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU0MDEwMjgwNA==&amp;mid=2247484230&amp;idx=1&amp;sn=358f684bd122888270730f2b102ee1b2&amp;chksm=fb3f1abdcc4893ab9dc400a44edfe7a9d483c070b78db1d81f70c4a3d7870d113d9287d81b0f&amp;mpshare=1&amp;scene=1&amp;srcid=0121kLxdu4ezkmeJAoJcdMZ1&amp;pass_ticket=LGmo8DCbLhUXTV%2FDVv1W9SyGxNSXxxYLrKODVeXD8f3lkWt2HnMB5b7racYt5W6V#rd">SpringForAll社区:Spring Security源码分析（三）：Spring Social实现QQ社交登录 </a><br>
+<a href="https://mp.weixin.qq.com/s?__biz=MzU0MDEwMjgwNA==&amp;mid=2247484233&amp;idx=1&amp;sn=1e84ffd8c9169db56a0d48ccb31bc842&amp;chksm=fb3f1ab2cc4893a4263799c466d73ee67971ce9deb22a91b8ae8e968621679de3bce83a2c558&amp;mpshare=1&amp;scene=1&amp;srcid=0121cjpvaOeB0nktdOSQNitj&amp;pass_ticket=LGmo8DCbLhUXTV%2FDVv1W9SyGxNSXxxYLrKODVeXD8f3lkWt2HnMB5b7racYt5W6V#rd">SpringForAll社区:Spring Security 源码分析（四）：Spring Social实现微信社交登录 </a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spring/">Spring</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring/springtest/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SpringTest</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/spring/springmvc/">
+            <span class="next-text nav-default">SpringMVC</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

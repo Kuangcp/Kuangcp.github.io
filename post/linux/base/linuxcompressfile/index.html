@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux平台上压缩和解压工具 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Linux操作压缩文档 tar tar归档和压缩 rar zip gzip xz 7Z 压缩文件内容预览搜索 压缩文件密码 目录 end|2020-06-19 10:22| Linux操作压缩文档 Linux默认自带ZI" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxcompressfile/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Linux平台上压缩和解压工具" />
+<meta property="og:description" content="目录 start Linux操作压缩文档 tar tar归档和压缩 rar zip gzip xz 7Z 压缩文件内容预览搜索 压缩文件密码 目录 end|2020-06-19 10:22| Linux操作压缩文档 Linux默认自带ZI" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxcompressfile/" />
+<meta property="article:published_time" content="2018-12-15T11:12:34+00:00" />
+<meta property="article:modified_time" content="2018-12-15T11:12:34+00:00" />
+<meta itemprop="name" content="Linux平台上压缩和解压工具">
+<meta itemprop="description" content="目录 start Linux操作压缩文档 tar tar归档和压缩 rar zip gzip xz 7Z 压缩文件内容预览搜索 压缩文件密码 目录 end|2020-06-19 10:22| Linux操作压缩文档 Linux默认自带ZI">
+<meta itemprop="datePublished" content="2018-12-15T11:12:34+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T11:12:34+00:00" />
+<meta itemprop="wordCount" content="1153">
+
+
+
+<meta itemprop="keywords" content="工具," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux平台上压缩和解压工具"/>
+<meta name="twitter:description" content="目录 start Linux操作压缩文档 tar tar归档和压缩 rar zip gzip xz 7Z 压缩文件内容预览搜索 压缩文件密码 目录 end|2020-06-19 10:22| Linux操作压缩文档 Linux默认自带ZI"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux平台上压缩和解压工具</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 1153 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tar">tar</a>
+      <ul>
+        <li><a href="#tar归档和压缩">tar归档和压缩</a></li>
+      </ul>
+    </li>
+    <li><a href="#rar">rar</a></li>
+    <li><a href="#zip">zip</a></li>
+    <li><a href="#gzip">gzip</a></li>
+    <li><a href="#xz">xz</a></li>
+    <li><a href="#7z">7Z</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#linux%E6%93%8D%E4%BD%9C%E5%8E%8B%E7%BC%A9%E6%96%87%E6%A1%A3">Linux操作压缩文档</a>
+<ol>
+<li><a href="#tar">tar</a>
+<ol>
+<li><a href="#tar%E5%BD%92%E6%A1%A3%E5%92%8C%E5%8E%8B%E7%BC%A9">tar归档和压缩</a></li>
+</ol>
+</li>
+<li><a href="#rar">rar</a></li>
+<li><a href="#zip">zip</a></li>
+<li><a href="#gzip">gzip</a></li>
+<li><a href="#xz">xz</a></li>
+<li><a href="#7z">7Z</a></li>
+</ol>
+</li>
+<li><a href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E9%A2%84%E8%A7%88%E6%90%9C%E7%B4%A2">压缩文件内容预览搜索</a></li>
+<li><a href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81">压缩文件密码</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-06-19 10:22</em>|</p>
+<hr>
+<h1 id="linux操作压缩文档">Linux操作压缩文档</h1>
+<blockquote>
+<p>Linux默认自带ZIP压缩，最大支持4GB压缩，RAR的压缩比大于4GB.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">文件名模式</th>
+<th style="text-align:left">解压方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">*.tar</td>
+<td style="text-align:left">tar -xvf 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.tar.gz 和 *.tgz</td>
+<td style="text-align:left">tar -xzf 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.tar.xz</td>
+<td style="text-align:left">tar -xJf 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.tar.Z</td>
+<td style="text-align:left">tar -xZf 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.tar.bz2</td>
+<td style="text-align:left">tar -xjf 解压</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">*.gz</td>
+<td style="text-align:left">gzip -d 或者 gunzip 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.bz2</td>
+<td style="text-align:left">bzip2 -d或者用bunzip2 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.Z</td>
+<td style="text-align:left">uncompress 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.xz</td>
+<td style="text-align:left">xz -d 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.rar</td>
+<td style="text-align:left">unrar e 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.zip</td>
+<td style="text-align:left">unzip 解压</td>
+</tr>
+<tr>
+<td style="text-align:left">*.zst</td>
+<td style="text-align:left">unzstd 解压</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="tar">tar</h2>
+<p>1  <code>这五个是独立的参数, 五个参数 有且仅有一个</code></p>
+<ul>
+<li>c : 打包 压缩</li>
+<li>x : 解压</li>
+<li>t : 查看内容 不解压</li>
+<li>r : 向压缩归档文件末尾追加文件</li>
+<li>u : 更新原压缩包中的文件</li>
+</ul>
+<p>2 <code>可选参数</code><br>
+2.1 <code>下面的参数是根据需要在压缩或解压档案时可选的</code></p>
+<ul>
+<li>v：显示所有过程</li>
+<li>O：将文件解开到标准输出</li>
+</ul>
+<p>2.2 <code>其他可选参数</code></p>
+<ul>
+<li><code>-p</code> 保留绝对路径符</li>
+<li><code>-v</code> 将压缩或解压的过程输出</li>
+<li><code>-C</code> 解压到指定目录</li>
+</ul>
+<p>3 <code>最后</code></p>
+<ul>
+<li><code>-f 是必须的,-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接文件或目录</code></li>
+</ul>
+<hr>
+<p><strong>示例 :</strong></p>
+<ul>
+<li>
+<p><code>tar -rf all.tar *.gif</code>这条命令是将所有.gif的文件增加到all.tar的包里面去。</p>
+</li>
+<li>
+<p><code>tar -uf all.tar logo.gif</code>这条命令是更新原来tar包all.tar中logo.gif文件，</p>
+</li>
+<li>
+<p><code>tar -tf all.tar</code> 这条命令是列出all.tar包中所有文件，</p>
+</li>
+<li>
+<p><code>tar -xf all.tar</code> 这条命令是解出all.tar包中所有文件，</p>
+</li>
+<li>
+<p>保留文件属性和跟随链接， -p 保留属性 -h 备份的源文件而不是链接本身</p>
+<ul>
+<li><code>tar -cphf etc.tar /etc</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="tar归档和压缩">tar归档和压缩</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字母</th>
+<th style="text-align:center">压缩方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">z</td>
+<td style="text-align:center">gz</td>
+</tr>
+<tr>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">Z</td>
+</tr>
+<tr>
+<td style="text-align:center">j</td>
+<td style="text-align:center">bz2</td>
+</tr>
+<tr>
+<td style="text-align:center">J</td>
+<td style="text-align:center">xz</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>本质上 tar 的压缩和解压都是调用对应的软件完成的, 例如 <code>tar cJf a.tar.xz a/</code> 就是先tar归档一下, 然后调用 xz 完成压缩</p>
+<blockquote>
+<p>压缩</p>
+</blockquote>
+<ul>
+<li>tar -cf a.tar *.txt <strong>仅仅归档,没有压缩</strong>
+<ul>
+<li>tar -czf a.tar.gz *.txt<code>归档, 并使用gz格式压缩归档包, 以此类推</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>解压</p>
+</blockquote>
+<ul>
+<li><code>tar -xf file.tar</code>      // 解压 .tar 归档文件
+<ul>
+<li>tar -xzf a.tar.gz <code>解压使用gz格式压缩的压缩包, 以此类推</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="rar">rar</h2>
+<blockquote>
+<p>压缩</p>
+</blockquote>
+<ul>
+<li><code>rar a jpg.rar *.jpg</code>    // rar格式的压缩</li>
+</ul>
+<blockquote>
+<p>解压</p>
+</blockquote>
+<ul>
+<li><code>unrar x file.rar</code>       // 解压 rar
+<ul>
+<li><code>e</code> 不保留目录结构,平铺解压</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="zip">zip</h2>
+<blockquote>
+<p>压缩</p>
+</blockquote>
+<ul>
+<li><code>zip images.zip *.jpg</code> //zip格式的压缩</li>
+<li><code>zip -r file.zip code/*</code> 压缩code目录下所有文件
+<ul>
+<li><code>zip -r ./a.zip ./*</code> 压缩当前目录所有文件</li>
+<li><code>-q</code>安静模式, 终端不输出</li>
+<li><code>-o</code> 输出文件`</li>
+<li><code>-r</code> 表示递归</li>
+<li><code>-l</code> 兼容Windows的换行符</li>
+<li><code>-e</code> 加密</li>
+<li><code>-d filename</code> 在zip中删除某文件 删除某目录<code>dir/*</code>
+<ul>
+<li><em>注意</em>: 所有的文件和目录都是相对于zip的根目录的完整路径</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>解压</p>
+</blockquote>
+<ul>
+<li><code>unzip file.zip </code>//解压zip
+<ul>
+<li>-q 终端不输出</li>
+<li>-d 指定解压目录</li>
+<li>-l 不解压,查看所有文件</li>
+<li>-O 指定编码 例如 GBK <code>-O cp936</code> 注意有些发行版需安装 <code>unzip-iconv</code> 才支持该参数</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="gzip">gzip</h2>
+<blockquote>
+<p>gzip gunzip. 常见压缩包格式: .tar.gz .tgz</p>
+</blockquote>
+<p>由于只能操作单个文件, 所以一般是借助于 tar 归档后再压缩</p>
+<blockquote>
+<p>压缩</p>
+</blockquote>
+<ul>
+<li>gzip 文件</li>
+</ul>
+<blockquote>
+<p>解压</p>
+</blockquote>
+<ul>
+<li>gzip -d 文件 或者 gunzip 文件</li>
+</ul>
+<h2 id="xz">xz</h2>
+<blockquote>
+<p>xz. 常见压缩包格式: .xz .txz .lzma .tlz</p>
+</blockquote>
+<p>和 gzip 类似, 只能操作单个文件, 但是压缩率高于 gzip, 伴随的是压缩时间要长一些</p>
+<blockquote>
+<p>压缩</p>
+</blockquote>
+<ul>
+<li>xz 文件</li>
+</ul>
+<blockquote>
+<p>解压</p>
+</blockquote>
+<ul>
+<li>xz -d 文件</li>
+</ul>
+<hr>
+<h2 id="7z">7Z</h2>
+<blockquote>
+<p>安装 apt install p7zip-full 或者 p7zip
+man 7z 查看帮助文档</p>
+</blockquote>
+<ul>
+<li><code>7z &lt;command&gt; [&lt;switches&gt;... ] &lt;archive_name&gt; [&lt;file_names&gt;... ] [&lt;@listfiles&gt;... ]</code>
+<ul>
+<li><code>b</code>: benchmark 评测压缩和解压速率</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>压缩</p>
+</blockquote>
+<ul>
+<li>a 压缩包名 文件名</li>
+</ul>
+<blockquote>
+<p>解压</p>
+</blockquote>
+<ul>
+<li>7z x file
+<ul>
+<li><code>-o</code> 路径</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="压缩文件内容预览搜索">压缩文件内容预览搜索</h1>
+<blockquote>
+<p><a href="https://linoxide.com/linux-how-to/z-commands-zcat-zless-zgrepzegrep-zdiff-examples/">参考: Unix Z Commands – Zcat, Zless, Zgrep, Zegrep and Zdiff Examples </a></p>
+</blockquote>
+<ul>
+<li><code>zcat log.tgz | grep -a &quot;pattern&quot;</code> 等价于 <code>zgrep &quot;pattern&quot; log.tgz</code>
+<ul>
+<li>相关参数说明 man 文档</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="压缩文件密码">压缩文件密码</h1>
+<ul>
+<li>rarcrack 暴力破解</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/base/linuxdirectorystructure/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux目录结构</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/base/linuxcommand/">
+            <span class="next-text nav-default">Linux常用命令</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

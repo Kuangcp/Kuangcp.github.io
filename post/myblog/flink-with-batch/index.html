@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Flink-with-batch - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/myblog/flink-with-batch/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Flink-with-batch" />
+<meta property="og:description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/myblog/flink-with-batch/" />
+<meta property="article:published_time" content="2019-06-17T17:00:27+00:00" />
+<meta property="article:modified_time" content="2019-06-17T17:00:27+00:00" />
+<meta itemprop="name" content="Flink-with-batch">
+<meta itemprop="description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实">
+<meta itemprop="datePublished" content="2019-06-17T17:00:27+00:00" />
+<meta itemprop="dateModified" content="2019-06-17T17:00:27+00:00" />
+<meta itemprop="wordCount" content="2311">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Flink-with-batch"/>
+<meta name="twitter:description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Flink-with-batch</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-06-17 </span>
+        <div class="post-category">
+            <a href="/categories/blog/"> Blog </a>
+            </div>
+          <span class="more-meta"> 2311 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为何有这次分享">为何有这次分享</a></li>
+    <li><a href="#flink-是什么">Flink 是什么</a></li>
+    <li><a href="#为何选用flink">为何选用Flink</a></li>
+    <li><a href="#基础概念和原理">基础概念和原理</a>
+      <ul>
+        <li><a href="#流处理和批处理">流处理和批处理</a></li>
+        <li><a href="#部署">部署</a></li>
+      </ul>
+    </li>
+    <li><a href="#批处理">批处理</a>
+      <ul>
+        <li><a href="#rest-api">Rest API</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#flink-%E4%B8%AD%E7%9A%84%E6%89%B9%E5%A4%84%E7%90%86">Flink 中的批处理</a>
+<ol>
+<li><a href="#%E4%B8%BA%E4%BD%95%E6%9C%89%E8%BF%99%E6%AC%A1%E5%88%86%E4%BA%AB">为何有这次分享</a></li>
+<li><a href="#flink-%E6%98%AF%E4%BB%80%E4%B9%88">Flink 是什么</a></li>
+<li><a href="#%E4%B8%BA%E4%BD%95%E9%80%89%E7%94%A8flink">为何选用Flink</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8E%9F%E7%90%86">基础概念和原理</a>
+<ol>
+<li><a href="#%E6%B5%81%E5%A4%84%E7%90%86%E5%92%8C%E6%89%B9%E5%A4%84%E7%90%86">流处理和批处理</a></li>
+<li><a href="#%E9%83%A8%E7%BD%B2">部署</a></li>
+</ol>
+</li>
+<li><a href="#%E6%89%B9%E5%A4%84%E7%90%86">批处理</a>
+<ol>
+<li><a href="#rest-api">Rest API</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-06-04 19:41</em>|</p>
+<hr>
+<h1 id="flink-中的批处理">Flink 中的批处理</h1>
+<h2 id="为何有这次分享">为何有这次分享</h2>
+<p>最近实现的需求是采用的该架构设计实现, 也是一边学习一边思考整理</p>
+<p><a href="https://www.cnblogs.com/ken-io/p/knowledge-or-technology-share-guide.html">https://www.cnblogs.com/ken-io/p/knowledge-or-technology-share-guide.html</a></p>
+<p><a href="https://blog.csdn.net/wenxueliu/article/details/89484375">https://blog.csdn.net/wenxueliu/article/details/89484375</a></p>
+<hr>
+<h2 id="flink-是什么">Flink 是什么</h2>
+<blockquote>
+<p><a href="https://flink.apache.org/">官网</a></p>
+</blockquote>
+<p>Flink 是一个批处理和流处理结合的统一计算框架，其核心是一个提供了数据分发以及并行化计算的流数据处理引擎。</p>
+<p>最开始08年是柏林理工大学的一个研究项目，14年成为Apache孵化项目, 15年阿里fork并开发了Blink分支, 之后又并入社区<br>
+在实践中做了诸多优化 例如 增量 checkpoint, 重构调度和资源管理, 以支持 Yarn K8s</p>
+<h2 id="为何选用flink">为何选用Flink</h2>
+<blockquote>
+<p>阿里, 滴滴,美团,字节跳动 等公司使用和开发, 其中在阿里双十一大屏的应用场景上达到了 4.72亿次/秒.</p>
+</blockquote>
+<p><code>State</code></p>
+<p>Flink的优势是支持有状态的计算, 如果一个事件或一条数据处理结果只与本身内容有关, 那么就是无状态的, 反之则是与之前处理过的事件有关, 称为有状态, 最常用的应用场景就是有状态的处理 比如 聚合,关联 等操作</p>
+<p><code>Checkpoint</code></p>
+<p>利用了经典的 Chandy-Lamport 算法, 核心思想是 把这个流计算看成一个流式的拓扑, 定期从这个拓扑的头部 source 节点, 开始插入特殊的屏障, 从上游开始不断往下游广播这个屏障, 每一个节点收到屏障后, 会将State做一次快照, 当每个节点都做完了快照, 整个拓扑就算是完成了一次 CheckPoint</p>
+<p>Flink的容错机制的核心部分是生成分布式数据流和算子状态的一致快照。从而提供了 exactly-once 的语义(输入的数据作用在最终结果上有且仅有一次), 能更容易的管理状态, 就像操作普通集合</p>
+<p><img src="https://ci.apache.org/projects/flink/flink-docs-release-1.8/fig/stream_barriers.svg" alt=""></p>
+<p><code>Windows</code></p>
+<p>因为不可能计算流中的所有元素，因为流通常是无限的（无界）。所以流计算一般都会基于窗口来计算
+Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重叠），滑动窗口（具有重叠）和会话窗口（由不活动间隙打断）, 还支持自定义窗口。</p>
+<hr>
+<blockquote>
+<blockquote>
+<p>同类框架还有 经典的 Hadoop Map-Reduce, 架构简单, 不能支持复杂的应用逻辑, 需要应用逻辑 适配到 map-reduce算法, 仅支持批处理,</p>
+</blockquote>
+</blockquote>
+<p>Spark批处理, 流处理的实现是将批处理的批次分割成若干小</p>
+<p>Flink基于每个事件一行一行地流式处理，真正的流式计算，流式计算跟Storm性能差不多，支持毫秒级计算，而Spark则只能支持秒级计算。</p>
+<blockquote>
+<p><a href="https://tech.meituan.com/2017/11/17/flink-benchmark.html">美团: 流计算框架 Flink 与 Storm 的性能对比</a></p>
+</blockquote>
+<h2 id="基础概念和原理">基础概念和原理</h2>
+<h3 id="流处理和批处理">流处理和批处理</h3>
+<p><img src="https://ci.apache.org/projects/flink/flink-docs-release-1.8/fig/levels_of_abstraction.svg" alt=""></p>
+<p>批处理主要操作大容量静态数据集，并在计算过程完成后返回结果。</p>
+<ul>
+<li>批处理模式中使用的数据集通常符合下列特征：
+<ol>
+<li>有界：批处理数据集代表数据的有限集合</li>
+<li>持久：数据通常始终存储在某种类型的持久存储位置中</li>
+<li>大量：批处理操作通常是处理极为海量数据集的唯一方法</li>
+</ol>
+</li>
+</ul>
+<p>批处理非常适合需要访问全套记录才能完成的计算工作。例如在计算总数和平均数时</p>
+<ul>
+<li>流处理中的数据集是“无边界”的：
+<ol>
+<li>完整数据集只能代表截至目前已经进入到系统中的数据总量。</li>
+<li>工作数据集也许更相关，在特定时间只能代表某个单一数据项。</li>
+<li>处理工作是基于事件的，除非明确停止否则没有“尽头”。处理结果立刻可用，并会随着新数据的抵达继续更新。</li>
+</ol>
+</li>
+</ul>
+<p>流处理系统可以处理几乎无限量的数据，但同一时间只能处理一条（真正的流处理）或很少量（微批处理，Micro-batch Processing）数据，不同记录间只维持最少量的状态。虽然大部分系统提供了用于维持某些状态的方法，但流处理主要针对副作用更少，更加功能性的处理（Functional processing）进行优化。</p>
+<hr>
+<h3 id="部署">部署</h3>
+<blockquote>
+<p>Local, Standalone Cluster, YARN Cluster</p>
+</blockquote>
+<ul>
+<li>Local 模式的 JobManager 和 TaskManager 只使用一个 JVM 来完成整个计算, 常用于小数据量的开发测试</li>
+<li>Standalone Cluster 模式的 JobManager 和 TaskManager 都是单点且各自独立的, 例如以下通过 docker-compose 部署的案例</li>
+<li>Yarn Cluster 也就是完全没有单点问题</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">jobmanager</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${FLINK_DOCKER_IMAGE_NAME:-flink}</span><span class="w">
+</span><span class="w">        </span><span class="nt">expose</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;6123&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;8081:8081&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">jobmanager</span><span class="w">
+</span><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">JOB_MANAGER_RPC_ADDRESS=jobmanager</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="nt">taskmanager</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${FLINK_DOCKER_IMAGE_NAME:-flink}</span><span class="w">
+</span><span class="w">        </span><span class="nt">expose</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;6121&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;6122&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">jobmanager</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">taskmanager</span><span class="w">
+</span><span class="w">        </span><span class="nt">links</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;jobmanager:jobmanager&#34;</span><span class="w">
+</span><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">JOB_MANAGER_RPC_ADDRESS=jobmanager</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://www.ibm.com/developerworks/cn/opensource/os-cn-apache-flink/img001.png" alt=""></p>
+<ul>
+<li>
+<p>我们可以了解到 Flink 几个最基础的概念，Client、JobManager 和 TaskManager。</p>
+<ul>
+<li>Client 用来提交任务给 JobManager，JobManager 分发任务给 TaskManager 去执行，然后 TaskManager 会心跳的汇报任务状态。</li>
+</ul>
+</li>
+<li>
+<p>在 Flink 集群中，计算资源被定义为 Task Slot。每个 TaskManager 会拥有一个或多个 Slots。JobManager 会以 Slot 为单位调度 Task。</p>
+<ul>
+<li>这里可以将 Slot 类比为线程池中的 Worker, 都是资源的抽象, 但是 Slot 更关注内存</li>
+</ul>
+</li>
+</ul>
+<p>对于应用开发层面的基础概念有</p>
+<ul>
+<li>
+<p>Source（源）是指数据流进入系统的入口点</p>
+</li>
+<li>
+<p>Stream（流）是指在系统中流转的，永恒不变的无边界数据集</p>
+</li>
+<li>
+<p>Operator（操作方）是指针对数据流执行操作以产生其他数据流的功能</p>
+</li>
+<li>
+<p>Sink（槽）是指数据流离开Flink系统后进入到的位置，槽可以是数据库或到其他系统的连接器</p>
+</li>
+<li>
+<p>Flink 最适合的应用场景是低时延的数据处理场景：高并发处理数据，时延毫秒级，且兼具可靠性:</p>
+<ol>
+<li>低时延：提供 ms 级时延的处理能力。</li>
+<li>Exactly Once：提供异步快照机制，保证所有数据真正只处理一次</li>
+<li>HA：JobManager 支持主备模式，保证无单点故障。</li>
+<li>水平扩展能力：TaskManager 支持手动水平扩展。</li>
+</ol>
+</li>
+</ul>
+<h2 id="批处理">批处理</h2>
+<blockquote>
+<p><a href="https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/batch/">Doc</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/batch/#dataset-transformations">数据转换接口</a></p>
+</blockquote>
+<p>批处理也被称为离线计算 实时性要求不高 但是数据量大</p>
+<p>大致工作流程, 首先 JobManager 生成执行计划的 DAG , 然后发布 Task 给 TaskManager 并行执行
+由于是有状态的计算,数据不加以同步的话, 就会混乱, 所以 Flink 通过 <a href="https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/batch/iterations.html#superstep-synchronization">超级步骤同步来保证结果的正确</a> 类似于 Java 并发类中的 CountDownLatch</p>
+<p>其中 这个同步就要求我们应用代码中的 Source Sink 组件中的成员属性 是必须为序列化的, 且不含 transient 关键字修饰的属性
+否则 就会报错, 因为无法做到 Task Slots 之间同步数据了, 后续的计算也就无意义了</p>
+<h3 id="rest-api">Rest API</h3>
+<blockquote>
+<p><a href="https://ci.apache.org/projects/flink/flink-docs-stable/monitoring/rest_api.html">Doc: REST</a></p>
+</blockquote>
+<p>由于批处理不需要实时处理, 所以设计上是按需使用 而不是常驻进程, 所以需要一种机制来调起批处理来执行, 因此有了Rest接口, 但是Rest接口还提供简单的监控</p>
+<blockquote>
+<p>上传</p>
+</blockquote>
+<ul>
+<li><code>/jars/upload</code>
+<ul>
+<li>返回结果  {&ldquo;filename&rdquo;:&quot;/tmp/flink-web-5f9f59f8-9f60-4ccc-a5ae-360cdde7f618/flink-web-upload/ae0dd296-b4ee-4667-9ba8-1c7b374d694c_flink-1.0.0-SNAPSHOT-all-dependency.jar&quot;,&ldquo;status&rdquo;:&ldquo;success&rdquo;}</li>
+<li><code>curl -X POST -H &quot;Expect:&quot; -F &quot;jarfile=@filepath&quot; http://127.0.0.1:8081/jars/upload</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>启动</p>
+</blockquote>
+<ul>
+<li>post: <code>/jars/{jarid}/run</code>
+<ul>
+<li>参数可选  entry-class program-args/programArg</li>
+<li>curl -X POST http://127.0.0.1:8081/jars/ae0dd296-b4ee-4667-9ba8-1c7b374d694c_flink-1.0.0-SNAPSHOT-all-dependency.jar/run?entry-class=com.github.kuangcp.hi.SimpleStatistic</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意: 这里的 参数 只能为单个字符串 或者逗号分割的参数列表, 不能传入 JSON 格式的字符串, 最后解决是用BASE64编码处理</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-06-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/blog/websocket-demo/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Java WebSocket Demo</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/distributed/cloudnative/">
+            <span class="next-text nav-default">CloudNative.md</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

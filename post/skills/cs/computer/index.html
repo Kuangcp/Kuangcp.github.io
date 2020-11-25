@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>计算机组成 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 计算机历史 起源 硬件系统 内存 硬盘 CPU MESI 键盘 操作系统 编程语言 语言的的演化 通用概念 缓存 目录 end|2020-04-30 14:20| 计算机历史 起源 硬件系统 博客:【不周山之读薄 CSA" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/cs/computer/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="计算机组成" />
+<meta property="og:description" content="目录 start 计算机历史 起源 硬件系统 内存 硬盘 CPU MESI 键盘 操作系统 编程语言 语言的的演化 通用概念 缓存 目录 end|2020-04-30 14:20| 计算机历史 起源 硬件系统 博客:【不周山之读薄 CSA" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/cs/computer/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="计算机组成">
+<meta itemprop="description" content="目录 start 计算机历史 起源 硬件系统 内存 硬盘 CPU MESI 键盘 操作系统 编程语言 语言的的演化 通用概念 缓存 目录 end|2020-04-30 14:20| 计算机历史 起源 硬件系统 博客:【不周山之读薄 CSA">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="342">
+
+
+
+<meta itemprop="keywords" content="基础," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计算机组成"/>
+<meta name="twitter:description" content="目录 start 计算机历史 起源 硬件系统 内存 硬盘 CPU MESI 键盘 操作系统 编程语言 语言的的演化 通用概念 缓存 目录 end|2020-04-30 14:20| 计算机历史 起源 硬件系统 博客:【不周山之读薄 CSA"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">计算机组成</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
+            </div>
+          <span class="more-meta"> 342 words </span>
+          <span class="more-meta"> 1 min read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#起源">起源</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#内存">内存</a></li>
+    <li><a href="#硬盘">硬盘</a></li>
+    <li><a href="#cpu">CPU</a>
+      <ul>
+        <li><a href="#mesi">MESI</a></li>
+      </ul>
+    </li>
+    <li><a href="#键盘">键盘</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#语言的的演化">语言的的演化</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#缓存">缓存</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%86%E5%8F%B2">计算机历史</a>
+<ol>
+<li><a href="#%E8%B5%B7%E6%BA%90">起源</a></li>
+</ol>
+</li>
+<li><a href="#%E7%A1%AC%E4%BB%B6%E7%B3%BB%E7%BB%9F">硬件系统</a>
+<ol>
+<li><a href="#%E5%86%85%E5%AD%98">内存</a></li>
+<li><a href="#%E7%A1%AC%E7%9B%98">硬盘</a></li>
+<li><a href="#cpu">CPU</a>
+<ol>
+<li><a href="#mesi">MESI</a></li>
+</ol>
+</li>
+<li><a href="#%E9%94%AE%E7%9B%98">键盘</a></li>
+</ol>
+</li>
+<li><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a></li>
+<li><a href="#%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">编程语言</a>
+<ol>
+<li><a href="#%E8%AF%AD%E8%A8%80%E7%9A%84%E7%9A%84%E6%BC%94%E5%8C%96">语言的的演化</a></li>
+</ol>
+</li>
+<li><a href="#%E9%80%9A%E7%94%A8%E6%A6%82%E5%BF%B5">通用概念</a>
+<ol>
+<li><a href="#%E7%BC%93%E5%AD%98">缓存</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-30 14:20</em>|</p>
+<hr>
+<h1 id="计算机历史">计算机历史</h1>
+<h2 id="起源">起源</h2>
+<h1 id="硬件系统">硬件系统</h1>
+<blockquote>
+<p><a href="http://wdxtub.com/2016/04/16/thin-csapp-0/">博客:【不周山之读薄 CSAPP】零 系列概览 </a> <code>CSAPP:深入理解计算机系统</code></p>
+</blockquote>
+<h2 id="内存">内存</h2>
+<h2 id="硬盘">硬盘</h2>
+<blockquote>
+<p>存储单位 kb kilobyte; kib kibibyte 的区别: <a href="https://en.wikipedia.org/wiki/Kilobyte">wikipedia</a></p>
+</blockquote>
+<h2 id="cpu">CPU</h2>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513017&amp;idx=1&amp;sn=5550ee714abd36d0b580713f673e670b&amp;scene=21#wechat_redirect">码农翻身:CPU阿甘</a> <code>梳理了CPU 内存 操作系统 BIOS 硬盘之间的关系和特性</code></p>
+</blockquote>
+<h3 id="mesi">MESI</h3>
+<blockquote>
+<p>MESI（Modified Exclusive Shared Or Invalid）</p>
+</blockquote>
+<hr>
+<h2 id="键盘">键盘</h2>
+<blockquote>
+<p><a href="https://wiki.archlinux.org/index.php/Keyboard_input">Keyboard input</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/gvalkov/golang-evdev">go evdev</a><br>
+<a href="https://python-evdev.readthedocs.io/en/latest/">Python evdev</a></p>
+</blockquote>
+<hr>
+<h1 id="操作系统">操作系统</h1>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513894&amp;idx=1&amp;sn=3cf8faef41800f0dd52f84a0ae2d8065&amp;chksm=80d67be5b7a1f2f31833dc71f8c67dc50e64b14bb5a25678155a7b39927b63db7c17510793d0&amp;scene=21#wechat_redirect">码农翻身:操作系统是个大骗子？ </a><code>描述了程序从硬盘中读取到内存执行的整个过程</code></p>
+</blockquote>
+<hr>
+<h1 id="编程语言">编程语言</h1>
+<h2 id="语言的的演化">语言的的演化</h2>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513576&amp;idx=1&amp;sn=0fd7ba43902ff7b10376810118f68d62&amp;chksm=80d67a2bb7a1f33d90a95be040987bc03033b0174cef6ccb9018203673c8c1fe192103d3ae41&amp;scene=21#wechat_redirect">码农翻身:一个翻译家族的发家史</a> <code>低级语言到高级语言的演化</code></p>
+</blockquote>
+<hr>
+<h1 id="通用概念">通用概念</h1>
+<h2 id="缓存">缓存</h2>
+<blockquote>
+<p>常见缓存淘汰策略 先进先出策略 FIFO（First In，First Out）、最少使用策略 LFU（Least Frequently Used）、最近最少使用策略 LRU（Least Recently Used）</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/network/websecurity/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">网络安全</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/skills/network/network/">
+            <span class="next-text nav-default">计算机网络</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

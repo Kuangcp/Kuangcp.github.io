@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Redis - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Redis Book 安装和配置 Windows Linux Docker方式安装 解压即用 Redis配置文件 数据类型 String BitMap HyperLogLog List Set Zset Hash GEO地理位置 Scan Pipelining Pub/Sub发布和订阅 客户端" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/database/redis/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Redis" />
+<meta property="og:description" content="目录 start Redis Book 安装和配置 Windows Linux Docker方式安装 解压即用 Redis配置文件 数据类型 String BitMap HyperLogLog List Set Zset Hash GEO地理位置 Scan Pipelining Pub/Sub发布和订阅 客户端" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/database/redis/" />
+<meta property="article:published_time" content="2018-12-16T17:28:55+00:00" />
+<meta property="article:modified_time" content="2018-12-16T17:28:55+00:00" />
+<meta itemprop="name" content="Redis">
+<meta itemprop="description" content="目录 start Redis Book 安装和配置 Windows Linux Docker方式安装 解压即用 Redis配置文件 数据类型 String BitMap HyperLogLog List Set Zset Hash GEO地理位置 Scan Pipelining Pub/Sub发布和订阅 客户端">
+<meta itemprop="datePublished" content="2018-12-16T17:28:55+00:00" />
+<meta itemprop="dateModified" content="2018-12-16T17:28:55+00:00" />
+<meta itemprop="wordCount" content="3459">
+
+
+
+<meta itemprop="keywords" content="Redis," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Redis"/>
+<meta name="twitter:description" content="目录 start Redis Book 安装和配置 Windows Linux Docker方式安装 解压即用 Redis配置文件 数据类型 String BitMap HyperLogLog List Set Zset Hash GEO地理位置 Scan Pipelining Pub/Sub发布和订阅 客户端"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Redis</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-16 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            </div>
+          <span class="more-meta"> 3459 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#book">Book</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#windows">Windows</a></li>
+    <li><a href="#linux">Linux</a>
+      <ul>
+        <li><a href="#docker方式安装">Docker方式安装</a></li>
+        <li><a href="#解压即用">解压即用</a></li>
+      </ul>
+    </li>
+    <li><a href="#redis配置文件">Redis配置文件</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#string">String</a>
+      <ul>
+        <li><a href="#bitmap">BitMap</a></li>
+        <li><a href="#hyperloglog">HyperLogLog</a></li>
+      </ul>
+    </li>
+    <li><a href="#list">List</a></li>
+    <li><a href="#set">Set</a></li>
+    <li><a href="#zset">Zset</a></li>
+    <li><a href="#hash">Hash</a></li>
+    <li><a href="#geo地理位置">GEO地理位置</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#java">Java</a></li>
+    <li><a href="#python">Python</a></li>
+    <li><a href="#gui客户端">GUI客户端</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#codis">Codis</a></li>
+    <li><a href="#webdis">webdis</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#作为日志记录">作为日志记录</a></li>
+    <li><a href="#作为网站统计数据">作为网站统计数据</a></li>
+    <li><a href="#存储配置信息">存储配置信息</a></li>
+    <li><a href="#自动补全">自动补全</a></li>
+    <li><a href="#构建锁">构建锁</a></li>
+    <li><a href="#任务队列">任务队列</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#redis">Redis</a>
+<ol>
+<li><a href="#book">Book</a></li>
+</ol>
+</li>
+<li><a href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE">安装和配置</a>
+<ol>
+<li><a href="#windows">Windows</a></li>
+<li><a href="#linux">Linux</a>
+<ol>
+<li><a href="#docker%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85">Docker方式安装</a></li>
+<li><a href="#%E8%A7%A3%E5%8E%8B%E5%8D%B3%E7%94%A8">解压即用</a></li>
+</ol>
+</li>
+<li><a href="#redis%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">Redis配置文件</a></li>
+</ol>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>
+<ol>
+<li><a href="#string">String</a>
+<ol>
+<li><a href="#bitmap">BitMap</a></li>
+<li><a href="#hyperloglog">HyperLogLog</a></li>
+</ol>
+</li>
+<li><a href="#list">List</a></li>
+<li><a href="#set">Set</a></li>
+<li><a href="#zset">Zset</a></li>
+<li><a href="#hash">Hash</a></li>
+<li><a href="#geo%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE">GEO地理位置</a></li>
+</ol>
+</li>
+<li><a href="#scan">Scan</a></li>
+<li><a href="#pipelining">Pipelining</a></li>
+<li><a href="#pubsub%E5%8F%91%E5%B8%83%E5%92%8C%E8%AE%A2%E9%98%85">Pub/Sub发布和订阅</a></li>
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF">客户端</a>
+<ol>
+<li><a href="#java">Java</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#gui%E5%AE%A2%E6%88%B7%E7%AB%AF">GUI客户端</a></li>
+</ol>
+</li>
+<li><a href="#project">Project</a>
+<ol>
+<li><a href="#codis">Codis</a></li>
+<li><a href="#webdis">webdis</a></li>
+</ol>
+</li>
+<li><a href="#redis%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">Redis的应用场景</a>
+<ol>
+<li><a href="#%E4%BD%9C%E4%B8%BA%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95">作为日志记录</a></li>
+<li><a href="#%E4%BD%9C%E4%B8%BA%E7%BD%91%E7%AB%99%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE">作为网站统计数据</a></li>
+<li><a href="#%E5%AD%98%E5%82%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF">存储配置信息</a></li>
+<li><a href="#%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8">自动补全</a></li>
+<li><a href="#%E6%9E%84%E5%BB%BA%E9%94%81">构建锁</a></li>
+<li><a href="#%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97">任务队列</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-10-14 22:54</em>|</p>
+<hr>
+<h1 id="redis">Redis</h1>
+<blockquote>
+<p><a href="https://redis.io/">Official Site</a> | <a href="http://www.redis.cn/">Redis中文社区</a> | <a href="http://www.runoob.com/redis/redis-tutorial.html">Redis教程</a></p>
+</blockquote>
+<ul>
+<li><a href="http://redisdoc.com/index.html">Redis Official doc zh</a></li>
+</ul>
+<blockquote>
+<p><a href="https://www.cnblogs.com/laozhbook/p/nodejs_redis_connection_pool.html">参考: nodejs + redis/mysql 连接池问题</a><code>单线程问题</code></p>
+</blockquote>
+<h2 id="book">Book</h2>
+<blockquote>
+<p><a href="http://www.shouce.ren/api/view/a/13483">Redis设计与实现 第二版</a><br>
+<a href="http://redisbook.com">Redis 设计与实现</a><code>作者自建网站</code></p>
+</blockquote>
+<hr>
+<h1 id="安装和配置">安装和配置</h1>
+<h2 id="windows">Windows</h2>
+<ul>
+<li>注册为服务
+<ul>
+<li><code>redis-server --service-install redis.windows.conf --loglevel verbose</code></li>
+</ul>
+</li>
+<li>使用cmder
+<ul>
+<li>cmd 中运行 <code>E:/redis/redis-server.exe E:/redis/redis.windows.conf</code></li>
+</ul>
+</li>
+<li>配置密码
+<ul>
+<li><code>requirepass redis1104</code></li>
+<li>客户端登录 <code>auth redis1104</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="linux">Linux</h2>
+<p>包管理器安装 redis 如 debian系<code>apt install redis</code> arch系<code>pacman -S redis</code></p>
+<h3 id="docker方式安装">Docker方式安装</h3>
+<blockquote>
+<p><a href="/Linux/Container/DockerSoft.md#redis">docker-install-redis</a></p>
+</blockquote>
+<h3 id="解压即用">解压即用</h3>
+<blockquote>
+<p><a href="https://github.com/Kuangcp/Configs/tree/master/Database/redis">下载我打包好的(仅适用于Linux平台)</a><br>
+<a href="http://cloud.kuangcp.top/redis-4.0.2.zip">4.0.2</a> | <a href="http://cloud.kuangcp.top/redis-3.2.8.zip">3.2.8</a></p>
+</blockquote>
+<p><code>个人配置步骤:</code></p>
+<ol>
+<li>
+<p>从源码编译: <a href="https://redis.io/">官网下载源码</a></p>
+<ul>
+<li>src下执行<code>make</code>进行编译，编译完成后，复制src目录中的<code>redis-cli redis-server</code>就可以用了</li>
+<li><code>redis-benchmark</code> 压测工具</li>
+</ul>
+</li>
+<li>
+<p>配置文件: 再复制下面的简化配置文件，或者使用源码中根目录下的配置文件自己配置下</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/Kuangcp/Configs/master/Database/redis/simple_redis.conf">简化配置文件</a></li>
+</ul>
+</li>
+<li>
+<p>再下载脚本就可以便捷的使用redis了 <a href="https://github.com/Kuangcp/Configs/tree/master/Database/redis/helper">shell辅助脚本</a></p>
+</li>
+</ol>
+<hr>
+<h2 id="redis配置文件">Redis配置文件</h2>
+<ul>
+<li>
+<p><a href="https://github.com/Kuangcp/Configs/blob/master/Database/redis/explain_redis.conf">配置文件讲解</a> | <a href="https://github.com/Kuangcp/Configs/blob/master/Database/redis/redis.conf">原始配置文件</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Kuangcp/Configs/blob/master/Database/redis/simple_redis.conf">简化配置文件</a></p>
+</li>
+</ul>
+<hr>
+<h1 id="数据类型">数据类型</h1>
+<blockquote>
+<p><a href="http://redisdoc.com/index.html">社区: 中文文档</a></p>
+</blockquote>
+<h2 id="string">String</h2>
+<blockquote>
+<p>字符串就是字节组成的序列 可以放字节串，整数，浮点数</p>
+</blockquote>
+<blockquote>
+<p><code>SET key value [EX seconds] [PX millisecounds] [NX|XX]</code></p>
+</blockquote>
+<ul>
+<li>EX seconds:设置键的过期时间为second秒</li>
+<li>PX millisecounds:设置键的过期时间为millisecounds 毫秒</li>
+<li>NX:只在键不存在的时候,才对键进行设置操作</li>
+<li>XX:只在键已经存在的时候,才对键进行设置操作</li>
+</ul>
+<p>SET操作成功后,返回的是OK,失败返回NIL</p>
+<ul>
+<li><code>incr incrby decr decrby</code>  只要存入的String能被解析为数值,就能执行这些命令: 递增或者递减</li>
+<li><code>incr</code> 是原子操作即并发的情况下不会有脏读(可用于主键生成策略)</li>
+<li><code>getset key val</code> get旧值并且set新值</li>
+<li><code>mset mget </code>
+<ul>
+<li><code>mset key val key val</code></li>
+<li><code>mget key key key</code> 返回值组成的数组</li>
+</ul>
+</li>
+<li><code>exists key</code> 有该值就返回1否则0</li>
+<li><code>del key</code> 返回1被删除，0 key不存在</li>
+<li><code>type key</code> 返回值的类型</li>
+<li><code>expire key secondes</code> 设置或改变超时时间，精度是秒或毫秒</li>
+<li><code>persist key</code> 去除超时时间</li>
+<li><code>ttl key</code> 查看剩余存活时间 -1表示永久 -2表示没有该key</li>
+</ul>
+<hr>
+<h3 id="bitmap">BitMap</h3>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000016296106">参考: redis的bitset实战</a></p>
+</blockquote>
+<p>基于string, 可以操作每个 bit 的值</p>
+<ul>
+<li>setbit key offset value
+<ul>
+<li><code>set key 上偏移量offset(2^32) 的 值 value(0/1)</code></li>
+</ul>
+</li>
+<li>getbit key offset</li>
+<li>bitop
+<ul>
+<li>主要做bitset的and、or、xor、not操作，结果存在新的bitset中，注意时间复杂度为O(N)</li>
+</ul>
+</li>
+<li>bitpos
+<ul>
+<li>返回指定bitset中在指定起始位置中第一个出现指定值的offset，不传start，end默认估计是0,-1</li>
+</ul>
+</li>
+<li>bitcount
+<ul>
+<li>统计bitset中出现1的个数</li>
+</ul>
+</li>
+</ul>
+<h3 id="hyperloglog">HyperLogLog</h3>
+<blockquote>
+<p>用于做基数统计的算法</p>
+</blockquote>
+<p>HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定 的、并且是很小的</p>
+<ul>
+<li>PFADD 添加元素到制定 HyperLogLog 中</li>
+<li>PFCOUNT 返回给定 HyperLogLog 的基数估算值。</li>
+<li>PFMERGE 将多个 HyperLogLog 合并为一个 HyperLogLog</li>
+</ul>
+<hr>
+<h2 id="list">List</h2>
+<ul>
+<li>llen</li>
+<li><code>rpush key val val val </code>右/尾添加元素 lpush是左/头，若表不存在就新建</li>
+<li><code>rpushx key value</code> 若表不存在就什么都不做，否则尾插元素</li>
+<li><code>rpop key</code> 从list右/尾端中删除元素返回元素值 没有了就返回null</li>
+<li><code>lrange key 0 -1</code> 取指定长度的list -1表示全部</li>
+<li><code>ltrim key 0 2</code> 截取当前的list</li>
+<li><code>lindex key index</code>   返回偏移量为index的元素(提到偏移量一般都是0开始)</li>
+<li><code>linsert key BEFORE|AFTER pivot value</code>
+<ul>
+<li>将值 value 插入到列表 key 当中，位于值 pivot 之前或之后。</li>
+<li>当 pivot 不存在于列表 key 时，不执行任何操作。当 key 不存在时， key 被视为空列表，不执行任何操作。</li>
+<li>如果 key 不是列表类型，返回一个错误。</li>
+</ul>
+</li>
+<li><code>lrem key count value</code> 根据参数 count 的值，移除列表中与参数 value 相等的元素。</li>
+<li>阻塞式的列表弹出命令(block) <code>队列很有用</code>
+<ul>
+<li><code>blpop</code></li>
+<li><code>brpop</code></li>
+<li><code>bpoplpush</code></li>
+<li><code>brpoplpush</code> 阻塞式先右弹再左进</li>
+</ul>
+</li>
+</ul>
+<h2 id="set">Set</h2>
+<ul>
+<li><code>SADD key member [member ...]</code></li>
+<li><code>SCARD key</code> 返回集合 key 的基数(集合中元素的数量)。</li>
+<li><code>SDIFF key [key ...]</code>  返回一个集合的全部成员，该集合是所有给定集合之间的差集。不存在的 key 被视为空集。</li>
+<li><code>SDIFFSTORE destination key [key ...]</code>  这个命令的作用和 SDIFF 类似，但它将结果保存到 destination 集合，而不是简单地返回结果集。如果 destination 集合已经存在，则将其覆盖。destination 可以是 key 本身。</li>
+<li><code>SINTER key [key ...]</code> 返回一个集合的全部成员，该集合是所有给定集合的交集。不存在的 key 被视为空集。当给定集合当中有一个空集时，结果也为空集(根据集合运算定律)。</li>
+<li><code>SINTERSTORE destination key [key ...]</code> 与sdiffstore类似</li>
+<li><code>SISMEMBER key member</code> 判断 member 元素是否集合 key 的成员。</li>
+<li><code>SMEMBERS key</code> 获取某Set所有元素</li>
+<li><code>SMOVE source destination member</code> 将 member 元素从 source 集合移动到 destination 集合。 SMOVE 是原子性操作。</li>
+<li><code>SPOP key</code> 移除并返回集合中的一个随机元素</li>
+<li><code>SRANDMEMBER key [count]</code> 如果命令执行时，只提供了 key 参数，那么返回集合中的一个随机元素</li>
+<li><code>SREM key member [member ...]</code> 移除集合 key 中的一个或多个 member 元素，不存在的 member 元素会被忽略。</li>
+<li><code>SUNION key [key ...]</code> 返回一个集合的全部成员，该集合是所有给定集合的并集。</li>
+<li><code>SUNIONSTORE destination key [key ...]</code></li>
+<li><code>SSCAN key cursor [MATCH pattern] [COUNT count]</code> 参考 SCAN 命令</li>
+</ul>
+<hr>
+<h2 id="zset">Zset</h2>
+<blockquote>
+<p>元素是键值对，键是member成员，值是score分值必须是浮点数</p>
+</blockquote>
+<ul>
+<li>
+<p>ZADD 将一个给定分值的成员添加到有序集合里</p>
+</li>
+<li>
+<p>ZCARD 获取有序集合的成员数</p>
+</li>
+<li>
+<p>ZCOUNT min max 计算在有序集合中指定区间分数的成员数</p>
+</li>
+<li>
+<p>ZINCRBY key increment member 自增</p>
+</li>
+<li>
+<p>ZRANGE 根据元素在有序集合中的位置，从有序集合中从小到大获取多个元素</p>
+<ul>
+<li><code>zrange name 0 -1 withscores</code> 获取所有并获取分值</li>
+<li><code>zrange name 0 3 withscores</code>  获取分数最少的4个键值对</li>
+</ul>
+</li>
+<li>
+<p>ZREVRANGE 相反的, 从大到小</p>
+</li>
+<li>
+<p><em>zrangebyscore</em> 获取有序集合在给定范围中的所有元素</p>
+<ul>
+<li><code>zrangebyscore name 0 200 withscores</code></li>
+</ul>
+</li>
+<li>
+<p>ZRANK</p>
+</li>
+<li>
+<p>ZREM</p>
+</li>
+<li>
+<p>ZREMRANGEBYRANK</p>
+</li>
+<li>
+<p>ZREMRANGEBYSCORE</p>
+</li>
+<li>
+<p>ZREVRANGEBYSCORE</p>
+</li>
+<li>
+<p>ZREVRANK</p>
+</li>
+<li>
+<p><code>ZSCORE key member</code> 依据指定member获取score</p>
+</li>
+<li>
+<p>ZUNIONSTORE</p>
+</li>
+<li>
+<p><code>zinterstore</code> 进行集合之间的并集（可以看作关系型数据库的多表连接）</p>
+</li>
+<li>
+<p>ZSCAN</p>
+</li>
+<li>
+<p>ZRANGEBYLEX</p>
+</li>
+<li>
+<p>ZLEXCOUNT</p>
+</li>
+<li>
+<p>ZREMRANGEBYLEX</p>
+</li>
+</ul>
+<hr>
+<h2 id="hash">Hash</h2>
+<blockquote>
+<p>key-value 结构</p>
+</blockquote>
+<ul>
+<li>HDEL 删除散列中指定的K</li>
+<li>HEXISTS</li>
+<li>HGET</li>
+<li>HGETALL</li>
+<li>HINCRBY</li>
+<li>HINCRBYFLOAT</li>
+<li>HKEYS</li>
+<li>HLEN</li>
+<li>HMGET</li>
+<li>HMSET</li>
+<li>HSET</li>
+<li>HSETNX</li>
+<li>HVALS</li>
+<li>HSCAN</li>
+<li>HSTRLEN</li>
+</ul>
+<hr>
+<h2 id="geo地理位置">GEO地理位置</h2>
+<ul>
+<li>GEOADD</li>
+<li>GEOPOS</li>
+<li>GEODIST</li>
+<li>GEORADIUS</li>
+<li>GEORADIUSBYMEMBER</li>
+<li>GEOHASH</li>
+</ul>
+<hr>
+<h1 id="scan">Scan</h1>
+<blockquote>
+<p><a href="http://doc.redisfans.com/key/scan.html">Doc: Scan</a></p>
+</blockquote>
+<p><code>注意 scan如果模式匹配的范围比较大会和 keys 一样的阻塞进程</code></p>
+<ul>
+<li>
+<p><strong>SCAN</strong> 命令用于迭代当前数据库中的数据库键 相较于 keys 降低阻塞进程的概率。</p>
+<ul>
+<li>cursor 游标
+<ul>
+<li>注意这个游标不是 常见的 fori 循环里的i 是规律递增，第一次 sscan 会返回 cursor(第一个参数) 需要下一次拿这个 cursor 作为参数继续获取</li>
+<li>直到 <code>返回 0</code> 表示迭代完成 如果数据发生变化游标也会变化，且 count 是不保证准确数量的</li>
+</ul>
+</li>
+<li>count 数量
+<ul>
+<li>redis 不保证返回的数据数量严格等于 count 只保证大于等于 <strong>注意count不能小于1 否则报 syntax error</strong></li>
+</ul>
+</li>
+<li>match pattern 匹配key的模式</li>
+<li>因为 这种不易理解的迭代方式, Spring 的 RedisTemplate 只提供了 count pattern 参数 cursor 默认为0</li>
+</ul>
+</li>
+<li>
+<p><strong>SSCAN</strong> 命令用于迭代 Set 键中的元素。</p>
+</li>
+<li>
+<p><strong>HSCAN</strong> 命令用于迭代哈希键中的键值对。</p>
+</li>
+<li>
+<p><strong>ZSCAN</strong> 命令用于迭代有序集合中的元素（包括元素成员和元素分值）</p>
+</li>
+</ul>
+<blockquote>
+<p>使用SCAN命令代替原有全查询命令更安全，因为是部分查询不容易像全查询命令那样阻塞Redis进程，因此往往生产环境会禁止全查询命令 keys smembers 等</p>
+</blockquote>
+<blockquote>
+<p>注意 scan 命令只能顺序依据返回的cursor进行查找，而且由于实现方式，不一定每次查询是有数据的<br>
+也就导致了在有大量key的db里面 找到 match pattern 的所有key 靠手工执行scan一次次找是不可能的</p>
+</blockquote>
+<hr>
+<h1 id="pipelining">Pipelining</h1>
+<blockquote>
+<p>一次请求/响应服务器能实现处理新的请求即使旧的请求还未被响应。这样就可以将多个命令发送到服务器，而不用等待回复，最后在一个步骤中读取该答复。</p>
+</blockquote>
+<ul>
+<li><code>(printf &quot;PING\r\nPING\r\nPING\r\n&quot;; sleep 1) | nc localhost 6379</code></li>
+</ul>
+<hr>
+<h1 id="pubsub发布和订阅">Pub/Sub发布和订阅</h1>
+<blockquote>
+<p>基于阻塞 list 实现</p>
+</blockquote>
+<ul>
+<li><code>PSUBSCRIBE pattern [pattern ...]</code>
+<ul>
+<li>订阅一个或多个符合给定模式的频道。每个模式以 * 作为匹配符，比如 it* 匹配所有以 it 开头的频道( it.news 、 it.blog 、 it.tweets 等等)，</li>
+<li>news.* 匹配所有以 news. 开头的频道( news.it 、 news.global.today 等等)，诸如此类。</li>
+</ul>
+</li>
+<li><code>PUBLISH channel message</code>
+<ul>
+<li>将信息 message 发送到指定的频道 channel 。</li>
+</ul>
+</li>
+<li><code>PUBSUB &lt;subcommand&gt; [argument [argument ...]]</code>
+<ul>
+<li>PUBSUB 是一个查看订阅与发布系统状态的内省命令， 它由数个不同格式的子命令组成， 以下将分别对这些子命令进行介绍。</li>
+<li><code>PUBSUB CHANNELS [pattern]</code> 列出当前的活跃频道。设置pattern参数就会匹配活跃频道，否则是列出所有频道</li>
+<li><code>PUBSUB NUMSUB [channel-1 ... channel-N]</code> 返回给定频道的订阅者数量， 订阅模式的客户端不计算在内。</li>
+<li><code>PUBSUB NUMPAT</code> 返回订阅模式的数量。注意， 这个命令返回的不是订阅模式的客户端的数量， 而是客户端订阅的所有模式的数量总和。</li>
+</ul>
+</li>
+<li><code>PUNSUBSCRIBE [pattern [pattern ...]]</code>
+<ul>
+<li>指示客户端退订所有给定模式。如果没有模式被指定，也即是，一个无参数的 PUNSUBSCRIBE 调用被执行，</li>
+<li>那么客户端使用 PSUBSCRIBE 命令订阅的所有模式都会被退订。在这种情况下，命令会返回一个信息，告知客户端所有被退订的模式。</li>
+</ul>
+</li>
+<li><code>SUBSCRIBE channel [channel ...]</code>
+<ul>
+<li>订阅给定的一个或多个频道的信息。</li>
+</ul>
+</li>
+<li><code>UNSUBSCRIBE [channel [channel ...]]</code>
+<ul>
+<li>指示客户端退订给定的频道。如果没有频道被指定，也即是，一个无参数的 UNSUBSCRIBE 调用被执行，</li>
+<li>那么客户端使用 SUBSCRIBE 命令订阅的所有频道都会被退订。在这种情况下，命令会返回一个信息，告知客户端所有被退订的频道。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="客户端">客户端</h1>
+<blockquote>
+<p><a href="http://www.redis.com.cn/clients">program language client</a></p>
+</blockquote>
+<h2 id="java">Java</h2>
+<blockquote>
+<p><a href="/Java/Ecosystem/JavaRedis.md">详细</a></p>
+</blockquote>
+<hr>
+<h2 id="python">Python</h2>
+<blockquote>
+<p>pip install redis 该模块和redis命令的用法几乎一模一样, 上手很快</p>
+</blockquote>
+<ul>
+<li><a href="https://pypi.python.org/pypi/redis/">redis文档</a> <code>python操作redis的库的文档</code></li>
+</ul>
+<h2 id="gui客户端">GUI客户端</h2>
+<blockquote>
+<p><a href="https://redis.io/clients">官方收录 客户端</a> | <a href="https://alternativeto.net/software/redily/">alternativeto 列表</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/uglide/RedisDesktopManager/">Redis Desktop Manager</a><br>
+<a href="https://gitee.com/qishibo/AnotherRedisDesktopManager">Another Redis DeskTop Manager</a><br>
+<a href="https://docs.redislabs.com/">RedisInsight</a></p>
+</blockquote>
+<blockquote>
+<p>arch 上暂时存在这个问题导致无法使用 Redis Desktop Manager <a href="https://github.com/uglide/RedisDesktopManager/issues/4826">Github Issues</a></p>
+</blockquote>
+<ol>
+<li>rm -rf ~/.cache/fontconfig</li>
+<li>rm -rf ~/snap/redis-desktop-manager/common/.cache/fontconfig</li>
+<li>fc-cache -r</li>
+</ol>
+<hr>
+<blockquote>
+<p><a href="https://fastoredis.com/">FastoRedis</a><br>
+<a href="https://gitee.com/MaxBill/RedisPlus">Redis Plus</a><br>
+Redily<br>
+<a href="https://github.com/luin/medis">Medis</a><br>
+<a href="https://rdbtools.com">rdbtools</a><br>
+p3x-redis-ui</p>
+</blockquote>
+<hr>
+<h1 id="project">Project</h1>
+<blockquote>
+<p>衍生项目</p>
+</blockquote>
+<h2 id="codis">Codis</h2>
+<blockquote>
+<p><a href="https://github.com/CodisLabs/codis">Github: Codis</a>
+<a href="https://gitee.com/kehaw9818/Kedis">Kedis</a></p>
+</blockquote>
+<h2 id="webdis">webdis</h2>
+<blockquote>
+<p>将redis变为一个简单的web接口</p>
+</blockquote>
+<blockquote>
+<p><a href="http://webd.is/">官网</a> | <a href="https://github.com/nicolasff/webdis">Github地址</a></p>
+</blockquote>
+<hr>
+<h1 id="redis的应用场景">Redis的应用场景</h1>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&amp;mid=2650123010&amp;idx=2&amp;sn=c17bd9192daa15c00502b7e27acacc61&amp;chksm=f36bb623c41c3f35060bf244eddddc25ea6e2b96900f57299e0d8ffe548a08823b057dee5baf&amp;mpshare=1&amp;scene=1&amp;srcid=0109PazxT49BtR2oCJ6Od32h&amp;pass_ticket=ZX4WKje%2FJzbdB6LEivhrNCtzmljNugDZul02fl5SX4snt5QLMa6Cle9o1I5CumfQ#rd">Redis的n种妙用，不仅仅是缓存 </a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://my.oschina.net/u/3971241/blog/2221560">参考: 为什么我们做分布式使用Redis？</a><code>缓存的场景和应对措施</code></p>
+</blockquote>
+<h2 id="作为日志记录">作为日志记录</h2>
+<h2 id="作为网站统计数据">作为网站统计数据</h2>
+<h2 id="存储配置信息">存储配置信息</h2>
+<h2 id="自动补全">自动补全</h2>
+<ul>
+<li>搜索建议</li>
+</ul>
+<h2 id="构建锁">构建锁</h2>
+<h2 id="任务队列">任务队列</h2>
+<ul>
+<li>发送邮件</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">Redis</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/database/redisadvance/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Redis进阶</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/database/postgresqladvance/">
+            <span class="next-text nav-default">PostgreSQL进阶</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

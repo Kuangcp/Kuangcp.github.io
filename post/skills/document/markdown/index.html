@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MarkDown - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Markdown 基本格式 居中 基本元素 文本 分割线 链接 图片 列表 头信息 代码块 流程图 Github 目录 end|2020-07-05 14:58| Markdown Github: markdown Markdown 编辑器语法指南 Markdown教程 CSDN的Markd" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/document/markdown/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="MarkDown" />
+<meta property="og:description" content="目录 start Markdown 基本格式 居中 基本元素 文本 分割线 链接 图片 列表 头信息 代码块 流程图 Github 目录 end|2020-07-05 14:58| Markdown Github: markdown Markdown 编辑器语法指南 Markdown教程 CSDN的Markd" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/document/markdown/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="MarkDown">
+<meta itemprop="description" content="目录 start Markdown 基本格式 居中 基本元素 文本 分割线 链接 图片 列表 头信息 代码块 流程图 Github 目录 end|2020-07-05 14:58| Markdown Github: markdown Markdown 编辑器语法指南 Markdown教程 CSDN的Markd">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="795">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MarkDown"/>
+<meta name="twitter:description" content="目录 start Markdown 基本格式 居中 基本元素 文本 分割线 链接 图片 列表 头信息 代码块 流程图 Github 目录 end|2020-07-05 14:58| Markdown Github: markdown Markdown 编辑器语法指南 Markdown教程 CSDN的Markd"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">MarkDown</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        
+          <span class="more-meta"> 795 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本格式">基本格式</a>
+      <ul>
+        <li><a href="#居中">居中</a></li>
+      </ul>
+    </li>
+    <li><a href="#基本元素">基本元素</a>
+      <ul>
+        <li><a href="#文本">文本</a></li>
+        <li><a href="#分割线">分割线</a></li>
+        <li><a href="#链接">链接</a></li>
+        <li><a href="#图片">图片</a></li>
+        <li><a href="#列表">列表</a></li>
+        <li><a href="#头信息">头信息</a></li>
+        <li><a href="#代码块">代码块</a></li>
+      </ul>
+    </li>
+    <li><a href="#流程图">流程图</a></li>
+    <li><a href="#github">Github</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#markdown">Markdown</a>
+<ol>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F">基本格式</a>
+<ol>
+<li><a href="#%E5%B1%85%E4%B8%AD">居中</a></li>
+</ol>
+</li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0">基本元素</a>
+<ol>
+<li><a href="#%E6%96%87%E6%9C%AC">文本</a></li>
+<li><a href="#%E5%88%86%E5%89%B2%E7%BA%BF">分割线</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5">链接</a></li>
+<li><a href="#%E5%9B%BE%E7%89%87">图片</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8">列表</a></li>
+<li><a href="#%E5%A4%B4%E4%BF%A1%E6%81%AF">头信息</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%9D%97">代码块</a></li>
+</ol>
+</li>
+<li><a href="#%E6%B5%81%E7%A8%8B%E5%9B%BE">流程图</a></li>
+<li><a href="#github">Github</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-07-05 14:58</em>|</p>
+<hr>
+<h1 id="markdown">Markdown</h1>
+<blockquote>
+<p><a href="https://guides.github.com/features/mastering-markdown/">Github: markdown</a>
+<a href="https://segmentfault.com/markdown"> Markdown 编辑器语法指南</a>
+<a href="http://www.markdown.cn/">Markdown教程</a><br>
+<a href="https://github.com/kuangcp/Notes/blob/master/Article/CSDN%E7%9A%84Markdown%E6%A1%88%E4%BE%8B.md">CSDN的Markdown案例</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/github/markup">Github: markup</a><code>丰富的标记性文本格式</code> |</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.webfx.com/tools/emoji-cheat-sheet/">Github: emoji character</a></p>
+</blockquote>
+<hr>
+<h2 id="基本格式">基本格式</h2>
+<h3 id="居中">居中</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    &lt;center&gt; 
+
+    &lt;/center&gt;
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意这俩标签前后都需要一行空行</p>
+</blockquote>
+<h2 id="基本元素">基本元素</h2>
+<h3 id="文本">文本</h3>
+<ol>
+<li>斜体 <code>*content*</code> 或者 <code>_content_</code></li>
+<li>粗体 <code>**content**</code></li>
+<li>删除 <code>~content~</code></li>
+<li>粗斜 <code>***content***</code> 或者 <code>___content___</code></li>
+</ol>
+<h3 id="分割线">分割线</h3>
+<ul>
+<li><code>***</code></li>
+<li><code>---</code></li>
+<li><code>___</code></li>
+</ul>
+<h3 id="链接">链接</h3>
+<ol>
+<li><code>[name](url)</code> 推荐</li>
+<li>[[name|url]</li>
+<li>[name][targetNum]
+<ul>
+<li>末尾: [targetNum]: url</li>
+</ul>
+</li>
+</ol>
+<h3 id="图片">图片</h3>
+<ol>
+<li><code>![description](url)</code></li>
+<li>![description][targetNum]
+<ul>
+<li>末尾: [targetNum]: url &ldquo;description&rdquo;</li>
+</ul>
+</li>
+</ol>
+<h3 id="列表">列表</h3>
+<blockquote>
+<p>注意符号和内容之间都要有空格隔开</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>无序列表</strong> : <code>- </code> 或  <code>* </code></p>
+</li>
+<li>
+<p><strong>有序列表</strong> : <code>1. </code> (markdown渲染的时候会自动排序 1 也可以换成任意非0正整数)</p>
+</li>
+<li>
+<p>列表中还能嵌套 引用, 例如: <code>- &gt; content</code> 或者 <code>&gt;1. content</code></p>
+</li>
+</ul>
+<blockquote>
+<p>关于有序列表中的块状结构破坏有序性的问题</p>
+</blockquote>
+<ul>
+<li>当需要出现代码块, 图片, 表格 等块状结构时, 只需将整体进行缩进, 就可以保证后续的有序性</li>
+</ul>
+<p>例如:</p>
+<ol>
+<li>a
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> hi
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>b</li>
+</ol>
+<h3 id="头信息">头信息</h3>
+<blockquote>
+<p>仅仅是github的语法, gitlab 当成了代码块进行渲染, gitee 则完全是乱的.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="w">    </span>--- <span class="w">
+</span><span class="w">    </span><span class="nt">layout</span><span class="p">:</span><span class="w"> </span><span class="l">post</span><span class="w">
+</span><span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;关于WEB开发中引入javascript文件方式的一点建议&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">wordpress_id</span><span class="p">:</span><span class="w"> </span><span class="m">12</span><span class="w">
+</span><span class="w">    </span><span class="nt">wordpress_url</span><span class="p">:</span><span class="w"> </span><span class="l">http://wsria.com/?p=12</span><span class="w">
+</span><span class="w">    </span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2009-02-07 18:24:46 +08</span><span class="p">:</span><span class="m">00</span><span class="w">
+</span><span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l">javascript</span><span class="w">
+</span><span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> 
+</span><span class="w">    </span>- <span class="l">jquery</span><span class="w">
+</span><span class="w">    </span>- <span class="l">prototype</span><span class="w">
+</span><span class="w">    </span>- <span class="l">dojo</span><span class="w">
+</span><span class="w">    </span>- <span class="l">ext</span><span class="w">
+</span><span class="w">    </span>- <span class="l">建议</span><span class="w">
+</span><span class="w">    </span>---<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>可以有多种数据结构 yml  ini
+<ul>
+<li>一般用于描述文件元信息; 静态博客生成器用于生成博客的标签等信息;</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码块">代码块</h3>
+<ol>
+<li>行级 反引号</li>
+<li>多行 三个反引号独立行进行包裹</li>
+</ol>
+<hr>
+<h2 id="流程图">流程图</h2>
+<ul>
+<li><a href="http://plantuml.com">plantUML</a></li>
+</ul>
+<hr>
+<h2 id="github">Github</h2>
+<blockquote>
+<p><a href="https://github.com/guodongxiaren/README">比较全面的Github格式 GFM</a></p>
+</blockquote>
+<p><em>目录规则（页内跳转）</em></p>
+<ul>
+<li><code>[](#标题名)</code> 不需要编码</li>
+<li><code>【Name】</code>看成Name 忽略这对符号
+<ul>
+<li>同理还有  <code>/</code> 中英文的 逗号 句号 冒号 小数点 问号</li>
+</ul>
+</li>
+<li>空格会变成 -</li>
+</ul>
+<p><em>文件内容</em></p>
+<ul>
+<li>一行显示上 58列 就要换行</li>
+<li>行末加上两个空格即是换行, 直接回车键换行是没有用的</li>
+<li><em>todo</em> 未完成 <code>[ ]</code> 已完成 <code>[X]</code></li>
+</ul>
+<p><em>列表的折叠写法</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ### Demo
+    &lt;details&gt;
+    &lt;summary&gt;查看全部&lt;/summary&gt;
+    * [`chunk`](#chunk)
+    &lt;/details&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p><em>md文件的头属性</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ---
+    title: 泛型
+    tags: Java, 泛型
+    ---
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gi">+ python
+</span><span class="gi"></span><span class="gd">- java
+</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/document/license/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">License</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/ecosystem/mybatis/">
+            <span class="next-text nav-default">Mybatis</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

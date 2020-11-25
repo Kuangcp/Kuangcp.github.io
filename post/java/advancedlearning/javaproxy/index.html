@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java中的代理 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/javaproxy/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java中的代理" />
+<meta property="og:description" content="目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javaproxy/" />
+<meta property="article:published_time" content="2019-01-27T21:06:14+00:00" />
+<meta property="article:modified_time" content="2019-01-27T21:06:14+00:00" />
+<meta itemprop="name" content="Java中的代理">
+<meta itemprop="description" content="目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能">
+<meta itemprop="datePublished" content="2019-01-27T21:06:14+00:00" />
+<meta itemprop="dateModified" content="2019-01-27T21:06:14+00:00" />
+<meta itemprop="wordCount" content="1648">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java中的代理"/>
+<meta name="twitter:description" content="目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java中的代理</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-27 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 1648 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#静态代理">静态代理</a></li>
+    <li><a href="#动态代理">动态代理</a>
+      <ul>
+        <li><a href="#jdk动态代理">JDK动态代理</a></li>
+        <li><a href="#cglib">cglib</a></li>
+        <li><a href="#asm">ASM</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#java%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%90%86">Java中的代理</a>
+<ol>
+<li><a href="#%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86">静态代理</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86">动态代理</a>
+<ol>
+<li><a href="#jdk%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86">JDK动态代理</a></li>
+<li><a href="#cglib">cglib</a></li>
+<li><a href="#asm">ASM</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="java中的代理">Java中的代理</h1>
+<blockquote>
+<p><a href="https://blog.csdn.net/JQ_AK47/article/details/85344634">参考: Java代理模式汇编</a></p>
+</blockquote>
+<p>在某些情况下，一个客户不想或者不能直接引用一个对象，此时可以通过一个称之为“代理”的第三者来实现间接引用。代理对象可以在客户端和目标对象之间起到中介的作用，并且可以通过代理对象去掉客户不能看到的内容和服务或者添加客户需要的额外服务。</p>
+<p>通过引入一个新的对象来实现对真实对象的操作或者将新的对象作为真实对象的一个替身，这种实现机制即为代理模式，通过引入代理对象来间接访问一个对象，这就是代理模式的模式动机。</p>
+<blockquote>
+<p>代理模式(Proxy Pattern) ：给某一个对象提供一个代理，并由代理对象控制对原对象的引用。</p>
+</blockquote>
+<p>按照代理类的创建时期，代理类可分为两种，即动态代理类和静态代理类.
+就是我们经常提到的静态代理和动态代理中主要用到的类。静态代理和动态代理的主要区别就是代理类创建的时间不同。</p>
+<p>静态代理通常只代理一个类，动态代理是代理一个接口下的多个实现类。静态代理事先知道要代理的是什么，而动态代理不知道要代理什么东西，只有在运行时才知道。</p>
+<h2 id="静态代理">静态代理</h2>
+<blockquote>
+<p>静态代理类：由程序员创建或由特定工具自动生成源代码，再对其编译。在程序运行前，代理类的.class文件就已经存在了。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">//  接口以及实现类 (目标接口和目标对象)
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HelloSerivice</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloSeriviceImpl</span> <span class="kd">implements</span> <span class="n">HelloSerivice</span><span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello world&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// 代理类(同样实现目标接口), 并扩展了对应的方法
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloSeriviceProxy</span> <span class="kd">implements</span> <span class="n">HelloSerivice</span><span class="o">{</span>
+        <span class="kd">private</span> <span class="n">HelloSerivice</span> <span class="n">target</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="nf">HelloSeriviceProxy</span><span class="o">(</span><span class="n">HelloSerivice</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;记录日志&#34;</span><span class="o">);</span>
+            <span class="n">target</span><span class="o">.</span><span class="na">say</span><span class="o">();</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;回收资源&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 单元测试
+</span><span class="c1"></span>    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testProxy</span><span class="o">(){</span>
+        <span class="c1">//目标对象
+</span><span class="c1"></span>        <span class="n">HelloSerivice</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HelloSeriviceImpl</span><span class="o">();</span>
+        <span class="c1">//代理对象
+</span><span class="c1"></span>        <span class="n">HelloSeriviceProxy</span> <span class="n">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HelloSeriviceProxy</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
+        <span class="n">proxy</span><span class="o">.</span><span class="na">say</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这就是一个简单的静态的代理模式的实现。代理模式中的所有角色（代理对象、目标对象、目标对象的接口）等都是在编译期就确定好的。</p>
+<ul>
+<li>静态代理的用途
+<ul>
+<li>控制真实对象的访问权限：通过代理对象控制对真实对象的使用权限。</li>
+<li>避免创建大对象：通过使用一个代理小对象来代表一个真实的大对象，可以减少系统资源的消耗，对系统进行优化并提高运行速度。</li>
+<li>增强真实对象的功能：通过代理可以在调用真实对象的方法的前后增加额外功能。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="动态代理">动态代理</h2>
+<blockquote>
+<p>动态代理类：在程序运行时，运用反射机制动态创建而成。动态代理中的代理类并不要求在编译期就确定，而是可以在运行期动态生成，从而实现对目标对象的代理功能。</p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/luanlouis/article/details/24589193">参考: Java动态代理机制详解（JDK 和CGLIB，Javassist，ASM）</a></p>
+</blockquote>
+<p>静态代理的缺点是想用这样的代理就必须要手动硬编码实现, 比较繁琐, 尤其是接口中的方法很多的时候, 动态代理就能解决这个问题<br>
+在我们平时使用的框架中，像servlet的filter、包括spring提供的aop以及struts2的拦截器, mybatis分页插件，以及日志拦截、事务拦截、权限拦截这些几乎全部有动态代理的身影。</p>
+<ul>
+<li>往往实现动态代理有两种方式:
+<ul>
+<li>JDK动态代理: <code>java.lang.reflect</code> 包中的<code>Proxy</code>类和<code>InvocationHandler</code>接口提供了生成动态代理类的能力。</li>
+<li>Cglib: 是一个第三方代码生成类库，运行时在内存中动态生成一个子类对象从而实现对目标对象功能的扩展。</li>
+</ul>
+</li>
+</ul>
+<h3 id="jdk动态代理">JDK动态代理</h3>
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/">Oracle api</a></p>
+</blockquote>
+<p>jdk动态代理是由java内部的反射机制来实现的
+JDK动态代理有一个限制，就是使用动态代理的对象必须实现一个或多个接口。因为JDK动态代理只能对接口产生代理，不能对类产生代理</p>
+<h3 id="cglib">cglib</h3>
+<blockquote>
+<p><code>It is used by AOP, testing, data access frameworks to generate dynamic proxy objects and intercept field access.</code></p>
+</blockquote>
+<p><a href="https://github.com/cglib/cglib">Cglib (Byte Code Generation Library)</a></p>
+<p>Cglib是针对类来实现代理的(所以无需声明接口)，他的原理是对代理的目标类生成一个子类，并覆盖其中方法实现增强，因为底层是基于创建被代理类的一个子类，所以它避免了JDK动态代理类的缺陷.<br>
+Cglib包的底层是通过使用一个小而快的字节码处理框架ASM，来转换字节码并生成新的类。不鼓励直接使用ASM，因为它需要你对JVM内部结构包括class文件的格式和指令集都很熟悉。</p>
+<h3 id="asm">ASM</h3>
+<blockquote>
+<p><a href="https://asm.ow2.io/">Official site</a> | <a href="https://github.com/llbit/ow2-asm">Github</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.ibm.com/developerworks/cn/java/j-lo-asm/">使用 ASM 实现 Java 语言的“多重继承”</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-01-27
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/work/cooperation/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">开发中的团队协作</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/windows/windowswithhibernate/">
+            <span class="next-text nav-default">Windows的快速启动</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

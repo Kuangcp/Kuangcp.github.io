@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>RESTful - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start RESTful风格 Rest 资源 Resources 表现层 Representation 状态转化 State Transfer 目录 end|2020-04-27 23:42| RESTful风格 要理解RESTful架构，最好的方法就是去理解Represen" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/web/restful/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="RESTful" />
+<meta property="og:description" content="目录 start RESTful风格 Rest 资源 Resources 表现层 Representation 状态转化 State Transfer 目录 end|2020-04-27 23:42| RESTful风格 要理解RESTful架构，最好的方法就是去理解Represen" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/web/restful/" />
+<meta property="article:published_time" content="2018-12-20T10:43:20+00:00" />
+<meta property="article:modified_time" content="2018-12-20T10:43:20+00:00" />
+<meta itemprop="name" content="RESTful">
+<meta itemprop="description" content="目录 start RESTful风格 Rest 资源 Resources 表现层 Representation 状态转化 State Transfer 目录 end|2020-04-27 23:42| RESTful风格 要理解RESTful架构，最好的方法就是去理解Represen">
+<meta itemprop="datePublished" content="2018-12-20T10:43:20+00:00" />
+<meta itemprop="dateModified" content="2018-12-20T10:43:20+00:00" />
+<meta itemprop="wordCount" content="1573">
+
+
+
+<meta itemprop="keywords" content="Restful," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="RESTful"/>
+<meta name="twitter:description" content="目录 start RESTful风格 Rest 资源 Resources 表现层 Representation 状态转化 State Transfer 目录 end|2020-04-27 23:42| RESTful风格 要理解RESTful架构，最好的方法就是去理解Represen"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">RESTful</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-20 </span>
+        <div class="post-category">
+            <a href="/categories/web/"> Web </a>
+            </div>
+          <span class="more-meta"> 1573 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#rest">Rest</a>
+      <ul>
+        <li><a href="#资源-resources">资源 Resources</a></li>
+        <li><a href="#表现层-representation">表现层 Representation</a></li>
+        <li><a href="#状态转化-state-transfer">状态转化 State Transfer</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#restful%E9%A3%8E%E6%A0%BC">RESTful风格</a>
+<ol>
+<li><a href="#rest">Rest</a>
+<ol>
+<li><a href="#%E8%B5%84%E6%BA%90-resources">资源 Resources</a></li>
+<li><a href="#%E8%A1%A8%E7%8E%B0%E5%B1%82-representation">表现层 Representation</a></li>
+<li><a href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E5%8C%96-state-transfer">状态转化 State Transfer</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="restful风格">RESTful风格</h1>
+<blockquote>
+<p>要理解RESTful架构，最好的方法就是去理解Representational State Transfer这个词组到底是什么意思，它的每一个词代表了什么涵义。</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/28557115">知乎: 使用通俗的语言解释RESTful</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000013961872">参考:  RPC vs REST vs GraphQL </a></p>
+</blockquote>
+<h2 id="rest">Rest</h2>
+<blockquote>
+<p>Representational State Transfer  表现层状态转化<br>
+如果一个架构符合REST原则，就称它为RESTful架构。</p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.pythondoc.com/flask-restful/first.html">参考自 使用 Python 和 Flask 设计 RESTful API</a></p>
+</blockquote>
+<ul>
+<li>六条设计规范定义了一个 REST 系统的特点:
+<ul>
+<li>客户端-服务器: 客户端和服务器之间隔离，服务器提供服务，客户端进行消费。</li>
+<li>无状态: 从客户端到服务器的每个请求都必须包含理解请求所必需的信息。换句话说， 服务器不会存储客户端上一次请求的信息用来给下一次使用。</li>
+<li>可缓存: 服务器必须明示客户端请求能否缓存。</li>
+<li>分层系统: 客户端和服务器之间的通信应该以一种标准的方式，就是中间层代替服务器做出响应的时候，客户端不需要做任何变动。</li>
+<li>统一的接口: 服务器和客户端的通信方法必须是统一的。</li>
+<li>按需编码: 服务器可以提供可执行代码或脚本，为客户端在它们的环境中执行。这个约束是唯一一个是可选的。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2011/09/restful.html">参考: 理解RESTful架构</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000002949234">RESTful Best Practices</a>
+<a href="http://www.infoq.com/cn/articles/understanding-restful-style">理解本真的REST架构风格</a>
+<a href="https://blog.csdn.net/wy5612087/article/details/52149249">RESTful风格的springMVC</a></p>
+</blockquote>
+<h3 id="资源-resources">资源 Resources</h3>
+<p>REST的名称&quot;表现层状态转化&quot;中，省略了主语。&ldquo;表现层&quot;其实指的是&quot;资源&rdquo;（Resources）的&quot;表现层&quot;。
+所谓&quot;资源&quot;，就是网络上的一个实体，或者说是网络上的一个具体信息。它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实在。
+你可以用一个URI（统一资源定位符）指向它，每种资源对应一个特定的URI。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。
+所谓&quot;上网&quot;，就是与互联网上一系列的&quot;资源&quot;互动，调用它的URI。</p>
+<h3 id="表现层-representation">表现层 Representation</h3>
+<p>&ldquo;资源&quot;是一种信息实体，它可以有多种外在表现形式。我们把&quot;资源&quot;具体呈现出来的形式，叫做它的&quot;表现层&rdquo;（Representation）。
+比如，文本可以用txt格式表现，也可以用HTML格式、XML格式、JSON格式表现，甚至可以采用二进制格式；图片可以用JPG格式表现，也可以用PNG格式表现。
+URI只代表资源的实体，不代表它的形式。严格地说，有些网址最后的&quot;.html&quot;后缀名是不必要的，因为这个后缀名表示格式，属于&quot;表现层&quot;范畴，而URI应该只代表&quot;资源&quot;的位置。
+它的具体表现形式，应该在HTTP请求的头信息中用Accept和Content-Type字段指定，这两个字段才是对&quot;表现层&quot;的描述。</p>
+<h3 id="状态转化-state-transfer">状态转化 State Transfer</h3>
+<p>访问一个网站，就代表了客户端和服务器的一个互动过程。在这个过程中，势必涉及到数据和状态的变化。
+互联网通信协议HTTP协议，是一个无状态协议。这意味着，所有的状态都保存在服务器端。因此，如果客户端想要操作服务器，必须通过某种手段，让服务器端发生&quot;状态转化&quot;（State Transfer）。
+而这种转化是建立在表现层之上的，所以就是&quot;表现层状态转化&quot;。客户端用到的手段，只能是HTTP协议。具体来说，就是HTTP协议里面，四个表示操作方式的动词：GET、POST、PUT、DELETE。
+它们分别对应四种基本操作：GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源。</p>
+<hr>
+<blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html">阮一峰 RESTful API 设计指南</a><code>很细致的说明该规范</code></p>
+</blockquote>
+<ul>
+<li><input disabled="" type="checkbox"> 需要整理和计划如何规范化实现这个接口</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/restful/">Restful</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/designpattern/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">设计模式</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/mis/">
+            <span class="next-text nav-default">MIS</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

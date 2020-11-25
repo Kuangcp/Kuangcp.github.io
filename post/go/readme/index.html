@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Go学习概览 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Golang 社区 教程 书籍 安装 Docker 环境变量解释 开发环境搭建 目录 end|2020-05-04 17:40| Golang awesome-go | awesome-go-cn 学习Go的知乎话题 Java 20年：转角遇到Go Golang vs Rust vs Dlang 哪个更有前途大致就是go" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/go/readme/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Go学习概览" />
+<meta property="og:description" content="目录 start Golang 社区 教程 书籍 安装 Docker 环境变量解释 开发环境搭建 目录 end|2020-05-04 17:40| Golang awesome-go | awesome-go-cn 学习Go的知乎话题 Java 20年：转角遇到Go Golang vs Rust vs Dlang 哪个更有前途大致就是go" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/go/readme/" />
+<meta property="article:published_time" content="2020-03-22T12:40:12+00:00" />
+<meta property="article:modified_time" content="2020-03-22T12:40:12+00:00" />
+<meta itemprop="name" content="Go学习概览">
+<meta itemprop="description" content="目录 start Golang 社区 教程 书籍 安装 Docker 环境变量解释 开发环境搭建 目录 end|2020-05-04 17:40| Golang awesome-go | awesome-go-cn 学习Go的知乎话题 Java 20年：转角遇到Go Golang vs Rust vs Dlang 哪个更有前途大致就是go">
+<meta itemprop="datePublished" content="2020-03-22T12:40:12+00:00" />
+<meta itemprop="dateModified" content="2020-03-22T12:40:12+00:00" />
+<meta itemprop="wordCount" content="1383">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go学习概览"/>
+<meta name="twitter:description" content="目录 start Golang 社区 教程 书籍 安装 Docker 环境变量解释 开发环境搭建 目录 end|2020-05-04 17:40| Golang awesome-go | awesome-go-cn 学习Go的知乎话题 Java 20年：转角遇到Go Golang vs Rust vs Dlang 哪个更有前途大致就是go"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Go学习概览</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-22 </span>
+        
+          <span class="more-meta"> 1383 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#社区">社区</a></li>
+    <li><a href="#教程">教程</a></li>
+    <li><a href="#书籍">书籍</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#linux-下安装">Linux 下安装</a>
+      <ul>
+        <li><a href="#hello-world">Hello World</a></li>
+      </ul>
+    </li>
+    <li><a href="#docker">Docker</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#golang">Golang</a>
+<ol>
+<li><a href="#%E7%A4%BE%E5%8C%BA">社区</a></li>
+<li><a href="#%E6%95%99%E7%A8%8B">教程</a></li>
+<li><a href="#%E4%B9%A6%E7%B1%8D">书籍</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a>
+<ol>
+<li><a href="#docker">Docker</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%A7%A3%E9%87%8A">环境变量解释</a></li>
+<li><a href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">开发环境搭建</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-05-04 17:40</em>|</p>
+<hr>
+<h1 id="golang">Golang</h1>
+<blockquote>
+<p><a href="https://github.com/avelino/awesome-go">awesome-go</a> | <a href="https://github.com/yinggaozhen/awesome-go-cn">awesome-go-cn</a></p>
+</blockquote>
+<ul>
+<li><a href="https://www.zhihu.com/question/23486344">学习Go的知乎话题</a></li>
+<li><a href="http://www.infoq.com/cn/news/2015/05/java20-from-language-to-platform">Java 20年：转角遇到Go</a></li>
+</ul>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/27226962">Golang vs Rust vs Dlang 哪个更有前途</a><code>大致就是go偏向Java Python, Rust 偏向 C++ 的领域</code><br>
+<a href="https://mp.weixin.qq.com/s?__biz=MjM5NzM0MjcyMQ==&amp;mid=2650087380&amp;idx=1&amp;sn=56c77443ae171e1091e146704798647a">从 0 到 1 学习 Go 语言 </a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>负面</p>
+</blockquote>
+<ul>
+<li><a href="http://blog.csdn.net/liigo/article/details/23699459">Go1.0的吐槽</a></li>
+<li><a href="https://blog.csdn.net/liigo/article/details/23699459">参考: 我为什么放弃Go语言</a></li>
+<li><a href="http://www.yinwang.org/blog-cn/2014/04/18/golang">对 Go 语言的综合评价</a><code>设计角度：泛型，接口和排序的问题！！</code></li>
+</ul>
+<p>工程角度： 包管理，错误处理</p>
+<h2 id="社区">社区</h2>
+<ul>
+<li><a href="https://gocn.vip/">GoCN Forum</a></li>
+<li><a href="https://studygolang.com">Go语言中文网</a></li>
+</ul>
+<h2 id="教程">教程</h2>
+<ul>
+<li><a href="https://github.com/hyper0x/goc2p">Go Programming &amp; Concurrency in Practice</a></li>
+<li><a href="http://c.biancheng.net/golang/">golang教程</a></li>
+<li><a href="https://www.gitbook.com/book/astaxie/build-web-application-with-golang">build web application with golang</a></li>
+<li><a href="https://github.com/Unknwon/go-study-index">Go 语言学习资料与社区索引</a></li>
+<li><a href="https://github.com/wonderfo/wonderfogo/wiki">Go语言资料收集</a></li>
+<li><a href="http://www.runoob.com/go/go-tutorial.html">go</a></li>
+<li><a href="http://www.vaikan.com/go/a-tour-of-go/#1">在线编译执行 学习go</a> <code>在线编辑运行</code></li>
+<li><a href="https://github.com/go101/go101">go101</a></li>
+<li><a href="https://github.com/astaxie/build-web-application-with-golang">build-web-application-with-golang</a></li>
+</ul>
+<hr>
+<h2 id="书籍">书籍</h2>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/30461290">Go相关书籍的知乎话题</a><br>
+<a href="https://books.studygolang.com/advanced-go-programming-book/index.html">Go语言高级编程(Advanced Go Programming)</a></p>
+</blockquote>
+<h1 id="安装">安装</h1>
+<h2 id="linux-下安装">Linux 下安装</h2>
+<blockquote>
+<p><a href="https://golang.google.cn/dl/">Official Download</a> | <a href="https://golang.google.cn/doc/install">Official Doc</a></p>
+</blockquote>
+<ol>
+<li><code>sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz</code> 安装和升级都是如此
+<ul>
+<li>注意: 升级前必须 <code>rm -rf /usr/local/go</code> 以免造成文件的混乱</li>
+</ul>
+</li>
+<li><code>*shrc</code> 或者 <code>/etc/profile</code> 中添加
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nb">export</span> <span class="nv">GOROOT</span><span class="o">=</span>/usr/local/go
+    <span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/Code/go <span class="c1"># workspace</span>
+    <span class="nb">export</span> <span class="nv">GOBIN</span><span class="o">=</span><span class="nv">$GOPATH</span>/bin <span class="c1"># &#39;go install&#39; command install dir</span>
+    <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$GOBIN</span>:<span class="nv">$GOPATH</span>:<span class="nv">$GOROOT</span>/bin
+</code></pre></td></tr></table>
+</div>
+</div><p>``</p>
+</li>
+<li><strong>查看版本</strong> <code>go version</code>正常输出go的版本则是配置成功</li>
+</ol>
+<h3 id="hello-world">Hello World</h3>
+<ol>
+<li>在 <code>$HOME/Code/go</code> 下 新建 test.go
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go">    <span class="kn">package</span> <span class="nx">main</span>
+    <span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+    <span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;hello, world&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>go run test.go 或者 go build 然后执行可执行文件</li>
+</ol>
+<h2 id="docker">Docker</h2>
+<blockquote>
+<p><a href="https://hub.docker.com/_/golang/">Docker image</a>
+<a href="https://gocn.vip/question/153">go 的 Docker镜像的讨论</a></p>
+</blockquote>
+<ol>
+<li>部署运行的时候, 如果不需要调用外部Linux命令 就直接使用空镜像 <code>from scratch</code> 但是缺点是排查问题时无工具可用</li>
+<li>需要外部命令则 <code>from alpine</code> 更精简一点 更好是使用 <code>frolvlad/alpine-glibc</code></li>
+</ol>
+<hr>
+<h1 id="环境变量解释">环境变量解释</h1>
+<blockquote>
+<p><a href="https://blog.csdn.net/Alsmile/article/details/48290223">	关于GOROOT、GOPATH、GOBIN、project目录</a>
+<a href="https://studygolang.com/articles/3493">GOPATH 深度解析 </a></p>
+</blockquote>
+<ul>
+<li>Go 开发环境依赖于一些<code>操作系统环境变量</code>，最好在安装 Go 之间就已经设置好他们。如果是 Windows系统 Go 将被默认安装在目录 c:/go 下。这里列举几个最为重要的环境变量：
+<ul>
+<li><code>$GOROOT</code> 表示 Go 在你的电脑上的安装位置，它的值一般都是 $HOME/go，当然，你也可以安装在别的地方。</li>
+<li><code>$GOARCH</code> 表示目标机器的处理器架构，它的值可以是 386、amd64 或 arm。</li>
+<li><code>$GOOS</code> 表示目标机器的操作系统，它的值可以是 darwin、freebsd、linux 或 windows。</li>
+<li><code>$GOBIN</code> 表示编译器和链接器的安装位置，默认是 <code>$GOROOT/bin</code>，如果你使用的是 Go 1.0.3 及以后的版本，一般情况下你可以将它的值设置为空，Go 将会使用前面提到的默认值。
+<ul>
+<li>为了区分本地机器和目标机器，你可以使用 <code>$GOHOSTOS</code> 和 <code>$GOHOSTARCH</code> 设置目标机器的参数，这两个变量只有在进行交叉编译的时候才会用到，</li>
+<li>如果你不进行显示设置，他们的值会和本地机器（<code>$GOOS</code> 和 <code>$GOARCH</code>）一样。</li>
+</ul>
+</li>
+<li><code>$GOPATH</code> 默认采用和 <code>$GOROOT</code> 一样的值，但从 Go 1.1 版本开始，你必须修改为其它路径。它可以包含多个包含 Go 语言源码文件、包文件和可执行文件的路径，
+<ul>
+<li>而这些路径下又必须分别包含三个规定的目录：src、pkg 和 bin，这三个目录分别用于存放源码文件、包文件和可执行文件。</li>
+</ul>
+</li>
+<li><code>$GOARM</code> 专门针对基于 arm 架构的处理器，它的值可以是 5 或 6，默认为 6。</li>
+<li><code>$GOMAXPROCS</code> 用于设置应用程序可使用的处理器个数与核数，详见第 14.1.3 节。</li>
+<li><code>$GOPROXY</code> 设置 mod 的代理. 例如： <strong>GOPROXY=https://mirrors.aliyun.com/goproxy/</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="开发环境搭建-基于-vscode">开发环境搭建 基于 VSCode</h1>
+<blockquote>
+<p><a href="https://github.com/golang">Github:Golang</a> | <a href="https://github.com/Kuangcp/GoBase">基础学习项目</a></p>
+</blockquote>
+<p>入门时使用 VSCode 是比较方便的, VSCode 会推荐我们安装如下工具</p>
+<ol>
+<li>tools <em>工具集</em>
+<ol>
+<li>guru <code>golang.org/x/tools/cmd/guru</code></li>
+<li>gorename <code>golang.org/x/tools/cmd/gorename</code></li>
+</ol>
+</li>
+<li>lint <code>golang.org/x/lint</code>
+<ol>
+<li>golint <code>golang.org/x/lint/golint</code></li>
+</ol>
+</li>
+<li>go-outline <code>github.com/ramya-rao-a/go-outline</code></li>
+<li>go-symbols <code>github.com/acroca/go-symbols</code></li>
+<li>goreturns <code>github.com/sqs/goreturns</code></li>
+<li>dep <code>github.com/golang/dep</code></li>
+</ol>
+<p>由于 golang.org 用的是Google的服务器, 所以&hellip;, 这几个工具不能直接安装：guru gorename imports(goreturns要用到) lint golint<br>
+但是本质上都是获取源码进行安装, 所以也可以从github获取并安装</p>
+<p><strong>汇总一下命令</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># 必须在 GOPATH 下执行</span>
+    <span class="nb">cd</span> <span class="nv">$GOPATH</span>
+    mkdir -p src/golang.org/x/tools
+    git clone --depth <span class="m">1</span> https://github.com/golang/tools src/golang.org/x/tools
+
+    mkdir -p src/golang.org/x/lint
+    git clone --depth <span class="m">1</span> https://github.com/golang/lint  src/golang.org/x/lint
+
+    go get golang.org/x/tools/cmd/guru 
+    go get golang.org/x/tools/cmd/gorename 
+    go get golang.org/x/tools/cmd/goimports
+
+    go get golang.org/x/lint
+    go get golang.org/x/lint/golint
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># 可在任意目录执行</span>
+    go get github.com/ramya-rao-a/go-outline
+    go get github.com/acroca/go-symbols
+    
+    <span class="c1">## 仅为了提速</span>
+    mkdir -p src/github.com/golang/dep
+    git clone --depth <span class="m">1</span> https://github.com/golang/dep src/github.com/golang/dep
+    go get github.com/golang/dep
+
+    go get github.com/sqs/goreturns
+    go get github.com/rogpeppe/godef
+    go get github.com/uudashr/gopkgs/cmd/gopkgs
+    go get github.com/go-delve/delve/cmd/dlv
+    go get github.com/mdempsky/gocode
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-22
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/rust/readme/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Rust 概览</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/rust/rustbase/">
+            <span class="next-text nav-default">Rust基础</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

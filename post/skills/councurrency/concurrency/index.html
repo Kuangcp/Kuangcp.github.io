@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>并发 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 并发 同步 异步 线程和进程 协程 锁 死锁 并发编程 C100K 目录 end|2020-11-16 12:11| 并发 并发编程的理论基础 无关语言 同步 码农翻身:那些烦人的同步和互斥问题 这种对共享变量，" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/councurrency/concurrency/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="并发" />
+<meta property="og:description" content="目录 start 并发 同步 异步 线程和进程 协程 锁 死锁 并发编程 C100K 目录 end|2020-11-16 12:11| 并发 并发编程的理论基础 无关语言 同步 码农翻身:那些烦人的同步和互斥问题 这种对共享变量，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/councurrency/concurrency/" />
+<meta property="article:published_time" content="2019-01-16T00:00:04+00:00" />
+<meta property="article:modified_time" content="2019-01-16T00:00:04+00:00" />
+<meta itemprop="name" content="并发">
+<meta itemprop="description" content="目录 start 并发 同步 异步 线程和进程 协程 锁 死锁 并发编程 C100K 目录 end|2020-11-16 12:11| 并发 并发编程的理论基础 无关语言 同步 码农翻身:那些烦人的同步和互斥问题 这种对共享变量，">
+<meta itemprop="datePublished" content="2019-01-16T00:00:04+00:00" />
+<meta itemprop="dateModified" content="2019-01-16T00:00:04+00:00" />
+<meta itemprop="wordCount" content="1309">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="并发"/>
+<meta name="twitter:description" content="目录 start 并发 同步 异步 线程和进程 协程 锁 死锁 并发编程 C100K 目录 end|2020-11-16 12:11| 并发 并发编程的理论基础 无关语言 同步 码农翻身:那些烦人的同步和互斥问题 这种对共享变量，"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">并发</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-16 </span>
+        
+          <span class="more-meta"> 1309 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#同步">同步</a></li>
+    <li><a href="#异步">异步</a></li>
+    <li><a href="#线程和进程">线程和进程</a></li>
+    <li><a href="#协程">协程</a></li>
+    <li><a href="#锁">锁</a>
+      <ul>
+        <li><a href="#死锁">死锁</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#c100k">C100K</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E5%B9%B6%E5%8F%91">并发</a>
+<ol>
+<li><a href="#%E5%90%8C%E6%AD%A5">同步</a></li>
+<li><a href="#%E5%BC%82%E6%AD%A5">异步</a></li>
+<li><a href="#%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B">线程和进程</a></li>
+<li><a href="#%E5%8D%8F%E7%A8%8B">协程</a></li>
+<li><a href="#%E9%94%81">锁</a>
+<ol>
+<li><a href="#%E6%AD%BB%E9%94%81">死锁</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B">并发编程</a>
+<ol>
+<li><a href="#c100k">C100K</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-11-16 12:11</em>|</p>
+<hr>
+<h1 id="并发">并发</h1>
+<blockquote>
+<p>并发编程的理论基础 无关语言</p>
+</blockquote>
+<h2 id="同步">同步</h2>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513371&amp;idx=1&amp;sn=c875f64af83306bffca8dd748f1462ff&amp;chksm=80d679d8b7a1f0ce98a0e3a12409805757cd2e958586c54049121f961cf5b2d236530cd019c7&amp;scene=21#wechat_redirect">码农翻身:那些烦人的同步和互斥问题</a></p>
+</blockquote>
+<blockquote>
+<p>这种对<code>共享变量， 共享内存，共享资源</code>进行访问的程序片段叫做<code>临界区</code>， 代码在进入临界区之前一定要做好同步或者互斥的操作。</p>
+</blockquote>
+<ul>
+<li>例如在Java JDK中， 已经对线程的同步做了封装了， 对于生产者-消费者问题，可以直接使用BlockingQueue
+<ul>
+<li>非常简单， 完全不用你去考虑这些 wait, signal, full, empty</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="异步">异步</h2>
+<hr>
+<h2 id="线程和进程">线程和进程</h2>
+<hr>
+<h2 id="协程">协程</h2>
+<ul>
+<li>
+<p><a href="https://www.zhihu.com/question/20511233">知乎:协程的讨论</a></p>
+</li>
+<li>
+<p><a href="http://www.cnblogs.com/zingp/p/5911537.html">协程以及Python实现</a></p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> 学习参考 Kotlin Go Java(库) 的协程实现</p>
+</li>
+</ul>
+<hr>
+<h2 id="锁">锁</h2>
+<blockquote>
+<p>锁是用来锁临界区资源的 , 而不是锁代码块, 锁函数. 那么在Java中: <code>synchronized</code> 锁住的是不同线程对同一个对象的访问 <a href="https://www.zhihu.com/question/21295770">知乎: 锁代码块和锁方法有啥区别啊？</a></p>
+</blockquote>
+<h3 id="死锁">死锁</h3>
+<ol>
+<li>什么是死锁</li>
+<li>死锁的四个必要条件
+<ol>
+<li>资源互斥
+<ul>
+<li>指线程对已经获取到的资源进行排它性使用，即该资源同时只由一个线程占用。如果此时还有其他线程请求获取该资源，则请求者只能等待，直至占有资源的线程释放该资源。</li>
+</ul>
+</li>
+<li>持有资源与请求新资源
+<ul>
+<li>指一个线程已经持有了至少一个资源，但又提出了新的资源请求，而新资源已被其他线程占有，所以当前线程会被阻塞，但阻塞的同时并不释放自己已经获取的资源。</li>
+</ul>
+</li>
+<li>不可剥夺
+<ul>
+<li>指线程获取到的资源在自己使用完之前不能被其他线程抢占，只有在自己使用完毕后才由自己释放该资源。</li>
+</ul>
+</li>
+<li>环路等待
+<ul>
+<li>指在发生死锁时，必然存在一个线程—资源的环形链，即线程集合{T0,T1, T2, …, Tn}中的T0正在等待一个T1占用的资源，T1正在等待T2占用的资源，……Tn正在等待已被T0占用的资源。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h1 id="并发编程">并发编程</h1>
+<blockquote>
+<p>在抽象角度考虑并发</p>
+</blockquote>
+<ul>
+<li><a href="http://ifeve.com/">并发编程网</a></li>
+</ul>
+<blockquote>
+<p><a href="https://www.jdon.com/concurrency.html">参考: 解道 并发编程</a></p>
+</blockquote>
+<blockquote>
+<p>在过去的30年里，计算机的性能是在摩尔定律的推动下，从现在开始，这将由Amdahl定律决定。编写代码，有效地利用多个处理器可以是非常具有挑战性的。&quot; &ndash; Doron Rajwan</p>
+</blockquote>
+<p>进行多核多服务器时代，并行并发模式更是对程序员的挑战，现在所谓的Thread Programmer世界上也是为数不多，因为线程表面上好像很容易，但在实际应用中真正应付大负荷运算时，原来的线程设计方案漏洞百出。</p>
+<p>并发concurrency属于问题域(problem domain), 并行parallelism属于( solution domain)。
+并行和并发的区别在于有无状态，并行计算适合无状态应用，而并发解决的是有状态的高性能； 有状态要着力解决并发计算，无状态要着力并行计算</p>
+<p>并发主要是要解决资源争夺，并发一般发生在数据聚合的地方，只要有聚合，就有争夺发生，传统解决争夺的方式采取线程锁机制，这是强行对CPU管理线程人为干预，线程唤醒成本高，新的无锁并发策略来源于Java的NIO或Node.js，通过队列+单线程操作资源的方式巧妙避免了多线程，由于只有一个线程，在多核情况下增加了并行计算的机会。</p>
+<p>并发模型分两种，并发基础线程和并发组件模型，并发组件模型让使用者接触不到基础线程概念，是一种简化。作为一个高级集成架构师，应该在程序范式的高级层次定义并发，基于组件级别的并发，并且尽可能地避免涉及线程概念以及线程池等底层概念。</p>
+<p>实现并发的途径有两种，基于线程和基于事件 <a href="https://www.jdon.com/46921">基于线程与基于事件的并发编程之争</a></p>
+<h2 id="c100k">C100K</h2>
+<blockquote>
+<p><a href="https://www.cnblogs.com/cnsanshao/p/4652305.html">参考: 使用四种框架分别实现百万websocket常连接的服务器</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-01-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/windows/windowswithhibernate/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Windows的快速启动</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/myblog/12306/">
+            <span class="next-text nav-default">12306</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

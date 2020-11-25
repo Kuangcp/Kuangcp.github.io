@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux发行版 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Linux常见发行版 基础知识 安装系统 服务器系统之争 Debian Debain Ubuntu Ubuntu Mint Deepin Raspberry-pi Arch Arch manjaro RedHat Fedora Centos openSUSE FreeBSD Solaris Alpine Gentoo Mageia CDLinux Chromium OS Chrome OS Fyde OS 目录 end|2020-05-17 17:24| Linux常见发行版 Repology 论" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/releaseexperience/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Linux发行版" />
+<meta property="og:description" content="目录 start Linux常见发行版 基础知识 安装系统 服务器系统之争 Debian Debain Ubuntu Ubuntu Mint Deepin Raspberry-pi Arch Arch manjaro RedHat Fedora Centos openSUSE FreeBSD Solaris Alpine Gentoo Mageia CDLinux Chromium OS Chrome OS Fyde OS 目录 end|2020-05-17 17:24| Linux常见发行版 Repology 论" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/releaseexperience/" />
+<meta property="article:published_time" content="2018-12-15T11:19:21+00:00" />
+<meta property="article:modified_time" content="2018-12-15T11:19:21+00:00" />
+<meta itemprop="name" content="Linux发行版">
+<meta itemprop="description" content="目录 start Linux常见发行版 基础知识 安装系统 服务器系统之争 Debian Debain Ubuntu Ubuntu Mint Deepin Raspberry-pi Arch Arch manjaro RedHat Fedora Centos openSUSE FreeBSD Solaris Alpine Gentoo Mageia CDLinux Chromium OS Chrome OS Fyde OS 目录 end|2020-05-17 17:24| Linux常见发行版 Repology 论">
+<meta itemprop="datePublished" content="2018-12-15T11:19:21+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T11:19:21+00:00" />
+<meta itemprop="wordCount" content="1104">
+
+
+
+<meta itemprop="keywords" content="工具使用经验," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux发行版"/>
+<meta name="twitter:description" content="目录 start Linux常见发行版 基础知识 安装系统 服务器系统之争 Debian Debain Ubuntu Ubuntu Mint Deepin Raspberry-pi Arch Arch manjaro RedHat Fedora Centos openSUSE FreeBSD Solaris Alpine Gentoo Mageia CDLinux Chromium OS Chrome OS Fyde OS 目录 end|2020-05-17 17:24| Linux常见发行版 Repology 论"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux发行版</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 1104 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础知识">基础知识</a>
+      <ul>
+        <li><a href="#安装系统">安装系统</a></li>
+      </ul>
+    </li>
+    <li><a href="#服务器系统之争">服务器系统之争</a></li>
+    <li><a href="#debian">Debian</a>
+      <ul>
+        <li><a href="#debain">Debain</a></li>
+        <li><a href="#ubuntu">Ubuntu</a></li>
+        <li><a href="#ubuntu-mint">Ubuntu Mint</a></li>
+        <li><a href="#deepin">Deepin</a></li>
+        <li><a href="#raspberry-pi">Raspberry-pi</a></li>
+      </ul>
+    </li>
+    <li><a href="#arch">Arch</a>
+      <ul>
+        <li><a href="#arch-1">Arch</a></li>
+        <li><a href="#manjaro">manjaro</a></li>
+      </ul>
+    </li>
+    <li><a href="#redhat">RedHat</a>
+      <ul>
+        <li><a href="#fedora">Fedora</a></li>
+        <li><a href="#centos">Centos</a></li>
+        <li><a href="#opensuse">openSUSE</a></li>
+      </ul>
+    </li>
+    <li><a href="#freebsd">FreeBSD</a></li>
+    <li><a href="#solaris">Solaris</a></li>
+    <li><a href="#alpine">Alpine</a></li>
+    <li><a href="#gentoo">Gentoo</a></li>
+    <li><a href="#mageia">Mageia</a></li>
+    <li><a href="#cdlinux">CDLinux</a></li>
+    <li><a href="#chromium-os">Chromium OS</a>
+      <ul>
+        <li><a href="#chrome-os">Chrome OS</a></li>
+        <li><a href="#fyde-os">Fyde OS</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#linux%E5%B8%B8%E8%A7%81%E5%8F%91%E8%A1%8C%E7%89%88">Linux常见发行版</a>
+<ol>
+<li><a href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">基础知识</a>
+<ol>
+<li><a href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F">安装系统</a></li>
+</ol>
+</li>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9F%E4%B9%8B%E4%BA%89">服务器系统之争</a></li>
+<li><a href="#debian">Debian</a>
+<ol>
+<li><a href="#debain">Debain</a></li>
+<li><a href="#ubuntu">Ubuntu</a></li>
+<li><a href="#ubuntu-mint">Ubuntu Mint</a></li>
+<li><a href="#deepin">Deepin</a></li>
+<li><a href="#raspberry-pi">Raspberry-pi</a></li>
+</ol>
+</li>
+<li><a href="#arch">Arch</a>
+<ol>
+<li><a href="#arch">Arch</a></li>
+<li><a href="#manjaro">manjaro</a></li>
+</ol>
+</li>
+<li><a href="#redhat">RedHat</a>
+<ol>
+<li><a href="#fedora">Fedora</a></li>
+<li><a href="#centos">Centos</a></li>
+<li><a href="#opensuse">openSUSE</a></li>
+</ol>
+</li>
+<li><a href="#freebsd">FreeBSD</a></li>
+<li><a href="#solaris">Solaris</a></li>
+<li><a href="#alpine">Alpine</a></li>
+<li><a href="#gentoo">Gentoo</a></li>
+<li><a href="#mageia">Mageia</a></li>
+<li><a href="#cdlinux">CDLinux</a></li>
+<li><a href="#chromium-os">Chromium OS</a>
+<ol>
+<li><a href="#chrome-os">Chrome OS</a></li>
+<li><a href="#fyde-os">Fyde OS</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-05-17 17:24</em>|</p>
+<hr>
+<h1 id="linux常见发行版">Linux常见发行版</h1>
+<blockquote>
+<p><a href="https://repology.org/">Repology</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.lulinux.com/archives/3614">论最适合开发用的几款Linux桌面系统</a>
+<a href="https://distrowatch.com/dwres.php?resource=popularity">发行版热度对比</a>
+<a href="https://www.jianshu.com/p/c88a62ac8ca3?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">Linux的发行版本及不同版本的联系和区别。</a>
+<a href="https://www.jianshu.com/p/13d399608880?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">Linux十大顶级发行版本</a>
+<a href="https://www.jianshu.com/p/b796ead65995?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">linux 的不同的发行版区别和联系</a></p>
+</blockquote>
+<ul>
+<li><a href="http://www.yinwang.org/blog-cn/2013/03/07/linux-windows-mac">谈 Linux，Windows 和 Mac</a></li>
+</ul>
+<h2 id="基础知识">基础知识</h2>
+<blockquote>
+<p>下载安装时要选平台 <a href="http://downtoearthlinux.com/posts/x86-i386-x86-64-x64-and-amd64-oh-my/">相关博客</a></p>
+<blockquote>
+<p>64: x86-64 =  x64  =  amd64<br>
+32: x86  =  i386</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><a href="/Linux/Base/LinuxDirectoryStructure.md#%E6%9F%A5%E7%9C%8B%E5%8F%91%E8%A1%8C%E7%89%88">查看发行版</a></p>
+</blockquote>
+<ul>
+<li><a href="https://www.lulinux.com/archives/1319">2018年wine QQ最完美解决方案（多Linux发行版通过测试并稳定运行）</a></li>
+</ul>
+<h3 id="安装系统">安装系统</h3>
+<blockquote>
+<p>制作U盘启动盘</p>
+</blockquote>
+<ul>
+<li>Manjaro
+<ul>
+<li>rufus: 在windows上制作, 选用dd模式</li>
+</ul>
+</li>
+<li>Deepin
+<ol>
+<li>系统内置的 启动盘制作工具, 或者官网下Windows版</li>
+<li>或者用软碟通</li>
+</ol>
+</li>
+<li>Ubuntu
+<ol>
+<li>软碟通</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>系统安装</p>
+</blockquote>
+<ul>
+<li>现在大多电脑都是预装win10, 所以为了方便, 双系统更好用</li>
+</ul>
+<ol>
+<li>首先一点就是引导模式 现在大多是 UEFI, 所以为了不影响 windows, 关闭 UEFI, 使用 Legacy模式安装Linux 这样的话, 打开UEFI就进了Windows 关闭就进了Linux 对Windows没造成任何影响</li>
+<li>在Windows上 我的电脑-&gt; 硬盘管理 -&gt; 选择一个分区,压缩出空闲空间出来 用于安装Linux(日常用最少80g 尽管系统最低占用大概10g左右)</li>
+<li>将U盘插上, 进入系统安装的引导, 选好语言, 用户 密码什么的</li>
+<li>分区 分为 / 和 /home 就行了, / 40g 其余给/home (个人分100g才够用) 千万注意不要选错分区</li>
+<li>引导会自动追加到硬盘引导分区, 不会覆盖原有系统, 目前 manjaro deepin windows10 三系统双硬盘并存</li>
+<li>安装完成, 重启前拔掉U盘 即可</li>
+</ol>
+<blockquote>
+<p><a href="https://www.ibm.com/developerworks/cn/linux/l-grub2/">参考: 迁移到 GRUB 2</a></p>
+</blockquote>
+<blockquote>
+<p>UEFI  | <a href="https://wiki.manjaro.org/index.php?title=UEFI_-_Install_Guide">Doc</a></p>
+</blockquote>
+<h2 id="服务器系统之争">服务器系统之争</h2>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/19599986">服务器操作系统应该选择 Debian/Ubuntu 还是 CentOS？</a><br>
+<a href="https://bobcares.com/blog/centos-vs-coreos-os-for-docker-web-hosting/2/">CentOS vs CoreOS – Which OS to choose for your Docker web hosting services</a></p>
+</blockquote>
+<hr>
+<h2 id="debian">Debian</h2>
+<blockquote>
+<p>Debian系 包含 Debian *buntu Deepin 等等</p>
+</blockquote>
+<p>个人经历，大版本号升级时不稳定，升级失败或者搞挂系统</p>
+<h3 id="debain">Debain</h3>
+<p><a href="/Linux/Debian/Debian.md">Debian</a></p>
+<h3 id="ubuntu">Ubuntu</h3>
+<p><a href="/Linux/Debian/Ubuntu.md">Ubuntu</a></p>
+<h3 id="ubuntu-mint">Ubuntu Mint</h3>
+<blockquote>
+<p>作为桌面版系统, 基于Ubuntu, 使用更为简单 也有更多的窗口管理器可以选择</p>
+</blockquote>
+<h3 id="deepin">Deepin</h3>
+<p><a href="/Linux/Debian/Deepin.md">Deepin</a></p>
+<h3 id="raspberry-pi">Raspberry-pi</h3>
+<blockquote>
+<p><a href="https://www.raspberrypi.org">Official</a></p>
+</blockquote>
+<ul>
+<li><a href="https://www.raspberrypi.org/downloads/raspberry-pi-desktop/">树莓派桌面版下载</a> <code>分辨率不知道怎么调, 资源的消耗倒是低</code></li>
+</ul>
+<hr>
+<h2 id="arch">Arch</h2>
+<h3 id="arch-1">Arch</h3>
+<blockquote>
+<p>滚动发行，包管理机制优秀</p>
+</blockquote>
+<ul>
+<li><a href="https://linuxtoy.org/archives/the-perfect-linux-desktop-arch-linux-2007-08-2-1.html">打造完美的 Linux 桌面 — Arch Linux 2007.08-2 (1)</a>
+<ul>
+<li><a href="https://linuxtoy.org/archives/the-perfect-linux-desktop-arch-linux-2007-08-2-2.html">打造完美的 Linux 桌面 — Arch Linux 2007.08-2 (2)</a></li>
+<li><a href="https://linuxtoy.org/archives/the-perfect-linux-desktop-arch-linux-2007-08-2-3.html">打造完美的 Linux 桌面 — Arch Linux 2007.08-2 (3)</a></li>
+<li><a href="https://linuxtoy.org/archives/the-perfect-linux-desktop-arch-linux-2007-08-2-4.html">打造完美的 Linux 桌面 — Arch Linux 2007.08-2 (4)</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="manjaro">manjaro</h3>
+<blockquote>
+<p><a href="https://manjaro.org/community-editions/">官网</a>
+<a href="https://www.manjaro.cn/451">人生苦短我用Manjaro</a> | <a href="https://www.lulinux.com/archives/2787">什么Linux发行版软件最多？</a>
+| <a href="https://www.manjaro.cn/195">Manjaro: 一种不同的野兽</a> | <a href="https://www.manjaro.cn/150">为什么要用Manjaro？</a></p>
+</blockquote>
+<ul>
+<li>因为基于arch, 并且简化了很多操作, 还兼容了Deepin桌面, 真是稳了, 但是日常生活中</li>
+<li>因为滚动更新的特性, 所以在安装一个新软件的时候, 需要更新到最新版, 这样就比较烦,</li>
+</ul>
+<hr>
+<h2 id="redhat">RedHat</h2>
+<blockquote>
+<p>大厂支持 侧重于服务器领域</p>
+</blockquote>
+<h3 id="fedora">Fedora</h3>
+<blockquote>
+<p>redhat的试验场 不太感冒</p>
+</blockquote>
+<h3 id="centos">Centos</h3>
+<h3 id="opensuse">openSUSE</h3>
+<hr>
+<h2 id="freebsd">FreeBSD</h2>
+<hr>
+<h2 id="solaris">Solaris</h2>
+<hr>
+<h2 id="alpine">Alpine</h2>
+<blockquote>
+<p>特别小，在docker中使用有优势</p>
+</blockquote>
+<h2 id="gentoo">Gentoo</h2>
+<blockquote>
+<p>入门难度大，适合资深玩家，据说是特能折腾的系统，处于鄙视链顶端</p>
+</blockquote>
+<h2 id="mageia">Mageia</h2>
+<blockquote>
+<p><a href="http://www.mageia.org/zh-cn/">官网</a></p>
+</blockquote>
+<h2 id="cdlinux">CDLinux</h2>
+<blockquote>
+<p>小巧的Linux发行版, 带有很多工具</p>
+</blockquote>
+<h2 id="chromium-os">Chromium OS</h2>
+<blockquote>
+<p><a href="https://www.chromium.org/chromium-os">Chromium OS</a></p>
+</blockquote>
+<h3 id="chrome-os">Chrome OS</h3>
+<h3 id="fyde-os">Fyde OS</h3>
+<blockquote>
+<p><a href="https://fydeos.com">Official</a> <code>基于 Chromium OS</code></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%8F%E9%AA%8C/">工具使用经验</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/base/ssh/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SSH使用总结</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/base/linuxui/">
+            <span class="next-text nav-default">Linux 美化</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

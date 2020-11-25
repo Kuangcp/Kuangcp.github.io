@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Kubernetes - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Kubernetes 相关博客 安装 简单使用 容器编排 Kubeless 目录 end|2020-04-27 23:42| Kubernetes 又称 k8s Official site | Github: 相关博客 浅谈k8s&#43;docker 资源监控 | 基于Kubernetes构建Dock" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/container/kubernetes/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Kubernetes" />
+<meta property="og:description" content="目录 start Kubernetes 相关博客 安装 简单使用 容器编排 Kubeless 目录 end|2020-04-27 23:42| Kubernetes 又称 k8s Official site | Github: 相关博客 浅谈k8s&#43;docker 资源监控 | 基于Kubernetes构建Dock" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/kubernetes/" />
+<meta property="article:published_time" content="2018-12-15T11:28:19+00:00" />
+<meta property="article:modified_time" content="2018-12-15T11:28:19+00:00" />
+<meta itemprop="name" content="Kubernetes">
+<meta itemprop="description" content="目录 start Kubernetes 相关博客 安装 简单使用 容器编排 Kubeless 目录 end|2020-04-27 23:42| Kubernetes 又称 k8s Official site | Github: 相关博客 浅谈k8s&#43;docker 资源监控 | 基于Kubernetes构建Dock">
+<meta itemprop="datePublished" content="2018-12-15T11:28:19+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T11:28:19+00:00" />
+<meta itemprop="wordCount" content="382">
+
+
+
+<meta itemprop="keywords" content="基础," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kubernetes"/>
+<meta name="twitter:description" content="目录 start Kubernetes 相关博客 安装 简单使用 容器编排 Kubeless 目录 end|2020-04-27 23:42| Kubernetes 又称 k8s Official site | Github: 相关博客 浅谈k8s&#43;docker 资源监控 | 基于Kubernetes构建Dock"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Kubernetes</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/kubernetes/"> Kubernetes </a>
+            </div>
+          <span class="more-meta"> 382 words </span>
+          <span class="more-meta"> 1 min read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#相关博客">相关博客</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#简单使用">简单使用</a></li>
+    <li><a href="#容器编排">容器编排</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#kubernetes">Kubernetes</a>
+<ol>
+<li><a href="#%E7%9B%B8%E5%85%B3%E5%8D%9A%E5%AE%A2">相关博客</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8">简单使用</a></li>
+<li><a href="#%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92">容器编排</a></li>
+</ol>
+</li>
+<li><a href="#kubeless">Kubeless</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="kubernetes">Kubernetes</h1>
+<blockquote>
+<p>又称 k8s <a href="https://kubernetes.io/">Official site</a> | <a href="https://github.com/kubernetes/kubernetes">Github:</a></p>
+</blockquote>
+<h2 id="相关博客">相关博客</h2>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000003898140">浅谈k8s+docker 资源监控</a> | <a href="http://www.csdn.net/article/2014-12-24/2823292-Docker-Kubernetes">基于Kubernetes构建Docker集群管理详解</a><br>
+<a href="http://wdxtub.com/2017/06/05/k8s-note/">Kubernetes 学习笔记 </a>
+<a href="https://www.kubernetes.org.cn/doc-45">Kubernetes中文社区</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.infoq.com/cn/articles/will-kubernetes-collapse-under-the-weight-of-its-complexity">参考: Kubernetes会不会被自身的复杂性压垮？</a><br>
+<a href="https://my.oschina.net/qcloudcommunity/blog/2998211">参考: 一文带你看透kubernetes 容器编排系统</a></p>
+</blockquote>
+<h2 id="安装">安装</h2>
+<blockquote>
+<p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">official doc</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://mritd.me/2016/10/29/set-up-kubernetes-cluster-by-kubeadm/">参考: kubeadm 搭建 kubernetes 集群</a><br>
+<a href="https://blog.csdn.net/nklinsirui/article/details/80581286">参考: Kubernetes国内镜像、下载安装包和拉取gcr.io镜像</a><br>
+<a href="http://dockone.io/question/1225#!answer_form">参考: 国内服务器安装kubernetes一路坑，求大神指点 </a></p>
+</blockquote>
+<ul>
+<li><strong>注意</strong> Deepin上不要安装 kubernetes-client 这个是 1.7 版本, 类似于 docker.io 这样的老旧版本</li>
+</ul>
+<blockquote>
+<p>使用阿里云的镜像进行安装</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># 均以 root 运行</span>
+    apt update <span class="o">&amp;&amp;</span> apt install -y apt-transport-https
+
+    curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg <span class="p">|</span> apt-key add -
+
+    <span class="nb">echo</span> <span class="s2">&#34;deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main&#34;</span> &gt; /etc/apt/sources.list.d/kubernetes.list 
+
+    apt install kubelet kubeadm kubectl
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>deb http://apt.kubernetes.io/ kubernetes-xenial main</code> 虽然这才是官方源,奈何是Google服务器</p>
+</blockquote>
+<h2 id="简单使用">简单使用</h2>
+<blockquote>
+<p>大多数命令和Docker是类似的，只不过加上了namespace 的概念</p>
+</blockquote>
+<ul>
+<li>kubectl logs &ndash;namespace namespace pod</li>
+</ul>
+<h2 id="容器编排">容器编排</h2>
+<h1 id="kubeless">Kubeless</h1>
+<blockquote>
+<p><a href="https://kubeless.io/docs/quick-start/">Official</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/debian/debian/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Debian基础</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/container/dockersoft/">
+            <span class="next-text nav-default">Docker的应用</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python 基础 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/python/python/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python 基础" />
+<meta property="og:description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/python/python/" />
+<meta property="article:published_time" content="2018-12-13T16:00:45+00:00" />
+<meta property="article:modified_time" content="2018-12-13T16:00:45+00:00" />
+<meta itemprop="name" content="Python 基础">
+<meta itemprop="description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符">
+<meta itemprop="datePublished" content="2018-12-13T16:00:45+00:00" />
+<meta itemprop="dateModified" content="2018-12-13T16:00:45+00:00" />
+<meta itemprop="wordCount" content="7536">
+
+
+
+<meta itemprop="keywords" content="基础," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python 基础"/>
+<meta name="twitter:description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python 基础</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-13 </span>
+        <div class="post-category">
+            <a href="/categories/python/"> Python </a>
+            </div>
+          <span class="more-meta"> 7536 words </span>
+          <span class="more-meta"> 16 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a>
+      <ul>
+        <li><a href="#关于python2与3的使用">关于Python2与3的使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装配置">安装配置</a>
+      <ul>
+        <li><a href="#docker安装">Docker安装</a></li>
+        <li><a href="#syspath">sys.path</a></li>
+      </ul>
+    </li>
+    <li><a href="#执行">执行</a></li>
+    <li><a href="#基础">基础</a>
+      <ul>
+        <li><a href="#代码风格">代码风格</a></li>
+        <li><a href="#包">包</a></li>
+        <li><a href="#基础语法">基础语法</a></li>
+        <li><a href="#基础数据类型">基础数据类型</a></li>
+      </ul>
+    </li>
+    <li><a href="#变量">变量</a></li>
+    <li><a href="#基本执行结构">基本执行结构</a>
+      <ul>
+        <li><a href="#序列">序列</a></li>
+        <li><a href="#运算符">运算符</a></li>
+      </ul>
+    </li>
+    <li><a href="#模块">模块</a>
+      <ul>
+        <li><a href="#内置模块">内置模块</a></li>
+      </ul>
+    </li>
+    <li><a href="#输入输出">输入输出</a>
+      <ul>
+        <li><a href="#输入">输入</a></li>
+        <li><a href="#输出">输出</a></li>
+        <li><a href="#读取命令行参数">读取命令行参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#函数">函数</a></li>
+    <li><a href="#类">类</a>
+      <ul>
+        <li><a href="#继承">继承</a></li>
+      </ul>
+    </li>
+    <li><a href="#异常">异常</a></li>
+    <li><a href="#文件操作">文件操作</a>
+      <ul>
+        <li><a href="#json">JSON</a></li>
+        <li><a href="#conf或者ini">conf或者ini</a></li>
+      </ul>
+    </li>
+    <li><a href="#测试">测试</a></li>
+    <li><a href="#数据库">数据库</a>
+      <ul>
+        <li><a href="#mysql">MySQL</a></li>
+        <li><a href="#redis">Redis</a></li>
+      </ul>
+    </li>
+    <li><a href="#部署">部署</a>
+      <ul>
+        <li><a href="#docker部署">Docker部署</a></li>
+      </ul>
+    </li>
+    <li><a href="#绘图">绘图</a>
+      <ul>
+        <li><a href="#matplotlib">matplotlib</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见函数">常见函数</a></li>
+    <li><a href="#常见库">常见库</a>
+      <ul>
+        <li><a href="#内置库">内置库</a></li>
+        <li><a href="#时间处理">时间处理</a></li>
+        <li><a href="#三方库">三方库</a></li>
+      </ul>
+    </li>
+    <li><a href="#qt">QT</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#python">Python</a>
+<ol>
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a>
+<ol>
+<li><a href="#%E5%85%B3%E4%BA%8Epython2%E4%B8%8E3%E7%9A%84%E4%BD%BF%E7%94%A8">关于Python2与3的使用</a></li>
+</ol>
+</li>
+<li><a href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE">安装配置</a>
+<ol>
+<li><a href="#docker%E5%AE%89%E8%A3%85">Docker安装</a></li>
+<li><a href="#syspath">sys.path</a></li>
+</ol>
+</li>
+<li><a href="#%E6%89%A7%E8%A1%8C">执行</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80">基础</a>
+<ol>
+<li><a href="#%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC">代码风格</a></li>
+<li><a href="#%E5%8C%85">包</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95">基础语法</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">基础数据类型</a></li>
+</ol>
+</li>
+<li><a href="#%E5%8F%98%E9%87%8F">变量</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%84">基本执行结构</a>
+<ol>
+<li><a href="#%E5%BA%8F%E5%88%97">序列</a>
+<ol>
+<li><a href="#%E5%88%97%E8%A1%A8-list">列表 list</a></li>
+<li><a href="#%E5%85%83%E7%BB%84-tuple">元组 tuple</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2-str">字符串 str</a>
+<ol>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98">字符串编码问题</a></li>
+</ol>
+</li>
+<li><a href="#%E5%AD%97%E5%85%B8-dict">字典 dict</a></li>
+</ol>
+</li>
+<li><a href="#%E8%BF%90%E7%AE%97%E7%AC%A6">运算符</a></li>
+</ol>
+</li>
+<li><a href="#%E6%A8%A1%E5%9D%97">模块</a>
+<ol>
+<li><a href="#%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97">内置模块</a>
+<ol>
+<li><a href="#http">http</a></li>
+<li><a href="#virtualenv">virtualenv</a></li>
+<li><a href="#pip">pip</a>
+<ol>
+<li><a href="#requirements-files">Requirements files</a></li>
+<li><a href="#%E5%8F%91%E5%B8%83%E5%8C%85%E5%88%B0-pypi">发布包到 pypi</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">输入输出</a>
+<ol>
+<li><a href="#%E8%BE%93%E5%85%A5">输入</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA">输出</a></li>
+<li><a href="#%E8%AF%BB%E5%8F%96%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0">读取命令行参数</a>
+<ol>
+<li><a href="#docopt">docopt</a></li>
+<li><a href="#python-fire">Python Fire</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0">函数</a></li>
+<li><a href="#%E7%B1%BB">类</a>
+<ol>
+<li><a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
+</ol>
+</li>
+<li><a href="#%E5%BC%82%E5%B8%B8">异常</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C">文件操作</a>
+<ol>
+<li><a href="#json">JSON</a></li>
+<li><a href="#conf%E6%88%96%E8%80%85ini">conf或者ini</a></li>
+</ol>
+</li>
+<li><a href="#%E6%B5%8B%E8%AF%95">测试</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a>
+<ol>
+<li><a href="#mysql">MySQL</a></li>
+<li><a href="#redis">Redis</a></li>
+</ol>
+</li>
+<li><a href="#%E9%83%A8%E7%BD%B2">部署</a>
+<ol>
+<li><a href="#docker%E9%83%A8%E7%BD%B2">Docker部署</a></li>
+</ol>
+</li>
+<li><a href="#%E7%BB%98%E5%9B%BE">绘图</a>
+<ol>
+<li><a href="#matplotlib">matplotlib</a></li>
+</ol>
+</li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0">常见函数</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E5%BA%93">常见库</a>
+<ol>
+<li><a href="#%E5%86%85%E7%BD%AE%E5%BA%93">内置库</a></li>
+<li><a href="#%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86">时间处理</a></li>
+<li><a href="#%E4%B8%89%E6%96%B9%E5%BA%93">三方库</a></li>
+</ol>
+</li>
+<li><a href="#qt">QT</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-06-04 00:02</em>|</p>
+<hr>
+<h1 id="python">Python</h1>
+<blockquote>
+<p><a href="https://www.python.org/">Official Site</a><br>
+<a href="https://docs.python.org/2/">Doc: Python2</a> | <a href="https://docs.python.org/3/">Doc: Python3</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/Yixiaohan/codeparkshare">Python初学者（零基础学习Python、Python入门）书籍、视频、资料、社区推荐</a>
+<a href="http://www.techug.com/post/what-can-you-do-with-python-the-3-main-applications.html">参考: Python3的主要应用</a></p>
+</blockquote>
+<ul>
+<li><a href="http://blog.csdn.net/shangzhihaohao/article/details/7065675">Python中的多态</a></li>
+<li><a href="http://www.cnblogs.com/oleli/p/5228880.html">python输出带颜色的字体</a></li>
+</ul>
+<blockquote>
+<p><a href="https://docs.anaconda.com/anaconda/install/linux">Anaconda</a><code>一站式集成环境</code></p>
+</blockquote>
+<ul>
+<li><a href="https://python-gtk-3-tutorial.readthedocs.io/en/latest/introduction.html">python-gtk3</a> <code>python-gtk3的开发</code></li>
+<li><a href="http://python.usyiyi.cn/">一译</a><code>翻译了大量Python文档</code></li>
+</ul>
+<h2 id="简介">简介</h2>
+<h3 id="关于python2与3的使用">关于Python2与3的使用</h3>
+<blockquote>
+<p>摘自 Python核心编程 第三版 Wesley Chun著</p>
+</blockquote>
+<ul>
+<li>print 变为 print()</li>
+<li>默认字符的编码是 Unicode</li>
+<li>增加单类 类型</li>
+<li>更新异常的语法</li>
+<li>更新了整数</li>
+<li>迭代无处不在</li>
+</ul>
+<blockquote>
+<p>列出所有已安装模块 pydoc pydoc3</p>
+</blockquote>
+<h2 id="安装配置">安装配置</h2>
+<p><strong>Debian系安装3.6</strong></p>
+<ol>
+<li>sudo add-apt-repository ppa:jonathonf/python-3.6</li>
+<li>sudo apt update</li>
+<li>sudo apt install python3.6</li>
+</ol>
+<h3 id="docker安装">Docker安装</h3>
+<blockquote>
+<p><a href="https://hub.docker.com/_/python/">docker hub</a></p>
+</blockquote>
+<h3 id="syspath">sys.path</h3>
+<blockquote>
+<p><a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH">Doc: Python path</a></p>
+</blockquote>
+<ul>
+<li>sys.path 是 指定模块的搜索路径的字符串列表。<code>类似于Java的 ClassPath, Go的 GOPATH, 让解释器知道去哪找包</code>
+<ul>
+<li>查看系统的 sys.path 进入交互解释器</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><strong>修改sys.path</strong></p>
+<ol>
+<li>
+<p>代码中直接添加, 执行就生效, 程序结束就失效</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1">#  假如有如下两个文件 在不同的包下</span>
+    <span class="c1"># /src/configs/config.py</span>
+    <span class="c1"># /src/common/Database.py</span>
+
+    <span class="n">parent_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1"># 避免重复添加</span>
+    <span class="k">if</span> <span class="n">parent_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">configs.config</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>添加 *.pth 文件</p>
+<ul>
+<li>在 <code>/usr/local/lib/</code> 目录下有多个 Python 版本,配置自己需要的版本</li>
+<li>例如在 <code>python2.7/site-packages</code> 中添加 test.pth 文件,文件内容为项目的绝对路径
+<ul>
+<li>python3.x 则是在 <code>dist-packages</code> 目录下</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>修改环境变量</p>
+<ul>
+<li>修改或添加 环境变量 PYTHONPATH 路径用分号分隔</li>
+</ul>
+</li>
+</ol>
+<h2 id="执行">执行</h2>
+<ol>
+<li>
+<p>python 源文件</p>
+</li>
+<li>
+<p>源文件 第一行声明 <code>#!/usr/bin/python</code> 和shell脚本一样的用法, 然后 ./源文件</p>
+</li>
+<li>
+<p>优化代码 <code>python -O -m py_compile test.py</code></p>
+</li>
+</ol>
+<hr>
+<h2 id="基础">基础</h2>
+<h3 id="代码风格">代码风格</h3>
+<blockquote>
+<p><a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> <code>官方建议</code></p>
+</blockquote>
+<ul>
+<li>一行只写一句</li>
+<li>表达式尽量不要省略括号，有助于理解</li>
+<li>函数的行数不要超过100行</li>
+<li>尽量使用系统函数</li>
+<li>尽量使用局部变量，不要使用全局</li>
+<li>循环，分支，最好不要超过5层</li>
+<li>尽量减少否定的条件语句</li>
+<li>对输入的数据进行合法性检查</li>
+</ul>
+<p><code>巨坑: tab和空格不能混用,如果你复制别人的代码是tab,自己敲空格,就会缩进错误!!!!, 天灭tab空格保平安, 要不是kate编辑器显示了tab字符,找半天都不知道错在哪</code></p>
+<ul>
+<li><a href="http://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/background/">Google 开源项目风格指南 (中文版)</a>
+<ul>
+<li><code>import this</code> 就会输出Zen Of Python | <a href="https://www.python.org/dev/peps/pep-0020/">官方文档</a></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    优美胜于丑陋（Python 以编写优美的代码为目标）
+    明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）
+    简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）
+    复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）
+    扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）
+    间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）
+    可读性很重要（优美的代码是可读的）
+    即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）
+    
+    不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 except:pass 风格的代码）
+    
+    当存在多种可能，不要尝试去猜测
+    而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）
+    虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）
+    
+    做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）
+    
+    如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）
+    
+    命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="包">包</h3>
+<blockquote>
+<p><a href="https://docs.python.org/3/tutorial/modules.html#packages">official tutorial</a></p>
+</blockquote>
+<p>When importing the package, Python searches through the directories on <code>sys.path</code> looking for the package subdirectory.</p>
+<blockquote>
+<ol>
+<li>注意不能出现 import 循环依赖 <code>A.py import B.py</code> then <code>B.py import A.py</code></li>
+</ol>
+</blockquote>
+<h3 id="基础语法">基础语法</h3>
+<ul>
+<li>缩进来表示代码块的嵌套关系</li>
+<li>单行注释：<code>#</code> 多行注释： <code>&quot;&quot;&quot; &quot;&quot;&quot;</code></li>
+<li>空行的重要性，代码段之间有空行，Python之禅</li>
+</ul>
+<h3 id="基础数据类型">基础数据类型</h3>
+<ul>
+<li>
+<p>数值类型</p>
+<ul>
+<li>整型 (<code>-2^31 ~ 2^31-1</code>) <code>0b</code>,<code>0</code>,<code>0x</code>  2,8,16 进制</li>
+<li>浮点型 <code>1.2e2</code> <code>13.34e-2</code></li>
+<li>复数  <code>3+4j</code> <code>0.1-0.5j</code></li>
+</ul>
+</li>
+<li>
+<p>布尔型</p>
+<ul>
+<li>0 或 0.0   视作 False</li>
+<li><code>&quot;&quot;</code> <code>''</code>  视作 False</li>
+<li>() [] {}   视作 False</li>
+</ul>
+</li>
+<li>
+<p>字符串</p>
+<ul>
+<li>单引号 双引号: 单行字符串</li>
+<li>三引号 多行字符串</li>
+</ul>
+</li>
+<li>
+<p>空值 None</p>
+</li>
+</ul>
+<hr>
+<h2 id="变量">变量</h2>
+<ul>
+<li>局部变量：</li>
+<li>全局变量：定义在函数外的变量，也称公用变量，函数中 <code>global x</code> 声明引用全局变量x</li>
+</ul>
+<h2 id="基本执行结构">基本执行结构</h2>
+<ul>
+<li>输入输出：
+<ul>
+<li>input(&quot;&quot;) 默认当成字符串输入 数值：int() 强转一下</li>
+<li>print(&quot;&quot;)
+<ul>
+<li>输出不带换行  print('', &lsquo;&rsquo;, end='')</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>逻辑运算符
+<ul>
+<li>and or not</li>
+</ul>
+</li>
+<li>选择：
+<ul>
+<li>if elif else</li>
+</ul>
+</li>
+<li>for 循环：
+<ul>
+<li><code>for in </code> <code>while </code> 例如：<code>for i in range(1,10,2):</code>  范围 [1,10) 增量为2</li>
+<li>pass 语句，当某个子句没有任何操作，，用pass保持程序结构完整性 不影响下一句 不像continue</li>
+</ul>
+</li>
+<li>while 循环
+<ul>
+<li><code>while True:`` while ‘2’ in nums:`` while num&lt;2:</code></li>
+<li><code>while 列表: </code> 直到列表为空退出循环</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">pass</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;pass&#34;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Hi&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="序列">序列</h3>
+<blockquote>
+<p>序列通用操作（包含：字符串，列表，元组）</p>
+</blockquote>
+<ul>
+<li><code>索引</code> 从左至右：<code>0,1,2...n</code> 从右至左：<code>-1,-2...-n</code></li>
+<li><code>切片</code>（截取序列的部分） <code>temp[:]</code> 返回一个副本
+<ul>
+<li><code>temp[2:4]</code> 数学中的 <code>[2,4)</code></li>
+<li><code>temp[1:]</code> 1到最后 <code>temp[-3:]</code> <em>[-3,-1]</em></li>
+<li><code>temp[:4]</code> [0,4) <code>temp[:-3]</code> <em>[0,-3]</em></li>
+</ul>
+</li>
+<li><code>加 </code>：lista+listb 直接连接</li>
+<li><code>乘</code>：lista*4</li>
+<li><code>判断是否存在</code>：<code>in</code> <code>not int</code></li>
+<li>len()</li>
+<li>min() max() sum() 要求元素全是数值</li>
+</ul>
+<hr>
+<h4 id="列表-list">列表 list</h4>
+<ul>
+<li>元素可包含 字符串，浮点，整型，列表，布尔</li>
+<li>操作：
+<ul>
+<li>增加 + ，<code>append()/extend()</code>尾部加入元素/列表  <code>insert(index, &quot;&quot;)</code> 元素插入到任意位置,其后元素后移</li>
+<li>检索 count() in</li>
+<li>删除 ：<code>del list[2] </code>/ <code>remove(&quot;apple&quot;)</code> /<code>pop(index) index为空指最后一个</code></li>
+<li>永久性排序：sort() a-z <code> sort(reverse=True) z-a</code> 列表全是字符串才可</li>
+<li>临时性排序：sorted() 也可以使用上面的参数   列表全是字符串才可</li>
+<li>永久性的逆序列表:reverse()</li>
+</ul>
+</li>
+<li>类似数组的操作，例如声明数组：<a href="http://blog.csdn.net/minsenwu/article/details/7872679">参考博客</a>
+<ul>
+<li>原始的定义就是 lists = [1, 2, 4]</li>
+<li>若要定义连续列表 lists = range(0, 100) 得到的是range对象不是列表对象</li>
+<li>若要定义大小1000全为0列表 lists = [0 for x in range(0, 1000)]</li>
+</ul>
+</li>
+<li>二维数组的定义：
+<ul>
+<li>原始： lists = [[1, 2], [3, 4]]</li>
+<li>仿造一维的定义： lists = [[0 for x in range(10)] for y in range(10)] 10*10 初始为0的列表</li>
+<li>简便但是不可行的方法： <code>lists = [[0]*10]*10</code> 这是个坑， 只是声明了一维数组，然后多次引用， 虽然看起来是二维， 引用数据就会发现是一维</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>set() 函数, 返回结果则是不重复的元素集合</p>
+</blockquote>
+<hr>
+<h4 id="元组-tuple">元组 tuple</h4>
+<ul>
+<li>元组和列表类似但是元组是创建不可更改的
+<ul>
+<li>和列表相比，相同点：按定义的顺序排序，负索引一致，可以使用分片</li>
+<li>不同点：元组使用的是()，不能增加删除元素，没有index方法但是有in，可以在字典中作为键,列表不可以</li>
+<li>由于具有写保护，代码安全，操作速度略快列表</li>
+</ul>
+</li>
+<li>操作：
+<ul>
+<li>访问：和列表一样, 使用索引和分片</li>
+<li>连接：+ 连接得到新的元组</li>
+<li>删除：del 删除整个元组</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="字符串-str">字符串 str</h4>
+<ul>
+<li>str() 将对象转化成字符串 （注：Python中不能像Java一样字符串和数值直接+）</li>
+<li>repr() 注意和str()的区别</li>
+<li><code>r&quot;d:\python27\&quot;</code> r前缀表示转义字符看成普通字符</li>
+<li>因为Python字符串实现是类似字符数组，<code>temp = &quot;python&quot; temp[0]</code> 结果：p <code>temp.index(&quot;p&quot;)</code> 结果是：0</li>
+<li>操作：
+<ul>
+<li><code>index('s')</code> 找到s字符的下标</li>
+<li><code>find('s',[start,end])</code> 找s的下标，只有一个整数参数则是start</li>
+<li><code>replace('s','v')</code> 替换</li>
+<li><code>count('sd')</code> 计数</li>
+<li><code>split('')</code> 正则切分 空参数默认是空格</li>
+<li><code>join('')</code> 列表转化成字符串的方法</li>
+<li><code>cmp(str1,str2)</code> 比较两个字符串是否相等</li>
+<li><code>+</code>  进行拼接 可以拼接字符串 列表</li>
+<li><code>a in b</code> 判断a是否在b里存在</li>
+<li><code>*</code> 重复序列  例如 <code>print &quot;-&quot;*20</code> 就会输出20个 -</li>
+<li><code>b = &quot;www.github.com&quot; </code>  <code>c = b.split(&quot;.&quot;)</code> <code>&quot;#&quot;.join(c)</code> 实现了将字符串的 . 换成了#</li>
+<li><code>&quot;i am %s %d&quot; % (&quot;python&quot;,67)  </code>%s %d %f 和C语言一样占位符
+<ul>
+<li>新的方式 <code>&quot;i am {0} {1} ..&quot;.format(23,&quot;ret&quot;)</code></li>
+<li>或者<code>&quot;i am {name} {age} ..&quot;.format(age=23,name=&quot;ret&quot;)</code></li>
+<li>字典方式</li>
+</ul>
+</li>
+<li><code>title()</code> 首字母大写</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><code>字符串，列表，元组相互转换：</code></p>
+<ul>
+<li>字符串-列表 ： list(&ldquo;python&rdquo;)</li>
+<li>字符串-元组 ： tuple(&ldquo;python&rdquo;)</li>
+<li>列表或元组-字符串 join(obj) 参数是列表或元组类型，其元素只能是字符串类型</li>
+</ul>
+<h5 id="字符串编码问题">字符串编码问题</h5>
+<blockquote>
+<p><a href="http://www.ituring.com.cn/article/1116"> Python3 的 bytes str 之别 </a></p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/masters/Tech/python/str_bytes.jpeg" alt="str和bytes的关系"></p>
+<ul>
+<li>解码 <code>encode(&quot;utf-8&quot;)</code>： str -&gt; bytes</li>
+<li>编码 <code>decode()</code>： bytes -&gt; str</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1"># coding:utf-8</span>
+    <span class="n">unicode_str</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="s1">&#39;使用&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">unicode_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">codecs</span>
+    <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>因为文件不是UTF8：<code>UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb9 in position 2: invalid start byte </code></li>
+</ul>
+<hr>
+<h4 id="字典-dict">字典 dict</h4>
+<ul>
+<li>
+<p>通过用空间来换取时间，与列表相比，键的增加不影响查找插入速度，需要占用大量内存</p>
+</li>
+<li>
+<p>特性：</p>
+<ul>
+<li>值是可以是任意的，甚至是字典嵌套</li>
+<li>键必须不可变，只能由 数值，字符串，元组，不能用列表</li>
+</ul>
+</li>
+<li>
+<p>操作：</p>
+<ul>
+<li>定义 dict={}</li>
+<li>添加 <code>dict['count'] = 1</code></li>
+<li>获取 <code>count = dict['count]</code> 但是如果字典中没有该key, 会抛出异常</li>
+<li>获取 <code>get(key)</code> 获取不到返回 None</li>
+<li>返回所有key/value <code>keys() values()</code></li>
+<li>转化元组 ：items()
+<ul>
+<li>可用于遍历 <code>for key,value in dict.items():</code></li>
+</ul>
+</li>
+<li>删除指定键：del() <code>del dict['name']</code></li>
+<li>删除所有：clear()</li>
+<li>删除指定键并返回值 ：pop()</li>
+<li>合并另一个字典：update()</li>
+<li>in</li>
+</ul>
+</li>
+<li>
+<p>嵌套：</p>
+<ul>
+<li>字典套列表 <code>{'d':['we','e']}</code></li>
+<li>列表套字典，当成普通类型包含即可</li>
+<li>字典套字典</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> 字典的排序问题</p>
+</li>
+</ul>
+<h3 id="运算符">运算符</h3>
+<ul>
+<li>
+<p>算术运算符</p>
+<ul>
+<li>加减一样，<code>*</code> 乘,不仅可以用于数字，还可以用于字符串 ，<code>/</code> 除，和Java不一样，整数相除也会得到浮点数</li>
+<li><code>//</code> 取整除，得到商的整数部分 ，<code>%</code> 取余数 ，<code>**</code> 幂运算 可以用来开根</li>
+</ul>
+</li>
+<li>
+<p>关系运算符</p>
+<ul>
+<li>都是和Java一致</li>
+</ul>
+</li>
+<li>
+<p>逻辑运算符</p>
+<ul>
+<li>and or not</li>
+</ul>
+</li>
+<li>
+<p>身份运算符</p>
+<ul>
+<li>is : <code>a is b</code> 就是比较 id(a) id(b) 相同则是返回1</li>
+<li>is not 比较id 不相同返回1</li>
+</ul>
+</li>
+<li>
+<p>位运算符</p>
+<ul>
+<li><code>&lt;&lt; &gt;&gt;</code> 左右移</li>
+<li><code>&amp; |</code>按位与或</li>
+<li><code>^  ~</code> 按位异或 按位翻转</li>
+</ul>
+</li>
+<li>
+<p>算术运算符优先级 <code>** / // % +</code></p>
+<ul>
+<li>// 取整数部分除法</li>
+<li>** 幂运算</li>
+</ul>
+</li>
+<li>
+<p>转义字符：</p>
+<ul>
+<li>\a 响铃</li>
+<li>\b  退格 backspace</li>
+<li>\000  空</li>
+<li>\f   换页</li>
+<li>\  续行符（行尾）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="模块">模块</h2>
+<p>python -m module_name</p>
+<h3 id="内置模块">内置模块</h3>
+<h4 id="http">http</h4>
+<ul>
+<li>快速启动一个 HTTP Web 服务器 <code>http.server [port]</code></li>
+</ul>
+<h4 id="virtualenv">virtualenv</h4>
+<blockquote>
+<p><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000">廖雪峰 virtualenv</a></p>
+</blockquote>
+<p><strong>虽然也可以用apt安装 python-venv, 但是最好不要这样,避免后续模块升级后不必要的冲突</strong></p>
+<ul>
+<li>创建环境 <code>python3 -m venv web</code> 或者 <code>virtualenv --no-site-packages web</code> 不将系统中安装的包带入该环境</li>
+<li>启动环境 <code>source web/bin/activate</code>
+<ul>
+<li>在环境中使用的pip python 都是环境中的, 其实就是修改了系统的环境变量指向</li>
+</ul>
+</li>
+<li>停用环境 <code>deactivate</code></li>
+</ul>
+<h4 id="pip">pip</h4>
+<blockquote>
+<p><a href="https://pip.readthedocs.io/en/stable/">pip</a> | <a href="https://pip.pypa.io/en/stable/reference/pip_install/">doc</a> | <a href="https://packaging.python.org/tutorials/installing-packages/">guide</a></p>
+</blockquote>
+<ol>
+<li>
+<p>作为Python的包管理器, 包的可执行文件默认在 /usr/local/bin 目录下(全局)</p>
+<ul>
+<li>如果安装时加了该参数 &ndash;user 就是安装在 ~/.local/bin 目录下</li>
+<li>升级pip <code>python -m pip install --upgrade pip</code></li>
+</ul>
+</li>
+<li>
+<p>也可以这样使用 <code>python -m pip install xxx</code></p>
+</li>
+<li>
+<p>安装指定版本的包 <code>install name==version</code></p>
+</li>
+</ol>
+<blockquote>
+<p><a href="https://blog.csdn.net/JQ_AK47/article/details/77944444">修改Pip 管理工具默认下载源</a></p>
+</blockquote>
+<h5 id="requirements-files">Requirements files</h5>
+<blockquote>
+<p><a href="https://pip.readthedocs.io/en/1.1/requirements.html">pip官方文档 Requirements files</a></p>
+</blockquote>
+<ol>
+<li>
+<p>导出 <code>pip freeze &gt; requirements.txt</code> <em>这个命令会将当前环境安装的包全部列出来, 适合env环境下使用</em></p>
+<ul>
+<li>如果没有使用虚拟环境, 然后只想导出某项目的依赖 <a href="https://github.com/bndr/pipreqs">Github pipreqs</a></li>
+<li>安装 : <code>pip install pipreqs</code> 然后 <code>pipreqs /path/to/project</code></li>
+</ul>
+</li>
+<li>
+<p>使用 <code>pip install -r requirements.txt</code></p>
+</li>
+</ol>
+<h5 id="发布包到-pypi">发布包到 pypi</h5>
+<blockquote>
+<p><a href="https://packaging.python.org/guides/distributing-packages-using-setuptools/?highlight=pypirc#id78">Official : about package</a></p>
+</blockquote>
+<ol>
+<li>edit <code>$HOME/.pypirc</code> to save authorization  info
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [pypi]
+    username = &lt;username&gt;
+    password = &lt;password&gt;
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>pip3 install wheel twine</li>
+<li>rm -rf dist build *.egg-info</li>
+<li>python3 setup.py bdist_wheel</li>
+<li>twine upload dist/*</li>
+</ol>
+<blockquote>
+<p><a href="https://gitee.com/gin9/baidu-trans-cli">可以参考该项目: 终端内使用百度翻译</a></p>
+</blockquote>
+<p>由于Readme 使用的是 <a href="https://rest-sphinx-memo.readthedocs.io/en/latest/ReST.html">reStructuredText</a> 语法(要求严格,所以需要借助工具)</p>
+<blockquote>
+<ol>
+<li>pip install collective.checkdocs Pygments</li>
+<li>python3 setup.py checkdocs</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="输入输出">输入输出</h2>
+<h3 id="输入">输入</h3>
+<h3 id="输出">输出</h3>
+<ul>
+<li>python3 <code>print('Hi')</code>
+<ul>
+<li>格式化输出 <code>print(&quot;%10s - %-10s&quot;%(name, addr))</code></li>
+<li>print会默认追加换行符, 取消需要参数 <code>end=''</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
+    <span class="n">start</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0;32m&#39;</span>
+    <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m&#39;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%-26s</span><span class="s2"> </span><span class="si">%-20s</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="s2">&#34;-h&#34;</span><span class="o">+</span><span class="n">end</span><span class="p">,</span> <span class="s2">&#34;帮助&#34;</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>python2 <code>print 'Hi'</code></li>
+</ul>
+<h3 id="读取命令行参数">读取命令行参数</h3>
+<blockquote>
+<p><a href="http://www.sharejs.com/codes/python/6121">参考博客</a></p>
+</blockquote>
+<p><code>只有输入参数，没有选项</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;脚本名：&#34;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;参数&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>python tree.py hi op </code> 顺序是python，第一个参数是文件，之后才是别的参数
+结果&raquo; <code>脚本名 tree.py 参数1 hi 参数2 op</code></p>
+<p><code>有选项</code>
+<code>getopt.getopt(args, options[, long_options])</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">getopt</span>
+    <span class="n">opts</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">getopt</span><span class="o">.</span><span class="n">getopt</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&#34;hi⭕&#34;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">op</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
+    
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>sys.argv[1:]</code>为要处理的参数列表，<code>sys.argv[0]</code>为脚本名，所以用<code>sys.argv[1:]</code>过滤掉脚本名。</li>
+<li><code>&quot;hi⭕&quot;</code>: 当一个选项只是表示开关状态时，即后面不带附加参数时，在分析串中写入选项字符。当选项后面是带一个附加参数时，在分析串中写入选项字符同时后面加一个&quot;:&ldquo;号。
+<ul>
+<li>所以&quot;hi⭕&quot;就表示&quot;h&quot;是一个开关选项(单单的-h)；&ldquo;i:&ldquo;和&quot;o:&ldquo;则表示后面应该带一个参数。</li>
+</ul>
+</li>
+<li>调用getopt函数。函数返回两个列表：<code>opts和args</code>。opts为分析出的格式信息。args为不属于格式信息的剩余的命令行参数。
+<ul>
+<li>opts是一个两元组的列表。每个元素为：(选项串,附加参数)。如果没有附加参数则为空串''。</li>
+<li>getopt函数的第三个参数[, long_options]为可选的长选项参数，上面例子中的都为短选项(如-i -o)</li>
+</ul>
+</li>
+<li>长选项格式举例:
+<ul>
+<li><code>--version</code></li>
+<li><code>--file=error.txt</code></li>
+</ul>
+</li>
+<li>让一个脚本同时支持短选项和长选项 <code>getopt.getopt(sys.argv[1:], &quot;hi⭕&quot;, [&quot;version&quot;, &quot;file=&quot;]) </code></li>
+</ul>
+<h4 id="docopt">docopt</h4>
+<blockquote>
+<p><a href="https://github.com/docopt/docopt">Github地址</a> | 在脚本头部添加文档来实现读取参数的便捷
+会读取输入返回字典对象,可以很方便的读取输入的参数,但是需要书写大量文档, 适合参数比较多的时候,一眼过去简洁明了</p>
+</blockquote>
+<h4 id="python-fire">Python Fire</h4>
+<blockquote>
+<p><a href="https://github.com/google/python-fire">Github地址</a>快速的简洁的生成CLI
+不过要自己书写帮助文档输出,小量参数的话,开发十分的便利 可以和类一起,也可以和方法一起</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">fire</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;-h&#39;</span><span class="p">:</span>
+            <span class="n">show_help</span><span class="p">()</span>
+        
+    <span class="n">fire</span><span class="o">.</span><span class="n">Fire</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+    <span class="c1"># 使用时 py filename.py -h  </span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="函数">函数</h2>
+<ul>
+<li>
+<p>形参赋值传递方式</p>
+<ul>
+<li>按位置 <code>就是直接用看起来和Java一样，但不是按类型和位置，只是位置</code></li>
+<li>按指定名称 调用的时候 <code>create(name='hi')</code></li>
+<li>缺省默认值（参数缺省之后，调用可以不传这个参数，否则必须要传） 声明: <code>def create(name='hi')</code></li>
+<li>列表类型，不想形参改变实参 传递副本过去即可 <code>list[:]</code></li>
+</ul>
+</li>
+<li>
+<p>多个实参 <code>create(age, *name)</code> <code>create(12, 's','d')</code></p>
+<ul>
+<li>所以这是名为name的<code>元组</code> 不能指定没有的名称 错误：create(12，d=2, 2,3,4)</li>
+</ul>
+</li>
+<li>
+<p>多个指定名称实参 <code>create(age, **name)</code> <code>create(12, name='d', lo=23)</code></p>
+<ul>
+<li>必须要指定名称 这是名为name的键值对<code>字典</code></li>
+<li>错误：create(12,d=23,3,3,3)</li>
+</ul>
+</li>
+<li>
+<p>注意：</p>
+<ul>
+<li><code>def hi(name, age=0, *names, **s)</code> <code>hi('d', 23,34, d=6) </code> age会被赋值23</li>
+<li><code>def hi(name, *names, age=0, **s)</code> <code>hi('d', 23,34, d=6)</code> 这样写age就不会赋值，除非指定名称 age=23</li>
+<li><code>以上两种情况（* 和 **），都必须放在形参列表的最后 (两者同时使用时：* 只能在 ** 前 )</code></li>
+</ul>
+</li>
+<li>
+<p>返回值</p>
+<ul>
+<li>返不返回 看需求 没有像Java一样的强制性约束类型</li>
+</ul>
+</li>
+<li>
+<p>将函数写在一个py文件里，然后导入 <code>import 文件名</code>，名曰导入模块</p>
+<ul>
+<li>还可以加别名 <code>import creat as fun</code> 给模块加别名</li>
+<li>导入指定的函数 <code>from create import create_aliens, type_button</code> 多个就，分隔 同理 as给函数加别名 * 通配所有</li>
+</ul>
+</li>
+<li>
+<p>注意：递归深度，Python中递归默认深度是 989， 要么更改实现，要么就 <code>sys.setrecursionlimit(10000000)</code></p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000007256392">参考: Magic Method</a> <code>__xxx__ 方法</code></p>
+</blockquote>
+<hr>
+<h2 id="类">类</h2>
+<p><code>Python 不存在多态，存在鸭子类型</code> <a href="http://blog.csdn.net/shangzhihaohao/article/details/7065675">博客介绍</a> | <a href="https://www.jianshu.com/p/650485b78d11">python中的多态与鸭子类型</a></p>
+<ul>
+<li>
+<p>写在一个py文件里，默认构造器，可以加参数 <code>def __init__(self):</code></p>
+</li>
+<li>
+<p>属性：</p>
+<ul>
+<li>实例属性 形如<code>self.name</code>，在任何方法中声明过即可</li>
+<li>类属性 不加self前缀，<code>__name</code>私有的类属性， 类不能访问对象属性</li>
+<li>类属性可以修改，但是实际上只能修改实例属性（这个修改只是声明了同名的实例属性，引用的时候就会覆盖类属性，看起来就是修改了
+<ul>
+<li>可以删除实例属性，然后就能看到原有的类属性了</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">class</span> <span class="nc">People</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;md&#39;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gh&#39;</span> <span class="c1"># 声明了实例属性覆盖了类属性</span>
+    <span class="k">del</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="c1"># 删除实例属性，恢复类属性引用</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>方法：</p>
+<ul>
+<li>对象方法，类方法，静态方法</li>
+<li>对象方法，同样的 <code>__</code>开头是私有的，只能在对象的公有方法中<code>self.__</code>引用</li>
+<li>静态方法，之中只能引用类成员，不能访问对象成员</li>
+</ul>
+</li>
+<li>
+<p>构造函数和析构函数：</p>
+<ul>
+<li><code>def __init__(self)</code></li>
+<li><code>def __del__(self)</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+        <span class="c1"># 对象方法， 将对象作为参数self传进去</span>
+        <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>
+        <span class="c1"># 静态方法</span>
+        <span class="nd">@staticmethod</span>
+        <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;static method&#39;</span><span class="p">)</span>
+        <span class="c1"># 类方法，将类作为参数cls传进去</span>
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;class method&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>self 代表了自身引用 类似Java的this</p>
+</li>
+<li>
+<p>特别不舒服 <strong>init</strong> 这种命名 不像Java的构造函数重载，这个就是后面覆盖前面定义的__init__ 不管形参列表</p>
+<ul>
+<li>因为不存在重载，就是说不能多个构造函数的书写了。。。</li>
+</ul>
+</li>
+<li>
+<p>导入和函数一样 注意继承中类的依赖</p>
+</li>
+</ul>
+<h3 id="继承">继承</h3>
+<ul>
+<li>
+<p>Python是支持多重继承的</p>
+</li>
+<li>
+<p>同文件 父类定义要在子类之前</p>
+</li>
+<li>
+<p>父类的构造器不会自动调用，需要显式使用父类构造器：</p>
+<ul>
+<li>2.×版本： <code>super(子类名, self).__init__(参数)</code></li>
+<li>3.×版本： <code>super().__init__(参数)</code></li>
+<li>或者 <code>父类名.__init__()</code></li>
+</ul>
+</li>
+<li>
+<p>重写父类方法：只需要定义一个和父类方法同名的方法即可，因为没有多态，覆盖时形参不作考虑</p>
+</li>
+<li>
+<p>多态：</p>
+<ul>
+<li>方法重载： 子类覆盖父类的方法</li>
+<li>运算符重载： 加<code>__add__(self, x)</code> 减<code>__sub__(self, x)</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="异常">异常</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;0 不能做除数&#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;成功&#34;</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;finally&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>基本语法 <code>try except else finally</code></p>
+<ul>
+<li>else是无异常执行</li>
+<li>有异常就执行 except， except 超类Exception，也可以多个except （和Java一致）</li>
+<li>最终执行finally 和 Java的结构是一致的</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">except 分句使用形式</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">except</td>
+<td style="text-align:left">捕获所有类型</td>
+</tr>
+<tr>
+<td style="text-align:left">except name</td>
+<td style="text-align:left">只捕获指定类型</td>
+</tr>
+<tr>
+<td style="text-align:left">except name, value</td>
+<td style="text-align:left">捕获指定类型，并获得抛出的异常对象</td>
+</tr>
+<tr>
+<td style="text-align:left">except (name1, name2)</td>
+<td style="text-align:left">捕获列出的异常</td>
+</tr>
+<tr>
+<td style="text-align:left">except (name1, name2), value</td>
+<td style="text-align:left">捕获列出的异常，获得抛出的异常对象</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>raise 语句 和Java的throw关键字 一致 ， 不过raise只是抛出一个通用异常类型 Exception</p>
+</li>
+<li>
+<p>dir(exceptions) 查看所有异常类型</p>
+<ul>
+<li>raise name 手动引发异常</li>
+<li>raise name,data 传递一个附加的数据</li>
+</ul>
+</li>
+<li>
+<p>同样的也是可以自定义异常类型的，<code>class MyExcetion(Exception):</code></p>
+</li>
+<li>
+<p>with 语句 在异常处理中，将 try except finally 关键字以及与资源分配释放相关的代码省略掉。</p>
+<ul>
+<li>文件打开 <code>with open('a.py') as files:</code></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">常见异常类</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">NameError/UnboundLocalError</td>
+<td style="text-align:left">引用不存在的变量/或者引用在声明之前</td>
+</tr>
+<tr>
+<td style="text-align:left">ZeroDivisionError</td>
+<td style="text-align:left">除数为0</td>
+</tr>
+<tr>
+<td style="text-align:left">SyntaxError</td>
+<td style="text-align:left">语法错误</td>
+</tr>
+<tr>
+<td style="text-align:left">IndexError</td>
+<td style="text-align:left">索引错误</td>
+</tr>
+<tr>
+<td style="text-align:left">KeyError</td>
+<td style="text-align:left">使用不存在的字典关键字</td>
+</tr>
+<tr>
+<td style="text-align:left">IOError</td>
+<td style="text-align:left">输入输出错误</td>
+</tr>
+<tr>
+<td style="text-align:left">ValueError</td>
+<td style="text-align:left">搜索列表中不存在的值</td>
+</tr>
+<tr>
+<td style="text-align:left">AtrributeError</td>
+<td style="text-align:left">调用不存在的方法</td>
+</tr>
+<tr>
+<td style="text-align:left">TypeError</td>
+<td style="text-align:left">未强制转换就混用数据类型</td>
+</tr>
+<tr>
+<td style="text-align:left">EOPError</td>
+<td style="text-align:left">文件结束标识错误</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="文件操作">文件操作</h2>
+<ul>
+<li>
+<p>注意路径，Windows系统中要使用反斜杠 \</p>
+</li>
+<li>
+<p>最简单：<code>file = open('')</code> 只读打开</p>
+</li>
+<li>
+<p><code>使用with来操作 好处是Python自动关闭文件</code> 类似于Java的TWR</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span> 
+        <span class="n">lines</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>为写打开新文本文件只读 <code>file = open('a.txt','w+'[,coding='utf-8'])</code> 打开删空</p>
+</li>
+<li>
+<p><code>file.write('')</code></p>
+</li>
+<li>
+<p><code>os模块</code></p>
+<ul>
+<li><code>os.rename('filename1','filename2') </code> mv</li>
+<li><code>os.remove('filename.py')</code> rm</li>
+<li><code>os.listdir(path)</code> ls</li>
+<li><code>os.getcwd()</code> pwd</li>
+<li><code>os.makedirs(r'path')</code> mkdir</li>
+<li><code>os.chdir('')</code> 改变一个目录</li>
+<li><code>os.rmdir('')</code> 删除该目录，前提是空目录</li>
+</ul>
+</li>
+<li>
+<p><code>os.path模块</code></p>
+<ul>
+<li>abspath('') 获取绝对路径</li>
+<li>exists('') 是否存在</li>
+<li>isdir('') 是否是一个目录</li>
+<li>isfile('')  是否是文件</li>
+<li>islink('') 是否是软链接硬链接文件</li>
+<li>getsize() 获取文件尺寸</li>
+</ul>
+</li>
+<li>
+<p>shutil模块</p>
+<ul>
+<li>dir() 复制单个文件</li>
+<li>shultil.copytree(r'',r'') 复制目录树</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1"># 读取大文件</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s2">&#34;test.txt&#34;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<p><code>b 表示字节流（二进制文件） 不加表示字符流（文本文件）</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字符流方式</th>
+<th style="text-align:left">意义</th>
+<th style="text-align:left">当存在</th>
+<th style="text-align:left">当不存在</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">r</td>
+<td style="text-align:left">只读打开</td>
+<td style="text-align:left">打开</td>
+<td style="text-align:left">返回空指针</td>
+</tr>
+<tr>
+<td style="text-align:left">w</td>
+<td style="text-align:left">只写打开</td>
+<td style="text-align:left">打开删空</td>
+<td style="text-align:left">新建打开</td>
+</tr>
+<tr>
+<td style="text-align:left">a</td>
+<td style="text-align:left">追加打开</td>
+<td style="text-align:left">打开</td>
+<td style="text-align:left">新建打开</td>
+</tr>
+<tr>
+<td style="text-align:left">r+</td>
+<td style="text-align:left">读打开可写</td>
+<td style="text-align:left">打开</td>
+<td style="text-align:left">返回空指针</td>
+</tr>
+<tr>
+<td style="text-align:left">w+</td>
+<td style="text-align:left">写打开可读</td>
+<td style="text-align:left">打开删空</td>
+<td style="text-align:left">新建打开</td>
+</tr>
+<tr>
+<td style="text-align:left">a+</td>
+<td style="text-align:left">追加打开可读</td>
+<td style="text-align:left">打开</td>
+<td style="text-align:left">新建打开</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字节流方式</th>
+<th style="text-align:left">意义</th>
+<th style="text-align:left">当存在</th>
+<th style="text-align:left">当不存在</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">rb</td>
+<td style="text-align:left">只读打开</td>
+<td style="text-align:left">打开</td>
+<td style="text-align:left">返回空指针</td>
+</tr>
+<tr>
+<td style="text-align:left">wb</td>
+<td style="text-align:left">只写打开</td>
+<td style="text-align:left">打开删空</td>
+<td style="text-align:left">新建打开</td>
+</tr>
+<tr>
+<td style="text-align:left">ab</td>
+<td style="text-align:left">追加打开</td>
+<td style="text-align:left">打开</td>
+<td style="text-align:left">新建打开</td>
+</tr>
+<tr>
+<td style="text-align:left">rb+</td>
+<td style="text-align:left">读打开可写</td>
+<td style="text-align:left">打开</td>
+<td style="text-align:left">返回空指针</td>
+</tr>
+<tr>
+<td style="text-align:left">wb+</td>
+<td style="text-align:left">写打开可读</td>
+<td style="text-align:left">打开删空</td>
+<td style="text-align:left">新建打开</td>
+</tr>
+<tr>
+<td style="text-align:left">ab+</td>
+<td style="text-align:left">追加打开可读</td>
+<td style="text-align:left">打开</td>
+<td style="text-align:left">新建打开</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="json">JSON</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;result.json&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">write_json</span><span class="p">():</span>
+        <span class="k">global</span> <span class="n">file_name</span>
+        <span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="s1">&#39;23&#39;</span><span class="p">}</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">o</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">person</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">read_json</span><span class="p">():</span>
+        <span class="k">global</span> <span class="n">file_name</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+            <span class="n">datas</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span> <span class="p">:</span>
+                <span class="c1"># 引用的时候就当做是字典</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">datas</span><span class="p">[</span><span class="n">data</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="conf或者ini">conf或者ini</h3>
+<blockquote>
+<p><a href="https://www.oschina.net/code/snippet_782578_14344">参考: python操作ini文件</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">mainConf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;/main.conf&#39;</span>
+    <span class="n">cf</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
+    <span class="n">cf</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">mainConf</span><span class="p">)</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">,</span> <span class="s1">&#39;host&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 写 但是要有write节点</span>
+    <span class="n">cf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">)</span>
+    <span class="n">cf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">mainConf</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>对应的conf</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [redis]
+    host=127.0.0.1
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="测试">测试</h2>
+<ul>
+<li>文件名test开头就当做是测试类，不会直接运行</li>
+<li>类继承 unittest.TestCase, 所有test_开头的方法都将自动运行</li>
+<li>断言 self.assertEqual assertNotEquals assertIn(item, list)</li>
+<li>直接运行 unittest.main()</li>
+<li>输出结果: <code>. 测试通过</code> <code>E 测试运行错误</code> <code>F 测试断言不通过</code></li>
+</ul>
+<hr>
+<h2 id="数据库">数据库</h2>
+<h3 id="mysql">MySQL</h3>
+<blockquote>
+<p>pip install mysqlclient</p>
+</blockquote>
+<ul>
+<li>import MySQLdb</li>
+</ul>
+<h3 id="redis">Redis</h3>
+<p><em>安装模块</em></p>
+<ul>
+<li>python2 <code>sudo pip install redis</code></li>
+<li>python3 <code>sudo pip3 install redis</code></li>
+</ul>
+<p><em>使用</em></p>
+<ul>
+<li>使用的接口方法是和redis一样的
+<ul>
+<li><a href="/Database/Redis.md">Redis笔记传送门</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="部署">部署</h2>
+<h3 id="docker部署">Docker部署</h3>
+<blockquote>
+<p><a href="https://hub.docker.com/_/python/">参考官方文档</a>
+Create a Dockerfile in your Python app project</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile">    FROM python:3<span class="err">
+</span><span class="err"></span>    WORKDIR /usr/src/app<span class="err">
+</span><span class="err"></span>    COPY requirements.txt ./<span class="err">
+</span><span class="err"></span>    RUN pip install --no-cache-dir -r requirements.txt<span class="err">
+</span><span class="err"></span>    COPY . .<span class="err">
+</span><span class="err"></span>    CMD <span class="o">[</span> <span class="s2">&#34;python&#34;</span>, <span class="s2">&#34;./your-daemon-or-script.py&#34;</span> <span class="o">]</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><em>or (if you need to use Python 2)</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile">    FROM python:2<span class="err">
+</span><span class="err"></span>    WORKDIR /usr/src/app<span class="err">
+</span><span class="err"></span>    COPY requirements.txt ./<span class="err">
+</span><span class="err"></span>    RUN pip install --no-cache-dir -r requirements.txt<span class="err">
+</span><span class="err"></span>    COPY . .<span class="err">
+</span><span class="err"></span>    CMD <span class="o">[</span> <span class="s2">&#34;python&#34;</span>, <span class="s2">&#34;./your-daemon-or-script.py&#34;</span> <span class="o">]</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>You can then build and run the Docker image:
+<ul>
+<li>$ docker build -t my-python-app .</li>
+<li>$ docker run -it &ndash;rm &ndash;name my-running-app my-python-app</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="绘图">绘图</h2>
+<h3 id="matplotlib">matplotlib</h3>
+<p><code>python 3.5 安装</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    sudo apt install python3-matplotlib 
+    sudo apt install python3.5-dev python3.5-tk tk-dev
+    sudo apt install libfreetype6-dev g++
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="常见函数">常见函数</h2>
+<ul>
+<li><code>id()</code> 查看内存地址</li>
+<li><code>help(方法名)</code> 展示方法的说明文档</li>
+<li><code>dir(对象)</code> 展示对象的方法API</li>
+</ul>
+<hr>
+<h2 id="常见库">常见库</h2>
+<h3 id="内置库">内置库</h3>
+<ul>
+<li>
+<p><code>codecs</code> 编码</p>
+</li>
+<li>
+<p><code>os</code> 操作系统相关API</p>
+<ul>
+<li>获取脚本绝对路径  <code>os.path.split(os.path.realpath(__file__))[0]</code></li>
+<li>获取用户目录 <code>os.environ['HOME']</code> | <code>os.path.expandvars('$HOME')</code> | <code>os.path.expanduser('~')</code></li>
+</ul>
+</li>
+<li>
+<p>platform 操作系统信息</p>
+<ul>
+<li>获取当前操作系统名称 platform.system()</li>
+</ul>
+</li>
+<li>
+<p><code>subprocess</code> <a href="https://gitee.com/gin9/codes/9ytejo7fl2xmqsr5zwkv380">代码</a></p>
+</li>
+</ul>
+<h3 id="时间处理">时间处理</h3>
+<p><em>time</em></p>
+<blockquote>
+<p><a href="http://www.runoob.com/python/python-date-time.html">菜鸟教程: Python 日期和时间</a></p>
+</blockquote>
+<ol>
+<li>格式化当前时间 <code>time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;, time.localtime())</code></li>
+</ol>
+<h3 id="三方库">三方库</h3>
+<ul>
+<li><code>qrcode</code> 终端生成二维码</li>
+<li><code>redis</code> 和Redis命令完美融合</li>
+<li><code>httpie</code> HTTP方便的交互 <a href="https://httpie.org/doc">doc</a>
+<ul>
+<li>POST时 特别注意:<code>参数==值</code></li>
+</ul>
+</li>
+<li><a href="http://www.python-excel.org/">python-excel</a></li>
+<li><code>python-docx</code> <a href="https://python-docx.readthedocs.io/en/latest/">文档</a></li>
+<li><code>chef</code> <a href="https://docs.chef.io/resource_python.html">文档</a> <code>Use the python resource to execute scripts using the Python interpreter</code></li>
+</ul>
+<hr>
+<h2 id="qt">QT</h2>
+<ul>
+<li>在Terminal中输入:sudo apt-get install qt4-dev-tools qt4-doc qt4-qtconfig qt4-demos qt4-designer</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    qt4-dev-tools 中包括了Qt Assistant,Qt Linguist,Qt Creator
+    qt4-doc 这个是帮助文档
+    qt4-qtconfig Qt的配置工具,这个装好默认好
+    qt4-demos 官方的一些Demo
+    qt4-designer 可视化窗体设置工具
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/python/pythongame/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">PythonGame</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/python/pythonconcurrency/">
+            <span class="next-text nav-default">Python Concurrency</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SpringBoot数据库相关 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 数据库模块 Relational Database 多数据源配置 连接池 c3p0 druid HikariPool JPA Configuration Mybatis 自定义查询 HQL 原生SQL Mysql 映射关系 一对一 一对多 多对多 Restful设计 【特别注意】 Jpa数据" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/springbootdatabase/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SpringBoot数据库相关" />
+<meta property="og:description" content="目录 start 数据库模块 Relational Database 多数据源配置 连接池 c3p0 druid HikariPool JPA Configuration Mybatis 自定义查询 HQL 原生SQL Mysql 映射关系 一对一 一对多 多对多 Restful设计 【特别注意】 Jpa数据" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/springbootdatabase/" />
+<meta property="article:published_time" content="2018-12-21T10:50:38+00:00" />
+<meta property="article:modified_time" content="2018-12-21T10:50:38+00:00" />
+<meta itemprop="name" content="SpringBoot数据库相关">
+<meta itemprop="description" content="目录 start 数据库模块 Relational Database 多数据源配置 连接池 c3p0 druid HikariPool JPA Configuration Mybatis 自定义查询 HQL 原生SQL Mysql 映射关系 一对一 一对多 多对多 Restful设计 【特别注意】 Jpa数据">
+<meta itemprop="datePublished" content="2018-12-21T10:50:38+00:00" />
+<meta itemprop="dateModified" content="2018-12-21T10:50:38+00:00" />
+<meta itemprop="wordCount" content="2421">
+
+
+
+<meta itemprop="keywords" content="SpringBoot," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SpringBoot数据库相关"/>
+<meta name="twitter:description" content="目录 start 数据库模块 Relational Database 多数据源配置 连接池 c3p0 druid HikariPool JPA Configuration Mybatis 自定义查询 HQL 原生SQL Mysql 映射关系 一对一 一对多 多对多 Restful设计 【特别注意】 Jpa数据"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SpringBoot数据库相关</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 2421 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#relational-database">Relational Database</a>
+      <ul>
+        <li><a href="#多数据源配置">多数据源配置</a></li>
+        <li><a href="#连接池">连接池</a></li>
+        <li><a href="#jpa">JPA</a></li>
+        <li><a href="#mybatis">Mybatis</a></li>
+        <li><a href="#restful设计">Restful设计</a></li>
+        <li><a href="#jpa数据分页">Jpa数据分页</a></li>
+        <li><a href="#数据库上的事务支持">数据库上的事务支持</a></li>
+      </ul>
+    </li>
+    <li><a href="#non-relational-database">Non Relational database</a>
+      <ul>
+        <li><a href="#jpa-1">JPA</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9D%97">数据库模块</a>
+<ol>
+<li><a href="#relational-database">Relational Database</a>
+<ol>
+<li><a href="#%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE">多数据源配置</a></li>
+<li><a href="#%E8%BF%9E%E6%8E%A5%E6%B1%A0">连接池</a>
+<ol>
+<li><a href="#c3p0">c3p0</a></li>
+<li><a href="#druid">druid</a></li>
+<li><a href="#hikaripool">HikariPool</a></li>
+</ol>
+</li>
+<li><a href="#jpa">JPA</a>
+<ol>
+<li><a href="#configuration">Configuration</a></li>
+</ol>
+</li>
+<li><a href="#mybatis">Mybatis</a>
+<ol>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2">自定义查询</a>
+<ol>
+<li><a href="#hql">HQL</a></li>
+<li><a href="#%E5%8E%9F%E7%94%9Fsql">原生SQL</a></li>
+</ol>
+</li>
+<li><a href="#mysql">Mysql</a></li>
+<li><a href="#%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB">映射关系</a>
+<ol>
+<li><a href="#%E4%B8%80%E5%AF%B9%E4%B8%80">一对一</a></li>
+<li><a href="#%E4%B8%80%E5%AF%B9%E5%A4%9A">一对多</a></li>
+<li><a href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A">多对多</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#restful%E8%AE%BE%E8%AE%A1">Restful设计</a>
+<ol>
+<li><a href="#%E7%89%B9%E5%88%AB%E6%B3%A8%E6%84%8F">【特别注意】</a></li>
+</ol>
+</li>
+<li><a href="#jpa%E6%95%B0%E6%8D%AE%E5%88%86%E9%A1%B5">Jpa数据分页</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8A%E7%9A%84%E4%BA%8B%E5%8A%A1%E6%94%AF%E6%8C%81">数据库上的事务支持</a></li>
+</ol>
+</li>
+<li><a href="#non-relational-database">Non Relational database</a>
+<ol>
+<li><a href="#jpa">JPA</a>
+<ol>
+<li><a href="#redis%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8">Redis的简单使用</a></li>
+<li><a href="#%E5%85%B3%E4%BA%8Estringredistemplate%E7%9A%84%E6%96%B9%E6%B3%95%E4%BD%BF%E7%94%A8">关于StringRedisTemplate的方法使用</a></li>
+<li><a href="#%E6%B6%88%E6%81%AF%E8%AE%A2%E9%98%85%E5%92%8C%E5%8F%91%E5%B8%83">消息订阅和发布</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="数据库模块">数据库模块</h1>
+<blockquote>
+<p>主要是采用的JPA，极大的缩减了代码量，但是要注意不要过度依赖框架，丧失了基本的能力</p>
+</blockquote>
+<h2 id="relational-database">Relational Database</h2>
+<h3 id="多数据源配置">多数据源配置</h3>
+<blockquote>
+<p>为什么要有多数据源? 思考</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/34730e595a8c">Spring Boot多数据源配置与使用</a></p>
+</blockquote>
+<h3 id="连接池">连接池</h3>
+<h4 id="c3p0">c3p0</h4>
+<ul>
+<li><a href="http://www.cnblogs.com/520playboy/p/7526252.html">参考博客</a></li>
+</ul>
+<h4 id="druid">druid</h4>
+<ul>
+<li><a href="http://makaidong.com/L_Sail/1/40930_11573921.html">druid连接池的配置</a></li>
+</ul>
+<h4 id="hikaripool">HikariPool</h4>
+<blockquote>
+<p>性能最好的数据库连接池</p>
+</blockquote>
+<ul>
+<li><input disabled="" type="checkbox"> 听说代码很精简, 阅读源码学习</li>
+</ul>
+<hr>
+<h3 id="jpa">JPA</h3>
+<blockquote>
+<p>连接池:1.x 默认是tomcat-jdbc连接池 2.x 是 HikariPool</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/3b31270a44b1">参考: spring boot2 整合（二）JPA</a></p>
+</blockquote>
+<h4 id="configuration">Configuration</h4>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.6.RELEASE/reference/htmlsingle/#howto-configure-jpa-properties">Official Doc</a>
+<strong><code>ddl-auto</code></strong></p>
+</blockquote>
+<ul>
+<li>
+<p>JPA 默认是该配置 <code>spring.jpa.hibernate.ddl-auto</code></p>
+</li>
+<li>
+<p>但是如上配置没有生效的话就要用 这个 <code>spring.jpa.properties.hibernate.hbm2ddl.auto</code></p>
+<ol>
+<li>none 什么都不做</li>
+<li>create-only</li>
+<li>create 先删除, 然后建立新的表</li>
+<li>create-drop 先删除, 然后建立新的表, 然后在SessionFactory实例关闭后再删除</li>
+<li>update 创建和修改</li>
+<li>validate 校验是否一致, 不一致就报错,启动失败</li>
+</ol>
+</li>
+<li>
+<p><a href="http://blog.csdn.net/Amy_Queen/article/details/72454099">Blog: 原生SQL的写法</a></p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> 怎么映射视图到实体上?</p>
+</li>
+</ul>
+<h3 id="mybatis">Mybatis</h3>
+<blockquote>
+<p><a href="https://blog.csdn.net/juewang_love/article/details/53769906">IDEA下创建Springboot，thymeleaf，Mybatis，Postgresql，Gradle项目</a></p>
+</blockquote>
+<h4 id="自定义查询">自定义查询</h4>
+<h5 id="hql">HQL</h5>
+<ul>
+<li>使用Hibernate语法模式,将对象和数据库的表看成一个实体,方便书写SQL,但是在Controller层和Service层
+<ul>
+<li>进行写代码的时候,参数的传递全是实体对象,要不停的new,这样真的没问题么(当有各种复杂的关联关系的时候,单个对象的CURD基本没有什么问题)</li>
+<li><code>TODO</code> 所以还不如直接写原生SQL! 那么JPA就真的没有使用的必要性了,直接用Mybatis结合插件生成自动的CRUD的代码,这样更为轻量</li>
+<li>待后续使用后再回来填坑</li>
+</ul>
+</li>
+</ul>
+<h5 id="原生sql">原生SQL</h5>
+<ul>
+<li>涉及到数据的修改,就要加上前两个前缀,查询就直接写Query注解即可</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Modifying</span>
+    <span class="nd">@Transactional</span>
+    <span class="nd">@Query</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;update a set b=?1&#34;</span><span class="o">,</span> <span class="n">nativeQuery</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h4 id="mysql">Mysql</h4>
+<ul>
+<li>1.引入依赖</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">	<span class="n">compile</span><span class="o">(</span><span class="s1">&#39;org.springframework.boot:spring-boot-starter-data-jpa&#39;</span><span class="o">)</span>
+	<span class="n">compile</span><span class="o">(</span><span class="s1">&#39;org.springframework.boot:spring-boot-starter-jdbc&#39;</span><span class="o">)</span>
+	<span class="n">runtime</span><span class="o">(</span><span class="s1">&#39;mysql:mysql-connector-java&#39;</span><span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>2.继承接口，打好实体类的注解 @Entity</p>
+</li>
+<li>
+<p>3.<em>切记 属性名不能使用下划线（数据库风格）不然写声明方法就会报错，jpa只是看下划线前半部分，会说找不到属性</em></p>
+<ul>
+<li>jpa在创建表时会把驼峰命名改成数据库风格的形式</li>
+</ul>
+</li>
+<li>
+<p>4.jpa是声明特定方法的接口，让jpa来实现并自动注入，如果是没有的方法，就可以使用@Query注解</p>
+<ul>
+<li>默认使用的是HQL（HQL是基于类的所以使用的是类的名字不是表的名字），可以设置下使用原生SQL</li>
+</ul>
+</li>
+</ul>
+<h4 id="映射关系">映射关系</h4>
+<h5 id="一对一">一对一</h5>
+<blockquote>
+<p>据说这是性能最好的方式, 但是有一点让人不舒服, A的id是名存实亡的, 数据库都没有这个字段, 实际上就是B的id, 但是对象又一定要保留这个id, 不然约束通不过<br>
+也就是说, 创建的时候要设置A的id的值, 但是后面却用不到这个值</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Entity</span>
+<span class="nd">@Data</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="nd">@OneToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="n">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
+  <span class="nd">@MapsId</span>
+  <span class="kd">private</span> <span class="n">B</span> <span class="n">b</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="nd">@Data</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="o">{</span>
+  <span class="nd">@Id</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="一对多">一对多</h5>
+<ul>
+<li>一方的配置是当前类的id，多方则按基本ER的规则来，注解中配置的是外键的名字, 所以当前类中的属性,外键名是不能重复的</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 一方
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestOne</span><span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">testOneId</span><span class="o">;</span>
+    <span class="nd">@OneToMany</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;testOneId&#34;</span><span class="o">)</span><span class="c1">//这个名字可以重复，最终会有一个随机码生成
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">TestMany</span><span class="o">&gt;</span> <span class="n">testManySet</span><span class="o">;</span>
+<span class="o">}</span>
+    <span class="c1">// 多方
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestMany</span> <span class="o">{</span>    
+    <span class="nd">@Id</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">testManyId</span><span class="o">;</span>
+    <span class="nd">@ManyToOne</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;testOneId&#34;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">TestOne</span> <span class="n">testOneId</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><input disabled="" type="checkbox"> 问题: 当两个表互相引用了, 需要修改表结构 ,怎么删除重建两张表结构, 简单的命令会陷入死锁</li>
+</ul>
+<hr>
+<h5 id="多对多">多对多</h5>
+<hr>
+<h3 id="restful设计">Restful设计</h3>
+<ul>
+<li>1.添加依赖</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-rest<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>2.引入自动配置类</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Configuration</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">RestConfiguration</span> <span class="kd">extends</span> <span class="n">RepositoryRestMvcConfiguration</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">RepositoryRestConfiguration</span> <span class="nf">config</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">config</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">ProfileResourceProcessor</span> <span class="nf">profileResourceProcessor</span><span class="o">(</span><span class="n">RepositoryRestConfiguration</span> <span class="n">config</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 设置rest根目录是应用路径下的路径 : localhost:8080/rest
+</span><span class="c1"></span>            <span class="n">config</span><span class="o">.</span><span class="na">setBasePath</span><span class="o">(</span><span class="s">&#34;/rest&#34;</span><span class="o">);</span>
+            <span class="c1">// 允许输出id
+</span><span class="c1"></span>            <span class="n">config</span><span class="o">.</span><span class="na">exposeIdsFor</span><span class="o">(</span><span class="n">Goods</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">profileResourceProcessor</span><span class="o">(</span><span class="n">config</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>3.配置repository的名字例如：（只要配置repository就能用REST了）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@RepositoryRestResource</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">&#34;book&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">BookDao</span> <span class="kd">extends</span> <span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Book</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;{}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>4.启动应用，控制台有如下输出
+<img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Java/Spring/output.png" alt="输出"></p>
+</li>
+<li>
+<p>所有路径的使用方法：</p>
+<ul>
+<li><code>GET</code> 查询单个 <code>/repo/id</code> 成功：200 失败404</li>
+<li><code>GET</code> 查询所有 <code>/repo</code> 成功200 失败404</li>
+<li><code>POST</code> 新增 <code>/repo</code> json数据发送 成功 201 失败404</li>
+<li><code>DELETE</code> 删除 <code>/repo/id</code> json数据 成功204 失败404</li>
+<li><code>PUT</code> 更新 <code>/repo/id</code> json 更新成功200 没有该id就插入201 失败404（使用主键自动增长就不会遇到404）</li>
+</ul>
+</li>
+</ul>
+<h4 id="特别注意">【特别注意】</h4>
+<ul>
+<li>rest得到的数据没有id
+<ul>
+<li>添加配置 <code>config.exposeIdsFor(Goods.class);</code> 即可查看到id <a href="http://tommyziegler.com/how-to-expose-the-resourceid-with-spring-data-rest/">参考博客</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="jpa数据分页">Jpa数据分页</h3>
+<blockquote>
+<p><a href="https://www.tianmaying.com/tutorial/spring-jpa-page-sort">参考博客</a></p>
+</blockquote>
+<ul>
+<li>分页 page 从0开始 size是个数 sort可以不需要（如果本来就是id排序就没必要了）
+<ul>
+<li>原理就是 预编译SQL然后查询总数，然后再执行 必须有两条SQL执行</li>
+</ul>
+</li>
+<li>查询的结果不包含实体的id属性</li>
+</ul>
+<h3 id="数据库上的事务支持">数据库上的事务支持</h3>
+<ul>
+<li>JPA对所有默认方法都开启了事务支持，查询类事务默认启用readOnly=true</li>
+</ul>
+<hr>
+<h2 id="non-relational-database">Non Relational database</h2>
+<h3 id="jpa-1">JPA</h3>
+<h4 id="redis的简单使用">Redis的简单使用</h4>
+<p><em>配置连接信息</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    # REDIS (RedisProperties)
+    # Redis数据库索引（默认为0）
+    spring.redis.database=0
+    # Redis服务器地址
+    spring.redis.host=127.0.0.1
+    # Redis服务器连接端口
+    spring.redis.port=6379
+    # Redis服务器连接密码（默认为空）
+    spring.redis.password=
+    # 连接池最大连接数（使用负值表示没有限制）
+    spring.redis.pool.max-active=8
+    # 连接池最大阻塞等待时间（使用负值表示没有限制）
+    spring.redis.pool.max-wait=-1
+    # 连接池中的最大空闲连接
+    spring.redis.pool.max-idle=8
+    # 连接池中的最小空闲连接
+    spring.redis.pool.min-idle=0
+    # 连接超时时间（毫秒）0不超时
+    spring.redis.timeout=0
+</code></pre></td></tr></table>
+</div>
+</div><p><code>在一个配置类中复制如下代码即可使用 StringRedisTemplate RedisTemplate 的实例</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">RedisTemplate</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">,</span><span class="n">Object</span><span class="o">&gt;</span> <span class="nf">redisTemplate</span><span class="o">(</span><span class="n">RedisConnectionFactory</span> <span class="n">factory</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">RedisTemplate</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">,</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">template</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RedisTemplate</span><span class="o">&lt;&gt;();</span>
+        <span class="n">Jackson2JsonRedisSerializer</span> <span class="n">jackson2JsonRedisSerializer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Jackson2JsonRedisSerializer</span><span class="o">&lt;&gt;(</span><span class="n">Object</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">template</span><span class="o">.</span><span class="na">setConnectionFactory</span><span class="o">(</span><span class="n">factory</span><span class="o">);</span>
+        <span class="n">ObjectMapper</span> <span class="n">om</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">();</span>
+        <span class="n">om</span><span class="o">.</span><span class="na">setVisibility</span><span class="o">(</span><span class="n">PropertyAccessor</span><span class="o">.</span><span class="na">ALL</span><span class="o">,</span> <span class="n">JsonAutoDetect</span><span class="o">.</span><span class="na">Visibility</span><span class="o">.</span><span class="na">ANY</span><span class="o">);</span>
+        <span class="n">om</span><span class="o">.</span><span class="na">enableDefaultTyping</span><span class="o">(</span><span class="n">ObjectMapper</span><span class="o">.</span><span class="na">DefaultTyping</span><span class="o">.</span><span class="na">NON_FINAL</span><span class="o">);</span>
+        <span class="n">jackson2JsonRedisSerializer</span><span class="o">.</span><span class="na">setObjectMapper</span><span class="o">(</span><span class="n">om</span><span class="o">);</span>
+        <span class="c1">// 值序列化采用 jackson2JsonRedisSerializer
+</span><span class="c1"></span>        <span class="n">template</span><span class="o">.</span><span class="na">setValueSerializer</span><span class="o">(</span><span class="n">jackson2JsonRedisSerializer</span><span class="o">);</span>
+        <span class="c1">// 键序列化采用 StringRedisSerializer
+</span><span class="c1"></span>        <span class="n">template</span><span class="o">.</span><span class="na">setKeySerializer</span><span class="o">(</span><span class="k">new</span> <span class="n">StringRedisSerializer</span><span class="o">());</span>
+        <span class="n">template</span><span class="o">.</span><span class="na">afterPropertiesSet</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">template</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="nd">@Bean</span>
+    <span class="n">StringRedisTemplate</span> <span class="nf">template</span><span class="o">(</span><span class="n">RedisConnectionFactory</span> <span class="n">connectionFactory</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">StringRedisTemplate</span><span class="o">(</span><span class="n">connectionFactory</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>两个对象的简单使用</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">stringRedisTemplate</span><span class="o">.</span><span class="na">opsForValue</span><span class="o">().</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;aaa&#34;</span><span class="o">,</span> <span class="s">&#34;hello&#34;</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">stringRedisTemplate</span><span class="o">.</span><span class="na">opsForValue</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;aaa&#34;</span><span class="o">);</span>
+    <span class="c1">//获取所有
+</span><span class="c1"></span>    <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keysList</span> <span class="o">=</span>  <span class="n">stringRedisTemplate</span><span class="o">.</span><span class="na">keys</span><span class="o">(</span><span class="s">&#34;*&#34;</span><span class="o">);</span>
+    <span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">temp</span> <span class="o">:</span><span class="n">keysList</span><span class="o">){</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">temp</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>以上配置的template都是只是建立在最简单的键值对上，String-String，所以对象使用的是json来存储</li>
+<li>但是使用的时候如同使用MySQL一样，是ORM框架自动处理数据的转换</li>
+</ul>
+<h4 id="关于stringredistemplate的方法使用">关于StringRedisTemplate的方法使用</h4>
+<ul>
+<li>
+<p>常见数据类型的中间对象</p>
+<ul>
+<li>opsForValue() 操作简单键值对数据
+<ul>
+<li>hasKey()</li>
+</ul>
+</li>
+<li>opsForHash() 操作含有hash的数据</li>
+<li>opsForList() 操作含有list的数据</li>
+<li>opsForZSet() 操作含有zset（有序）的数据
+<ul>
+<li>range()方法返回指定范围的数据 Java中Set类型的（诡异的是顺序保持了一致）</li>
+</ul>
+</li>
+<li>opsForSet() 操作含有set的数据</li>
+</ul>
+</li>
+<li>
+<p>设置超时时间</p>
+<ul>
+<li><code>redisTemplate.expire(&quot;max&quot;,tempTime,TimeUnit.SECONDS);</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="消息订阅和发布">消息订阅和发布</h4>
+<p><a href="https://www.tianmaying.com/tutorial/springboot-redis-message">参考: Spring Boot使用Redis进行消息的发布订阅</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/springboot/">SpringBoot</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring/springcloud/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SpringCloud</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/spring/springboot2/">
+            <span class="next-text nav-default">SpringBoot2 新特性</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

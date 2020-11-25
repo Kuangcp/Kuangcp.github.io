@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Lombok - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Lombok 何为Lombok 为什么要用 为什么不要用 个人见解 配置 Maven 普通Java项目 Groovy和Java项目使用Lombok Gradle 使用 注解使用 POJO" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/tool/lombok/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Lombok" />
+<meta property="og:description" content="目录 start Lombok 何为Lombok 为什么要用 为什么不要用 个人见解 配置 Maven 普通Java项目 Groovy和Java项目使用Lombok Gradle 使用 注解使用 POJO" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/tool/lombok/" />
+<meta property="article:published_time" content="2018-12-20T10:25:56+00:00" />
+<meta property="article:modified_time" content="2018-12-20T10:25:56+00:00" />
+<meta itemprop="name" content="Lombok">
+<meta itemprop="description" content="目录 start Lombok 何为Lombok 为什么要用 为什么不要用 个人见解 配置 Maven 普通Java项目 Groovy和Java项目使用Lombok Gradle 使用 注解使用 POJO">
+<meta itemprop="datePublished" content="2018-12-20T10:25:56+00:00" />
+<meta itemprop="dateModified" content="2018-12-20T10:25:56+00:00" />
+<meta itemprop="wordCount" content="802">
+
+
+
+<meta itemprop="keywords" content="Lombok," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lombok"/>
+<meta name="twitter:description" content="目录 start Lombok 何为Lombok 为什么要用 为什么不要用 个人见解 配置 Maven 普通Java项目 Groovy和Java项目使用Lombok Gradle 使用 注解使用 POJO"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Lombok</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-20 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 802 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#何为lombok">何为Lombok</a></li>
+    <li><a href="#为什么要用">为什么要用</a></li>
+    <li><a href="#为什么不要用">为什么不要用</a></li>
+    <li><a href="#个人见解">个人见解</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#maven">Maven</a>
+      <ul>
+        <li><a href="#普通java项目">普通Java项目</a></li>
+        <li><a href="#groovy和java项目使用lombok">Groovy和Java项目使用Lombok</a></li>
+      </ul>
+    </li>
+    <li><a href="#gradle">Gradle</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#注解使用">注解使用</a>
+      <ul>
+        <li><a href="#pojo常用">POJO常用</a></li>
+        <li><a href="#日志相关">日志相关</a></li>
+        <li><a href="#异常相关">异常相关</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#lombok">Lombok</a>
+<ol>
+<li><a href="#%E4%BD%95%E4%B8%BAlombok">何为Lombok</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8">为什么要用</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E7%94%A8">为什么不要用</a></li>
+<li><a href="#%E4%B8%AA%E4%BA%BA%E8%A7%81%E8%A7%A3">个人见解</a></li>
+</ol>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE">配置</a>
+<ol>
+<li><a href="#maven">Maven</a>
+<ol>
+<li><a href="#%E6%99%AE%E9%80%9Ajava%E9%A1%B9%E7%9B%AE">普通Java项目</a></li>
+<li><a href="#groovy%E5%92%8Cjava%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8lombok">Groovy和Java项目使用Lombok</a></li>
+</ol>
+</li>
+<li><a href="#gradle">Gradle</a></li>
+</ol>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a>
+<ol>
+<li><a href="#%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8">注解使用</a>
+<ol>
+<li><a href="#pojo%E5%B8%B8%E7%94%A8">POJO常用</a></li>
+<li><a href="#%E6%97%A5%E5%BF%97%E7%9B%B8%E5%85%B3">日志相关</a></li>
+<li><a href="#%E5%BC%82%E5%B8%B8%E7%9B%B8%E5%85%B3">异常相关</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">实现原理</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="lombok">Lombok</h1>
+<h2 id="何为lombok">何为Lombok</h2>
+<blockquote>
+<p><a href="https://github.com/rzwitserloot/lombok">Github: lombok</a> | <a href="https://projectlombok.org/">Official site</a></p>
+</blockquote>
+<h2 id="为什么要用">为什么要用</h2>
+<blockquote>
+<p>简化 JavaBean 省去了 Setter Getter toString hashCode 等方法，提供 生成构造器 Builder Log 等功能</p>
+</blockquote>
+<h2 id="为什么不要用">为什么不要用</h2>
+<blockquote>
+<p>破坏了阅读代码的完整性, 当使用了构造器这样的注解, 如果想通过看构造器的引用方来找到调用方, 这时候是没有办法的 只能通过查看类的所有引用方再一个个找<br>
+常见IDE都没有原生支持, 必须要安装对应的插件才能正常编译运行项目</p>
+</blockquote>
+<h2 id="个人见解">个人见解</h2>
+<blockquote>
+<p>Lombok在IDE中安装插件是为了编译和构建中能够动态的添加Getter Setter 等方法  而在Maven或者Gradle中添加是为了引入注解的包<br>
+取决于团队风格，用不用都不是大问题 <code>Java14</code> 新出的 <code>record</code> 类型也能满足lombok部分需求</p>
+</blockquote>
+<hr>
+<h1 id="配置">配置</h1>
+<h2 id="maven">Maven</h2>
+<blockquote>
+<p><a href="https://projectlombok.org/setup/maven">Official Guide</a></p>
+</blockquote>
+<h3 id="普通java项目">普通Java项目</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.16.10<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="groovy和java项目使用lombok">Groovy和Java项目使用Lombok</h3>
+<p><em>配置编译插件</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--lombok--&gt;</span>
+<span class="nt">&lt;plugin&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;version&gt;</span>3.7.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+    <span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+    <span class="nt">&lt;encoding&gt;</span>UTF-8<span class="nt">&lt;/encoding&gt;</span>
+    <span class="nt">&lt;compilerId&gt;</span>groovy-eclipse-compiler<span class="nt">&lt;/compilerId&gt;</span>
+    <span class="nt">&lt;verbose&gt;</span>true<span class="nt">&lt;/verbose&gt;</span>
+    <span class="nt">&lt;fork&gt;</span>true<span class="nt">&lt;/fork&gt;</span>
+    <span class="nt">&lt;compilerArguments&gt;</span>
+    <span class="nt">&lt;javaAgentClass&gt;</span>lombok.launch.Agent<span class="nt">&lt;/javaAgentClass&gt;</span>
+    <span class="nt">&lt;/compilerArguments&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.codehaus.groovy<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>groovy-eclipse-compiler<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.9.3-01<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.codehaus.groovy<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>groovy-eclipse-batch<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.5.0-01<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.16.10<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>添加依赖</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.16.10<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="gradle">Gradle</h2>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/50519138/annotationprocessor-gradle-4-7-configuration-doesnt-run-lombok">使用Lombok的正确方式</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://projectlombok.org/setup/gradle">gradle lombok plugin</a><br>
+<a href="https://docs.gradle.org/4.7-rc-1/userguide/java_plugin.html#sec:java_compile_avoidance">Official Guide</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">  <span class="n">annotationProcessor</span> <span class="s1">&#39;org.projectlombok:lombok:1.18.2&#39;</span>
+  <span class="n">compileOnly</span> <span class="s1">&#39;org.projectlombok:lombok:1.18.2&#39;</span>
+  <span class="n">testAnnotationProcessor</span> <span class="s1">&#39;org.projectlombok:lombok:1.18.2&#39;</span>
+  <span class="n">testCompileOnly</span> <span class="s1">&#39;org.projectlombok:lombok:1.18.2&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="使用">使用</h1>
+<ul>
+<li><a href="http://projectlombok.org/features/index">Lombok 注解在线帮助文档</a></li>
+</ul>
+<h2 id="注解使用">注解使用</h2>
+<h3 id="pojo常用">POJO常用</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">注解</th>
+<th style="text-align:left">范围</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">@Data</td>
+<td style="text-align:left">类</td>
+<td style="text-align:left">Getter Setter RequiredArgsConstructor ToString EqualsAndHashCode 的集合</td>
+</tr>
+<tr>
+<td style="text-align:left">@Setter</td>
+<td style="text-align:left">类</td>
+<td style="text-align:left">为属性提供 setter 方法</td>
+</tr>
+<tr>
+<td style="text-align:left">@Getter</td>
+<td style="text-align:left">类</td>
+<td style="text-align:left">为属性提供 getter 方法</td>
+</tr>
+<tr>
+<td style="text-align:left">@NoArgsConstructor</td>
+<td style="text-align:left">类</td>
+<td style="text-align:left">为类提供一个无参的构造方法</td>
+</tr>
+<tr>
+<td style="text-align:left">@AllArgsConstructor</td>
+<td style="text-align:left">类</td>
+<td style="text-align:left">为类提供一个全参的构造方法</td>
+</tr>
+<tr>
+<td style="text-align:left">@Builder</td>
+<td style="text-align:left">类 方法 构造器</td>
+<td style="text-align:left">生成 构造器模式 模板代码</td>
+</tr>
+<tr>
+<td style="text-align:left">@Delegate</td>
+<td style="text-align:left">属性,方法</td>
+<td style="text-align:left">将属性的方法委派到当前对象上 常用于嵌套的POJO</td>
+</tr>
+</tbody>
+</table>
+<h3 id="日志相关">日志相关</h3>
+<blockquote>
+<p><a href="https://projectlombok.org/features/log">Official log</a></p>
+</blockquote>
+<ul>
+<li>@CommonsLog
+<ul>
+<li><code>private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(LogExample.class);</code></li>
+</ul>
+</li>
+<li>@Flogger
+<ul>
+<li><code>private static final com.google.common.flogger.FluentLogger log = com.google.common.flogger.FluentLogger.forEnclosingClass();</code></li>
+</ul>
+</li>
+<li>@JBossLog
+<ul>
+<li><code>private static final org.jboss.logging.Logger log = org.jboss.logging.Logger.getLogger(LogExample.class);</code></li>
+</ul>
+</li>
+<li>@Log
+<ul>
+<li><code>private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(LogExample.class.getName());</code></li>
+</ul>
+</li>
+<li>@Log4j
+<ul>
+<li><code>private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(LogExample.class);</code></li>
+</ul>
+</li>
+<li>@Log4j2
+<ul>
+<li><code>private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger(LogExample.class);</code></li>
+</ul>
+</li>
+<li>@Slf4j
+<ul>
+<li><code>private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LogExample.class);</code></li>
+</ul>
+</li>
+<li>@XSlf4j</li>
+<li><code>private static final org.slf4j.ext.XLogger log = org.slf4j.ext.XLoggerFactory.getXLogger(LogExample.class);</code></li>
+</ul>
+<h3 id="异常相关">异常相关</h3>
+<ol>
+<li><a href="https://projectlombok.org/features/SneakyThrows">@SneakyThrows</a></li>
+</ol>
+<h1 id="实现原理">实现原理</h1>
+<blockquote>
+<p><a href="https://blog.mythsman.com/2017/12/19/1/">参考: Lombok原理分析与功能实现 </a></p>
+</blockquote>
+<p>Lombok的注解都是编译期源码注解(RetentionPolicy.SOURCE), 运行期是拿不到这些注解的</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/lombok/">Lombok</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/tool/tomcat/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Tomcat</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/tool/mavenadvance/">
+            <span class="next-text nav-default">Maven进阶</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

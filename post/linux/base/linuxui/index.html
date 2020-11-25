@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux 美化 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start UI 桌面管理器 Font 字体渲染 Theme Icon Terminal 彩色输出 目录 end|2020-05-16 21:26| UI themes icons fonts 桌面管理器 Gnome Xfce Font /usr/share/fonts/ ~/.local/share/fonts 刷新字体缓存 fc-cache -fv 字体文件 详情 字体渲染 Debian8安装Infi" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxui/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Linux 美化" />
+<meta property="og:description" content="目录 start UI 桌面管理器 Font 字体渲染 Theme Icon Terminal 彩色输出 目录 end|2020-05-16 21:26| UI themes icons fonts 桌面管理器 Gnome Xfce Font /usr/share/fonts/ ~/.local/share/fonts 刷新字体缓存 fc-cache -fv 字体文件 详情 字体渲染 Debian8安装Infi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxui/" />
+<meta property="article:published_time" content="2018-12-15T11:18:48+00:00" />
+<meta property="article:modified_time" content="2018-12-15T11:18:48+00:00" />
+<meta itemprop="name" content="Linux 美化">
+<meta itemprop="description" content="目录 start UI 桌面管理器 Font 字体渲染 Theme Icon Terminal 彩色输出 目录 end|2020-05-16 21:26| UI themes icons fonts 桌面管理器 Gnome Xfce Font /usr/share/fonts/ ~/.local/share/fonts 刷新字体缓存 fc-cache -fv 字体文件 详情 字体渲染 Debian8安装Infi">
+<meta itemprop="datePublished" content="2018-12-15T11:18:48+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T11:18:48+00:00" />
+<meta itemprop="wordCount" content="332">
+
+
+
+<meta itemprop="keywords" content="工具使用经验," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux 美化"/>
+<meta name="twitter:description" content="目录 start UI 桌面管理器 Font 字体渲染 Theme Icon Terminal 彩色输出 目录 end|2020-05-16 21:26| UI themes icons fonts 桌面管理器 Gnome Xfce Font /usr/share/fonts/ ~/.local/share/fonts 刷新字体缓存 fc-cache -fv 字体文件 详情 字体渲染 Debian8安装Infi"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux 美化</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 332 words </span>
+          <span class="more-meta"> 1 min read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#桌面管理器">桌面管理器</a></li>
+    <li><a href="#font">Font</a>
+      <ul>
+        <li><a href="#字体渲染">字体渲染</a></li>
+      </ul>
+    </li>
+    <li><a href="#theme">Theme</a></li>
+    <li><a href="#icon">Icon</a></li>
+    <li><a href="#terminal">Terminal</a>
+      <ul>
+        <li><a href="#彩色输出">彩色输出</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#ui">UI</a>
+<ol>
+<li><a href="#%E6%A1%8C%E9%9D%A2%E7%AE%A1%E7%90%86%E5%99%A8">桌面管理器</a></li>
+<li><a href="#font">Font</a>
+<ol>
+<li><a href="#%E5%AD%97%E4%BD%93%E6%B8%B2%E6%9F%93">字体渲染</a></li>
+</ol>
+</li>
+<li><a href="#theme">Theme</a></li>
+<li><a href="#icon">Icon</a></li>
+<li><a href="#terminal">Terminal</a>
+<ol>
+<li><a href="#%E5%BD%A9%E8%89%B2%E8%BE%93%E5%87%BA">彩色输出</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-05-16 21:26</em>|</p>
+<hr>
+<h1 id="ui">UI</h1>
+<blockquote>
+<p>themes icons fonts</p>
+</blockquote>
+<h2 id="桌面管理器">桌面管理器</h2>
+<ol>
+<li><a href="/Linux/Window/Gnome.md">Gnome</a></li>
+<li><a href="/Linux/Window/Xfce.md">Xfce</a></li>
+</ol>
+<h2 id="font">Font</h2>
+<ol>
+<li>/usr/share/fonts/</li>
+<li>~/.local/share/fonts</li>
+</ol>
+<ul>
+<li>刷新字体缓存 <code>fc-cache -fv</code></li>
+</ul>
+<blockquote>
+<p><a href="/FrontEnd/Font.md">字体文件 详情</a></p>
+</blockquote>
+<h3 id="字体渲染">字体渲染</h3>
+<blockquote>
+<p><a href="https://www.linuxdashen.com/debian8%E5%AE%89%E8%A3%85infinality%E6%94%B9%E5%96%84%E5%AD%97%E4%BD%93%E6%B8%B2%E6%9F%93%EF%BC%8C%E5%AE%89%E8%A3%85ubuntu%E5%AD%97%E4%BD%93">Debian8安装Infinality改善字体渲染，安装Ubuntu字体</a><br>
+<a href="https://www.lulinux.com/archives/278">一条命令搞定Linux字体渲染</a><br>
+<a href="https://wiki.archlinux.org/index.php/Font_Configuration/Chinese_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Font Configuration/Chinese (简体中文)</a><br>
+<a href="https://wiki.archlinux.org/index.php/Fcitx_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">参考: Fcitx (简体中文)</a></p>
+</blockquote>
+<hr>
+<h2 id="theme">Theme</h2>
+<ol>
+<li>/usr/share/themes/</li>
+<li>~/.themes/  ~/.local/share/themes</li>
+</ol>
+<p><code>问题:</code> Deepin上 全放 ~/.local/share/themes 会有bug, 只能全放 ~/.themes</p>
+<blockquote>
+<p><a href="https://www.xfce-look.org/p/1275087/">McMojave</a></p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/vinceliuice/vimix-gtk-themes">Github:vimix</a><code>material design theme</code></li>
+</ul>
+<blockquote>
+<p><a href="https://www.maketecheasier.com/gtk-themes-for-linux/">参考: 10 Great Linux GTK Themes For 2018 </a></p>
+</blockquote>
+<ul>
+<li>
+<p><a href="https://www.gnome-look.org/p/1239453/">pingguo</a></p>
+</li>
+<li>
+<p><a href="https://www.gnome-look.org/p/1013714/">Sierra</a></p>
+</li>
+<li>
+<p><a href="https://www.linuxidc.com/Linux/2017-01/139053.htm">GTK3主题：OSX-Arc</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="icon">Icon</h2>
+<ol>
+<li>/usr/share/icons</li>
+</ol>
+<blockquote>
+<p>sudo apt search icon-theme  也能看到很多icon</p>
+</blockquote>
+<ol>
+<li>Halo-icon-theme</li>
+</ol>
+<h2 id="terminal">Terminal</h2>
+<h3 id="彩色输出">彩色输出</h3>
+<blockquote>
+<p><a href="http://blog.csdn.net/magiclyj/article/details/72637666">参考博客,比较详细</a><br>
+<a href="https://blog.csdn.net/y2701310012/article/details/40142809">Linux Terminal Color</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">  <span class="nv">red</span><span class="o">=</span><span class="s1">&#39;\033[0;31m&#39;</span>
+  <span class="nv">green</span><span class="o">=</span><span class="s1">&#39;\033[0;32m&#39;</span>
+  <span class="nv">yellow</span><span class="o">=</span><span class="s1">&#39;\033[0;33m&#39;</span>
+  <span class="nv">blue</span><span class="o">=</span><span class="s1">&#39;\033[0;34m&#39;</span>
+  <span class="nv">purple</span><span class="o">=</span><span class="s1">&#39;\033[0;35m&#39;</span>
+  <span class="nv">cyan</span><span class="o">=</span><span class="s1">&#39;\033[0;36m&#39;</span>
+  <span class="nv">white</span><span class="o">=</span><span class="s1">&#39;\033[0;37m&#39;</span>
+  <span class="nv">default</span><span class="o">=</span><span class="s1">&#39;\033[0m&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>256 color</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># 测试 terminal 是否支持 256</span>
+    <span class="k">for</span> i in <span class="o">{</span>0..255<span class="o">}</span> <span class="p">;</span> <span class="k">do</span>
+        <span class="nb">printf</span> <span class="s2">&#34;\x1b[48;5;%sm%3d\e[0m &#34;</span> <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span>
+        <span class="k">if</span> <span class="o">((</span> <span class="nv">i</span> <span class="o">==</span> <span class="m">15</span> <span class="o">))</span> <span class="o">||</span> <span class="o">((</span> i &gt; <span class="m">15</span> <span class="o">))</span> <span class="o">&amp;&amp;</span> <span class="o">((</span> <span class="o">(</span>i-15<span class="o">)</span> % <span class="nv">6</span> <span class="o">==</span> <span class="m">0</span> <span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+            <span class="nb">printf</span> <span class="s2">&#34;\n&#34;</span><span class="p">;</span>
+        <span class="k">fi</span>
+    <span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="https://github.com/trapd00r/LS_COLORS">Gihub: LS_COLORS</a><br>
+<a href="https://www.howtogeek.com/307701/how-to-customize-and-colorize-your-bash-prompt/">customize bash prompt</a></p>
+<ol>
+<li><code>curl https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/LS_COLORS -o /etc/lscolor-256color</code></li>
+<li>add to *sh.rc
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="k">if</span> <span class="o">[[</span> <span class="o">(</span><span class="s2">&#34;</span><span class="nv">$TERM</span><span class="s2">&#34;</span> <span class="o">=</span> *256color <span class="o">||</span> <span class="s2">&#34;</span><span class="nv">$TERM</span><span class="s2">&#34;</span> <span class="o">=</span> screen* <span class="o">||</span> <span class="s2">&#34;</span><span class="nv">$TERM</span><span class="s2">&#34;</span> <span class="o">=</span> xterm* <span class="o">)</span> <span class="o">&amp;&amp;</span> -f /etc/lscolor-256color <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">eval</span> <span class="k">$(</span>dircolors -b /etc/lscolor-256color<span class="k">)</span>
+    <span class="k">else</span>
+            <span class="nb">eval</span> <span class="k">$(</span>dircolors<span class="k">)</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%8F%E9%AA%8C/">工具使用经验</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/base/releaseexperience/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux发行版</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/base/linuxstreameditor/">
+            <span class="next-text nav-default">Linux流编辑器</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

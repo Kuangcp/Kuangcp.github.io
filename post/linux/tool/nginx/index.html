@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Nginx - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Nginx Nginx的安装 命令安装 编译安装 Docker安装 命令参数 配置使用 Location配置 本地静态文件Web服务器 反向代理多个服务 配置ht" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/tool/nginx/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Nginx" />
+<meta property="og:description" content="目录 start Nginx Nginx的安装 命令安装 编译安装 Docker安装 命令参数 配置使用 Location配置 本地静态文件Web服务器 反向代理多个服务 配置ht" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/tool/nginx/" />
+<meta property="article:published_time" content="2018-12-15T12:05:09+00:00" />
+<meta property="article:modified_time" content="2018-12-15T12:05:09+00:00" />
+<meta itemprop="name" content="Nginx">
+<meta itemprop="description" content="目录 start Nginx Nginx的安装 命令安装 编译安装 Docker安装 命令参数 配置使用 Location配置 本地静态文件Web服务器 反向代理多个服务 配置ht">
+<meta itemprop="datePublished" content="2018-12-15T12:05:09+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T12:05:09+00:00" />
+<meta itemprop="wordCount" content="2109">
+
+
+
+<meta itemprop="keywords" content="Nginx," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Nginx"/>
+<meta name="twitter:description" content="目录 start Nginx Nginx的安装 命令安装 编译安装 Docker安装 命令参数 配置使用 Location配置 本地静态文件Web服务器 反向代理多个服务 配置ht"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Nginx</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%B7%A5%E5%85%B7/"> 工具 </a>
+            </div>
+          <span class="more-meta"> 2109 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#nginx的安装">Nginx的安装</a>
+      <ul>
+        <li><a href="#命令安装">命令安装</a></li>
+        <li><a href="#编译安装">编译安装</a></li>
+        <li><a href="#docker安装">Docker安装</a></li>
+      </ul>
+    </li>
+    <li><a href="#命令参数">命令参数</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#location配置">Location配置</a></li>
+    <li><a href="#本地静态文件web服务器">本地静态文件Web服务器</a></li>
+    <li><a href="#反向代理多个服务">反向代理多个服务</a></li>
+    <li><a href="#配置https">配置https</a>
+      <ul>
+        <li><a href="#通过-certbot-配置-https">通过 certbot 配置 HTTPS</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置websocket反向代理">配置Websocket反向代理</a></li>
+    <li><a href="#防盗链">防盗链</a></li>
+    <li><a href="#负载均衡">负载均衡</a></li>
+    <li><a href="#跨域问题的配置">跨域问题的配置</a>
+      <ul>
+        <li><a href="#静态服务器反代理后台接口">静态服务器反代理后台接口</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#caddy">Caddy</a></li>
+    <li><a href="#squid">Squid</a></li>
+    <li><a href="#varnish">Varnish</a></li>
+    <li><a href="#haproxy">HAProxy</a></li>
+    <li><a href="#nuster">nuster</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#nginx">Nginx</a>
+<ol>
+<li><a href="#nginx%E7%9A%84%E5%AE%89%E8%A3%85">Nginx的安装</a>
+<ol>
+<li><a href="#%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85">命令安装</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">编译安装</a></li>
+<li><a href="#docker%E5%AE%89%E8%A3%85">Docker安装</a></li>
+</ol>
+</li>
+<li><a href="#%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0">命令参数</a></li>
+</ol>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8">配置使用</a>
+<ol>
+<li><a href="#location%E9%85%8D%E7%BD%AE">Location配置</a></li>
+<li><a href="#%E6%9C%AC%E5%9C%B0%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6web%E6%9C%8D%E5%8A%A1%E5%99%A8">本地静态文件Web服务器</a></li>
+<li><a href="#%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%A4%9A%E4%B8%AA%E6%9C%8D%E5%8A%A1">反向代理多个服务</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEhttps">配置https</a>
+<ol>
+<li><a href="#%E9%80%9A%E8%BF%87-certbot-%E9%85%8D%E7%BD%AE-https">通过 certbot 配置 HTTPS</a></li>
+</ol>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AEwebsocket%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86">配置Websocket反向代理</a></li>
+<li><a href="#%E9%98%B2%E7%9B%97%E9%93%BE">防盗链</a></li>
+<li><a href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1">负载均衡</a></li>
+<li><a href="#%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E7%9A%84%E9%85%8D%E7%BD%AE">跨域问题的配置</a>
+<ol>
+<li><a href="#%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8D%E4%BB%A3%E7%90%86%E5%90%8E%E5%8F%B0%E6%8E%A5%E5%8F%A3">静态服务器反代理后台接口</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#nginx-plus">Nginx Plus</a></li>
+<li><a href="#keepalived">Keepalived</a></li>
+<li><a href="#%E5%90%8C%E7%B1%BB%E5%BA%94%E7%94%A8">同类应用</a>
+<ol>
+<li><a href="#caddy">Caddy</a></li>
+<li><a href="#squid">Squid</a></li>
+<li><a href="#varnish">Varnish</a></li>
+<li><a href="#haproxy">HAProxy</a></li>
+<li><a href="#nuster">nuster</a></li>
+</ol>
+</li>
+<li><a href="#tips">Tips</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-10-27 15:40</em>|</p>
+<hr>
+<h1 id="nginx">Nginx</h1>
+<blockquote>
+<p><a href="https://www.nginx.com/">Official Site</a><br>
+<a href="http://tengine.taobao.org/">Tengine</a></p>
+</blockquote>
+<h2 id="nginx的安装">Nginx的安装</h2>
+<h3 id="命令安装">命令安装</h3>
+<ul>
+<li>安装 <code>sudo apt install nginx</code></li>
+<li>启动服务 <code>sudo nginx</code>
+<ul>
+<li>或者<code>sudo /etc/init.d/nginx start</code></li>
+<li>或者  systemd 方式 <code>systemctl start nginx</code></li>
+</ul>
+</li>
+<li>关闭 <code>sudo nginx -s quit</code>
+<ul>
+<li>或者 <code>sudo /etc/init.d/nginx stop</code></li>
+<li>或者 systemd 方式<code>systemctl stop nginx</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="编译安装">编译安装</h3>
+<blockquote>
+<p>不建议使用这种方式进行安装，很容易出现兼容问题</p>
+</blockquote>
+<ul>
+<li>下载 nginx，pcre，zlib，openssl 的压缩包</li>
+<li>进入解压根目录（按实际情况配置）
+<code>配置各个包</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    ./configure --sbin-path<span class="o">=</span>/usr/local/nginx/nginx <span class="se">\
+</span><span class="se"></span>    --conf-path<span class="o">=</span>/usr/local/nginx/nginx.conf <span class="se">\
+</span><span class="se"></span>    --pid-path<span class="o">=</span>/usr/local/nginx/nginx.pid <span class="se">\
+</span><span class="se"></span>    --with-http_stub_status_module <span class="se">\
+</span><span class="se"></span>    --with-http_ssl_module <span class="se">\
+</span><span class="se"></span>    --with-pcre<span class="o">=</span>/home/kuang/pcre-8.20 <span class="se">\
+</span><span class="se"></span>    --with-openssl<span class="o">=</span>/home/kuang/openssl <span class="se">\
+</span><span class="se"></span>    --with-zlib<span class="o">=</span>/home/kuang/zlib-1.2.11
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="docker安装">Docker安装</h3>
+<blockquote>
+<p><a href="https://hub.docker.com/r/library/nginx/">nginx hub 官方镜像</a></p>
+</blockquote>
+<h2 id="命令参数">命令参数</h2>
+<ul>
+<li><code>-s signal</code>
+<ul>
+<li>stop 停止</li>
+<li>quit 退出</li>
+<li>reopen 重新打开</li>
+<li>reload 重载配置（修改配置文件常使用）</li>
+</ul>
+</li>
+<li><code>-t</code> 测试配置文件</li>
+</ul>
+<hr>
+<h1 id="配置使用">配置使用</h1>
+<blockquote>
+<p><a href="https://www.nginx.com/resources/wiki/start/#pre-canned-configurations">Official Doc</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/24524057">知乎专栏</a><br>
+<a href="https://segmentfault.com/a/1190000002797601">nginx基本配置</a> | <a href="https://fengqi.me/unix/409.html">ngrok nginx docker本地搭建服务器</a></p>
+</blockquote>
+<ul>
+<li><a href="https://www.shiyanlou.com/courses/95">实验楼课程</a></li>
+</ul>
+<p>nginx 配置文件的语法是自己独有的语法, 比较像 shell, 里面有用到正则, 变量等概念</p>
+<ul>
+<li>读取自定义目录配置:
+<ul>
+<li>nginx.conf 中 http 块内添加 <code>include /etc/nginx/conf.d/*.conf;</code></li>
+</ul>
+</li>
+<li>错误页面重定向 <code>error_page   404  /404.html;</code> 也可以填完整URL</li>
+</ul>
+<h2 id="location配置">Location配置</h2>
+<hr>
+<h2 id="本地静态文件web服务器">本地静态文件Web服务器</h2>
+<blockquote>
+<p><a href="http://blog.yuansc.com/2015/04/29/nginx%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/">参考 nginx配置静态文件服务器 </a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="na">server {</span>
+    <span class="na">client_max_body_size 4G;</span>
+    <span class="na">listen  80; </span>
+    <span class="c1"># server_name static.me; # 如果需要使用域名 则需要在hosts文件配置</span>
+    <span class="na">root /home/mini/Sync;</span>
+    <span class="na">location / {</span>
+        <span class="na">autoindex on; # 显示索引</span>
+        <span class="na">autoindex_exact_size on; # 显示大小</span>
+	      <span class="na">autoindex_localtime on;  # 显示时间</span>
+    <span class="na">}</span>
+  <span class="na">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>若出现403错误, 将 /etc/nginx/nginx.conf 中第一行的 <code>user nginx;</code> 改成可访问静态文件目录的用户即可</li>
+<li><code>配置为文本文件类型</code> 即 text/plain; 类型。例: 浏览器直接查看 code 目录下所有源代码</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="na">location /code/ {</span>
+        <span class="c1"># All files in it</span>
+        <span class="na">location ~* {</span>
+            <span class="na">add_header Content-Type text/plain;</span>
+        <span class="na">}</span>
+    <span class="na">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果有编码问题可配置成 <code>add_header Content-Type 'text/plain;charset=UTF-8';</code>
+<code>location ~* /.*\.(py|md|sql)${}</code></p>
+<h2 id="反向代理多个服务">反向代理多个服务</h2>
+<p><code>配置反向代理</code></p>
+<ol>
+<li>nginx 的 80 端口下：<code>/</code> 路径的请求转发到9991端口 <code>/myth</code> 转发到7898端口</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="na">upstream one {</span>
+    <span class="na">server 127.0.0.1:9991;</span>
+  <span class="na">}</span>
+  <span class="na">upstream two {</span>
+    <span class="na">server 127.0.0.1:7898;</span>
+  <span class="na">}</span>
+
+  <span class="na">server {</span>
+    <span class="na">listen 80;</span>
+    <span class="na">server_name 1.1.1.1;</span>
+
+    <span class="na">location / {</span>
+      <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
+      <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
+      <span class="na">proxy_set_header Host $http_host;</span>
+      <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
+
+      <span class="na">proxy_pass http://one;</span>
+      <span class="na">proxy_redirect off;</span>
+    <span class="na">}</span>
+    
+    <span class="na">location /myth{</span>
+      <span class="na">proxy_pass http://two;</span>
+      <span class="na">proxy_redirect off;</span>
+    <span class="na">}</span>
+  <span class="na">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="配置https">配置https</h2>
+<blockquote>
+<p><a href="http://www.cnblogs.com/tintin1926/archive/2012/07/12/2587311.html">nginx搭建https服务</a> | <a href="http://letus.club/2016/04/08/nginx-http2-letsencrypt/">nginx http/2</a></p>
+</blockquote>
+<blockquote>
+<p>自签发证书 <code>命令运行</code></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">  <span class="c1">############ 证书颁发机构</span>
+  <span class="c1"># CA机构私钥</span>
+  openssl genrsa -out ca.key <span class="m">2048</span>
+  <span class="c1"># CA证书</span>
+  openssl req -x509 -new -key ca.key -out ca.crt
+  <span class="c1">############ 服务端</span>
+  <span class="c1"># 生成服务端私钥</span>
+  openssl genrsa -out server.key <span class="m">2048</span>
+  <span class="c1"># 生成服务端证书请求文件</span>
+  openssl req -new -key server.key -out server.csr
+  <span class="c1"># 使用CA证书生成服务端证书  关于sha256，默认使用的是sha1，在新版本的chrome中会被认为是不安全的，因为使用了过时的加密算法。</span>
+  openssl x509 -req -sha256 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days <span class="m">3650</span> -out server.crt    
+  <span class="c1"># 打包服务端的资料为pkcs12格式(非必要，只是换一种格式存储上一步生成的证书) 生成过程中，需要创建访问密码，请记录下来。</span>
+  openssl pkcs12 -export -in server.crt -inkey server.key -out server.pkcs12
+</code></pre></td></tr></table>
+</div>
+</div><p><code>配置HTTPS</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="na">upstream one {</span>
+        <span class="na">server 127.0.0.1:8888;</span>
+    <span class="na">}</span>
+    <span class="na">server {</span>
+        <span class="na">listen 443;</span>
+        <span class="na">server_name web.me;</span>
+
+        <span class="c1"># 主要就是添加了这一块</span>
+        <span class="na">ssl on;</span>
+        <span class="na">ssl_certificate  /data/https/server.crt;</span>
+        <span class="na">ssl_certificate_key  /data/https/server.key;</span>
+        
+        <span class="c1"># http 转向 https</span>
+        <span class="na">return 302  https://$host$request_uri;</span>
+
+        <span class="na">location / {</span>
+            <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
+            <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
+            <span class="na">proxy_set_header Host $http_host;</span>
+            <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
+            <span class="na">proxy_pass https://one;</span>
+            <span class="na">proxy_redirect off;</span>
+        <span class="na">}</span>
+    <span class="na">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="通过-certbot-配置-https">通过 certbot 配置 HTTPS</h3>
+<blockquote>
+<p>免费的网站, 并且现在支持泛域名了<a href="http://www.cnblogs.com/lidong94/p/7156839.html">参考博客</a> | <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04">参考博客</a><br>
+<a href="http://linux.it.net.cn/e/server/nginx/2015/0131/12745.html">Nginx反向代理https</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">  wget https://dl.eff.org/certbot-auto
+  chmod a+x certbot-auto
+  ./certbot-auto <span class="c1">#进行安装 但是过程中会有一些设置，</span>
+  ./certbot-auto certonly --email xxx@xxx --nginx -d xxx.domain <span class="c1"># 生成 xxx.domain 证书</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>SSL 接收到一个超出最大准许长度的记录 要在端口后加上SSL nginx</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="na">upstream one {</span>
+    <span class="na">server 127.0.0.1:8080;</span>
+  <span class="na">}</span>
+
+  <span class="na">server{</span>
+    <span class="na">listen 443 ssl;</span>
+    <span class="na">server_name xxx.domain</span>
+    <span class="na">access_log /data/log/https.log;</span>
+    
+    <span class="c1"># ssl配置</span>
+    <span class="na">ssl on;</span>
+    <span class="na">ssl_certificate  /etc/letsencrypt/live/xxx.domain/fullchain.pem;</span>
+    <span class="na">ssl_certificate_key  /etc/letsencrypt/live/xxx.domain/privkey.pem;</span>
+    <span class="na">ssl_trusted_certificate /etc/letsencrypt/live/xxx.domain/chain.pem;</span>
+    <span class="na">ssl_dhparam /etc/nginx/ssl/dhparam.pem;</span>
+
+    <span class="na">location / {</span>
+        <span class="na">proxy_pass https://one;</span>
+    <span class="na">}</span>
+  <span class="na">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="配置websocket反向代理">配置Websocket反向代理</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="c1"># 配置连接的配置信息</span>
+  <span class="na">map $http_upgrade $connection_upgrade{</span>
+    <span class="na">default upgrade;</span>
+    <span class="na">&#39;&#39;  close;</span>
+  <span class="na">}</span>
+  <span class="na">upstream back_end {</span>
+    <span class="na">server 127.0.0.1:8888;</span>
+  <span class="na">}</span>
+  <span class="na">server {</span>
+    <span class="na">listen 80;</span>
+    <span class="na">server_name 127.0.0.1;</span>
+    <span class="na">location / {</span>
+      <span class="c1"># 设置转发真实ip</span>
+      <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
+      <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
+      <span class="na">proxy_set_header Host $host;</span>
+      <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
+
+      <span class="c1"># 设置接收到的请求类型</span>
+      <span class="na">proxy_set_header Upgrade $http_upgrade;</span>
+      <span class="na">proxy_set_header Connection $connection_upgrade;</span>
+
+      <span class="na">proxy_pass http://back_end;</span>
+      <span class="c1"># 默认是 1.0 不支持 keepAlive</span>
+      <span class="na">proxy_http_version 1.1; </span>
+      <span class="na">proxy_redirect off;</span>
+      <span class="na">proxy_read_timeout 300s;</span>
+    <span class="na">}</span>
+  <span class="na">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="防盗链">防盗链</h2>
+<h2 id="负载均衡">负载均衡</h2>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000012479902">Nginx 反向代理 负载均衡 虚拟主机配置</a></p>
+</blockquote>
+<h2 id="跨域问题的配置">跨域问题的配置</h2>
+<p>在需要被跨域访问的服务端，添加如下配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Headers X-Requested-With;
+    add_header Access-Control-Allow-Methods GET,POST,OPTIONS; 
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="静态服务器反代理后台接口">静态服务器反代理后台接口</h3>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000012859206">Nginx反向代理解决跨域问题</a> | <a href="https://www.jianshu.com/p/05415981e5e5">nginx简易使用教程,使用nginx解决跨域问题</a></p>
+</blockquote>
+<p><em>配置静态端</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="na">server {</span>
+        <span class="na">client_max_body_size 4G;</span>
+        <span class="na">listen  80;  # listen for ipv4; this line is default and implied</span>
+        <span class="na">server_name static.me;</span>
+        
+        <span class="na">location / {</span>
+            <span class="na">root /data/static;</span>
+        <span class="na">}</span>
+
+        <span class="na">location /api/ {</span>
+            <span class="c1"># add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;</span>
+            <span class="na">proxy_pass http://127.0.0.1:8889/; # 去除 api 路径，并访问后端</span>
+            <span class="c1"># proxy_pass http://127.0.0.1:8889; 这种方式不会去除 /api/</span>
+        <span class="na">}</span>
+    <span class="na">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>将静态文件交由Nginx进行处理， 后台的服务统一用一个前缀和前台进行区分， 然后将服务端的真实host和ip或者域名配置进来</li>
+<li>这样在于前端看来就是访问 static.me/api 而已， 实际上访问的是 127.0.0.1:8889/api</li>
+</ol>
+<blockquote>
+<p>注意，原先使用nginx反向代理tomcat，尝试配置后端为一个本地dns解析的域名。然后发现这是无法生效的，所以应该使用真实IP或公网域名</p>
+</blockquote>
+<hr>
+<h1 id="nginx-plus">Nginx Plus</h1>
+<blockquote>
+<p>对标 F5 BIG-IP</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.nginx.com/blog/5-reasons-switch-f5-big-ip-to-nginx-plus/">5-reasons-switch-f5-big-ip-to-nginx-plus</a></p>
+</blockquote>
+<hr>
+<h1 id="keepalived">Keepalived</h1>
+<p>Keepalived软件起初是专为LVS负载均衡软件设计的，用来管理并监控LVS集群系统中各个服务节点的状态，后来又加入了可以实现高可用的VRRP功能。因此，Keepalived除了能够管理LVS软件外，还可以作为其他服务（例如：Nginx、Haproxy、MySQL等）的高可用解决方案软件。</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/clsn/p/8052649.html">参考: keepalived实现服务高可用</a></p>
+</blockquote>
+<hr>
+<h1 id="同类应用">同类应用</h1>
+<h2 id="caddy">Caddy</h2>
+<blockquote>
+<p><a href="https://caddyserver.com/">official website</a></p>
+</blockquote>
+<p>具有丰富的插件支持, 配置简洁, 自动配置 HTTPS证书，相较于nginx资源消耗更多 吞吐量低一些</p>
+<blockquote>
+<p><a href="https://my.oschina.net/diamondfsd/blog/897301">参考: 使用 Caddy 替代 Nginx，全站升级 https，配置更加简单</a></p>
+</blockquote>
+<h2 id="squid">Squid</h2>
+<blockquote>
+<p><a href="http://www.squid-cache.org">Official</a></p>
+</blockquote>
+<h2 id="varnish">Varnish</h2>
+<h2 id="haproxy">HAProxy</h2>
+<blockquote>
+<p><a href="https://www.haproxy.org/">Official</a> 企业级工具</p>
+</blockquote>
+<h2 id="nuster">nuster</h2>
+<blockquote>
+<p><a href="https://github.com/jiangwenyuan/nuster">Github</a><code>基于 HAProxy</code></p>
+</blockquote>
+<hr>
+<h1 id="tips">Tips</h1>
+<ul>
+<li>文件上传报错 413
+<ul>
+<li>http{} 中添加 <code>client_max_body_size 80M;</code></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/nginx/">Nginx</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/tool/vim/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Vim</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/tool/ime/">
+            <span class="next-text nav-default">输入法</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

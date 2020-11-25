@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Jenkins - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Jenkins 安装 直接运行jar Docker 配置 配置Gradle 配置Docker插件 使用 Pipeline 个人经验 目录 end|2020-04-27 23:42| Jenkins 官网 参考: 用 Docker, maven, jenkins 完成 CI 安装 官方下载地址 | 由于是" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/devops/jenkins/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Jenkins" />
+<meta property="og:description" content="目录 start Jenkins 安装 直接运行jar Docker 配置 配置Gradle 配置Docker插件 使用 Pipeline 个人经验 目录 end|2020-04-27 23:42| Jenkins 官网 参考: 用 Docker, maven, jenkins 完成 CI 安装 官方下载地址 | 由于是" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/devops/jenkins/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="Jenkins">
+<meta itemprop="description" content="目录 start Jenkins 安装 直接运行jar Docker 配置 配置Gradle 配置Docker插件 使用 Pipeline 个人经验 目录 end|2020-04-27 23:42| Jenkins 官网 参考: 用 Docker, maven, jenkins 完成 CI 安装 官方下载地址 | 由于是">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="1298">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Jenkins"/>
+<meta name="twitter:description" content="目录 start Jenkins 安装 直接运行jar Docker 配置 配置Gradle 配置Docker插件 使用 Pipeline 个人经验 目录 end|2020-04-27 23:42| Jenkins 官网 参考: 用 Docker, maven, jenkins 完成 CI 安装 官方下载地址 | 由于是"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Jenkins</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/devops/"> DevOps </a>
+            </div>
+          <span class="more-meta"> 1298 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#直接运行jar">直接运行jar</a></li>
+        <li><a href="#docker">Docker</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置">配置</a>
+      <ul>
+        <li><a href="#配置gradle">配置Gradle</a></li>
+        <li><a href="#配置docker插件">配置Docker插件</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#pipeline">Pipeline</a></li>
+        <li><a href="#个人经验">个人经验</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#jenkins">Jenkins</a>
+<ol>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a>
+<ol>
+<li><a href="#%E7%9B%B4%E6%8E%A5%E8%BF%90%E8%A1%8Cjar">直接运行jar</a></li>
+<li><a href="#docker">Docker</a></li>
+</ol>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE">配置</a>
+<ol>
+<li><a href="#%E9%85%8D%E7%BD%AEgradle">配置Gradle</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEdocker%E6%8F%92%E4%BB%B6">配置Docker插件</a></li>
+</ol>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a>
+<ol>
+<li><a href="#pipeline">Pipeline</a></li>
+<li><a href="#%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C">个人经验</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="jenkins">Jenkins</h1>
+<blockquote>
+<p><a href="https://jenkins.io/">官网</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.open-open.com/lib/view/open1436922756240.html">参考: 用 Docker, maven, jenkins 完成 CI</a></p>
+</blockquote>
+<h2 id="安装">安装</h2>
+<blockquote>
+<p><a href="https://jenkins.io/download/">官方下载地址</a> | 由于是一个Java的Web服务, 所以也有war版本, 资源消耗都挺大的</p>
+</blockquote>
+<h3 id="直接运行jar">直接运行jar</h3>
+<p>直接下载最新LTS版本, java -jar XXX.war 就可以运行了</p>
+<h3 id="docker">Docker</h3>
+<blockquote>
+<p><a href="https://hub.docker.com/_/jenkins/">Dockerhub: official</a> <code>已废弃? 版本太老了</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://hub.docker.com/r/jenkins/jenkins/">Dockerhub: LTS</a> | <a href="https://github.com/jenkinsci/docker/blob/master/README.md">长期支持版文档</a></p>
+</blockquote>
+<ul>
+<li><code>docker pull jenkins/jenkins</code> 下拉镜像(600M+)
+<ul>
+<li>Alpine版: <code>jenkins/jenkins:alpine</code> 更小点(200M+)</li>
+</ul>
+</li>
+<li>构建容器 <code>sudo docker run --name myjenkins -p 8080:8080 -p 50000:50000 -v /home/kcp/docker/jenkins:/var/jenkins_home jenkins</code></li>
+<li>确保 <code>/home/kcp/docker/jenkins</code> 目录是开放了权限的, <code>chmod 777 jenkins</code> 最简单直接</li>
+<li>容器启动后, 第一次访问需要配置管理员账号, 插件等等, 配置完成之后就可以任意重启容器了</li>
+</ul>
+<hr>
+<p><strong><code>手动构建镜像</code></strong></p>
+<blockquote>
+<p>但是以上镜像都太大,更新不一定及时, 所以完全可以手动构建镜像</p>
+</blockquote>
+<ol>
+<li>去 <a href="https://jenkins.io/download/">下载</a> 对应版本的war, 然后在一个空目录下 新建一个文件 <code>jenkins.dockerfile</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile">    FROM frolvlad/alpine-oraclejdk8:slim<span class="err">
+</span><span class="err"></span>    COPY . . <span class="err">
+</span><span class="err"></span>    EXPOSE <span class="m">8080</span><span class="err">
+</span><span class="err"></span>    EXPOSE <span class="m">5000</span><span class="err">
+</span><span class="err"></span>    CMD <span class="o">[</span><span class="s2">&#34;java&#34;</span>, <span class="s2">&#34;-jar&#34;</span>, <span class="s2">&#34;jenkins.war&#34;</span><span class="o">]</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>构建镜像 <code>docker build -t jenkins:xxx -f jenkins.dockerfile .</code></li>
+</ol>
+<hr>
+<ul>
+<li><a href="https://hub.docker.com/r/h1kkan/jenkins-docker/">h1kkan/jenkins-docker</a> <code>依据LTS的war包加上一些常用插件的镜像版本</code></li>
+</ul>
+<h2 id="配置">配置</h2>
+<p><code>配置时区</code></p>
+<p><a href="https://wiki.jenkins.io/display/JENKINS/Change+time+zone">Official Wiki</a> | <a href="https://blog.csdn.net/k_zombie/article/details/50754253">参考: Jenkins修改时区（Docker）</a><br>
+或者在 Script Console 中 运行 <code>System.setProperty('org.apache.commons.jelly.tags.fmt.timeZone', 'Asia/Shanghai');</code></p>
+<h3 id="配置gradle">配置Gradle</h3>
+<blockquote>
+<p>系统管理 -&gt; Global Tool Configuration 下 配置gradle, 然后新建项目的时候选择新建的gradle配置, 执行构建的时候才会去下载Gradle</p>
+</blockquote>
+<h3 id="配置docker插件">配置Docker插件</h3>
+<hr>
+<h2 id="使用">使用</h2>
+<h3 id="pipeline">Pipeline</h3>
+<p>Jenkins 通过配置好的 slave 镜像启动对应容器, 在slave 容器中完成构建过程, 然后更换应用容器 销毁slave容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="o">{</span>
+		<span class="n">label</span> <span class="s1">&#39;docker-slave&#39;</span>
+	<span class="o">}</span>
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;init&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">echo</span> <span class="s1">&#39;init..&#39;</span>
+				<span class="n">script</span> <span class="o">{</span>
+					<span class="n">echo</span> <span class="s2">&#34;PATH = ${PATH}&#34;</span>
+					<span class="n">echo</span> <span class="s2">&#34;env.version = ${env.version}&#34;</span>
+				<span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;package&#39;</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">echo</span> <span class="s2">&#34;start to build&#34;</span>
+                <span class="n">checkout</span> <span class="nl">changelog:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">poll:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">scm:</span> <span class="o">[</span><span class="n">$class</span><span class="o">:</span> <span class="s1">&#39;SubversionSCM&#39;</span><span class="o">,</span> <span class="nl">additionalCredentials:</span> <span class="o">[],</span> <span class="nl">excludedCommitMessages:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedRegions:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedRevprop:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedUsers:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">filterChangelog:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">ignoreDirPropChanges:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">includedRegions:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">locations:</span> <span class="o">[[</span><span class="nl">cancelProcessOnExternalsFail:</span> <span class="kc">true</span><span class="o">,</span> <span class="nl">credentialsId:</span> <span class="s1">&#39;22f6f4c9-f19e-4120-af4b-7946ea7cc2ef&#39;</span><span class="o">,</span> <span class="nl">depthOption:</span> <span class="s1">&#39;infinity&#39;</span><span class="o">,</span> <span class="nl">ignoreExternalsOption:</span> <span class="kc">true</span><span class="o">,</span> <span class="nl">local:</span> <span class="s1">&#39;.&#39;</span><span class="o">,</span> <span class="nl">remote:</span> <span class="s1">&#39;http://192.168.10.200/svn/hecheng/dev/server/trunk&#39;</span><span class="o">]],</span> <span class="nl">quietOperation:</span> <span class="kc">true</span><span class="o">,</span> <span class="nl">workspaceUpdater:</span> <span class="o">[</span><span class="n">$class</span><span class="o">:</span> <span class="s1">&#39;UpdateUpdater&#39;</span><span class="o">]]</span>
+                 <span class="n">sh</span> <span class="s2">&#34;mvn -B -V -U clean package -DskipTest=true&#34;</span>
+                <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;test&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">echo</span> <span class="s1">&#39;Testing..&#39;</span>
+                <span class="n">sh</span> <span class="s2">&#34;mvn -B test&#34;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;build docker image and publish into local registry&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">echo</span> <span class="s2">&#34;starting to build docker image...&#34;</span>
+                <span class="n">script</span> <span class="o">{</span>		
+                <span class="cm">/* This builds the actual image; synonymous to
+</span><span class="cm">                * docker build on the command line */</span>
+                <span class="n">sh</span> <span class="s2">&#34;pwd &amp;&amp; ls . &amp;&amp; docker info&#34;</span>
+                <span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">url:</span> <span class="s1">&#39;http://192.168.10.6:5000/&#39;</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="kt">def</span> <span class="n">app</span> <span class="o">=</span> <span class="n">docker</span><span class="o">.</span><span class="na">build</span> <span class="s2">&#34;192.168.10.6:5000/synthesizer-dev:${env.BUILD_ID}&#34;</span>
+                    <span class="n">app</span><span class="o">.</span><span class="na">push</span><span class="o">()</span>
+                    <span class="n">echo</span> <span class="s2">&#34;pushed into local registry&#34;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;deploy&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">echo</span> <span class="s1">&#39;killing old server and start new server....&#39;</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="n">sh</span> <span class="s2">&#34;docker container rm -f synthesizer-dev  &amp;&amp;  docker run -d -p 3070:3070 -p 16888:16888 --name synthesizer-dev 192.168.10.6:5000/synthesizer-dev:${env.BUILD_ID}&#34;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;clean local images&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">echo</span> <span class="s2">&#34;cleaning dangling images...&#34;</span>
+                <span class="n">script</span> <span class="o">{</span>
+                    <span class="n">sh</span> <span class="s2">&#34;docker images --filter \&#34;dangling=true\&#34; -q |xargs --no-run-if-empty docker rmi&#34;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>	
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>slave 配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    /home/ai/rs/jenkins-slave/m2:/home/jenkins/.m2
+    /var/run/docker.sock:/var/run/docker.sock
+    /usr/bin/docker:/usr/bin/docker
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="个人经验">个人经验</h3>
+<blockquote>
+<p>从Gitlab私有库(Maven SpringBooot项目)建好一个任务, 并构建好镜像和容器, 更新容器
+做法是在运行Docker的服务器上建立一个目录专门用来更新该项目, 然后在Jenkins构建完成后将 jar 包传过去, 执行该目录下的脚本完成容器和镜像的更迭</p>
+</blockquote>
+<ol>
+<li>复制项目URL, Credentials 中添加一个 username/password 类型的授权即可(就是gitlab上的用户名密码)
+<ul>
+<li>可以选择指定的 分支 进行构建</li>
+</ul>
+</li>
+<li>添加一个构建, 选择Maven的版本, Goal 中添加 命令 clean package</li>
+<li>在Build 这里添加一个Post-build step 这里 选择添加一个 Shell, 写入要执行的脚本即可</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> <span class="s2">&#34;...构建完成, 开始建立镜像...&#34;</span>
+<span class="nv">jarFile</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/target/app.jar
+<span class="k">if</span> <span class="o">[</span> -f <span class="nv">$jarFile</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+	scp <span class="nv">$WORKSPACE</span>/target/app.jar xx@xxx:/home/xxx/
+    ssh xx@xxx <span class="s2">&#34;cd /home/xx/ &amp;&amp; sh deploy.sh dev&#34;</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>deploy.sh</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">version</span><span class="o">=</span><span class="sb">`</span>date +%Y-%m-%d-%H-%M<span class="sb">`</span>
+<span class="nv">num</span><span class="o">=</span><span class="sb">`</span>docker ps <span class="p">|</span> grep app <span class="p">|</span> wc -l<span class="sb">`</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$num</span> <span class="o">=</span> <span class="m">1</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    docker logs app &gt;&gt; /home/ai/xx/log/<span class="nv">$version</span>.log
+    docker rm -f app
+<span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">=</span> <span class="s2">&#34;dev&#34;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    docker build -t app:<span class="nv">$version</span> -f /home/xx/build-dev.dockerfile .
+<span class="k">else</span>
+    docker build -t app:<span class="nv">$version</span> -f /home/xx/build-prod.dockerfile . 
+<span class="k">fi</span>
+<span class="nb">echo</span> <span class="s2">&#34;版本:&#34;</span><span class="nv">$version</span><span class="s2">&#34;镜像构建完成&#34;</span>
+docker run --name app -d -p 16888:16888 -p 3070:3070 app:<span class="nv">$version</span>
+<span class="nb">echo</span> <span class="s2">&#34;容器启动成功&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>build-dev.dockerfile</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> frolvlad/alpine-oraclejdk8:slim</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> . .<span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 16888</span><span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 3070</span><span class="err">
+</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;app.jar&#34;</span><span class="p">,</span> <span class="s2">&#34;--spring.profiles.active=jenkins&#34;</span><span class="p">]</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>build-prod.dockerfile</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> frolvlad/alpine-oraclejdk8:slim</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> upload/* .<span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 16888</span><span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 3070</span><span class="err">
+</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;app.jar&#34;</span><span class="p">,</span> <span class="s2">&#34;--spring.profiles.active=production&#34;</span><span class="p">,</span> <span class="s2">&#34;&gt;&gt;/var/log/game.log&#34;</span><span class="p">]</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/advancedlearning/javanetwork/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Java网络编程</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/jmx/">
+            <span class="next-text nav-default">JMX</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

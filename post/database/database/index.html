@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>数据库基础 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 数据库 事务 事务的并发问题 数据库并发控制 关系型数据库 SQLite SQL Server Mysql Oracle PostgreSQL 范式 1NF 2NF 3NF BCNF 4NF 非关系型数据库 Redis LevelDB MangoDB GemFire 关系型和非关系型的对比 关系型数据库设" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/database/database/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="数据库基础" />
+<meta property="og:description" content="目录 start 数据库 事务 事务的并发问题 数据库并发控制 关系型数据库 SQLite SQL Server Mysql Oracle PostgreSQL 范式 1NF 2NF 3NF BCNF 4NF 非关系型数据库 Redis LevelDB MangoDB GemFire 关系型和非关系型的对比 关系型数据库设" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/database/database/" />
+<meta property="article:published_time" content="2018-12-16T17:25:06+00:00" />
+<meta property="article:modified_time" content="2018-12-16T17:25:06+00:00" />
+<meta itemprop="name" content="数据库基础">
+<meta itemprop="description" content="目录 start 数据库 事务 事务的并发问题 数据库并发控制 关系型数据库 SQLite SQL Server Mysql Oracle PostgreSQL 范式 1NF 2NF 3NF BCNF 4NF 非关系型数据库 Redis LevelDB MangoDB GemFire 关系型和非关系型的对比 关系型数据库设">
+<meta itemprop="datePublished" content="2018-12-16T17:25:06+00:00" />
+<meta itemprop="dateModified" content="2018-12-16T17:25:06+00:00" />
+<meta itemprop="wordCount" content="1761">
+
+
+
+<meta itemprop="keywords" content="数据库,工具使用经验," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据库基础"/>
+<meta name="twitter:description" content="目录 start 数据库 事务 事务的并发问题 数据库并发控制 关系型数据库 SQLite SQL Server Mysql Oracle PostgreSQL 范式 1NF 2NF 3NF BCNF 4NF 非关系型数据库 Redis LevelDB MangoDB GemFire 关系型和非关系型的对比 关系型数据库设"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">数据库基础</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-16 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            </div>
+          <span class="more-meta"> 1761 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#事务">事务</a>
+      <ul>
+        <li><a href="#事务的并发问题">事务的并发问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据库并发控制">数据库并发控制</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#sqlite">SQLite</a></li>
+    <li><a href="#sql-server">SQL Server</a></li>
+    <li><a href="#mysql">Mysql</a></li>
+    <li><a href="#oracle">Oracle</a></li>
+    <li><a href="#postgresql">PostgreSQL</a></li>
+    <li><a href="#范式">范式</a>
+      <ul>
+        <li><a href="#1nf">1NF</a></li>
+        <li><a href="#2nf">2NF</a></li>
+        <li><a href="#3nf">3NF</a></li>
+        <li><a href="#bcnf">BCNF</a></li>
+        <li><a href="#4nf">4NF</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#redis">Redis</a></li>
+    <li><a href="#leveldb">LevelDB</a></li>
+    <li><a href="#mangodb">MangoDB</a></li>
+    <li><a href="#gemfire">GemFire</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#基本表的设计">基本表的设计</a>
+      <ul>
+        <li><a href="#关于主键的设计">关于主键的设计</a></li>
+      </ul>
+    </li>
+    <li><a href="#视图的设计">视图的设计</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#greenplum">Greenplum</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a>
+<ol>
+<li><a href="#%E4%BA%8B%E5%8A%A1">事务</a>
+<ol>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98">事务的并发问题</a></li>
+</ol>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6">数据库并发控制</a></li>
+</ol>
+</li>
+<li><a href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93">关系型数据库</a>
+<ol>
+<li><a href="#sqlite">SQLite</a></li>
+<li><a href="#sql-server">SQL Server</a></li>
+<li><a href="#mysql">Mysql</a></li>
+<li><a href="#oracle">Oracle</a></li>
+<li><a href="#postgresql">PostgreSQL</a></li>
+<li><a href="#%E8%8C%83%E5%BC%8F">范式</a>
+<ol>
+<li><a href="#1nf">1NF</a></li>
+<li><a href="#2nf">2NF</a></li>
+<li><a href="#3nf">3NF</a></li>
+<li><a href="#bcnf">BCNF</a></li>
+<li><a href="#4nf">4NF</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93">非关系型数据库</a>
+<ol>
+<li><a href="#redis">Redis</a></li>
+<li><a href="#leveldb">LevelDB</a></li>
+<li><a href="#mangodb">MangoDB</a></li>
+<li><a href="#gemfire">GemFire</a></li>
+</ol>
+</li>
+<li><a href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94">关系型和非关系型的对比</a></li>
+<li><a href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1">关系型数据库设计</a>
+<ol>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%9A%84%E8%AE%BE%E8%AE%A1">基本表的设计</a>
+<ol>
+<li><a href="#%E5%85%B3%E4%BA%8E%E4%B8%BB%E9%94%AE%E7%9A%84%E8%AE%BE%E8%AE%A1">关于主键的设计</a></li>
+</ol>
+</li>
+<li><a href="#%E8%A7%86%E5%9B%BE%E7%9A%84%E8%AE%BE%E8%AE%A1">视图的设计</a></li>
+</ol>
+</li>
+<li><a href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1">非关系型数据库设计</a></li>
+<li><a href="#%E5%A4%A7%E6%95%B0%E6%8D%AE">大数据</a>
+<ol>
+<li><a href="#greenplum">Greenplum</a></li>
+</ol>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E9%97%B4%E4%BB%B6">数据库中间件</a></li>
+<li><a href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B7%A5%E5%85%B7">图形化工具</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-11-25 16:19</em>|</p>
+<hr>
+<h1 id="数据库">数据库</h1>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665514001&amp;idx=1&amp;sn=17b72c3e69db6c4277e3045c699b7b6b&amp;chksm=80d67c52b7a1f5446020826841869221873f4578524181384592839d19c4810dc68807117e13&amp;scene=21#wechat_redirect">码农翻身:爱炫耀的数据库老头儿</a> <code>事务,undo日志</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://db-engines.com/en/ranking">DB-Engines Ranking</a> <code>数据库评分排行</code></p>
+</blockquote>
+<h2 id="事务">事务</h2>
+<ol>
+<li><code>原子性（Atomicity）</code>
+<ul>
+<li>事务开始后所有操作，要么全部做完，要么全部不做，不可能停滞在中间环节。</li>
+<li>事务执行过程中出错，会回滚到事务开始前的状态，所有的操作就像没有发生一样。也就是说事务是一个不可分割的整体，就像化学中学过的原子，是物质构成的基本单位。</li>
+</ul>
+</li>
+<li><code>一致性（Consistency）</code>
+<ul>
+<li>事务开始前和结束后，数据库的完整性约束没有被破坏 。比如A向B转账，不可能A扣了钱，B却没收到。</li>
+</ul>
+</li>
+<li><code>隔离性（Isolation）</code>
+<ul>
+<li>同一时间，只允许一个事务请求同一数据，不同的事务之间彼此没有任何干扰。比如A正在从一张银行卡中取钱，在A取钱的过程结束前，B不能向这张卡转账。</li>
+</ul>
+</li>
+<li><code>持久性（Durability）</code>
+<ul>
+<li>事务完成后，事务对数据库的所有更新将被保存到数据库，不能回滚。</li>
+</ul>
+</li>
+</ol>
+<h3 id="事务的并发问题">事务的并发问题</h3>
+<ol>
+<li><code>脏读</code>
+<ul>
+<li>事务A读取了事务B更新的数据，然后B回滚操作，那么A读取到的数据是脏数据</li>
+</ul>
+</li>
+<li><code>不可重复读</code>
+<ul>
+<li>事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，导致事务A多次读取同一数据时，结果 不一致。</li>
+</ul>
+</li>
+<li><code>幻读</code>
+<ul>
+<li>系统管理员A将数据库中所有学生的成绩从具体分数值改为ABCDE等级，但是系统管理员B就在这个时候插入了一条具体分数的记录</li>
+<li>当系统管理员A改结束后发现还有一条记录没有改过来，就好像发生了幻觉一样，这就叫幻读。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>小结：不可重复读的和幻读很容易混淆，不可重复读侧重于<code>修改</code>，幻读侧重于<code>新增或删除</code>。解决不可重复读的问题只需<code>锁住满足条件的行</code>，解决幻读需要<code>锁表</code></p>
+</blockquote>
+<h2 id="数据库并发控制">数据库并发控制</h2>
+<p>MVCC</p>
+<hr>
+<h1 id="关系型数据库">关系型数据库</h1>
+<blockquote>
+<p>代表性: Oracle MySQL PostgreSQL SQL Server</p>
+</blockquote>
+<blockquote>
+<p><a href="https://database.guide/list-of-relational-database-management-systems-rdbms/">List of Relational Database Management Systems (RDBMSs)</a></p>
+</blockquote>
+<h2 id="sqlite">SQLite</h2>
+<blockquote>
+<p><a href="https://sqlite.org/index.html">Official Site</a></p>
+</blockquote>
+<ol>
+<li>客户端 sqlitebrowser</li>
+</ol>
+<h2 id="sql-server">SQL Server</h2>
+<h2 id="mysql">Mysql</h2>
+<blockquote>
+<p>结合docker配置很快，就是默认编码是latin 每次要改成 utf8mb4</p>
+</blockquote>
+<h2 id="oracle">Oracle</h2>
+<blockquote>
+<p><a href="https://www.oracle.com/database/">Official Site</a></p>
+</blockquote>
+<blockquote>
+<p>十分的庞大, 学习了他理念的设计, 感受良多</p>
+</blockquote>
+<h2 id="postgresql">PostgreSQL</h2>
+<blockquote>
+<p><a href="https://www.postgresql.org/">Official Site</a></p>
+</blockquote>
+<h2 id="范式">范式</h2>
+<blockquote>
+<p>范式越高意味着数据冗余更低，表的划分更细，但是在查询数据时需要做大量表连接操作，会严重降低性能</p>
+</blockquote>
+<ol>
+<li>《数据库系统概论》</li>
+</ol>
+<h3 id="1nf">1NF</h3>
+<blockquote>
+<p>确保每列原子性</p>
+</blockquote>
+<p>数据库表中的所有字段值都是不可分解的原子值</p>
+<h3 id="2nf">2NF</h3>
+<blockquote>
+<p>在1NF基础上，确保表中的每列都和主键相关，即在一个表中的字段都是仅构成一个实体，不可以把别的实体的字段放进来，会导致插入 删除 修改都很复杂</p>
+</blockquote>
+<blockquote>
+<p>若 R∈1NF 且每一个非主属性完全函数依赖于任何一个候选码 则 R∈2NF</p>
+</blockquote>
+<p>所谓完全依赖是指不能存在仅依赖主关键字一部分的属性，如果存在，那么这个属性和主关键字的这一部分应该分离出来形成一个新的实体，新实体与原实体之间是一对多的关系。为实现区分通常需要为表加上一个列，以存储各个实例的唯一标识。</p>
+<h3 id="3nf">3NF</h3>
+<blockquote>
+<p>在2NF基础上，任何非主属性不依赖于其它非主属性（在2NF基础上消除传递依赖）</p>
+</blockquote>
+<ol>
+<li>例如 学生成绩表 应该只存学号 课程id 成绩，不应存放学生信息，课程信息，能大大减少数据的冗余
+<ul>
+<li>但是实际上为了系统的性能会做部分数据的冗余，例如改动较少的性别姓名等</li>
+</ul>
+</li>
+</ol>
+<h3 id="bcnf">BCNF</h3>
+<p>Boyce-Codd Normal Form（巴斯-科德范式）</p>
+<blockquote>
+<p>在3NF基础上，任何非主属性不能对主键子集依赖（在3NF基础上消除对主码子集的依赖）</p>
+</blockquote>
+<h3 id="4nf">4NF</h3>
+<hr>
+<h1 id="非关系型数据库">非关系型数据库</h1>
+<blockquote>
+<p>key-value 数据库: redis memcached<br>
+文档数据库: MongoDB<br>
+图数据库: Neo4j<br>
+时序数据库: InfluxDB TSDB</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/ideawu/ssdb">sssdb</a> <code>键值对数据库</code></li>
+</ul>
+<h2 id="redis">Redis</h2>
+<blockquote>
+<p>数据类型丰富,处理非关系型并且结构化的数据十分方便, 结合Python使用就行云流水一般了</p>
+</blockquote>
+<h2 id="leveldb">LevelDB</h2>
+<blockquote>
+<p><a href="https://github.com/google/leveldb">Github</a></p>
+</blockquote>
+<h2 id="mangodb">MangoDB</h2>
+<blockquote>
+<p>文档性数据库, 混合类型: 关系型非关系型</p>
+</blockquote>
+<h2 id="gemfire">GemFire</h2>
+<blockquote>
+<p>分布式内存数据库 12306 采用的解决方案</p>
+</blockquote>
+<h1 id="关系型和非关系型的对比">关系型和非关系型的对比</h1>
+<blockquote>
+<p><a href="http://www.infoq.com/cn/news/2017/10/SQL-NoSQL-mean-what?utm_source=news_about_rdbms&amp;utm_medium=link&amp;utm_campaign=rdbms">为什么说SQL正在击败NoSQL，这对数据的未来意味着什么？</a></p>
+</blockquote>
+<hr>
+<h1 id="关系型数据库设计">关系型数据库设计</h1>
+<h2 id="基本表的设计">基本表的设计</h2>
+<ol>
+<li>应尽量避免 字段默认值和业务值发生重叠, 便于后期排查问题，减少一个值的含义</li>
+<li>字段应尽量紧凑，达到业务要求的最小设计，利于索引和IO</li>
+</ol>
+<h3 id="关于主键的设计">关于主键的设计</h3>
+<blockquote>
+<p>我哥提出, 基本表中连主键的约束都不要了, 全部由后台的代码进行约束处理</p>
+</blockquote>
+<ul>
+<li>如果使用的需要高并发，数据库经常迁移，拆分，分布式，使用UUID,GUID最佳</li>
+<li>如果是小型项目，使用整型自增即可，排序方便节约内存</li>
+</ul>
+<h2 id="视图的设计">视图的设计</h2>
+<hr>
+<h1 id="非关系型数据库设计">非关系型数据库设计</h1>
+<hr>
+<h1 id="大数据">大数据</h1>
+<h2 id="greenplum">Greenplum</h2>
+<blockquote>
+<p><a href="https://cn.greenplum.org">Official Site</a></p>
+</blockquote>
+<hr>
+<h1 id="数据库中间件">数据库中间件</h1>
+<blockquote>
+<p><a href="https://www.csdn.net/article/2015-07-16/2825228">MyCat：开源分布式数据库中间件</a></p>
+</blockquote>
+<h1 id="图形化工具">图形化工具</h1>
+<ul>
+<li><a href="https://github.com/NilsHoyer/MySQL-Front">Mysql-Font</a> <code>连接Mysql的客户端</code></li>
+<li><a href="https://github.com/HeidiSQL/HeidiSQL">HeidiSQL</a></li>
+<li><a href="https://github.com/sqlectron/sqlectron-gui">sqlectron</a> <code>简单直观的数据库图形化软件</code></li>
+<li><a href="https://github.com/dbeaver/dbeaver">dbeaver</a>
+<ul>
+<li>配置文件 <code>/usr/share/dbeaver/dbeaver.ini</code></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%8F%E9%AA%8C/">工具使用经验</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/database/mongodb/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">MangoDB</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/database/mysql/">
+            <span class="next-text nav-default">MySQL</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

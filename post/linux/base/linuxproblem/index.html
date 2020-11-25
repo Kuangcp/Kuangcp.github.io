@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux遇到问题总结 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 遇到的常见问题 软件问题 命令找不到 终端响铃 输入法 fcitx Flash 驱动问题 显卡 Nvidia Deepin的NVIDIA驱动问题 配置问题 Ubuntu与Windows" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxproblem/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Linux遇到问题总结" />
+<meta property="og:description" content="目录 start 遇到的常见问题 软件问题 命令找不到 终端响铃 输入法 fcitx Flash 驱动问题 显卡 Nvidia Deepin的NVIDIA驱动问题 配置问题 Ubuntu与Windows" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxproblem/" />
+<meta property="article:published_time" content="2018-12-15T11:16:42+00:00" />
+<meta property="article:modified_time" content="2018-12-15T11:16:42+00:00" />
+<meta itemprop="name" content="Linux遇到问题总结">
+<meta itemprop="description" content="目录 start 遇到的常见问题 软件问题 命令找不到 终端响铃 输入法 fcitx Flash 驱动问题 显卡 Nvidia Deepin的NVIDIA驱动问题 配置问题 Ubuntu与Windows">
+<meta itemprop="datePublished" content="2018-12-15T11:16:42+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T11:16:42+00:00" />
+<meta itemprop="wordCount" content="969">
+
+
+
+<meta itemprop="keywords" content="工具使用经验," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux遇到问题总结"/>
+<meta name="twitter:description" content="目录 start 遇到的常见问题 软件问题 命令找不到 终端响铃 输入法 fcitx Flash 驱动问题 显卡 Nvidia Deepin的NVIDIA驱动问题 配置问题 Ubuntu与Windows"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux遇到问题总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 969 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#软件问题">软件问题</a>
+      <ul>
+        <li><a href="#命令找不到">命令找不到</a></li>
+        <li><a href="#终端响铃">终端响铃</a></li>
+        <li><a href="#输入法">输入法</a></li>
+        <li><a href="#flash">Flash</a></li>
+        <li><a href="#tracker-extract-高cpu内存占用">tracker-extract 高CPU内存占用</a></li>
+      </ul>
+    </li>
+    <li><a href="#驱动问题">驱动问题</a>
+      <ul>
+        <li><a href="#显卡">显卡</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置问题">配置问题</a>
+      <ul>
+        <li><a href="#ubuntu与windows10时间相差8小时的解决">Ubuntu与Windows10时间相差8小时的解决</a></li>
+        <li><a href="#终端开启慢">终端开启慢</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据问题">数据问题</a>
+      <ul>
+        <li><a href="#突然断电">突然断电</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E9%81%87%E5%88%B0%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">遇到的常见问题</a>
+<ol>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E9%97%AE%E9%A2%98">软件问题</a>
+<ol>
+<li><a href="#%E5%91%BD%E4%BB%A4%E6%89%BE%E4%B8%8D%E5%88%B0">命令找不到</a></li>
+<li><a href="#%E7%BB%88%E7%AB%AF%E5%93%8D%E9%93%83">终端响铃</a></li>
+<li><a href="#%E8%BE%93%E5%85%A5%E6%B3%95">输入法</a>
+<ol>
+<li><a href="#fcitx">fcitx</a></li>
+</ol>
+</li>
+<li><a href="#flash">Flash</a></li>
+</ol>
+</li>
+<li><a href="#%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98">驱动问题</a>
+<ol>
+<li><a href="#%E6%98%BE%E5%8D%A1">显卡</a>
+<ol>
+<li><a href="#nvidia">Nvidia</a></li>
+<li><a href="#deepin%E7%9A%84nvidia%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98">Deepin的NVIDIA驱动问题</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98">配置问题</a>
+<ol>
+<li><a href="#ubuntu%E4%B8%8Ewindows10%E6%97%B6%E9%97%B4%E7%9B%B8%E5%B7%AE8%E5%B0%8F%E6%97%B6%E7%9A%84%E8%A7%A3%E5%86%B3">Ubuntu与Windows10时间相差8小时的解决</a></li>
+<li><a href="#%E7%BB%88%E7%AB%AF%E5%BC%80%E5%90%AF%E6%85%A2">终端开启慢</a></li>
+</ol>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E9%97%AE%E9%A2%98">数据问题</a>
+<ol>
+<li><a href="#%E7%AA%81%E7%84%B6%E6%96%AD%E7%94%B5">突然断电</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-05-17 16:13</em>|</p>
+<hr>
+<h1 id="遇到的常见问题">遇到的常见问题</h1>
+<h2 id="软件问题">软件问题</h2>
+<h3 id="命令找不到">命令找不到</h3>
+<ul>
+<li><code>sudo找不到</code> 安装 sudo</li>
+<li><code>locale-gen 找不到</code> 安装 locales 使用<code>locale-gen --purge</code>命令进行更新编码</li>
+</ul>
+<blockquote>
+<p>Linux上的报错, 提示说找不到共享库 | <a href="http://www.cnblogs.com/Anker/p/3209876.html">参考解决方式 </a></p>
+</blockquote>
+<h3 id="终端响铃">终端响铃</h3>
+<blockquote>
+<p><a href="https://blog.csdn.net/u010691256/article/details/9048729">参考: Linux中关闭响铃</a></p>
+</blockquote>
+<ol>
+<li>临时关闭：<code>rmmod pcspkr</code> 临时开启：<code>modprobe pcspkr</code></li>
+<li>编辑 <code>/etc/inputrc</code>，找到<code>#set bell-style none</code>这一行，去掉前面的注释符号</li>
+<li>xset -b</li>
+</ol>
+<p><code>下面的方法不敢试</code></p>
+<ul>
+<li>对于Debian/Ubuntu系统，使用root身份执行：
+<ul>
+<li><code>sudo echo &quot;blacklist pcspkr&quot; &gt;&gt; /etc/modprobe.d/blacklist</code></li>
+</ul>
+</li>
+<li>对于CentOS/Redhat/RHEL/Fedora系统，使用root身份执行：
+<ul>
+<li><code>echo &quot;alias pcspkr off&quot; &gt;&gt; /etc/modprobe.conf </code></li>
+</ul>
+</li>
+</ul>
+<h3 id="输入法">输入法</h3>
+<h4 id="fcitx">fcitx</h4>
+<ul>
+<li>
+<p>fcitx单核满载:三种（搜狗拼音导致）</p>
+<ul>
+<li>杀掉，fcitx -r</li>
+<li>先把进程杀掉再fcitx-autostart &amp;</li>
+<li>fcitx再fcitx-qimpanel
+<code>相关网页：</code></li>
+</ul>
+</li>
+<li>
+<p><a href="https://ausdn.com/s/ubuntu+cpu+fcitx">某引擎搜索结果页</a>| <a href="https://www.findhao.net/res/786">几种方式</a>| <a href="http://tieba.baidu.com/p/3863217434">卸载搜狗安装拼音</a></p>
+</li>
+<li>
+<p><a href="https://www.zhihu.com/question/19839748">知乎问题</a> | <a href="http://forum.ubuntu.com.cn/viewtopic.php?f=122&amp;t=173730&amp;p=1299087">ubuntu论坛</a> | <a href="http://forum.ubuntu.com.cn/viewtopic.php?f=8&amp;t=194486&amp;start=0">ubuntu论坛</a></p>
+</li>
+<li>
+<p>输入法没有显示打字窗口</p>
+<ul>
+<li>直接杀掉 sogou-qimpanel 然后点击图标进行启动</li>
+</ul>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> 部分终端(Qterminal)无法输入中文</p>
+</li>
+</ul>
+<h3 id="flash">Flash</h3>
+<ul>
+<li>点击<a href="https://get.adobe.com/cn/flashplayer/">官网下载地址</a>下载,然后解压,</li>
+<li>将文件复制进火狐插件目录:<code>sudo cp libflashplayer.so  /usr/lib64/mozilla/plugins</code></li>
+<li>添加其他用户可执行权限<code>chmod 755 /usr/lib64/mozilla/plugins/libflashplayer.so</code></li>
+</ul>
+<h3 id="tracker-extract-高cpu内存占用">tracker-extract 高CPU内存占用</h3>
+<blockquote>
+<p><a href="https://www.soimort.org/notes/171103/">参考: Go Away, tracker-store</a><br>
+<a href="https://askubuntu.com/questions/346211/tracker-store-and-tracker-miner-fs-eating-up-my-cpu-on-every-startup">参考: tracker store</a></p>
+</blockquote>
+<ol>
+<li>复制 <code>cp /etc/xdg/autostart/tracker-miner-fs-3.desktop ~/.config/autostart/</code> 等若干文件 并追加 <code>Hidden=true</code></li>
+<li>禁用服务 : <code>systemctl --user mask tracker-store</code></li>
+</ol>
+<hr>
+<h2 id="驱动问题">驱动问题</h2>
+<h3 id="显卡">显卡</h3>
+<ul>
+<li>查看显卡列表  <code>lspci -vnn | grep '\''[030[02]\]'</code></li>
+<li>测试显卡 FPS <code>glxgears</code></li>
+</ul>
+<h4 id="nvidia">Nvidia</h4>
+<blockquote>
+<p><a href="https://wiki.archlinux.org/index.php/NVIDIA_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E5.AE.89.E8.A3.85">NVIDIA</a></p>
+</blockquote>
+<p>驱动有: Nouveau, bumblebee, NV_Prime</p>
+<blockquote>
+<p><a href="https://wiki.archlinux.org/index.php/Bumblebee_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Bumblebee </a></p>
+</blockquote>
+<p>大多数笔记本都是 Intel集显和 Nvidia 或者 AMD 双显卡, 双显卡的管理就成了问题(指的是Linux下)</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/congbo/archive/2012/09/12/2682105.html">参考: 使用 Bumblebee 控制 NVIDIA 双显卡</a></p>
+</blockquote>
+<h4 id="deepin的nvidia驱动问题">Deepin的NVIDIA驱动问题</h4>
+<ul>
+<li><a href="https://bbs.deepin.org/forum.php?mod=viewthread&amp;tid=132312">论坛博客</a>
+<ul>
+<li><code>sudo apt-get install bumblebee-nvidia nvidia-driver nvidia-settings</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="配置问题">配置问题</h2>
+<h3 id="ubuntu与windows10时间相差8小时的解决">Ubuntu与Windows10时间相差8小时的解决</h3>
+<ul>
+<li><code>timedatectl set-local-rtc true </code></li>
+</ul>
+<h3 id="终端开启慢">终端开启慢</h3>
+<ul>
+<li>检查 .bashrc 文件 看是否有可疑脚本,
+<ul>
+<li>这次就是因为 sdkman 的原因(总是在检查自动更新, 虽然说关掉就好了)导致巨慢, 打开终端要一分钟</li>
+<li>那上次搞得我新建用户,重装系统是什么原因呢?</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="数据问题">数据问题</h2>
+<h3 id="突然断电">突然断电</h3>
+<blockquote>
+<p>开机报错信息: fsck exited with status code 4</p>
+</blockquote>
+<ol>
+<li>根据报错提示的分区, 进行修复, 由于我的Linux是ext3文件系统 ext4 则是 <code>fsck.ext4</code></li>
+<li><code>fsck.ext3 -y /dev/sda9</code> <strong>分区根据实际情况</strong></li>
+<li>完成后重启即可</li>
+</ol>
+<hr>
+<blockquote>
+<p>导致了 Git 仓库都损坏了 <code>fatal: loose object</code></p>
+</blockquote>
+<p>ZSH: corrupt history file</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">mv .zsh_history .zsh_history_bad
+strings .zsh_history_bad &gt; .zsh_history
+<span class="nb">fc</span> -R .zsh_history
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%BB%8F%E9%AA%8C/">工具使用经验</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/base/linuxstreameditor/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux流编辑器</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/base/linuxperformance/">
+            <span class="next-text nav-default">Linux性能分析</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

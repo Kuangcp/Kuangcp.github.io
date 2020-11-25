@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java WebSocket Demo - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 简单 SpringBoot Websocket 示例 WebSocket服务端 Tomcat 方式 4个生命周期在注解式端点中的事件处理 服务端推送消息 Spring-WebSocket Undertow 客户端 Java JS 目录 end|2020-06-24 02:06| 简单 SpringBoot Websocket 示例 JSR-356 Web" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/blog/websocket-demo/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java WebSocket Demo" />
+<meta property="og:description" content="目录 start 简单 SpringBoot Websocket 示例 WebSocket服务端 Tomcat 方式 4个生命周期在注解式端点中的事件处理 服务端推送消息 Spring-WebSocket Undertow 客户端 Java JS 目录 end|2020-06-24 02:06| 简单 SpringBoot Websocket 示例 JSR-356 Web" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/blog/websocket-demo/" />
+<meta property="article:published_time" content="2019-07-07T11:43:37+00:00" />
+<meta property="article:modified_time" content="2019-07-07T11:43:37+00:00" />
+<meta itemprop="name" content="Java WebSocket Demo">
+<meta itemprop="description" content="目录 start 简单 SpringBoot Websocket 示例 WebSocket服务端 Tomcat 方式 4个生命周期在注解式端点中的事件处理 服务端推送消息 Spring-WebSocket Undertow 客户端 Java JS 目录 end|2020-06-24 02:06| 简单 SpringBoot Websocket 示例 JSR-356 Web">
+<meta itemprop="datePublished" content="2019-07-07T11:43:37+00:00" />
+<meta itemprop="dateModified" content="2019-07-07T11:43:37+00:00" />
+<meta itemprop="wordCount" content="1216">
+
+
+
+<meta itemprop="keywords" content="Websocket," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java WebSocket Demo"/>
+<meta name="twitter:description" content="目录 start 简单 SpringBoot Websocket 示例 WebSocket服务端 Tomcat 方式 4个生命周期在注解式端点中的事件处理 服务端推送消息 Spring-WebSocket Undertow 客户端 Java JS 目录 end|2020-06-24 02:06| 简单 SpringBoot Websocket 示例 JSR-356 Web"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java WebSocket Demo</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-07 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 1216 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#websocket服务端">WebSocket服务端</a>
+      <ul>
+        <li><a href="#tomcat-方式">Tomcat 方式</a></li>
+        <li><a href="#spring-websocket">Spring-WebSocket</a></li>
+        <li><a href="#undertow">Undertow</a></li>
+      </ul>
+    </li>
+    <li><a href="#客户端">客户端</a>
+      <ul>
+        <li><a href="#java">Java</a></li>
+        <li><a href="#js">JS</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E7%AE%80%E5%8D%95-springboot-websocket-%E7%A4%BA%E4%BE%8B">简单 SpringBoot Websocket 示例</a>
+<ol>
+<li><a href="#websocket%E6%9C%8D%E5%8A%A1%E7%AB%AF">WebSocket服务端</a>
+<ol>
+<li><a href="#tomcat-%E6%96%B9%E5%BC%8F">Tomcat 方式</a>
+<ol>
+<li><a href="#4%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9C%A8%E6%B3%A8%E8%A7%A3%E5%BC%8F%E7%AB%AF%E7%82%B9%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86">4个生命周期在注解式端点中的事件处理</a></li>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8E%A8%E9%80%81%E6%B6%88%E6%81%AF">服务端推送消息</a></li>
+</ol>
+</li>
+<li><a href="#spring-websocket">Spring-WebSocket</a></li>
+<li><a href="#undertow">Undertow</a></li>
+</ol>
+</li>
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF">客户端</a>
+<ol>
+<li><a href="#java">Java</a></li>
+<li><a href="#js">JS</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-06-24 02:06</em>|</p>
+<hr>
+<h1 id="简单-springboot-websocket-示例">简单 SpringBoot Websocket 示例</h1>
+<p>JSR-356</p>
+<h2 id="websocket服务端">WebSocket服务端</h2>
+<h3 id="tomcat-方式">Tomcat 方式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebSocketAutoConfig</span> <span class="o">{</span>
+  <span class="nd">@Bean</span>
+  <span class="kd">public</span> <span class="n">ServerEndpointExporter</span> <span class="nf">endpointExporter</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">ServerEndpointExporter</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nd">@Slf4j</span>
+<span class="nd">@Component</span>
+<span class="nd">@ServerEndpoint</span><span class="o">(</span><span class="s">&#34;/websocket/{id}&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebsocketServer</span> <span class="o">{</span>
+
+	<span class="c1">// 用于存储所有连接的session对象，从而获取所有连接
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Session</span><span class="o">&gt;</span> <span class="n">connections</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="kd">private</span> <span class="n">Session</span> <span class="n">session</span><span class="o">;</span>
+
+    <span class="nd">@OnOpen</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onOpen</span><span class="o">(</span><span class="n">Session</span> <span class="n">session</span><span class="o">,</span> <span class="nd">@PathParam</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">session</span> <span class="o">=</span> <span class="n">session</span><span class="o">;</span>
+        <span class="c1">// 将有客户端连接时将session保存起来
+</span><span class="c1"></span>        <span class="n">connections</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">session</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@OnMessage</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMessage</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;WebSocket连接数：&#34;</span> <span class="o">+</span> <span class="n">connections</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">s</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;]#!]&#34;</span><span class="o">);</span>
+        <span class="c1">// 获取指定连接的session
+</span><span class="c1"></span>        <span class="n">Session</span> <span class="n">ses</span> <span class="o">=</span> <span class="n">connections</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">s</span><span class="o">[</span><span class="n">0</span><span class="o">]);</span>
+        <span class="n">ses</span><span class="o">.</span><span class="na">getBasicRemote</span><span class="o">().</span><span class="na">sendText</span><span class="o">(</span><span class="n">s</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@OnError</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">throwable</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@OnClose</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClosing</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+    	<span class="c1">// 关闭时将连接的session去除
+</span><span class="c1"></span>        <span class="n">connections</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+        <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>使用类级别注解<code>@ServerEndpoint(&quot;uri路径&quot;)</code>，将类标注为一个WebSocket端点</li>
+<li>使用方法级别注解<code>@OnMessage</code>，使方法在WebSocket事件发生，而不在WebSocket消息发生时被调用</li>
+</ol>
+<h4 id="4个生命周期在注解式端点中的事件处理">4个生命周期在注解式端点中的事件处理</h4>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>方法中可使用的形参</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@OnOpen</td>
+<td>WebSocket Session对象，EndpointConfig对象，URI中的参数(需使用@PathParam)</td>
+</tr>
+<tr>
+<td>@OnMessage</td>
+<td>WebSocket Session对象，EndpointConfig对象，URI中的参数(需使用@PathParam)，消息</td>
+</tr>
+<tr>
+<td>@OnError</td>
+<td>Throwable对象，Session，URI中的参数(需使用@PathParam)</td>
+</tr>
+<tr>
+<td>@OnClose</td>
+<td>CloseReason，URI中的参数(需使用@PathParam)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="服务端推送消息">服务端推送消息</h4>
+<p>WebSocket中 RemoteEndpoint 接口和它的子类( RemoteEndpoint.Basic 和 RemoteEndpoint.Async )提供了发送消息的所有方法，我们可以从Session中获取到RemoteEndpoint实例，从而发送消息<br>
+如：<code>session.getBasicRemote().sendText(text);</code></p>
+<hr>
+<h3 id="spring-websocket">Spring-WebSocket</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Slf4j</span>
+<span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSocket</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebSocketConfig</span> <span class="kd">implements</span> <span class="n">WebSocketConfigurer</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">MyWebSocketHandler</span> <span class="n">MyWebSocketHandler</span><span class="o">;</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">registerWebSocketHandlers</span><span class="o">(</span><span class="n">WebSocketHandlerRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">addHandler</span><span class="o">(</span><span class="n">MyWebSocketHandler</span><span class="o">,</span> <span class="s">&#34;/ws/*/&#34;</span><span class="o">).</span><span class="na">setAllowedOrigins</span><span class="o">(</span><span class="s">&#34;*&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">ServletServerContainerFactoryBean</span> <span class="nf">createWebSocketContainer</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">ServletServerContainerFactoryBean</span> <span class="n">container</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServletServerContainerFactoryBean</span><span class="o">();</span>
+        <span class="c1">// ws 传输数据的时候，数据过大有时候会接收不到，所以在此处设置bufferSize
+</span><span class="c1"></span>        <span class="n">container</span><span class="o">.</span><span class="na">setMaxTextMessageBufferSize</span><span class="o">(</span><span class="n">512000</span><span class="o">);</span>
+        <span class="n">container</span><span class="o">.</span><span class="na">setMaxBinaryMessageBufferSize</span><span class="o">(</span><span class="n">512000</span><span class="o">);</span>
+        <span class="n">container</span><span class="o">.</span><span class="na">setMaxSessionIdleTimeout</span><span class="o">(</span><span class="n">15</span> <span class="o">*</span> <span class="n">60000L</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">container</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nd">@Slf4j</span>
+<span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyWebSocketHandler</span> <span class="kd">extends</span> <span class="n">TextWebSocketHandler</span> <span class="o">{</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * ws建立连接
+</span><span class="cm">     * @param session websocket session
+</span><span class="cm">     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterConnectionEstablished</span><span class="o">(</span><span class="n">WebSocketSession</span> <span class="n">session</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * ws连接断开
+</span><span class="cm">     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterConnectionClosed</span><span class="o">(</span><span class="n">WebSocketSession</span> <span class="n">session</span><span class="o">,</span> <span class="n">CloseStatus</span> <span class="n">status</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * ws收到消息时的方法
+</span><span class="cm">     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">handleTextMessage</span><span class="o">(</span><span class="n">WebSocketSession</span> <span class="n">session</span><span class="o">,</span> <span class="n">TextMessage</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>推送消息 session.sendMessage(new TextMessage(&ldquo;text&rdquo;));</li>
+</ol>
+<h3 id="undertow">Undertow</h3>
+<p><a href="http://undertow.io/undertow-docs/undertow-docs-2.0.0/index.html#websockets">doc</a></p>
+<hr>
+<h2 id="客户端">客户端</h2>
+<h3 id="java">Java</h3>
+<p>Java WebSocket客户端端点</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@ClientEndpoint</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebSocketClient</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">Session</span> <span class="n">session</span><span class="o">;</span>
+
+    <span class="nd">@OnOpen</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onOpen</span><span class="o">(</span><span class="n">Session</span> <span class="n">session</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">session</span> <span class="o">=</span> <span class="n">session</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@OnMessage</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMessage</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">session</span><span class="o">.</span><span class="na">getBasicRemote</span><span class="o">().</span><span class="na">sendText</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@OnError</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">throwable</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@OnClose</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClosing</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;连接关闭&#34;</span><span class="o">);</span>
+        <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendMessage</span><span class="o">(</span><span class="n">String</span> <span class="n">toId</span><span class="o">,</span> <span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">toId</span> <span class="o">+</span> <span class="s">&#34;]#!]&#34;</span> <span class="o">+</span> <span class="n">text</span><span class="o">;</span>
+        <span class="n">onMessage</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+    <span class="o">}</span>
+	
+	<span class="c1">// 连接服务器端点
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="n">WebSocketClient</span> <span class="nf">connect</span><span class="o">(</span><span class="n">String</span> <span class="n">url</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">WebSocketContainer</span> <span class="n">wsc</span> <span class="o">=</span> <span class="n">ContainerProvider</span><span class="o">.</span><span class="na">getWebSocketContainer</span><span class="o">();</span>
+        <span class="n">WebSocketClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WebSocketClient</span><span class="o">();</span>
+        <span class="n">wsc</span><span class="o">.</span><span class="na">connectToServer</span><span class="o">(</span><span class="n">client</span><span class="o">,</span> <span class="k">new</span> <span class="n">URI</span><span class="o">(</span><span class="n">url</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">client</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="js">JS</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">ws</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s2">&#34;ws:localhost:8080/websocket&#34;</span><span class="p">);</span>
+    <span class="nx">ws</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">ws</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="nx">ws</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+    <span class="p">};</span>
+
+    <span class="nx">ws</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="nx">ws</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">);</span>
+    <span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-07-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/websocket/">Websocket</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/distributed/configcenter/zookeeper/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ZooKeeper</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/myblog/flink-with-batch/">
+            <span class="next-text nav-default">Flink-with-batch</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

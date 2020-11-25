@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>HTTP状态码 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start HTTP状态码大全 标准扩展码 1xx-Informational-信息化 2xx-Success-成功 3xx-Redirection-重定" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/frontend/responsecode/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="HTTP状态码" />
+<meta property="og:description" content="目录 start HTTP状态码大全 标准扩展码 1xx-Informational-信息化 2xx-Success-成功 3xx-Redirection-重定" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/frontend/responsecode/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="HTTP状态码">
+<meta itemprop="description" content="目录 start HTTP状态码大全 标准扩展码 1xx-Informational-信息化 2xx-Success-成功 3xx-Redirection-重定">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="1457">
+
+
+
+<meta itemprop="keywords" content="基础," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="HTTP状态码"/>
+<meta name="twitter:description" content="目录 start HTTP状态码大全 标准扩展码 1xx-Informational-信息化 2xx-Success-成功 3xx-Redirection-重定"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">HTTP状态码</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/web/"> Web </a>
+            </div>
+          <span class="more-meta"> 1457 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#标准扩展码">标准扩展码</a>
+      <ul>
+        <li><a href="#1xx-informational-信息化">1xx-Informational-信息化</a></li>
+        <li><a href="#2xx-success-成功">2xx-Success-成功</a></li>
+        <li><a href="#3xx-redirection-重定向">3xx-Redirection-重定向</a></li>
+        <li><a href="#4xx-clienterror-客户端错误">4xx-ClientError-客户端错误</a></li>
+        <li><a href="#5xx-servererror-服务器错误">5xx-ServerError-服务器错误</a></li>
+      </ul>
+    </li>
+    <li><a href="#非官方扩展码">非官方扩展码</a></li>
+    <li><a href="#互联网信息服务扩展状态码">互联网信息服务扩展状态码</a></li>
+    <li><a href="#nginx-扩展状态码">NGINX-扩展状态码</a></li>
+    <li><a href="#七牛云扩展状态码">七牛云扩展状态码</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#http%E7%8A%B6%E6%80%81%E7%A0%81%E5%A4%A7%E5%85%A8">HTTP状态码大全</a>
+<ol>
+<li><a href="#%E6%A0%87%E5%87%86%E6%89%A9%E5%B1%95%E7%A0%81">标准扩展码</a>
+<ol>
+<li><a href="#1xx-informational-%E4%BF%A1%E6%81%AF%E5%8C%96">1xx-Informational-信息化</a></li>
+<li><a href="#2xx-success-%E6%88%90%E5%8A%9F">2xx-Success-成功</a></li>
+<li><a href="#3xx-redirection-%E9%87%8D%E5%AE%9A%E5%90%91">3xx-Redirection-重定向</a></li>
+<li><a href="#4xx-clienterror-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF">4xx-ClientError-客户端错误</a></li>
+<li><a href="#5xx-servererror-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%94%99%E8%AF%AF">5xx-ServerError-服务器错误</a></li>
+</ol>
+</li>
+<li><a href="#%E9%9D%9E%E5%AE%98%E6%96%B9%E6%89%A9%E5%B1%95%E7%A0%81">非官方扩展码</a></li>
+<li><a href="#%E4%BA%92%E8%81%94%E7%BD%91%E4%BF%A1%E6%81%AF%E6%9C%8D%E5%8A%A1%E6%89%A9%E5%B1%95%E7%8A%B6%E6%80%81%E7%A0%81">互联网信息服务扩展状态码</a></li>
+<li><a href="#nginx-%E6%89%A9%E5%B1%95%E7%8A%B6%E6%80%81%E7%A0%81">NGINX-扩展状态码</a></li>
+<li><a href="#%E4%B8%83%E7%89%9B%E4%BA%91%E6%89%A9%E5%B1%95%E7%8A%B6%E6%80%81%E7%A0%81">七牛云扩展状态码</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-11-01 00:05</em>|</p>
+<hr>
+<h1 id="http状态码大全">HTTP状态码大全</h1>
+<p>注意: 这个状态码本质上是一个行业标准, 开发中是可以不按标准来的, 在某公司遇到过 后端Tomcat报错5xx, 应用里面过滤器硬改成404 的操作</p>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">wiki: http status code</a><br>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status">MDN: HTTP 响应状态代码</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.runoob.com/http/http-status-codes.html">HTTP状态码</a>
+<a href="https://baike.baidu.com/item/HTTP%E7%8A%B6%E6%80%81%E7%A0%81">HTTP状态码百度百科</a></p>
+</blockquote>
+<h2 id="标准扩展码">标准扩展码</h2>
+<h3 id="1xx-informational-信息化">1xx-Informational-信息化</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    100 Continue 继续
+    101 Switching Protocols 交换协议
+    102 Processing 继续处理
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2xx-success-成功">2xx-Success-成功</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    200 OK
+    201 Created 创建
+    202 Accepted 已接受
+    203 Non-Authoritative Information 非授权信息
+    204 No Content 无内容
+    205 Reset Content 重置内容
+    206 Partial Content 部分内容
+    207 Multi-Status 多状态
+    208 Already Reported 已报告
+    226 IMIM Used 使用的
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3xx-redirection-重定向">3xx-Redirection-重定向</h3>
+<blockquote>
+<p><a href="http://blog.163.com/darkness@yeah/blog/static/131774484201221495129735/">HTTP返回码中301与302的区别  </a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    300 Multiple Choices 多种选择
+    301 Moved Permanently 永久移动
+    302 Found 发现 代表暂时性转移(Temporarily Moved )。
+    303 See Other 查看其它
+    304 Not Modified 未修改,使用缓存
+    305 Use Proxy 使用代理
+    306 Switch Proxy 开关代理
+    307 Temporary Redirect 临时重定向
+    308 Permanent Redirect 永久重定向
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4xx-clienterror-客户端错误">4xx-ClientError-客户端错误</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    400 Bad Request 错误的请求
+    401 Unauthorized 未授权
+    402 Payment Required 需要付费
+    403 Forbidden 拒绝访问
+    404 Not Found 未找到
+    405 Method Not Allowed 不允许的方法
+    406 Not Acceptable 不可接受
+    407 Proxy Authentication Required 代理服务器需要身份验证
+    408 Request Timeout 请求超时
+    409 Conflict 冲突
+    410 Gone 完成
+    411 Length Required 需要长度
+    412 Precondition Failed 前提条件失败
+    413 Payload Too Large 负载过大
+    414 URI Too Long 太长
+    415 Unsupported Media Type 不支持的媒体类型
+    416 Range Not Satisfiable 的范围不合适
+    417 Expectation Failed 预期失败
+    418 I&#39;m a teapot 我是一个茶壶
+    421 Misdirected Request 误导请求
+    422 Unprocessable Entity 无法处理的实体
+    423 Locked 锁定
+    424 Failed Dependency 失败的依赖
+    426 Upgrade Required 升级所需
+    428 Precondition Required 所需的先决条件
+    429 Too Many Requests 太多的请求
+    431 Request Header Fields Too Large 请求头字段太大
+    451 Unavailable For Legal Reasons 不可出于法律原因
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5xx-servererror-服务器错误">5xx-ServerError-服务器错误</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    500 Internal Server Error 内部服务器错误
+    501 Not Implemented 未执行
+    502 Bad Gateway 错误的网关
+    503 Service Unavailable 服务不可用
+    504 Gateway Timeout 网关超时
+    505 HTTP Version Not Supported 不支持HTTP版本
+    506 Variant Also Negotiates 变体也进行协商
+    507 Insufficient Storage 存储空间不足
+    508 Loop Detected 检测到循环
+    510 Not Extended 不延长
+    511 Network Authentication Required 网络需要身份验证
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="非官方扩展码">非官方扩展码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    103 Checkpoint 检查点
+    420 Method Failure (Spring Framework) 故障的方法（Spring框架）
+    420 Enhance Your Calm (Twitter) 增强您的平静（微博）
+    450 Blocked by Windows Parental Controls (Microsoft) 被Windows阻止家长控制（微软）
+    498 Invalid Token (Esri) 无效的令牌（ESRI的）
+    499 Token Required (Esri) 令牌必需（ESRI的）
+    499 Request has been forbidden by antivirus 请求已被禁止反病毒
+    509 Bandwidth Limit Exceeded (Apache Web Server/cPanel) 超出带宽限制（Apache的Web服务器/的cPanel）
+    530 Site is frozen 网站被冻结
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="互联网信息服务扩展状态码">互联网信息服务扩展状态码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    440 Login Timeout 登录超时
+    449 Retry With 重新发送带
+    451 Redirect 重定向
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="nginx-扩展状态码">NGINX-扩展状态码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    444 No Response 没有响应
+    495 SSL Certificate Error 证书错误
+    496 SSL Certificate Required证书要求
+    497 HTTP Request Sent to HTTPS Port 发送到HTTPS端口请求
+    499 Client Closed Request 客户端请求关闭
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="七牛云扩展状态码">七牛云扩展状态码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    298 部分操作执行成功。
+    419 用户账号被冻结。
+    478 镜像回源失败。 主要指镜像源服务器出现异常。
+    573 单个资源访问频率过高
+    579 上传成功但是回调失败。 包括业务服务器异常；七牛服务器异常；服务器间网络异常。
+    599 服务端操作失败。
+    608 资源内容被修改。
+    612 指定资源不存在或已被删除。
+    614 目标资源已存在。
+    630 已创建的空间数量达到上限，无法创建新空间。
+    631 指定空间不存在。
+    640 调用列举资源 (list) 接口时，指定非法的marker参数。
+    701 在断点续上传过程中，后续上传接收地址不正确或ctx信息已过期。
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/frontend/html5/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">HTML5</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/java11/">
+            <span class="next-text nav-default">Java11</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

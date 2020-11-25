@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Redis进阶 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/database/redisadvance/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Redis进阶" />
+<meta property="og:description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/database/redisadvance/" />
+<meta property="article:published_time" content="2018-12-16T17:29:06+00:00" />
+<meta property="article:modified_time" content="2018-12-16T17:29:06+00:00" />
+<meta itemprop="name" content="Redis进阶">
+<meta itemprop="description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制">
+<meta itemprop="datePublished" content="2018-12-16T17:29:06+00:00" />
+<meta itemprop="dateModified" content="2018-12-16T17:29:06+00:00" />
+<meta itemprop="wordCount" content="1674">
+
+
+
+<meta itemprop="keywords" content="Redis," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Redis进阶"/>
+<meta name="twitter:description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Redis进阶</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-16 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            </div>
+          <span class="more-meta"> 1674 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#sds">SDS</a></li>
+    <li><a href="#链表">链表</a></li>
+    <li><a href="#字典">字典</a></li>
+    <li><a href="#跳表">跳表</a></li>
+    <li><a href="#整数集合">整数集合</a></li>
+    <li><a href="#压缩列表">压缩列表</a></li>
+    <li><a href="#对象">对象</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#run-configuration">Run Configuration</a></li>
+    <li><a href="#过期策略">过期策略</a></li>
+    <li><a href="#事务">事务</a></li>
+    <li><a href="#服务器">服务器</a></li>
+    <li><a href="#实现原理">实现原理</a>
+      <ul>
+        <li><a href="#scan">scan</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#持久化策略">持久化策略</a></li>
+    <li><a href="#复制">复制</a></li>
+    <li><a href="#数据迁移">数据迁移</a></li>
+    <li><a href="#错误分析">错误分析</a>
+      <ul>
+        <li><a href="#big-key">big key</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#分布式锁">分布式锁</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#禁用-on-命令">禁用 O(N) 命令</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#redis%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">Redis底层数据结构</a>
+<ol>
+<li><a href="#sds">SDS</a></li>
+<li><a href="#%E9%93%BE%E8%A1%A8">链表</a></li>
+<li><a href="#%E5%AD%97%E5%85%B8">字典</a></li>
+<li><a href="#%E8%B7%B3%E8%A1%A8">跳表</a></li>
+<li><a href="#%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88">整数集合</a></li>
+<li><a href="#%E5%8E%8B%E7%BC%A9%E5%88%97%E8%A1%A8">压缩列表</a></li>
+<li><a href="#%E5%AF%B9%E8%B1%A1">对象</a></li>
+</ol>
+</li>
+<li><a href="#redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Redis常用命令</a>
+<ol>
+<li><a href="#run-configuration">Run Configuration</a></li>
+<li><a href="#%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5">过期策略</a></li>
+<li><a href="#%E4%BA%8B%E5%8A%A1">事务</a></li>
+<li><a href="#%E6%9C%8D%E5%8A%A1%E5%99%A8">服务器</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">实现原理</a>
+<ol>
+<li><a href="#scan">scan</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%92%8C%E6%80%A7%E8%83%BD">数据安全和性能</a>
+<ol>
+<li><a href="#%E6%8C%81%E4%B9%85%E5%8C%96%E7%AD%96%E7%95%A5">持久化策略</a></li>
+<li><a href="#%E5%A4%8D%E5%88%B6">复制</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB">数据迁移</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90">错误分析</a>
+<ol>
+<li><a href="#big-key">big key</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E5%BA%94%E7%94%A8">应用</a>
+<ol>
+<li><a href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81">分布式锁</a></li>
+</ol>
+</li>
+<li><a href="#tip">Tip</a>
+<ol>
+<li><a href="#%E7%A6%81%E7%94%A8-on-%E5%91%BD%E4%BB%A4">禁用 O(N) 命令</a></li>
+</ol>
+</li>
+<li><a href="#%E4%B8%BB%E4%BB%8E">主从</a></li>
+<li><a href="#%E5%93%A8%E5%85%B5">哨兵</a></li>
+<li><a href="#cluster%E9%9B%86%E7%BE%A4">cluster集群</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-07-21 20:07</em>|</p>
+<hr>
+<h1 id="redis底层数据结构">Redis底层数据结构</h1>
+<h2 id="sds">SDS</h2>
+<blockquote>
+<p>简单动态字符串</p>
+</blockquote>
+<ul>
+<li><input disabled="" type="checkbox"> 存储数值的方式</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">0           00110000
+(short 0)   0011000001010011
+0L          0011000001001100
+&#34;&#34;          0010001000100010
+new byte[0] 011110000010011100100111
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="链表">链表</h2>
+<h2 id="字典">字典</h2>
+<h2 id="跳表">跳表</h2>
+<blockquote>
+<p><a href="/Skills/CS/DS/LinearList.md">跳表基础</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://redisbook.com/preview/skiplist/datastruct.html">Redis设计与实现: 跳跃表的实现</a></p>
+</blockquote>
+<p>Redis 的跳跃表由 redis.h/zskiplistNode 和 redis.h/zskiplist 两个结构定义， 其中 zskiplistNode 结构用于表示跳跃表节点<br>
+而 zskiplist 结构则用于保存跳跃表节点的相关信息， 比如节点的数量， 以及指向表头节点和表尾节点的指针 等等。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C">    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="p">{</span>
+        <span class="c1">// 后退指针
+</span><span class="c1"></span>        <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">backward</span><span class="p">;</span>
+
+        <span class="c1">// 分值
+</span><span class="c1"></span>        <span class="kt">double</span> <span class="n">score</span><span class="p">;</span>
+
+        <span class="c1">// 成员对象
+</span><span class="c1"></span>        <span class="n">robj</span> <span class="o">*</span><span class="n">obj</span><span class="p">;</span>
+
+        <span class="c1">// 层
+</span><span class="c1"></span>        <span class="k">struct</span> <span class="n">zskiplistLevel</span> <span class="p">{</span>
+
+            <span class="c1">// 前进指针
+</span><span class="c1"></span>            <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">forward</span><span class="p">;</span>
+
+            <span class="c1">// 跨度
+</span><span class="c1"></span>            <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">span</span><span class="p">;</span>
+
+        <span class="p">}</span> <span class="n">level</span><span class="p">[];</span>
+
+    <span class="p">}</span> <span class="n">zskiplistNode</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="整数集合">整数集合</h2>
+<h2 id="压缩列表">压缩列表</h2>
+<h2 id="对象">对象</h2>
+<hr>
+<h1 id="redis常用命令">Redis常用命令</h1>
+<ul>
+<li>
+<p>关闭数据库 <code>shutdown</code> 该命令会在关闭数据库前保存数据</p>
+</li>
+<li>
+<p>保存内存中数据到文件 <code>save</code></p>
+</li>
+<li>
+<p>认证 <code>auth 口令</code></p>
+</li>
+<li>
+<p>测试联通性 <code>ping</code> 连接成功会返回pong</p>
+</li>
+<li>
+<p>模糊删除</p>
+<ul>
+<li>删除 6666端口 的 2数据库中<code>detail-2018-07-0*</code>模式的数据: <code>./redis-cli -p 6666 -n 2 keys &quot;detail-2018-07-0*&quot; | xargs  ./redis-cli -p 6666 -n 2 del</code></li>
+</ul>
+</li>
+<li>
+<p>查看所有连接 client list</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/junegunn/redis-stat">redis-stat</a></p>
+</blockquote>
+<h2 id="run-configuration">Run Configuration</h2>
+<ul>
+<li>
+<p><em>slaveof</em></p>
+<ul>
+<li><code>redis-server --port 9999 --slaveof 127.0.0.1 6379</code> 启动一个9999端口作为6379的从服务器进行同步</li>
+<li>或者服务启动后执行 <code>slaveof host port</code>（如果已经是从服务器，就丢去旧服务器的数据集，转而对新的主服务器进行同步）</li>
+<li>从服务变成主服务 <code>slaveof no one</code> (同步的数据集不会丢失，迅速替换主服务器)</li>
+</ul>
+</li>
+<li>
+<p><em>loglevel</em></p>
+<ul>
+<li><code>./redis-server /etc/redis/6379.conf --loglevel debug	</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="过期策略">过期策略</h2>
+<ul>
+<li><code>expire key seconds</code> 设置键的过期时间</li>
+<li><code>PTTL/TTL key </code> 查看键剩余过期时间（生存时间） ms/s
+<ul>
+<li>-1 表示永久 -2 表示没有该key</li>
+</ul>
+</li>
+</ul>
+<h2 id="事务">事务</h2>
+<ul>
+<li><code>DISCARD</code> 取消事务，放弃执行事务块内的所有命令。</li>
+<li><code>EXEC</code>
+<ul>
+<li>执行所有事务块内的命令。假如某个(或某些) key 正处于 WATCH 命令的监视之下，且事务块中有和这个(或这些) key 相关的命令，</li>
+<li>那么 EXEC 命令只在这个(或这些) key 没有被其他命令所改动的情况下执行并生效，否则该事务被打断(abort)。</li>
+</ul>
+</li>
+<li><code>MULTI</code> 标记一个事务块的开始。事务块内的多条命令会按照先后顺序被放进一个队列当中，最后由 EXEC 命令原子性(atomic)地执行。</li>
+<li><code>UNWATCH</code>
+<ul>
+<li>取消 WATCH 命令对所有 key 的监视。如果在执行 WATCH 命令之后， EXEC 命令或 DISCARD 命令先被执行了的话，那么就不需要再执行 UNWATCH 了。</li>
+<li>因为 EXEC 命令会执行事务，因此 WATCH 命令的效果已经产生了；而 DISCARD 命令在取消事务的同时也会取消所有对 key 的监视，因此这两个命令执行之后，就没有必要执行 UNWATCH 了。</li>
+</ul>
+</li>
+<li><code>WATCH key [key ...]</code>
+<ul>
+<li>监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断。</li>
+</ul>
+</li>
+</ul>
+<h2 id="服务器">服务器</h2>
+<ul>
+<li>BGREWRITEAOF</li>
+<li>BGSAVE</li>
+<li>CLIENT GETNAME</li>
+<li>CLIENT KILL</li>
+<li>CLIENT LIST</li>
+<li>CLIENT SETNAME</li>
+<li>CONFIG GET</li>
+<li>CONFIG RESETSTAT</li>
+<li>CONFIG REWRITE</li>
+<li>CONFIG SET</li>
+<li>DBSIZE</li>
+<li>DEBUG OBJECT</li>
+<li>DEBUG SEGFAULT</li>
+<li>FLUSHALL</li>
+<li>FLUSHDB</li>
+<li>INFO
+<ul>
+<li><a href="https://blog.csdn.net/kexiaoling/article/details/51810919">参考: redis info 命令查看redis使用情况</a></li>
+<li>info stats 中 total_commands_processed 是实际请求, 还是说redis自己执行的命令 TODO</li>
+</ul>
+</li>
+<li>LASTSAVE</li>
+<li>MONITOR</li>
+<li>PSYNC</li>
+<li>SAVE</li>
+<li>SHUTDOWN</li>
+<li>SLAVEOF</li>
+<li>SLOWLOG</li>
+<li>SYNC</li>
+<li>TIME</li>
+</ul>
+<h2 id="实现原理">实现原理</h2>
+<h3 id="scan">scan</h3>
+<p>TODO</p>
+<hr>
+<h1 id="数据安全和性能">数据安全和性能</h1>
+<h2 id="持久化策略">持久化策略</h2>
+<h2 id="复制">复制</h2>
+<h2 id="数据迁移">数据迁移</h2>
+<ul>
+<li>使用主从复制来进行数据, 或者自己写Py脚本?</li>
+</ul>
+<h2 id="错误分析">错误分析</h2>
+<ol>
+<li><code>JedisConnectionException:  Could not get a resource from the pool</code> cause by <code>java.util.NoSuchElementException: Unable to validate object</code>
+<ul>
+<li>多种原因, 由于设置了 testOnBorrow 为 true, 那么在每次获取数据时, 就会先测试性的获取一个数据, 然后校验能否正常拿到该数据 如果拿不到就抛出这个异常, 原因可能有:
+<ol>
+<li>根本没有连接上Redis, 配置有问题 端口 bind 什么的</li>
+<li>Redis 存放数据的 rdb 文件所在目录 没有存储空间了</li>
+<li>没有内存空间了, 由于执行save操作时, 会进行fork子进程 然后进行持久化 TODO 验证</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="big-key">big key</h3>
+<ul>
+<li><code>redis-cli --bigkeys</code></li>
+<li><code>memory usage key</code></li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="https://blog.csdn.net/u012129558/article/details/77146287">参考: redis哨兵、集群</a></p>
+</blockquote>
+<p><a href="https://www.jianshu.com/p/42ee966f96e5">https://www.jianshu.com/p/42ee966f96e5</a>
+<a href="https://www.jianshu.com/p/06ab9daf921d">https://www.jianshu.com/p/06ab9daf921d</a>
+<a href="https://www.cnblogs.com/demingblog/p/10295236.html">https://www.cnblogs.com/demingblog/p/10295236.html</a></p>
+<hr>
+<h1 id="应用">应用</h1>
+<h2 id="分布式锁">分布式锁</h2>
+<blockquote>
+<p><a href="http://cndoc.github.io/redis-doc-cn/cn/commands/setnx.html">Doc: setnx</a><code>包含以此命令设计锁的一些缺陷</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/JTsJCDuasgIJ0j95K8Ay8w">基于Redis的分布式锁到底安全吗（上）？</a><br>
+<a href="https://mp.weixin.qq.com/s/4CUe7OpM6y1kQRK8TOC_qQ?">基于Redis的分布式锁到底安全吗（下）？</a><br>
+<a href="https://zhuanlan.zhihu.com/p/161078350">参考: Redis 分布式锁进化史解读 + 缺陷分析</a></p>
+</blockquote>
+<blockquote>
+<p>锁和Java中事务</p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/seapeak007/article/details/99337781">参考: redis分布式锁在MySQL事务代码中使用</a></p>
+</blockquote>
+<hr>
+<h1 id="tip">Tip</h1>
+<h2 id="禁用-on-命令">禁用 O(N) 命令</h2>
+<p>keys flushdb flushall</p>
+<ul>
+<li>List： lindex、lset、linsert</li>
+<li>Hash： hgetall、hkeys、hvals</li>
+<li>Set： smembers、sunion、sunionstore、sinter、sinterstore、sdiff、sdiffstore</li>
+<li>Sorted Set： zrange、zrevrange、zrangebyscore、zrevrangebyscore、zremrangebyrank、zremrangebyscore</li>
+</ul>
+<p>在 redis.conf 中通过配置 rename-command 进行禁用</p>
+<hr>
+<h1 id="主从">主从</h1>
+<hr>
+<h1 id="哨兵">哨兵</h1>
+<hr>
+<h1 id="cluster集群">cluster集群</h1>
+<blockquote>
+<p><a href="https://redis.io/topics/cluster-tutorial">cluster-tutorial</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">Redis</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/database/sql/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SQL基础</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/database/redis/">
+            <span class="next-text nav-default">Redis</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

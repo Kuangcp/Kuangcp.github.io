@@ -1,69 +1,375 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- <meta name="description" content="">
- <meta name="author" content="">
- <title>Myth.Kuang</title>
- <link href="css/u/bootstrap.min.css" rel="stylesheet"/>
- <style>
-  a {font-size:16px;color:black;}
-  a:link {/* color: blue;  */text-decoration:none;} /* 未访问：蓝色、无下划线 */
-  a:active{/* color: red; */ } /* //激活：红色 */
-  a:visited {/* color:purple; */text-decoration:none;} /* //已访问：purple、无下划线 */
-  a:hover {/* color: red; */ /* text-decoration:underline; */text-decoration:none;}/*  //鼠标移近：红色、下划线  */
-  body{
-    background-size: auto 768px
-  }
-  .button-area button{
-    margin: 0 2px 0 0 
-  }
- </style>
- <script src="js/jquery-3.0.0.min.js"></script>
- <script src="js/tether.min.js"></script>
- <script src="js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="Hugo theme even example site." /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/" />
+  <link href="https://blogs.kuangcp.top/index.xml" rel="alternate" type="application/rss+xml" title="Mythos" />
+  <link href="https://blogs.kuangcp.top/index.xml" rel="feed" type="application/rss+xml" title="Mythos" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Mythos" />
+<meta property="og:description" content="Hugo theme even example site." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://blogs.kuangcp.top/" />
+<meta property="og:updated_time" content="2020-10-28T15:22:01+00:00" />
+<meta itemprop="name" content="Mythos">
+<meta itemprop="description" content="Hugo theme even example site.">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mythos"/>
+<meta name="twitter:description" content="Hugo theme even example site."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
 </head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
 
-<body background="image/back_index.jpg" >
-  <!--顶部按钮-->
-  <nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/skills/document/dot/">Dot</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-10-28 </span>
+      
+        <span class="more-meta"> 96 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
   
-  <a class="navbar-brand" href="#">Myth.Kuang</a>
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-    <li class="nav-item active"></li>
-    </ul>
-
-    <div class="btn-group">
-      <button type="button" class="btn btn-info">Tools</button>
-      <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="caret"></span>
-        <span class="sr-only">Toggle Dropdown</span>
-      </button>
-
-      <ul class="dropdown-menu" style="text-align: center;">
-        <li><a href="Tool/DuiZhang.html">对账</a></li>
-      </ul>
+  <div class="post-content">
+    <div class="post-summary">
+      目录 start Graphviz 绘图 和 Dot 语言 工具 目录 end|2020-10-28 15:22| Graphviz 绘图 和 Dot 语言 Official Site 参考: Graphviz绘图 - DOT语言 参考: graphviz dot语言学习笔记 编译输出 dot -Tsvg test.dot -o test.svg plan
     </div>
-
-    <div class="button-area">
-      <a href="main.html"><button class="btn">导航</button></a>
-      <a href="page/yueyue.html"><button class="btn btn-primary">小悦悦</button></a>
-      <a href="love/2017-04-09/LoveYouForever.html"><button class="btn btn-danger">Lover</button></a>
-      <a href="/page/choice.html"><button class="btn btn-danger">Choice</button></a>
+    <div class="read-more">
+      <a href="/post/skills/document/dot/" class="read-more-link">Read more...</a>
     </div>
   </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/java/spring/why/springsession/">SpringSession</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-08-26 </span>
+      
+        <span class="more-meta"> 90 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      目录 start Spring-Session Websocket Websocket 共享 目录 end|2020-08-26 18:31| Spring-Session TODO 查看源码实现 Websocket websocket session 可实现 websocket session 原始的 http session 超时等管理功能，无法实现 websocket 共享 Websocket 共享 nginx 分发 redis 共享 如何实现 WebsocketSession 无法序列化，所以
+    </div>
+    <div class="read-more">
+      <a href="/post/java/spring/why/springsession/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/game/mc/">Minecraft</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-06-24 </span>
+      <div class="post-category">
+          <a href="/categories/game/"> Game </a>
+          </div>
+        <span class="more-meta"> 21 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      目录 start Minecraft Server 目录 end|2020-06-24 16:51| Minecraft HMCL: A Minecraft Launcher Server Minecraft Server 修改 /data/server.properties online-mode=false
+    </div>
+    <div class="read-more">
+      <a href="/post/game/mc/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/myblog/2020-05-16-install-manjaro/">install manjaro20 with windows10</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-06-04 </span>
+      <div class="post-category">
+          <a href="/categories/blog/"> Blog </a>
+          </div>
+        <span class="more-meta"> 722 words </span>
+        <span class="more-meta"> 2 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      目录 start 安装Manjaro20 目录 end|2020-06-04 19:42| 安装Manjaro20 前提；首先系统已经安装Win10, 固态硬盘 先做U盘(原先都是使用Deepin的制作
+    </div>
+    <div class="read-more">
+      <a href="/post/myblog/2020-05-16-install-manjaro/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/hardware/bios/">BIOS</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-05-17 </span>
+      
+        <span class="more-meta"> 86 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      目录 start BIOS UEFI 目录 end|2020-05-17 16:51| BIOS Basic Input Output System 主板上的ROM软件，电脑启动时最先加载运行 ，各主板厂商提供的都有所不同但是大同小异 通常个人会用到的就是 引导方式和
+    </div>
+    <div class="read-more">
+      <a href="/post/hardware/bios/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/java/test/jmh/">JMH</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-05-06 </span>
+      
+        <span class="more-meta"> 98 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      目录 start JMH 简易Demo 最佳实践 目录 end|2020-05-06 01:45| JMH Official Site jmh demos 参考: Java微基准测试框架JMH Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations =
+    </div>
+    <div class="read-more">
+      <a href="/post/java/test/jmh/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/skills/media/pictureformat/">图片格式</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-05-04 </span>
+      
+        <span class="more-meta"> 33 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      目录 start 图片格式 PNG 目录 end|2020-05-04 19:40| 图片格式 PNG PNG文件格式详解 Webp HEIF High Efficiency Image File Format
+    </div>
+    <div class="read-more">
+      <a href="/post/skills/media/pictureformat/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/java/blog/reduce-if-else-for-java/">减少 Java 中的 if else</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-05-04 </span>
+      <div class="post-category">
+          <a href="/categories/java/"> Java </a>
+          </div>
+        <span class="more-meta"> 73 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      目录 start 减少Java中的if else 目录 end|2020-05-04 19:34| 减少Java中的if else 如何解决代码中if…else 过多的问题 表驱动 职责链模式 注解驱动 事件驱动 有限状态机 Optional
+    </div>
+    <div class="read-more">
+      <a href="/post/java/blog/reduce-if-else-for-java/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/java/blog/java-classload-confuse/">Java ClassLoad Confuse</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-04-29 </span>
+      
+        <span class="more-meta"> 372 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      目录 start 类加载导致的迷惑 主题 解决方案 场景 目录 end|2020-04-29 11:57| 类加载导致的迷惑 记录一次因Jar包冲突导致的类加载问题 参考: 为什么SpringBoot的 jar 可以
+    </div>
+    <div class="read-more">
+      <a href="/post/java/blog/java-classload-confuse/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    </section>
+  
+  <nav class="pagination">
+    
+    <a class="next" href="/page/2/">
+        <span class="next-text">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
   </nav>
+        </div>
+        
 
-  <div class="container" >
-  <hr>
-  <footer>
-    <a href="" style="text-decoration: none;"><p>&copy; Myth 2017</p></a>
-  </footer>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
   </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
 
 </body>
 </html>

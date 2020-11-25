@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Gradle进阶 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Gradle进阶知识 Gradle 使用和配置 主配置目录 Gradle 构建块 task task的依赖关系 终结器 task Groovy的POGO类管理配置文件上的版本号 task 的inp" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/tool/gradleadvance/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Gradle进阶" />
+<meta property="og:description" content="目录 start Gradle进阶知识 Gradle 使用和配置 主配置目录 Gradle 构建块 task task的依赖关系 终结器 task Groovy的POGO类管理配置文件上的版本号 task 的inp" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/tool/gradleadvance/" />
+<meta property="article:published_time" content="2018-12-11T21:29:29+00:00" />
+<meta property="article:modified_time" content="2018-12-11T21:29:29+00:00" />
+<meta itemprop="name" content="Gradle进阶">
+<meta itemprop="description" content="目录 start Gradle进阶知识 Gradle 使用和配置 主配置目录 Gradle 构建块 task task的依赖关系 终结器 task Groovy的POGO类管理配置文件上的版本号 task 的inp">
+<meta itemprop="datePublished" content="2018-12-11T21:29:29+00:00" />
+<meta itemprop="dateModified" content="2018-12-11T21:29:29+00:00" />
+<meta itemprop="wordCount" content="2801">
+
+
+
+<meta itemprop="keywords" content="Gradle,Advanced," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Gradle进阶"/>
+<meta name="twitter:description" content="目录 start Gradle进阶知识 Gradle 使用和配置 主配置目录 Gradle 构建块 task task的依赖关系 终结器 task Groovy的POGO类管理配置文件上的版本号 task 的inp"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Gradle进阶</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-11 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 2801 words </span>
+          <span class="more-meta"> 6 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#gradle-使用和配置">Gradle 使用和配置</a>
+      <ul>
+        <li><a href="#主配置目录">主配置目录</a></li>
+      </ul>
+    </li>
+    <li><a href="#gradle-构建块">Gradle 构建块</a></li>
+    <li><a href="#task">task</a>
+      <ul>
+        <li><a href="#task的依赖关系">task的依赖关系</a></li>
+        <li><a href="#终结器-task">终结器 task</a></li>
+        <li><a href="#groovy的pogo类管理配置文件上的版本号">Groovy的POGO类管理配置文件上的版本号</a></li>
+        <li><a href="#task-的inputs-和-outputs">task 的inputs 和 outputs</a></li>
+        <li><a href="#编写和使用自定义task">编写和使用自定义task</a></li>
+      </ul>
+    </li>
+    <li><a href="#增量式构建特性">增量式构建特性</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#单元测试">单元测试</a>
+      <ul>
+        <li><a href="#使用junit">使用JUnit</a></li>
+        <li><a href="#使用其他框架-testng-spock">使用其他框架 TestNG Spock</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置测试执行">配置测试执行</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#处理javascript">处理javascript</a>
+      <ul>
+        <li><a href="#压缩javascript">压缩javascript</a></li>
+        <li><a href="#java-和-groovy的联合编译">Java 和 Groovy的联合编译</a></li>
+        <li><a href="#java-和-scala">Java 和 Scala</a></li>
+      </ul>
+    </li>
+    <li><a href="#jenkin-使用">Jenkin 使用</a>
+      <ul>
+        <li><a href="#下载安装和配置">下载安装和配置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#gradle%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86">Gradle进阶知识</a>
+<ol>
+<li><a href="#gradle-%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE">Gradle 使用和配置</a>
+<ol>
+<li><a href="#%E4%B8%BB%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95">主配置目录</a></li>
+</ol>
+</li>
+<li><a href="#gradle-%E6%9E%84%E5%BB%BA%E5%9D%97">Gradle 构建块</a></li>
+<li><a href="#task">task</a>
+<ol>
+<li><a href="#task%E7%9A%84%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB">task的依赖关系</a></li>
+<li><a href="#%E7%BB%88%E7%BB%93%E5%99%A8-task">终结器 task</a></li>
+<li><a href="#groovy%E7%9A%84pogo%E7%B1%BB%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%8A%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7">Groovy的POGO类管理配置文件上的版本号</a></li>
+<li><a href="#task-%E7%9A%84inputs-%E5%92%8C-outputs">task 的inputs 和 outputs</a></li>
+<li><a href="#%E7%BC%96%E5%86%99%E5%92%8C%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89task">编写和使用自定义task</a>
+<ol>
+<li><a href="#%E5%A3%B0%E6%98%8Etask%E8%A7%84%E5%88%99">声明task规则</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E5%A2%9E%E9%87%8F%E5%BC%8F%E6%9E%84%E5%BB%BA%E7%89%B9%E6%80%A7">增量式构建特性</a></li>
+</ol>
+</li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9D%97">测试模块</a>
+<ol>
+<li><a href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">单元测试</a>
+<ol>
+<li><a href="#%E4%BD%BF%E7%94%A8junit">使用JUnit</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6-testng-spock">使用其他框架 TestNG Spock</a></li>
+</ol>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%B5%8B%E8%AF%95%E6%89%A7%E8%A1%8C">配置测试执行</a></li>
+</ol>
+</li>
+<li><a href="#%E5%A4%9A%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B">多语言编程</a>
+<ol>
+<li><a href="#%E5%A4%84%E7%90%86javascript">处理javascript</a>
+<ol>
+<li><a href="#%E5%8E%8B%E7%BC%A9javascript">压缩javascript</a></li>
+<li><a href="#java-%E5%92%8C-groovy%E7%9A%84%E8%81%94%E5%90%88%E7%BC%96%E8%AF%91">Java 和 Groovy的联合编译</a></li>
+<li><a href="#java-%E5%92%8C-scala">Java 和 Scala</a></li>
+</ol>
+</li>
+<li><a href="#jenkin-%E4%BD%BF%E7%94%A8">Jenkin 使用</a>
+<ol>
+<li><a href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE">下载安装和配置</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E5%8F%91%E5%B8%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9E%84%E4%BB%B6">发布自己的构件</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-06-04 19:41</em>|</p>
+<hr>
+<h1 id="gradle进阶知识">Gradle进阶知识</h1>
+<blockquote>
+<p><a href="https://docs.gradle.org/4.9/dsl/org.gradle.api.Project.html">gradle api </a> <code>所有{}结构 以及配置</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/davenkin/gradle-learning">davenkin的学习仓库</a>
+<a href="https://github.com/Kuangcp/LearnGradle">个人学习Gradle的记录仓库</a></p>
+</blockquote>
+<h2 id="gradle-使用和配置">Gradle 使用和配置</h2>
+<h3 id="主配置目录">主配置目录</h3>
+<blockquote>
+<p>~/.gradle</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">├── caches
+│   ├── 4.8
+│   ├── 4.9
+│   ├── jars-3
+│   ├── modules-2
+│   │   ├── files-2.1 依赖的Jar 缓存目录
+│   │   ├── metadata-2.58
+│   │   └── modules-2.lock
+│   └── transforms-1
+├── daemon
+│   ├── 4.8
+│   └── 4.9
+├── native
+│   ├── 25
+│   └── jansi
+├── notifications
+│   ├── 4.8
+│   └── 4.9
+└── workers
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>~/.gradle/caches/modules-2/files-2.1 等价于Maven的 ~/.m2/repository 目录<br>
+不得不说, 这个目录很丑, 字母加字符短杠..强迫症很难受</p>
+</blockquote>
+<ul>
+<li>那么问题来了, 以前一直以为是和Maven共用一个仓库
+<ul>
+<li>他和Maven本地仓库没有半毛钱关系, 他只是去复制了一下而已! <a href="https://blog.csdn.net/kcp606/article/details/81636426">详情</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="gradle-构建块">Gradle 构建块</h2>
+<ul>
+<li>三个基本块 project task property， 使用DDD（领域驱动设计）</li>
+<li>一个真实的项目包含多个project 而 Project又包含多个task ，task之间通过依赖来确保执行顺序</li>
+<li>build.gradle 和 pom.xml 作用是一致的，但是gradle可以使用一份源码 构建出多种想要的目标程序</li>
+</ul>
+<h2 id="task">task</h2>
+<ul>
+<li><a href="https://docs.gradle.org/current/dsl/org.gradle.api.Task.html">doc:task</a></li>
+</ul>
+<h3 id="task的依赖关系">task的依赖关系</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">   <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.1-SNAPSHOT&#39;</span>
+   <span class="n">task</span> <span class="n">first</span> <span class="o">{</span>
+   	<span class="n">println</span> <span class="s1">&#39;First Run !&#39;</span>
+   <span class="o">}</span>
+   <span class="n">task</span> <span class="n">second</span> <span class="o">{</span>
+   	<span class="n">println</span> <span class="s1">&#39;Second Run !&#39;</span>
+   <span class="o">}</span>
+   <span class="n">task</span> <span class="nf">printVersion</span> <span class="o">(</span><span class="nl">dependsOn:</span><span class="o">[</span><span class="n">second</span><span class="o">,</span><span class="n">first</span><span class="o">]){</span>
+   	<span class="n">doLast</span> <span class="o">{</span>
+   		<span class="n">println</span> <span class="s2">&#34;Version : $version&#34;</span>
+   		<span class="n">logger</span><span class="o">.</span><span class="na">quiet</span> <span class="s2">&#34;Version : $version&#34;</span>
+   	<span class="o">}</span>
+   <span class="o">}</span>
+   <span class="n">task</span> <span class="n">third</span> <span class="o">&lt;&lt;{</span>
+	<span class="n">println</span> <span class="s1">&#39;Third Run!&#39;</span>
+   <span class="o">}</span>
+   <span class="n">third</span><span class="o">.</span><span class="na">dependsOn</span><span class="o">(</span><span class="s1">&#39;printVersion&#39;</span><span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>如果把second的定义放在First前面，就会先运行second</li>
+<li>这个例子就说明了，被依赖方的运行，不是按照声明的顺序，而是定义的顺序
+<ul>
+<li>（因为依赖是只要被依赖方执行即可，和顺序关系不是很大）</li>
+</ul>
+</li>
+<li>还可以使用SLF4J的logger实现
+<ul>
+<li>日志级别 DEBUG,ERROR,INFO,TRACE,WARN ,还有QUIET&hellip;</li>
+</ul>
+</li>
+<li>如果 是 <code>gradle -b tasksL.gradle -q third</code> 就会运行所有的task，因为这是最后一层依赖
+<ul>
+<li>如果 是<code>gradle -b tasksL.gradle -q printVersion</code> 就会只运行 printVersion 如果整个文件有编译错误也是不运行的</li>
+</ul>
+</li>
+</ul>
+<h3 id="终结器-task">终结器 task</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Groovy" data-lang="Groovy">   <span class="n">task</span> <span class="n">f</span><span class="o">&lt;&lt;{</span><span class="n">println</span> <span class="s1">&#39;first&#39;</span><span class="o">}</span>
+   <span class="n">task</span> <span class="n">s</span><span class="o">&lt;&lt;{</span><span class="n">println</span> <span class="s1">&#39;second&#39;</span><span class="o">}</span>
+   <span class="n">f</span><span class="o">.</span><span class="na">finalizedBy</span> <span class="n">s</span>
+   <span class="c1">//当运行 gradle f 就会自动触发 s
+</span><span class="c1"></span>   <span class="c1">//如果gradle s 就和f没有任何关系了
+</span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="groovy的pogo类管理配置文件上的版本号">Groovy的POGO类管理配置文件上的版本号</h3>
+<ul>
+<li><a href="https://github.com/Kuangcp/LearnGradle/blob/master/demo/tasksL.gradle">taskL.gradle</a></li>
+<li>gradle -b tasksL.gradle -q printVersion</li>
+<li>虽然只是 运行了这个task 但是读取文件的task也被自动调用了</li>
+<li>因为Gradle的构建生命周期阶段如下: 初始化、配置和执行 读取文件就属于配置阶段
+<ul>
+<li><strong>注意</strong> : 项目的每一次构建都会运行属于配置阶段的代码，即使你只是运行了 gradle tasks</li>
+</ul>
+</li>
+</ul>
+<h3 id="task-的inputs-和-outputs">task 的inputs 和 outputs</h3>
+<ul>
+<li>流程 : inputs -&gt; |task| -&gt; outputs</li>
+<li>gradle通过比较两个task的inputs和outputs来决定task是否最新
+<ul>
+<li>如果inputs和outputs没有改变 就不会执行该task</li>
+<li>输入和输出可以是，一个文件，多个文件，一个目录，一个property属性</li>
+</ul>
+</li>
+<li><a href="https://github.com/Kuangcp/LearnGradle/blob/master/demo/turnVersion.gradle">示例代码:turnVersion.gradle</a>
+<ul>
+<li>makeRealeseVersion : 将一个项目的版本切换为发布版本</li>
+<li>IOReleaseVersion : 通过inputs/outputs来添加增量式构建支持
+<ul>
+<li>发现并不能得到书上的预期效果，书上是说改动了properties文件才会让这个task运行，没有改就会说 up-to-date</li>
+<li>但是实际得到的是，改动了properties或者是构建文件都会引起task运行，两者都不改动就不会运行task，而且不会有输出提示up-to-date，要自己手动logger</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="编写和使用自定义task">编写和使用自定义task</h3>
+<ul>
+<li>
+<p>自定义task包含两个组件：</p>
+<ul>
+<li>自定义的task类，封装了逻辑行为，也被称为任务类型</li>
+<li>真实的task 提供了用于配置行为的task类所暴露的属性值</li>
+</ul>
+</li>
+<li>
+<p>这个task就是做到了改配置文件，确保是RELEASE版本</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Groovy" data-lang="Groovy"><span class="c1">//先要实例化version属性对象的存在
+</span><span class="c1"></span>   <span class="n">version</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ProjectVersion</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="kc">true</span><span class="o">)</span>
+   <span class="c1">//继承DefaultTask类型的自定义task类
+</span><span class="c1"></span>   <span class="kd">class</span> <span class="nc">ReleaseVersionTask</span> <span class="kd">extends</span> <span class="n">DefaultTask</span><span class="o">{</span>
+    <span class="nd">@Input</span> <span class="n">Boolean</span> <span class="n">release</span>
+    <span class="nd">@OutputFile</span> <span class="n">File</span> <span class="n">destFile</span>
+    <span class="n">ReleaseVersionTask</span><span class="o">(){</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="s1">&#39;versioning&#39;</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Make Project a release version&#39;</span>
+
+    <span class="o">}</span>
+    <span class="c1">//task的行为逻辑
+</span><span class="c1"></span>    <span class="nd">@TaskAction</span>
+    <span class="kt">void</span> <span class="nf">start</span> <span class="o">(){</span>
+        <span class="n">project</span><span class="o">.</span><span class="na">version</span><span class="o">.</span><span class="na">release</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">ant</span><span class="o">.</span><span class="na">propertyfile</span><span class="o">(</span><span class="nl">file:</span><span class="n">destFile</span><span class="o">){</span>
+            <span class="n">entry</span><span class="o">(</span><span class="nl">key:</span><span class="s1">&#39;release&#39;</span><span class="o">,</span><span class="nl">type:</span><span class="s1">&#39;string&#39;</span><span class="o">,</span><span class="nl">operation:</span><span class="s1">&#39;=&#39;</span><span class="o">,</span><span class="nl">value:</span><span class="s1">&#39;true&#39;</span><span class="o">)</span>
+        <span class="o">}</span>
+        <span class="n">println</span> <span class="s2">&#34;$project.version&#34;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">//version的POGO类
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">ProjectVersion</span><span class="o">{</span>
+    <span class="n">Integer</span> <span class="n">major</span>
+	<span class="n">Integer</span> <span class="n">minor</span>
+    <span class="n">Boolean</span> <span class="n">release</span>
+    <span class="nf">ProjectVersion</span> <span class="o">(</span><span class="n">Integer</span> <span class="n">major</span> <span class="o">,</span><span class="n">Integer</span> <span class="n">minor</span><span class="o">){</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">major</span> <span class="o">=</span> <span class="n">major</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">minor</span> <span class="o">=</span> <span class="n">minor</span>
+	<span class="o">}</span>
+    <span class="n">ProjectVersion</span> <span class="o">(</span><span class="n">Integer</span> <span class="n">major</span> <span class="o">,</span><span class="n">Integer</span> <span class="n">minor</span><span class="o">,</span><span class="n">Boolean</span> <span class="n">release</span><span class="o">){</span>
+		<span class="k">this</span><span class="o">(</span><span class="n">major</span><span class="o">,</span><span class="n">minor</span><span class="o">)</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">release</span> <span class="o">=</span> <span class="n">release</span>
+	<span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="n">String</span> <span class="nf">toString</span><span class="o">(){</span>
+        <span class="s2">&#34;$major.$minor${release?&#39;-RELEASE&#39;:&#39;-SNAPSHOT&#39;}&#34;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">//真实的task，用来操作自定义类暴露的几个属性
+</span><span class="c1">//使用命令来运行，本质是运行真实的task但是行为逻辑在自定义类中编写
+</span><span class="c1">//gradle -b UserDefineTask.gradle -q makeReleaseVersion
+</span><span class="c1">//如果要改动一些数据可以直接更改暴露的task而不用去改自定义的task类
+</span><span class="c1"></span><span class="n">task</span> <span class="nf">makeReleaseVersion</span><span class="o">(</span><span class="nl">type:</span><span class="n">ReleaseVersionTask</span><span class="o">){</span>
+    <span class="n">release</span> <span class="o">=</span> <span class="s1">&#39;true&#39;</span>
+    <span class="n">destFile</span> <span class="o">=</span> <span class="n">file</span><span class="o">(</span><span class="s1">&#39;version.properties&#39;</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="声明task规则">声明task规则</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">   <span class="c1">//All used property must define and initial first
+</span><span class="c1"></span>   <span class="n">version</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ProjectVersion</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="kc">true</span><span class="o">)</span>
+   <span class="n">ext</span><span class="o">.</span><span class="na">versionFile</span> <span class="o">=</span> <span class="n">file</span><span class="o">(</span><span class="s1">&#39;version.properties&#39;</span><span class="o">)</span>
+   <span class="kd">class</span> <span class="nc">ProjectVersion</span><span class="o">{</span>
+       <span class="n">Integer</span> <span class="n">major</span>
+   	<span class="n">Integer</span> <span class="n">minor</span>
+       <span class="n">Boolean</span> <span class="n">release</span>
+       <span class="nf">ProjectVersion</span> <span class="o">(</span><span class="n">Integer</span> <span class="n">major</span> <span class="o">,</span><span class="n">Integer</span> <span class="n">minor</span><span class="o">){</span>
+   		<span class="k">this</span><span class="o">.</span><span class="na">major</span> <span class="o">=</span> <span class="n">major</span>
+   		<span class="k">this</span><span class="o">.</span><span class="na">minor</span> <span class="o">=</span> <span class="n">minor</span>
+   	<span class="o">}</span>
+       <span class="n">ProjectVersion</span> <span class="o">(</span><span class="n">Integer</span> <span class="n">major</span> <span class="o">,</span><span class="n">Integer</span> <span class="n">minor</span><span class="o">,</span><span class="n">Boolean</span> <span class="n">release</span><span class="o">){</span>
+   		<span class="k">this</span><span class="o">(</span><span class="n">major</span><span class="o">,</span><span class="n">minor</span><span class="o">)</span>
+   		<span class="k">this</span><span class="o">.</span><span class="na">release</span> <span class="o">=</span> <span class="n">release</span>
+   	<span class="o">}</span>
+       <span class="nd">@Override</span>
+       <span class="n">String</span> <span class="nf">toString</span><span class="o">(){</span>
+           <span class="s2">&#34;$major.$minor${release?&#39;-RELEASE&#39;:&#39;-SNAPSHOT&#39;}&#34;</span>
+       <span class="o">}</span>
+   <span class="o">}</span>
+   <span class="c1">// task规则的定义
+</span><span class="c1"></span>   <span class="n">tasks</span><span class="o">.</span><span class="na">addRule</span><span class="o">(</span><span class="s2">&#34;Pattern: increment&lt;Classifier&gt;Version - Increment the project version classifier.&#34;</span> <span class="o">){</span>
+   <span class="c1">//根据预定义模式来检查task的名称
+</span><span class="c1"></span>    <span class="n">String</span> <span class="n">taskName</span> <span class="o">-&gt;</span> <span class="k">if</span><span class="o">(</span><span class="n">taskName</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s1">&#39;increment&#39;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">taskName</span><span class="o">.</span><span class="na">endsWith</span><span class="o">(</span><span class="s1">&#39;Version&#39;</span><span class="o">)){</span>
+        <span class="c1">//根据符合命名模式的task动态添加一个doLast的方法
+</span><span class="c1"></span>        <span class="n">task</span><span class="o">(</span><span class="n">taskName</span><span class="o">)&lt;&lt;{</span>
+         <span class="c1">//从完整的task名称中提取类型字符串，
+</span><span class="c1"></span>         <span class="c1">//字面意思是将字符串中increment和Version两个串去除掉然后转小写再赋值
+</span><span class="c1"></span>            <span class="n">String</span> <span class="n">classifier</span> <span class="o">=</span> <span class="o">(</span><span class="n">taskName</span> <span class="o">-</span> <span class="s1">&#39;increment&#39;</span> <span class="o">-</span> <span class="s1">&#39;Version&#39;</span><span class="o">).</span><span class="na">toLowerCase</span><span class="o">()</span>
+            <span class="n">String</span> <span class="n">currentVersion</span> <span class="o">=</span> <span class="n">version</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span>
+            <span class="k">switch</span> <span class="o">(</span><span class="n">classifier</span><span class="o">){</span>
+                <span class="k">case</span> <span class="s1">&#39;major&#39;</span><span class="o">:++</span><span class="n">version</span><span class="o">.</span><span class="na">major</span>
+                    <span class="k">break</span>
+                <span class="k">case</span> <span class="s1">&#39;minor&#39;</span><span class="o">:++</span><span class="n">version</span><span class="o">.</span><span class="na">minor</span>
+                    <span class="k">break</span>
+                <span class="k">default</span> <span class="o">:</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">GradleException</span><span class="o">(</span><span class="s2">&#34;Invalid version type &#39;$classifier&#39; . Allow types :[&#39;Major&#39;,&#39;Minor&#39;]&#34;</span><span class="o">)</span>
+            <span class="o">}</span>
+            <span class="n">String</span> <span class="n">newVersion</span> <span class="o">=</span> <span class="n">version</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">info</span> <span class="s2">&#34;Increment $classifier project version: $currentVersion -&gt; $newVersion&#34;</span>
+            <span class="n">ant</span><span class="o">.</span><span class="na">propertyfile</span><span class="o">(</span><span class="nl">file:</span><span class="n">versionFile</span><span class="o">){</span>
+                <span class="n">entry</span><span class="o">(</span><span class="nl">key:</span><span class="n">classifier</span><span class="o">,</span><span class="nl">type:</span><span class="s1">&#39;int&#39;</span><span class="o">,</span><span class="nl">operation:</span><span class="s1">&#39;+&#39;</span><span class="o">,</span><span class="nl">value:</span><span class="mi">1</span><span class="o">)</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>运行 <code>gradle -b RulesTask.gradle -q incrementMinorVersion</code>就可以增加版本号了，就是一个动态的执行命令的机制
+<ul>
+<li>使用 incrementMajorVersion就可以增加主版本号</li>
+</ul>
+</li>
+<li>如果运行 <code>gradle -b RulesTask.gradle -q tasks</code> 就会得到一个具体的tasks的组Rules</li>
+</ul>
+<h2 id="增量式构建特性">增量式构建特性</h2>
+<ul>
+<li>如果Java源文件与最后一次运行的构建不同的话，运行 <code>compileJava task</code> 将充分提高构建的性能</li>
+</ul>
+<hr>
+<h1 id="测试模块">测试模块</h1>
+<blockquote>
+<p>凡是依赖于本地环境的测试，使用完就注释Test注解，还有那些会CRUD，影响到数据的测试方法也是
+以防以后线上测试通不过 打包失败,</p>
+</blockquote>
+<ul>
+<li>跳过测试 <code>gradle build -x test</code> 或者是 <code>--exclude-task test</code> 参数</li>
+</ul>
+<h2 id="单元测试">单元测试</h2>
+<h3 id="使用junit">使用JUnit</h3>
+<blockquote>
+<p><a href="/MyBlog/how-to-use-junit.md">使用Junit4</a></p>
+</blockquote>
+<h3 id="使用其他框架-testng-spock">使用其他框架 TestNG Spock</h3>
+<hr>
+<h2 id="配置测试执行">配置测试执行</h2>
+<hr>
+<h1 id="多语言编程">多语言编程</h1>
+<h2 id="处理javascript">处理javascript</h2>
+<h3 id="压缩javascript">压缩javascript</h3>
+<ul>
+<li>调用Google Closure Compiler 的task 来压缩javascript文件 将所有的javascript压缩成一个javascript文件</li>
+<li>执行该task  gradle :web :taskname</li>
+<li>执行之后就能得到一个优化的js文件，现在就要在页面中修改原来的js引用</li>
+</ul>
+<h3 id="java-和-groovy的联合编译">Java 和 Groovy的联合编译</h3>
+<ul>
+<li>src 下 main 下 java 和groovy 的一个目录结构，直接编译就会发生Java无法依赖groovy的类</li>
+<li>错误：需要配置 <code> sourceSets.main.java.srcDirs=[]</code> <code> sourceSets.main.groovy.srcDirs=['src/main/java','src/main/groovy']</code>
+<ul>
+<li>正确： <code>sourceSets.main.java.srcDirs=['src/main/java','src/main/groovy']</code> 上面的会报错</li>
+</ul>
+</li>
+<li>配置好后就能把groovy当普通Java类直接使用了</li>
+</ul>
+<hr>
+<h3 id="java-和-scala">Java 和 Scala</h3>
+<ul>
+<li>联合双向编译 Java和scala</li>
+<li><code> sourceSets.main.scala.srcDirs</code> <code> sourceSets.main.groovy.srcDirs=['src/main/java','src/main/scala']</code></li>
+<li>那么问题来了，如果是有了java groovy scala 呢怎么配置编译，直接就加上就好了嘛？</li>
+</ul>
+<h2 id="jenkin-使用">Jenkin 使用</h2>
+<h3 id="下载安装和配置">下载安装和配置</h3>
+<ul>
+<li>官网下载war包后，直接使用Java命令运行 或者放在web容器中运行</li>
+<li>配置下载插件（位置在C盘用户目录下， 其实第一次运行后也是会解压在.jenkin 目录下 插件就在plugin目录下）</li>
+<li></li>
+</ul>
+<h1 id="发布自己的构件">发布自己的构件</h1>
+<p><a href="https://lambeta.com/2017/09/15/release-jar-to-maven-central-repository/">如何发布Jar包到Maven Central Repository </a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-11
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/gradle/">Gradle</a>
+          <a href="/tags/advanced/">Advanced</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/tool/gradle/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Gradle</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/ecosystem/activiti/">
+            <span class="next-text nav-default">Activiti</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

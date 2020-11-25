@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hibernate - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/ecosystem/hibernate/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Hibernate" />
+<meta property="og:description" content="目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/ecosystem/hibernate/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="Hibernate">
+<meta itemprop="description" content="目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="4987">
+
+
+
+<meta itemprop="keywords" content="ORM," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hibernate"/>
+<meta name="twitter:description" content="目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hibernate</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 4987 words </span>
+          <span class="more-meta"> 10 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#jdbc和hibernate比较">JDBC和Hibernate比较</a>
+      <ul>
+        <li><a href="#配置流程">配置流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#hibernate必需jar">Hibernate必需JAR</a></li>
+    <li><a href="#编写数据库表对应框架持久层的对象">编写数据库表对应框架持久层的对象</a></li>
+    <li><a href="#hibernatecfgxml文件">hibernate.cfg.xml文件</a></li>
+    <li><a href="#sessionfactory和session比较">SessionFactory和Session比较</a></li>
+    <li><a href="#oid的作用">OID的作用：</a></li>
+    <li><a href="#id生成策略">id生成策略</a></li>
+    <li><a href="#非普通类型">非普通类型</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#一对多的配置">一对多的配置</a>
+      <ul>
+        <li><a href="#注意">注意</a></li>
+      </ul>
+    </li>
+    <li><a href="#多对多的配置">多对多的配置</a>
+      <ul>
+        <li><a href="#学生方配置">学生方配置</a></li>
+        <li><a href="#课程方配置">课程方配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#一对一的配置">一对一的配置</a></li>
+    <li><a href="#使用多对一的技巧">使用多对一的技巧</a>
+      <ul>
+        <li><a href="#添加记录">添加记录</a></li>
+        <li><a href="#删除记录">删除记录</a></li>
+      </ul>
+    </li>
+    <li><a href="#继承关系的配置">继承关系的配置</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#session的方法">Session的方法</a></li>
+    <li><a href="#特别注意">特别注意</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#could-not-find-a-getter">could not find a getter</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#hibernate">Hibernate</a></li>
+<li><a href="#hibernate%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE">Hibernate基础配置</a>
+<ol>
+<li><a href="#jdbc%E5%92%8Chibernate%E6%AF%94%E8%BE%83">JDBC和Hibernate比较</a>
+<ol>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B">配置流程</a></li>
+</ol>
+</li>
+<li><a href="#hibernate%E5%BF%85%E9%9C%80jar">Hibernate必需JAR</a></li>
+<li><a href="#%E7%BC%96%E5%86%99%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E5%AF%B9%E5%BA%94%E6%A1%86%E6%9E%B6%E6%8C%81%E4%B9%85%E5%B1%82%E7%9A%84%E5%AF%B9%E8%B1%A1">编写数据库表对应框架持久层的对象</a></li>
+<li><a href="#hibernatecfgxml%E6%96%87%E4%BB%B6">hibernate.cfg.xml文件</a></li>
+<li><a href="#sessionfactory%E5%92%8Csession%E6%AF%94%E8%BE%83">SessionFactory和Session比较</a></li>
+<li><a href="#oid%E7%9A%84%E4%BD%9C%E7%94%A8">OID的作用：</a></li>
+<li><a href="#id%E7%94%9F%E6%88%90%E7%AD%96%E7%95%A5">id生成策略</a></li>
+<li><a href="#%E9%9D%9E%E6%99%AE%E9%80%9A%E7%B1%BB%E5%9E%8B">非普通类型</a></li>
+</ol>
+</li>
+<li><a href="#hibernate%E5%AE%9E%E4%BD%93%E5%85%B3%E8%81%94%E9%85%8D%E7%BD%AE">Hibernate实体关联配置</a>
+<ol>
+<li><a href="#%E4%B8%80%E5%AF%B9%E5%A4%9A%E7%9A%84%E9%85%8D%E7%BD%AE">一对多的配置</a>
+<ol>
+<li><a href="#%E6%B3%A8%E6%84%8F">注意</a></li>
+</ol>
+</li>
+<li><a href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A%E7%9A%84%E9%85%8D%E7%BD%AE">多对多的配置</a>
+<ol>
+<li><a href="#%E5%AD%A6%E7%94%9F%E6%96%B9%E9%85%8D%E7%BD%AE">学生方配置</a></li>
+<li><a href="#%E8%AF%BE%E7%A8%8B%E6%96%B9%E9%85%8D%E7%BD%AE">课程方配置</a></li>
+</ol>
+</li>
+<li><a href="#%E4%B8%80%E5%AF%B9%E4%B8%80%E7%9A%84%E9%85%8D%E7%BD%AE">一对一的配置</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%A4%9A%E5%AF%B9%E4%B8%80%E7%9A%84%E6%8A%80%E5%B7%A7">使用多对一的技巧</a>
+<ol>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E8%AE%B0%E5%BD%95">添加记录</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E8%AE%B0%E5%BD%95">删除记录</a></li>
+</ol>
+</li>
+<li><a href="#%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E7%9A%84%E9%85%8D%E7%BD%AE">继承关系的配置</a></li>
+</ol>
+</li>
+<li><a href="#hibernate%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%8A%B6%E6%80%81">Hibernate对象的状态</a>
+<ol>
+<li><a href="#session%E7%9A%84%E6%96%B9%E6%B3%95">Session的方法</a></li>
+<li><a href="#%E7%89%B9%E5%88%AB%E6%B3%A8%E6%84%8F">特别注意</a></li>
+</ol>
+</li>
+<li><a href="#%E5%B8%B8%E8%A7%81hibernate%E5%BC%82%E5%B8%B8">常见Hibernate异常</a>
+<ol>
+<li><a href="#could-not-find-a-getter">could not find a getter</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-05-17 16:13</em>|</p>
+<hr>
+<h1 id="hibernate">Hibernate</h1>
+<h1 id="hibernate基础配置">Hibernate基础配置</h1>
+<h2 id="jdbc和hibernate比较">JDBC和Hibernate比较</h2>
+<ul>
+<li>JDBC
+<ul>
+<li>使用其简洁精悍，最快，但是使用时反序列化数据麻烦，手动管理容易出内存泄漏</li>
+</ul>
+</li>
+<li>Hibernate
+<ul>
+<li>单表操作是很便捷的，但是涉及到多表复杂操作时比较复杂，不便调优</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置流程">配置流程</h3>
+<blockquote>
+<p>如果后续需要添加表的话，就这个顺序</p>
+</blockquote>
+<ol>
+<li>先有数据库和表，建立cfg.xml文件配置好数据库的基本参数</li>
+<li>使用工具建立POJO持久类</li>
+<li>导入Hibernate所必需JAR包，最好使用Myeclipse的配置，自己导包总有一堆错误</li>
+<li>使用MyEclipse自动创建hbm.xml文件，还有各种文件。配置好hbm文件里关于表间关系的映射，或者在Myeclipse配置时手动选择</li>
+<li>配置好DAO类中事务开启和关闭，以及各种所必需的配置，若表没有设立主键，那么POJO类需要继承自动生成的抽象类（含有主键）</li>
+<li>调用DAO或者自己的Utils类，通过Hibernate来操作数据库</li>
+</ol>
+<h2 id="hibernate必需jar">Hibernate必需JAR</h2>
+<blockquote>
+<p>Hibernate 3.6</p>
+</blockquote>
+<ul>
+<li>required目录下所有JAR都要导入</li>
+<li>jpa的JAR包（做注解用）</li>
+<li>日志包：
+<ul>
+<li>slf4j-api-* .jar  该包是一个日志接口，需要一个JAR包的实现：</li>
+<li>slf4j-log4j12.jar 该包是转换的JAR包</li>
+<li>log4j-1.2.11.jar  实现SLF4J接口的JAR包</li>
+</ul>
+</li>
+<li>数据库驱动包  mysql-connector-java-5.1.7-bin.jar</li>
+<li>在src同级目录下新建一个lib目录，把JAR包复制进去，然后右击将jar文件  Add to build path 加入到类搜索路径里</li>
+</ul>
+<h2 id="编写数据库表对应框架持久层的对象">编写数据库表对应框架持久层的对象</h2>
+<ul>
+<li>使用自己的工具类创建到对应的包下，或者用相关工具生成，类型要自己多加注意</li>
+</ul>
+<h2 id="hibernatecfgxml文件">hibernate.cfg.xml文件</h2>
+<blockquote>
+<p>作为默认的主配置文件</p>
+</blockquote>
+<ul>
+<li>数据库连接属性 驱动，url，用户名，密码</li>
+<li>数据库方言</li>
+<li>辅助配置</li>
+<li>POJO类配置文件的映射</li>
+<li>etc/hibernate.properties里可以看到更多配置，数据库连接池，SQL优化等</li>
+</ul>
+<h2 id="sessionfactory和session比较">SessionFactory和Session比较</h2>
+<ul>
+<li>SessionFactory</li>
+</ul>
+<blockquote>
+<p>重量级容器：消耗大量资源，不能有太多实例,二级缓存
+通常将该工厂类是单例模式，一个工厂类实例表示一个数据库<br>
+所以Hibernate一般是不能跨数据库来做事务操作。但是EJB和JPA可以实现 如下配置选项：</p>
+<ul>
+<li>hibernate.hbm2ddl.auto create-drop 在一个数据库中创建，然后使用完关闭实例时就删除所有建立的表</li>
+<li>hibernate.hbm2ddl.auto create 清除数据库的表及数据，重新创建表</li>
+<li>hibernate.hbm2ddl.auto update 更改配置文件，能够在数据库进行操作（更新，建立）</li>
+<li>hibernate.hbm2ddl.auto validate</li>
+</ul>
+</blockquote>
+<ul>
+<li>session</li>
+</ul>
+<blockquote>
+<p>轻量级的容器，一级缓存 是非线程安全的对象</p>
+</blockquote>
+<h2 id="oid的作用">OID的作用：</h2>
+<blockquote>
+<p>在Hibernate中唯一标识对象的属性，每个实体都是必须要有OID的</p>
+</blockquote>
+<h2 id="id生成策略">id生成策略</h2>
+<ul>
+<li>assigned：要求用户去手动指定对象的OID；该对象ID的类型可以是任意的</li>
+<li>identity：MySQL的自动生成</li>
+<li>native：数据类型是数值型，id的生成策略为数据库底层自增长（数据库自己去决定使用哪种方式，MySQL用identity，Oracle用序列等）</li>
+<li>sequence：Oracle数据库推荐，数值型（Long）</li>
+<li>seqhilo oracle :推荐使用的策略，使用序列来搭配高低机制</li>
+<li>uuid.hex :32位字符</li>
+<li>uuid:</li>
+<li>hilo：类型为数值型（long） [实际开发中推荐使用]</li>
+</ul>
+<blockquote>
+<p>id = hi+lo (高位和低位进行组合)
+sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+lo;</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;generator</span> <span class="na">class=</span><span class="s">&#34;hilo&#34;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&#34;table&#34;</span><span class="nt">&gt;</span>stu_hilo<span class="nt">&lt;/param&gt;</span>
+    <span class="c">&lt;!-- 放高值的表名 最好是一个对象对应于一个高低值的表避免了并发--&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&#34;cloumn&#34;</span><span class="nt">&gt;</span>next_hi<span class="nt">&lt;/param&gt;</span>
+    <span class="c">&lt;!-- 高的值放在表的哪个字段 --&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&#34;max_lo&#34;</span><span class="nt">&gt;</span>100<span class="nt">&lt;/ param&gt;</span>
+    <span class="c">&lt;!-- 每个轮回值的上限是多少 虚拟机启动频繁就设小一些，避免编码的浪费--&gt;</span>
+    <span class="nt">&lt;/generator&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="非普通类型">非普通类型</h2>
+<ul>
+<li>Set集合：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;Nos&#34;</span> <span class="na">table=</span><span class="s">&#34;表&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;外码&#34;</span><span class="nt">&gt;&lt;/key&gt;</span><span class="c">&lt;!-- 外码 是必须的 --&gt;</span>
+        <span class="nt">&lt;element</span> <span class="na">column=</span><span class="s">&#34;号码&#34;</span> <span class="na">type=</span><span class="s">&#34;string&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/set&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>List集合:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;list&gt;</span>
+        <span class="nt">&lt;key&gt;&lt;/key&gt;</span>
+        <span class="nt">&lt;index&gt;&lt;/index&gt;</span>
+        <span class="nt">&lt;element&gt;&lt;/element&gt;</span>
+    <span class="nt">&lt;/list&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查询列 属性：
+<code>&lt;property name=&quot;&quot; formula=&quot;(select sum() from 选修表 as u where u.id=id)&quot;&gt;&lt;/property&gt;</code></li>
+</ul>
+<h1 id="hibernate实体关联配置">Hibernate实体关联配置</h1>
+<h2 id="一对多的配置">一对多的配置</h2>
+<ul>
+<li>注意：一定要两个都有oid的情况才能配置一对多的映射,不能是依赖于另一个主键类</li>
+<li>一方：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;&#34;</span> <span class="err">[</span><span class="na">cascade=</span><span class="s">&#34;&#34;</span><span class="err">]</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;这是外键&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
+        <span class="nt">&lt;one-to-many</span> <span class="na">class=</span><span class="s">&#34;多方的类&#34;</span><span class="nt">&gt;&lt;/one-to-many&gt;</span>
+    <span class="nt">&lt;/set&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>多方：
+<code>&lt;many-to-one name=&quot;&quot; class=&quot;一方的类&quot; column=&quot;外键，key要一致&quot; /&gt;</code></li>
+<li>双向的关联，会有update的SQL语句的执行来维护关系，影响效率</li>
+<li>多方维护：一方中set标签加inverse=&ldquo;true&quot;一方就不会维护，代码一定要多方执行set**(*)</li>
+<li>一方维护：一方代码一定要执行**.add*()</li>
+</ul>
+<h3 id="注意">注意</h3>
+<ul>
+<li>1.在一的一方，修改xml文件，添加一个set 属性，表示 多方 的一个集合</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;类中属性名（集合）&#34;</span> <span class="na">inverse=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;key&gt;&lt; column</span> <span class="na">name=</span><span class="s">&#34;数据库列名&#34;</span><span class="nt">/&gt;&lt;/key&gt;</span>
+        <span class="nt">&lt;one-to-many</span> <span class="na">class=</span><span class="s">&#34;多方类路径&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/set&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>2.在一的一方，修改POJO持久类文件，添加一个hashset，用来存储多方，添加setget方法，名字就是配置文件里添加的那个名字 注意修改构造器</p>
+</li>
+<li>
+<p>3.在多的一方，修改xml文件，置换掉那个外键，换成many-to-one标签，里面写上外键的列
+<code>&lt;many-to-one name=&quot;类中属性名（对象）&quot; class=&quot;一方的类路径&quot; column=&quot;数据库中列名&quot;&gt;&lt;/many-to-one&gt;</code></p>
+</li>
+<li>
+<p>4.在多的一方，修改POJO持久类文件，添加一个一方的对象添加setget方法，名字就是配置文件里添加的那个名字  注意修改构造器</p>
+<ul>
+<li>一方的set集合中有inverse属性，多方是没有的，Hibernate中inverse是和外键对应的，一方配置了inverse是false，一方就不会维护关系（外键），一般是给多方维护，因为效率高</li>
+<li>cascade是对象和对象之间的操作，和外键没有关系</li>
+<li>处于持久化状态的对象在Session中，客户端不需要做Session的save/update 操作，Hibernate会自动的去检查处于持久化的对象的状态的属性是否发生改变，改变了就发送update语句。
+<ul>
+<li>如果该对象是一方，在一的一方映射文件中有cascade=all时，Hibernate内部还会检查该持久化对象关联的集合，对此集合进行update操作，但是该操作和外键没有关系，只有当通过多方建立关系后，才能使外键有值。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="多对多的配置">多对多的配置</h2>
+<ul>
+<li>关系在第三方表中，和两张表本身没有关系</li>
+<li>多对多维护关系，谁都能维护关系（效率是一样的）维护一般是在页面上进行的</li>
+<li>table 是多对多的中间表（存放了一个关系）</li>
+<li>key中的column一般是填当前配置文件中的id</li>
+<li>多对多的配置是需要两个外键的</li>
+<li>如果使用了反转并使用了级联，就只会保存实体，但是关系是没有维护的（就是不会插入到第三方表），和一对多一样的（一对多是外键列没有值）。</li>
+<li>！！如果双方都级联了，必须要有一方inverse，不然会有重复维护的错误发生</li>
+</ul>
+<h3 id="学生方配置">学生方配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;students&#34;</span> <span class="na">table=</span><span class="s">&#34;student_course&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;cid&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
+        <span class="nt">&lt;many-to-many</span> <span class="na">class=</span><span class="s">&#34;Student&#34;</span> <span class="na">column=</span><span class="s">&#34;stu_id&#34;</span><span class="nt">&gt;&lt;/many-to-many&gt;</span>
+    <span class="nt">&lt;/set&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="课程方配置">课程方配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;courses&#34;</span> <span class="na">table=</span><span class="s">&#34;student_course&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;stu_id&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
+        <span class="nt">&lt;many-to-many</span> <span class="na">class=</span><span class="s">&#34;Course&#34;</span> <span class="na">column=</span><span class="s">&#34;cid&#34;</span><span class="nt">&gt;&lt;/many-to-many&gt;</span>
+    <span class="nt">&lt;/set&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="一对一的配置">一对一的配置</h2>
+<ul>
+<li>单向
+只要配置单向的配置文件添加：
+<code>&lt;many-to-one name=&quot;&quot;class=&quot;映射的类&quot; column=&quot;数据库字段&quot; unique=&quot;true&quot;&gt;&lt;/many-to-one&gt;</code></li>
+<li>双向
+<ul>
+<li>一方 甲：
+<code>&lt;many-to-one name=&quot;&quot; class=&quot;乙方类&quot;column=&quot;数据库字段&quot; unique=&quot;true&quot;&gt;&lt;/many-to-one&gt;</code></li>
+<li>一方 乙：
+<code>&lt;one-to-one name=&quot;&quot; class=&quot;甲方类&quot; property-ref=&quot;甲方配置的标签的name&quot;&gt;&lt;/one-to-one&gt;</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="使用多对一的技巧">使用多对一的技巧</h2>
+<h3 id="添加记录">添加记录</h3>
+<ol>
+<li>当需要添加一个多方时，一看成课程，多看成成绩。当然的首先得有相关课程，再添加成绩记录。</li>
+<li>那就先实例化一个课程对象，配置好信息</li>
+<li>实例化多个成绩实例，再 课程对象.get**Set().add(成绩对象); 将成绩对象添加到集合中，</li>
+<li>session.save(课程对象)；</li>
+</ol>
+<blockquote>
+<p>注意：既然实现了这样的操作，那就说明了在实例化成绩的时候，不需要指定课程的值，那就需要添加一个构造器</p>
+</blockquote>
+<h3 id="删除记录">删除记录</h3>
+<ol>
+<li>如果删除一方，那就会将一删除，如果没有配置级联，就会将多方的外键置空，不会删除多方表</li>
+<li>如何通过一方修改多方的一条, 把一方的set中的要修改的一条，（查找之前需要对象 = session.load(对象.class,主键名)将多方的数据加载进来）
+<ul>
+<li>注意多方不能有空列必须指定一个默认值（是和构造器有关么？）</li>
+<li>再查找出来，修改再update，新增也是如此增加多的一方的时候，就是在一方的set中新增一条记录，多方的操作都体现在了一方那里</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="继承关系的配置">继承关系的配置</h2>
+<blockquote>
+<p>两种方式，一般采用前者</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="c">&lt;!-- 将子类插入到父类的配置文件 需要使用key来关联的--&gt;</span>
+        <span class="nt">&lt;joined-subclass</span> <span class="na">name=</span><span class="s">&#34;cn.hibernate.extend.Student&#34;</span> <span class="na">table=</span><span class="s">&#34;extend_student&#34;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;id&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sru_id&#34;</span> <span class="na">type=</span><span class="s">&#34;long&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;/joined-subclass&gt;</span>
+    <span class="c">&lt;!--
+</span><span class="c">        union是相当于将父类的所有属性复制到子类里，是共享父类的OID，
+</span><span class="c">        所以父类的OID是不能和子类的OID重复的
+</span><span class="c">        不然 查询的时候就会报错,
+</span><span class="c">        所以就需要改父类的主键生成策略是高低值（或者是手动set），可以手动配置高低值的表的生成
+</span><span class="c">    --&gt;</span>
+        <span class="nt">&lt;union-subclass</span> <span class="na">name=</span><span class="s">&#34;cn.hibernate.extend.Student&#34;</span> <span class="na">table=</span><span class="s">&#34;union_student&#34;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sru_id&#34;</span> <span class="na">type=</span><span class="s">&#34;long&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;/union-subclass&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="hibernate对象的状态">Hibernate对象的状态</h1>
+<blockquote>
+<p>主要是对象内存和Session中的状态区别，而不是Session和数据库</p>
+</blockquote>
+<ul>
+<li><code>临时态</code>：刚实例化对象。对象在数据库中不存在，Session中也不存在</li>
+<li><code>游离态</code>：刚实例化的对象，但是该对象手动指定了OID并且OID在数据库中已经存在，并且是没有绑定Session的（特殊的临时态）
+<ul>
+<li>保存两个有关联关系的对象，update时，如果配置文件中配置了级联，就会一起保存，一般建议在一方级联</li>
+</ul>
+</li>
+<li><code>持久态</code>：该对象在数据库中存在，该对象绑定在Session（一级缓存）中</li>
+<li><code>删除态</code>：session.delete(对象)，删除后对象从数据库和Session中都移除了，但是OID还在内存中。
+<ul>
+<li>游离态delete后就成了删除态</li>
+<li>持久态delete后就成了删除态</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cnblogs.com/zhangzhangkai/p/3434491.html">参考: merge attachDirty attachClean用法</a></p>
+</blockquote>
+<ul>
+<li><input disabled="" type="checkbox"> 分析: JDK源码 DefaultMergeEventListener中的onMerge方法</li>
+</ul>
+<h2 id="session的方法">Session的方法</h2>
+<ul>
+<li>save</li>
+<li>update</li>
+<li>delete</li>
+<li>saveOrUpdate 由入参的OID来自动选择是要save还是update</li>
+<li>merge 形参：临时态的对象。形参和Session没有任何关系，返回对象Object2（持久化对象），所以在Session关闭的时候Object2的更改会同步到数据库中</li>
+<li>get 将数据库中指定对象获取为持久态，查不到就是返回null</li>
+<li>load 懒加载。使用代理对象，延迟加载。用到了别的属性就去查数据库。查不到就抛异常</li>
+<li>flush 刷新Session</li>
+<li>evict 定点清除 将指定的对象从Session中移除，变成游离态</li>
+<li>clear 全部清除</li>
+<li>close</li>
+</ul>
+<h2 id="特别注意">特别注意</h2>
+<ul>
+<li>
+<p>一个对象（内存）不能存在于多个Session中，一个存，一个改的情况是会错误的</p>
+</li>
+<li>
+<p>但是数据库中同一条记录可以实例化为多个对象（内存），那么这些对象（内存）放在不同的Session中是可以的</p>
+</li>
+<li>
+<p>get：</p>
+<ul>
+<li>只延迟加载有外键关联的那部分属性，没有使用就不会查询，只有用到了才会查询</li>
+<li>多方：立即加载就要在配置文件中将对应的属性中添加 fetch=&ldquo;join&rdquo;</li>
+<li>一方：配置文件中set标签 加上lazy=&ldquo;false&rdquo;（两条SQL），再添加 fetch=&ldquo;join&quot;后就只有一条SQL语句，但是这个一方是不能做分页查询的</li>
+</ul>
+</li>
+<li>
+<p>load：</p>
+<ul>
+<li>在你确定OID是一定有的时候使用load提高效率，但是实际开发过程中用的少，因为实际上没有这么确定。</li>
+</ul>
+</li>
+<li>
+<p>懒加载如果Session关闭了或者是对象游离态。就会有懒加载初始化的异常</p>
+</li>
+</ul>
+<hr>
+<h1 id="常见hibernate异常">常见Hibernate异常</h1>
+<h2 id="could-not-find-a-getter">could not find a getter</h2>
+<blockquote>
+<p>原因：</p>
+</blockquote>
+<ol>
+<li>可能真的没写get方法，或者get方法不合规范 setget方法中不允许两个连续大写字母</li>
+<li>*.hmb.xml文件中的属性名和pojo持久类中属性名不一致（一定不能在表名中添加下划线）</li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/orm/">ORM</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/test/hamcrest/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Hamcrest</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/frontend/html5/">
+            <span class="next-text nav-default">HTML5</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

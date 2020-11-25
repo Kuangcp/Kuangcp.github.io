@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Jvm 性能调优 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Java的性能调优 JVM参数调优 IDEA参数调优 内存优化 堆外内存 Metaspace 主要指标分析 JDK自带工具 java 环境变量的使用 jps jstat jinfo jmap jhat jstack jcmd 开源项目 Arthas async-profiler" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/jvmperformance/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Jvm 性能调优" />
+<meta property="og:description" content="目录 start Java的性能调优 JVM参数调优 IDEA参数调优 内存优化 堆外内存 Metaspace 主要指标分析 JDK自带工具 java 环境变量的使用 jps jstat jinfo jmap jhat jstack jcmd 开源项目 Arthas async-profiler" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/jvmperformance/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="Jvm 性能调优">
+<meta itemprop="description" content="目录 start Java的性能调优 JVM参数调优 IDEA参数调优 内存优化 堆外内存 Metaspace 主要指标分析 JDK自带工具 java 环境变量的使用 jps jstat jinfo jmap jhat jstack jcmd 开源项目 Arthas async-profiler">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="1466">
+
+
+
+<meta itemprop="keywords" content="JVM," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Jvm 性能调优"/>
+<meta name="twitter:description" content="目录 start Java的性能调优 JVM参数调优 IDEA参数调优 内存优化 堆外内存 Metaspace 主要指标分析 JDK自带工具 java 环境变量的使用 jps jstat jinfo jmap jhat jstack jcmd 开源项目 Arthas async-profiler"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Jvm 性能调优</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 1466 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#jvm参数调优">JVM参数调优</a>
+      <ul>
+        <li><a href="#idea参数调优">IDEA参数调优</a></li>
+      </ul>
+    </li>
+    <li><a href="#内存优化">内存优化</a>
+      <ul>
+        <li><a href="#堆外内存">堆外内存</a></li>
+        <li><a href="#metaspace">Metaspace</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#jdk自带工具">JDK自带工具</a>
+      <ul>
+        <li><a href="#java">java</a></li>
+        <li><a href="#jps">jps</a></li>
+        <li><a href="#jstat">jstat</a></li>
+        <li><a href="#jinfo">jinfo</a></li>
+        <li><a href="#jmap">jmap</a></li>
+        <li><a href="#jhat">jhat</a></li>
+        <li><a href="#jstack">jstack</a></li>
+        <li><a href="#jcmd">jcmd</a></li>
+      </ul>
+    </li>
+    <li><a href="#开源项目">开源项目</a>
+      <ul>
+        <li><a href="#arthas">Arthas</a></li>
+        <li><a href="#async-profiler">async-profiler</a></li>
+      </ul>
+    </li>
+    <li><a href="#图形化">图形化</a>
+      <ul>
+        <li><a href="#jprofiler">JProfiler</a></li>
+        <li><a href="#gcviewer">GCViewer</a></li>
+        <li><a href="#jvisualvm">jvisualvm</a></li>
+        <li><a href="#mat">MAT</a></li>
+        <li><a href="#ibm-heap-analyzer">IBM Heap Analyzer</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#java%E7%9A%84%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98">Java的性能调优</a>
+<ol>
+<li><a href="#jvm%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98">JVM参数调优</a>
+<ol>
+<li><a href="#idea%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98">IDEA参数调优</a></li>
+</ol>
+</li>
+<li><a href="#%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96">内存优化</a>
+<ol>
+<li><a href="#%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98">堆外内存</a></li>
+<li><a href="#metaspace">Metaspace</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E4%B8%BB%E8%A6%81%E6%8C%87%E6%A0%87%E5%88%86%E6%9E%90">主要指标分析</a>
+<ol>
+<li><a href="#jdk%E8%87%AA%E5%B8%A6%E5%B7%A5%E5%85%B7">JDK自带工具</a>
+<ol>
+<li><a href="#java">java</a>
+<ol>
+<li><a href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8">环境变量的使用</a></li>
+</ol>
+</li>
+<li><a href="#jps">jps</a></li>
+<li><a href="#jstat">jstat</a></li>
+<li><a href="#jinfo">jinfo</a></li>
+<li><a href="#jmap">jmap</a></li>
+<li><a href="#jhat">jhat</a></li>
+<li><a href="#jstack">jstack</a></li>
+<li><a href="#jcmd">jcmd</a></li>
+</ol>
+</li>
+<li><a href="#%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE">开源项目</a>
+<ol>
+<li><a href="#arthas">Arthas</a></li>
+<li><a href="#async-profiler">async-profiler</a></li>
+</ol>
+</li>
+<li><a href="#%E5%9B%BE%E5%BD%A2%E5%8C%96">图形化</a>
+<ol>
+<li><a href="#jprofiler">JProfiler</a></li>
+<li><a href="#gcviewer">GCViewer</a></li>
+<li><a href="#jvisualvm">jvisualvm</a></li>
+<li><a href="#mat">MAT</a></li>
+<li><a href="#ibm-heap-analyzer">IBM Heap Analyzer</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-11-25 16:19</em>|</p>
+<hr>
+<h1 id="java的性能调优">Java的性能调优</h1>
+<h2 id="jvm参数调优">JVM参数调优</h2>
+<blockquote>
+<p><a href="http://ifeve.com/useful-jvm-flags-part-1-jvm-types-and-compiler-modes-2/">参考: JVM实用参数（一）JVM类型以及编译器模式</a></p>
+</blockquote>
+<ul>
+<li><a href="http://xxfox.perfma.com/">xxfox</a><code>Jvm参数辅助工具</code></li>
+</ul>
+<blockquote>
+<p><a href="https://blog.mythsman.com/post/5d2c12cc67f841464434a3ec/">参考: JVM动态反优化</a><br>
+<a href="https://docs.oracle.com/en/java/javase/11/troubleshoot/general-java-troubleshooting.html">General Java Troubleshooting </a></p>
+</blockquote>
+<h3 id="idea参数调优">IDEA参数调优</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    -server
+    -Xms600m  # 最小堆
+    -Xmx600m  # 最大堆 配成一样是为了避免扩容
+    -Xmn256m  # 新生代
+    -XX:MetaspaceSize=350m # 只是一个阈值, 达到该阈值才进行 GC
+    -XX:MaxMetaspaceSize=350m # 最大值
+
+    -Xnoclassgc 
+    -Xverify:none # 不进行字节码校验
+    -XX:+AggressiveOpts # 激进式优化
+
+    -XX:ReservedCodeCacheSize=320m # 编译时代码缓存 IDEA 警告不能低于240M
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><a href="https://www.opsian.com/blog/aggressive-opts/">参考: Java’s -XX:+AggressiveOpts: Can it slow you down?</a><br>
+<a href="https://mp.weixin.qq.com/s/jqfppqqd98DfAJHZhFbmxA?">参考: JVM参数MetaspaceSize的误解 </a></p>
+</blockquote>
+<hr>
+<h2 id="内存优化">内存优化</h2>
+<ul>
+<li>
+<p><a href="http://blog.csdn.net/zheng0518/article/details/48182437">Blog:java优化占用内存的方法(一)</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/column/details/14851.html">GC 性能优化 专栏</a></p>
+</li>
+<li>
+<p><a href="http://www.importnew.com/22336.html">Java调优经验谈</a></p>
+</li>
+<li>
+<p><a href="http://itindex.net/detail/54188-java-gc-%E4%B8%9C%E8%A5%BF">你能不能谈谈，java GC是在什么时候，对什么东西，做了什么事情？” </a></p>
+</li>
+</ul>
+<h3 id="堆外内存">堆外内存</h3>
+<p>堆外内存堆外内存主要是JNI、Deflater/Inflater、DirectByteBuffer（nio中会用到）使用的。</p>
+<ul>
+<li><a href="https://github.com/Kuangcp/JavaBase/blob/master/class/src/test/java/jvm/oom/DirectMemoryOOMTest.java">Github: 测试代码</a></li>
+<li><a href="https://stackoverflow.com/questions/2689914/how-to-see-the-memory-usage-of-nio-buffers">how to see memory useage of nio buffers</a></li>
+</ul>
+<blockquote>
+<p><a href="https://cloud.tencent.com/developer/article/1129904">参考: 聊聊JVM 堆外内存泄露的BUG是如何查找的</a></p>
+</blockquote>
+<h3 id="metaspace">Metaspace</h3>
+<blockquote>
+<p><a href="https://www.cnblogs.com/duanxz/p/3520829.html">参考: Metaspace 之一：Metaspace整体介绍</a></p>
+</blockquote>
+<hr>
+<h1 id="主要指标分析">主要指标分析</h1>
+<h2 id="jdk自带工具">JDK自带工具</h2>
+<blockquote>
+<p>都是jdk的bin目录下的工具</p>
+</blockquote>
+<h3 id="java">java</h3>
+<h4 id="环境变量的使用">环境变量的使用</h4>
+<blockquote>
+<p>java [-options] -jar jarfile [args&hellip;]</p>
+</blockquote>
+<blockquote>
+<p><a href="https://coderanch.com/t/178539/certification/java-command-line-option-good">What is the java -D command-line option good for? </a></p>
+</blockquote>
+<ul>
+<li>传入 <code>java -Dkey=true -jar xxx.jar</code>
+<ul>
+<li><em>-D 参数</em> 要前于 -jar</li>
+</ul>
+</li>
+<li>获取 <code>System.getProperty(&quot;key&quot;, &quot;defaultvalue&quot;);</code></li>
+</ul>
+<blockquote>
+<p>执行含main方法的类</p>
+</blockquote>
+<ul>
+<li><code>java -cp jarfile[:jarfile2] className</code></li>
+</ul>
+<h3 id="jps">jps</h3>
+<blockquote>
+<p>主要用来输出JVM中运行的进程状态信息</p>
+</blockquote>
+<ul>
+<li>option:
+<ul>
+<li>-q 忽略输出的类名、Jar名以及传递给main方法的参数，只输出pid。</li>
+<li>-m 输出传递给main方法的参数，如果是内嵌的JVM则输出为null。</li>
+<li>-l 输出应用程序主类的完整包名，或者是应用程序JAR文件的完整路径。</li>
+<li>-v 输出传给JVM的参数。</li>
+<li>-V 输出通过标记的文件传递给JVM的参数（.hotspotrc文件，或者是通过参数-XX:Flags=指定的文件）</li>
+</ul>
+</li>
+</ul>
+<h3 id="jstat">jstat</h3>
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/jstat.html">Oracle Doc</a></p>
+</blockquote>
+<ul>
+<li>
+<p>option:</p>
+<ul>
+<li>-gcutil 统计heap的gc情况</li>
+<li>-t 在第一列输出时间戳。该时间戳从jvm启动开始</li>
+<li>-h3 每隔N行输出一次列表头</li>
+<li>$PID 进程号</li>
+<li>interval 输出间隔时间，单位毫秒</li>
+<li>count 输出次数</li>
+</ul>
+</li>
+<li>
+<p>Demo:</p>
+<ul>
+<li><code>jstat -gcutil -t -h5 7919 1000 50</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="jinfo">jinfo</h3>
+<blockquote>
+<p>观察运行中的 java 进程的运行环境参数：参数包括 Java System 属性和 JVM 命令行参数</p>
+</blockquote>
+<ul>
+<li>Demo:
+<ul>
+<li>jinfo 14352</li>
+<li>jinfo -sysprops 14352</li>
+<li>jinfo -flags 14352</li>
+<li>jinfo -flag MaxPermSize 14352</li>
+</ul>
+</li>
+</ul>
+<h3 id="jmap">jmap</h3>
+<blockquote>
+<p>用来查看堆内存使用状况</p>
+</blockquote>
+<ul>
+<li>Demo:
+<ul>
+<li>jmap -histo $PID 展示class的内存情况</li>
+<li>jmap -heap $PID 展示Java堆详细信息</li>
+<li>jmap -dump:live,format=b,file=heapLive.hprof 2576</li>
+</ul>
+</li>
+</ul>
+<h3 id="jhat">jhat</h3>
+<blockquote>
+<p>Java Head Analyse Tool</p>
+</blockquote>
+<p>用于分析 jmap 转储出来的堆文件, 分析完后启动一个WebServer 通过浏览器查看</p>
+<h3 id="jstack">jstack</h3>
+<blockquote>
+<p>jstack [option] pid  主要用来查看某个Java进程内的线程堆栈信息</p>
+</blockquote>
+<ul>
+<li>
+<p>Option:</p>
+<ul>
+<li>-F: 强制产生一个线程dump</li>
+<li>-m: 打印java和native frames</li>
+<li>-l: 打印关于锁的附加信息</li>
+</ul>
+</li>
+<li>
+<p>找出占用CPU最高的线程:</p>
+<ol>
+<li><code>jps 或者 ps aux | grep xxx</code> 得到想要的Java进程id</li>
+<li><code>top -Hp 进程id</code> 查看 time 占用最长 或者 CPU占用最高 的线程</li>
+<li><code>printf %x 线程id</code> 得到 16进制 线程id</li>
+<li><code>jstack 进程id | grep -A 20 16进制线程id</code> 查看该线程的栈,进而分析到代码</li>
+</ol>
+</li>
+</ul>
+<h3 id="jcmd">jcmd</h3>
+<hr>
+<h2 id="开源项目">开源项目</h2>
+<h3 id="arthas">Arthas</h3>
+<blockquote>
+<p><a href="https://github.com/alibaba/arthas">Github: Arthas</a><code>阿里巴巴</code></p>
+</blockquote>
+<h3 id="async-profiler">async-profiler</h3>
+<blockquote>
+<p><a href="https://github.com/jvm-profiling-tools/async-profiler">async-profiler</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p><a href="https://github.com/vipshop/vjtools">vjtools</a><code>唯品会</code></p>
+</blockquote>
+<hr>
+<h2 id="图形化">图形化</h2>
+<h3 id="jprofiler">JProfiler</h3>
+<blockquote>
+<p><a href="https://www.ej-technologies.com/products/jprofiler/overview.html">Official Site</a></p>
+</blockquote>
+<h3 id="gcviewer">GCViewer</h3>
+<blockquote>
+<p><a href="https://github.com/chewiebug/GCViewer">Github: GCViewer</a></p>
+</blockquote>
+<h3 id="jvisualvm">jvisualvm</h3>
+<blockquote>
+<p><a href="https://github.com/oracle/visualvm">Github:visualvm</a><br>
+<a href="https://www.oracle.com/technetwork/java/visualgc-136680.html">visualgc plugin</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/lc0817/article/details/67014499">参考: java内存泄漏的定位与分析</a>
+<a href="https://www.ibm.com/developerworks/cn/java/j-lo-visualvm/index.html">使用 VisualVM 进行性能分析及调优</a><br>
+<a href="http://www.cnblogs.com/belen/p/5573501.html">参考: JVisualVM简介与内存泄漏实战分析</a></p>
+</blockquote>
+<ul>
+<li><code>Local</code></li>
+<li><code>Remote</code>
+<ul>
+<li>
+<p>通常使用两种方式连接远程JVM: JMX jstatd</p>
+</li>
+<li>
+<p><strong><code>jmx</code></strong></p>
+<ul>
+<li><a href="/Java/AdvancedLearning/JMX.md">JMX</a></li>
+</ul>
+</li>
+<li>
+<p><strong><code>jstatd</code></strong></p>
+<ol>
+<li>vim jstatd.all.policy
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    grant codebase &#34;file:${java.home}/../lib/tools.jar&#34; {
+        permission java.security.AllPermission;
+
+    };
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>jstatd -J-Djava.security.policy=jstatd.all.policy  -p 12028 -J-Djava.rmi.server.logCalls=true</li>
+<li>open jvisualvm create a remote with jstatd by above port 12028</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="mat">MAT</h3>
+<blockquote>
+<p>Memory Analyzer tool(MAT) | <a href="http://www.eclipse.org/mat/">Official Site</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/lipeineng/p/5824799.html">参考: JAVA Shallow heap &amp; Retained heap</a><br>
+<a href="https://www.cnblogs.com/javaadu/p/11161380.html">参考:  利用MAT分析JVM内存问题，从入门到精通</a><br>
+<a href="https://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.mat.ui.help%2Freference%2Foqlsyntax.html"> Official Doc: OQL Syntax</a></p>
+</blockquote>
+<p>他的 OQL 比较方便, 像写 SQL 一样去查询对象</p>
+<p>注意: 有这样的一种场景, 从数据库获取大量的数据创建为对象, 导致瞬间的OOM 这时候即使使用 jmap 去 dump 了快照, 也看不到占用大量内存的对象, 很有可能这些对象就是gc不可达的, 而mat只能分析可达对象</p>
+<h3 id="ibm-heap-analyzer">IBM Heap Analyzer</h3>
+<blockquote>
+<p><a href="https://www.ibm.com/developerworks/community/alphaworks/tech/heapanalyzer">Official Site</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/jvm/">JVM</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/test/junit/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Junit</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/multiplelanguageinjvm/">
+            <span class="next-text nav-default">JVM上的多语言</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux流编辑器 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 流编辑器 tr colrm cut paste sed awk 目录 end|2020-11-05 16:05| 流编辑器 参考: 比较linux下各种流编辑器的用法 tr 转换字符 替换：可以使用字符集的形式如tr [a-z] [A-Z] 或者 tr a-z A-Z 压" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxstreameditor/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Linux流编辑器" />
+<meta property="og:description" content="目录 start 流编辑器 tr colrm cut paste sed awk 目录 end|2020-11-05 16:05| 流编辑器 参考: 比较linux下各种流编辑器的用法 tr 转换字符 替换：可以使用字符集的形式如tr [a-z] [A-Z] 或者 tr a-z A-Z 压" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxstreameditor/" />
+<meta property="article:published_time" content="2018-12-15T11:17:35+00:00" />
+<meta property="article:modified_time" content="2018-12-15T11:17:35+00:00" />
+<meta itemprop="name" content="Linux流编辑器">
+<meta itemprop="description" content="目录 start 流编辑器 tr colrm cut paste sed awk 目录 end|2020-11-05 16:05| 流编辑器 参考: 比较linux下各种流编辑器的用法 tr 转换字符 替换：可以使用字符集的形式如tr [a-z] [A-Z] 或者 tr a-z A-Z 压">
+<meta itemprop="datePublished" content="2018-12-15T11:17:35+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T11:17:35+00:00" />
+<meta itemprop="wordCount" content="997">
+
+
+
+<meta itemprop="keywords" content="工具," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux流编辑器"/>
+<meta name="twitter:description" content="目录 start 流编辑器 tr colrm cut paste sed awk 目录 end|2020-11-05 16:05| 流编辑器 参考: 比较linux下各种流编辑器的用法 tr 转换字符 替换：可以使用字符集的形式如tr [a-z] [A-Z] 或者 tr a-z A-Z 压"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux流编辑器</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 997 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tr">tr</a></li>
+    <li><a href="#colrm">colrm</a></li>
+    <li><a href="#cut">cut</a></li>
+    <li><a href="#paste">paste</a></li>
+    <li><a href="#sed">sed</a></li>
+    <li><a href="#awk">awk</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E6%B5%81%E7%BC%96%E8%BE%91%E5%99%A8">流编辑器</a>
+<ol>
+<li><a href="#tr">tr</a></li>
+<li><a href="#colrm">colrm</a></li>
+<li><a href="#cut">cut</a></li>
+<li><a href="#paste">paste</a></li>
+<li><a href="#sed">sed</a></li>
+<li><a href="#awk">awk</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-11-05 16:05</em>|</p>
+<hr>
+<h1 id="流编辑器">流编辑器</h1>
+<blockquote>
+<p><a href="https://blog.csdn.net/havedream_one/article/details/45007449">参考: 比较linux下各种流编辑器的用法</a></p>
+</blockquote>
+<h2 id="tr">tr</h2>
+<blockquote>
+<p>转换字符</p>
+</blockquote>
+<ul>
+<li>替换：可以使用字符集的形式如tr <code>[a-z]</code> <code>[A-Z]</code> 或者 tr a-z A-Z</li>
+<li>压缩：-s 如 <code>echo “you are        a    man   ” | tr -s ' ' ' '</code> 结果 <code>you are a man</code></li>
+<li>删除：-d 如 <code>echo &quot;you     are    a man&quot;|  tr -d ' ' </code> 结果 <code>youareaman</code></li>
+</ul>
+<h2 id="colrm">colrm</h2>
+<h2 id="cut">cut</h2>
+<blockquote>
+<p>man cut</p>
+</blockquote>
+<h2 id="paste">paste</h2>
+<blockquote>
+<p>粘贴，合并文件用</p>
+</blockquote>
+<p>使用制表符来合并多个文件对应的行，也可以使用 -d 指定合并符</p>
+<p>实例： 默认制表符  paste p3.txt p2.txt p1.txt</p>
+<p>指定 paste -d ‘*‘ p3.txt p2.txt p1.txt</p>
+<h2 id="sed">sed</h2>
+<blockquote>
+<p>使用方式: <code>操作类型 命令 文件</code> | sed &ndash;help 查看详细</p>
+</blockquote>
+<ul>
+<li>
+<p><code>操作类型</code></p>
+<ul>
+<li><code>-n</code> suppress automatic printing of pattern space</li>
+<li><code>-e</code> 只在控制台输出的操作的结果内容(全部)，源文件不变</li>
+<li><code>-i</code> 直接在源文件中进行修改</li>
+<li><code>-f file</code> 执行一个 sed 脚本文件中的指令</li>
+</ul>
+</li>
+<li>
+<p><code>命令</code></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">b</td>
+<td style="text-align:left">label 将执行的指令跳至由 : 建立的参考位置</td>
+</tr>
+<tr>
+<td style="text-align:center">d</td>
+<td style="text-align:left">删除行  删除2-4行 <code>sed -i &quot;2,4d&quot; file</code></td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:left">删除 pattern space 内第一个 newline 字母 前的资料</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:left">拷贝资料从 hold space</td>
+</tr>
+<tr>
+<td style="text-align:center">G</td>
+<td style="text-align:left">添加资料从 hold space 至 pattern space</td>
+</tr>
+<tr>
+<td style="text-align:center">h</td>
+<td style="text-align:left">拷贝资料从 pattern space 至 hold space</td>
+</tr>
+<tr>
+<td style="text-align:center">H</td>
+<td style="text-align:left">添加资料从 pattern space 至 hold space</td>
+</tr>
+<tr>
+<td style="text-align:center">l</td>
+<td style="text-align:left">印出 l 资料中的 nonprinting character 用 ASCII 码</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:left">新增 在下一</td>
+</tr>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:left">插入添加使用者输入的行  将hello插入到第4行：<code>sed -in &quot;4i hello&quot; test.md</code></td>
+</tr>
+<tr>
+<td style="text-align:center">n</td>
+<td style="text-align:left">读入下一笔资料</td>
+</tr>
+<tr>
+<td style="text-align:center">N</td>
+<td style="text-align:left">添加下一笔资料到 pattern space</td>
+</tr>
+<tr>
+<td style="text-align:center">p</td>
+<td style="text-align:left">打印 <code>sed -n 1p file</code></td>
+</tr>
+<tr>
+<td style="text-align:center">P</td>
+<td style="text-align:left">印出 pattern space 内第一个 newline 字母 前的资料</td>
+</tr>
+<tr>
+<td style="text-align:center">q</td>
+<td style="text-align:left">跳出 sed 编辑</td>
+</tr>
+<tr>
+<td style="text-align:center">r</td>
+<td style="text-align:left">读入它档内容</td>
+</tr>
+<tr>
+<td style="text-align:center">w</td>
+<td style="text-align:left">写资料到它档内</td>
+</tr>
+<tr>
+<td style="text-align:center">x</td>
+<td style="text-align:left">交换 hold space 与 pattern space 内容</td>
+</tr>
+<tr>
+<td style="text-align:center">y</td>
+<td style="text-align:left">转换（transform）字元</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>c 替换 整行</li>
+<li>s 替换 行内字符串的替换  命令结构: <code>'s/pattern/relacement/flags'</code>
+<ul>
+<li>pattern 是正则的 pattern 写法 <strong>注意会匹配到首尾的空字符</strong> <code>echo abc | sed 's/a*/l/g'</code> 就很费解</li>
+<li>replacement 是需要替换成的内容</li>
+<li>flags 是动作(可以为空)
+<ul>
+<li>整数: 一行中的第几处符合 pattern 将被替换</li>
+<li>g : 全部替换</li>
+<li>p : 输出修改的行内容</li>
+<li>w filename : 替换后的文件写入到新文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li>截取指定行数到新文件 <code>sed -n ‘开始行数，结束行数p’ info.log &gt; newFile.log</code></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol>
+<li>修改配置文件中name的值为123 <code>sed -i &quot;s/name=.*/name=123/g&quot; config.conf</code></li>
+<li>修改第3行 <code>sed -i '3 s/name/1/g'</code></li>
+<li>匹配行的行尾追加 <code>sed 's/end.*/&amp; ;/g' file</code></li>
+<li>匹配行后第三行行尾追加<code>sed '/gradle/{n;n;n; s/.*/&amp; 6.0/;}' file</code></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol>
+<li>CRLF -&gt; LF <code>sed -i 's/\r//g' file</code><br>
+&gt; 配合git: <code>git ls-files| xargs sed -i 's/\r//g'</code></li>
+<li>注意特殊字符的转义 <code>git ls-files | xargs  sed -i 's/@a.*/\//g'</code></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol>
+<li>去除换行符 <code>sed ':label;N;s/\n/ /;b label'</code> <a href="http://www.cnblogs.com/lykm02/p/4479098.html">参考</a></li>
+<li>文件内容倒置 <code>sed '1!G;h;$!d' filename</code></li>
+</ol>
+</blockquote>
+<blockquote>
+<p><a href="http://www.techug.com/post/linux-sed1line.html">参考: linux sed 命令单行任务快速参考</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/aureliojargas/sokoban.sed">sokoban sed</a><code>sed 写的推箱子游戏</code></p>
+</blockquote>
+<ul>
+<li><a href="http://wiki.jikexueyuan.com/project/shell-learning/sed-search-and-replace.html">参考：sed 查找与替换</a></li>
+<li><a href="http://wiki.jikexueyuan.com/project/shell-learning/sed-accurate-control-of-regular.html">sed 正则的精确控制</a>
+<ul>
+<li><code>echo Tolstoy is worldly | sed 's/T.*y/Camus/'</code> 这里的pattern就有问题， 会把整行替换掉</li>
+<li><code>echo Tolstoy is worldly | sed 's/T[a-z]*y/Camus/'</code> 只把第一个单词替换</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>处理管道流 <code>echo syx is a good body | sed 's/syx/zsf/'</code><br>
+多个指令 <code>sed 's/a//g;s/b//g'</code></p>
+</blockquote>
+<hr>
+<h2 id="awk">awk</h2>
+<blockquote>
+<p>awk有多个不同版本: awk、mawk nawk和gawk，若未作特别说明，通常指gawk (gawk 是 AWK 的 GNU 版本)</p>
+</blockquote>
+<ol>
+<li>输出指定列 <code>cat log.log | awk '{print $2}'</code>
+<ol>
+<li>忽略第一列:<code>awk '{$1=&quot;&quot;;print $0}'</code></li>
+<li>忽略1到4: <code>awk '{ for(i=1; i&lt;=4; i++){ $i=&quot;&quot; }; print $0 }'</code></li>
+</ol>
+</li>
+<li>按列求和 <code>awk '{sum += $1};END {print sum}'</code></li>
+<li>添加行号  <code>awk '{printf(&quot;%2d %s\n&quot;, NR, $0);</code></li>
+<li>读取标准输出 <code>awk '{print $0}' - </code></li>
+</ol>
+<blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2018/11/awk.html">参考: awk 入门教程</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/base/linuxui/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux 美化</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/base/linuxproblem/">
+            <span class="next-text nav-default">Linux遇到问题总结</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

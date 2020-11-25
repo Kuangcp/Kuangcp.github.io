@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Gradle - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Gradle 书籍 发行版本列表 安装 Chocolate Docker安装 手动配置 Wrapper CUI使用 命令行选项 动作 build test 守护进程 配置 全局配置文件 build.gradle SourceSet 依赖管理 依赖排除以及指定依赖" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/tool/gradle/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Gradle" />
+<meta property="og:description" content="目录 start Gradle 书籍 发行版本列表 安装 Chocolate Docker安装 手动配置 Wrapper CUI使用 命令行选项 动作 build test 守护进程 配置 全局配置文件 build.gradle SourceSet 依赖管理 依赖排除以及指定依赖" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/tool/gradle/" />
+<meta property="article:published_time" content="2018-12-12T21:29:59+00:00" />
+<meta property="article:modified_time" content="2018-12-12T21:29:59+00:00" />
+<meta itemprop="name" content="Gradle">
+<meta itemprop="description" content="目录 start Gradle 书籍 发行版本列表 安装 Chocolate Docker安装 手动配置 Wrapper CUI使用 命令行选项 动作 build test 守护进程 配置 全局配置文件 build.gradle SourceSet 依赖管理 依赖排除以及指定依赖">
+<meta itemprop="datePublished" content="2018-12-12T21:29:59+00:00" />
+<meta itemprop="dateModified" content="2018-12-12T21:29:59+00:00" />
+<meta itemprop="wordCount" content="3900">
+
+
+
+<meta itemprop="keywords" content="Gradle," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Gradle"/>
+<meta name="twitter:description" content="目录 start Gradle 书籍 发行版本列表 安装 Chocolate Docker安装 手动配置 Wrapper CUI使用 命令行选项 动作 build test 守护进程 配置 全局配置文件 build.gradle SourceSet 依赖管理 依赖排除以及指定依赖"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Gradle</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-12 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 3900 words </span>
+          <span class="more-meta"> 8 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#书籍">书籍</a></li>
+    <li><a href="#发行版本列表">发行版本列表</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#chocolate">Chocolate</a></li>
+    <li><a href="#docker安装">Docker安装</a></li>
+    <li><a href="#手动配置">手动配置</a></li>
+    <li><a href="#wrapper">Wrapper</a></li>
+    <li><a href="#cui使用">CUI使用</a>
+      <ul>
+        <li><a href="#命令行选项">命令行选项</a></li>
+        <li><a href="#动作">动作</a></li>
+        <li><a href="#守护进程">守护进程</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#全局配置文件">全局配置文件</a></li>
+    <li><a href="#buildgradle">build.gradle</a>
+      <ul>
+        <li><a href="#sourceset">SourceSet</a></li>
+        <li><a href="#依赖管理">依赖管理</a></li>
+        <li><a href="#配置镜像源">配置镜像源</a></li>
+        <li><a href="#插件">插件</a></li>
+      </ul>
+    </li>
+    <li><a href="#settinggradle">setting.gradle</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#另一种多模块的构建方式">另一种多模块的构建方式</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#安装到本地仓库">安装到本地仓库</a></li>
+    <li><a href="#上传至构件仓库">上传至构件仓库</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#构建docker镜像">构建Docker镜像</a>
+      <ul>
+        <li><a href="#插件方式构建docker镜像">插件方式构建Docker镜像</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#gradle">Gradle</a>
+<ol>
+<li><a href="#%E4%B9%A6%E7%B1%8D">书籍</a></li>
+<li><a href="#%E5%8F%91%E8%A1%8C%E7%89%88%E6%9C%AC%E5%88%97%E8%A1%A8">发行版本列表</a></li>
+</ol>
+</li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a>
+<ol>
+<li><a href="#chocolate">Chocolate</a></li>
+<li><a href="#docker%E5%AE%89%E8%A3%85">Docker安装</a></li>
+<li><a href="#%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE">手动配置</a></li>
+<li><a href="#wrapper">Wrapper</a></li>
+<li><a href="#cui%E4%BD%BF%E7%94%A8">CUI使用</a>
+<ol>
+<li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%80%89%E9%A1%B9">命令行选项</a></li>
+<li><a href="#%E5%8A%A8%E4%BD%9C">动作</a>
+<ol>
+<li><a href="#build">build</a></li>
+<li><a href="#test">test</a></li>
+</ol>
+</li>
+<li><a href="#%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B">守护进程</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE">配置</a>
+<ol>
+<li><a href="#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">全局配置文件</a></li>
+<li><a href="#buildgradle">build.gradle</a>
+<ol>
+<li><a href="#sourceset">SourceSet</a></li>
+<li><a href="#%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86">依赖管理</a>
+<ol>
+<li><a href="#%E4%BE%9D%E8%B5%96%E6%8E%92%E9%99%A4%E4%BB%A5%E5%8F%8A%E6%8C%87%E5%AE%9A%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC">依赖排除以及指定依赖版本</a></li>
+<li><a href="#%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86%E4%BE%9D%E8%B5%96">统一管理依赖</a></li>
+</ol>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F%E6%BA%90">配置镜像源</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6">插件</a>
+<ol>
+<li><a href="#lombok">Lombok</a></li>
+<li><a href="#maven-publish">Maven Publish</a></li>
+<li><a href="#shadowjar">shadowJar</a></li>
+<li><a href="#docker">docker</a></li>
+<li><a href="#protobuf-gradle-plugin">protobuf-gradle-plugin</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#settinggradle">setting.gradle</a></li>
+</ol>
+</li>
+<li><a href="#gradle%E5%A4%9A%E6%A8%A1%E5%9D%97%E7%9A%84%E6%9E%84%E5%BB%BA">Gradle多模块的构建</a>
+<ol>
+<li><a href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%A4%9A%E6%A8%A1%E5%9D%97%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E5%BC%8F">另一种多模块的构建方式</a></li>
+</ol>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a>
+<ol>
+<li><a href="#%E5%AE%89%E8%A3%85%E5%88%B0%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93">安装到本地仓库</a></li>
+<li><a href="#%E4%B8%8A%E4%BC%A0%E8%87%B3%E6%9E%84%E4%BB%B6%E4%BB%93%E5%BA%93">上传至构件仓库</a></li>
+</ol>
+</li>
+<li><a href="#%E6%89%93%E5%8C%85%E9%83%A8%E7%BD%B2">打包部署</a>
+<ol>
+<li><a href="#%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F">构建Docker镜像</a>
+<ol>
+<li><a href="#%E6%8F%92%E4%BB%B6%E6%96%B9%E5%BC%8F%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F">插件方式构建Docker镜像</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-10-13 11:11</em>|</p>
+<hr>
+<h1 id="gradle">Gradle</h1>
+<blockquote>
+<p><a href="https://gradle.org/guides/?q=JVM">Official Guide</a> | <a href="https://www.tutorialspoint.com/gradle/index.htm">tutorials</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/47cbbb4eab13">参考: 零散知识点总结(1) - Gradle 使用配置总结</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/gradle/gradle/tree/master/subprojects/docs/src/samples">Github: Gradle samples</a></p>
+</blockquote>
+<hr>
+<p><strong>优缺点</strong></p>
+<blockquote>
+<p><a href="https://blog.csdn.net/MCL529/article/details/79341706">Gradle大吐槽</a>
+<a href="https://gradle.org/maven-vs-gradle/">官方对比Gradle和Maven</a></p>
+</blockquote>
+<blockquote>
+<p>优点</p>
+</blockquote>
+<ol>
+<li>相对于Maven, 配置文件简洁了很多, 所以才入坑学习使用的</li>
+<li>对于一些需要自定义的任务,因为核心为Groovy,所以实现能力高
+<ul>
+<li>例如:将一个SpringBoot项目构建成一个镜像,并tag上当前构建的镜像为release,然后删除旧有容器,使用新的镜像启动容器</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<ol>
+<li>内存占用巨大,存在内存泄露问题, 以至于在IDEA上不敢使用自动导入, 不然每动一下build.gradle 就会卡半天, 8G内存都不够用!!</li>
+<li>编译速度慢, 如果和Maven进行对比, 编译速度和资源占用确实慢</li>
+</ol>
+<p><strong>个人看法</strong></p>
+<blockquote>
+<p><a href="www.infoq.com/cn/articles/Gradle-application-in-large-Java-projects">参考: Gradle在大型Java项目上的应用</a></p>
+</blockquote>
+<hr>
+<h2 id="书籍">书籍</h2>
+<blockquote>
+<p><a href="http://www.jb51.net/books/527811.html">Gradle in Action 中译</a> <code>如果没有一点Groovy基础, 阅读自定义Task等一些高自定义的地方还是比较困惑</code></p>
+</blockquote>
+<h2 id="发行版本列表">发行版本列表</h2>
+<blockquote>
+<p><a href="https://github.com/gradle/gradle/releases">Github地址</a><code>查看简洁的 Release Note 更方便</code></p>
+</blockquote>
+<h1 id="安装">安装</h1>
+<blockquote>
+<p>注意 Gradle 会默认使用Maven的本地库, 但是是复制过来使用而不是共用<br>
+会将 <code>~/.m2/repository</code> 复制到 <code>~/.gradle/caches/modules-2/files-2.1/</code>, 目录结构也发生改变</p>
+</blockquote>
+<ul>
+<li><a href="https://blog.csdn.net/kcp606/article/details/81636426">Gradle 使用Maven的本地仓库</a></li>
+</ul>
+<blockquote>
+<p>或者 SDKMAN安装 <code>sdk install gradle</code></p>
+</blockquote>
+<h2 id="chocolate">Chocolate</h2>
+<ul>
+<li>windows 上安装 chocolate</li>
+<li>PowerShell中运行 <code>wr https://chocolatey.org/install.ps1 -UseBasicParsing | iex</code></li>
+<li>若操作系统默认禁止执行脚本，执行一次<code>set-executionpolicy remotesigned</code>后脚本顺利执行</li>
+<li>Chocolatey在安装包的时候，默认路径是按照系统的默认路径来的，如果想修改安装路径可以这样处理：</li>
+</ul>
+<ol>
+<li>执行“开始/运行”命令（或者WIN + R），输入“regedit”，打开注册表。</li>
+<li>展开注册表到下面的分支[HKEY＿LOCAL＿MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion]，在右侧窗口中找到名为“ProgramFilesDir”的字符串，双击把数值“C:\Program Files”修改为“D：\ProgramFiles”，确定退出后,即可更改常用软件的安装路径了。</li>
+</ol>
+<h2 id="docker安装">Docker安装</h2>
+<blockquote>
+<p><a href="https://docs.docker.com/samples/library/gradle/">Docker 文档</a> <code>虽然在开发时感觉意义不大, 还要把项目映射进去..</code></p>
+</blockquote>
+<h2 id="手动配置">手动配置</h2>
+<blockquote>
+<p><a href="http://services.gradle.org/">官方下载网址</a> 有各个版本的下载以及版本发行说明</p>
+</blockquote>
+<ol>
+<li>解压到任意目录, 并将 bin 目录加入 环境变量即可</li>
+</ol>
+<h2 id="wrapper">Wrapper</h2>
+<blockquote>
+<p><a href="https://docs.gradle.org/current/userguide/gradle_wrapper.html">The Gradle Wrapper</a></p>
+</blockquote>
+<p>类似于 Maven 的 mvnw 脚本 在使用IDE生成项目的时候，可以选择gradle的执行目录，可以选<code>gradle wrapper</code> 也可以选自己下载解压的完整包<br>
+如果使用的不是这个wrapper，那么别人在下载项目后，运行gradle命令就要先安装gradle，使用wrapper更好</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">   <span class="n">task</span> <span class="nf">wrapper</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Wrapper</span><span class="o">){</span>
+      <span class="n">gradleVersion</span> <span class="o">=</span> <span class="s1">&#39;4.8&#39;</span>
+      <span class="n">distributionUrl</span> <span class="o">=</span> <span class="s1">&#39;限定访问内网的URL&#39;</span>
+      <span class="n">distributionPath</span> <span class="o">=</span> <span class="s1">&#39;包装器被解压缩放的相对路径&#39;</span>
+   <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>运行 gradle wrapper 一次即可开始使用包装器的脚本来构建项目了</li>
+<li>生成gradle包管理器：<code>gradle wrapper --gradle-version 2.0</code></li>
+</ul>
+<hr>
+<h2 id="cui使用">CUI使用</h2>
+<h3 id="命令行选项">命令行选项</h3>
+<ul>
+<li>
+<p><code>tasks</code> : 输出所有建立的task</p>
+</li>
+<li>
+<p><code>properties</code> : 输出所有可用的配置属性</p>
+</li>
+<li>
+<p>执行 task <code>gradle taskName</code></p>
+</li>
+<li>
+<p>交互式新建项目 <code>gradle init</code></p>
+</li>
+<li>
+<p><code>-b，--build-file test.gradle</code> 指定运行脚本文件</p>
+</li>
+<li>
+<p><code>--offline</code> 离线模式</p>
+</li>
+<li>
+<p><code>-P ,--project-prop</code>:配置参数 -Pmyprop=value</p>
+</li>
+<li>
+<p><code>-i,--info</code> : 打印info级别的输出</p>
+</li>
+<li>
+<p><code>-s,--stacktrace</code>: 输出错误栈</p>
+</li>
+<li>
+<p><code>-q,--quiet</code>:减少构建出错时打印的错误信息</p>
+</li>
+</ul>
+<h3 id="动作">动作</h3>
+<h4 id="build">build</h4>
+<h4 id="test">test</h4>
+<ul>
+<li>gradle test -Dtest.single=YourTestClass</li>
+<li>gradle test &ndash;tests org.somewhere.MyTestClass</li>
+<li>gradle test &ndash;tests org.somewhere.MyTestClass.my_test_case</li>
+</ul>
+<h3 id="守护进程">守护进程</h3>
+<ul>
+<li>命令加上 <code>--daemon</code>就会开启一个守护进程，只会开启一次</li>
+<li>守护进程会在空闲3小时后销毁</li>
+<li>手动关闭 <code>gadle --stop </code></li>
+<li>构建时不采用守护进程 <code>--no--daemon</code></li>
+</ul>
+<hr>
+<h1 id="配置">配置</h1>
+<h2 id="全局配置文件">全局配置文件</h2>
+<p><em>~/.gradle/init.gradle</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Groovy" data-lang="Groovy">    <span class="n">allprojects</span><span class="o">{</span>
+        <span class="n">repositories</span> <span class="o">{</span>
+            <span class="kt">def</span> <span class="n">ALIYUN_REPOSITORY_URL</span> <span class="o">=</span> <span class="s1">&#39;https://maven.aliyun.com/nexus/content/groups/public&#39;</span>
+            <span class="kt">def</span> <span class="n">ALIYUN_JCENTER_URL</span> <span class="o">=</span> <span class="s1">&#39;https://maven.aliyun.com/nexus/content/repositories/jcenter&#39;</span>
+            <span class="n">all</span> <span class="o">{</span> 
+                <span class="n">ArtifactRepository</span> <span class="n">repo</span> <span class="o">-&gt;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">repo</span> <span class="k">instanceof</span> <span class="n">MavenArtifactRepository</span><span class="o">){</span>
+                    <span class="kt">def</span> <span class="n">url</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">url</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">url</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s1">&#39;https://repo1.maven.org/maven2&#39;</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="n">project</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">lifecycle</span> <span class="s2">&#34;Repository ${repo.url} replaced by $ALIYUN_REPOSITORY_URL.&#34;</span>
+                        <span class="n">remove</span> <span class="n">repo</span>
+                    <span class="o">}</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">url</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s1">&#39;https://jcenter.bintray.com/&#39;</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="n">project</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">lifecycle</span> <span class="s2">&#34;Repository ${repo.url} replaced by $ALIYUN_JCENTER_URL.&#34;</span>
+                        <span class="n">remove</span> <span class="n">repo</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="n">maven</span> <span class="o">{</span>
+                <span class="n">url</span> <span class="n">ALIYUN_REPOSITORY_URL</span>
+                <span class="n">url</span> <span class="n">ALIYUN_JCENTER_URL</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="buildgradle">build.gradle</h2>
+<blockquote>
+<p><em>Hello World</em></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">   <span class="n">task</span> <span class="n">helloworld</span><span class="o">{</span>
+      <span class="n">doLast</span> <span class="o">{</span>
+         <span class="n">printf</span> <span class="s1">&#39;Hello World!&#39;</span>
+      <span class="o">}</span>
+   <span class="o">}</span>
+   <span class="c1">// 或者是 使用 &lt;&lt; 代表doLast：
+</span><span class="c1"></span>   <span class="n">task</span> <span class="n">helloworld</span><span class="o">&lt;&lt;{</span>
+      <span class="n">println</span> <span class="s1">&#39;Hello world!&#39;</span>
+   <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>运行：<code>gradle -q helloworld</code></p>
+<hr>
+<blockquote>
+<p>初始化新项目  <a href="https://guides.gradle.org/building-java-applications/">Doc:building java application</a> 或者直接使用 gradle init 交互式新建一个项目</p>
+</blockquote>
+<hr>
+<h3 id="sourceset">SourceSet</h3>
+<blockquote>
+<p><a href="https://docs.gradle.org/current/dsl/org.gradle.api.tasks.SourceSet.html">SourceSet</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">sourceSets</span><span class="o">{</span>
+        <span class="n">main</span><span class="o">{</span>
+            <span class="n">proto</span><span class="o">{</span>
+                <span class="n">srcDir</span> <span class="s1">&#39;proto/proto&#39;</span>
+            <span class="o">}</span>
+            <span class="n">java</span><span class="o">{</span>
+                <span class="n">srcDir</span> <span class="s1">&#39;out/build/generated/main&#39;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="依赖管理">依赖管理</h3>
+<p>和Maven用的是同一种方式: groupId artifactId version</p>
+<blockquote>
+<p>注意: Java项目中 compile 在 Gradle 已弃用, 取而代之的是新增的多种定义方式 implementation api 等等<br>
+明确了各种定义方式在项目中依赖的范围, 看起来更完美, 但是复杂度大大提高了</p>
+</blockquote>
+<p>所以依据个人使用爱好, 简单易用就 compile testCompile 到底, 强迫症就 好好看官方文档 所有定义方式过一遍&hellip;.</p>
+<p>在定义项目时</p>
+<ul>
+<li>
+<p>可以直接使用简单原始的 <a href="https://docs.gradle.org/current/userguide/java_plugin.html#sec:java_plugin_and_dependency_management">Java plugin</a></p>
+</li>
+<li>
+<p>也可以根据使用场景的不同使用不同的方案 <a href="https://docs.gradle.org/5.2/userguide/building_java_projects.html">Building Java &amp; JVM projects</a></p>
+<ol>
+<li><code>Java libraries</code> 适用于: Java 库.</li>
+<li><code>Java applications</code> 适用于: 可执行jar</li>
+<li><code>Java web applications</code> 适用于: Java Web项目, 打包成 war</li>
+<li><code>Java EE applications</code> 适用于: Java EE, 打包成 ear</li>
+<li><code>Java Platforms</code> 适用于: Java套件, 本身不包含任何代码, 只是一组依赖的聚合</li>
+</ol>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>Java</p>
+</blockquote>
+<p><code>implementation</code><br>
+Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
+<ul>
+<li>B 项目中定义依赖: implementation A</li>
+<li>C 项目中定义依赖: implementation B</li>
+</ul>
+<p>此时 C 项目不能在代码中使用 A 中的类, 因为在 C 项目中 A 是声明为 runtime的, 也就是只在运行时会用到<br>
+如果 B 使用的 compile, 那么 C 就能直接访问 A 中的类, 但是这是官方不推荐的</p>
+<hr>
+<blockquote>
+<p>Java Libraries</p>
+</blockquote>
+<p><code>新增了 api 等定义方式</code>  <a href="https://docs.gradle.org/current/userguide/java_library_plugin.html#sec:java_library_configurations_graph">Java Library plugin</a></p>
+<p><code>api</code>
+使用这种方式就可以更好的实现上文的需求, B 项目会被引用, 那么他就应该是一个库, 所以要考虑到 B 依赖的项目 是否也会被引用</p>
+<ul>
+<li>B 项目中定义依赖: api A</li>
+</ul>
+<p>C 项目就能使用 A 中的类了</p>
+<hr>
+<blockquote>
+<p>Java applications</p>
+</blockquote>
+<p>就是 Java 上加上了 MainClass 的配置, 使得打包的jar包可执行</p>
+<hr>
+<blockquote>
+<p>其他依赖方式:</p>
+</blockquote>
+<ol>
+<li>使用本地jar依赖 <code>implementation files('lib/ojdbc-14.jar')</code>  lib 与 src 为同级目录</li>
+<li>项目间依赖 <code>implementation project(':projectName')</code></li>
+<li>本地目录依赖
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">flatDir</span> <span class="o">{</span>
+        <span class="n">dirs</span> <span class="s1">&#39;libs&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<hr>
+<h4 id="依赖排除以及指定依赖版本">依赖排除以及指定依赖版本</h4>
+<ol>
+<li>在 configuration 中排除</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">configurations</span> <span class="o">{</span>
+        <span class="n">compile</span><span class="o">.</span><span class="na">exclude</span> <span class="nl">module:</span> <span class="s1">&#39;commons&#39;</span>
+        <span class="n">all</span><span class="o">*.</span><span class="na">exclude</span> <span class="nl">group:</span> <span class="s1">&#39;org.gradle.test.excludes&#39;</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">&#39;reports&#39;</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>在具体的某个dependency中排除</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">dependencies</span><span class="o">{</span>
+        <span class="c1">// 依赖排除
+</span><span class="c1"></span>        <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;&#39;</span><span class="o">){</span>
+            <span class="n">exclude</span> <span class="nl">group:</span> <span class="s1">&#39;&#39;</span> <span class="c1">// 按group排除
+</span><span class="c1"></span>            <span class="n">exclude</span> <span class="nl">module:</span> <span class="s1">&#39;&#39;</span> <span class="c1">// 按 artifact 排除
+</span><span class="c1"></span>            <span class="n">exclude</span> <span class="nl">grop:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">&#39;&#39;</span> <span class="c1">// 按 group artifact 排除
+</span><span class="c1"></span>        <span class="o">}</span>
+        <span class="c1">// 全局依赖排除
+</span><span class="c1"></span>        <span class="n">all</span><span class="o">*.</span><span class="na">exclude</span> <span class="nl">group:</span><span class="s1">&#39;org.unwanted&#39;</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">&#39;iAmBuggy&#39;</span>
+
+        <span class="c1">// 禁用依赖传递
+</span><span class="c1"></span>        <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;com.zhyea:ar4j:1.0&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">transitive</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="o">}</span>
+        
+        <span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
+            <span class="n">transitive</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 强制使用指定版本的依赖
+</span><span class="c1"></span>        <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;com.zhyea:ar4j:1.0&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">force</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="o">}</span>
+        <span class="c1">// 始终使用最新的依赖,  若 1.+ 则是 1.xx版本的最新版
+</span><span class="c1"></span>        <span class="n">compile</span> <span class="s1">&#39;com.zhyea:ar4j:+&#39;</span>
+        
+        <span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
+            <span class="n">resolutionStrategy</span> <span class="o">{</span>
+                <span class="n">force</span> <span class="s1">&#39;org.hamcrest:hamcrest-core:1.3&#39;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h4 id="统一管理依赖">统一管理依赖</h4>
+<blockquote>
+<p><a href="https://github.com/Kuangcp/JavaBase">完整示例 JavaBase</a></p>
+</blockquote>
+<ol>
+<li>新建一个文件 <em>dependency.gradle</em>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">rootProject</span><span class="o">.</span><span class="na">ext</span> <span class="o">{</span>
+        <span class="n">ver</span> <span class="o">=</span> <span class="o">[</span>
+            <span class="n">junit</span>     <span class="o">:</span> <span class="s1">&#39;4.12&#39;</span><span class="o">,</span>
+        <span class="o">]</span>
+        <span class="n">libs</span> <span class="o">=</span> <span class="o">[</span>
+            <span class="s2">&#34;junit&#34;</span>   <span class="o">:</span> <span class="s2">&#34;junit:junit:$rootProject.ver.junit&#34;</span><span class="o">,</span>
+        <span class="o">]</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>在 build.gradle 中引入 <code>apply from: 'dependency.gradle'</code></li>
+<li>使用依赖时 只需 <code>implementation rootProject.libs['junit']</code> 即使在子模块中也是如此使用</li>
+</ol>
+<h3 id="配置镜像源">配置镜像源</h3>
+<p><strong>阿里云</strong></p>
+<blockquote>
+<p><a href="https://tvzr.com/change-the-mirror-of-gradle-to-aliyun.html">参考: 配置Gradle的镜像为阿里云镜像</a></p>
+</blockquote>
+<blockquote>
+<p><strong>当前项目的build.gradle</strong></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Groovy" data-lang="Groovy">  <span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">mavenLocal</span><span class="o">()</span>
+    <span class="kt">def</span> <span class="n">aliyun</span> <span class="o">=</span> <span class="s2">&#34;http://maven.aliyun.com/nexus/content/groups/public/&#34;</span>
+    <span class="kt">def</span> <span class="n">abroad</span> <span class="o">=</span> <span class="s2">&#34;http://central.maven.org/maven2/&#34;</span>
+    <span class="n">maven</span> <span class="o">{</span>
+      <span class="n">url</span> <span class="o">=</span> <span class="n">aliyun</span>
+      <span class="n">artifactUrls</span> <span class="n">abroad</span>
+    <span class="o">}</span>
+    <span class="c1">// 码云上自己的仓库
+</span><span class="c1"></span>    <span class="n">maven</span> <span class="o">{</span>
+      <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://gitee.com/gin9/MavenRepos/raw/master&#34;</span>
+    <span class="o">}</span>
+    <span class="n">mavenCentral</span><span class="o">()</span>
+    <span class="n">jcenter</span><span class="o">()</span>
+  <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="插件">插件</h3>
+<blockquote>
+<p>引入一个插件有多种方式</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="c1">// 1
+</span><span class="c1"></span>    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;java&#39;</span>
+    <span class="c1">// 2
+</span><span class="c1"></span>    <span class="n">apply</span><span class="o">{</span>
+        <span class="s1">&#39;java&#39;</span>
+    <span class="o">}</span>
+    <span class="c1">// 3 Gradle5 推荐
+</span><span class="c1"></span>    <span class="n">plugins</span><span class="o">{</span>
+        <span class="n">id</span> <span class="s1">&#39;java&#39;</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="lombok">Lombok</h4>
+<blockquote>
+<p><a href="/Java/Tool/Lombok.md">详细</a></p>
+</blockquote>
+<h4 id="maven-publish">Maven Publish</h4>
+<ul>
+<li><a href="https://docs.gradle.org/current/userguide/publishing_maven.html">Maven Publish Plugin</a></li>
+</ul>
+<h4 id="shadowjar">shadowJar</h4>
+<blockquote>
+<p>打包为 fat jar 也就是包含所有依赖jar的jar包</p>
+</blockquote>
+<h4 id="docker">docker</h4>
+<blockquote>
+<p>提供Docker 的 API</p>
+</blockquote>
+<ol>
+<li>引入 <code>apply plugin: 'docker'</code>
+<ul>
+<li>buildscript dependencies 中添加<code>classpath('se.transmode.gradle:gradle-docker:1.2')</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="protobuf-gradle-plugin">protobuf-gradle-plugin</h4>
+<blockquote>
+<p><a href="https://github.com/google/protobuf-gradle-plugin">Github: protobuf-gradle-plugin</a></p>
+</blockquote>
+<h2 id="settinggradle">setting.gradle</h2>
+<blockquote>
+<p>项目的配置信息, 一般存在这个文件的时候, Gradle就会认为当前目录是作为一个完整的根项目的, 并在当前目录添加 .gradle 目录</p>
+</blockquote>
+<ul>
+<li>必须: <code>rootProject.name = '项目名'</code></li>
+<li>配置子项目 <code>include('A','B')</code></li>
+</ul>
+<hr>
+<h1 id="gradle多模块的构建">Gradle多模块的构建</h1>
+<blockquote>
+<p><a href="https://guides.gradle.org/creating-multi-project-builds/">Official Doc: creating multi project builds </a></p>
+</blockquote>
+<blockquote>
+<p>手动增加一个子项目</p>
+</blockquote>
+<ol>
+<li>mkdir test</li>
+<li>gradle init 然后删除自动创建的 setting.gradle</li>
+<li>setting.gradle 中的include 加入 test(项目名不是目录名)</li>
+</ol>
+<hr>
+<h2 id="另一种多模块的构建方式">另一种多模块的构建方式</h2>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/ac4c00a63750">参考博客:重拾后端之Spring Boot（六） &ndash; 热加载、容器和多项目</a><br>
+全部在父项目<code>build.gradle</code>中配置</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="c1">// 一个典型的根项目的构建文件结构
+</span><span class="c1"></span>    <span class="n">buildscript</span> <span class="o">{</span>
+        <span class="c1">//  构建脚本段落可以配置整个项目需要的插件，构建过程中的依赖以及依赖类库的版本号等
+</span><span class="c1"></span>    <span class="o">}</span>
+    <span class="n">allprojects</span> <span class="o">{</span>
+        <span class="c1">//  在这个段落中你可以声明对于所有项目（含根项目）都适用的配置，比如依赖性的仓储等
+</span><span class="c1"></span>    <span class="o">}</span>
+    <span class="n">subprojects</span> <span class="o">{</span>
+        <span class="c1">//  * 在这个段落中你可以声明适用于各子项目的配置（不包括根项目哦）
+</span><span class="c1"></span>        <span class="n">version</span> <span class="o">=</span> <span class="s2">&#34;0.0.1&#34;</span>
+    <span class="o">}</span>
+    <span class="c1">//  * 对于子项目的特殊配置
+</span><span class="c1"></span>    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span> <span class="o">{}</span>
+    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:api&#39;</span><span class="o">)</span> <span class="o">{}</span>
+    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:report&#39;</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-data-rest&#34;</span><span class="o">)</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-data-mongodb&#34;</span><span class="o">)</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.projectlombok:lombok:${lombokVersion}&#34;</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:api&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-devtools&#34;</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:report&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-devtools&#34;</span><span class="o">)</span>
+            <span class="n">compile</span> <span class="nf">files</span><span class="o">([</span><span class="s2">&#34;lib/simsun.jar&#34;</span><span class="o">])</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-web&#34;</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><a href="https://github.com/Kuangcp/GradleIntegrationMultipleModules">有关多模块的构建详情参考这里</a></li>
+<li><a href="https://github.com/someok/gradle-multi-project-example">参考更为规范的多项目构建</a></li>
+</ul>
+<hr>
+<h1 id="使用">使用</h1>
+<h2 id="安装到本地仓库">安装到本地仓库</h2>
+<blockquote>
+<p>含源码 install 或 deploy</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s2">&#34;maven-publish&#34;</span>
+
+    <span class="c1">// publish with source code
+</span><span class="c1"></span>    <span class="n">task</span> <span class="nf">sourceJar</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Jar</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">from</span> <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">allJava</span>
+    <span class="o">}</span>
+    <span class="n">publishing</span> <span class="o">{</span>
+        <span class="n">publications</span> <span class="o">{</span>
+            <span class="n">mavenJava</span><span class="o">(</span><span class="n">MavenPublication</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">from</span> <span class="n">components</span><span class="o">.</span><span class="na">java</span>
+                <span class="n">artifact</span> <span class="n">sourceJar</span> <span class="o">{</span>
+                    <span class="n">classifier</span> <span class="s2">&#34;sources&#34;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="上传至构件仓库">上传至构件仓库</h2>
+<blockquote>
+<p><a href="https://docs.gradle.org/current/userguide/publishing_overview.html">Official Doc</a></p>
+</blockquote>
+<blockquote>
+<p>特别注意使用gpg, 如果按这下面的一堆文档跟着做的话你要保证你的gpg小于等于2.0版本, 不然就卡在这里了</p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/haiyangwu/sonatype">参考项目 </a>
+<a href="https://www.jianshu.com/p/49c926589f41">参考</a>
+<a href="http://central.sonatype.org/pages/gradle.html">官方文档</a>
+<a href="http://blog.csdn.net/h3243212/article/details/72374363#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98">参考博客</a>
+<a href="https://blog.csdn.net/kcp606/article/details/79675590">最简单的方式就是利用码云等平台创建私服 </a></p>
+</blockquote>
+<hr>
+<h1 id="打包部署">打包部署</h1>
+<blockquote>
+<p><a href="https://guides.gradle.org/building-java-applications/">参考: Building Java Applications</a></p>
+</blockquote>
+<p><strong>不依赖Jar的项目</strong></p>
+<ol>
+<li>依据模板新建项目 <code>gradle init --type java-application</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="c1">// 主要是如下配置
+</span><span class="c1"></span>    <span class="n">plugins</span> <span class="o">{</span>
+        <span class="c1">// Apply the java plugin to add support for Java
+</span><span class="c1"></span>        <span class="n">id</span> <span class="s1">&#39;java&#39;</span>
+        <span class="c1">// Apply the application plugin to add support for building an application
+</span><span class="c1"></span>        <span class="n">id</span> <span class="s1">&#39;application&#39;</span>
+    <span class="o">}</span>
+    <span class="c1">// Define the main class for the application
+</span><span class="c1"></span>    <span class="n">mainClassName</span> <span class="o">=</span> <span class="s1">&#39;App&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>add this config to build.gradle
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">jar</span> <span class="o">{</span>
+        <span class="n">manifest</span> <span class="o">{</span>
+            <span class="n">attributes</span> <span class="s1">&#39;Main-Class&#39;</span><span class="o">:</span> <span class="s1">&#39;base.Main&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>run : <code>gradle clean jar &amp;&amp; java -jar file</code></li>
+</ol>
+<p><strong>依赖Jar的项目</strong></p>
+<ul>
+<li>Gradle默认是只会打包源码，并不会打包依赖</li>
+</ul>
+<blockquote>
+<p>原生方式打包含依赖的Jar,并设置mainClass</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">task</span> <span class="nf">uberJar</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Jar</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">archiveClassifier</span> <span class="o">=</span> <span class="s1">&#39;all-dependency&#39;</span>
+
+        <span class="n">from</span> <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">output</span>
+
+        <span class="n">dependsOn</span> <span class="n">configurations</span><span class="o">.</span><span class="na">runtimeClasspath</span>
+        <span class="n">from</span> <span class="o">{</span>
+            <span class="n">configurations</span><span class="o">.</span><span class="na">runtimeClasspath</span><span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">endsWith</span><span class="o">(</span><span class="s1">&#39;jar&#39;</span><span class="o">)</span> <span class="o">}.</span><span class="na">collect</span> <span class="o">{</span> <span class="n">zipTree</span><span class="o">(</span><span class="n">it</span><span class="o">)</span> <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">manifest</span> <span class="o">{</span>
+            <span class="n">attributes</span> <span class="s1">&#39;Main-Class&#39;</span><span class="o">:</span> <span class="s1">&#39;com.xxx.Main&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>通过插件</p>
+</blockquote>
+<ul>
+<li><a href="http://imperceptiblethoughts.com/shadow/">shadow插件官网文档</a></li>
+</ul>
+<h2 id="构建docker镜像">构建Docker镜像</h2>
+<blockquote>
+<p><a href="http://www.importnew.com/24671.html">用 Docker、Gradle 来构建、运行、发布一个 Spring Boot 应用</a></p>
+</blockquote>
+<p><em>build.gradle</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;docker&#39;</span>
+    <span class="n">buildscript</span> <span class="o">{</span>
+        <span class="n">ext</span> <span class="o">{</span>
+            <span class="n">springBootVersion</span> <span class="o">=</span> <span class="s1">&#39;2.0.1.RELEASE&#39;</span>
+        <span class="o">}</span>
+        <span class="n">repositories</span> <span class="o">{</span>
+            <span class="n">mavenCentral</span><span class="o">()</span>
+        <span class="o">}</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">classpath</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}&#34;</span><span class="o">)</span>
+            <span class="n">classpath</span><span class="o">(</span><span class="s1">&#39;se.transmode.gradle:gradle-docker:1.2&#39;</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">task</span> <span class="nf">buildDocker</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Docker</span><span class="o">,</span> <span class="nl">dependsOn:</span> <span class="n">build</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//设置自动上传的话，命名就不能乱取了，仓库名/镜像名：tag
+</span><span class="c1"></span>    <span class="c1">//    push = true
+</span><span class="c1"></span>        <span class="n">test</span><span class="o">.</span><span class="na">enabled</span><span class="o">=</span><span class="kc">false</span>
+        <span class="n">applicationName</span> <span class="o">=</span> <span class="n">jar</span><span class="o">.</span><span class="na">baseName</span>
+        <span class="n">dockerfile</span> <span class="o">=</span> <span class="n">file</span><span class="o">(</span><span class="s1">&#39;src/main/docker/Dockerfile&#39;</span><span class="o">)</span>
+        <span class="n">doFirst</span> <span class="o">{</span>
+            <span class="n">copy</span> <span class="o">{</span>
+                <span class="n">from</span> <span class="n">war</span>
+                <span class="n">into</span> <span class="n">stageDir</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>Dockerfile</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile">    FROM frolvlad/alpine-oraclejdk8:slim<span class="err">
+</span><span class="err"></span>    VOLUME /tmp<span class="err">
+</span><span class="err"></span>    <span class="c1"># 配置通配符是为了不受版本影响</span><span class="err">
+</span><span class="err"></span>    ADD weixin*.war app.war<span class="err">
+</span><span class="err"></span>    <span class="c1"># ENTRYPOINT [&#34;java&#34;,&#34;-Djava.security.egd=file:/dev/./urandom&#34;,&#34;-jar&#34;,&#34;/app.war&#34;]</span><span class="err">
+</span><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;java&#34;</span>,<span class="s2">&#34;-jar&#34;</span>,<span class="s2">&#34;/app.war&#34;</span><span class="o">]</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>gradle buildDocker</code> 即可构建镜像</li>
+<li>运行 <code>docker run --name web --link postgre:db -p 5678:8889 -it 镜像</code> 注意其中要关联PostgreSQL的容器</li>
+</ul>
+<h3 id="插件方式构建docker镜像">插件方式构建Docker镜像</h3>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/7571fa3b394c">参考  通过Gradle使用Docker部署 Spring Boot项目</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-12
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/gradle/">Gradle</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/python/pythonconcurrency/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python Concurrency</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/tool/gradleadvance/">
+            <span class="next-text nav-default">Gradle进阶</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

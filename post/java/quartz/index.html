@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Quartz - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Quartz学习 官方样例 Quartz中常用的一些类 有状态的Job与无状态的Job Quartz中重要的几个监听器 目录 end|2020-04-27 23:42| Quartz学习" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/quartz/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Quartz" />
+<meta property="og:description" content="目录 start Quartz学习 官方样例 Quartz中常用的一些类 有状态的Job与无状态的Job Quartz中重要的几个监听器 目录 end|2020-04-27 23:42| Quartz学习" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/quartz/" />
+<meta property="article:published_time" content="2019-07-07T11:57:07+00:00" />
+<meta property="article:modified_time" content="2019-07-07T11:57:07+00:00" />
+<meta itemprop="name" content="Quartz">
+<meta itemprop="description" content="目录 start Quartz学习 官方样例 Quartz中常用的一些类 有状态的Job与无状态的Job Quartz中重要的几个监听器 目录 end|2020-04-27 23:42| Quartz学习">
+<meta itemprop="datePublished" content="2019-07-07T11:57:07+00:00" />
+<meta itemprop="dateModified" content="2019-07-07T11:57:07+00:00" />
+<meta itemprop="wordCount" content="2402">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Quartz"/>
+<meta name="twitter:description" content="目录 start Quartz学习 官方样例 Quartz中常用的一些类 有状态的Job与无状态的Job Quartz中重要的几个监听器 目录 end|2020-04-27 23:42| Quartz学习"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Quartz</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-07 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 2402 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#官方样例">官方样例</a></li>
+    <li><a href="#quartz中常用的一些类">Quartz中常用的一些类</a></li>
+    <li><a href="#有状态的job与无状态的job">有状态的Job与无状态的Job</a></li>
+    <li><a href="#quartz中重要的几个监听器">Quartz中重要的几个监听器</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#quartz%E5%AD%A6%E4%B9%A0">Quartz学习</a>
+<ol>
+<li><a href="#%E5%AE%98%E6%96%B9%E6%A0%B7%E4%BE%8B">官方样例</a></li>
+<li><a href="#quartz%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E7%B1%BB">Quartz中常用的一些类</a></li>
+<li><a href="#%E6%9C%89%E7%8A%B6%E6%80%81%E7%9A%84job%E4%B8%8E%E6%97%A0%E7%8A%B6%E6%80%81%E7%9A%84job">有状态的Job与无状态的Job</a></li>
+<li><a href="#quartz%E4%B8%AD%E9%87%8D%E8%A6%81%E7%9A%84%E5%87%A0%E4%B8%AA%E7%9B%91%E5%90%AC%E5%99%A8">Quartz中重要的几个监听器</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="quartz学习">Quartz学习</h1>
+<blockquote>
+<p>添加依赖</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;org.quartz-scheduler&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;quartz&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;2.2.1&#39;</span>
+    <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;org.quartz-scheduler&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;quartz-jobs&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;2.2.1&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="官方样例">官方样例</h2>
+<ul>
+<li>定义需执行的任务类</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="cm">/**
+</span><span class="cm">* 类实现Job接口中的execute方法
+</span><span class="cm">*/</span>
+<span class="k">class</span> <span class="nc">HelloJob</span><span class="p">:</span> <span class="n">Job</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">execute</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>设置运行任务</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Array</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;)</span> <span class="p">{</span>
+    <span class="c1">// 获取Scheduler用于调度任务
+</span><span class="c1"></span>    <span class="k">var</span> <span class="py">scheduler</span> <span class="p">=</span> <span class="n">StdSchedulerFactory</span><span class="p">.</span><span class="n">getDefaultScheduler</span><span class="p">()</span>
+    <span class="c1">// 开始执行任务
+</span><span class="c1"></span>    <span class="n">scheduler</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="c1">// 定义需执行的任务，指定我们定义的任务类
+</span><span class="c1"></span>    <span class="k">val</span> <span class="py">job</span> <span class="p">=</span> <span class="n">newJob</span><span class="p">(</span><span class="n">HelloJob</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;job1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+
+    <span class="c1">// 定义任务的触发器
+</span><span class="c1"></span>    <span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">simpleSchedule</span><span class="p">()</span>
+                    <span class="p">.</span><span class="n">withIntervalInSeconds</span><span class="p">(</span><span class="m">40</span><span class="p">)</span>
+                    <span class="p">.</span><span class="n">repeatForever</span><span class="p">())</span>
+            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+
+    <span class="c1">// 告知Scheduler执行的任务及任务的触发器
+</span><span class="c1"></span>    <span class="n">scheduler</span><span class="p">.</span><span class="n">scheduleJob</span><span class="p">(</span><span class="n">job</span><span class="p">,</span> <span class="n">trigger</span><span class="p">)</span>
+    <span class="c1">// 留点时间等待任务执行
+</span><span class="c1"></span>    <span class="n">Thread</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="m">6000</span><span class="p">)</span>
+    <span class="c1">// 关闭Scheduler
+</span><span class="c1"></span>    <span class="n">scheduler</span><span class="p">.</span><span class="n">shutdown</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>在官方示例中，通过类通过实现<code>Job</code>接口来定义任务。<br>
+在Quartz中，任务的运行需要定义任务与触发器；任务用于指定需任务，触发器用于定义任务的触发时机</p>
+</blockquote>
+<h2 id="quartz中常用的一些类">Quartz中常用的一些类</h2>
+<ul>
+<li>
+<p><code>Job</code>: Job接口,任务类需要实现的接口。注意:<code>实现该接口的类必须存在默认的无参构造器</code></p>
+</li>
+<li>
+<p><code>JobDetail</code>: 该类为<code>Job</code>提供了许多属性, 其中包含<code>JobDataMap</code>;Quartz不存储Job类的实际实例，而是通过使用JobDetail定义一个实例。JobDetails通过JobBuilder创建定义。</p>
+</li>
+<li>
+<p><code>JobExecutionContext</code>: 在实现<code>Job</code>接口的类中，实现的<code>execute</code>方法会传入JobExecutionContext的实例。调用的Job通过JobExecutionContext的实例可以访问到Quartz运行的环境及Job的一些信息等</p>
+</li>
+<li>
+<p><code>JobDataMap</code>: 可用于装载任何可序列化的数据。JobDataMap将存储在JobExecutionContext中，任务可通过JobExecutionContext实例来获取JobDataMap中的数据;(JobDataMap底层采用Map的数据结构)，如：</p>
+<ul>
+<li>通过JobDataMap传递数据给Job</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="c1">// 简单的传递键为hello，值为world的数据，该数据将会存放在JobDataMap中
+</span><span class="c1"></span><span class="k">val</span> <span class="py">job</span> <span class="p">=</span> <span class="n">newJob</span><span class="p">(</span><span class="n">HelloJob</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;job1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">usingJobData</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">,</span> <span class="s2">&#34;world&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Job通过JobExecutionContext获取JobDataMap中的数据</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">HelloJob</span><span class="p">:</span> <span class="n">Job</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">execute</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="k">val</span> <span class="py">name</span> <span class="p">=</span> <span class="n">context</span><span class="o">!!</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">name</span>
+        <span class="c1">// 获取JobDataMap中的数据，取值也可在Job类中定义与键对应的属性，这样也可获取数据
+</span><span class="c1"></span>        <span class="k">val</span> <span class="py">hello</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">jobDataMap</span><span class="p">[</span><span class="s2">&#34;hello&#34;</span><span class="p">]</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">$name</span><span class="s2"> is running, </span><span class="si">$hello</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>Trigger</code>: 任务的触发器，在此处只介绍常用的两种触发器</p>
+<ul>
+<li>
+<p><code>SimpleTrigger</code>: 它只能用于指定任务在一个特定时间内运行,可指定任务的重复(时间,次数)与间隔(时间,次数), 示例如下(简单介绍，具体请查看API)</p>
+<ul>
+<li>立即运行并每1秒运行一次，直到程序结束</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">simpleSchedule</span><span class="p">()</span>
+                    <span class="p">.</span><span class="n">withIntervalInSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+                    <span class="p">.</span><span class="n">repeatForever</span><span class="p">())</span>
+            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>立即运行任务并每1秒运行一次，总共运行3次</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">simpleSchedule</span><span class="p">()</span>
+                    <span class="p">.</span><span class="n">withIntervalInSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+                    <span class="p">.</span><span class="n">withRepeatCount</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
+            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>CronTrigger</code>: 该触发器可通过cron表达式来定义触发任务(不了解cron表达式的可百度，此处不做介绍)</p>
+<ul>
+<li>每秒执行一次任务</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">CronScheduleBuilder</span><span class="p">.</span><span class="n">cronSchedule</span><span class="p">(</span><span class="s2">&#34;0/1 * * * * ?&#34;</span><span class="p">))</span>
+            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<h2 id="有状态的job与无状态的job">有状态的Job与无状态的Job</h2>
+<blockquote>
+<p>在Quartz中，Job可能会持有某些状态信息，例如在Job中的index属性用于计算任务的调用次数，这些信息将被存储在JobDataMap，这时候便就是<code>有状态Job</code><br>
+无状态Job在每次运行时都会创建新的JobDataMap，即同一任务的后一次调用无法获取前一次调用保存的信息</p>
+</blockquote>
+<ul>
+<li>将设置Job为有状态</li>
+</ul>
+<blockquote>
+<p>若需将Job设置为有状态，只需在Job类上使用<code>@PersistJobDataAfterExecution</code>注解，这样任务在多次运行时则不会重新创建新的JobDataMap</p>
+</blockquote>
+<ul>
+<li>
+<p>示例</p>
+<ul>
+<li>传递index值给Job</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">val</span> <span class="py">job</span> <span class="p">=</span> <span class="n">newJob</span><span class="p">(</span><span class="n">HelloJob</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;job1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">usingJobData</span><span class="p">(</span><span class="s2">&#34;index&#34;</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>将Job设置为有状态，并将index的值放入JobDataMap中(该示例通过在任务类中定义属性来获取JobDataMap的数据)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="nd">@PersistJobDataAfterExecution</span>
+<span class="k">class</span> <span class="nc">HelloJob</span><span class="p">:</span> <span class="n">Job</span> <span class="p">{</span>
+    
+    <span class="k">var</span> <span class="py">index</span> <span class="p">=</span> <span class="m">0</span>
+    
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">execute</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="k">val</span> <span class="py">name</span> <span class="p">=</span> <span class="n">context</span><span class="o">!!</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">name</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">$name</span><span class="s2"> is running, index is </span><span class="si">$index</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="n">index</span><span class="o">++</span>
+        <span class="c1">// 存放数据到JobDataMap中
+</span><span class="c1"></span>        <span class="n">context</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">jobDataMap</span><span class="p">[</span><span class="s2">&#34;index&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="n">index</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="quartz中重要的几个监听器">Quartz中重要的几个监听器</h2>
+<ul>
+<li>
+<p><code>JobListener</code>: 任务调度中，与任务Job相关的监听器</p>
+<ul>
+<li>定义JobListener(通过实现JobListener接口)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">MyJobListener</span> <span class="p">:</span> <span class="n">JobListener</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">getName</span><span class="p">():</span> <span class="n">String</span><span class="p">?</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;JobListener getName&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">name</span>
+    <span class="p">}</span>
+    
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">jobToBeExecuted</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">${context!!.jobDetail.key.name}</span><span class="s2"> : 在Job将要被执行时执行&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">jobWasExecuted</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?,</span> <span class="n">jobException</span><span class="p">:</span> <span class="n">JobExecutionException</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">${context!!.jobDetail.key.name}</span><span class="s2"> : 在Job被执行后执行&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">jobExecutionVetoed</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">${context!!.jobDetail.key.name}</span><span class="s2"> : 在Job将要被执行时执行， 但又被TriggerListener否决时调用&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>将JobListener与任务调度关联</p>
+<ul>
+<li>定义全局JobListener</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">scheduler.scheduleJob(job, trigger)
+// 定义全局JobListener
+scheduler.listenerManager.addJobListener(MyJobListener(), EverythingMatcher.allJobs())
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>定义局部JobListener</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">scheduler.scheduleJob(job, trigger)
+// 将JobListener与指定的任务Job相关联
+scheduler.listenerManager.addJobListener(MyJobListener(), KeyMatcher.keyEquals(JobKey.jobKey(&#34;job1&#34;, &#34;group1&#34;)))
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><code>TriggerListener</code>: 用于监听与Trigger相关的事件</p>
+<ul>
+<li>定义TriggerListener(实现TriggerListener接口)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">MyTriggerListener</span> <span class="p">:</span> <span class="n">TriggerListener</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">triggerFired</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;相关联的Trigger被触发，Job的execute将被执行时触发&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">getName</span><span class="p">():</span> <span class="n">String</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;MyTriggerListener : getName&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">.</span><span class="n">simpleName</span>
+    <span class="p">}</span>
+    
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">vetoJobExecution</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?):</span> <span class="n">Boolean</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;相关联的Trigger被触发，Job将被调用时，Scheduler调用该方法，可否决Job的执行，若返回true则该Job不会因此次Trigger触发而执行&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">false</span>
+    <span class="p">}</span>
+    
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">triggerComplete</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?,</span> <span class="n">triggerInstructionCode</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">.</span><span class="n">CompletedExecutionInstruction</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;相关联的Trigger被触发,并且完成Job调用时执行&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">triggerMisfired</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;当Trigger错过触发时调用&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>将TriggerListener与任务调度关联</p>
+<ul>
+<li>定义全局TriggerListener</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 定义全局TriggerListener
+scheduler.listenerManager.addTriggerListener(MyTriggerListener(), EverythingMatcher.allTriggers())
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>定义局部TriggerListener</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 将riggerListener与指定的Trigger关联
+scheduler.listenerManager.addTriggerListener(MyTriggerListener(), KeyMatcher.keyEquals(TriggerKey.triggerKey(&#34;trigger1&#34;, &#34;group1&#34;)))
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><code>SchedulerListener</code>: 在Scheduler生命周期中的关键事件发生时调用</p>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-07-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/advancedlearning/javadebug/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Java中的Debug</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/distributed/configcenter/zookeeper/">
+            <span class="next-text nav-default">ZooKeeper</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

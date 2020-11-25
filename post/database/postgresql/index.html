@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>PostgreSQL - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Postgresql 概述 安装 Docker方式安装服务端 pull完整版 pull精简版 使用 Postgresql终端命令行使用 用户和角色权限 创建用户 修改权限 J" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/database/postgresql/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="PostgreSQL" />
+<meta property="og:description" content="目录 start Postgresql 概述 安装 Docker方式安装服务端 pull完整版 pull精简版 使用 Postgresql终端命令行使用 用户和角色权限 创建用户 修改权限 J" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/database/postgresql/" />
+<meta property="article:published_time" content="2018-12-16T17:27:21+00:00" />
+<meta property="article:modified_time" content="2018-12-16T17:27:21+00:00" />
+<meta itemprop="name" content="PostgreSQL">
+<meta itemprop="description" content="目录 start Postgresql 概述 安装 Docker方式安装服务端 pull完整版 pull精简版 使用 Postgresql终端命令行使用 用户和角色权限 创建用户 修改权限 J">
+<meta itemprop="datePublished" content="2018-12-16T17:27:21+00:00" />
+<meta itemprop="dateModified" content="2018-12-16T17:27:21+00:00" />
+<meta itemprop="wordCount" content="1024">
+
+
+
+<meta itemprop="keywords" content="PostgreSQL," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PostgreSQL"/>
+<meta name="twitter:description" content="目录 start Postgresql 概述 安装 Docker方式安装服务端 pull完整版 pull精简版 使用 Postgresql终端命令行使用 用户和角色权限 创建用户 修改权限 J"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">PostgreSQL</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-16 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            </div>
+          <span class="more-meta"> 1024 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述">概述</a></li>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#docker方式安装服务端">Docker方式安装服务端</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#postgresql终端命令行使用">Postgresql终端命令行使用</a></li>
+        <li><a href="#用户和角色权限">用户和角色权限</a></li>
+        <li><a href="#java使用">Java使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#基础数据">基础数据</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#postgresql">Postgresql</a>
+<ol>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a>
+<ol>
+<li><a href="#docker%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85%E6%9C%8D%E5%8A%A1%E7%AB%AF">Docker方式安装服务端</a>
+<ol>
+<li><a href="#pull%E5%AE%8C%E6%95%B4%E7%89%88">pull完整版</a></li>
+<li><a href="#pull%E7%B2%BE%E7%AE%80%E7%89%88">pull精简版</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a>
+<ol>
+<li><a href="#postgresql%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8">Postgresql终端命令行使用</a></li>
+<li><a href="#%E7%94%A8%E6%88%B7%E5%92%8C%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90">用户和角色权限</a>
+<ol>
+<li><a href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7">创建用户</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90">修改权限</a></li>
+</ol>
+</li>
+<li><a href="#java%E4%BD%BF%E7%94%A8">Java使用</a></li>
+</ol>
+</li>
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE">基础数据</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-11-18 00:14</em>|</p>
+<hr>
+<h1 id="postgresql">Postgresql</h1>
+<ul>
+<li><input disabled="" type="checkbox"> <a href="http://www.onexsoft.com/onesql.html">该公司对于PostgreSQL的缺点陈列是否属实</a></li>
+</ul>
+<h2 id="概述">概述</h2>
+<blockquote>
+<p><a href="http://www.cnblogs.com/fcode/articles/PostgreSQL.html">PostgreSQL</a> | <a href="https://wiki.postgresql.org/wiki/Main_Page">wiki</a></p>
+</blockquote>
+<ul>
+<li>严格实现SQL标准</li>
+<li>Schemas 和表，用户的关系：
+<ul>
+<li>Schemas相当于是一个数据库进行分类的文件夹</li>
+</ul>
+</li>
+</ul>
+<p><code>PostgreSQL和MySQL对比</code></p>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/20010554">PostgreSQL 与 MySQL 相比，优势何在？</a>
+<a href="https://en.wikibooks.org/wiki/Converting_MySQL_to_PostgreSQL">Converting MySQL to PostgreSQL</a></p>
+</blockquote>
+<h2 id="安装">安装</h2>
+<p>安装客户端 <code>sudo apt-get install postgresql-client</code><br>
+安装服务端 <code>sudo apt install postgresql</code></p>
+<h3 id="docker方式安装服务端">Docker方式安装服务端</h3>
+<blockquote>
+<p><a href="https://hub.docker.com/_/postgres/">Dockerhub 官方镜像</a></p>
+</blockquote>
+<h4 id="pull完整版">pull完整版</h4>
+<ul>
+<li>或者： <code>docker pull postgres</code>
+<ul>
+<li>运行容器 <code>docker run --name mypostgre -i -t -p 5432:5432 postgres</code></li>
+<li>客户端连接 <code>psql -h localhost -p 5432 -U postgres</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="pull精简版">pull精简版</h4>
+<ul>
+<li>下拉镜像：<code>docker pull postgres:alpine</code> | 因为个人系统客户端是9.6, 所以用<code>9.6-alpine</code>镜像</li>
+<li>构建容器：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    docker run -d --name postgre <span class="se">\
+</span><span class="se"></span>    -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>jiushi <span class="se">\
+</span><span class="se"></span>    -v gitea-db-data:/var/lib/postgresql/data <span class="se">\
+</span><span class="se"></span>    -p 5432:5432 <span class="se">\
+</span><span class="se"></span>    postgres:9.6-alpine
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>容器中连接 进入postgresql终端 <code>docker exec -it postgre psql -U postgres</code>
+<ul>
+<li>客户端连接 <code>psql -h localhost -U postgres</code></li>
+</ul>
+</li>
+<li>连接后 输入<code>\l</code> 列出所有数据库 即可查看连接成功与否</li>
+</ul>
+<hr>
+<h2 id="使用">使用</h2>
+<blockquote>
+<p><a href="http://postgres.cn/docs/9.6/index.html">PostgreSQL 9.6.0 手册</a></p>
+</blockquote>
+<h3 id="postgresql终端命令行使用">Postgresql终端命令行使用</h3>
+<blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2013/12/getting_started_with_postgresql.html">PostgreSQL新手入门</a>
+<code>用熟悉的MySQL命令来解释</code></p>
+</blockquote>
+<ul>
+<li><code>\l</code> show databases</li>
+<li><code>\c dbname [user]</code> 切换数据库</li>
+<li><code>\dt</code> show tables</li>
+<li><code>\d tablename</code> desc tablename</li>
+<li><code>\di</code> 查看索引</li>
+<li><code>\du</code> 查看所有用户</li>
+<li><code>\dn</code> 查看模式列表</li>
+<li><code>\copyright</code> 显示版权信息</li>
+<li><code>\encoding</code> 显示编码信息</li>
+<li><code>\h</code> SQL命令语法上的说明，用*显示全部命令</li>
+<li><code>\prompt [文本]名称</code> 提示用户设定内部变数</li>
+<li><code>\password [username]</code> 改密码</li>
+<li><code>\q</code> exit</li>
+<li>可以使用pg_dump和pg_dumpall来完成。比如备份sales数据库：
+<ul>
+<li>pg_dump drupal&gt;/opt/Postgresql/backup/1.bak</li>
+</ul>
+</li>
+</ul>
+<h3 id="用户和角色权限">用户和角色权限</h3>
+<h4 id="创建用户">创建用户</h4>
+<ul>
+<li>
+<p><code>createuser -P -D -R -e playboy</code>  //创建一个用户,-P要设置密码，-R,不参创建其他用户，-D不能创建数据库</p>
+</li>
+<li>
+<p><code>create user myth</code> 不带login属性</p>
+</li>
+<li>
+<p><code>create role myth</code> 具有login属性</p>
+</li>
+<li>
+<p><code>psql -U playboy -d playboy</code> 登录用户，一般默认是有用户同名数据库才能登录</p>
+</li>
+<li>
+<p><a href="http://www.linuxidc.com/Linux/2013-04/83564p2.htm">修改默认登录不需要密码的配置</a></p>
+</li>
+</ul>
+<h4 id="修改权限">修改权限</h4>
+<blockquote>
+<p><a href="http://blog.csdn.net/beiigang/article/details/8604578">参考博客</a>
+<a href="http://www.cnblogs.com/stephen-liu74/archive/2012/05/18/2302639.html">参考博客_角色</a>
+<a href="http://www.linuxidc.com/Linux/2013-04/83564p2.htm">配置</a></p>
+</blockquote>
+<ul>
+<li>
+<p><code>ALTER ROLE rolename LOGIN;</code>  设置登录权限</p>
+</li>
+<li>
+<p><code>ALTER ROLE david WITH PASSWORD 'ufo456';</code> 设置密码登录权限</p>
+<ul>
+<li>但是，默认是不需要密码 查看pg_hba.conf 文件，发现local 的METHOD 为trust，所以不需要输入密码</li>
+<li>将local 的METHOD 更改为password，然后保存重启postgresql。</li>
+<li><a href="http://www.linuxidc.com/Linux/2014-02/96886.htm">博客</a></li>
+</ul>
+</li>
+<li>
+<p><code> ALTER ROLE sandy VALID UNTIL '2014-04-24';</code> 设置角色有效期</p>
+</li>
+<li>
+<p><code>SELECT * from pg_roles ;</code> 查看所有角色</p>
+</li>
+<li>
+<p><code>CREATE ROLE father login nosuperuser nocreatedb nocreaterole noinherit encrypted password 'abc123';</code></p>
+<ul>
+<li>在PostgreSQL中，首先需要创建一个代表组的角色，之后再将该角色的membership 权限赋给独立的角色即可。</li>
+</ul>
+</li>
+<li>
+<p><code>GRANT CONNECT ON DATABASE test to father;</code> 角色赋予数据库test 连接权限和相关表的查询权限。</p>
+</li>
+</ul>
+<h3 id="java使用">Java使用</h3>
+<blockquote>
+<p><a href="https://github.com/pgjdbc/pgjdbc">Postgresql JDBC Driver</a></p>
+</blockquote>
+<ul>
+<li><a href="https://springframework.guru/configuring-spring-boot-for-postgresql/">官方：springboot使用</a>
+<ul>
+<li><a href="https://www.netkiller.cn/java/spring/boot/postgresql.html">参考博客</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="基础数据">基础数据</h2>
+<blockquote>
+<p><a href="https://blog.csdn.net/jpzhu16/article/details/52140048"> PostgreSQL中的数据类型</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/postgresql/">PostgreSQL</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/advancedlearning/jdbc/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">JDBC</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/database/oracleperformances/">
+            <span class="next-text nav-default">Oracle性能优化</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

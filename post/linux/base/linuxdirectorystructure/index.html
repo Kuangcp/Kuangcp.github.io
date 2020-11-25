@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux目录结构 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Linux 目录结构 /boot /bin 和 /sbin /root /run /home /lost&#43;found /proc 网络 /usr /usr/local /etc /etc/passwd /etc/shadow /etc/alternatives /etc/apt /etc/fstab /etc/systemd /lib /dev /tmp /usr /var 使用 查看发行版 查看系统所有用户信息 目录 end|2020-06-24 16:51| Linux 目录结构 Linux 系统目录结构的大致分" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxdirectorystructure/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Linux目录结构" />
+<meta property="og:description" content="目录 start Linux 目录结构 /boot /bin 和 /sbin /root /run /home /lost&#43;found /proc 网络 /usr /usr/local /etc /etc/passwd /etc/shadow /etc/alternatives /etc/apt /etc/fstab /etc/systemd /lib /dev /tmp /usr /var 使用 查看发行版 查看系统所有用户信息 目录 end|2020-06-24 16:51| Linux 目录结构 Linux 系统目录结构的大致分" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxdirectorystructure/" />
+<meta property="article:published_time" content="2018-12-15T11:14:08+00:00" />
+<meta property="article:modified_time" content="2018-12-15T11:14:08+00:00" />
+<meta itemprop="name" content="Linux目录结构">
+<meta itemprop="description" content="目录 start Linux 目录结构 /boot /bin 和 /sbin /root /run /home /lost&#43;found /proc 网络 /usr /usr/local /etc /etc/passwd /etc/shadow /etc/alternatives /etc/apt /etc/fstab /etc/systemd /lib /dev /tmp /usr /var 使用 查看发行版 查看系统所有用户信息 目录 end|2020-06-24 16:51| Linux 目录结构 Linux 系统目录结构的大致分">
+<meta itemprop="datePublished" content="2018-12-15T11:14:08+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T11:14:08+00:00" />
+<meta itemprop="wordCount" content="3010">
+
+
+
+<meta itemprop="keywords" content="基础," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux目录结构"/>
+<meta name="twitter:description" content="目录 start Linux 目录结构 /boot /bin 和 /sbin /root /run /home /lost&#43;found /proc 网络 /usr /usr/local /etc /etc/passwd /etc/shadow /etc/alternatives /etc/apt /etc/fstab /etc/systemd /lib /dev /tmp /usr /var 使用 查看发行版 查看系统所有用户信息 目录 end|2020-06-24 16:51| Linux 目录结构 Linux 系统目录结构的大致分"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux目录结构</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 3010 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#boot">/boot</a></li>
+    <li><a href="#bin-和-sbin">/bin 和 /sbin</a></li>
+    <li><a href="#root">/root</a></li>
+    <li><a href="#run">/run</a></li>
+    <li><a href="#home">/home</a></li>
+    <li><a href="#lostfound">/lost+found</a></li>
+    <li><a href="#proc">/proc</a>
+      <ul>
+        <li><a href="#网络">网络</a></li>
+      </ul>
+    </li>
+    <li><a href="#usr">/usr</a>
+      <ul>
+        <li><a href="#usrlocal">/usr/local</a></li>
+      </ul>
+    </li>
+    <li><a href="#etc">/etc</a>
+      <ul>
+        <li><a href="#etcpasswd">/etc/passwd</a></li>
+        <li><a href="#etcshadow">/etc/shadow</a></li>
+        <li><a href="#etcalternatives">/etc/alternatives</a></li>
+        <li><a href="#etcapt">/etc/apt</a></li>
+        <li><a href="#etcfstab">/etc/fstab</a></li>
+        <li><a href="#etcsystemd">/etc/systemd</a></li>
+      </ul>
+    </li>
+    <li><a href="#lib">/lib</a></li>
+    <li><a href="#dev">/dev</a></li>
+    <li><a href="#tmp">/tmp</a></li>
+    <li><a href="#usr-1">/usr</a></li>
+    <li><a href="#var">/var</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#查看发行版">查看发行版</a></li>
+    <li><a href="#查看系统所有用户信息">查看系统所有用户信息</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#linux-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">Linux 目录结构</a>
+<ol>
+<li><a href="#boot">/boot</a></li>
+<li><a href="#bin-%E5%92%8C-sbin">/bin 和 /sbin</a></li>
+<li><a href="#root">/root</a></li>
+<li><a href="#run">/run</a></li>
+<li><a href="#home">/home</a></li>
+<li><a href="#lost+found">/lost+found</a></li>
+<li><a href="#proc">/proc</a>
+<ol>
+<li><a href="#%E7%BD%91%E7%BB%9C">网络</a></li>
+</ol>
+</li>
+<li><a href="#usr">/usr</a>
+<ol>
+<li><a href="#usrlocal">/usr/local</a></li>
+</ol>
+</li>
+<li><a href="#etc">/etc</a>
+<ol>
+<li><a href="#etcpasswd">/etc/passwd</a></li>
+<li><a href="#etcshadow">/etc/shadow</a></li>
+<li><a href="#etcalternatives">/etc/alternatives</a></li>
+<li><a href="#etcapt">/etc/apt</a></li>
+<li><a href="#etcfstab">/etc/fstab</a></li>
+<li><a href="#etcsystemd">/etc/systemd</a></li>
+</ol>
+</li>
+<li><a href="#lib">/lib</a></li>
+<li><a href="#dev">/dev</a></li>
+<li><a href="#tmp">/tmp</a></li>
+<li><a href="#usr">/usr</a></li>
+<li><a href="#var">/var</a></li>
+</ol>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a>
+<ol>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E5%8F%91%E8%A1%8C%E7%89%88">查看发行版</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF">查看系统所有用户信息</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-06-24 16:51</em>|</p>
+<hr>
+<h1 id="linux-目录结构">Linux 目录结构</h1>
+<blockquote>
+<p>Linux 系统目录结构的大致分布以及说明</p>
+</blockquote>
+<h2 id="boot">/boot</h2>
+<blockquote>
+<p>该目录存放的是启动Linux是的核心文件，具体包含一些镜像文件和链接文件，因此这个目录非常重要，，如果遭到破坏，系统将无法启动</p>
+</blockquote>
+<ul>
+<li>查看引导项 <code>sudo efibootmgr -v</code></li>
+</ul>
+<h2 id="bin-和-sbin">/bin 和 /sbin</h2>
+<blockquote>
+<p>这两个目录存放的是可执行的二进制文件。bin其实是binary的缩写，/bin目录下存放的就是我们经常使用的Linux命令。sbin中的s其实是Super User的意思，也就是，只有超级用户才可以执行这些命令</p>
+</blockquote>
+<h2 id="root">/root</h2>
+<blockquote>
+<p>root用户的默认用户目录</p>
+</blockquote>
+<h2 id="run">/run</h2>
+<blockquote>
+<p>该目录是外在设备的自动挂载点目录，用来自动挂载光驱和U盘。另外还有一个/media目录，与/run目录作用基本类似，在CentOS 7之前使用。还有一个/mnt目录，主要用来手动挂载一些移动设备</p>
+</blockquote>
+<h2 id="home">/home</h2>
+<blockquote>
+<p>非root用户的默认用户目录的父目录</p>
+</blockquote>
+<h2 id="lostfound">/lost+found</h2>
+<blockquote>
+<p>该目录用于保存丢失的文件。不恰当的关机操作和磁盘错误均会导致文件丢失，这些丢失的文件会临时放在/lost+found下，系统重启后，引导进程会运行fsck程序，该程序就会发现这些文件爱你。除了’/‘分区上的这个目录外，在每个分区上均有一个lost+found目录</p>
+</blockquote>
+<hr>
+<h2 id="proc">/proc</h2>
+<blockquote>
+<p>此目录是虚拟目录，目录中所有信息都是内存的映射，通过这个虚拟的内存映射目录，可以和内核内部数据结构进行交互，获取有关进程的有用信息，同时也可以在系统运行中修改内核参数。与其他目录不同，/proc存在于内存中，而不是硬盘上</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>文件或目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cpuinfo</td>
+<td>关于系统CPU的详细信息，包含CPU名称、型号和类型</td>
+</tr>
+<tr>
+<td>meninfo</td>
+<td>内存信息，包含物理内存和虚拟内存</td>
+</tr>
+<tr>
+<td>filesystems</td>
+<td>当前系统支持的文件系统类型</td>
+</tr>
+<tr>
+<td>devices</td>
+<td>内核中的设备驱动程序列表</td>
+</tr>
+<tr>
+<td>net</td>
+<td>网络使用协议以及状态信息</td>
+</tr>
+<tr>
+<td>dma</td>
+<td>当前使用的dma通道</td>
+</tr>
+<tr>
+<td>ioports</td>
+<td>当前使用的I/O端口</td>
+</tr>
+<tr>
+<td>modules</td>
+<td>当前系统加载的内核模块信息</td>
+</tr>
+<tr>
+<td>stat</td>
+<td>系统的各种状态信息</td>
+</tr>
+<tr>
+<td>uptime</td>
+<td>系统总的启动时间和空闲时间，以秒为单位</td>
+</tr>
+<tr>
+<td>version</td>
+<td>内核版本信息</td>
+</tr>
+<tr>
+<td>loadavg</td>
+<td>系统平均负载</td>
+</tr>
+<tr>
+<td>kcore</td>
+<td>系统物理内存的映像，与物理内存大小完全一样，但实际不占用那么大空间</td>
+</tr>
+<tr>
+<td>kmsg</td>
+<td>内核输出信息，同时被输出到rsyslog</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>/proc/sys/fs/inotify/max_user_watches</code></li>
+<li><code>/proc/sys/kernel/threads-max</code></li>
+<li><code>/proc/sys/kernel/pid_max</code></li>
+</ul>
+<h3 id="网络">网络</h3>
+<ol>
+<li>ARP: /proc/net/arp 若该文件内有重复的mac地址, 并且有机器伪装成了网关的mac 就说明遭受了ARP攻击 <code>或者 arp -a</code>
+<ul>
+<li>arping 10.91.255.254 能查看到真实的mac地址</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="usr">/usr</h2>
+<h3 id="usrlocal">/usr/local</h3>
+<blockquote>
+<p>全局配置, 对应的局部配置目录是 <code>~/.local</code>, 惯例是局部覆盖全局配置</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ├── bin 可执行文件(Python安装应用的目录)
+    ├── lib 库
+    └── share 应用的配置
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>share 目录下 存放大量应用配置: 主题,图标,字体,desktop文件 什么的</li>
+</ul>
+<hr>
+<h2 id="etc">/etc</h2>
+<blockquote>
+<p>主要用于存放系统管理相关的配置文件以及子目录。其中比较重要的有系统初始化文件/etc/rc、用户信息文件/etc/passwd等，相关网络配置文件和服务启动文件也在该目录下</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>文件名和目录</th>
+<th>主要作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hosts</td>
+<td>设定用户自己的IP与名字的对应表</td>
+</tr>
+<tr>
+<td>resolv.conf</td>
+<td>客户端DNS配置文件</td>
+</tr>
+<tr>
+<td>systemd/system/*.wants</td>
+<td>此目录包含所有服务启动脚本，开机时系统将自动启动这些服务（CentOS 7新增）</td>
+</tr>
+<tr>
+<td>sysconfig/network-scrripts/ifcfg&ndash;eth0</td>
+<td>IP地址配置文件（CentOS 7后网卡名从类似eth0、eth1的标识变为enp0s3、enps4标识）</td>
+</tr>
+<tr>
+<td>X11</td>
+<td>X-Window的配置文件</td>
+</tr>
+<tr>
+<td>rsyslog.conf</td>
+<td>系统日志输出配置文件</td>
+</tr>
+<tr>
+<td>crontab</td>
+<td>系统级别的守护进程配置文件</td>
+</tr>
+<tr>
+<td>services</td>
+<td>定义系统服务与端口的对应关系</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>系统全局环境变量配置文件</td>
+</tr>
+<tr>
+<td>sysctl.conf</td>
+<td>系统内核参数配置文件（在CentOS 7后，内核参数配置文件转移到了/usr/lib/sysctl.d目录下，但sysctl.conf文件仍有效，并且可覆盖/usr/lib/sysctl.d中的配置）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="etcpasswd">/etc/passwd</h3>
+<blockquote>
+<p>用户的组，权限, Home目录, 默认shell 相关配置</p>
+</blockquote>
+<ul>
+<li>禁止 Shell 登录, 将原有默认 shell <code>/bin/bash</code> 改为 <code>/sbin/nologin</code></li>
+</ul>
+<h3 id="etcshadow">/etc/shadow</h3>
+<blockquote>
+<p>存放用户密码的文件，每个用户的密码加密后都放入此文件</p>
+</blockquote>
+<h3 id="etcalternatives">/etc/alternatives</h3>
+<p>alternative是可选项的意思.
+首先，因为依赖关系的存在，一个软件包在系统里面可能出现新旧版本并存的情况.
+在以前，要想用旧版本作为默认值就必须要手动修改配置文件，有些软件比较简单，有些却要修改很多文件，甚至一些相关软件的配置文件也要相应修改。</p>
+<p>update-alternatives 命令就是操作的这个目录, 实现的步骤往往是在该目录建立一个软链接, 然后又从这里建立软链接到 /usr/bin 下, 实现将命令加入到 PATH 中的目的</p>
+<h3 id="etcapt">/etc/apt</h3>
+<blockquote>
+<p>Debian 系 apt 包管理器的配置目录</p>
+</blockquote>
+<ol>
+<li>/etc/apt/sources.list.d/ 这个目录是放别的应用需要的软件列表</li>
+</ol>
+<h3 id="etcfstab">/etc/fstab</h3>
+<blockquote>
+<p>static file system infomation</p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.linuxstall.com/fstab/">A complete fstab guide </a></p>
+</blockquote>
+<p>Use &lsquo;blkid&rsquo; to print the universally unique identifier for a device;<br>
+this may be used with UUID= as a more robust way to name devices that  works even if disks are added and removed.</p>
+<p>行内容结构 <code>&lt;file system&gt;  &lt;mount point&gt;  &lt;type&gt;  &lt;options&gt;  &lt;dump&gt;  &lt;pass&gt; </code></p>
+<h3 id="etcsystemd">/etc/systemd</h3>
+<p>systemd的配置文件目录，此目录是Linux启动的重要部分，用来完成对整个系统的基本初始化配置</p>
+<hr>
+<h2 id="lib">/lib</h2>
+<blockquote>
+<p>该目录存放的是共享程序库和映像问津，，可供很多程序使用。通过这些共享映射文件，每个程序就不必分别保存自己的库文件，Linux提供一组可供所有程序使用的文件。在该目录中，还包含引导进程所需的静态库文件</p>
+</blockquote>
+<h2 id="dev">/dev</h2>
+<blockquote>
+<p>包含系统所有的设备文件</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>设备名</th>
+<th>具体含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fd*</td>
+<td>代表软盘设备，fd0代表第一个软盘设备，fd1代表第二个软盘设备</td>
+</tr>
+<tr>
+<td>audio*</td>
+<td>代表声卡设备</td>
+</tr>
+<tr>
+<td>hd*</td>
+<td>代表IDE硬盘设备。hda代表第一块IDE硬盘，hdb代表第二块IDE硬盘</td>
+</tr>
+<tr>
+<td>sd*</td>
+<td>代表SCSI设备，sda代表第一块SCSI硬盘，sdb代表第二块SCSI硬盘</td>
+</tr>
+<tr>
+<td>lp*</td>
+<td>代表并行串口</td>
+</tr>
+<tr>
+<td>pty*</td>
+<td>代表网络中登录的远程终端设备</td>
+</tr>
+<tr>
+<td>ram*</td>
+<td>代表系统内存</td>
+</tr>
+<tr>
+<td>tty*</td>
+<td>代表Linux上的虚拟控制台，也叫字符控制台。tty1代表第一个虚拟控制台，tty2代表第二个虚拟控制台，以此类推，Linux上一共有6个虚拟控制台</td>
+</tr>
+<tr>
+<td>ttyS*</td>
+<td>代表串行端口。</td>
+</tr>
+<tr>
+<td>console</td>
+<td>代表系统控制台，也就是桌面控制台，可以直接连接到显示器</td>
+</tr>
+<tr>
+<td>null</td>
+<td>输出空设备</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="tmp">/tmp</h2>
+<blockquote>
+<p>应用缓存目录, 存放缓存文件, 在系统重启后就会被清理</p>
+</blockquote>
+<ul>
+<li>在安装Linux时如果没有明确的分区, 就会属于 / 分区, 那么就要给 / 留有足够的大小, 不然 /tmp 分区不足会导致应用运行异常
+<ul>
+<li>例如 Tomcat 在运行时就需要使用</li>
+</ul>
+</li>
+<li>清理的机制
+<ul>
+<li>如果新建文件在 /tmp 目录下， 文件的内容会随着系统重启而消失 但是文件依旧存在(空文件)</li>
+</ul>
+</li>
+</ul>
+<h2 id="usr-1">/usr</h2>
+<blockquote>
+<p>主要用于存放应用程序和文件。如果在系统安装的时候选择了很多安装软件包，那么这些软件包默认会安装到该目录下，平时安装的一些软件默认情况下也会安装在该目录内</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>文件或目录</th>
+<th>主要作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lib64以及local/lib64</td>
+<td>64位操作系统中的函数库目录</td>
+</tr>
+<tr>
+<td>src</td>
+<td>该目录包含所有程序的源代码，其中主要是Linux核心程序源代码</td>
+</tr>
+<tr>
+<td>local</td>
+<td>该目录存放本地安装的软件和其他文件，与LInux无关</td>
+</tr>
+<tr>
+<td>bin以及local/bin</td>
+<td>使用者可执行的二进制文件目录</td>
+</tr>
+<tr>
+<td>lib以及local/lib</td>
+<td>32位操作系统使用的函数库目录</td>
+</tr>
+<tr>
+<td>sbin以及local/sbin</td>
+<td>该目录存放系统管理员才能执行的指令</td>
+</tr>
+<tr>
+<td>include</td>
+<td>此目录包含c语言的头文件，文件扩展名大多数为.h</td>
+</tr>
+<tr>
+<td>share</td>
+<td>该目录存放共享的文件和数据库</td>
+</tr>
+</tbody>
+</table>
+<h2 id="var">/var</h2>
+<blockquote>
+<p>主要用于存放系统运行以及软件运行的日志信息</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>文件或目录</th>
+<th>主要作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>log</td>
+<td>该目录存放各种应用程序的日志文件，这里的文件是经常变动的，因此需要定期清理</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>该目录存放系统正常运行时需要改变的库文件</td>
+</tr>
+<tr>
+<td>spool</td>
+<td>该目录是mail、new、打印机队列和其他队列输入、输出的缓冲目录</td>
+</tr>
+<tr>
+<td>tmp</td>
+<td>该目录允许比/tmp存放更大的文件</td>
+</tr>
+<tr>
+<td>lock</td>
+<td>该目录存放被锁定的文件，很多程序都会在/var/lock下产生一个锁文件，以保证其他程序不能同时使用这个设备或文件</td>
+</tr>
+<tr>
+<td>local</td>
+<td>该目录存放/usr/local中所安装程序的可变数据</td>
+</tr>
+<tr>
+<td>account</td>
+<td>该目录存放已经格式化的man页</td>
+</tr>
+<tr>
+<td>run</td>
+<td>该目录包含到下次系统启动前的系统信息</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="使用">使用</h1>
+<blockquote>
+<p>具体配置文件的使用</p>
+</blockquote>
+<h2 id="查看发行版">查看发行版</h2>
+<ol>
+<li><code>cat /etc/issue</code> 通用</li>
+<li><code>cat /etc/redhat-release</code> redhat系</li>
+<li>screenfetch <code>先安装</code></li>
+<li>lsb_release -a</li>
+</ol>
+<p><em>查看内核版本</em></p>
+<ul>
+<li><code>cat /proc/version</code></li>
+<li><code>uname -a</code></li>
+</ul>
+<h2 id="查看系统所有用户信息">查看系统所有用户信息</h2>
+<blockquote>
+<p>/etc/passwd 包含了用户,用户组,用户home目录 shell类型等信息<br>
+看第三个参数:500以上的,就是后面建的用户了.其它则为系统的用户.</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/base/linuxfile/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux文件系统</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/base/linuxcompressfile/">
+            <span class="next-text nav-default">Linux平台上压缩和解压工具</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Zsh - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Zsh 为什么要使用 Tips oh-my-zsh 插件 主题 自己定制 目录 end|2020-11-05 16:05| Zsh arch zsh wiki 为什么要使用 mac 装了 oh my zsh 后比用 bash 具体好在哪儿？ 终极 Shell——ZSH 某人的配置 Zsh 开" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/script/zsh/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Zsh" />
+<meta property="og:description" content="目录 start Zsh 为什么要使用 Tips oh-my-zsh 插件 主题 自己定制 目录 end|2020-11-05 16:05| Zsh arch zsh wiki 为什么要使用 mac 装了 oh my zsh 后比用 bash 具体好在哪儿？ 终极 Shell——ZSH 某人的配置 Zsh 开" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/script/zsh/" />
+<meta property="article:published_time" content="2018-12-15T12:06:10+00:00" />
+<meta property="article:modified_time" content="2018-12-15T12:06:10+00:00" />
+<meta itemprop="name" content="Zsh">
+<meta itemprop="description" content="目录 start Zsh 为什么要使用 Tips oh-my-zsh 插件 主题 自己定制 目录 end|2020-11-05 16:05| Zsh arch zsh wiki 为什么要使用 mac 装了 oh my zsh 后比用 bash 具体好在哪儿？ 终极 Shell——ZSH 某人的配置 Zsh 开">
+<meta itemprop="datePublished" content="2018-12-15T12:06:10+00:00" />
+<meta itemprop="dateModified" content="2018-12-15T12:06:10+00:00" />
+<meta itemprop="wordCount" content="361">
+
+
+
+<meta itemprop="keywords" content="Shell," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Zsh"/>
+<meta name="twitter:description" content="目录 start Zsh 为什么要使用 Tips oh-my-zsh 插件 主题 自己定制 目录 end|2020-11-05 16:05| Zsh arch zsh wiki 为什么要使用 mac 装了 oh my zsh 后比用 bash 具体好在哪儿？ 终极 Shell——ZSH 某人的配置 Zsh 开"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Zsh</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-15 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 361 words </span>
+          <span class="more-meta"> 1 min read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么要使用">为什么要使用</a></li>
+    <li><a href="#tips">Tips</a></li>
+    <li><a href="#oh-my-zsh">oh-my-zsh</a>
+      <ul>
+        <li><a href="#插件">插件</a></li>
+        <li><a href="#主题">主题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#zsh">Zsh</a>
+<ol>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8">为什么要使用</a></li>
+<li><a href="#tips">Tips</a></li>
+<li><a href="#oh-my-zsh">oh-my-zsh</a>
+<ol>
+<li><a href="#%E6%8F%92%E4%BB%B6">插件</a></li>
+<li><a href="#%E4%B8%BB%E9%A2%98">主题</a>
+<ol>
+<li><a href="#%E8%87%AA%E5%B7%B1%E5%AE%9A%E5%88%B6">自己定制</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-11-05 16:05</em>|</p>
+<hr>
+<h1 id="zsh">Zsh</h1>
+<blockquote>
+<p><a href="https://wiki.archlinux.org/index.php/Zsh">arch zsh wiki</a></p>
+</blockquote>
+<h2 id="为什么要使用">为什么要使用</h2>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/29977255">mac 装了 oh my zsh 后比用 bash 具体好在哪儿？</a><br>
+<a href="https://zhuanlan.zhihu.com/mactalk/19556676">终极 Shell——ZSH</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/lilydjwg/dotzsh">某人的配置</a></p>
+</blockquote>
+<ul>
+<li><a href="https://www.zhihu.com/column/zshguide">Zsh 开发指南</a></li>
+</ul>
+<h2 id="tips">Tips</h2>
+<ul>
+<li>数组使用 <code>list=(a b c); for i in $list; do echo $i; done</code></li>
+</ul>
+<hr>
+<h2 id="oh-my-zsh">oh-my-zsh</h2>
+<blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh">Github</a><br>
+<a href="https://gitee.com/kcp1104/codes/gca14wtqvm67l9j5r0deb56#Zsh.md">关于PS1环境变量的折腾</a> <code>因为含特殊字符GitBook构建通不过,只能放出去了</code></p>
+</blockquote>
+<ol>
+<li>安装好 zsh wget git</li>
+<li><code>sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</code></li>
+<li><code>vi ~/.zshrc</code> 进行配置</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    plugins=(
+        git mvn docker
+    )
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="插件">插件</h3>
+<blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins">wiki: plugins</a><br>
+<a href="https://hufangyun.com/2017/zsh-plugin/">zsh oh-my-zsh 插件推荐 </a></p>
+</blockquote>
+<ul>
+<li>个人常用 git gitfast mvn gradle golang docker kubectl sudo</li>
+</ul>
+<hr>
+<h3 id="主题">主题</h3>
+<blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes">官网主题列表</a></p>
+</blockquote>
+<ul>
+<li>自带主题: amuse clean wedisagree, muse也还好,就是没时间</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes">额外主题列表</a></p>
+</blockquote>
+<ul>
+<li>
+<p><code>推荐</code> powerlevel10k <strong>性能强劲，交互式配置</strong></p>
+<ul>
+<li><a href="https://github.com/romkatv/powerlevel10k">Github</a></li>
+<li>install nerd-fonts-meslo-lg</li>
+</ul>
+</li>
+<li>
+<p>powerlevel9k</p>
+<ul>
+<li><a href="https://github.com/bhilburn/powerlevel9k/wiki/Install-Instructions#option-2-install-for-oh-my-zsh">Github Doc</a></li>
+<li><code>git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k</code></li>
+<li><code>powerlevel9k/powerlevel9k</code></li>
+</ul>
+</li>
+<li>
+<p>Bullet Train <code>桌面在用 bullet-train</code></p>
+<ul>
+<li><a href="https://github.com/caiogondim/bullet-train.zsh">Github repo</a> |  <a href="https://github.com/powerline/powerline">必需的符号字体</a></li>
+<li>Source Code Pro for Powerline + Powerline + Awesonme 的 Bold 字体搭配最合适</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">    wget https://raw.githubusercontent.com/caiogondim/bullet-train.zsh/master/bullet-train.zsh-theme -O /home/kcp/.oh-my-zsh/custom/themes
+
+    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    mv PowerlineSymbols.otf ~/.local/share/fonts/
+    fc-cache -vf ~/.local/share/fonts/
+    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>Maglev <code>Tmux 主题 和上面的Zsh主题搭配使用</code></p>
+<ul>
+<li><a href="https://github.com/caiogondim/maglev">Github地址</a></li>
+</ul>
+</li>
+<li>
+<p>spaceship</p>
+<ul>
+<li><a href="https://www.ctolib.com/denysdovhan-spaceship-zsh-theme.html">地址</a></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/caiogondim/bullet-train.zsh#for-oh-my-zsh-users">安装步骤</a></p>
+</blockquote>
+<ol>
+<li>mkdir $ZSH_CUSTOM/themes/</li>
+<li>wget <a href="http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme">http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme</a></li>
+<li>config .zshrc to <code>ZSH_THEME=&quot;bullet-train&quot; </code></li>
+</ol>
+<h4 id="自己定制">自己定制</h4>
+<blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Customization">Github doc</a></p>
+</blockquote>
+<p><code>基于muse的主题</code> 用在服务器上挺好</p>
+<blockquote>
+<p>~/.oh-my-zsh/custom/themes/muse-myth.zsh-theme <a href="https://github.com/Kuangcp/Script/blob/master/zsh/themes/muse-mythos.zsh-theme">源码</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/shell/">Shell</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/python/tool/pycharm/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">PyCharm</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/tool/vim/">
+            <span class="next-text nav-default">Vim</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>计算机网络 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 网络 相关书籍和资源 网络分层架构 物理层 数据链路层 网络层 IP协议 IP地址分类 无分类编址 CIDR ARP协议 ICMP协议 传输层 TCP UDP TCP UDP 对比 应用层 HTTP &amp;amp;" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/network/network/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="计算机网络" />
+<meta property="og:description" content="目录 start 网络 相关书籍和资源 网络分层架构 物理层 数据链路层 网络层 IP协议 IP地址分类 无分类编址 CIDR ARP协议 ICMP协议 传输层 TCP UDP TCP UDP 对比 应用层 HTTP &amp;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/network/network/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="计算机网络">
+<meta itemprop="description" content="目录 start 网络 相关书籍和资源 网络分层架构 物理层 数据链路层 网络层 IP协议 IP地址分类 无分类编址 CIDR ARP协议 ICMP协议 传输层 TCP UDP TCP UDP 对比 应用层 HTTP &amp;">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="5999">
+
+
+
+<meta itemprop="keywords" content="基础,网络," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计算机网络"/>
+<meta name="twitter:description" content="目录 start 网络 相关书籍和资源 网络分层架构 物理层 数据链路层 网络层 IP协议 IP地址分类 无分类编址 CIDR ARP协议 ICMP协议 传输层 TCP UDP TCP UDP 对比 应用层 HTTP &amp;"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">计算机网络</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
+            </div>
+          <span class="more-meta"> 5999 words </span>
+          <span class="more-meta"> 12 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#相关书籍和资源">相关书籍和资源</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#物理层">物理层</a></li>
+    <li><a href="#数据链路层">数据链路层</a></li>
+    <li><a href="#网络层">网络层</a>
+      <ul>
+        <li><a href="#ip协议">IP协议</a></li>
+        <li><a href="#arp协议">ARP协议</a></li>
+        <li><a href="#icmp协议">ICMP协议</a></li>
+      </ul>
+    </li>
+    <li><a href="#传输层">传输层</a>
+      <ul>
+        <li><a href="#tcp">TCP</a></li>
+        <li><a href="#udp">UDP</a></li>
+        <li><a href="#tcp-udp-对比">TCP UDP 对比</a></li>
+      </ul>
+    </li>
+    <li><a href="#应用层">应用层</a>
+      <ul>
+        <li><a href="#http--https">HTTP &amp; HTTPS</a></li>
+        <li><a href="#websocket">Websocket</a></li>
+        <li><a href="#webdav">WebDAV</a></li>
+        <li><a href="#网络延迟">网络延迟</a></li>
+        <li><a href="#ttfb">TTFB</a></li>
+        <li><a href="#url">URL</a></li>
+        <li><a href="#dns">DNS</a></li>
+        <li><a href="#vpn">VPN</a></li>
+        <li><a href="#ssdp">SSDP</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#单播">单播</a></li>
+    <li><a href="#组播">组播</a></li>
+    <li><a href="#广播">广播</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#代理协议">代理协议</a>
+      <ul>
+        <li><a href="#http代理">HTTP代理</a></li>
+        <li><a href="#socks">SOCKS</a></li>
+      </ul>
+    </li>
+    <li><a href="#pac">PAC</a></li>
+    <li><a href="#正向代理">正向代理</a></li>
+    <li><a href="#反向代理">反向代理</a></li>
+    <li><a href="#透明代理">透明代理</a></li>
+    <li><a href="#代理工具">代理工具</a>
+      <ul>
+        <li><a href="#fiddler">Fiddler</a></li>
+        <li><a href="#wireshark">Wireshark</a></li>
+        <li><a href="#charles">Charles</a></li>
+        <li><a href="#mitmproxy">mitmproxy</a></li>
+        <li><a href="#mars">Mars</a></li>
+        <li><a href="#camilla">camilla</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#移动通信技术规格">移动通信技术规格</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E7%BD%91%E7%BB%9C">网络</a>
+<ol>
+<li><a href="#%E7%9B%B8%E5%85%B3%E4%B9%A6%E7%B1%8D%E5%92%8C%E8%B5%84%E6%BA%90">相关书籍和资源</a></li>
+</ol>
+</li>
+<li><a href="#%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84">网络分层架构</a>
+<ol>
+<li><a href="#%E7%89%A9%E7%90%86%E5%B1%82">物理层</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82">数据链路层</a></li>
+<li><a href="#%E7%BD%91%E7%BB%9C%E5%B1%82">网络层</a>
+<ol>
+<li><a href="#ip%E5%8D%8F%E8%AE%AE">IP协议</a>
+<ol>
+<li><a href="#ip%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB">IP地址分类</a></li>
+<li><a href="#%E6%97%A0%E5%88%86%E7%B1%BB%E7%BC%96%E5%9D%80-cidr">无分类编址 CIDR</a></li>
+</ol>
+</li>
+<li><a href="#arp%E5%8D%8F%E8%AE%AE">ARP协议</a></li>
+<li><a href="#icmp%E5%8D%8F%E8%AE%AE">ICMP协议</a></li>
+</ol>
+</li>
+<li><a href="#%E4%BC%A0%E8%BE%93%E5%B1%82">传输层</a>
+<ol>
+<li><a href="#tcp">TCP</a></li>
+<li><a href="#udp">UDP</a></li>
+<li><a href="#tcp-udp-%E5%AF%B9%E6%AF%94">TCP UDP 对比</a></li>
+</ol>
+</li>
+<li><a href="#%E5%BA%94%E7%94%A8%E5%B1%82">应用层</a>
+<ol>
+<li><a href="#http-&amp;-https">HTTP &amp; HTTPS</a></li>
+<li><a href="#websocket">Websocket</a></li>
+<li><a href="#webdav">WebDAV</a></li>
+<li><a href="#%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F">网络延迟</a></li>
+<li><a href="#ttfb">TTFB</a></li>
+<li><a href="#url">URL</a></li>
+<li><a href="#dns">DNS</a></li>
+<li><a href="#vpn">VPN</a></li>
+<li><a href="#ssdp">SSDP</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#socket">Socket</a></li>
+<li><a href="#%E5%8D%95%E6%92%AD-%E7%BB%84%E6%92%AD-%E5%B9%BF%E6%92%AD">单播 组播 广播</a>
+<ol>
+<li><a href="#%E5%8D%95%E6%92%AD">单播</a></li>
+<li><a href="#%E7%BB%84%E6%92%AD">组播</a></li>
+<li><a href="#%E5%B9%BF%E6%92%AD">广播</a></li>
+</ol>
+</li>
+<li><a href="#%E4%BB%A3%E7%90%86-proxy">代理 Proxy</a>
+<ol>
+<li><a href="#%E4%BB%A3%E7%90%86%E5%8D%8F%E8%AE%AE">代理协议</a>
+<ol>
+<li><a href="#http%E4%BB%A3%E7%90%86">HTTP代理</a></li>
+<li><a href="#socks">SOCKS</a></li>
+</ol>
+</li>
+<li><a href="#pac">PAC</a></li>
+<li><a href="#%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86">正向代理</a></li>
+<li><a href="#%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86">反向代理</a></li>
+<li><a href="#%E9%80%8F%E6%98%8E%E4%BB%A3%E7%90%86">透明代理</a></li>
+<li><a href="#%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7">代理工具</a>
+<ol>
+<li><a href="#fiddler">Fiddler</a></li>
+<li><a href="#wireshark">Wireshark</a></li>
+<li><a href="#charles">Charles</a></li>
+<li><a href="#mitmproxy">mitmproxy</a></li>
+<li><a href="#mars">Mars</a></li>
+<li><a href="#camilla">camilla</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#tips">Tips</a>
+<ol>
+<li><a href="#%E7%A7%BB%E5%8A%A8%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF%E8%A7%84%E6%A0%BC">移动通信技术规格</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-08-20 13:49</em>|</p>
+<hr>
+<h1 id="网络">网络</h1>
+<h2 id="相关书籍和资源">相关书籍和资源</h2>
+<blockquote>
+<p><a href="http://ceur-ws.org/Vol-601/EOMAS10_paper13.pdf">Real time Webservice</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://beej.us/guide/bgnet/">Beej&rsquo;s Guide to Network Programming</a></p>
+</blockquote>
+<ul>
+<li>webapi的设计与开发</li>
+<li>网络是怎样连接的</li>
+<li>计算机网络 谢希仁</li>
+</ul>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665514196&amp;idx=1&amp;sn=ca26d258fcc4a35fc6d9a539b7d71dd7&amp;chksm=80d67c97b7a1f58198b2e6ae436f73c677c0df4c05c2a8a4aad2b9e2d523da57dd5cd3d0a8ee&amp;mpshare=1&amp;scene=1&amp;srcid=0122nnRpNb6OvRJubkSfKfsZ&amp;pass_ticket=%2B%2FAmfhAaNv2sKw6192eqEL9hoW%2F6BrLxlzHIsKC0k6lPQsM4%2FFo08R%2FZowzw3821#rd">码农翻身:小白科普：从输入网址到最后浏览器呈现页面内容，中间发生了什么？</a> |
+<a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513173&amp;idx=1&amp;sn=6ec5281b12ed5195070fa4df22383595&amp;scene=21#wechat_redirect">码农翻身:我是一个路由器</a> |
+<a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513160&amp;idx=1&amp;sn=d938db4f1a2d62514b57e92fd8d3d749&amp;scene=21#wechat_redirect">码农翻身:我是一个网卡</a></p>
+</blockquote>
+<h1 id="网络分层架构">网络分层架构</h1>
+<p>开放系统互连基本参考模型 OSI/RM  Open Systems Interconnection Reference Model, 简称 OSI</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">OSI</th>
+<th style="text-align:center">TCP/IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">应用层 <!-- raw HTML omitted --> 表示层 <!-- raw HTML omitted --> 会话层</td>
+<td style="text-align:center">应用层</td>
+</tr>
+<tr>
+<td style="text-align:left">传输层</td>
+<td style="text-align:center">传输层</td>
+</tr>
+<tr>
+<td style="text-align:left">网络层</td>
+<td style="text-align:center">网络层</td>
+</tr>
+<tr>
+<td style="text-align:left">数据链路层 <!-- raw HTML omitted --> 物理层</td>
+<td style="text-align:center">链路层</td>
+</tr>
+</tbody>
+</table>
+<p>OSI制定的OSI七层参考模型的过于庞大、复杂。与此对照，由技术人员设计的 TCP/IP协议栈(<code>四层</code>: 网络接口 网络层 传输层 应用层) 获得了更为广泛的应用。
+谢希仁所著的 计算机网络 书中 为了教学, 融合成了 <code>五层模型</code></p>
+<p>事实上, 现在的应用不是严格按照OSI分层的, 应用层可以使用 传输层(TCP UDP), 也可以直接使用网络层(IP),甚至直接使用网络接口层</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/wdkirchhoff/article/details/43915825">参考: 以太网帧结构</a></p>
+</blockquote>
+<p>app layer叫message，trans layer叫segment，net layer叫datagram，link layer叫frame</p>
+<hr>
+<h2 id="物理层">物理层</h2>
+<blockquote>
+<p>集线器 工作在这一层</p>
+</blockquote>
+<h2 id="数据链路层">数据链路层</h2>
+<blockquote>
+<p>常规交换机 工作在这一层</p>
+</blockquote>
+<blockquote>
+<p>通常在帧的前面插入 8 字节，其中的第一个字段共 7 个字节，是前同步码，用来迅速实现 MAC帧的比特同步。第二个字段是帧开始定界符，表示后面的信息就是MAC帧</p>
+</blockquote>
+<ul>
+<li>
+<p>MAC帧 组成为 <code>首部(MAC地址等信息) 数据(IP数据报) 尾部</code></p>
+</li>
+<li>
+<p>首部构成为</p>
+<ol>
+<li>目的地址 <strong>6字节</strong></li>
+<li>源地址 <strong>6字节</strong></li>
+<li>类型 <strong>2字节</strong> 标志上一层使用的是什么协议</li>
+</ol>
+</li>
+<li>
+<p>数据部分 (46-1500字节)</p>
+</li>
+<li>
+<p>尾部：<strong>4字节</strong>长，包含的信息是帧校验序列FCS（使用CRC校验）</p>
+</li>
+<li>
+<p>PPP帧</p>
+</li>
+</ul>
+<hr>
+<h2 id="网络层">网络层</h2>
+<blockquote>
+<p>常规路由器 工作在这一层</p>
+</blockquote>
+<h3 id="ip协议">IP协议</h3>
+<blockquote>
+<p><a href="https://blog.csdn.net/wangzhen209/article/details/74453548">IP数据报格式详解</a></p>
+</blockquote>
+<ul>
+<li>
+<p>IP数据报 组成为 <code>首部(IP地址等信息) 数据(TCP/UDP报文)</code></p>
+</li>
+<li>
+<p>首部固定部分构成为:</p>
+<ol>
+<li><code>版本号</code>：占用<strong>4位</strong>二进制数，表示该IP数据报使用的IP协议版本。目前Internet中使用的主要是TCP/IP协议族中版本号为4的IP协议。</li>
+<li><code>首部长度</code>：占用<strong>4位</strong>二进制位，此域指出整个报头的长度（包括选项），该长度是以32位二进制数为一个计数单位的，
+<ul>
+<li>接收端通过此域可以计算出报头在何处结束及从何处开始读数据。普通IP数据报（没有任何选项）该字段的值是5（即20个字节的长度）。</li>
+</ul>
+</li>
+<li><code>服务类型（TOS、type of service）</code>：占用<strong>8位</strong>二进制位，用于规定本数据报的处理方式。</li>
+<li><code>总长度</code>：占用<strong>16位</strong>二进制位，总长度字段是指整个IP数据报的长度（报头区+数据区），以字节为单位。
+<ul>
+<li>利用头部长度字段和总长度字段就可以计算出IP数据报中数据内容的起始位置和长度。由于该字段长度为16位二进制数，</li>
+<li>因此理论上IP数据报最长可达65536个字节（事实上受物理网络的限制，要比这个数值小很多）。</li>
+</ul>
+</li>
+<li><code>标识</code> <strong>16位</strong> IP软件在存储器中维持一个计数器，每产生一个数据报，计数器就加1，并将此值赋给标识字段。
+<ul>
+<li>但这个“标识”并不是序号，因为IP是无连接服务，数据报不存在按序接收的问题。当数据报由于长度超过网络的MTU而必须分片时，</li>
+<li>这个标识字段的值就被复制到所有的数据报的标识字段中。相同的标识字段的值使分片后的各数据报片最后能正确地重装成为原来的数据报。</li>
+</ul>
+</li>
+<li><code>标志</code> <strong>3位</strong> 但只有2位有意义。
+<ul>
+<li>标志字段中的最低位记为MF(More Fragment)。MF=1即表示后面“还有分片”的数据报。MF=0表示这已是若干数据报片中的最后一个。</li>
+<li>标志字段中间的一位记为DF(Don’t Fragment)，意思是“不能分片”。只有当DF=0时才允许分片。</li>
+</ul>
+</li>
+<li><code>片偏移</code> <strong>13位</strong> 片偏移指出：较长的分组在分片后，某片在原分组中的相对位置。也就是说，相对用户数据字段的起点，该片从何处开始。
+<ul>
+<li>片偏移以8个字节为偏移单位。这就是说，除了最后一个分片，每个分片的长度一定是8字节（64位）的整数倍。</li>
+</ul>
+</li>
+<li><code>生存时间（TTL，time to live）</code>：占用<strong>8位</strong>二进制位，它指定了数据报可以在网络中传输的最长时间。
+<ul>
+<li>实际应用中把生存时间字段设置成了数据报可以经过的最大路由器数。TTL的初始值由源主机设置（通常为32、64、128或256），
+<ul>
+<li>一旦经过一个处理它的路由器，它的值就减1。当该字段为0时，数据报就丢弃，并发送ICMP报文通知源主机，</li>
+<li>因此可以防止进入一个循环回路时，数据报无休止地传输下去。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>上层协议标识</code>：占用<strong>8位</strong>二进制位，IP协议可以承载各种上层协议，目标端根据协议标识就可以把收到的IP数据报送到TCP或UDP等处理此报文的上层协议了。</li>
+<li><code>校验和</code>：占用<strong>16位</strong>二进制数，用于协议头数据有效性的校验，可以保证IP报头区在传输时的正确性和完整性。
+<ul>
+<li>头部检验和字段是根据IP协议头计算出的检验和，它不对头部后面的数据进行计算。</li>
+<li>原理：发送端首先将检验和字段置0，然后对头部中每16位二进制数进行反码求和的运算，并将结果存在校验和字段中。</li>
+<li>由于接收方在计算过程中包含了发送方放在头部的校验和，因此，如果头部在传输过程中没有发生任何差错，那么接收方计算的结果应该是全1。</li>
+</ul>
+</li>
+<li><code>源地址</code>：占用32位二进制数，表示发送端IP地址。</li>
+<li><code>目的地址</code>：占用32位二进制数，表述目的端IP地址。</li>
+</ol>
+</li>
+<li>
+<p>IPv4 &amp; IPv6</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="http://www.cnblogs.com/cuihongyu3503319/p/7422877.html">参考: 浏览器访问IPv6地址</a></p>
+</blockquote>
+<h4 id="ip地址分类">IP地址分类</h4>
+<blockquote>
+<p>IP地址的由 网络号 主机号 组成</p>
+</blockquote>
+<ul>
+<li>IP ::= {&lt;网络号&gt;, &lt;主机号&gt;}</li>
+</ul>
+<p>IPv4 地址由 32 位标识符组成，目前由 ICANN 进行分配 且在 2011 年已经耗尽</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类别</th>
+<th style="text-align:left">标识位</th>
+<th style="text-align:left">网络号</th>
+<th style="text-align:left">主机号</th>
+<th style="text-align:left">最大可分配网络数</th>
+<th style="text-align:left">最小可分配网络号</th>
+<th style="text-align:left">最大可分配网络号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">A</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">8位</td>
+<td style="text-align:left">24位</td>
+<td style="text-align:left">126 2^7 - 2</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">126</td>
+</tr>
+<tr>
+<td style="text-align:left">B</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">16位</td>
+<td style="text-align:left">16位</td>
+<td style="text-align:left">16383 2^14 - 1</td>
+<td style="text-align:left">128.1</td>
+<td style="text-align:left">191.255</td>
+</tr>
+<tr>
+<td style="text-align:left">C</td>
+<td style="text-align:left">110</td>
+<td style="text-align:left">24位</td>
+<td style="text-align:left">8位</td>
+<td style="text-align:left">2097151 2^21 - 1</td>
+<td style="text-align:left">192.0.1</td>
+<td style="text-align:left">223.255.255</td>
+</tr>
+<tr>
+<td style="text-align:left">D</td>
+<td style="text-align:left">1110</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">E</td>
+<td style="text-align:left">1111</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>特殊IP地址</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">网络号</th>
+<th style="text-align:left">主机号</th>
+<th style="text-align:left">源地址使用</th>
+<th style="text-align:left">目的地址使用</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">可以</td>
+<td style="text-align:left">不可以</td>
+<td style="text-align:left">在本网络上的本主机</td>
+</tr>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">host-id</td>
+<td style="text-align:left">可以</td>
+<td style="text-align:left">不可以</td>
+<td style="text-align:left">在本网络上的某个主机 host-id</td>
+</tr>
+<tr>
+<td style="text-align:left">全1</td>
+<td style="text-align:left">全1</td>
+<td style="text-align:left">不可以</td>
+<td style="text-align:left">可以</td>
+<td style="text-align:left">只在本网络上进行广播 路由器不转发</td>
+</tr>
+<tr>
+<td style="text-align:left">net-id</td>
+<td style="text-align:left">全1</td>
+<td style="text-align:left">不可以</td>
+<td style="text-align:left">可以</td>
+<td style="text-align:left">对 net-id 的所有主机进行广播</td>
+</tr>
+<tr>
+<td style="text-align:left">127</td>
+<td style="text-align:left">非全0且非全1</td>
+<td style="text-align:left">可以</td>
+<td style="text-align:left">可以</td>
+<td style="text-align:left">作本地软件回环测试用</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A类</li>
+<li>B类</li>
+<li>C类</li>
+<li>D类 用于组播(多播)</li>
+<li>E类 保留地址</li>
+</ul>
+<h4 id="无分类编址-cidr">无分类编址 CIDR</h4>
+<blockquote>
+<p>为了解决IPv4地址耗尽的问题</p>
+</blockquote>
+<ul>
+<li>IP ::= {&lt;网络前缀&gt;, &lt;主机号&gt;}</li>
+</ul>
+<h3 id="arp协议">ARP协议</h3>
+<blockquote>
+<p>同一局域网内，通过已知的IP地址和找到对应的硬件地址</p>
+</blockquote>
+<ol>
+<li>每个主机都会有一个 ARP高速缓存，存储本局域网内各主机和路由器的IP地址和硬件地址的映射</li>
+<li>当A要向主机B发送IP数据报就会查找该缓存，如果找不到
+<ol>
+<li>ARP 进程在 本局域网广播 发送ARP请求分组 信息大致为我的IP地址A 硬件地址B，想知道IP地址C的硬件地址</li>
+<li>本局域网内所有 ARP进程都会收到请求，IP地址与询问中的IP地址一致的才会响应请求，其他主机会丢弃</li>
+<li>C 响应内容大致为 我的IP地址 C 硬件地址 D，注意该响应是单播，显然此时只需要点对点通信即可无需发送广播而产生大量无用数据报占据网络</li>
+<li>A 收到响应后 将映射存入缓存</li>
+</ol>
+</li>
+</ol>
+<h3 id="icmp协议">ICMP协议</h3>
+<hr>
+<h2 id="传输层">传输层</h2>
+<blockquote>
+<p>TCP/IP 运输层的两个主要协议都是因特网的正式标准</p>
+</blockquote>
+<p>用户数据报协议 UDP <code>User Datagram Protocol</code>
+控制传输协议 TCP <code>Transmission Control Protocol</code></p>
+<p>按照 OSI 的术语, 两个对等运输实体在通信时传送的数据单位叫做 运输协议数据单元 TPDU Transport Protocol Data Unit.
+但在 TCP/IP 体系中, 则根据使用的所使用的协议是 TCP 或 UDP, 分别称之为 TCP报文段 segment, UDP用户数据报</p>
+<h3 id="tcp">TCP</h3>
+<blockquote>
+<p>传输控制协议（英语：Transmission Control Protocol，缩写为 TCP, 是一种面向连接的、可靠的、基于<strong>字节流</strong>的传输层通信协议，由IETF的RFC 793定义。</p>
+</blockquote>
+<blockquote>
+<p>TCP 段的头部信息 20字节 也就是160位</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    16位源端口号,16位目的端口号
+    32位序列号
+    32位确认序列号
+    4位首部长度, 保留6位, URG, ACK, PSH, PST, SYN, FIN, 16位窗口大小
+    16位校验和, 16位紧急指针
+    选项
+    数据...
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="udp">UDP</h3>
+<blockquote>
+<p>UDP 段的头部信息 8 字节</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    16位源端口号,16位目的端口号
+    16位用户数据库包长度, 16位检查和
+    数据...
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="tcp-udp-对比">TCP UDP 对比</h3>
+<blockquote>
+<p><a href="https://blog.csdn.net/li_ning_/article/details/52117463">参考: TCP和UDP的最完整的区别</a><br>
+<a href="https://blog.csdn.net/xiaobangkuaipao/article/details/76793702">参考: TCP和UDP的区别和优缺点</a><br>
+<a href="https://blog.csdn.net/caoshangpa/article/details/51530685">参考: TCP、UDP数据包大小的限制</a></p>
+</blockquote>
+<ul>
+<li>
+<p>可使用 wireshark 抓包对比的方式进行学习: 基于udp(默认)的dns方式，对比 基于tcp的dns方式 更直观看出 tcp 三次握手 四次挥手 &ndash; 《Wireshark 网络分析就这么简单》</p>
+</li>
+<li>
+<p>TCP与UDP基本区别</p>
+<ol>
+<li>基于连接与无连接</li>
+<li>TCP要求系统资源较多，UDP较少；</li>
+<li>UDP程序结构较简单</li>
+<li>流模式（TCP）与数据报模式(UDP);</li>
+</ol>
+<ul>
+<li>开发者在使用TCP服务的时候，不必去关心数据包的大小，只需将SOCKET看作一条数据流的入口，直接传入数据，TCP协议本身会进行拥塞/流量控制
+<ul>
+<li>但是也因此要处理粘包拆包的问题（此处属于概念混淆，正确描述应该是<strong>应用层</strong>上数据正确的序列化反序列化，包的概念在网络层）</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> UDP 包大小</li>
+</ul>
+<ol>
+<li>TCP保证数据正确性，UDP可能丢包</li>
+<li>TCP保证数据顺序，UDP不保证
+　　</li>
+</ol>
+</li>
+<li>
+<p>UDP应用场景：</p>
+<ol>
+<li>面向数据报方式</li>
+<li>网络数据大多为短消息</li>
+<li>拥有大量Client</li>
+<li>对数据安全性无特殊要求</li>
+<li>网络负担非常重，但对响应速度要求高</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="应用层">应用层</h2>
+<h3 id="http--https">HTTP &amp; HTTPS</h3>
+<blockquote>
+<p><a href="/Skills/Network/HTTP.md">HTTP &amp; HTTPS</a></p>
+</blockquote>
+<hr>
+<h3 id="websocket">Websocket</h3>
+<blockquote>
+<p>Websocket协议 本质就是TCP的简单封装, 不像HTTP那样应答模式, 而是一次连接后就保持全双工模式</p>
+</blockquote>
+<ol>
+<li>单一的TCP连接, 采用全双工模式通信</li>
+<li>对代理, 防火墙和路由器透明</li>
+<li>无头部信息, Cookie, 身份验证</li>
+<li>无安全开销</li>
+<li>通过 ping/pong 帧 保持链路激活</li>
+<li>服务器可以主动传递消息给客户端, 不需要客户端轮询</li>
+</ol>
+<blockquote>
+<p>4个生命周期事件</p>
+</blockquote>
+<ol>
+<li>打开事件：此事件发生在端点建立新连接时并且在任意其他事件发生之前</li>
+<li>消息事件：此事件接收WebSocket对话中另一端发送的消息。他可以发生在WebSocket端点接收了打开事件之后并且在接收关闭事件关闭连接之前的任意时刻</li>
+<li>错误事件：此事件在WebSocket连接或者端点发生错误时产生</li>
+<li>关闭事件：此事件表示WebSocket端点的连接目前正在部分的关闭，他可以有参与连接的任意一个端点发出</li>
+</ol>
+<blockquote>
+<p><a href="http://blog.jobbole.com/106009/">参考: WebSocket 和 Socket 的区别</a></p>
+</blockquote>
+<hr>
+<h3 id="webdav">WebDAV</h3>
+<blockquote>
+<p>WebDAV （Web-based Distributed Authoring and Versioning） 一种基于 HTTP 1.1协议的通信协议.</p>
+</blockquote>
+<p>它扩展了HTTP 1.1，在GET、POST、HEAD等几个HTTP标准方法以外添加了一些新的方法，使应用程序可直接对Web Server直接读写，并支持写文件锁定(Locking)及解锁(Unlock)，还可以支持文件的版本控制。</p>
+<hr>
+<h3 id="网络延迟">网络延迟</h3>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/34689035">如何彻底解决「网络延迟」这个问题？</a></p>
+</blockquote>
+<ul>
+<li><a href="https://www.zhihu.com/question/36258781">MOBA类游戏是如何解决网络延迟同步的？</a></li>
+<li><a href="http://www.cnblogs.com/sevenyuan/p/5283265.html">状态同步与帧同步</a></li>
+</ul>
+<h3 id="ttfb">TTFB</h3>
+<blockquote>
+<p><code>Time to first byte</code> 网络请求被发起到从服务器接收到第一个字节这段时间，它包含了 TCP连接时间，发送HTTP请求时间和获得响应消息第一个字节的时间。</p>
+</blockquote>
+<h3 id="url">URL</h3>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/URL">维基百科</a> | <a href="https://baike.baidu.com/item/URL">百度百科</a></p>
+</blockquote>
+<ul>
+<li>统一资源定位符 特别注意URL的组成和编解码  <a href="http://www.cnblogs.com/xmphoenix/archive/2011/04/20/2022945.html">url中的特殊字符问题</a>
+<ul>
+<li>不能在URL的关键位置出现%号，作为参数的值是允许的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="dns">DNS</h3>
+<blockquote>
+<p>域名和资源转换的服务</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.ipaddress.com/">www.ipaddress.com</a><code>查询域名的真实IP</code> 可协助解决DNS污染攻击</p>
+</blockquote>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Domain_Name_System">Wikipedia: DNS</a></p>
+</blockquote>
+<ul>
+<li>解析域名的顺序一般是， 先在本机找，找不到去找上连DNS服务器， 然后根域DNS服务器
+<ul>
+<li>这时候就有了几种方式，递归， 迭代， 递归加迭代（为了减轻全球13台根的压力）</li>
+<li>假设是访问这个域名 scs.bupt.edu.cn （bupt.三级 机构域名， edu 二级行业域名， cn 一级国家域名）</li>
+<li>递归： 本机-&gt;上连-&gt;根-&gt;cn-&gt;edu.cn-&gt;bupt.deu.cn 然后得到解析结果后，递归返回到上连，上连DNS服务器会进行缓存该结果，再返回本机</li>
+<li>迭代：本机-&gt;上连，上连-&gt;根，根-&gt;cn cn-&gt;edu.cn, edu.cn-&gt;bupt.deu.cn 最终返回了结果 到上连</li>
+<li>递归加迭代， 区别在于，先迭代根， 得到下级一级服务器节点后，下级就是递归的入口和出口</li>
+</ul>
+</li>
+<li>授权和非授权， 还是上面那个URL， 其他的都不是授权的， 只有离URL最近的DNS才是授权的 即 <code>bupt.edu.cn</code></li>
+</ul>
+<hr>
+<h3 id="vpn">VPN</h3>
+<blockquote>
+<p>Virtual Private Network (VPN)</p>
+</blockquote>
+<hr>
+<h3 id="ssdp">SSDP</h3>
+<blockquote>
+<p>Simple Service Discovery Protocol</p>
+</blockquote>
+<hr>
+<h1 id="socket">Socket</h1>
+<blockquote>
+<p><a href="https://blog.csdn.net/Pk_zsq/article/details/6087367">参考: TCP/IP、Http、Socket的区别</a><br>
+<a href="https://unix.stackexchange.com/questions/16311/what-is-a-socket">what is socket</a></p>
+</blockquote>
+<p>Socket是应用层与TCP/IP协议族通信的中间软件抽象层，是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口（API），通过Socket，我们才能使用TCP/IP协议</p>
+<p>在设计模式中，Socket其实就是一个门面模式，它把复杂的TCP/IP协议族隐藏在Socket接口后面，对用户来说，一组简单的接口就是全部，让Socket去组织数据，以符合指定的协议。而我们所说的socket编程指的是利用soket接口来实现自己的业务和协议。</p>
+<p>Socke接口属于软件抽象层，而sokcket编程却是标准的应用层开发</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/skynet/archive/2010/12/12/1903949.html">参考: Socket编程</a><br>
+<a href="https://www.ibm.com/developerworks/cn/education/linux/l-sock/l-sock.html">参考: Linux socket 编程</a></p>
+</blockquote>
+<hr>
+<h1 id="单播-组播-广播">单播 组播 广播</h1>
+<p>广播通信只能在局域网内传播，组播通信能在公网内传播</p>
+<p>组播通信相当于把主机与主机之间的通信压力转嫁到了路由器上面，所以要得到路由及网络的支持才能进行组播通信，整个传输过程中涉及的路由器或交换机都要支持组播通信，否则将无法使用组播通信</p>
+<h2 id="单播">单播</h2>
+<h2 id="组播">组播</h2>
+<blockquote>
+<p><a href="http://www.cnblogs.com/ghj1976/p/5276452.html">参考: 组播（Multicast）传输</a></p>
+</blockquote>
+<h2 id="广播">广播</h2>
+<hr>
+<h1 id="代理-proxy">代理 Proxy</h1>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Proxy">wikipedia</a></p>
+</blockquote>
+<h2 id="代理协议">代理协议</h2>
+<h3 id="http代理">HTTP代理</h3>
+<p>例如 mitmproxy</p>
+<h3 id="socks">SOCKS</h3>
+<p>由于SOCKS作用在会话层上，因此它是一个提供会话层到会话层间安全服务的方案，不受高层应用程序变更的影响。<br>
+Socks代理只是简单地传递数据包，而不必关心是何种应用协议(比如FTP、HTTP和NNTP请求)，所以Socks代理服务器比应用层代理服务器要快。</p>
+<h2 id="pac">PAC</h2>
+<blockquote>
+<p>proxy auto config</p>
+</blockquote>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Proxy_servers_and_tunneling/Proxy_Auto-Configuration_(PAC)_file">MDN: PAC File</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">FindProxyForURL</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">host</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&#34;PROXY 127.0.0.1:8080&#34;</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="正向代理">正向代理</h2>
+<blockquote>
+<p>隐藏 客户端 地址, 去访问地址明确的服务端</p>
+</blockquote>
+<ul>
+<li>应用: 科学上网, VPN</li>
+<li>安全: 正向代理允许客户端通过它访问任意网站并且隐蔽客户端自身，因此你必须采取安全措施来确保仅为经过授权的客户端提供服务</li>
+</ul>
+<h2 id="反向代理">反向代理</h2>
+<blockquote>
+<p>隐藏 服务端 地址, 客户端通过明确地址访问的实际上是代理</p>
+</blockquote>
+<ul>
+<li>应用: 保护和隐藏原始资源服务器, 负载均衡, 加密和SSL加速, 缓存静态内容, 安全(DDos的防护)</li>
+<li>安全: 对外是透明的，访问者并不知道自己访问的是代理。对访问者而言，他以为访问的就是原始服务器</li>
+</ul>
+<h2 id="透明代理">透明代理</h2>
+<blockquote>
+<p>客户端根本不需要知道有代理服务器的存在，它改变你的 request fields（报文），并会传送客户端真实IP给服务端，多用于路由器的NAT转发中</p>
+</blockquote>
+<p>能用缓存技术提高浏览速度，能用内存过滤提高安全性</p>
+<ul>
+<li>eg: 内网中的硬件防火墙</li>
+</ul>
+<hr>
+<h2 id="代理工具">代理工具</h2>
+<blockquote>
+<p><a href="https://alternativeto.net/software/charles/?platform=linux">Alternatives to Charles for Linux</a></p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/avwo/whistle">whistle</a> <code>nodejs 平台的抓包工具</code></li>
+</ul>
+<h3 id="fiddler">Fiddler</h3>
+<blockquote>
+<p><a href="https://www.telerik.com/fiddler">fiddler</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.telerik.com/fiddler-everywhere">fiddler-everywhere</a> <code>Linux 免费</code></p>
+</blockquote>
+<h3 id="wireshark">Wireshark</h3>
+<blockquote>
+<p><a href="https://www.wireshark.org/">Official Site</a></p>
+</blockquote>
+<blockquote>
+<p>问题  <code>Error during loading:[string &quot;/usr/wireshark/init.lua&quot;]:44:</code></p>
+</blockquote>
+<ul>
+<li>这是由于Wireshark为了防止以root用户身份执行Lua脚本，避免对系统造成损坏，而显示警告弹窗。通常，用户只需要确认</li>
+<li>如果不想每次都看到 修改 <code>/usr/wireshark/init.lua</code> 第一行（非注释，有效代码） 改成 <code>disable_lua = true</code></li>
+</ul>
+<h3 id="charles">Charles</h3>
+<blockquote>
+<p><a href="https://www.charlesproxy.com/">Offcial Site</a> | <a href="http://charles.iiilab.com/">_</a></p>
+</blockquote>
+<h3 id="mitmproxy">mitmproxy</h3>
+<blockquote>
+<p><a href="https://mitmproxy.org/">Official Site</a> | <a href="https://hub.docker.com/r/mitmproxy/mitmproxy/">Docker Hub</a> | <a href="https://github.com/mitmproxy/mitmproxy">Github</a></p>
+</blockquote>
+<ul>
+<li>
+<p>docker 启动 <code>docker run --name mitmproxy -d -p 8888:8080 -p 8081:8081 mitmproxy/mitmproxy mitmweb --web-host 0.0.0.0</code></p>
+<ul>
+<li>5.0 版本之前 使用 <code>--web-iface 0.0.0.0</code></li>
+</ul>
+</li>
+<li>
+<p><strong>配置证书</strong> 访问 <a href="http://mitm.it">mitm.it</a> 选择对应的平台即可</p>
+<ul>
+<li>实际上是安装了 mitmproxy-ca-cert.pem 文件 进而信任了 mitmproxy 这个CA</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/zboya/gomitmproxy">gomitproxy</a> <code>Go 实现</code><br>
+简评：过滤和搜索功能强大且支持重放但是用久了占用内存大，因为抓包的数据都在内存里</p>
+</blockquote>
+<h3 id="mars">Mars</h3>
+<blockquote>
+<p><a href="https://github.com/ouqiang/mars">Github</a></p>
+</blockquote>
+<p><code>虽然有使用LevelDB做存储，但是前端目前有BUG不能持久记录</code></p>
+<h3 id="camilla">camilla</h3>
+<blockquote>
+<p><a href="https://www.camillaproxy.com/docs/">Offcial Site</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://gitee.com/gin9/DockerfileList/tree/master/docker-compose/camilla">docker-compose</a></p>
+</blockquote>
+<p>功能简单只能查看抓包的数据，数据只缓存浏览器，刷新就会消失，但是占用内存小</p>
+<hr>
+<h1 id="tips">Tips</h1>
+<h2 id="移动通信技术规格">移动通信技术规格</h2>
+<blockquote>
+<p>1g 2g 2.5g 2.75g 3g 4g 5g</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.lifewire.com/1g-vs-2g-vs-2-5g-vs-3g-vs-4g-578681">参考: 1G, 2G, 3G, 4G, &amp; 5G Explained </a>
+[参考: Difference Between 1G, 2G, 3G vs. 4G and 5G](Difference Between 1G, 2G, 3G vs. 4G and 5G)</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+          <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/cs/computer/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">计算机组成</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/skills/softwaredesignengineer/">
+            <span class="next-text nav-default">软考知识点</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

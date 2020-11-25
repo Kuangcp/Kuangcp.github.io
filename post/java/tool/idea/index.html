@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>IDEA - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start IDEA 使用笔记 基础概念 常用技巧 Tomcat的使用 导出为可运行JAR Springboot热加载 Debug 常用配置 个人IDEA配置 IDEA快捷键 默认快" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/tool/idea/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="IDEA" />
+<meta property="og:description" content="目录 start IDEA 使用笔记 基础概念 常用技巧 Tomcat的使用 导出为可运行JAR Springboot热加载 Debug 常用配置 个人IDEA配置 IDEA快捷键 默认快" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/tool/idea/" />
+<meta property="article:published_time" content="2018-11-14T21:29:09+00:00" />
+<meta property="article:modified_time" content="2018-11-14T21:29:09+00:00" />
+<meta itemprop="name" content="IDEA">
+<meta itemprop="description" content="目录 start IDEA 使用笔记 基础概念 常用技巧 Tomcat的使用 导出为可运行JAR Springboot热加载 Debug 常用配置 个人IDEA配置 IDEA快捷键 默认快">
+<meta itemprop="datePublished" content="2018-11-14T21:29:09+00:00" />
+<meta itemprop="dateModified" content="2018-11-14T21:29:09+00:00" />
+<meta itemprop="wordCount" content="4966">
+
+
+
+<meta itemprop="keywords" content="IDEA," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="IDEA"/>
+<meta name="twitter:description" content="目录 start IDEA 使用笔记 基础概念 常用技巧 Tomcat的使用 导出为可运行JAR Springboot热加载 Debug 常用配置 个人IDEA配置 IDEA快捷键 默认快"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">IDEA</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-14 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            <a href="/categories/ide/"> IDE </a>
+            </div>
+          <span class="more-meta"> 4966 words </span>
+          <span class="more-meta"> 10 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础概念">基础概念</a></li>
+    <li><a href="#常用技巧">常用技巧</a>
+      <ul>
+        <li><a href="#tomcat的使用">Tomcat的使用</a></li>
+        <li><a href="#导出为可运行jar">导出为可运行JAR</a></li>
+        <li><a href="#springboot热加载">Springboot热加载</a></li>
+        <li><a href="#debug">Debug</a></li>
+      </ul>
+    </li>
+    <li><a href="#常用配置">常用配置</a>
+      <ul>
+        <li><a href="#个人idea配置">个人IDEA配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#idea快捷键">IDEA快捷键</a>
+      <ul>
+        <li><a href="#默认快捷键">默认快捷键</a></li>
+        <li><a href="#个人习惯">个人习惯</a></li>
+      </ul>
+    </li>
+    <li><a href="#常用插件">常用插件</a>
+      <ul>
+        <li><a href="#http-client">HTTP Client</a></li>
+      </ul>
+    </li>
+    <li><a href="#启动配置">启动配置</a>
+      <ul>
+        <li><a href="#调优">调优</a></li>
+      </ul>
+    </li>
+    <li><a href="#tips">Tips</a>
+      <ul>
+        <li><a href="#errorcannot-compile-groovy-files-no-groovy-library-is-defined-for-module-xxx">Error:Cannot compile Groovy files: no Groovy library is defined for module &ldquo;XXX&rdquo;</a></li>
+        <li><a href="#无法输入中文">无法输入中文</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#idea-%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0">IDEA 使用笔记</a>
+<ol>
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5">基础概念</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7">常用技巧</a>
+<ol>
+<li><a href="#tomcat%E7%9A%84%E4%BD%BF%E7%94%A8">Tomcat的使用</a></li>
+<li><a href="#%E5%AF%BC%E5%87%BA%E4%B8%BA%E5%8F%AF%E8%BF%90%E8%A1%8Cjar">导出为可运行JAR</a></li>
+<li><a href="#springboot%E7%83%AD%E5%8A%A0%E8%BD%BD">Springboot热加载</a></li>
+<li><a href="#debug">Debug</a></li>
+</ol>
+</li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE">常用配置</a>
+<ol>
+<li><a href="#%E4%B8%AA%E4%BA%BAidea%E9%85%8D%E7%BD%AE">个人IDEA配置</a></li>
+</ol>
+</li>
+<li><a href="#idea%E5%BF%AB%E6%8D%B7%E9%94%AE">IDEA快捷键</a>
+<ol>
+<li><a href="#%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE">默认快捷键</a></li>
+<li><a href="#%E4%B8%AA%E4%BA%BA%E4%B9%A0%E6%83%AF">个人习惯</a>
+<ol>
+<li><a href="#file">File</a></li>
+<li><a href="#coding">Coding</a></li>
+<li><a href="#extract">Extract</a></li>
+<li><a href="#jump">Jump</a></li>
+<li><a href="#search">Search</a></li>
+<li><a href="#view">View</a></li>
+<li><a href="#setting">Setting</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6">常用插件</a>
+<ol>
+<li><a href="#http-client">HTTP Client</a></li>
+</ol>
+</li>
+<li><a href="#%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE">启动配置</a>
+<ol>
+<li><a href="#%E8%B0%83%E4%BC%98">调优</a></li>
+</ol>
+</li>
+<li><a href="#tips">Tips</a>
+<ol>
+<li><a href="#errorcannot-compile-groovy-files-no-groovy-library-is-defined-for-module-%22xxx%22">Error:Cannot compile Groovy files: no Groovy library is defined for module &ldquo;XXX&rdquo;</a></li>
+<li><a href="#%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87">无法输入中文</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-10-30 18:12</em>|</p>
+<hr>
+<h1 id="idea-使用笔记">IDEA 使用笔记</h1>
+<blockquote>
+<p><a href="https://www.jetbrains.com/help/idea/getting-started.html">Doc</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://sales.jetbrains.com/hc/zh-cn/articles/207154369">学生授权申请方式</a> | <a href="http://idea.lanyus.com/">click</a>
+<a href="http://ju.outofmemory.cn/feed/2608/?page=1">rover12421博客</a> | <a href="http://www.riaway.com/index.php">IDEA主题</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.jetbrains.com/help/idea/gradle.html">Idea Doc: Gradle</a>
+<a href="https://github.com/judasn/IntelliJ-IDEA-Tutorial">IDEA Tutorial</a></p>
+</blockquote>
+<h2 id="基础概念">基础概念</h2>
+<ul>
+<li>
+<p>Project 就是一个工作空间，一个Module就是一个项目</p>
+</li>
+<li>
+<p>新建一个empty项目可以作为一个工作空间，放很多module,新建的时候不要选中任何目录，<em>光标选中JRE库</em>，再菜单栏点击File然后new，</p>
+<ul>
+<li>不然项目结构很乱, 会在光标停留的文件夹下新建module</li>
+</ul>
+</li>
+<li>
+<p>一个项目一个空间也是可以的，就是跨项目查看代码会有点麻烦，而且每个项目的IDEA的配置都是不一样的，同样的配置可能要配置很多遍</p>
+</li>
+<li>
+<p>在新版中提供的 load/unload module 功能,必须要重启idea, 才能让maven生效 emmm</p>
+</li>
+</ul>
+<h2 id="常用技巧">常用技巧</h2>
+<ol>
+<li>鼠标方法上悬停显示javadoc  勾选 General -&gt; show quick documentation on mouse move</li>
+<li>自定义 TODO 等标签 Editor -&gt; TODO, 照已有的 TODO FIXME 新建一个即可</li>
+</ol>
+<blockquote>
+<p><a href="https://www.w3cschool.cn/intellij_idea_doc/intellij_idea_doc-q3ke2coy.html">W3C idea 教程</a></p>
+</blockquote>
+<h3 id="tomcat的使用">Tomcat的使用</h3>
+<blockquote>
+<p>直接配置解压的即可, 然后Idea会在 用户目录下的Idea主目录中配置一个专门放Tomcat的配置和日志等文件, 和原Tomcat进行了隔离, 这样就不会影响到该Tomcat.</p>
+</blockquote>
+<h3 id="导出为可运行jar">导出为可运行JAR</h3>
+<ul>
+<li>File -&gt; project structure -&gt;artifact 里面设置好 引入的库，设置Main类，引用的jar包的相对classpath</li>
+<li>Build artifact -&gt; Build</li>
+<li>Maven或者Gradle的话直接就能得到，不过也要配置一下main</li>
+</ul>
+<h3 id="springboot热加载">Springboot热加载</h3>
+<blockquote>
+<p>每个project都是一个新的工作区，所以要重新配置 | <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto-hotswapping.html">howto-hotswapping</a></p>
+</blockquote>
+<ul>
+<li>Ctrl Shift A 快捷搜索 automatically 在Build下的 Compiler，勾选 <code>Build project automatically</code> 自动构建
+<ul>
+<li>(如果旁边有提示说不会在运行和debug执行, 那么就要勾选并行)  <code>Compile independent modules in parallel</code></li>
+</ul>
+</li>
+<li><strong>Ctrl Shift A</strong> 快捷搜索 Registry 进入后找到 compiler.automake.allow.when.app.running 勾选</li>
+<li>加入devtools依赖 | <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html#using-boot-devtools">DevTools的官方文档</a></li>
+</ul>
+<hr>
+<h3 id="debug">Debug</h3>
+<blockquote>
+<p>debug还是比较强大的, 会在行末显示这一行的变量值</p>
+</blockquote>
+<ul>
+<li><a href="http://www.cnblogs.com/chiangchou/p/idea-debug.html">在Intellij IDEA中使用Debug</a></li>
+</ul>
+<p><em>横排的八个按钮</em></p>
+<blockquote>
+<ul>
+<li><code>Show Execution Point (Alt + F10)</code>：如果你的光标在其它行或其它页面，点击这个按钮可跳转到当前代码执行的行。</li>
+<li><code>Step Over (F8)</code>：步过，一行一行地往下走，如果这一行上有方法不会进入方法。</li>
+<li><code>Step Into (F7)</code>：步入，如果当前行有方法，可以进入方法内部，一般用于进入自定义方法内，不会进入官方类库的方法，如第25行的put方法。</li>
+<li><code>Force Step Into (Alt + Shift + F7)</code>：强制步入，能进入任何方法，查看底层源码的时候可以用这个进入官方类库的方法。</li>
+<li><code>Step Out (Shift + F8)</code>：步出，从步入的方法内退出到方法调用处，此时方法已执行完毕，只是还没有完成赋值。</li>
+<li><code>Drop Frame (默认无)</code>：回退断点，后面章节详细说明。</li>
+<li><code>Run to Cursor (Alt + F9)</code>：运行到光标处，你可以将光标定位到你需要查看的那一行，点击按钮,代码会运行至光标行，而不需要打断点。</li>
+<li><code>Evaluate Expression (Alt + F8)</code>：计算表达式，后面章节详细说明。</li>
+</ul>
+</blockquote>
+<p><em>竖向的七个按钮</em></p>
+<blockquote>
+<ul>
+<li>Rerun &lsquo;xxxx&rsquo;：重新运行程序，会关闭服务后重新启动程序。</li>
+<li>Update &lsquo;tech&rsquo; application (Ctrl + F5)：更新程序，一般在你的代码有改动后可执行这个功能。而这个功能对应的操作则是在服务配置里，如图2.3。</li>
+<li>Resume Program (F9)：恢复程序，比如，你在第20行和25行有两个断点，当前运行至第20行，按F9，则运行到下一个断点(即第25行)，再按F9，则运行完整个流程，因为后面已经没有断点了。</li>
+<li>Pause Program：暂停程序，启用Debug。目前没发现具体用法。</li>
+<li>Stop &lsquo;xxx&rsquo; (Ctrl + F2)：连续按两下，关闭程序。有时候你会发现关闭服务再启动时，报端口被占用，这是因为没完全关闭服务的原因，你就需要查杀所有JVM进程了。</li>
+<li>View Breakpoints (Ctrl + Shift + F8)：查看所有断点，后面章节会涉及到。</li>
+<li>Mute Breakpoints：哑的断点，选择这个后，所有断点变为灰色，断点失效，按F9则可以直接运行完程序。再次点击，断点变为红色，有效。如果只想使某一个断点失效，可以在断点上右键取消Enabled</li>
+</ul>
+</blockquote>
+<p><strong>个人思考</strong></p>
+<ol>
+<li>当断点 F8 步过 到一行代码后, 这个方法没有抛出异常什么的, idea的面板上的那些属性, 断点什么的都没了, 只有一个 app is running , 这个意思就是这行代码还在执行中, 很有可能就是死循环&hellip;
+<ul>
+<li>没有断点的时候, 也就是说这个死循环一直挂在这边, 不会被回收, 后面的代码也被阻塞了, 所以代码才诡异的不符合自己构想的调用链执行</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="常用配置">常用配置</h2>
+<p><strong>自定义类文件头</strong></p>
+<ul>
+<li>依次找到配置项: <code>File-&gt;settings-&gt;Editor-&gt;File and Code Templates-&gt;</code>
+<ul>
+<li>如果自己要每个文件都单独设置头部, 就依次点击Class Interface Enum &hellip;进行设置
+<ul>
+<li><a href="https://segmentfault.com/q/1010000005997550">参考博客</a></li>
+</ul>
+</li>
+<li>如果要统一设置 就点击Includes标签, 选择File Header
+<em>例如修改为如下</em></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm"> * Created by https://github.com/kuangcp
+</span><span class="cm"> * @author kuangcp
+</span><span class="cm"> * @date ${DATE}  ${TIME}
+</span><span class="cm"> */</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>自定义模板</strong>
+在 <code>Setting -&gt; Editor -&gt; Live Templates</code> 设置项下可以看到已有的配置</p>
+<ol>
+<li><code>$SELECTION$</code> surrounding with 功能标记</li>
+<li><code>$END$</code> 光标结束位置</li>
+</ol>
+<h3 id="个人idea配置">个人IDEA配置</h3>
+<ul>
+<li>
+<p>代码字体</p>
+<ol>
+<li>Fira Code Retina 14 0.9</li>
+<li>IBM Plex Mono SemiBold 15 0.9</li>
+</ol>
+</li>
+<li>
+<p>设置字体</p>
+<ol>
+<li>Robot Mono Medium for Powershell 14</li>
+<li>Cascadia Code</li>
+</ol>
+</li>
+<li>
+<p><a href="https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml">Google java style</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="idea快捷键">IDEA快捷键</h2>
+<blockquote>
+<p><a href="https://my.oschina.net/samgege/blog/1808622">参考: Intellij IDEA神器居然还有这些小技巧</a><br>
+如果一时不习惯idea, 可以在 设置中 的keymap 选择eclipse系列即可</p>
+</blockquote>
+<h3 id="默认快捷键">默认快捷键</h3>
+<blockquote>
+<p>可以在 Help -&gt; Keymap Reference 看到内置PDF文档<br>
+<code>个人觉得最简单就是打开 Setting -&gt; keymap -&gt; Find Action by shortcut, 任意的按键, 然后查看对应的内容</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Ctrl</th>
+<th style="text-align:center">Shift</th>
+<th style="text-align:center">Alt</th>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>E</code></td>
+<td style="text-align:left">可以显示最近编辑的文件列表</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>鼠标左击</code></td>
+<td style="text-align:left">可以关闭文件</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Backspace</code></td>
+<td style="text-align:left">可以跳转到上次编辑的地方</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>F12</code></td>
+<td style="text-align:left">可以弹窗显示当前文件中类的结构(快速跳转方法和属性)</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>F7</code></td>
+<td style="text-align:left">可以查询当前元素在当前文件中的引用，然后按F3可以选择</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>N</code></td>
+<td style="text-align:left">可以快速打开类</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>N</code></td>
+<td style="text-align:left">可以快速打开文件</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>Q</code></td>
+<td style="text-align:left">可以看到光标处的元素的Javadoc</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>W</code></td>
+<td style="text-align:left">可以选择单词继而语句继而行继而函数</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>F1</code></td>
+<td style="text-align:left">可以将正在编辑的元素在各个面板中定位</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>P</code></td>
+<td style="text-align:left">可以显示参数信息</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Insert</code></td>
+<td style="text-align:left">可以选择剪贴板内容并插入</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>Insert</code></td>
+<td style="text-align:left">可以生成构造器/Getter/Setter等</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>Insert</code></td>
+<td style="text-align:left">进入/退出 列编辑模式</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>V</code></td>
+<td style="text-align:left">重构代码, 将选中的代码抽离出称为一个变量 Variable</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>T</code></td>
+<td style="text-align:left">可以把代码包在一块内，例如try/catch</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>Up/Down</code></td>
+<td style="text-align:left">可在方法间快速移动</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Escape</code></td>
+<td style="text-align:left">不仅可以把焦点移到编辑器上而且还可以隐藏当前（或最后活动的）工具窗口。</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>左/右</code></td>
+<td style="text-align:left">调节以上窗口分隔线</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Enter</code></td>
+<td style="text-align:left">就能自动补全代码的分号,括号</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Space</code></td>
+<td style="text-align:left">代码提示</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>Space</code></td>
+<td style="text-align:left">代码提示 包括类,变量,方法等内容</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Space</code></td>
+<td style="text-align:left">智能提示</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>P</code></td>
+<td style="text-align:left">方法参数提示</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>F1</code></td>
+<td style="text-align:left">查找当前文件所在位置(项目,结构,maven等等)</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>F7</code></td>
+<td style="text-align:left">要先选中文本然后按键 高亮显示所有该文本，按Esc高亮消失。</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>F3</code></td>
+<td style="text-align:left">要先选中文本然后按键，然后 F3逐个往下查找相同文本，并高亮显示。</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>B</code></td>
+<td style="text-align:left">快速打开光标处的类或方法的 <em>声明或调用</em></td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>B</code></td>
+<td style="text-align:left">查看抽象类或接口的实现方法 等价的,B键 可以换成鼠标左键单击</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>N</code></td>
+<td style="text-align:left">可以快速打开符号(方法名, 变量名等等,全局搜索)</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>O</code></td>
+<td style="text-align:left">可以选择父类的方法进行重写</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Shift</code></td>
+<td style="text-align:left">也就是双击, 就可以快速搜索类了</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>F</code></td>
+<td style="text-align:left">全局搜索, 不含Shift 就是简单当前文件搜索- 快速打开类/文件/符号时，可以使用通配符，也可以使用缩写</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>J</code></td>
+<td style="text-align:left">Live Templates!  例如 fori 等快速模板代码</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>F7</code></td>
+<td style="text-align:left">可以高亮当前元素在当前文件中的使用</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>Up/Down</code></td>
+<td style="text-align:left">可以快速跳转搜索结果</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>J</code></td>
+<td style="text-align:left">可以整合两行</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>F8</code></td>
+<td style="text-align:left">是计算变量值</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ol>
+<li><code>Ctrl Enter</code>, 如果光标在一行的中间, 可以迅速让光标跳转到下一行</li>
+<li>在调试程序时查看任何表达式值的一个容易的方法就是在编辑器中选择文本（可以按几次 <code>Ctrl-W</code> 组合键更有效地执行这个操作）然后按 <code>Alt-F8</code> 。</li>
+<li>要打开编辑器脱字符处使用的类或者方法 Java 文档的浏览器，就按 <code>Shift-F1</code> （右键菜单的 External JavaDoc ）。</li>
+<li>要使用这个功能须要把加入浏览器的路径，在“ General ”选项中设置（ Options | IDE Settings ），另外还要把创建的 Java 文档加入到工程中（ File | Project Properties ）。</li>
+</ol>
+<hr>
+<h3 id="个人习惯">个人习惯</h3>
+<blockquote>
+<p>从eclipse风格继承而来和原生Idea快捷键结合, 自己修改的风格, 如果需要, 则在<a href="https://github.com/Kuangcp/Configs/tree/master/Idea">个人配置文件夹</a>下找到对应的jar导入即可<br>
+个人的习惯特点是左手完成大部分快捷键的任务, 因为还没习惯脱离鼠标工作</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Ctrl</th>
+<th style="text-align:center">Shift</th>
+<th style="text-align:center">Alt</th>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>Enter</code></td>
+<td style="text-align:left">自动修复</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Q</code></td>
+<td style="text-align:left">显示javadoc</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>B</code></td>
+<td style="text-align:left">显示定义或者调用</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>B</code></td>
+<td style="text-align:left">显示其实现</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>U</code></td>
+<td style="text-align:left">面板显示调用处</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>T</code></td>
+<td style="text-align:left">自动创建或跳转 Test</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>F7</code></td>
+<td style="text-align:left">高亮显示光标所在元素所有出现过的地方(就是搜索)</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>L</code></td>
+<td style="text-align:left">快速格式化代码</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>O</code></td>
+<td style="text-align:left">优化导入的类和包</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Esc</code></td>
+<td style="text-align:left">格式化并优化导入</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>Esc</code></td>
+<td style="text-align:left">停止正在运行的运行项</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>1</code></td>
+<td style="text-align:left">运行上次的运行项</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>1</code></td>
+<td style="text-align:left">显示运行项面板</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>2</code></td>
+<td style="text-align:left">Debug上次的运行项</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>2</code></td>
+<td style="text-align:left">显示Debug运行项面板</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>F10</code></td>
+<td style="text-align:left">运行光标所在处的运行项</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>F10</code></td>
+<td style="text-align:left">运行选择的运行项</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>F9</code></td>
+<td style="text-align:left">Debug选择的运行项</td>
+</tr>
+</tbody>
+</table>
+<h4 id="file">File</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Ctrl</th>
+<th style="text-align:center">Shift</th>
+<th style="text-align:center">Alt</th>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>W</code></td>
+<td style="text-align:left">选中代码</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>E</code></td>
+<td style="text-align:left">显示最近打开的文件</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>E</code></td>
+<td style="text-align:left">显示最近打开的文件</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"><code>C</code></td>
+<td style="text-align:left">最近更改的文件</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>N</code></td>
+<td style="text-align:left">快速搜索类</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>N</code></td>
+<td style="text-align:left">搜索所有文件</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>N</code></td>
+<td style="text-align:left">按文件内容字符的搜索,也能按类名首字母搜索</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>左/右</code></td>
+<td style="text-align:left">左右切换打开的文件</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>鼠标左键</code></td>
+<td style="text-align:left">在文件标签页上单击, 即可在文件管理器中打开该文件</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>S</code></td>
+<td style="text-align:left">保存当前窗口的context</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>L</code></td>
+<td style="text-align:left">加载保存过的context</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>X</code></td>
+<td style="text-align:left">清除当前所有窗口的context</td>
+</tr>
+</tbody>
+</table>
+<h4 id="coding">Coding</h4>
+<blockquote>
+<p><a href="https://www.jetbrains.com/help/idea/2018.2/using-code-editor.html?utm_content=2018.2&amp;utm_medium=link&amp;utm_source=product&amp;utm_campaign=IU">Doc: 2018.2</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Ctrl</th>
+<th style="text-align:center">Shift</th>
+<th style="text-align:center">Alt</th>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>C</code></td>
+<td style="text-align:left">build 项目</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>V</code></td>
+<td style="text-align:left">显示最近的粘贴板记录</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>O</code></td>
+<td style="text-align:left">选择要重写的方法</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>I</code></td>
+<td style="text-align:left">选择要实现的方法</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>Insert</code></td>
+<td style="text-align:left">生成代码(如get,set方法,构造函数等)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>K</code></td>
+<td style="text-align:left">重命名</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>X</code></td>
+<td style="text-align:left">剪切一行</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>D</code></td>
+<td style="text-align:left">删除一行</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Y</code></td>
+<td style="text-align:left">复制一行到下一行</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Q</code></td>
+<td style="text-align:left">显示注释文档 或者 Alt+鼠标中键</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Space</code></td>
+<td style="text-align:left">智能提示代码的补全</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>上/下</code></td>
+<td style="text-align:left"><code>代码行</code>上/下移动</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>上/下</code></td>
+<td style="text-align:left"><code>代码块</code>上/下移动</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>J</code></td>
+<td style="text-align:left">提示代码片段 也就是 <code>Live Templates</code></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>J</code></td>
+<td style="text-align:left">选中字符</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>J</code></td>
+<td style="text-align:left">提示 Live Templates</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>J</code></td>
+<td style="text-align:left">提示 Surround Live Templates</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Space</code></td>
+<td style="text-align:left">智能补全</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>Space</code></td>
+<td style="text-align:left">结合上下文补全</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>W</code></td>
+<td style="text-align:left">选中代码，连续按会有其他效果</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>U</code></td>
+<td style="text-align:left">选中字符大小写转换</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>3</code></td>
+<td style="text-align:left">查看方法完整调用链</td>
+</tr>
+</tbody>
+</table>
+<h4 id="extract">Extract</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Ctrl</th>
+<th style="text-align:center">Shift</th>
+<th style="text-align:center">Alt</th>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>T</code></td>
+<td style="text-align:left">根据选中代码(或者光标前的代码片段)<strong>包裹 在块中</strong> 例如try/catch if for &hellip;</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>J</code></td>
+<td style="text-align:left">根据选中代码(或者光标前的代码片段)<strong>包裹在自定义的模板中</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>M</code></td>
+<td style="text-align:left">根据选中代码(或者光标前的代码片段)抽离成 <strong>函数</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>V</code></td>
+<td style="text-align:left">根据选中代码(或者光标前的代码片段)抽离成 <strong>变量</strong> 自定义为 <code>C A S J</code></td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>C</code></td>
+<td style="text-align:left">根据选中代码(或者光标前的代码片段)抽离成 <strong>常量</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>F</code></td>
+<td style="text-align:left">根据选中代码(或者光标前的代码片段)抽离成 <strong>属性</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>P</code></td>
+<td style="text-align:left">根据选中代码(或者光标前的代码片段)抽离成 <strong>方法参数</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>P</code></td>
+<td style="text-align:left">根据选中代码(或者光标前的代码片段)抽离成 <strong>函数式方法参数</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="jump">Jump</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Ctrl</th>
+<th style="text-align:center">Shift</th>
+<th style="text-align:center">Alt</th>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>上/下</code></td>
+<td style="text-align:left">在方法间快速移动定位</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>左/右</code></td>
+<td style="text-align:left">后退/前进 至光标的上一个位置</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>,</code></td>
+<td style="text-align:left">高亮错误或警告快速定位 组合 Shift 前进, 原为F2</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>[ ]</code></td>
+<td style="text-align:left">可以跳到大括号的开头结尾</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>S</code></td>
+<td style="text-align:left">跳转类的方法或属性</td>
+</tr>
+</tbody>
+</table>
+<h4 id="search">Search</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Ctrl</th>
+<th style="text-align:center">Shift</th>
+<th style="text-align:center">Alt</th>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>N</code></td>
+<td style="text-align:left">查找类(所有类范围,包括引用的包)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>L</code></td>
+<td style="text-align:left">查找类 <code>原默认是 Ctrl N</code></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>I</code></td>
+<td style="text-align:left">查找文件名</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>R</code></td>
+<td style="text-align:left">替换文本</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>F</code></td>
+<td style="text-align:left">查找文本</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>F</code></td>
+<td style="text-align:left">全局搜索字符串</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>K</code></td>
+<td style="text-align:left">查找任意文件<code>原默认是双击Shift</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="view">View</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Ctrl</th>
+<th style="text-align:center">Shift</th>
+<th style="text-align:center">Alt</th>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><strong>左/右</strong></td>
+<td style="text-align:left">调节以上工具窗口与编辑器窗口的分隔线位置</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>H</code></td>
+<td style="text-align:left">显示/隐藏 所有工具窗口</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><strong>;</strong></td>
+<td style="text-align:left">关闭活跃中的Tab</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>H</code></td>
+<td style="text-align:left">生成类结构图并显示</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>H</code></td>
+<td style="text-align:left">类结构图窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>A</code></td>
+<td style="text-align:left">目录结构窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>X</code></td>
+<td style="text-align:left">Run窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>D</code></td>
+<td style="text-align:left">Debug窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>T</code></td>
+<td style="text-align:left">TODO的窗口 <code>Ctrl +/-</code> 显示和折叠TODO</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>G</code></td>
+<td style="text-align:left">Gradle窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>M</code></td>
+<td style="text-align:left">Maven窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>Z</code></td>
+<td style="text-align:left">Spring窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>V</code></td>
+<td style="text-align:left">VCS窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>N</code></td>
+<td style="text-align:left">导航至文件所在目录等&hellip;</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>3</code></td>
+<td style="text-align:left">数据库工具窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>.</code></td>
+<td style="text-align:left">终端窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>V</code></td>
+<td style="text-align:left">数据库 Console 窗口</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>在任一工具窗口, 按<code>ESC</code>都会让焦点回到编辑器 <code>Shift ESC</code> 就能关闭工具窗口并让焦点回到编辑器
+以上的窗口都是默认显示小bar的, 我为了窗口更大就设置为了默认隐藏, 如果想显示, 可以双击Alt, 在第二下按住不动, 鼠标就能进行点击了</p>
+</blockquote>
+<h4 id="setting">Setting</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Ctrl</th>
+<th style="text-align:center">Shift</th>
+<th style="text-align:center">Alt</th>
+<th style="text-align:center">Key</th>
+<th style="text-align:left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>A</code></td>
+<td style="text-align:left">搜索设置项的位置</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center"><code>?</code></td>
+<td style="text-align:left">进行一些关键设置</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tips</strong></p>
+<ul>
+<li>代码模板 Live Template (<strong>fori</strong> <strong>notnull</strong>&hellip;) 输入完成后，按Tab或者Enter，生成代码。</li>
+</ul>
+<hr>
+<h2 id="常用插件">常用插件</h2>
+<ol>
+<li>
+<p>rainbow brackets 将括号变成彩色, 更方便查看</p>
+</li>
+<li>
+<p>Alibaba Java Code Guideline</p>
+<ul>
+<li>阿里巴巴的代码规范插件</li>
+<li><a href="https://zhuanlan.zhihu.com/p/30191998">《阿里巴巴Java开发规约》IDEA插件与Eclipse插件使用指南</a></li>
+</ul>
+</li>
+<li>
+<p>TestMe</p>
+<ul>
+<li>快速创建测试类</li>
+</ul>
+</li>
+<li>
+<p>TestNG 测试框架的集成</p>
+</li>
+<li>
+<p>lombok</p>
+<ul>
+<li>插件商店中搜索 lombok 安装重启idea即可</li>
+<li>配置 Build,Execution &gt; Compiler &gt; Annotation Processors 勾选上即可使用lombok的注解</li>
+</ul>
+</li>
+<li>
+<p>Jrebel 热部署插件, 需要付费</p>
+</li>
+<li>
+<p>GoogleTranslation</p>
+<ul>
+<li><strong>Ctrl Alt 1</strong> 快速翻译选中的单词和语句</li>
+</ul>
+</li>
+<li>
+<p>http-client</p>
+<ul>
+<li><a href="https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html">https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html</a></li>
+</ul>
+</li>
+<li>
+<p>emacsIdeas 快捷键 跳转</p>
+</li>
+<li>
+<p>FindBugs</p>
+</li>
+<li>
+<p>Docker</p>
+</li>
+<li>
+<p>Kubernates</p>
+</li>
+<li>
+<p>Maven helper</p>
+</li>
+<li>
+<p>Grep console 控制台搜索工具</p>
+</li>
+<li>
+<p>Code with me 远程协作插件</p>
+</li>
+</ol>
+<h3 id="http-client">HTTP Client</h3>
+<ol>
+<li>登录设置 cookie
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">POST http://localhost/coolsoftware/rest/authentication?login=username&amp;password=1234
+&gt; {% client.global.set(&#34;yourVariable&#34;, response.headers.valueOf(&#39;Set-Cookie&#39;)); %}
+   
+按实际情况来设置，例如 提取接口返回(JSON类型)中的 data 字段：
+&gt; {% client.global.set(&#34;token&#34;, response.body.data); %}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<hr>
+<blockquote>
+<p>内置插件</p>
+</blockquote>
+<ul>
+<li>为了节省内存, 禁用无关插件, 把插件列表中所有插件全看一遍</li>
+</ul>
+<ol>
+<li>haml haml语言, HTML的抽象化语言</li>
+<li>Gherkin Gherkin是Cucumber用于定义测试用例的语言。
+<ol>
+<li>cucumber java</li>
+<li>cucumber groovy</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="启动配置">启动配置</h2>
+<blockquote>
+<p><a href="https://www.jetbrains.com/help/idea/increasing-memory-heap.html">官网文档</a>
+<a href="http://blog.oneapm.com/apm-tech/426.html">IntelliJ IDEA 内存优化最佳实践</a></p>
+</blockquote>
+<h3 id="调优">调优</h3>
+<blockquote>
+<p><a href="http://www.cnblogs.com/nevermorewang/p/10061377.html">参考: 记一次idea性能调优</a></p>
+</blockquote>
+<hr>
+<h2 id="tips">Tips</h2>
+<h3 id="errorcannot-compile-groovy-files-no-groovy-library-is-defined-for-module-xxx">Error:Cannot compile Groovy files: no Groovy library is defined for module &ldquo;XXX&rdquo;</h3>
+<ol>
+<li>Project Structure -&gt; 找到 XXX 项目 右击 -&gt; Add -&gt; 选择 Groovy</li>
+</ol>
+<h3 id="无法输入中文">无法输入中文</h3>
+<ol>
+<li>替换IDEA自带的JDK为OracleJDK idea.sh 首行加 export IDEA_JDK=/home/kcp/Application/SDK/jdk1.8.0_211 <code>时灵时不灵</code></li>
+<li>添加配置fcitx时的配置 ~/.xpfrofile 时的内容到 idea.sh 里面 <code>有效</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">XMODIFIERS</span><span class="o">=</span>@im<span class="o">=</span>fcitx
+<span class="nb">export</span> <span class="nv">QT_IM_MODULE</span><span class="o">=</span>fcitx
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/idea/">IDEA</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/work/effectivework/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">高效工作</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/skills/cs/characterencoding/">
+            <span class="next-text nav-default">字符编码</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>写出优秀的代码 - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 写出优秀的代码 代码的坏味道 《代码整洁之道》 命名 函数 注释 格式 异常 编写可读代码的艺术 目录 end|2020-04-27 23:42| 写出优秀的代码 代码整洁之道 《7 QUESTIONS TO ASK YOURSELF ABOUT YOUR CO" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/softwareengineering/codeexcellentcode/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="写出优秀的代码" />
+<meta property="og:description" content="目录 start 写出优秀的代码 代码的坏味道 《代码整洁之道》 命名 函数 注释 格式 异常 编写可读代码的艺术 目录 end|2020-04-27 23:42| 写出优秀的代码 代码整洁之道 《7 QUESTIONS TO ASK YOURSELF ABOUT YOUR CO" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/softwareengineering/codeexcellentcode/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="写出优秀的代码">
+<meta itemprop="description" content="目录 start 写出优秀的代码 代码的坏味道 《代码整洁之道》 命名 函数 注释 格式 异常 编写可读代码的艺术 目录 end|2020-04-27 23:42| 写出优秀的代码 代码整洁之道 《7 QUESTIONS TO ASK YOURSELF ABOUT YOUR CO">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="1721">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="写出优秀的代码"/>
+<meta name="twitter:description" content="目录 start 写出优秀的代码 代码的坏味道 《代码整洁之道》 命名 函数 注释 格式 异常 编写可读代码的艺术 目录 end|2020-04-27 23:42| 写出优秀的代码 代码整洁之道 《7 QUESTIONS TO ASK YOURSELF ABOUT YOUR CO"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">写出优秀的代码</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        
+          <span class="more-meta"> 1721 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#代码的坏味道">代码的坏味道</a></li>
+    <li><a href="#代码整洁之道">《代码整洁之道》</a>
+      <ul>
+        <li><a href="#命名">命名</a></li>
+        <li><a href="#函数">函数</a></li>
+        <li><a href="#注释">注释</a></li>
+        <li><a href="#格式">格式</a></li>
+        <li><a href="#异常">异常</a></li>
+      </ul>
+    </li>
+    <li><a href="#编写可读代码的艺术">编写可读代码的艺术</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E5%86%99%E5%87%BA%E4%BC%98%E7%A7%80%E7%9A%84%E4%BB%A3%E7%A0%81">写出优秀的代码</a>
+<ol>
+<li><a href="#%E4%BB%A3%E7%A0%81%E7%9A%84%E5%9D%8F%E5%91%B3%E9%81%93">代码的坏味道</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93">《代码整洁之道》</a>
+<ol>
+<li><a href="#%E5%91%BD%E5%90%8D">命名</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0">函数</a></li>
+<li><a href="#%E6%B3%A8%E9%87%8A">注释</a></li>
+<li><a href="#%E6%A0%BC%E5%BC%8F">格式</a></li>
+<li><a href="#%E5%BC%82%E5%B8%B8">异常</a></li>
+</ol>
+</li>
+<li><a href="#%E7%BC%96%E5%86%99%E5%8F%AF%E8%AF%BB%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF">编写可读代码的艺术</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="写出优秀的代码">写出优秀的代码</h1>
+<blockquote>
+<p>代码整洁之道</p>
+</blockquote>
+<hr>
+<ul>
+<li>《7 QUESTIONS TO ASK YOURSELF ABOUT YOUR CODE》 &ndash; Bozhidar Bozhanov</li>
+</ul>
+<ol>
+<li>
+<p>代码是正确的吗？</p>
+<ul>
+<li>是不是实现了规格说明书中的需求？如果没有的规格说明书，你自己是不是付出了足够的努力来找出软件期待的行为， 并且把它测试了一遍？ &mdash; 最好是自动的，至少也得有手工的测试。</li>
+</ul>
+</li>
+<li>
+<p>代码是完整的吗？</p>
+<ul>
+<li>不管你的需求文档中写没写， 你的代码是不是仔细考虑了边界条件？  很多边界条件都是技术相关的：连接断开，内存不足，硬盘已满等等。</li>
+</ul>
+</li>
+<li>
+<p>代码是安全的吗？</p>
+<ul>
+<li>它是不是遵循了安全的最佳实践，是否验证了输入数据，防止了数据注入？ 它是否经过了对已知攻击的安全测试？ 安全当然不仅仅是代码， 但是代码的确可以引入不少安全漏洞。</li>
+</ul>
+</li>
+<li>
+<p>代码是可读、可维护的吗？</p>
+<ul>
+<li>其他人是不是可以轻松地理解你写的代码？ 有没有适当的注释来描述一小部分代码在一个大场景中的位置？有没有把代码拆分成小的，可以读的单元。</li>
+</ul>
+</li>
+<li>
+<p>代码是可以扩展的吗？</p>
+<ul>
+<li>代码是否允许添加新的功能而不破坏老的代码？ 是不是参数化的，或者可以配置的？ 有没有使用恰当的设计模式来支持扩展？</li>
+</ul>
+</li>
+<li>
+<p>代码是不是高效的？</p>
+<ul>
+<li>在高负荷下能否工作正常？  是否避免了一次性读入大量数据到内存中，是否适当地使用了异步的处理？</li>
+</ul>
+</li>
+<li>
+<p>有没有一些让你可以自豪的地方？</p>
+<ul>
+<li>你觉得你的代码会让你很自豪，还是说你想把它藏起来不让别人看到？</li>
+<li>大部分的代码都是平凡的，不是光芒四射的，但是你的代码是不是展示了一些比较好的实践？你是否愿意把他放到GitHub上去？</li>
+</ul>
+</li>
+</ol>
+<p>其实这些问题不仅仅要在提交代码之前思考，在Code Review的时候也完全可以借鉴。
+高质量的软件依赖很多因素，程序员可以说是最重要的一环。我觉得经常问问自己这些问题并且采取行动，你最终会变得与众不同。</p>
+<h2 id="代码的坏味道">代码的坏味道</h2>
+<p>如果在代码中，存在下面的情况之一者，则说明代码需要清除腐败。</p>
+<ol>
+<li>代码中存在许多大型的类和复杂的函数</li>
+<li>函数的名称很晦涩或者会误导人。如果函数名称没有良好地反应函数的用途，那么会造成惊人的副作用。</li>
+<li>没有任何结构：应该在哪里找某个功能非常不清晰。</li>
+<li>内容重复：有许多相互独立的代码在做着同一件事情。</li>
+<li>高耦合性：复杂的模块相互连接和依赖关系，将意味着某个地方的小小改动就会影响整个代码，甚至会影响看起来不相关的模块。</li>
+<li>当数据流过系统时，它将在各个表示方法之间转化。</li>
+<li>API变得模糊不清。由于考虑不周，增加了新功能，曾经整洁的接口现在在范围上变得宽泛。</li>
+<li>API在不同代码版本中快速地变换。</li>
+<li>公共API中泄露了部分私有实现，以便可以进行别的快速的修改。</li>
+<li>代码中到处都是权宜之计：治标不治本的修改。它们隐藏了真正的问题。系统的外围尽是这种修改，结果导致缺陷隐藏在系统的核心。</li>
+<li>有些函数的参数太多。这些函数有许多并不使用的参数，而只是将他们传递给下一级函数调用。</li>
+<li>你发现代码太可怕了，以至于你都不想去修改它。你不知道它是会改善的，还是会轻微地破坏它，或是它更糟糕。</li>
+<li>添加新功能时没有提供任何支持文档：现有的文档过时了。</li>
+<li>你发现有的注释说：“不要动这段代码&hellip;&hellip;”</li>
+</ol>
+<h2 id="代码整洁之道">《代码整洁之道》</h2>
+<h3 id="命名">命名</h3>
+<ul>
+<li>有意义，短而精悍</li>
+<li>类用名词，方法用动词，还要特别注意语境</li>
+<li>普通变量：首单词小写，其后使用驼峰法命名</li>
+<li>常量：全部大写</li>
+<li>命名有意义，简单直接明了就不需要注释了</li>
+</ul>
+<h3 id="函数">函数</h3>
+<ul>
+<li>短小，只做一件事，if while for try catch中只写一句话（调用一个函数），并且减少嵌套</li>
+<li>如果非要用 switch 语句就要尽量简化他</li>
+<li>函数参数越少越好，最好没有</li>
+<li>函数参数最好不要使用输出类型</li>
+<li>分隔指令（动作，会改变数据）与查询（只做一件事）</li>
+<li>使用异常代替返回特定的错误码</li>
+<li>把try catch 抽离封装到函数内</li>
+<li>避免重复</li>
+</ul>
+<h3 id="注释">注释</h3>
+<ul>
+<li>注释越少越好，注释往往得不到维护，代码变动了，注释却没有变，这时候的注释就是错误的引导了（坏注释）</li>
+<li>注释都是程序猿的自言自语，不要说废话</li>
+<li>避免 坏注释，多余的注释</li>
+</ul>
+<h3 id="格式">格式</h3>
+<ul>
+<li>赋值，一般的类、方法的缩进格式我已经了解</li>
+<li>注意：函数的参数，最好是这种格式 fun(int a, int b, ){} 逗号后要加空格
+<ul>
+<li>一行字符在20-120之间，不过我一般是达到不使用滑动条看代码即可</li>
+</ul>
+</li>
+<li>函数的排布，最好是越底层越在下面的行数上</li>
+</ul>
+<h3 id="异常">异常</h3>
+<ul>
+<li>避免null：避免函数返回值是null以及函数入参是null</li>
+<li>尽量避免可控异常（throws）的出现，因为破坏了封装</li>
+</ul>
+<hr>
+<h2 id="编写可读代码的艺术">编写可读代码的艺术</h2>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/frontend/frame/vue/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Vue</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/functional/fpbase/">
+            <span class="next-text nav-default">函数式编程基础</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

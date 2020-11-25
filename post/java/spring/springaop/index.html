@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spring AOP - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/springaop/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Spring AOP" />
+<meta property="og:description" content="目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/springaop/" />
+<meta property="article:published_time" content="2018-12-21T10:49:23+00:00" />
+<meta property="article:modified_time" content="2018-12-21T10:49:23+00:00" />
+<meta itemprop="name" content="Spring AOP">
+<meta itemprop="description" content="目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP">
+<meta itemprop="datePublished" content="2018-12-21T10:49:23+00:00" />
+<meta itemprop="dateModified" content="2018-12-21T10:49:23+00:00" />
+<meta itemprop="wordCount" content="2275">
+
+
+
+<meta itemprop="keywords" content="AOP,Spring," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring AOP"/>
+<meta name="twitter:description" content="目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Spring AOP</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 2275 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#动态代理">动态代理</a></li>
+    <li><a href="#基本概念">基本概念</a></li>
+    <li><a href="#基本配置">基本配置</a></li>
+    <li><a href="#注意">注意</a>
+      <ul>
+        <li><a href="#1-spring-aop还是完全用aspectj">1 Spring AOP还是完全用AspectJ？</a></li>
+        <li><a href="#2-spring-aop中使用aspectj还是xml">2 Spring AOP中使用@AspectJ还是XML？</a></li>
+        <li><a href="#3-混合切面类型">3 混合切面类型</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#aop">AOP</a>
+<ol>
+<li><a href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86">动态代理</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE">基本配置</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F">注意</a>
+<ol>
+<li><a href="#1-spring-aop%E8%BF%98%E6%98%AF%E5%AE%8C%E5%85%A8%E7%94%A8aspectj">1 Spring AOP还是完全用AspectJ？</a></li>
+<li><a href="#2-spring-aop%E4%B8%AD%E4%BD%BF%E7%94%A8@aspectj%E8%BF%98%E6%98%AFxml">2 Spring AOP中使用@AspectJ还是XML？</a></li>
+<li><a href="#3-%E6%B7%B7%E5%90%88%E5%88%87%E9%9D%A2%E7%B1%BB%E5%9E%8B">3 混合切面类型</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-08-26 18:31</em>|</p>
+<hr>
+<h1 id="aop">AOP</h1>
+<blockquote>
+<p>Aspect Oriented Programming  面向切面编程</p>
+</blockquote>
+<h2 id="动态代理">动态代理</h2>
+<blockquote>
+<p>这是AOP的起源, 最初是JDK的动态Proxy -&gt; cglib/asm</p>
+</blockquote>
+<blockquote>
+<p><a href="/Java/AdvancedLearning/JavaProxy.md">笔记: Java中的代理</a></p>
+</blockquote>
+<h2 id="基本概念">基本概念</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">英文</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>JoinPoint</code></td>
+<td style="text-align:left">切入面、连接点、切入点（所有方法）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PointCut</code></td>
+<td style="text-align:left">切点（特殊的连接点，需要增强的连接点）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Advice</code></td>
+<td style="text-align:left">增强（切入点的逻辑，待添加的功能）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Aspect</code></td>
+<td style="text-align:left">切面（切点和增强的合集）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Target</code></td>
+<td style="text-align:left">目标对象（被增强的实例）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Weave</code></td>
+<td style="text-align:left">织入（增强切点的过程）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Proxy</code></td>
+<td style="text-align:left">代理（增强后的类，一般是使用了代理类） 装饰器模式</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>Introduction</code></td>
+<td style="text-align:left">引介（为类添加属性和方法） 用的较少因为破坏了OOP思想</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>多个 AOP 时，切面可实现 Ordered 接口 自定义 AOP 顺序</li>
+</ol>
+<hr>
+<h2 id="基本配置">基本配置</h2>
+<p><code>XML文件头</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
+    <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+    <span class="na">xmlns:context=</span><span class="s">&#34;http://www.springframework.org/schema/context&#34;</span>
+    <span class="na">xmlns:aop=</span><span class="s">&#34;http://www.springframework.org/schema/aop&#34;</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
+</span><span class="s">        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+</span><span class="s">        http://www.springframework.org/schema/context
+</span><span class="s">        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+</span><span class="s">        http://www.springframework.org/schema/aop
+</span><span class="s">        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/beans&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>方法级别的添加代理，Servlet中的过滤器也类似（但是那个是类级别的）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 基本类 提供切点 --&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;student&#34;</span> <span class="na">class=</span><span class="s">&#34;cn.spring.aop.Student&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+<span class="c">&lt;!-- 增强部分 --&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;adder&#34;</span> <span class="na">class=</span><span class="s">&#34;cn.spring.aop.NewDeal&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+<span class="c">&lt;!-- 使用aop的自动提示也要配置上面的头文件声明 --&gt;</span>
+<span class="nt">&lt;aop:config&gt;</span>
+    <span class="c">&lt;!--aspect表示切面 ref 标明增强方法的类来源 --&gt;</span>
+    <span class="nt">&lt;aop:aspect</span> <span class="na">id=</span><span class="s">&#34;myAop&#34;</span> <span class="na">ref=</span><span class="s">&#34;adder&#34;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- execution 是表达式（正则一样的功能）匹配的是具体的切点 --&gt;</span>
+        <span class="nt">&lt;aop:pointcut</span> <span class="na">expression=</span><span class="s">&#34;execution(* cn.spring.aop.Student.run(..))&#34;</span> <span class="na">id=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- 织入 的过程 将增强和切入点结合 --&gt;</span>
+        <span class="nt">&lt;aop:before</span> <span class="na">method=</span><span class="s">&#34;add&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;aop:after</span> <span class="na">method=</span><span class="s">&#34;af&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;aop:around</span> <span class="na">method=</span><span class="s">&#34;around&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/aop:aspect&gt;</span>
+<span class="nt">&lt;/aop:config&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="注意">注意</h2>
+<ul>
+<li>
+<p>要注意环绕的写法 <code>public void around(ProceedingJoinPoint m)throws Throwable{</code></p>
+<ul>
+<li><a href="https://www.oschina.net/code/snippet_246557_9205">Spring AOP中的around</a></li>
+</ul>
+</li>
+<li>
+<p>然后在test类中直接getBean（基类）但是实际上是获取到的是装饰好的代理对象</p>
+<ul>
+<li><a href="http://blog.csdn.net/yuqinying112/article/details/7335416">Spring AOP配置(转)</a></li>
+<li><a href="http://www.cnblogs.com/yangy608/archive/2010/11/14/1876833.html">aop:config详解</a></li>
+</ul>
+</li>
+<li>
+<p>善用debug 调试看是否获取到的是代理对象 $proxy</p>
+</li>
+<li>
+<p>在Spring的配置文件中，所有的切面和通知器都必须定义在<code> &lt;aop:config&gt;</code> 元素内部。 一个<code>application context</code>可以包含多个 <code>&lt;aop:config&gt;</code>。 一个<code> &lt;aop:config&gt;</code> 可以包含 <code>pointcut</code>， <code>advisor</code> 和 <code>aspect</code> 元素（注意它们必须按照这样的顺序进行声明）。</p>
+</li>
+</ul>
+<h3 id="1-spring-aop还是完全用aspectj">1 Spring AOP还是完全用AspectJ？</h3>
+<p>做能起作用的最简单的事。Spring AOP比完全使用AspectJ更加简单，因为它不需要引入AspectJ的编译器／织入器到你开发和构建过程中。
+如果你仅仅需要在Spring bean上通知执行操作，那么Spring AOP是合适的选择。如果你需要通知domain对象或其它没有在Spring容器中
+管理的任意对象，那么你需要使用AspectJ。如果你想通知除了简单的方法执行之外的连接点（如：调用连接点、字段get或set的连接点等等），
+也需要使用AspectJ。
+当使用AspectJ时，你可以选择使用AspectJ语言（也称为“代码风格”）或@AspectJ注解风格。
+如果切面在你的设计中扮演一个很大的角色，并且你能在Eclipse中使用AspectJ Development Tools (AJDT)， 那么首选AspectJ语言 :-
+因为该语言专门被设计用来编写切面，所以会更清晰、更简单。如果你没有使用
+Eclipse，或者在你的应用中只有很少的切面并没有作为一个主要的角色，你或许应该考虑使用@AspectJ风格
+并在你的IDE中附加一个普通的Java编辑器，并且在你的构建脚本中增加切面织入（链接）的段落。</p>
+<h3 id="2-spring-aop中使用aspectj还是xml">2 Spring AOP中使用@AspectJ还是XML？</h3>
+<p>如果你选择使用Spring AOP，那么你可以选择@AspectJ或者XML风格。总的来说，如果你使用Java 5， 我们建议使用@AspectJ风格。
+显然如果你不是运行在Java 5上，XML风格是最佳选择。XML和@AspectJ 之间权衡的细节将在下面进行讨论。
+XML风格对现有的Spring用户来说更加习惯。它可以使用在任何Java级别中（参考连接点表达式内部的命名连接点，虽然它也需要Java 5）
+并且通过纯粹的POJO来支持。当使用AOP作为工具来配置企业服务时（一个好的例子是当你认为连接点表达式是你的配置中的一部分时，
+你可能想单独更改它）XML会是一个很好的选择。对于XML风格，从你的配置中可以清晰的表明在系统中存在那些切面。
+XML风格有两个缺点。第一是它不能完全将需求实现的地方封装到一个位置。DRY原则中说系统中的每一项知识都必须具有单一、无歧义、权威的表示。
+当使用XML风格时，如何实现一个需求的知识被分割到支撑类的声明中以及XML配置文件中。当使用@AspectJ风格时就只有一个单独的模块 -切面-
+信息被封装了起来。 第二是XML风格同@AspectJ风格所能表达的内容相比有更多的限制：仅仅支持&quot;singleton&quot;切面实例模型，并且不能在XML中组合命名连接点的声
+明。 例如，在@AspectJ风格中我们可以编写如下的内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">   <span class="nd">@Pointcut</span><span class="o">(</span><span class="n">execution</span><span class="o">(*</span> <span class="n">get</span><span class="o">*()))</span> 
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">propertyAccess</span><span class="o">()</span> <span class="o">{}</span> 
+   <span class="nd">@Pointcut</span><span class="o">(</span><span class="n">execution</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">xyz</span><span class="o">.</span><span class="na">Account</span><span class="o">+</span> <span class="o">*(..))</span> 
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">operationReturningAnAccount</span><span class="o">()</span> <span class="o">{}</span> 
+   <span class="nd">@Pointcut</span><span class="o">(</span><span class="n">propertyAccess</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">operationReturningAnAccount</span><span class="o">())</span> 
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accountPropertyAccess</span><span class="o">()</span> <span class="o">{}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在XML风格中能声明开头的两个连接点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">  <span class="nt">&lt;aop:pointcut</span> <span class="na">id=</span><span class="s">&#34;propertyAccess&#34;</span> <span class="na">expression=</span><span class="s">&#34;execution(* get*())&#34;</span><span class="nt">/&gt;</span> 
+  <span class="nt">&lt;aop:pointcut</span> <span class="na">id=</span><span class="s">&#34;operationReturningAnAccount&#34;</span>  <span class="na">expression=</span><span class="s">&#34;execution(org.xyz.Account+ *(..))&#34;</span><span class="nt">/&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是不能通过组合这些来定义accountPropertyAccess连接点</p>
+<ul>
+<li>@AspectJ风格支持其它的实例模型以及更丰富的连接点组合。它具有将将切面保持为一个模块单元的优点。 还有一个优点就是@AspectJ切面能被Spring AOP和AspectJ两者都理解</li>
+<li>所以如果稍后你认为你需要AspectJ 的能力去实现附加的需求，那么你非常容易转移到基于AspectJ的途径。总而言之，我们更喜欢@AspectJ风格只要你有切面 去做超出简单的“配置”企业服务之外的事情。</li>
+</ul>
+<h3 id="3-混合切面类型">3 混合切面类型</h3>
+<p>我们完全可以混合使用以下几种风格的切面定义：使用自动代理的@AspectJ 风格的切面，<code>schema-defined &lt;aop:aspect&gt;</code> 的切面，
+和用 <code>&lt;aop:advisor&gt;</code> 声明的advisor，甚至是使用Spring 1.2风格的代理和拦截器。
+由于以上几种风格的切面定义的都使用了相同的底层机制，因此可以很好的共存。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-12-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/aop/">AOP</a>
+          <a href="/tags/spring/">Spring</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring/springboot/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SpringBoot</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/java/spring/spring5/">
+            <span class="next-text nav-default">Spring5</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

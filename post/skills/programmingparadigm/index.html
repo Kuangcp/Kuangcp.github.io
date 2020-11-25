@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>编程范式 ProgrammingParadigm - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 编程范式 命令式编程 函数式编程 响应式编程 逻辑式编程 目录 end|2020-04-27 23:42| 编程范式 Imperative Programming (IP) 命令式编程 Functional Programming (FP) 函数式编程 Logic Programming (LP) 逻辑式编程 命令式编程 编写改变状态" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/programmingparadigm/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="编程范式 ProgrammingParadigm" />
+<meta property="og:description" content="目录 start 编程范式 命令式编程 函数式编程 响应式编程 逻辑式编程 目录 end|2020-04-27 23:42| 编程范式 Imperative Programming (IP) 命令式编程 Functional Programming (FP) 函数式编程 Logic Programming (LP) 逻辑式编程 命令式编程 编写改变状态" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/programmingparadigm/" />
+<meta property="article:published_time" content="2019-10-19T17:04:34+00:00" />
+<meta property="article:modified_time" content="2019-10-19T17:04:34+00:00" />
+<meta itemprop="name" content="编程范式 ProgrammingParadigm">
+<meta itemprop="description" content="目录 start 编程范式 命令式编程 函数式编程 响应式编程 逻辑式编程 目录 end|2020-04-27 23:42| 编程范式 Imperative Programming (IP) 命令式编程 Functional Programming (FP) 函数式编程 Logic Programming (LP) 逻辑式编程 命令式编程 编写改变状态">
+<meta itemprop="datePublished" content="2019-10-19T17:04:34+00:00" />
+<meta itemprop="dateModified" content="2019-10-19T17:04:34+00:00" />
+<meta itemprop="wordCount" content="552">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="编程范式 ProgrammingParadigm"/>
+<meta name="twitter:description" content="目录 start 编程范式 命令式编程 函数式编程 响应式编程 逻辑式编程 目录 end|2020-04-27 23:42| 编程范式 Imperative Programming (IP) 命令式编程 Functional Programming (FP) 函数式编程 Logic Programming (LP) 逻辑式编程 命令式编程 编写改变状态"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">编程范式 ProgrammingParadigm</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-19 </span>
+        
+          <span class="more-meta"> 552 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#命令式编程">命令式编程</a></li>
+    <li><a href="#函数式编程">函数式编程</a></li>
+    <li><a href="#响应式编程">响应式编程</a></li>
+    <li><a href="#逻辑式编程">逻辑式编程</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F">编程范式</a>
+<ol>
+<li><a href="#%E5%91%BD%E4%BB%A4%E5%BC%8F%E7%BC%96%E7%A8%8B">命令式编程</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B">函数式编程</a></li>
+<li><a href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B">响应式编程</a></li>
+<li><a href="#%E9%80%BB%E8%BE%91%E5%BC%8F%E7%BC%96%E7%A8%8B">逻辑式编程</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="编程范式">编程范式</h1>
+<ul>
+<li>Imperative Programming (IP) 命令式编程</li>
+<li>Functional Programming (FP) 函数式编程</li>
+<li>Logic Programming (LP) 逻辑式编程</li>
+</ul>
+<h2 id="命令式编程">命令式编程</h2>
+<blockquote>
+<p>编写改变状态的一条条命令</p>
+</blockquote>
+<h2 id="函数式编程">函数式编程</h2>
+<ul>
+<li>函数式语言他把计算本身当成最重要的概念。函数式语言和过程式语言一样对值进行操作，但他不会修改输入，而是像数学函数一样返回新值
+<ul>
+<li>函数被看成是一个小处理机，输入值并输出值，他们没有自己的状态，并且将他们和任何外部状态绑定在一起也没有意义</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Groovy带一点函数式风格，Scala对FP的利用更为充分，Clojure是纯粹的函数式语言，没有丁点儿面向对象特性</p>
+</blockquote>
+<p><strong><code>命令式和函数式</code></strong></p>
+<ul>
+<li>Java是典型的命令式语言，命令式语言把程序的运行状态建模为可修改的数据，用一系列的指令来改变状态。因此在命令式语言中，程序状态是核心概念</li>
+<li>命令式语言主要分为两类，一种是面向过程语言，一种是面向对象语言
+<ul>
+<li>面向过程：Basic Fortran 这种语言将代码和数据完全分离开，有简单的代码操作数据范式</li>
+<li>面向对象：数据和代码（方法形式）封装在对象中，面向对象语言中或多或少会存在元数据（比如：类信息）引入的额外结构</li>
+</ul>
+</li>
+</ul>
+<h2 id="响应式编程">响应式编程</h2>
+<blockquote>
+<p><a href="http://reactivex.io/intro.html">ReactiveX</a></p>
+</blockquote>
+<p>组合异步的序列  设计模式是 观察者模式的扩展, 数据结构是序列串流, 避免了并发, 是非阻塞的,常见于UI层</p>
+<p>数据流驱动</p>
+<p>异步 非阻塞 不是同步非阻塞 (当时不阻塞后续回调) 而是异步</p>
+<p>多路复用</p>
+<h2 id="逻辑式编程">逻辑式编程</h2>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-10-19
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/python/tool/selenium/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Selenium</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/debian/deepin/">
+            <span class="next-text nav-default">Deepin</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

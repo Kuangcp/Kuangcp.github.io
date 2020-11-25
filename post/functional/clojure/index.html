@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Clojure - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Clojure 安装 基础 目录 end|2020-04-27 23:42| Clojure 似乎是Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程 安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.78.1 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/functional/clojure/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Clojure" />
+<meta property="og:description" content="目录 start Clojure 安装 基础 目录 end|2020-04-27 23:42| Clojure 似乎是Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程 安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/functional/clojure/" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="name" content="Clojure">
+<meta itemprop="description" content="目录 start Clojure 安装 基础 目录 end|2020-04-27 23:42| Clojure 似乎是Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程 安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="768">
+
+
+
+<meta itemprop="keywords" content="基础,函数式编程," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Clojure"/>
+<meta name="twitter:description" content="目录 start Clojure 安装 基础 目录 end|2020-04-27 23:42| Clojure 似乎是Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程 安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Clojure</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/clojure/"> Clojure </a>
+            </div>
+          <span class="more-meta"> 768 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#基础">基础</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#clojure">Clojure</a>
+<ol>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80">基础</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<hr>
+<h1 id="clojure">Clojure</h1>
+<blockquote>
+<p>似乎是Lisp的方言 <a href="https://www.jianshu.com/p/32b7ef3659db">参考博客 Clojure 学习笔记 :0 零基础教程</a></p>
+</blockquote>
+<h2 id="安装">安装</h2>
+<ul>
+<li><a href="https://clojure.org/community/downloads">Clojure官网下载地址</a>
+<ul>
+<li>解压后运行jar包进入REPL <code>java -cp clojure-1.8.0.jar clojure.main</code></li>
+</ul>
+</li>
+<li>Linux 下推荐 <a href="https://leiningen.org/">leiningen</a>
+<ul>
+<li>Arch<br>
+<code>yay -S leiningen</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="基础">基础</h2>
+<p>Clojure的设计原则可以概括成5个词汇：简单、专注、实用、一致和清晰。这不是我概括的，而是《The joy of clojure》概括的。
+（1）简单： 鼓励纯函数，极简的语法（少数special form），个人也认为clojure不能算是多范式的语言（有部分OO特性），为了支持多范式引入的复杂度，我们在C++和Scala身上都看到了。
+（2）专注：前缀运算符不需要去考虑优先级，也没有什么菱形继承的问题，动态类型系统（有利有弊），REPL提供的探索式编程方法（告别修改/编译/运行的死循环，所见即所得）。
+（3）实用：前面提到，构建在JVM之上，跟Java语言的互操作非常容易。直接调用Java方法，不去发明一套新的调用语法，努力规避Java语言中繁琐的地方(doto,箭头宏等等）。
+（4）清晰：纯函数（前面提到），immutable var，immutable数据结构，STM避免锁问题。不可变减少了心智的负担，降低了多线程编程的难度，纯函数也更利于测试和调试。
+（5）一致：语法的一致性：例如doseq和for宏类似，都支持destructring,支持相同的guard语句（when,while）。数据结构的一致性：sequence抽象之上的各种高阶函数。</p>
+<ul>
+<li>命令式语言 Java Groovy Scala都是用一个内存和状态模型，把变量映射到一个内存位置
+<ul>
+<li>Clojure是将值作为重点，Clojure的值一旦创建就不能修改。变量和值建立映射关系，如果再次赋值，不是修改变量，而是映射到新的值上</li>
+<li>(def &lt;名称&gt; &lt;值&gt;)</li>
+</ul>
+</li>
+</ul>
+<p><code>Hello World</code>
+<code>java -cp clojure-1.8.0.jar clojure.main</code>进入REPL终端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-clojure" data-lang="clojure">    <span class="nv">user</span> <span class="nv">=&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">hello</span><span class="p">(</span><span class="k">fn </span><span class="p">[]</span> <span class="s">&#34;hello&#34;</span><span class="p">))</span>
+    <span class="nv">user</span> <span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">hello</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+          <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">函数式编程</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/ecosystem/blade/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Blade</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/skills/devops/continuousdelivery/">
+            <span class="next-text nav-default">ContinuousDelivery</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
