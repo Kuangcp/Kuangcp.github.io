@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/python/python/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Python 基础" />
 <meta property="og:description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/python/python/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/python/python/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-13T16:00:45+00:00" />
 <meta property="article:modified_time" content="2018-12-13T16:00:45+00:00" />
+
 <meta itemprop="name" content="Python 基础">
-<meta itemprop="description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符">
-<meta itemprop="datePublished" content="2018-12-13T16:00:45+00:00" />
+<meta itemprop="description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符"><meta itemprop="datePublished" content="2018-12-13T16:00:45+00:00" />
 <meta itemprop="dateModified" content="2018-12-13T16:00:45+00:00" />
-<meta itemprop="wordCount" content="7536">
-
-
-
-<meta itemprop="keywords" content="基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="7541">
+<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python 基础"/>
 <meta name="twitter:description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符"/>
 
@@ -126,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/python/"> Python </a>
             </div>
-          <span class="more-meta"> 7536 words </span>
+          <span class="more-meta"> 7541 words </span>
           <span class="more-meta"> 16 mins read </span>
         
       </div>
@@ -332,7 +328,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-06-04 00:02</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-04-28 15:31</em>|</p>
 <hr>
 <h1 id="python">Python</h1>
 <blockquote>
@@ -392,13 +388,13 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">sys</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -408,7 +404,7 @@
 <p>代码中直接添加, 执行就生效, 程序结束就失效</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -419,16 +415,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1">#  假如有如下两个文件 在不同的包下</span>
-    <span class="c1"># /src/configs/config.py</span>
-    <span class="c1"># /src/common/Database.py</span>
-
-    <span class="n">parent_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="c1"># 避免重复添加</span>
-    <span class="k">if</span> <span class="n">parent_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
-    <span class="kn">import</span> <span class="nn">configs.config</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="c1">#  假如有如下两个文件 在不同的包下</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># /src/configs/config.py</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># /src/common/Database.py</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">parent_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 避免重复添加</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">parent_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">configs.config</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -487,7 +483,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -509,27 +505,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    优美胜于丑陋（Python 以编写优美的代码为目标）
-    明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）
-    简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）
-    复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）
-    扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）
-    间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）
-    可读性很重要（优美的代码是可读的）
-    即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）
-    
-    不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 except:pass 风格的代码）
-    
-    当存在多种可能，不要尝试去猜测
-    而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）
-    虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）
-    
-    做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）
-    
-    如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）
-    
-    命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    优美胜于丑陋（Python 以编写优美的代码为目标）
+</span></span><span class="line"><span class="cl">    明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）
+</span></span><span class="line"><span class="cl">    简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）
+</span></span><span class="line"><span class="cl">    复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）
+</span></span><span class="line"><span class="cl">    扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）
+</span></span><span class="line"><span class="cl">    间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）
+</span></span><span class="line"><span class="cl">    可读性很重要（优美的代码是可读的）
+</span></span><span class="line"><span class="cl">    即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 except:pass 风格的代码）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    当存在多种可能，不要尝试去猜测
+</span></span><span class="line"><span class="cl">    而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）
+</span></span><span class="line"><span class="cl">    虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="包">包</h3>
 <blockquote>
@@ -589,7 +585,7 @@
 <li>input(&quot;&quot;) 默认当成字符串输入 数值：int() 强转一下</li>
 <li>print(&quot;&quot;)
 <ul>
-<li>输出不带换行  print('', &lsquo;&rsquo;, end='')</li>
+<li>输出不带换行  print(&rsquo;&rsquo;, &lsquo;&rsquo;, end=&rsquo;&rsquo;)</li>
 </ul>
 </li>
 </ul>
@@ -619,19 +615,19 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
-        <span class="k">pass</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;pass&#34;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Hi&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;pass&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hi&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="序列">序列</h3>
 <blockquote>
@@ -751,25 +747,25 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1"># coding:utf-8</span>
-    <span class="n">unicode_str</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="s1">&#39;使用&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">unicode_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="c1"># coding:utf-8</span>
+</span></span><span class="line"><span class="cl">    <span class="n">unicode_str</span> <span class="o">=</span> <span class="n">unicode</span><span class="p">(</span><span class="s1">&#39;使用&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">unicode_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">codecs</span>
-    <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">codecs</span>
+</span></span><span class="line"><span class="cl">    <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>因为文件不是UTF8：<code>UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb9 in position 2: invalid start byte </code></li>
@@ -814,9 +810,6 @@
 <li>列表套字典，当成普通类型包含即可</li>
 <li>字典套字典</li>
 </ul>
-</li>
-<li>
-<p><input disabled="" type="checkbox"> 字典的排序问题</p>
 </li>
 </ul>
 <h3 id="运算符">运算符</h3>
@@ -941,15 +934,15 @@
 <li>edit <code>$HOME/.pypirc</code> to save authorization  info
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [pypi]
-    username = &lt;username&gt;
-    password = &lt;password&gt;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    [pypi]
+</span></span><span class="line"><span class="cl">    username = &lt;username&gt;
+</span></span><span class="line"><span class="cl">    password = &lt;password&gt;
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>pip3 install wheel twine</li>
@@ -981,17 +974,17 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
-    <span class="n">start</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0;32m&#39;</span>
-    <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m&#39;</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%-26s</span><span class="s2"> </span><span class="si">%-20s</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="s2">&#34;-h&#34;</span><span class="o">+</span><span class="n">end</span><span class="p">,</span> <span class="s2">&#34;帮助&#34;</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0;32m&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%-26s</span><span class="s2"> </span><span class="si">%-20s</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="s2">&#34;-h&#34;</span><span class="o">+</span><span class="n">end</span><span class="p">,</span> <span class="s2">&#34;帮助&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>python2 <code>print 'Hi'</code></li>
@@ -1003,17 +996,17 @@
 <p><code>只有输入参数，没有选项</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">sys</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;脚本名：&#34;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;参数&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;脚本名：&#34;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;参数&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>python tree.py hi op </code> 顺序是python，第一个参数是文件，之后才是别的参数
 结果&raquo; <code>脚本名 tree.py 参数1 hi 参数2 op</code></p>
@@ -1021,17 +1014,17 @@
 <code>getopt.getopt(args, options[, long_options])</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">getopt</span>
-    <span class="n">opts</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">getopt</span><span class="o">.</span><span class="n">getopt</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&#34;hi⭕&#34;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">op</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
-    
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">getopt</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opts</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">getopt</span><span class="o">.</span><span class="n">getopt</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&#34;hi⭕&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">op</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>sys.argv[1:]</code>为要处理的参数列表，<code>sys.argv[0]</code>为脚本名，所以用<code>sys.argv[1:]</code>过滤掉脚本名。</li>
@@ -1042,7 +1035,7 @@
 </li>
 <li>调用getopt函数。函数返回两个列表：<code>opts和args</code>。opts为分析出的格式信息。args为不属于格式信息的剩余的命令行参数。
 <ul>
-<li>opts是一个两元组的列表。每个元素为：(选项串,附加参数)。如果没有附加参数则为空串''。</li>
+<li>opts是一个两元组的列表。每个元素为：(选项串,附加参数)。如果没有附加参数则为空串&rsquo;&rsquo;。</li>
 <li>getopt函数的第三个参数[, long_options]为可选的长选项参数，上面例子中的都为短选项(如-i -o)</li>
 </ul>
 </li>
@@ -1066,7 +1059,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1076,15 +1069,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">fire</span>
-    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;-h&#39;</span><span class="p">:</span>
-            <span class="n">show_help</span><span class="p">()</span>
-        
-    <span class="n">fire</span><span class="o">.</span><span class="n">Fire</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
-    <span class="c1"># 使用时 py filename.py -h  </span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">fire</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;-h&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">show_help</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="n">fire</span><span class="o">.</span><span class="n">Fire</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 使用时 py filename.py -h  </span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="函数">函数</h2>
@@ -1161,19 +1154,19 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">class</span> <span class="nc">People</span><span class="p">:</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;md&#39;</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
-    <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gh&#39;</span> <span class="c1"># 声明了实例属性覆盖了类属性</span>
-    <span class="k">del</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="c1"># 删除实例属性，恢复类属性引用</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">People</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;md&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gh&#39;</span> <span class="c1"># 声明了实例属性覆盖了类属性</span>
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="c1"># 删除实例属性，恢复类属性引用</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -1194,7 +1187,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1208,19 +1201,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-        <span class="c1"># 对象方法， 将对象作为参数self传进去</span>
-        <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>
-        <span class="c1"># 静态方法</span>
-        <span class="nd">@staticmethod</span>
-        <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;static method&#39;</span><span class="p">)</span>
-        <span class="c1"># 类方法，将类作为参数cls传进去</span>
-        <span class="nd">@classmethod</span>
-        <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;class method&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 对象方法， 将对象作为参数self传进去</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 静态方法</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@staticmethod</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;static method&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 类方法，将类作为参数cls传进去</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@classmethod</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;class method&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -1267,7 +1260,7 @@
 <h2 id="异常">异常</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1277,15 +1270,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">try</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;0 不能做除数&#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;成功&#34;</span><span class="p">)</span>
-    <span class="k">finally</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;finally&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;0 不能做除数&#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;成功&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;finally&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -1409,13 +1402,13 @@
 <p><code>使用with来操作 好处是Python自动关闭文件</code> 类似于Java的TWR</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span> 
-        <span class="n">lines</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">lines</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -1439,11 +1432,11 @@
 <li>
 <p><code>os.path模块</code></p>
 <ul>
-<li>abspath('') 获取绝对路径</li>
-<li>exists('') 是否存在</li>
-<li>isdir('') 是否是一个目录</li>
-<li>isfile('')  是否是文件</li>
-<li>islink('') 是否是软链接硬链接文件</li>
+<li>abspath(&rsquo;&rsquo;) 获取绝对路径</li>
+<li>exists(&rsquo;&rsquo;) 是否存在</li>
+<li>isdir(&rsquo;&rsquo;) 是否是一个目录</li>
+<li>isfile(&rsquo;&rsquo;)  是否是文件</li>
+<li>islink(&rsquo;&rsquo;) 是否是软链接硬链接文件</li>
 <li>getsize() 获取文件尺寸</li>
 </ul>
 </li>
@@ -1451,21 +1444,21 @@
 <p>shutil模块</p>
 <ul>
 <li>dir() 复制单个文件</li>
-<li>shultil.copytree(r'',r'') 复制目录树</li>
+<li>shultil.copytree(r&rsquo;&rsquo;,r&rsquo;&rsquo;) 复制目录树</li>
 </ul>
 </li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1"># 读取大文件</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s2">&#34;test.txt&#34;</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="c1"># 读取大文件</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s2">&#34;test.txt&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <p><code>b 表示字节流（二进制文件） 不加表示字符流（文本文件）</code></p>
@@ -1570,7 +1563,7 @@
 <h3 id="json">JSON</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1588,23 +1581,23 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">json</span>
-    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;result.json&#39;</span>
-    
-    <span class="k">def</span> <span class="nf">write_json</span><span class="p">():</span>
-        <span class="k">global</span> <span class="n">file_name</span>
-        <span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="s1">&#39;23&#39;</span><span class="p">}</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">o</span><span class="p">:</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">person</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">read_json</span><span class="p">():</span>
-        <span class="k">global</span> <span class="n">file_name</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
-            <span class="n">datas</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span> <span class="p">:</span>
-                <span class="c1"># 引用的时候就当做是字典</span>
-                <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">datas</span><span class="p">[</span><span class="n">data</span><span class="p">])</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;result.json&#39;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">write_json</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">global</span> <span class="n">file_name</span>
+</span></span><span class="line"><span class="cl">        <span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="s1">&#39;23&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">o</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">person</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">read_json</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">global</span> <span class="n">file_name</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">datas</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 引用的时候就当做是字典</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">datas</span><span class="p">[</span><span class="n">data</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="conf或者ini">conf或者ini</h3>
 <blockquote>
@@ -1612,7 +1605,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1626,30 +1619,30 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">os</span>
-    <span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
-
-    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">mainConf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;/main.conf&#39;</span>
-    <span class="n">cf</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
-    <span class="n">cf</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">mainConf</span><span class="p">)</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">,</span> <span class="s1">&#39;host&#39;</span><span class="p">)</span>
-
-    <span class="c1"># 写 但是要有write节点</span>
-    <span class="n">cf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">)</span>
-    <span class="n">cf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">mainConf</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainConf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;/main.conf&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cf</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cf</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">mainConf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">host</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">,</span> <span class="s1">&#39;host&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 写 但是要有write节点</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">mainConf</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>对应的conf</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [redis]
-    host=127.0.0.1
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    [redis]
+</span></span><span class="line"><span class="cl">    host=127.0.0.1
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="测试">测试</h2>
@@ -1691,7 +1684,7 @@ Create a Dockerfile in your Python app project</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1699,18 +1692,18 @@ Create a Dockerfile in your Python app project</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile">    FROM python:3<span class="err">
-</span><span class="err"></span>    WORKDIR /usr/src/app<span class="err">
-</span><span class="err"></span>    COPY requirements.txt ./<span class="err">
-</span><span class="err"></span>    RUN pip install --no-cache-dir -r requirements.txt<span class="err">
-</span><span class="err"></span>    COPY . .<span class="err">
-</span><span class="err"></span>    CMD <span class="o">[</span> <span class="s2">&#34;python&#34;</span>, <span class="s2">&#34;./your-daemon-or-script.py&#34;</span> <span class="o">]</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl">    FROM python:3<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    WORKDIR /usr/src/app<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY requirements.txt ./<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN pip install --no-cache-dir -r requirements.txt<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY . .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    CMD <span class="o">[</span> <span class="s2">&#34;python&#34;</span>, <span class="s2">&#34;./your-daemon-or-script.py&#34;</span> <span class="o">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>or (if you need to use Python 2)</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1718,13 +1711,13 @@ Create a Dockerfile in your Python app project</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile">    FROM python:2<span class="err">
-</span><span class="err"></span>    WORKDIR /usr/src/app<span class="err">
-</span><span class="err"></span>    COPY requirements.txt ./<span class="err">
-</span><span class="err"></span>    RUN pip install --no-cache-dir -r requirements.txt<span class="err">
-</span><span class="err"></span>    COPY . .<span class="err">
-</span><span class="err"></span>    CMD <span class="o">[</span> <span class="s2">&#34;python&#34;</span>, <span class="s2">&#34;./your-daemon-or-script.py&#34;</span> <span class="o">]</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl">    FROM python:2<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    WORKDIR /usr/src/app<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY requirements.txt ./<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN pip install --no-cache-dir -r requirements.txt<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY . .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    CMD <span class="o">[</span> <span class="s2">&#34;python&#34;</span>, <span class="s2">&#34;./your-daemon-or-script.py&#34;</span> <span class="o">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>You can then build and run the Docker image:
@@ -1740,15 +1733,15 @@ Create a Dockerfile in your Python app project</p>
 <p><code>python 3.5 安装</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    sudo apt install python3-matplotlib 
-    sudo apt install python3.5-dev python3.5-tk tk-dev
-    sudo apt install libfreetype6-dev g++
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    sudo apt install python3-matplotlib 
+</span></span><span class="line"><span class="cl">    sudo apt install python3.5-dev python3.5-tk tk-dev
+</span></span><span class="line"><span class="cl">    sudo apt install libfreetype6-dev g++
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="常见函数">常见函数</h2>
@@ -1809,19 +1802,19 @@ Create a Dockerfile in your Python app project</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    qt4-dev-tools 中包括了Qt Assistant,Qt Linguist,Qt Creator
-    qt4-doc 这个是帮助文档
-    qt4-qtconfig Qt的配置工具,这个装好默认好
-    qt4-demos 官方的一些Demo
-    qt4-designer 可视化窗体设置工具
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    qt4-dev-tools 中包括了Qt Assistant,Qt Linguist,Qt Creator
+</span></span><span class="line"><span class="cl">    qt4-doc 这个是帮助文档
+</span></span><span class="line"><span class="cl">    qt4-qtconfig Qt的配置工具,这个装好默认好
+</span></span><span class="line"><span class="cl">    qt4-demos 官方的一些Demo
+</span></span><span class="line"><span class="cl">    qt4-designer 可视化窗体设置工具
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -1890,10 +1883,10 @@ Create a Dockerfile in your Python app project</p>
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -1910,7 +1903,7 @@ Create a Dockerfile in your Python app project</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

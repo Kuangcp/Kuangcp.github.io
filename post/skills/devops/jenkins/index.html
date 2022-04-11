@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/skills/devops/jenkins/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Jenkins" />
 <meta property="og:description" content="目录 start Jenkins 安装 直接运行jar Docker 配置 配置Gradle 配置Docker插件 使用 Pipeline 个人经验 目录 end|2020-04-27 23:42| Jenkins 官网 参考: 用 Docker, maven, jenkins 完成 CI 安装 官方下载地址 | 由于是" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/devops/jenkins/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/devops/jenkins/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Jenkins">
-<meta itemprop="description" content="目录 start Jenkins 安装 直接运行jar Docker 配置 配置Gradle 配置Docker插件 使用 Pipeline 个人经验 目录 end|2020-04-27 23:42| Jenkins 官网 参考: 用 Docker, maven, jenkins 完成 CI 安装 官方下载地址 | 由于是">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start Jenkins 安装 直接运行jar Docker 配置 配置Gradle 配置Docker插件 使用 Pipeline 个人经验 目录 end|2020-04-27 23:42| Jenkins 官网 参考: 用 Docker, maven, jenkins 完成 CI 安装 官方下载地址 | 由于是"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="1298">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="842">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Jenkins"/>
 <meta name="twitter:description" content="目录 start Jenkins 安装 直接运行jar Docker 配置 配置Gradle 配置Docker插件 使用 Pipeline 个人经验 目录 end|2020-04-27 23:42| Jenkins 官网 参考: 用 Docker, maven, jenkins 完成 CI 安装 官方下载地址 | 由于是"/>
 
@@ -126,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/devops/"> DevOps </a>
             </div>
-          <span class="more-meta"> 1298 words </span>
-          <span class="more-meta"> 3 mins read </span>
+          <span class="more-meta"> 842 words </span>
+          <span class="more-meta"> 2 mins read </span>
         
       </div>
     </header>
@@ -152,7 +148,6 @@
     <li><a href="#使用">使用</a>
       <ul>
         <li><a href="#pipeline">Pipeline</a></li>
-        <li><a href="#个人经验">个人经验</a></li>
       </ul>
     </li>
   </ul>
@@ -227,19 +222,19 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile">    FROM frolvlad/alpine-oraclejdk8:slim<span class="err">
-</span><span class="err"></span>    COPY . . <span class="err">
-</span><span class="err"></span>    EXPOSE <span class="m">8080</span><span class="err">
-</span><span class="err"></span>    EXPOSE <span class="m">5000</span><span class="err">
-</span><span class="err"></span>    CMD <span class="o">[</span><span class="s2">&#34;java&#34;</span>, <span class="s2">&#34;-jar&#34;</span>, <span class="s2">&#34;jenkins.war&#34;</span><span class="o">]</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl">    FROM frolvlad/alpine-oraclejdk8:slim<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY . . <span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    EXPOSE <span class="m">8080</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    EXPOSE <span class="m">5000</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    CMD <span class="o">[</span><span class="s2">&#34;java&#34;</span>, <span class="s2">&#34;-jar&#34;</span>, <span class="s2">&#34;jenkins.war&#34;</span><span class="o">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>构建镜像 <code>docker build -t jenkins:xxx -f jenkins.dockerfile .</code></li>
@@ -263,7 +258,7 @@
 <p>Jenkins 通过配置好的 slave 镜像启动对应容器, 在slave 容器中完成构建过程, 然后更换应用容器 销毁slave容器</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -325,181 +320,80 @@
 </span><span class="lnt">60
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">pipeline</span> <span class="o">{</span>
-    <span class="n">agent</span> <span class="o">{</span>
-		<span class="n">label</span> <span class="s1">&#39;docker-slave&#39;</span>
-	<span class="o">}</span>
-    <span class="n">stages</span> <span class="o">{</span>
-        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;init&#39;</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">steps</span> <span class="o">{</span>
-                <span class="n">echo</span> <span class="s1">&#39;init..&#39;</span>
-				<span class="n">script</span> <span class="o">{</span>
-					<span class="n">echo</span> <span class="s2">&#34;PATH = ${PATH}&#34;</span>
-					<span class="n">echo</span> <span class="s2">&#34;env.version = ${env.version}&#34;</span>
-				<span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;package&#39;</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">steps</span> <span class="o">{</span>
-                <span class="n">echo</span> <span class="s2">&#34;start to build&#34;</span>
-                <span class="n">checkout</span> <span class="nl">changelog:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">poll:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">scm:</span> <span class="o">[</span><span class="n">$class</span><span class="o">:</span> <span class="s1">&#39;SubversionSCM&#39;</span><span class="o">,</span> <span class="nl">additionalCredentials:</span> <span class="o">[],</span> <span class="nl">excludedCommitMessages:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedRegions:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedRevprop:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedUsers:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">filterChangelog:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">ignoreDirPropChanges:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">includedRegions:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">locations:</span> <span class="o">[[</span><span class="nl">cancelProcessOnExternalsFail:</span> <span class="kc">true</span><span class="o">,</span> <span class="nl">credentialsId:</span> <span class="s1">&#39;22f6f4c9-f19e-4120-af4b-7946ea7cc2ef&#39;</span><span class="o">,</span> <span class="nl">depthOption:</span> <span class="s1">&#39;infinity&#39;</span><span class="o">,</span> <span class="nl">ignoreExternalsOption:</span> <span class="kc">true</span><span class="o">,</span> <span class="nl">local:</span> <span class="s1">&#39;.&#39;</span><span class="o">,</span> <span class="nl">remote:</span> <span class="s1">&#39;http://192.168.10.200/svn/hecheng/dev/server/trunk&#39;</span><span class="o">]],</span> <span class="nl">quietOperation:</span> <span class="kc">true</span><span class="o">,</span> <span class="nl">workspaceUpdater:</span> <span class="o">[</span><span class="n">$class</span><span class="o">:</span> <span class="s1">&#39;UpdateUpdater&#39;</span><span class="o">]]</span>
-                 <span class="n">sh</span> <span class="s2">&#34;mvn -B -V -U clean package -DskipTest=true&#34;</span>
-                <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;test&#39;</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">steps</span> <span class="o">{</span>
-                <span class="n">echo</span> <span class="s1">&#39;Testing..&#39;</span>
-                <span class="n">sh</span> <span class="s2">&#34;mvn -B test&#34;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;build docker image and publish into local registry&#39;</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">steps</span> <span class="o">{</span>
-                <span class="n">echo</span> <span class="s2">&#34;starting to build docker image...&#34;</span>
-                <span class="n">script</span> <span class="o">{</span>		
-                <span class="cm">/* This builds the actual image; synonymous to
-</span><span class="cm">                * docker build on the command line */</span>
-                <span class="n">sh</span> <span class="s2">&#34;pwd &amp;&amp; ls . &amp;&amp; docker info&#34;</span>
-                <span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">url:</span> <span class="s1">&#39;http://192.168.10.6:5000/&#39;</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="kt">def</span> <span class="n">app</span> <span class="o">=</span> <span class="n">docker</span><span class="o">.</span><span class="na">build</span> <span class="s2">&#34;192.168.10.6:5000/synthesizer-dev:${env.BUILD_ID}&#34;</span>
-                    <span class="n">app</span><span class="o">.</span><span class="na">push</span><span class="o">()</span>
-                    <span class="n">echo</span> <span class="s2">&#34;pushed into local registry&#34;</span>
-                    <span class="o">}</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;deploy&#39;</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">steps</span> <span class="o">{</span>
-                <span class="n">echo</span> <span class="s1">&#39;killing old server and start new server....&#39;</span>
-                <span class="n">script</span> <span class="o">{</span>
-                    <span class="n">sh</span> <span class="s2">&#34;docker container rm -f synthesizer-dev  &amp;&amp;  docker run -d -p 3070:3070 -p 16888:16888 --name synthesizer-dev 192.168.10.6:5000/synthesizer-dev:${env.BUILD_ID}&#34;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;clean local images&#39;</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">steps</span> <span class="o">{</span>
-                <span class="n">echo</span> <span class="s2">&#34;cleaning dangling images...&#34;</span>
-                <span class="n">script</span> <span class="o">{</span>
-                    <span class="n">sh</span> <span class="s2">&#34;docker images --filter \&#34;dangling=true\&#34; -q |xargs --no-run-if-empty docker rmi&#34;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>	
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">pipeline</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">agent</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">label</span> <span class="s1">&#39;docker-slave&#39;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stages</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;init&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">echo</span> <span class="s1">&#39;init..&#39;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">script</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">					<span class="n">echo</span> <span class="s2">&#34;PATH = ${PATH}&#34;</span>
+</span></span><span class="line"><span class="cl">					<span class="n">echo</span> <span class="s2">&#34;env.version = ${env.version}&#34;</span>
+</span></span><span class="line"><span class="cl">				<span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;package&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">echo</span> <span class="s2">&#34;start to build&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">checkout</span> <span class="nl">changelog:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">poll:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">scm:</span> <span class="o">[</span><span class="n">$class</span><span class="o">:</span> <span class="s1">&#39;SubversionSCM&#39;</span><span class="o">,</span> <span class="nl">additionalCredentials:</span> <span class="o">[],</span> <span class="nl">excludedCommitMessages:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedRegions:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedRevprop:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedUsers:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">filterChangelog:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">ignoreDirPropChanges:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">includedRegions:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">locations:</span> <span class="o">[[</span><span class="nl">cancelProcessOnExternalsFail:</span> <span class="kc">true</span><span class="o">,</span> <span class="nl">credentialsId:</span> <span class="s1">&#39;22f6f4c9-f19&#39;</span><span class="o">,</span> <span class="nl">depthOption:</span> <span class="s1">&#39;infinity&#39;</span><span class="o">,</span> <span class="nl">ignoreExternalsOption:</span> <span class="kc">true</span><span class="o">,</span> <span class="nl">local:</span> <span class="s1">&#39;.&#39;</span><span class="o">,</span> <span class="nl">remote:</span> <span class="s1">&#39;http://xxxx/svn/project-name/dev/server/trunk&#39;</span><span class="o">]],</span> <span class="nl">quietOperation:</span> <span class="kc">true</span><span class="o">,</span> <span class="nl">workspaceUpdater:</span> <span class="o">[</span><span class="n">$class</span><span class="o">:</span> <span class="s1">&#39;UpdateUpdater&#39;</span><span class="o">]]</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">sh</span> <span class="s2">&#34;mvn -B -V -U clean package -DskipTest=true&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;test&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">echo</span> <span class="s1">&#39;Testing..&#39;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s2">&#34;mvn -B test&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;build docker image and publish into local registry&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">echo</span> <span class="s2">&#34;starting to build docker image...&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">script</span> <span class="o">{</span>		
+</span></span><span class="line"><span class="cl">                <span class="cm">/* This builds the actual image; synonymous to
+</span></span></span><span class="line"><span class="cl"><span class="cm">                * docker build on the command line */</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sh</span> <span class="s2">&#34;pwd &amp;&amp; ls . &amp;&amp; docker info&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">withDockerRegistry</span><span class="o">(</span><span class="nl">url:</span> <span class="s1">&#39;http://xxx:5000/&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="kt">def</span> <span class="n">app</span> <span class="o">=</span> <span class="n">docker</span><span class="o">.</span><span class="na">build</span> <span class="s2">&#34;xxx:5000/project-dev:${env.BUILD_ID}&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">app</span><span class="o">.</span><span class="na">push</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">echo</span> <span class="s2">&#34;pushed into local registry&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;deploy&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">echo</span> <span class="s1">&#39;killing old server and start new server....&#39;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">script</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">sh</span> <span class="s2">&#34;docker container rm -f project-dev  &amp;&amp;  docker run -d -p 3070:3070 -p 16888:16888 --name project-dev xxx:5000/project-dev:${env.BUILD_ID}&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stage</span><span class="o">(</span><span class="s1">&#39;clean local images&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">steps</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">echo</span> <span class="s2">&#34;cleaning dangling images...&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">script</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">sh</span> <span class="s2">&#34;docker images --filter \&#34;dangling=true\&#34; -q |xargs --no-run-if-empty docker rmi&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>	
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>slave 配置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    /home/ai/rs/jenkins-slave/m2:/home/jenkins/.m2
-    /var/run/docker.sock:/var/run/docker.sock
-    /usr/bin/docker:/usr/bin/docker
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="个人经验">个人经验</h3>
-<blockquote>
-<p>从Gitlab私有库(Maven SpringBooot项目)建好一个任务, 并构建好镜像和容器, 更新容器
-做法是在运行Docker的服务器上建立一个目录专门用来更新该项目, 然后在Jenkins构建完成后将 jar 包传过去, 执行该目录下的脚本完成容器和镜像的更迭</p>
-</blockquote>
-<ol>
-<li>复制项目URL, Credentials 中添加一个 username/password 类型的授权即可(就是gitlab上的用户名密码)
-<ul>
-<li>可以选择指定的 分支 进行构建</li>
-</ul>
-</li>
-<li>添加一个构建, 选择Maven的版本, Goal 中添加 命令 clean package</li>
-<li>在Build 这里添加一个Post-build step 这里 选择添加一个 Shell, 写入要执行的脚本即可</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> <span class="s2">&#34;...构建完成, 开始建立镜像...&#34;</span>
-<span class="nv">jarFile</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/target/app.jar
-<span class="k">if</span> <span class="o">[</span> -f <span class="nv">$jarFile</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
-	scp <span class="nv">$WORKSPACE</span>/target/app.jar xx@xxx:/home/xxx/
-    ssh xx@xxx <span class="s2">&#34;cd /home/xx/ &amp;&amp; sh deploy.sh dev&#34;</span>
-<span class="k">fi</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>deploy.sh</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">version</span><span class="o">=</span><span class="sb">`</span>date +%Y-%m-%d-%H-%M<span class="sb">`</span>
-<span class="nv">num</span><span class="o">=</span><span class="sb">`</span>docker ps <span class="p">|</span> grep app <span class="p">|</span> wc -l<span class="sb">`</span>
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$num</span> <span class="o">=</span> <span class="m">1</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
-    docker logs app &gt;&gt; /home/ai/xx/log/<span class="nv">$version</span>.log
-    docker rm -f app
-<span class="k">fi</span>
-<span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">=</span> <span class="s2">&#34;dev&#34;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
-    docker build -t app:<span class="nv">$version</span> -f /home/xx/build-dev.dockerfile .
-<span class="k">else</span>
-    docker build -t app:<span class="nv">$version</span> -f /home/xx/build-prod.dockerfile . 
-<span class="k">fi</span>
-<span class="nb">echo</span> <span class="s2">&#34;版本:&#34;</span><span class="nv">$version</span><span class="s2">&#34;镜像构建完成&#34;</span>
-docker run --name app -d -p 16888:16888 -p 3070:3070 app:<span class="nv">$version</span>
-<span class="nb">echo</span> <span class="s2">&#34;容器启动成功&#34;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>build-dev.dockerfile</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> frolvlad/alpine-oraclejdk8:slim</span><span class="err">
-</span><span class="err"></span><span class="k">COPY</span> . .<span class="err">
-</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 16888</span><span class="err">
-</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 3070</span><span class="err">
-</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;app.jar&#34;</span><span class="p">,</span> <span class="s2">&#34;--spring.profiles.active=jenkins&#34;</span><span class="p">]</span><span class="err">
-</span></code></pre></td></tr></table>
-</div>
-</div><p><code>build-prod.dockerfile</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> frolvlad/alpine-oraclejdk8:slim</span><span class="err">
-</span><span class="err"></span><span class="k">COPY</span> upload/* .<span class="err">
-</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 16888</span><span class="err">
-</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 3070</span><span class="err">
-</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;app.jar&#34;</span><span class="p">,</span> <span class="s2">&#34;--spring.profiles.active=production&#34;</span><span class="p">,</span> <span class="s2">&#34;&gt;&gt;/var/log/game.log&#34;</span><span class="p">]</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    /home/ai/rs/jenkins-slave/m2:/home/jenkins/.m2
+</span></span><span class="line"><span class="cl">    /var/run/docker.sock:/var/run/docker.sock
+</span></span><span class="line"><span class="cl">    /usr/bin/docker:/usr/bin/docker
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -566,10 +460,10 @@ docker run --name app -d -p 16888:16888 -p 3070:3070 app:<span class="nv">$versi
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -586,7 +480,7 @@ docker run --name app -d -p 16888:16888 -p 3070:3070 app:<span class="nv">$versi
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

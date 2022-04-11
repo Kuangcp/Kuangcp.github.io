@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/tool/tomcat/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Tomcat" />
 <meta property="og:description" content="目录 start Tomcat 原理 目录结构 配置运行 配置解压方式的Tomcat IDE中配置运行 编码 虚拟目录 默认主页 虚拟主机 配置 GZip压缩 配置IO方式 Tomcat Native Web容器" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/tool/tomcat/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/tool/tomcat/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-20T10:26:32+00:00" />
 <meta property="article:modified_time" content="2018-12-20T10:26:32+00:00" />
+
 <meta itemprop="name" content="Tomcat">
-<meta itemprop="description" content="目录 start Tomcat 原理 目录结构 配置运行 配置解压方式的Tomcat IDE中配置运行 编码 虚拟目录 默认主页 虚拟主机 配置 GZip压缩 配置IO方式 Tomcat Native Web容器">
-<meta itemprop="datePublished" content="2018-12-20T10:26:32+00:00" />
+<meta itemprop="description" content="目录 start Tomcat 原理 目录结构 配置运行 配置解压方式的Tomcat IDE中配置运行 编码 虚拟目录 默认主页 虚拟主机 配置 GZip压缩 配置IO方式 Tomcat Native Web容器"><meta itemprop="datePublished" content="2018-12-20T10:26:32+00:00" />
 <meta itemprop="dateModified" content="2018-12-20T10:26:32+00:00" />
-<meta itemprop="wordCount" content="4182">
-
-
-
-<meta itemprop="keywords" content="Tomcat," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="4163">
+<meta itemprop="keywords" content="Tomcat," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tomcat"/>
 <meta name="twitter:description" content="目录 start Tomcat 原理 目录结构 配置运行 配置解压方式的Tomcat IDE中配置运行 编码 虚拟目录 默认主页 虚拟主机 配置 GZip压缩 配置IO方式 Tomcat Native Web容器"/>
 
@@ -126,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 4182 words </span>
+          <span class="more-meta"> 4163 words </span>
           <span class="more-meta"> 9 mins read </span>
         
       </div>
@@ -158,7 +154,6 @@
 
   <ul>
     <li><a href="#参数优化">参数优化</a></li>
-    <li><a href="#tomcat僵死问题">Tomcat僵死问题</a></li>
   </ul>
 
   <ul>
@@ -266,7 +261,7 @@
 <h2 id="目录结构">目录结构</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -275,14 +270,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">├── bin 二进制文件, Shell脚本 
-├── conf 配置
-├── lib jar包
-├── logs 日志
-├── temp 缓存
-├── webapps 应用, war发布的目录
-└── work 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">├── bin 二进制文件, Shell脚本 
+</span></span><span class="line"><span class="cl">├── conf 配置
+</span></span><span class="line"><span class="cl">├── lib jar包
+</span></span><span class="line"><span class="cl">├── logs 日志
+</span></span><span class="line"><span class="cl">├── temp 缓存
+</span></span><span class="line"><span class="cl">├── webapps 应用, war发布的目录
+</span></span><span class="line"><span class="cl">└── work 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>查看Tomcat版本 <code>sh bin/version.sh</code></p>
 <h2 id="配置运行">配置运行</h2>
@@ -312,7 +307,7 @@
 <p><code>配置管理账号 tomcat-users.xml 中的 tomcat-users 节点</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -320,13 +315,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager&#34;</span><span class="nt">/&gt;</span>　  
-    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-gui&#34;</span><span class="nt">/&gt;</span>　  
-    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;admin&#34;</span><span class="nt">/&gt;</span>　  
-    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;admin-gui&#34;</span><span class="nt">/&gt;</span>　  
-    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-script&#34;</span><span class="nt">/&gt;</span>  
-    <span class="nt">&lt;user</span> <span class="na">username=</span><span class="s">&#34;tomcat&#34;</span> <span class="na">password=</span><span class="s">&#34;tomcat&#34;</span> <span class="na">roles=</span><span class="s">&#34;admin-gui,admin,manager-gui,manager,manager-script&#34;</span><span class="nt">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager&#34;</span><span class="nt">/&gt;</span>　  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-gui&#34;</span><span class="nt">/&gt;</span>　  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;admin&#34;</span><span class="nt">/&gt;</span>　  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;admin-gui&#34;</span><span class="nt">/&gt;</span>　  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-script&#34;</span><span class="nt">/&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;user</span> <span class="na">username=</span><span class="s">&#34;tomcat&#34;</span> <span class="na">password=</span><span class="s">&#34;tomcat&#34;</span> <span class="na">roles=</span><span class="s">&#34;admin-gui,admin,manager-gui,manager,manager-script&#34;</span><span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>其中admin-gui是为了能访问manger的界面，manager-secret是为了可以上传war文件</li>
@@ -336,17 +331,17 @@
 <p>/conf/Catalina/localhost/ 下添加 manager.xml 文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;Context</span> <span class="na">privileged=</span><span class="s">&#34;true&#34;</span> <span class="na">antiResourceLocking=</span><span class="s">&#34;false&#34;</span>   
-         <span class="na">docBase=</span><span class="s">&#34;${catalina.home}/webapps/manager&#34;</span><span class="nt">&gt;</span>  
-             <span class="nt">&lt;Valve</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.valves.RemoteAddrValve&#34;</span> <span class="na">allow=</span><span class="s">&#34;^.*$&#34;</span> <span class="nt">/&gt;</span>  
-    <span class="nt">&lt;/Context&gt;</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;Context</span> <span class="na">privileged=</span><span class="s">&#34;true&#34;</span> <span class="na">antiResourceLocking=</span><span class="s">&#34;false&#34;</span>   
+</span></span><span class="line"><span class="cl">         <span class="na">docBase=</span><span class="s">&#34;${catalina.home}/webapps/manager&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">             <span class="nt">&lt;Valve</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.valves.RemoteAddrValve&#34;</span> <span class="na">allow=</span><span class="s">&#34;^.*$&#34;</span> <span class="nt">/&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/Context&gt;</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="ide中配置运行">IDE中配置运行</h4>
 <blockquote>
@@ -384,21 +379,21 @@
 <p><code>web.xml</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;welcome-file-list&gt;</span>
-        <span class="nt">&lt;welcome-file&gt;</span>index.html<span class="nt">&lt;/welcome-file&gt;</span>
-    <span class="nt">&lt;/welcome-file-list&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;welcome-file-list&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;welcome-file&gt;</span>index.html<span class="nt">&lt;/welcome-file&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/welcome-file-list&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="虚拟主机">虚拟主机</h4>
 <p><code>server.xml</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -406,13 +401,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;host</span> <span class="na">name=</span><span class="s">&#34;www.baidu.com&#34;</span> <span class="na">appBase=</span><span class="s">&#34;c:/webA&#34;</span> 
-    <span class="na">unpackWARs=</span><span class="s">&#34;true&#34;</span> <span class="na">autoDeploy=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;Valve</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.valves.AccessLogValve&#34;</span> <span class="na">directory=</span><span class="s">&#34;logs&#34;</span>
-                <span class="na">prefix=</span><span class="s">&#34;localhost_access_log.&#34;</span> <span class="na">suffix=</span><span class="s">&#34;.txt&#34;</span>
-                <span class="na">pattern=</span><span class="s">&#34;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt; Context</span> <span class="na">path=</span><span class="s">&#34;/&#34;</span> <span class="na">docBase=</span><span class="s">&#34;d:/webA&#34;</span> <span class="nt">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;host</span> <span class="na">name=</span><span class="s">&#34;www.baidu.com&#34;</span> <span class="na">appBase=</span><span class="s">&#34;c:/webA&#34;</span> 
+</span></span><span class="line"><span class="cl">    <span class="na">unpackWARs=</span><span class="s">&#34;true&#34;</span> <span class="na">autoDeploy=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Valve</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.valves.AccessLogValve&#34;</span> <span class="na">directory=</span><span class="s">&#34;logs&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="na">prefix=</span><span class="s">&#34;localhost_access_log.&#34;</span> <span class="na">suffix=</span><span class="s">&#34;.txt&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="na">pattern=</span><span class="s">&#34;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt; Context</span> <span class="na">path=</span><span class="s">&#34;/&#34;</span> <span class="na">docBase=</span><span class="s">&#34;d:/webA&#34;</span> <span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>File f=new File(&quot;/information.xml&quot;);</code>这个写法是错的，空指针异常</li>
@@ -428,20 +423,20 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&#34;8080&#34;</span> <span class="na">protocol=</span><span class="s">&#34;HTTP/1.1&#34;</span> <span class="na">connectionTimeout=</span><span class="s">&#34;20000&#34;</span> <span class="na">redirectPort=</span><span class="s">&#34;8443&#34;</span> <span class="nt">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&#34;8080&#34;</span> <span class="na">protocol=</span><span class="s">&#34;HTTP/1.1&#34;</span> <span class="na">connectionTimeout=</span><span class="s">&#34;20000&#34;</span> <span class="na">redirectPort=</span><span class="s">&#34;8443&#34;</span> <span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>修改成</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&#34;8080&#34;</span> <span class="na">protocol=</span><span class="s">&#34;HTTP/1.1&#34;</span> <span class="na">connectionTimeout=</span><span class="s">&#34;20000&#34;</span> <span class="na">redirectPort=</span><span class="s">&#34;8443&#34;</span> <span class="na">compression=</span><span class="s">&#34;on&#34;</span> <span class="na">compressionMinSize=</span><span class="s">&#34;2048&#34;</span> <span class="na">noCompressionUserAgents=</span><span class="s">&#34;gozilla,traviata&#34;</span> <span class="na">compressableMimeType=</span><span class="s">&#34;text/html,text/xml,text/javascript,application/x-javascript,application/javascript,text/css,text/plain&#34;</span><span class="nt">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&#34;8080&#34;</span> <span class="na">protocol=</span><span class="s">&#34;HTTP/1.1&#34;</span> <span class="na">connectionTimeout=</span><span class="s">&#34;20000&#34;</span> <span class="na">redirectPort=</span><span class="s">&#34;8443&#34;</span> <span class="na">compression=</span><span class="s">&#34;on&#34;</span> <span class="na">compressionMinSize=</span><span class="s">&#34;2048&#34;</span> <span class="na">noCompressionUserAgents=</span><span class="s">&#34;gozilla,traviata&#34;</span> <span class="na">compressableMimeType=</span><span class="s">&#34;text/html,text/xml,text/javascript,application/x-javascript,application/javascript,text/css,text/plain&#34;</span><span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="配置io方式">配置IO方式</h4>
 <blockquote>
@@ -516,10 +511,6 @@
 <hr>
 <h1 id="优化">优化</h1>
 <h2 id="参数优化">参数优化</h2>
-<h2 id="tomcat僵死问题">Tomcat僵死问题</h2>
-<ul>
-<li><input disabled="" type="checkbox"> 分析各种可能的原因</li>
-</ul>
 <hr>
 <h1 id="同类项目">同类项目</h1>
 <h2 id="jetty">Jetty</h2>
@@ -535,22 +526,22 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    org.eclipse.jetty.util.log.class=org.eclipse.jetty.util.log.StrErrLog
-    org.eclipse.jetty.LEVEL=DEBUG
-    jetty.logs=logs
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    org.eclipse.jetty.util.log.class=org.eclipse.jetty.util.log.StrErrLog
+</span></span><span class="line"><span class="cl">    org.eclipse.jetty.LEVEL=DEBUG
+</span></span><span class="line"><span class="cl">    jetty.logs=logs
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p><a href="http://www.open-open.com/lib/view/open1322622094390.html">参考: Jetty和Tomcat的选择：按场景而定</a></p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -559,14 +550,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    一个简单项目, 就是index.jsp 里面放了个 Hello 字符串
-    经过对比 8.5.29 jetty 9.2 
-    启动时间 jetty花费时间是Tomcat2倍
-    启动后内存 Jetty480M Tomcat300M
-    1000并发 20000总量 
-    Tomcat涨到 460M 第二次480M  连续5次后上660M了 10次900M 最长时间时而220ms 时而 70ms
-    Jetty涨到770M 第二次压测直接上900M了 十次后也是900M 最长响应时间稳定在 220ms
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    一个简单项目, 就是index.jsp 里面放了个 Hello 字符串
+</span></span><span class="line"><span class="cl">    经过对比 8.5.29 jetty 9.2 
+</span></span><span class="line"><span class="cl">    启动时间 jetty花费时间是Tomcat2倍
+</span></span><span class="line"><span class="cl">    启动后内存 Jetty480M Tomcat300M
+</span></span><span class="line"><span class="cl">    1000并发 20000总量 
+</span></span><span class="line"><span class="cl">    Tomcat涨到 460M 第二次480M  连续5次后上660M了 10次900M 最长时间时而220ms 时而 70ms
+</span></span><span class="line"><span class="cl">    Jetty涨到770M 第二次压测直接上900M了 十次后也是900M 最长响应时间稳定在 220ms
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="undertow">Undertow</h2>
 <blockquote>
@@ -675,10 +666,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -695,7 +686,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

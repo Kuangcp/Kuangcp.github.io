@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title> - Mythos</title>
+  <title>NginxAdvance - Mythos</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="Nginx设计与实现 《深入理解Nginx：模块开发与架构解析（第2版）》 《Nginx高性能Web服务器详解》 参考: Nginx从听说到学会 参考" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Nginx设计与实现 目录 end|2021-02-03 17:28| Nginx设计与实现 《深入理解Nginx：模块开发与架构解析（第2版）》 《Nginx高性能Web服务器详解" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/linux/tool/nginxadvance/" />
@@ -35,26 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="Nginx设计与实现 《深入理解Nginx：模块开发与架构解析（第2版）》 《Nginx高性能Web服务器详解》 参考: Nginx从听说到学会 参考" />
+<meta property="og:title" content="NginxAdvance" />
+<meta property="og:description" content="目录 start Nginx设计与实现 目录 end|2021-02-03 17:28| Nginx设计与实现 《深入理解Nginx：模块开发与架构解析（第2版）》 《Nginx高性能Web服务器详解" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/tool/nginxadvance/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/tool/nginxadvance/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-02-03T17:28:26+00:00" />
+<meta property="article:modified_time" content="2021-02-03T17:28:26+00:00" />
 
-<meta itemprop="name" content="">
-<meta itemprop="description" content="Nginx设计与实现 《深入理解Nginx：模块开发与架构解析（第2版）》 《Nginx高性能Web服务器详解》 参考: Nginx从听说到学会 参考">
-
-<meta itemprop="wordCount" content="343">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="Nginx设计与实现 《深入理解Nginx：模块开发与架构解析（第2版）》 《Nginx高性能Web服务器详解》 参考: Nginx从听说到学会 参考"/>
+<meta itemprop="name" content="NginxAdvance">
+<meta itemprop="description" content="目录 start Nginx设计与实现 目录 end|2021-02-03 17:28| Nginx设计与实现 《深入理解Nginx：模块开发与架构解析（第2版）》 《Nginx高性能Web服务器详解"><meta itemprop="datePublished" content="2021-02-03T17:28:26+00:00" />
+<meta itemprop="dateModified" content="2021-02-03T17:28:26+00:00" />
+<meta itemprop="wordCount" content="360">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NginxAdvance"/>
+<meta name="twitter:description" content="目录 start Nginx设计与实现 目录 end|2021-02-03 17:28| Nginx设计与实现 《深入理解Nginx：模块开发与架构解析（第2版）》 《Nginx高性能Web服务器详解"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -117,12 +115,12 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">NginxAdvance</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 0001-01-01 </span>
+        <span class="post-time"> 2021-02-03 </span>
         
-          <span class="more-meta"> 343 words </span>
+          <span class="more-meta"> 360 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -135,7 +133,13 @@
   </div>
 </div>
     <div class="post-content">
-      <h1 id="nginx设计与实现">Nginx设计与实现</h1>
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#nginx%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0">Nginx设计与实现</a></li>
+</ol>
+<p><strong>目录 end</strong>|<em>2021-02-03 17:28</em>|</p>
+<hr>
+<h1 id="nginx设计与实现">Nginx设计与实现</h1>
 <ul>
 <li>《深入理解Nginx：模块开发与架构解析（第2版）》</li>
 <li>《Nginx高性能Web服务器详解》</li>
@@ -182,7 +186,7 @@
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        0001-01-01
+        2021-02-03
         
     </span>
   </p>
@@ -192,13 +196,13 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/linux/redhat/readme/">
+        <a class="prev" href="/post/skills/gui/gtk/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">GTK</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/myblog/readme/">
-            <span class="next-text nav-default"></span>
+        <a class="next" href="/post/linux/container/vagrant/">
+            <span class="next-text nav-default">Vagrant</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -236,10 +240,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -256,7 +260,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

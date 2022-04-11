@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/quartz/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Quartz" />
 <meta property="og:description" content="目录 start Quartz学习 官方样例 Quartz中常用的一些类 有状态的Job与无状态的Job Quartz中重要的几个监听器 目录 end|2020-04-27 23:42| Quartz学习" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/quartz/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/quartz/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-07-07T11:57:07+00:00" />
 <meta property="article:modified_time" content="2019-07-07T11:57:07+00:00" />
+
 <meta itemprop="name" content="Quartz">
-<meta itemprop="description" content="目录 start Quartz学习 官方样例 Quartz中常用的一些类 有状态的Job与无状态的Job Quartz中重要的几个监听器 目录 end|2020-04-27 23:42| Quartz学习">
-<meta itemprop="datePublished" content="2019-07-07T11:57:07+00:00" />
+<meta itemprop="description" content="目录 start Quartz学习 官方样例 Quartz中常用的一些类 有状态的Job与无状态的Job Quartz中重要的几个监听器 目录 end|2020-04-27 23:42| Quartz学习"><meta itemprop="datePublished" content="2019-07-07T11:57:07+00:00" />
 <meta itemprop="dateModified" content="2019-07-07T11:57:07+00:00" />
 <meta itemprop="wordCount" content="2402">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Quartz"/>
 <meta name="twitter:description" content="目录 start Quartz学习 官方样例 Quartz中常用的一些类 有状态的Job与无状态的Job Quartz中重要的几个监听器 目录 end|2020-04-27 23:42| Quartz学习"/>
 
@@ -165,13 +161,13 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;org.quartz-scheduler&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;quartz&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;2.2.1&#39;</span>
-    <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;org.quartz-scheduler&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;quartz-jobs&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;2.2.1&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;org.quartz-scheduler&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;quartz&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;2.2.1&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;org.quartz-scheduler&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;quartz-jobs&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;2.2.1&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="官方样例">官方样例</h2>
 <ul>
@@ -179,7 +175,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -189,22 +185,22 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="cm">/**
-</span><span class="cm">* 类实现Job接口中的execute方法
-</span><span class="cm">*/</span>
-<span class="k">class</span> <span class="nc">HelloJob</span><span class="p">:</span> <span class="n">Job</span> <span class="p">{</span>
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">execute</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">* 类实现Job接口中的execute方法
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HelloJob</span><span class="p">:</span> <span class="n">Job</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">execute</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>设置运行任务</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -233,34 +229,34 @@
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Array</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;)</span> <span class="p">{</span>
-    <span class="c1">// 获取Scheduler用于调度任务
-</span><span class="c1"></span>    <span class="k">var</span> <span class="py">scheduler</span> <span class="p">=</span> <span class="n">StdSchedulerFactory</span><span class="p">.</span><span class="n">getDefaultScheduler</span><span class="p">()</span>
-    <span class="c1">// 开始执行任务
-</span><span class="c1"></span>    <span class="n">scheduler</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
-
-    <span class="c1">// 定义需执行的任务，指定我们定义的任务类
-</span><span class="c1"></span>    <span class="k">val</span> <span class="py">job</span> <span class="p">=</span> <span class="n">newJob</span><span class="p">(</span><span class="n">HelloJob</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;job1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
-
-    <span class="c1">// 定义任务的触发器
-</span><span class="c1"></span>    <span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
-            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
-            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">simpleSchedule</span><span class="p">()</span>
-                    <span class="p">.</span><span class="n">withIntervalInSeconds</span><span class="p">(</span><span class="m">40</span><span class="p">)</span>
-                    <span class="p">.</span><span class="n">repeatForever</span><span class="p">())</span>
-            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
-
-    <span class="c1">// 告知Scheduler执行的任务及任务的触发器
-</span><span class="c1"></span>    <span class="n">scheduler</span><span class="p">.</span><span class="n">scheduleJob</span><span class="p">(</span><span class="n">job</span><span class="p">,</span> <span class="n">trigger</span><span class="p">)</span>
-    <span class="c1">// 留点时间等待任务执行
-</span><span class="c1"></span>    <span class="n">Thread</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="m">6000</span><span class="p">)</span>
-    <span class="c1">// 关闭Scheduler
-</span><span class="c1"></span>    <span class="n">scheduler</span><span class="p">.</span><span class="n">shutdown</span><span class="p">()</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Array</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 获取Scheduler用于调度任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">var</span> <span class="py">scheduler</span> <span class="p">=</span> <span class="n">StdSchedulerFactory</span><span class="p">.</span><span class="n">getDefaultScheduler</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 开始执行任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">scheduler</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 定义需执行的任务，指定我们定义的任务类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">val</span> <span class="py">job</span> <span class="p">=</span> <span class="n">newJob</span><span class="p">(</span><span class="n">HelloJob</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;job1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 定义任务的触发器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">simpleSchedule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">.</span><span class="n">withIntervalInSeconds</span><span class="p">(</span><span class="m">40</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">.</span><span class="n">repeatForever</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 告知Scheduler执行的任务及任务的触发器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">scheduler</span><span class="p">.</span><span class="n">scheduleJob</span><span class="p">(</span><span class="n">job</span><span class="p">,</span> <span class="n">trigger</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 留点时间等待任务执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Thread</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="m">6000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 关闭Scheduler
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">scheduler</span><span class="p">.</span><span class="n">shutdown</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>在官方示例中，通过类通过实现<code>Job</code>接口来定义任务。<br>
@@ -284,26 +280,26 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="c1">// 简单的传递键为hello，值为world的数据，该数据将会存放在JobDataMap中
-</span><span class="c1"></span><span class="k">val</span> <span class="py">job</span> <span class="p">=</span> <span class="n">newJob</span><span class="p">(</span><span class="n">HelloJob</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;job1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">usingJobData</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">,</span> <span class="s2">&#34;world&#34;</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="c1">// 简单的传递键为hello，值为world的数据，该数据将会存放在JobDataMap中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">val</span> <span class="py">job</span> <span class="p">=</span> <span class="n">newJob</span><span class="p">(</span><span class="n">HelloJob</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;job1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">usingJobData</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">,</span> <span class="s2">&#34;world&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Job通过JobExecutionContext获取JobDataMap中的数据</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -313,15 +309,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">HelloJob</span><span class="p">:</span> <span class="n">Job</span> <span class="p">{</span>
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">execute</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="k">val</span> <span class="py">name</span> <span class="p">=</span> <span class="n">context</span><span class="o">!!</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">name</span>
-        <span class="c1">// 获取JobDataMap中的数据，取值也可在Job类中定义与键对应的属性，这样也可获取数据
-</span><span class="c1"></span>        <span class="k">val</span> <span class="py">hello</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">jobDataMap</span><span class="p">[</span><span class="s2">&#34;hello&#34;</span><span class="p">]</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">$name</span><span class="s2"> is running, </span><span class="si">$hello</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HelloJob</span><span class="p">:</span> <span class="n">Job</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">execute</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="py">name</span> <span class="p">=</span> <span class="n">context</span><span class="o">!!</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">name</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获取JobDataMap中的数据，取值也可在Job类中定义与键对应的属性，这样也可获取数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">val</span> <span class="py">hello</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">jobDataMap</span><span class="p">[</span><span class="s2">&#34;hello&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">$name</span><span class="s2"> is running, </span><span class="si">$hello</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -334,7 +330,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -343,21 +339,21 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
-            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
-            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">simpleSchedule</span><span class="p">()</span>
-                    <span class="p">.</span><span class="n">withIntervalInSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-                    <span class="p">.</span><span class="n">repeatForever</span><span class="p">())</span>
-            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">simpleSchedule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">.</span><span class="n">withIntervalInSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">.</span><span class="n">repeatForever</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>立即运行任务并每1秒运行一次，总共运行3次</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -366,14 +362,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
-            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
-            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">simpleSchedule</span><span class="p">()</span>
-                    <span class="p">.</span><span class="n">withIntervalInSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-                    <span class="p">.</span><span class="n">withRepeatCount</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
-            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">simpleSchedule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">.</span><span class="n">withIntervalInSeconds</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">.</span><span class="n">withRepeatCount</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -383,19 +379,19 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
-            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
-            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">CronScheduleBuilder</span><span class="p">.</span><span class="n">cronSchedule</span><span class="p">(</span><span class="s2">&#34;0/1 * * * * ?&#34;</span><span class="p">))</span>
-            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">trigger</span> <span class="p">=</span> <span class="n">newTrigger</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;trigger1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">startNow</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withSchedule</span><span class="p">(</span><span class="n">CronScheduleBuilder</span><span class="p">.</span><span class="n">cronSchedule</span><span class="p">(</span><span class="s2">&#34;0/1 * * * * ?&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -420,24 +416,24 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">val</span> <span class="py">job</span> <span class="p">=</span> <span class="n">newJob</span><span class="p">(</span><span class="n">HelloJob</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;job1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">usingJobData</span><span class="p">(</span><span class="s2">&#34;index&#34;</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
-            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">job</span> <span class="p">=</span> <span class="n">newJob</span><span class="p">(</span><span class="n">HelloJob</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">withIdentity</span><span class="p">(</span><span class="s2">&#34;job1&#34;</span><span class="p">,</span> <span class="s2">&#34;group1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">usingJobData</span><span class="p">(</span><span class="s2">&#34;index&#34;</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>将Job设置为有状态，并将index的值放入JobDataMap中(该示例通过在任务类中定义属性来获取JobDataMap的数据)</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -452,20 +448,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="nd">@PersistJobDataAfterExecution</span>
-<span class="k">class</span> <span class="nc">HelloJob</span><span class="p">:</span> <span class="n">Job</span> <span class="p">{</span>
-    
-    <span class="k">var</span> <span class="py">index</span> <span class="p">=</span> <span class="m">0</span>
-    
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">execute</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="k">val</span> <span class="py">name</span> <span class="p">=</span> <span class="n">context</span><span class="o">!!</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">name</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">$name</span><span class="s2"> is running, index is </span><span class="si">$index</span><span class="s2">&#34;</span><span class="p">)</span>
-        <span class="n">index</span><span class="o">++</span>
-        <span class="c1">// 存放数据到JobDataMap中
-</span><span class="c1"></span>        <span class="n">context</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">jobDataMap</span><span class="p">[</span><span class="s2">&#34;index&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="n">index</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="nd">@PersistJobDataAfterExecution</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HelloJob</span><span class="p">:</span> <span class="n">Job</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="py">index</span> <span class="p">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">execute</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="py">name</span> <span class="p">=</span> <span class="n">context</span><span class="o">!!</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">name</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">$name</span><span class="s2"> is running, index is </span><span class="si">$index</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">index</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 存放数据到JobDataMap中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">context</span><span class="p">.</span><span class="n">jobDetail</span><span class="p">.</span><span class="n">jobDataMap</span><span class="p">[</span><span class="s2">&#34;index&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="n">index</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -478,7 +474,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -499,26 +495,26 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">MyJobListener</span> <span class="p">:</span> <span class="n">JobListener</span> <span class="p">{</span>
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">getName</span><span class="p">():</span> <span class="n">String</span><span class="p">?</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;JobListener getName&#34;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">name</span>
-    <span class="p">}</span>
-    
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">jobToBeExecuted</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">${context!!.jobDetail.key.name}</span><span class="s2"> : 在Job将要被执行时执行&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">jobWasExecuted</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?,</span> <span class="n">jobException</span><span class="p">:</span> <span class="n">JobExecutionException</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">${context!!.jobDetail.key.name}</span><span class="s2"> : 在Job被执行后执行&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">jobExecutionVetoed</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">${context!!.jobDetail.key.name}</span><span class="s2"> : 在Job将要被执行时执行， 但又被TriggerListener否决时调用&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MyJobListener</span> <span class="p">:</span> <span class="n">JobListener</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">getName</span><span class="p">():</span> <span class="n">String</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;JobListener getName&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">name</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">jobToBeExecuted</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">${context!!.jobDetail.key.name}</span><span class="s2"> : 在Job将要被执行时执行&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">jobWasExecuted</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?,</span> <span class="n">jobException</span><span class="p">:</span> <span class="n">JobExecutionException</span><span class="p">?)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">${context!!.jobDetail.key.name}</span><span class="s2"> : 在Job被执行后执行&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">jobExecutionVetoed</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">${context!!.jobDetail.key.name}</span><span class="s2"> : 在Job将要被执行时执行， 但又被TriggerListener否决时调用&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -528,30 +524,30 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">scheduler.scheduleJob(job, trigger)
-// 定义全局JobListener
-scheduler.listenerManager.addJobListener(MyJobListener(), EverythingMatcher.allJobs())
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scheduler.scheduleJob(job, trigger)
+</span></span><span class="line"><span class="cl">// 定义全局JobListener
+</span></span><span class="line"><span class="cl">scheduler.listenerManager.addJobListener(MyJobListener(), EverythingMatcher.allJobs())
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>定义局部JobListener</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">scheduler.scheduleJob(job, trigger)
-// 将JobListener与指定的任务Job相关联
-scheduler.listenerManager.addJobListener(MyJobListener(), KeyMatcher.keyEquals(JobKey.jobKey(&#34;job1&#34;, &#34;group1&#34;)))
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scheduler.scheduleJob(job, trigger)
+</span></span><span class="line"><span class="cl">// 将JobListener与指定的任务Job相关联
+</span></span><span class="line"><span class="cl">scheduler.listenerManager.addJobListener(MyJobListener(), KeyMatcher.keyEquals(JobKey.jobKey(&#34;job1&#34;, &#34;group1&#34;)))
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -563,7 +559,7 @@ scheduler.listenerManager.addJobListener(MyJobListener(), KeyMatcher.keyEquals(J
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -588,30 +584,30 @@ scheduler.listenerManager.addJobListener(MyJobListener(), KeyMatcher.keyEquals(J
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">MyTriggerListener</span> <span class="p">:</span> <span class="n">TriggerListener</span> <span class="p">{</span>
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">triggerFired</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;相关联的Trigger被触发，Job的execute将被执行时触发&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">getName</span><span class="p">():</span> <span class="n">String</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;MyTriggerListener : getName&#34;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="k">this</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">.</span><span class="n">simpleName</span>
-    <span class="p">}</span>
-    
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">vetoJobExecution</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?):</span> <span class="n">Boolean</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;相关联的Trigger被触发，Job将被调用时，Scheduler调用该方法，可否决Job的执行，若返回true则该Job不会因此次Trigger触发而执行&#34;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="k">false</span>
-    <span class="p">}</span>
-    
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">triggerComplete</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?,</span> <span class="n">triggerInstructionCode</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">.</span><span class="n">CompletedExecutionInstruction</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;相关联的Trigger被触发,并且完成Job调用时执行&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">triggerMisfired</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?)</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;当Trigger错过触发时调用&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MyTriggerListener</span> <span class="p">:</span> <span class="n">TriggerListener</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">triggerFired</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;相关联的Trigger被触发，Job的execute将被执行时触发&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">getName</span><span class="p">():</span> <span class="n">String</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;MyTriggerListener : getName&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">.</span><span class="n">simpleName</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">vetoJobExecution</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?):</span> <span class="n">Boolean</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;相关联的Trigger被触发，Job将被调用时，Scheduler调用该方法，可否决Job的执行，若返回true则该Job不会因此次Trigger触发而执行&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">triggerComplete</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?,</span> <span class="n">context</span><span class="p">:</span> <span class="n">JobExecutionContext</span><span class="p">?,</span> <span class="n">triggerInstructionCode</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">.</span><span class="n">CompletedExecutionInstruction</span><span class="p">?)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;相关联的Trigger被触发,并且完成Job调用时执行&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">triggerMisfired</span><span class="p">(</span><span class="n">trigger</span><span class="p">:</span> <span class="n">Trigger</span><span class="p">?)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span><span class="p">(</span><span class="s2">&#34;当Trigger错过触发时调用&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -621,26 +617,26 @@ scheduler.listenerManager.addJobListener(MyJobListener(), KeyMatcher.keyEquals(J
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 定义全局TriggerListener
-scheduler.listenerManager.addTriggerListener(MyTriggerListener(), EverythingMatcher.allTriggers())
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// 定义全局TriggerListener
+</span></span><span class="line"><span class="cl">scheduler.listenerManager.addTriggerListener(MyTriggerListener(), EverythingMatcher.allTriggers())
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>定义局部TriggerListener</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 将riggerListener与指定的Trigger关联
-scheduler.listenerManager.addTriggerListener(MyTriggerListener(), KeyMatcher.keyEquals(TriggerKey.triggerKey(&#34;trigger1&#34;, &#34;group1&#34;)))
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// 将riggerListener与指定的Trigger关联
+</span></span><span class="line"><span class="cl">scheduler.listenerManager.addTriggerListener(MyTriggerListener(), KeyMatcher.keyEquals(TriggerKey.triggerKey(&#34;trigger1&#34;, &#34;group1&#34;)))
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -714,10 +710,10 @@ scheduler.listenerManager.addTriggerListener(MyTriggerListener(), KeyMatcher.key
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -734,7 +730,7 @@ scheduler.listenerManager.addTriggerListener(MyTriggerListener(), KeyMatcher.key
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

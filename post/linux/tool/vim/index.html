@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Vim Tips 基本配置 GVim 基础操作 跳转 高级跳转 搜索和替换 复制粘贴 插入模式 命令模式 插件管理 定制化 vim-init spf13 SpaceVim space-vim 目录 end|2020-04-27 23:42| Vim 学习曲线很高，但是学会熟练使用后就" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Vim Tips 基本配置 GVim 基础操作 跳转 高级跳转 搜索和替换 复制粘贴 插入模式 命令模式 插件管理 定制化 vim-init spf13 SpaceVim space-vim 目录 end|2021-02-03 17:25| Vim 学习曲线很高，但是学会熟练使用后就" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/linux/tool/vim/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Vim" />
-<meta property="og:description" content="目录 start Vim Tips 基本配置 GVim 基础操作 跳转 高级跳转 搜索和替换 复制粘贴 插入模式 命令模式 插件管理 定制化 vim-init spf13 SpaceVim space-vim 目录 end|2020-04-27 23:42| Vim 学习曲线很高，但是学会熟练使用后就" />
+<meta property="og:description" content="目录 start Vim Tips 基本配置 GVim 基础操作 跳转 高级跳转 搜索和替换 复制粘贴 插入模式 命令模式 插件管理 定制化 vim-init spf13 SpaceVim space-vim 目录 end|2021-02-03 17:25| Vim 学习曲线很高，但是学会熟练使用后就" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/tool/vim/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/tool/vim/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T12:05:58+00:00" />
 <meta property="article:modified_time" content="2018-12-15T12:05:58+00:00" />
+
 <meta itemprop="name" content="Vim">
-<meta itemprop="description" content="目录 start Vim Tips 基本配置 GVim 基础操作 跳转 高级跳转 搜索和替换 复制粘贴 插入模式 命令模式 插件管理 定制化 vim-init spf13 SpaceVim space-vim 目录 end|2020-04-27 23:42| Vim 学习曲线很高，但是学会熟练使用后就">
-<meta itemprop="datePublished" content="2018-12-15T12:05:58+00:00" />
+<meta itemprop="description" content="目录 start Vim Tips 基本配置 GVim 基础操作 跳转 高级跳转 搜索和替换 复制粘贴 插入模式 命令模式 插件管理 定制化 vim-init spf13 SpaceVim space-vim 目录 end|2021-02-03 17:25| Vim 学习曲线很高，但是学会熟练使用后就"><meta itemprop="datePublished" content="2018-12-15T12:05:58+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T12:05:58+00:00" />
-<meta itemprop="wordCount" content="1319">
-
-
-
-<meta itemprop="keywords" content="Vim," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1375">
+<meta itemprop="keywords" content="Vim," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Vim"/>
-<meta name="twitter:description" content="目录 start Vim Tips 基本配置 GVim 基础操作 跳转 高级跳转 搜索和替换 复制粘贴 插入模式 命令模式 插件管理 定制化 vim-init spf13 SpaceVim space-vim 目录 end|2020-04-27 23:42| Vim 学习曲线很高，但是学会熟练使用后就"/>
+<meta name="twitter:description" content="目录 start Vim Tips 基本配置 GVim 基础操作 跳转 高级跳转 搜索和替换 复制粘贴 插入模式 命令模式 插件管理 定制化 vim-init spf13 SpaceVim space-vim 目录 end|2021-02-03 17:25| Vim 学习曲线很高，但是学会熟练使用后就"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/%E5%B7%A5%E5%85%B7/"> 工具 </a>
             </div>
-          <span class="more-meta"> 1319 words </span>
+          <span class="more-meta"> 1375 words </span>
           <span class="more-meta"> 3 mins read </span>
         
       </div>
@@ -200,7 +196,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-02-03 17:25</em>|</p>
 <hr>
 <h1 id="vim">Vim</h1>
 <blockquote>
@@ -233,6 +229,12 @@
 <li>
 <p>vim 会导致文件 inode 变更 <a href="https://unix.stackexchange.com/questions/36467/why-inode-value-changes-when-we-edit-in-vi-editor">why inode value changes when we edit in “vi” editor?</a></p>
 </li>
+<li>
+<p>命令模式输入 <code>:%!xxd</code>  就可以16进制方式查看和编辑二进制文件了 <em>注意最左行号和最右的预览内容不能修改</em></p>
+<ul>
+<li><code>:%!xxd -r</code> 回到 ascii模式</li>
+</ul>
+</li>
 </ol>
 <hr>
 <p><code>配置文件优先级</code></p>
@@ -253,15 +255,15 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="k">if</span> filereadable<span class="o">(</span><span class="s2">&#34;/etc/vim/vimrc.local&#34;</span><span class="o">)</span>
-    <span class="nb">source</span> /etc/vim/vimrc.local
-endif
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="k">if</span> filereadable<span class="o">(</span><span class="s2">&#34;/etc/vim/vimrc.local&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">source</span> /etc/vim/vimrc.local
+</span></span><span class="line"><span class="cl">endif
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>或者当前用户：<code>~/.vimrc</code> <a href="https://github.com/Kuangcp/Configs/blob/master/Linux/vimrc.local">个人vim配置</a></li>
@@ -271,17 +273,17 @@ endif
 <p><strong>~/.gvimrc</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">:set guifont=IBM\ Plex\ Mono\ 12
-colorscheme desert
-syntax enable
-syntax on
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">:set guifont=IBM\ Plex\ Mono\ 12
+</span></span><span class="line"><span class="cl">colorscheme desert
+</span></span><span class="line"><span class="cl">syntax enable
+</span></span><span class="line"><span class="cl">syntax on
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="基础操作">基础操作</h2>
 <blockquote>
@@ -576,10 +578,10 @@ syntax on
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -596,7 +598,7 @@ syntax on
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

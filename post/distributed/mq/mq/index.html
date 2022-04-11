@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start MQ 为何需要使用 风险分析 JMS MQ中间件 RocketMQ ActiveMQ Kafka RabbitMQ Pulsar 目录 end|2020-04-27 23:42| MQ 参考: MQ消息中间件 为何需要使用 解耦、异步、削峰 风险分析 引入新系统, 增加了故障的" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start MQ 为何需要使用 风险分析 JMS MQ中间件 RocketMQ ActiveMQ Kafka RabbitMQ Pulsar nsq 目录 end|2022-01-25 01:55| MQ 参考: MQ消息中间件 为何需要使用 解耦、异步、削峰 风险分析 引入新系统, 增加了故障" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/distributed/mq/mq/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="消息队列" />
-<meta property="og:description" content="目录 start MQ 为何需要使用 风险分析 JMS MQ中间件 RocketMQ ActiveMQ Kafka RabbitMQ Pulsar 目录 end|2020-04-27 23:42| MQ 参考: MQ消息中间件 为何需要使用 解耦、异步、削峰 风险分析 引入新系统, 增加了故障的" />
+<meta property="og:description" content="目录 start MQ 为何需要使用 风险分析 JMS MQ中间件 RocketMQ ActiveMQ Kafka RabbitMQ Pulsar nsq 目录 end|2022-01-25 01:55| MQ 参考: MQ消息中间件 为何需要使用 解耦、异步、削峰 风险分析 引入新系统, 增加了故障" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/distributed/mq/mq/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/distributed/mq/mq/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="消息队列">
-<meta itemprop="description" content="目录 start MQ 为何需要使用 风险分析 JMS MQ中间件 RocketMQ ActiveMQ Kafka RabbitMQ Pulsar 目录 end|2020-04-27 23:42| MQ 参考: MQ消息中间件 为何需要使用 解耦、异步、削峰 风险分析 引入新系统, 增加了故障的">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start MQ 为何需要使用 风险分析 JMS MQ中间件 RocketMQ ActiveMQ Kafka RabbitMQ Pulsar nsq 目录 end|2022-01-25 01:55| MQ 参考: MQ消息中间件 为何需要使用 解耦、异步、削峰 风险分析 引入新系统, 增加了故障"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="170">
-
-
-
-<meta itemprop="keywords" content="MQ," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="172">
+<meta itemprop="keywords" content="MQ," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="消息队列"/>
-<meta name="twitter:description" content="目录 start MQ 为何需要使用 风险分析 JMS MQ中间件 RocketMQ ActiveMQ Kafka RabbitMQ Pulsar 目录 end|2020-04-27 23:42| MQ 参考: MQ消息中间件 为何需要使用 解耦、异步、削峰 风险分析 引入新系统, 增加了故障的"/>
+<meta name="twitter:description" content="目录 start MQ 为何需要使用 风险分析 JMS MQ中间件 RocketMQ ActiveMQ Kafka RabbitMQ Pulsar nsq 目录 end|2022-01-25 01:55| MQ 参考: MQ消息中间件 为何需要使用 解耦、异步、削峰 风险分析 引入新系统, 增加了故障"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2018-11-21 </span>
         
-          <span class="more-meta"> 170 words </span>
+          <span class="more-meta"> 172 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -146,6 +142,7 @@
     <li><a href="#kafka">Kafka</a></li>
     <li><a href="#rabbitmq">RabbitMQ</a></li>
     <li><a href="#pulsar">Pulsar</a></li>
+    <li><a href="#nsq">nsq</a></li>
   </ul>
 </nav>
   </div>
@@ -167,10 +164,11 @@
 <li><a href="#kafka">Kafka</a></li>
 <li><a href="#rabbitmq">RabbitMQ</a></li>
 <li><a href="#pulsar">Pulsar</a></li>
+<li><a href="#nsq">nsq</a></li>
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<p><strong>目录 end</strong>|<em>2022-01-25 01:55</em>|</p>
 <hr>
 <h1 id="mq">MQ</h1>
 <blockquote>
@@ -207,6 +205,7 @@
 <p><a href="https://www.sojson.com/blog/48.html">参考: 我为什么要选择RabbitMQ </a></p>
 </blockquote>
 <h2 id="pulsar">Pulsar</h2>
+<h2 id="nsq">nsq</h2>
 
     </div>
 
@@ -274,10 +273,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -294,7 +293,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

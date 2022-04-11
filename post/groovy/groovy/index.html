@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/groovy/groovy/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Groovy" />
 <meta property="og:description" content="目录 start Groovy 书籍 语言特性 安装配置 在IDEA中 Maven引入Groovy Docker Groovy基础 Groovy特性 默认导入 隐式return 默认生成sett" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/groovy/groovy/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/groovy/groovy/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T12:13:52+00:00" />
 <meta property="article:modified_time" content="2018-12-15T12:13:52+00:00" />
+
 <meta itemprop="name" content="Groovy">
-<meta itemprop="description" content="目录 start Groovy 书籍 语言特性 安装配置 在IDEA中 Maven引入Groovy Docker Groovy基础 Groovy特性 默认导入 隐式return 默认生成sett">
-<meta itemprop="datePublished" content="2018-12-15T12:13:52+00:00" />
+<meta itemprop="description" content="目录 start Groovy 书籍 语言特性 安装配置 在IDEA中 Maven引入Groovy Docker Groovy基础 Groovy特性 默认导入 隐式return 默认生成sett"><meta itemprop="datePublished" content="2018-12-15T12:13:52+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T12:13:52+00:00" />
-<meta itemprop="wordCount" content="4391">
-
-
-
-<meta itemprop="keywords" content="基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="4364">
+<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Groovy"/>
 <meta name="twitter:description" content="目录 start Groovy 书籍 语言特性 安装配置 在IDEA中 Maven引入Groovy Docker Groovy基础 Groovy特性 默认导入 隐式return 默认生成sett"/>
 
@@ -126,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/groovy/"> Groovy </a>
             </div>
-          <span class="more-meta"> 4391 words </span>
+          <span class="more-meta"> 4364 words </span>
           <span class="more-meta"> 9 mins read </span>
         
       </div>
@@ -235,7 +231,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<p><strong>目录 end</strong>|<em>2020-12-08 19:23</em>|</p>
 <hr>
 <h1 id="groovy">Groovy</h1>
 <blockquote>
@@ -308,7 +304,7 @@
 <p><code>这一些导入是默认隐含在Groovy代码中</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -318,15 +314,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="kn">import</span> <span class="nn">groovy.lang.*</span>
-    <span class="kn">import</span> <span class="nn">groovy.util.*</span>
-    <span class="kn">import</span> <span class="nn">java.lang.*</span>
-    <span class="kn">import</span> <span class="nn">java.io.*</span>
-    <span class="kn">import</span> <span class="nn">java.math.BigDecimal</span>
-    <span class="kn">import</span> <span class="nn">java.math.BigInteger</span>
-    <span class="kn">import</span> <span class="nn">java.net.*</span>
-    <span class="kn">import</span> <span class="nn">java.util.*</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">groovy.lang.*</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">groovy.util.*</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">java.lang.*</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">java.io.*</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">java.math.BigDecimal</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">java.math.BigInteger</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">java.net.*</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">java.util.*</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>添加额外的JAR可以使用<code>@Grab</code>注解或者和Java一样加入到ClassPath中去</li>
@@ -380,27 +376,25 @@
 <h4 id="动态调用函数">动态调用函数</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="c1">// 当前类, 可以这么用
-</span><span class="c1"></span>    <span class="kt">def</span> <span class="nf">test</span><span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s2">&#34;Hi &#34;</span><span class="o">+</span><span class="n">name</span>
-    <span class="o">}</span>
-    <span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="s2">&#34;test&#34;</span>
-    <span class="n">print</span><span class="o">(</span><span class="s2">&#34;${a}&#34;</span><span class="o">(</span><span class="s2">&#34;myth&#34;</span><span class="o">))</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="c1">// 当前类, 可以这么用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">def</span> <span class="nf">test</span><span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;Hi &#34;</span><span class="o">+</span><span class="n">name</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="s2">&#34;test&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">print</span><span class="o">(</span><span class="s2">&#34;${a}&#34;</span><span class="o">(</span><span class="s2">&#34;myth&#34;</span><span class="o">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -425,30 +419,30 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">class</span> <span class="nc">Condition</span><span class="o">{</span>
-        <span class="kd">static</span> <span class="nf">isLevelMore</span><span class="o">(</span><span class="kt">int</span> <span class="n">level</span><span class="o">){</span>
-            <span class="k">return</span> <span class="n">level</span> <span class="o">&gt;</span> <span class="n">30</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="kd">class</span> <span class="nc">Use</span> <span class="o">{</span>
-        <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span><span class="n">a</span><span class="o">){</span>
-            <span class="c1">// 跨类, 需要使用反射
-</span><span class="c1"></span>            <span class="c1">// 1
-</span><span class="c1"></span>            <span class="n">MetaMethod</span> <span class="n">method</span> <span class="o">=</span> <span class="n">Condition</span><span class="o">.</span><span class="na">metaClass</span><span class="o">.</span><span class="na">getMetaMethod</span><span class="o">(</span><span class="s">&#34;isLevelMore&#34;</span><span class="o">,</span> <span class="n">20</span><span class="o">)</span>
-            <span class="n">println</span> <span class="n">method</span>
-            <span class="n">println</span> <span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Condition</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">20</span><span class="o">)</span>
-
-            <span class="c1">// 2
-</span><span class="c1"></span>            <span class="n">Method</span> <span class="n">method1</span> <span class="o">=</span> <span class="n">Condition</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;isLevelMore&#34;</span><span class="o">,</span> <span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-            <span class="n">println</span> <span class="n">method1</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Condition</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">40</span><span class="o">)</span>
-            
-            <span class="c1">// 3
-</span><span class="c1"></span>            <span class="n">Condition</span><span class="o">.</span><span class="na">getDeclaredMethods</span><span class="o">().</span><span class="na">toList</span><span class="o">().</span><span class="na">toSet</span><span class="o">().</span><span class="na">each</span> <span class="o">{</span><span class="k">if</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;isLevelMore&#34;</span><span class="o">)){</span>
-                <span class="n">println</span> <span class="n">it</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Condition</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">40</span><span class="o">)</span>
-            <span class="o">}}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">class</span> <span class="nc">Condition</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="nf">isLevelMore</span><span class="o">(</span><span class="kt">int</span> <span class="n">level</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">level</span> <span class="o">&gt;</span> <span class="n">30</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">class</span> <span class="nc">Use</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span><span class="n">a</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 跨类, 需要使用反射
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">MetaMethod</span> <span class="n">method</span> <span class="o">=</span> <span class="n">Condition</span><span class="o">.</span><span class="na">metaClass</span><span class="o">.</span><span class="na">getMetaMethod</span><span class="o">(</span><span class="s">&#34;isLevelMore&#34;</span><span class="o">,</span> <span class="n">20</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">println</span> <span class="n">method</span>
+</span></span><span class="line"><span class="cl">            <span class="n">println</span> <span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Condition</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">20</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Method</span> <span class="n">method1</span> <span class="o">=</span> <span class="n">Condition</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;isLevelMore&#34;</span><span class="o">,</span> <span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">println</span> <span class="n">method1</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Condition</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">40</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1">// 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Condition</span><span class="o">.</span><span class="na">getDeclaredMethods</span><span class="o">().</span><span class="na">toList</span><span class="o">().</span><span class="na">toSet</span><span class="o">().</span><span class="na">each</span> <span class="o">{</span><span class="k">if</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;isLevelMore&#34;</span><span class="o">)){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">println</span> <span class="n">it</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Condition</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">40</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="函数">函数</h3>
 <blockquote>
@@ -457,19 +451,19 @@
 <h3 id="闭包">闭包</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="c1">// 简单示例
-</span><span class="c1"></span>    <span class="kt">def</span> <span class="n">plus</span> <span class="o">=</span> <span class="o">{</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span> <span class="o">-&gt;</span>
-        <span class="n">println</span> <span class="s2">&#34;$x plus $y is ${x + y}&#34;</span>
-    <span class="o">}</span>
-    <span class="n">plus</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="c1">// 简单示例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">def</span> <span class="n">plus</span> <span class="o">=</span> <span class="o">{</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span> <span class="o">-&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">println</span> <span class="s2">&#34;$x plus $y is ${x + y}&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plus</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="测试">测试</h3>
 <p><a href="https://www.ibm.com/developerworks/cn/java/j-pg11094/">参考: 用 Groovy 更迅速地对 Java 代码进行单元测试</a></p>
@@ -498,15 +492,15 @@
 <p><em>日志相关</em> 只需要引入对应的依赖, 就和lombok一样的使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Log4j</span>
-    <span class="nd">@Log4j2</span>
-    <span class="nd">@Slf4j</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="nd">@Log4j</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Log4j2</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Slf4j</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="与java的差异">与Java的差异</h2>
@@ -568,17 +562,17 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="kd">class</span> <span class="nc">Person</span><span class="o">{</span>
-    <span class="n">String</span> <span class="n">name</span>
-    <span class="kt">int</span> <span class="n">age</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Person</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">age</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>安全解引用 ?.</code></p>
 <ul>
@@ -646,7 +640,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -666,25 +660,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 添加插件--&gt;</span>
-<span class="nt">&lt;plugin&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.codehaus.gmaven<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>groovy-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;dependencies&gt;</span>
-        <span class="nt">&lt;dependency&gt;</span>
-            <span class="nt">&lt;groupId&gt;</span>org.codehaus.groovy<span class="nt">&lt;/groupId&gt;</span>
-            <span class="nt">&lt;artifactId&gt;</span>groovy-all<span class="nt">&lt;/artifactId&gt;</span>
-            <span class="nt">&lt;version&gt;</span>2.0.6<span class="nt">&lt;/version&gt;</span>
-        <span class="nt">&lt;/dependency&gt;</span>
-    <span class="nt">&lt;/dependencies&gt;</span>
-<span class="nt">&lt;/plugin&gt;</span>
-<span class="c">&lt;!-- 添加Groovy依赖--&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.codehaus.groovy<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>groovy-all<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>2.4.7<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- 添加插件--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;plugin&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.codehaus.gmaven<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>groovy-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;groupId&gt;</span>org.codehaus.groovy<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;artifactId&gt;</span>groovy-all<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;version&gt;</span>2.0.6<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependencies&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plugin&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 添加Groovy依赖--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.codehaus.groovy<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>groovy-all<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>2.4.7<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <blockquote>
@@ -692,7 +686,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -719,32 +713,32 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;plugin&gt;</span>
-        <span class="c">&lt;!-- 编译插件 --&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>3.7.0<span class="nt">&lt;/version&gt;</span>
-        <span class="nt">&lt;configuration&gt;</span>
-            <span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
-            <span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
-            <span class="nt">&lt;encoding&gt;</span>UTF-8<span class="nt">&lt;/encoding&gt;</span>
-            <span class="nt">&lt;compilerId&gt;</span>groovy-eclipse-compiler<span class="nt">&lt;/compilerId&gt;</span>
-            <span class="nt">&lt;verbose&gt;</span>true<span class="nt">&lt;/verbose&gt;</span>
-        <span class="nt">&lt;/configuration&gt;</span>
-        <span class="nt">&lt;dependencies&gt;</span>
-            <span class="nt">&lt;dependency&gt;</span>
-                <span class="nt">&lt;groupId&gt;</span>org.codehaus.groovy<span class="nt">&lt;/groupId&gt;</span>
-                <span class="nt">&lt;artifactId&gt;</span>groovy-eclipse-compiler<span class="nt">&lt;/artifactId&gt;</span>
-                <span class="nt">&lt;version&gt;</span>2.9.3-01<span class="nt">&lt;/version&gt;</span>
-            <span class="nt">&lt;/dependency&gt;</span>
-            <span class="nt">&lt;dependency&gt;</span>
-                <span class="nt">&lt;groupId&gt;</span>org.codehaus.groovy<span class="nt">&lt;/groupId&gt;</span>
-                <span class="nt">&lt;artifactId&gt;</span>groovy-eclipse-batch<span class="nt">&lt;/artifactId&gt;</span>
-                <span class="nt">&lt;version&gt;</span>2.5.0-01<span class="nt">&lt;/version&gt;</span>
-            <span class="nt">&lt;/dependency&gt;</span>
-        <span class="nt">&lt;/dependencies&gt;</span>
-    <span class="nt">&lt;/plugin&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;plugin&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 编译插件 --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>3.7.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;encoding&gt;</span>UTF-8<span class="nt">&lt;/encoding&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;compilerId&gt;</span>groovy-eclipse-compiler<span class="nt">&lt;/compilerId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;verbose&gt;</span>true<span class="nt">&lt;/verbose&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/configuration&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;groupId&gt;</span>org.codehaus.groovy<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;artifactId&gt;</span>groovy-eclipse-compiler<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;version&gt;</span>2.9.3-01<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;groupId&gt;</span>org.codehaus.groovy<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;artifactId&gt;</span>groovy-eclipse-batch<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;version&gt;</span>2.5.0-01<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/plugin&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>这样的配置就能 <code>mvn clean package</code></p>
@@ -785,8 +779,7 @@
 </blockquote>
 <h3 id="默认return">默认return</h3>
 <blockquote>
-<p>只要在方法最后一行放入表达式, 就会自动return, 这就导致了Groovy不会对方法进行检查, 逻辑复杂时如果少了一个return, 不会报编译错误, 方法直接返回null.<br>
-这个坑, 硬是Debug了近一个小时, debug功力要提升了</p>
+<p>只要在方法最后一行放入表达式, 就会自动return, 这就导致了Groovy不会对方法返回值进行检查, 逻辑复杂时如果少了一个return, 不会报编译错误, 方法直接返回null.</p>
 </blockquote>
 <hr>
 <h2 id="grails">Grails</h2>
@@ -824,8 +817,8 @@
             <span class="prev-text nav-default">Go操作数据库</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/groovy/groovyspring/">
-            <span class="next-text nav-default">GroovySpring</span>
+        <a class="next" href="/post/skills/application/webbrowser/">
+            <span class="next-text nav-default">浏览器</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -863,10 +856,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -883,7 +876,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

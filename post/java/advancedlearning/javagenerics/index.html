@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/javagenerics/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Java泛型" />
 <meta property="og:description" content="目录 start 泛型 简单使用 类型擦除 约束和局限性 泛型类型的继承规则 通配符类型 子类 类型限定的通配符 extends 基类 类型限定的通配符 super 无限定通配符 通配符捕获 反射和泛" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javagenerics/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javagenerics/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Java泛型">
-<meta itemprop="description" content="目录 start 泛型 简单使用 类型擦除 约束和局限性 泛型类型的继承规则 通配符类型 子类 类型限定的通配符 extends 基类 类型限定的通配符 super 无限定通配符 通配符捕获 反射和泛">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start 泛型 简单使用 类型擦除 约束和局限性 泛型类型的继承规则 通配符类型 子类 类型限定的通配符 extends 基类 类型限定的通配符 super 无限定通配符 通配符捕获 反射和泛"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="wordCount" content="5220">
-
-
-
-<meta itemprop="keywords" content="泛型," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="泛型," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java泛型"/>
 <meta name="twitter:description" content="目录 start 泛型 简单使用 类型擦除 约束和局限性 泛型类型的继承规则 通配符类型 子类 类型限定的通配符 extends 基类 类型限定的通配符 super 无限定通配符 通配符捕获 反射和泛"/>
 
@@ -212,15 +208,15 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Java" data-lang="Java">    <span class="c1">// 根据Class对象 获取泛型的类型信息
-</span><span class="c1"></span>    <span class="n">Type</span> <span class="n">superClass</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getGenericSuperclass</span><span class="o">();</span>
-    <span class="n">type</span> <span class="o">=</span> <span class="o">((</span><span class="n">ParameterizedType</span><span class="o">)</span> <span class="n">superClass</span><span class="o">).</span><span class="na">getActualTypeArguments</span><span class="o">()[</span><span class="n">1</span><span class="o">];</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl">    <span class="c1">// 根据Class对象 获取泛型的类型信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Type</span> <span class="n">superClass</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getGenericSuperclass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">type</span> <span class="o">=</span> <span class="o">((</span><span class="n">ParameterizedType</span><span class="o">)</span> <span class="n">superClass</span><span class="o">).</span><span class="na">getActualTypeArguments</span><span class="o">()[</span><span class="n">1</span><span class="o">];</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p><a href="https://www.ibm.com/developerworks/cn/java/j-jtp04298.html">参考: 使用通配符简化泛型使用</a></p>
@@ -337,15 +333,15 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Object</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="n">list</span><span class="o">;</span>
-    <span class="n">array</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="s">&#34;hi&#34;</span><span class="o">;</span><span class="c1">//  编译错误
-</span><span class="c1"></span>    <span class="n">array</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;();</span> <span class="c1">//通过数组存储的检测,但实际上类型错误了,所以禁止使用参数化类型的数组
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Object</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="n">list</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">array</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="s">&#34;hi&#34;</span><span class="o">;</span><span class="c1">//  编译错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">array</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;();</span> <span class="c1">//通过数组存储的检测,但实际上类型错误了,所以禁止使用参数化类型的数组
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -357,7 +353,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -379,27 +375,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">Pair</span><span class="o">(){</span>
-        <span class="n">first</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="o">();</span>
-        <span class="n">second</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="o">();</span>
-    <span class="o">}</span>
-    
-    <span class="c1">//非法 T.class是不合法的
-</span><span class="c1"></span>    <span class="n">first</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">newInstance</span><span class="o">()</span> 
-
-    <span class="c1">//要实例化一个Pair&lt;T&gt;的对象就要如下:
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">initPair</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">){</span>
-        <span class="k">try</span><span class="o">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;(</span><span class="n">c</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(),</span> <span class="n">c</span><span class="o">.</span><span class="na">newInstance</span><span class="o">());</span>
-        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="c1">// 如下调用
-</span><span class="c1"></span>    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pair</span> <span class="o">=</span> <span class="n">Pair</span><span class="o">.</span><span class="na">initPair</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-    <span class="c1">// 因为Class本身是泛型, String.class其实是Class&lt;String&gt;的实例
-</span><span class="c1"></span>    <span class="c1">// 也不能实例化为一个数组 new T[5]
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Pair</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">first</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">second</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//非法 T.class是不合法的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">first</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">newInstance</span><span class="o">()</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//要实例化一个Pair&lt;T&gt;的对象就要如下:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">initPair</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;(</span><span class="n">c</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(),</span> <span class="n">c</span><span class="o">.</span><span class="na">newInstance</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如下调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">pair</span> <span class="o">=</span> <span class="n">Pair</span><span class="o">.</span><span class="na">initPair</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 因为Class本身是泛型, String.class其实是Class&lt;String&gt;的实例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 也不能实例化为一个数组 new T[5]
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><em>泛型类的静态上下文中类型变量无效</em>
@@ -412,17 +408,17 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">T</span> <span class="n">first</span><span class="o">;</span> <span class="c1">// 错误
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="n">T</span> <span class="nf">getFirst</span><span class="o">(){</span> <span class="c1">// 错误
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">first</span><span class="o">;</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">T</span> <span class="n">first</span><span class="o">;</span> <span class="c1">// 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="n">T</span> <span class="nf">getFirst</span><span class="o">(){</span> <span class="c1">// 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">first</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><em>注意泛型擦除后的冲突</em>
@@ -434,19 +430,19 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;{</span>
-        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span> <span class="o">(</span><span class="n">T</span> <span class="n">value</span><span class="o">){</span>
-            <span class="k">return</span> <span class="o">..</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span> <span class="o">(</span><span class="n">T</span> <span class="n">value</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="o">..</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>泛型规范说明</code></p>
 <ul>
@@ -458,26 +454,26 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">class</span> <span class="nc">Calendar</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Calendar</span><span class="o">&gt;{}</span>
-    <span class="kd">class</span> <span class="nc">GregorianCalendar</span> <span class="kd">extends</span> <span class="n">Calendar</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">GregorianCalendar</span><span class="o">&gt;{}</span> <span class="c1">// 错误
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">class</span> <span class="nc">Calendar</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Calendar</span><span class="o">&gt;{}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">class</span> <span class="nc">GregorianCalendar</span> <span class="kd">extends</span> <span class="n">Calendar</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">GregorianCalendar</span><span class="o">&gt;{}</span> <span class="c1">// 错误
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>但是如下又是合法的</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">class</span> <span class="nc">Calendar</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">{}</span>
-    <span class="kd">class</span> <span class="nc">GregorianCalendar</span> <span class="kd">extends</span> <span class="n">Calendar</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">{}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">class</span> <span class="nc">Calendar</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">class</span> <span class="nc">GregorianCalendar</span> <span class="kd">extends</span> <span class="n">Calendar</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">{}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>很有可能是桥方法有关,不可能有两个一样的桥方法(因为两个接口其实是一个接口的不同参数化,桥方法的方法签名是一致的)</li>
@@ -489,7 +485,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -502,18 +498,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;</span> <span class="n">humans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;(</span><span class="n">man</span><span class="o">,</span> <span class="n">woman</span><span class="o">);</span>
-    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">classmates</span> <span class="o">=</span> <span class="n">humans</span><span class="o">;</span><span class="c1">// illegal, but suppose it wasn&#39;t
-</span><span class="c1"></span>
-    <span class="n">classmates</span><span class="o">.</span><span class="na">setSecond</span><span class="o">(</span><span class="n">junior</span><span class="o">)</span> <span class="c1">// 如果上面合法,那么这里是肯定可以执行的, 因为泛型类型变成了Student
-</span><span class="c1"></span>    <span class="c1">//那么就有了问题了,原有的人类类型限制的对象中,出现了小学生
-</span><span class="c1"></span>    <span class="c1">//所以不允许这样的类型变量约束的类进行多态
-</span><span class="c1"></span>    
-    <span class="c1">// 但是数组可以这样写是因为数组会有自己的检查保护
-</span><span class="c1"></span>    <span class="n">Human</span><span class="o">[]</span> <span class="n">humans</span> <span class="o">=</span> <span class="o">{</span><span class="n">man</span><span class="o">,</span> <span class="n">woman</span><span class="o">};</span>
-    <span class="n">Student</span><span class="o">[]</span> <span class="n">students</span> <span class="o">=</span> <span class="n">humans</span><span class="o">;</span>
-    <span class="n">students</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">junior</span> <span class="o">;</span><span class="c1">// 虚拟机将抛出 ArrayStoreException 异常
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;</span> <span class="n">humans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;(</span><span class="n">man</span><span class="o">,</span> <span class="n">woman</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">classmates</span> <span class="o">=</span> <span class="n">humans</span><span class="o">;</span><span class="c1">// illegal, but suppose it wasn&#39;t
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">classmates</span><span class="o">.</span><span class="na">setSecond</span><span class="o">(</span><span class="n">junior</span><span class="o">)</span> <span class="c1">// 如果上面合法,那么这里是肯定可以执行的, 因为泛型类型变成了Student
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//那么就有了问题了,原有的人类类型限制的对象中,出现了小学生
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//所以不允许这样的类型变量约束的类进行多态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="c1">// 但是数组可以这样写是因为数组会有自己的检查保护
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Human</span><span class="o">[]</span> <span class="n">humans</span> <span class="o">=</span> <span class="o">{</span><span class="n">man</span><span class="o">,</span> <span class="n">woman</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Student</span><span class="o">[]</span> <span class="n">students</span> <span class="o">=</span> <span class="n">humans</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">students</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">junior</span> <span class="o">;</span><span class="c1">// 虚拟机将抛出 ArrayStoreException 异常
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>为何 <code>List&lt;Object&gt; list = Arrays.asList(&quot;1&quot;,&quot;2&quot;);</code> 能通过编译</p>
@@ -525,19 +521,19 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;</span> <span class="n">humans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;(</span><span class="n">man</span><span class="o">,</span> <span class="n">woman</span><span class="o">);</span>
-    <span class="n">Pair</span> <span class="n">other</span> <span class="o">=</span> <span class="n">humans</span><span class="o">;</span>
-    <span class="n">other</span><span class="o">.</span><span class="na">setFirst</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;wtf&#34;</span><span class="o">))</span><span class="c1">// 只是会有一个编译时的警告(类型未检查),但实际上都看得出这明显是错误的
-</span><span class="c1"></span>    <span class="c1">// 那么在后续代码中继续当做Human对象进行引用,必然就会有ClassCastException
-</span><span class="c1"></span>    <span class="c1">// 所以这样的写法尽量避免,这里的设计 就失去了泛型程序设计提供的附加安全性.(挖的坑)
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;</span> <span class="n">humans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;(</span><span class="n">man</span><span class="o">,</span> <span class="n">woman</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Pair</span> <span class="n">other</span> <span class="o">=</span> <span class="n">humans</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">other</span><span class="o">.</span><span class="na">setFirst</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;wtf&#34;</span><span class="o">))</span><span class="c1">// 只是会有一个编译时的警告(类型未检查),但实际上都看得出这明显是错误的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 那么在后续代码中继续当做Human对象进行引用,必然就会有ClassCastException
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 所以这样的写法尽量避免,这里的设计 就失去了泛型程序设计提供的附加安全性.(挖的坑)
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <blockquote>
@@ -613,7 +609,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -624,16 +620,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;</span> <span class="n">humans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;(</span><span class="n">man</span><span class="o">,</span> <span class="n">woman</span><span class="o">);</span>
-    <span class="n">Pair</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Human</span><span class="o">&gt;</span> <span class="n">classmates</span> <span class="o">=</span> <span class="n">humans</span><span class="o">;</span><span class="c1">// 编译通过
-</span><span class="c1"></span>    <span class="n">classmates</span><span class="o">.</span><span class="na">setSecond</span><span class="o">(</span><span class="n">junior</span><span class="o">)</span> <span class="c1">// 编译错误,泛型约束起作用了
-</span><span class="c1"></span>
-    <span class="c1">// 分析其泛型类实现可以理解为:
-</span><span class="c1"></span>    <span class="o">?</span> <span class="kd">extends</span> <span class="n">Human</span> <span class="nf">getFirst</span><span class="o">()</span>
-    <span class="kt">void</span> <span class="nf">setFirst</span><span class="o">(?</span> <span class="kd">extends</span> <span class="n">Human</span><span class="o">)</span>
-    <span class="c1">// 这样的话是不可能调用setFirst方法, 对于编译器来说,只是知道入参是Human的子类,但是类型并不明确,所以不能正常调用
-</span><span class="c1"></span>    <span class="c1">// 使用get方法就不会有问题, 泛型起作用了.将get返回值赋值给Human的引用也是完全合法的,这就是引入该统通配符的关键之处
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;</span> <span class="n">humans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">Human</span><span class="o">&gt;(</span><span class="n">man</span><span class="o">,</span> <span class="n">woman</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Pair</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Human</span><span class="o">&gt;</span> <span class="n">classmates</span> <span class="o">=</span> <span class="n">humans</span><span class="o">;</span><span class="c1">// 编译通过
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">classmates</span><span class="o">.</span><span class="na">setSecond</span><span class="o">(</span><span class="n">junior</span><span class="o">)</span> <span class="c1">// 编译错误,泛型约束起作用了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 分析其泛型类实现可以理解为:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">?</span> <span class="kd">extends</span> <span class="n">Human</span> <span class="nf">getFirst</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">setFirst</span><span class="o">(?</span> <span class="kd">extends</span> <span class="n">Human</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 这样的话是不可能调用setFirst方法, 对于编译器来说,只是知道入参是Human的子类,但是类型并不明确,所以不能正常调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 使用get方法就不会有问题, 泛型起作用了.将get返回值赋值给Human的引用也是完全合法的,这就是引入该统通配符的关键之处
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="基类-类型限定的通配符-super">基类 类型限定的通配符 super</h3>
 <blockquote>
@@ -647,19 +643,19 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// Pair&lt;? super Student&gt; 例如这种定义
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">setFirst</span><span class="o">(?</span> <span class="kd">super</span> <span class="n">Student</span><span class="o">)</span>
-    <span class="o">?</span> <span class="kd">super</span> <span class="n">Student</span> <span class="nf">getFirst</span><span class="o">()</span>
-    <span class="c1">// 编译器不知道setFirst方法的确切类型,但是可以用任意Student对象(或子类型) 调用他, 而不能使用Human对象调用.
-</span><span class="c1"></span>    <span class="c1">// 然而,如果调用getFirst,泛型没有起作用,只能将返回值用Object接收
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// Pair&lt;? super Student&gt; 例如这种定义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">setFirst</span><span class="o">(?</span> <span class="kd">super</span> <span class="n">Student</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">?</span> <span class="kd">super</span> <span class="n">Student</span> <span class="nf">getFirst</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 编译器不知道setFirst方法的确切类型,但是可以用任意Student对象(或子类型) 调用他, 而不能使用Human对象调用.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 然而,如果调用getFirst,泛型没有起作用,只能将返回值用Object接收
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p><a href="https://github.com/Kuangcp/JavaBase/blob/master/src/test/java/com/generic/simple/PairTest.java">以上两种情况的相关测试类</a></p>
@@ -677,17 +673,17 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 例如 Pair&lt;?&gt;
-</span><span class="c1"></span>    <span class="o">?</span> <span class="n">getFirst</span><span class="o">()</span> <span class="c1">// 方法的返回值只能赋值给一个Object
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">setFirst</span><span class="o">(?)</span> <span class="c1">// 方法不能被调用,甚至不能用Object调用.
-</span><span class="c1"></span>    <span class="c1">// Pair&lt;?&gt; 和 Pair 本质的不同在于: 可以用任意Object对象调用原始的Pair类的setObject(set方法,因为类型擦除 入参是Object, 简称setObject)方法 
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 例如 Pair&lt;?&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">?</span> <span class="n">getFirst</span><span class="o">()</span> <span class="c1">// 方法的返回值只能赋值给一个Object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">setFirst</span><span class="o">(?)</span> <span class="c1">// 方法不能被调用,甚至不能用Object调用.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Pair&lt;?&gt; 和 Pair 本质的不同在于: 可以用任意Object对象调用原始的Pair类的setObject(set方法,因为类型擦除 入参是Object, 简称setObject)方法 
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>例如 <a href="https://github.com/Kuangcp/JavaBase/blob/master/src/test/java/com/generic/simple/PairTest.java">这个hasNull()方法</a>用来测试一个pair是否包含了指定的对象, 他不需要实际的类型.</li>
@@ -701,38 +697,38 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">swap</span> <span class="o">(</span><span class="n">Pair</span><span class="o">&lt;?&gt;</span> <span class="n">p</span><span class="o">){</span>
-        <span class="o">?</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">getFirst</span><span class="o">();</span> <span class="c1">// 错误, 不允许将?作为类型
-</span><span class="c1"></span>        <span class="n">p</span><span class="o">.</span><span class="na">setFirst</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getSecond</span><span class="o">());</span>
-        <span class="n">p</span><span class="o">.</span><span class="na">setSecond</span><span class="o">(</span><span class="n">temp</span><span class="o">);</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">swap</span> <span class="o">(</span><span class="n">Pair</span><span class="o">&lt;?&gt;</span> <span class="n">p</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="o">?</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">getFirst</span><span class="o">();</span> <span class="c1">// 错误, 不允许将?作为类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">p</span><span class="o">.</span><span class="na">setFirst</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getSecond</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span><span class="o">.</span><span class="na">setSecond</span><span class="o">(</span><span class="n">temp</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>但是可以编写一个辅助方法</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">swapHelper</span><span class="o">(</span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">p</span><span class="o">){</span>
-        <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">getFirst</span><span class="o">();</span>
-        <span class="n">p</span><span class="o">.</span><span class="na">setFirst</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getSecond</span><span class="o">());</span>
-        <span class="n">p</span><span class="o">.</span><span class="na">setSecond</span><span class="o">(</span><span class="n">temp</span><span class="o">);</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">swapHelper</span><span class="o">(</span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">p</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">getFirst</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span><span class="o">.</span><span class="na">setFirst</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getSecond</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span><span class="o">.</span><span class="na">setSecond</span><span class="o">(</span><span class="n">temp</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>swapHelper是一个泛型方法, 而swap不是, 它具有固定的Pair&lt;?&gt;类型的参数, 那么现在就可以这样写:
@@ -748,7 +744,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -756,13 +752,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">maxMinBonus</span><span class="o">(</span><span class="n">Student</span><span class="o">[]</span> <span class="n">students</span><span class="o">,</span> <span class="n">Pair</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">Student</span><span class="o">&gt;</span> <span class="n">result</span><span class="o">){</span>
-        <span class="n">minMaxBonus</span><span class="o">(</span><span class="n">students</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
-        <span class="n">swapHelper</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="c1">// 在这里,通配符捕获机制是不可避免的, 但是这种捕获只有在许多限制情况下才是合法的.
-</span><span class="c1"></span>    <span class="c1">// 对于编译器而言, 必须能够确信通配符表达的是单个, 确定的类型.
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">maxMinBonus</span><span class="o">(</span><span class="n">Student</span><span class="o">[]</span> <span class="n">students</span><span class="o">,</span> <span class="n">Pair</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">Student</span><span class="o">&gt;</span> <span class="n">result</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">minMaxBonus</span><span class="o">(</span><span class="n">students</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">swapHelper</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 在这里,通配符捕获机制是不可避免的, 但是这种捕获只有在许多限制情况下才是合法的.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 对于编译器而言, 必须能够确信通配符表达的是单个, 确定的类型.
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="反射和泛型">反射和泛型</h2>
@@ -776,7 +772,7 @@
 <p><code>Class&lt;T&gt;</code>的方法就使用了类型参数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -784,13 +780,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">T</span> <span class="nf">newInstance</span><span class="o">()</span>
-    <span class="n">T</span> <span class="nf">cast</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span>
-    <span class="n">T</span><span class="o">[]</span> <span class="nf">getEnumConstants</span><span class="o">()</span>
-    <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="nf">getSuperclass</span><span class="o">()</span>
-    <span class="n">Constructor</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">getConstructor</span><span class="o">(</span><span class="n">Class</span><span class="o">...</span> <span class="n">paramterTypes</span><span class="o">)</span>
-    <span class="n">Constructor</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">getDeclaredConstructor</span><span class="o">(</span><span class="n">Class</span><span class="o">...</span> <span class="n">paramterTypes</span><span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">T</span> <span class="nf">newInstance</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">T</span> <span class="nf">cast</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">T</span><span class="o">[]</span> <span class="nf">getEnumConstants</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="nf">getSuperclass</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Constructor</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">getConstructor</span><span class="o">(</span><span class="n">Class</span><span class="o">...</span> <span class="n">paramterTypes</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Constructor</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">getDeclaredConstructor</span><span class="o">(</span><span class="n">Class</span><span class="o">...</span> <span class="n">paramterTypes</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>newInstance方法返回一个示例, 这个实例所属的类由默认的构造器获得, 它的返回类型目前被声明为T, 其类型与<code>Class&lt;T&gt;</code>描述的类相同, 这样就免除了类型转换.</li>
@@ -801,17 +797,17 @@
 <p>TODO 还要继续看书</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 传入一个Class对象, 得到Class对应类型的实例
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">get</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">target</span><span class="o">);</span>
-    <span class="c1">// 类型加上约束
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Runable</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">get</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">target</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 传入一个Class对象, 得到Class对应类型的实例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">get</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">target</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 类型加上约束
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Runable</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">get</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">target</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -841,7 +837,7 @@
             <span class="prev-text nav-default">Java快速开发框架</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/java/advancedlearning/jdkandjre/">
+        <a class="next" href="/post/java/advancedlearning/release/jdkandjre/">
             <span class="next-text nav-default">Java的JDK以及JRE</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
@@ -880,10 +876,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -900,7 +896,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

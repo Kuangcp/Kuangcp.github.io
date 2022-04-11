@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/javaconcurrency/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Java并发" />
 <meta property="og:description" content="目录 start Java并发 JMM Java内存模型 理论知识 可能的问题 好的习惯 块结构并发 Java5之前 synchronized 正确使用锁 volatile 正确使用 现代并发JUC包 概念 CAS指令 原" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javaconcurrency/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javaconcurrency/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Java并发">
-<meta itemprop="description" content="目录 start Java并发 JMM Java内存模型 理论知识 可能的问题 好的习惯 块结构并发 Java5之前 synchronized 正确使用锁 volatile 正确使用 现代并发JUC包 概念 CAS指令 原">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start Java并发 JMM Java内存模型 理论知识 可能的问题 好的习惯 块结构并发 Java5之前 synchronized 正确使用锁 volatile 正确使用 现代并发JUC包 概念 CAS指令 原"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="8246">
-
-
-
-<meta itemprop="keywords" content="Concurrency," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="8540">
+<meta itemprop="keywords" content="Concurrency," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java并发"/>
 <meta name="twitter:description" content="目录 start Java并发 JMM Java内存模型 理论知识 可能的问题 好的习惯 块结构并发 Java5之前 synchronized 正确使用锁 volatile 正确使用 现代并发JUC包 概念 CAS指令 原"/>
 
@@ -126,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 8246 words </span>
-          <span class="more-meta"> 17 mins read </span>
+          <span class="more-meta"> 8540 words </span>
+          <span class="more-meta"> 18 mins read </span>
         
       </div>
     </header>
@@ -242,7 +238,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-10-23 21:05</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-07-02 02:28</em>|</p>
 <hr>
 <h1 id="java并发">Java并发</h1>
 <blockquote>
@@ -463,7 +459,7 @@
 <li>wait方法用来使线程等待某个条件, 他必须在同步块内部被调用,这个同步块通常会锁定当前对象实例.
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -471,13 +467,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 这个模块的标准使用方式
-</span><span class="c1"></span>    <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">){</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">condition</span><span class="o">){</span>
-            <span class="n">Object</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 这个模块的标准使用方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="o">(</span><span class="n">condition</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Object</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>始终使用wait循环来调用wait方法, 永远不要在循环之外调用wait方法
@@ -493,7 +489,7 @@
 <hr>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -503,15 +499,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 这个就是个错误使用的案例
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-<span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">increase</span><span class="o">(){</span>
-    <span class="n">size</span><span class="o">++;</span>
-<span class="o">}</span>
-<span class="kd">public</span> <span class="kt">int</span> <span class="nf">current</span><span class="o">(){</span>
-    <span class="k">return</span> <span class="n">size</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 这个就是个错误使用的案例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">increase</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">size</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">current</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">size</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>这个案例保证了多线程下并发时,对size变量的正确修改,但是不能保证实时读取到的变量值是正确的<br>
@@ -519,7 +515,8 @@
 </blockquote>
 <h3 id="volatile">volatile</h3>
 <blockquote>
-<p><a href="https://segmentfault.com/q/1010000006733274">Java多线程i++线程安全问题，volatile和AtomicInteger解释？</a></p>
+<p><a href="https://segmentfault.com/q/1010000006733274">Java多线程i++线程安全问题，volatile和AtomicInteger解释？</a>
+<a href="https://www.cnblogs.com/amberJava/p/12546798.html">DCL的单例一定是线程安全的吗</a><code>如果new 还需要自定义初始化逻辑，需要使用本地变量初始化完成后赋值给对象属性</code></p>
 </blockquote>
 <ul>
 <li>
@@ -537,9 +534,14 @@
 <p>volatile是Java提供的最轻量级的同步机制,Java内存模型为volatile专门定义了一些特殊的访问规则, 当一个变量被volatile修饰后:</p>
 <ul>
 <li><code>线程可见性</code>  当一个线程修改了被volatile修饰的变量后,无论是否加锁,其他线程都能立即看到最新的修改</li>
-<li><code>禁止指令重排序优化</code> 普通的变量仅仅保证在该方法的执行过程中, 所有依赖赋值结果的地方都能获取正确的结果
+<li><code>禁止指令重排序优化</code> 普通的变量仅仅保证在该方法的执行过程中, 所有依赖赋值结果的地方都能获取正确的结果,而不能保证变量赋值操作的顺序和程序代码的执行顺序一致
 <ul>
-<li>而不能保证变量赋值操作的顺序和程序代码的执行顺序一致</li>
+<li>实现原理是在指令序列中插入了内存屏障：
+<ul>
+<li>volatile 写操作前 StoreStore 后 StoreLoad</li>
+<li>volatile 读操作前 LoadLoad 后 LoadStore</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -551,7 +553,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -573,40 +575,40 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResortJavaDemo</span> <span class="o">{</span>
-        <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="n">stop</span><span class="o">;</span>
-        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span><span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
-            <span class="n">Thread</span> <span class="n">workThread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
-                <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-                <span class="k">while</span><span class="o">(!</span><span class="n">stop</span><span class="o">){</span>
-                    <span class="n">i</span><span class="o">++;</span>
-                    <span class="k">try</span> <span class="o">{</span>
-                        <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
-                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-                    <span class="o">}</span>
-                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;i&#34;</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">});</span>
-            <span class="n">workThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-            <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
-            <span class="n">stop</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResortJavaDemo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="n">stop</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span><span class="n">s</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span> <span class="n">workThread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">while</span><span class="o">(!</span><span class="n">stop</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">i</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;i&#34;</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">});</span>
+</span></span><span class="line"><span class="cl">            <span class="n">workThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stop</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>我们预期程序会在3s后停止, 但是实际上它会一直执行下去, 原因就是虚拟机对代码进行了指令重排序和优化, 优化后的指令如下:</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="k">if</span> <span class="o">(!</span><span class="n">stop</span><span class="o">)</span>
-        <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(!</span><span class="n">stop</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>所以需要在stop前加上volatile修饰符, 解决了如下两个问题</p>
@@ -811,7 +813,7 @@
 <p><code>BlockingQueue&lt;Pro&lt;Author&gt;&gt;</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -822,16 +824,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pro</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;{</span>
-        <span class="kd">private</span> <span class="n">T</span> <span class="n">pro</span><span class="o">;</span>
-        <span class="kd">public</span> <span class="n">T</span> <span class="nf">getPro</span><span class="o">(){</span>
-            <span class="k">return</span> <span class="n">pro</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="kd">public</span> <span class="nf">Pro</span><span class="o">(</span><span class="n">T</span> <span class="n">pro</span><span class="o">){</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">pro</span> <span class="o">=</span> <span class="n">pro</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pro</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">T</span> <span class="n">pro</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">T</span> <span class="nf">getPro</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">pro</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="nf">Pro</span><span class="o">(</span><span class="n">T</span> <span class="n">pro</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">pro</span> <span class="o">=</span> <span class="n">pro</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>有了这层间接引用， 不用牺牲所包含类型（Author）在概念上的完整性，就能够添加额外的元数据了。方便统一性的修改
@@ -914,31 +916,35 @@
 <hr>
 <h2 id="线程池">线程池</h2>
 <blockquote>
+<p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html">Java线程池实现原理及其在美团业务中的实践</a></p>
+</blockquote>
+<blockquote>
 <p>依赖 common-lang3, 快速创建命名策略的线程池</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="k">new</span> <span class="n">ThreadPoolExecutor</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">5</span><span class="o">,</span> <span class="n">0L</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">,</span>
-        <span class="k">new</span> <span class="n">LinkedBlockingQueue</span><span class="o">&lt;&gt;(),</span> <span class="k">new</span> <span class="n">BasicThreadFactory</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">namingPattern</span><span class="o">(</span><span class="s">&#34;test-%d&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">new</span> <span class="n">ThreadPoolExecutor</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">5</span><span class="o">,</span> <span class="n">0L</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">LinkedBlockingQueue</span><span class="o">&lt;&gt;(),</span> <span class="k">new</span> <span class="n">BasicThreadFactory</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">namingPattern</span><span class="o">(</span><span class="s">&#34;test-%d&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <blockquote>
-<p><a href="https://www.cnblogs.com/dennyzhangdd/p/6909771.html">根据CPU核心数确定线程池并发线程数</a></p>
+<p><a href="https://www.cnblogs.com/dennyzhangdd/p/6909771.html">根据CPU核心数确定线程池并发线程数</a><br>
+<a href="https://www.cnblogs.com/thisiswhy/p/12690630.html">如何设置线程池参数？</a></p>
 </blockquote>
-<ul>
-<li>Nthreads=Ncpu<em>Ucpu</em>(1+w/c)，其中
-<ul>
-<li>Ncpu=CPU核心数</li>
-<li>Ucpu=cpu使用率，0~1</li>
-<li>W/C=等待时间与计算时间的比率</li>
-</ul>
-</li>
-</ul>
+<p><a href="https://www.jianshu.com/p/6f6e2bcb8128">线程池实时管理与监控工具的实现与思考</a></p>
+<p>公式1：Nthreads = Ncpu * Ucpu * W/C</p>
+<p>其中：
+Ncpu = cpu的核心数 ，Ucpu = cpu的利用率
+W = 线程等待时间，C = 线程计算时间</p>
+<p>此方案偏理论化，cpu的实际利用率（即分配多少cpu给线程池使用）和线程的计算，等待时间非常难评估，并且最后计算出来的结果也很容易偏离实际应用场景。
+公式2：coreSize = 2 * Ncpu , maxSize = 25 * Ncpu</p>
+<p>实际使用过程中不同的业务对线程池的需求不一样，所以统一采用cpu核心数来配置显然不太合理
+公式3：coreSize = tps * time , maxSize = tps * time * (1.7~2)</p>
 <h3 id="scheduledthreadpoolexecutor">ScheduledThreadPoolExecutor</h3>
 <blockquote>
 <p>ScheduledThreadPoolExecutor  简称 STPE 线程池类中很重要的类</p>
@@ -1095,10 +1101,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -1115,7 +1121,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

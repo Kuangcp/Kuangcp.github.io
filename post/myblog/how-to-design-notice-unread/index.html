@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>how-to-design-notice-unread.md - Mythos</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 设计公告通知未读 1. 关联表存 已读或未读 2. Redis Set 存储 未读/已读 3. Redis bitmap 存储 未读/已读 4. 客户端存储已读 目录 end|2021-01-15 21:26| 设计公告通知未读 需求： 发布公告，用" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
+
+
+<link rel="canonical" href="https://blogs.kuangcp.top/post/myblog/how-to-design-notice-unread/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="how-to-design-notice-unread.md" />
+<meta property="og:description" content="目录 start 设计公告通知未读 1. 关联表存 已读或未读 2. Redis Set 存储 未读/已读 3. Redis bitmap 存储 未读/已读 4. 客户端存储已读 目录 end|2021-01-15 21:26| 设计公告通知未读 需求： 发布公告，用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/myblog/how-to-design-notice-unread/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-01-13T19:47:52+00:00" />
+<meta property="article:modified_time" content="2021-01-13T19:47:52+00:00" />
+
+<meta itemprop="name" content="how-to-design-notice-unread.md">
+<meta itemprop="description" content="目录 start 设计公告通知未读 1. 关联表存 已读或未读 2. Redis Set 存储 未读/已读 3. Redis bitmap 存储 未读/已读 4. 客户端存储已读 目录 end|2021-01-15 21:26| 设计公告通知未读 需求： 发布公告，用"><meta itemprop="datePublished" content="2021-01-13T19:47:52+00:00" />
+<meta itemprop="dateModified" content="2021-01-13T19:47:52+00:00" />
+<meta itemprop="wordCount" content="839">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="how-to-design-notice-unread.md"/>
+<meta name="twitter:description" content="目录 start 设计公告通知未读 1. 关联表存 已读或未读 2. Redis Set 存储 未读/已读 3. Redis bitmap 存储 未读/已读 4. 客户端存储已读 目录 end|2021-01-15 21:26| 设计公告通知未读 需求： 发布公告，用"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">how-to-design-notice-unread.md</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-13 </span>
+        
+          <span class="more-meta"> 839 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-关联表存-已读或未读">1. 关联表存 已读或未读</a></li>
+    <li><a href="#2-redis-set-存储-未读已读">2. Redis Set 存储 未读/已读</a></li>
+    <li><a href="#3-redis-bitmap-存储-未读已读">3. Redis bitmap 存储 未读/已读</a></li>
+    <li><a href="#4-客户端存储已读">4. 客户端存储已读</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#%E8%AE%BE%E8%AE%A1%E5%85%AC%E5%91%8A%E9%80%9A%E7%9F%A5%E6%9C%AA%E8%AF%BB">设计公告通知未读</a>
+<ol>
+<li><a href="#1-%E5%85%B3%E8%81%94%E8%A1%A8%E5%AD%98-%E5%B7%B2%E8%AF%BB%E6%88%96%E6%9C%AA%E8%AF%BB">1. 关联表存 已读或未读</a></li>
+<li><a href="#2-redis-set-%E5%AD%98%E5%82%A8-%E6%9C%AA%E8%AF%BB%E5%B7%B2%E8%AF%BB">2. Redis Set 存储 未读/已读</a></li>
+<li><a href="#3-redis-bitmap-%E5%AD%98%E5%82%A8-%E6%9C%AA%E8%AF%BB%E5%B7%B2%E8%AF%BB">3. Redis bitmap 存储 未读/已读</a></li>
+<li><a href="#4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AD%98%E5%82%A8%E5%B7%B2%E8%AF%BB">4. 客户端存储已读</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2021-01-15 21:26</em>|</p>
+<hr>
+<h1 id="设计公告通知未读">设计公告通知未读</h1>
+<blockquote>
+<p>需求： 发布公告，用户维度的已读未读，有一键已读功能，首条未读需求</p>
+</blockquote>
+<h2 id="1-关联表存-已读或未读">1. 关联表存 已读或未读</h2>
+<blockquote>
+<p>存储</p>
+<ul>
+<li>公告表</li>
+<li>公告和用户关联表</li>
+</ul>
+</blockquote>
+<p><code>存已读</code></p>
+<ol>
+<li>优点： 新增无需操作关联表，利于统计分析</li>
+<li>缺点： 一键已读就需要未读的关联数据批量写入，数据量会持续增长，数据不够稀疏不便建立索引</li>
+</ol>
+<p><code>存未读</code></p>
+<ol>
+<li>优点： 新增无需操作关联表，利于统计分析</li>
+<li>缺点：
+<ul>
+<li>新增公告时，大量数据写入(为每一个用户新增)，新注册用户需要补全部数据</li>
+<li>已读则删除数据（使用物理删除可能存在缺页问题，使用逻辑删除则数据持续增长）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="2-redis-set-存储-未读已读">2. Redis Set 存储 未读/已读</h2>
+<blockquote>
+<p>存储</p>
+<ul>
+<li>公告表</li>
+<li>Redis存储 Set key为用户id，value为公告id</li>
+</ul>
+</blockquote>
+<p><code>存已读</code></p>
+<ol>
+<li>优点：
+<ul>
+<li>新增公告无需操作关联关系</li>
+<li>用户查询公告未读状态，只需一次请求</li>
+</ul>
+</li>
+<li>缺点：
+<ul>
+<li>全部已读需要查出所有公告id插入Redis Set</li>
+<li>Redis占用的内存会持续增长</li>
+</ul>
+</li>
+</ol>
+<p><code>存未读</code></p>
+<ol>
+<li>优点： 用户查询公告状态，只需一次请求，全部已读也只需一次请求</li>
+<li>缺点： 新增公告时需要遍历请求所有用户插入公告id</li>
+</ol>
+<hr>
+<h2 id="3-redis-bitmap-存储-未读已读">3. Redis bitmap 存储 未读/已读</h2>
+<blockquote>
+<p>存储</p>
+<ul>
+<li>公告表</li>
+<li>Redis存储 key为公告id bitmap存已读的用户id</li>
+</ul>
+</blockquote>
+<ul>
+<li>所有公告分页查询时，先得到Mysql分页第一页的公告id，然后遍历查询Redis已读未读状态</li>
+<li>未读公告的分页，需要查询所有的公告id(组织注册时间后的公告)， 遍历请求redis得到 未读的公告id， 再进入Mysql 使用 in 进行分页</li>
+</ul>
+<ol>
+<li>优点： 新增公告无需维护关联关系</li>
+<li>缺点：
+<ul>
+<li>分页查看所有未读的需求会随着公告的增多循环次数会增多</li>
+<li>全部已读需要遍历所有公告</li>
+<li>随着用户数增多单个key占用的内存持续增长</li>
+</ul>
+</li>
+</ol>
+<p>可以通过存储用户最后一次 所有公告已读 的时间戳，减少循环次数</p>
+<hr>
+<h2 id="4-客户端存储已读">4. 客户端存储已读</h2>
+<blockquote>
+<p>存储</p>
+<ul>
+<li>公告表</li>
+<li>客户端 Cookie 或者 LocalStorage 存储已读的公告id</li>
+</ul>
+</blockquote>
+<ol>
+<li>优点： 服务端存储运算压力减轻</li>
+<li>缺点：
+<ul>
+<li>首条未读查询接口需要传入已读的id列表，公告多的时候会导致SQL超长</li>
+<li>无法多端同步状态(其实也可以做，定时同步已读id列表)，全部已读需要写入所有公告id到本地</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Mythos</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-01-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/container/vagrant/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Vagrant</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/linux/base/linuxdebug/">
+            <span class="next-text nav-default">Linux上的调试</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Mythos</span>
+    
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

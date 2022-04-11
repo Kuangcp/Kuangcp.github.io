@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/myblog/flink-with-batch/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Flink-with-batch" />
 <meta property="og:description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/myblog/flink-with-batch/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/myblog/flink-with-batch/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-06-17T17:00:27+00:00" />
 <meta property="article:modified_time" content="2019-06-17T17:00:27+00:00" />
+
 <meta itemprop="name" content="Flink-with-batch">
-<meta itemprop="description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实">
-<meta itemprop="datePublished" content="2019-06-17T17:00:27+00:00" />
+<meta itemprop="description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实"><meta itemprop="datePublished" content="2019-06-17T17:00:27+00:00" />
 <meta itemprop="dateModified" content="2019-06-17T17:00:27+00:00" />
 <meta itemprop="wordCount" content="2311">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Flink-with-batch"/>
 <meta name="twitter:description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实"/>
 
@@ -252,7 +248,7 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -278,31 +274,31 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
-</span><span class="w">    </span><span class="nt">services</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">jobmanager</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${FLINK_DOCKER_IMAGE_NAME:-flink}</span><span class="w">
-</span><span class="w">        </span><span class="nt">expose</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;6123&#34;</span><span class="w">
-</span><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;8081:8081&#34;</span><span class="w">
-</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">jobmanager</span><span class="w">
-</span><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="l">JOB_MANAGER_RPC_ADDRESS=jobmanager</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="nt">taskmanager</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${FLINK_DOCKER_IMAGE_NAME:-flink}</span><span class="w">
-</span><span class="w">        </span><span class="nt">expose</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;6121&#34;</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;6122&#34;</span><span class="w">
-</span><span class="w">        </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="l">jobmanager</span><span class="w">
-</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">taskmanager</span><span class="w">
-</span><span class="w">        </span><span class="nt">links</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;jobmanager:jobmanager&#34;</span><span class="w">
-</span><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="l">JOB_MANAGER_RPC_ADDRESS=jobmanager</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">jobmanager</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${FLINK_DOCKER_IMAGE_NAME:-flink}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">expose</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;6123&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;8081:8081&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">jobmanager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">JOB_MANAGER_RPC_ADDRESS=jobmanager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">taskmanager</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${FLINK_DOCKER_IMAGE_NAME:-flink}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">expose</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;6121&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;6122&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">jobmanager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">taskmanager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">links</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;jobmanager:jobmanager&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">JOB_MANAGER_RPC_ADDRESS=jobmanager</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://www.ibm.com/developerworks/cn/opensource/os-cn-apache-flink/img001.png" alt=""></p>
 <ul>
@@ -450,10 +446,10 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -470,7 +466,7 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

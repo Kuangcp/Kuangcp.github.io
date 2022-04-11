@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/javareflection/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Java反射原理以及使用" />
 <meta property="og:description" content="目录 start 反射 概念 实现原理 基础类 AccessibleObject Annotation Class Field Method Constructor Modifier 使用 获取Class对象的方式 反射的基本使用 操作构造方法 操作类中方法 操作类的成员属性 操作注解 反射的性" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javareflection/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javareflection/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Java反射原理以及使用">
-<meta itemprop="description" content="目录 start 反射 概念 实现原理 基础类 AccessibleObject Annotation Class Field Method Constructor Modifier 使用 获取Class对象的方式 反射的基本使用 操作构造方法 操作类中方法 操作类的成员属性 操作注解 反射的性">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start 反射 概念 实现原理 基础类 AccessibleObject Annotation Class Field Method Constructor Modifier 使用 获取Class对象的方式 反射的基本使用 操作构造方法 操作类中方法 操作类的成员属性 操作注解 反射的性"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="2686">
-
-
-
-<meta itemprop="keywords" content="Reflect," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="2747">
+<meta itemprop="keywords" content="Reflect," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java反射原理以及使用"/>
 <meta name="twitter:description" content="目录 start 反射 概念 实现原理 基础类 AccessibleObject Annotation Class Field Method Constructor Modifier 使用 获取Class对象的方式 反射的基本使用 操作构造方法 操作类中方法 操作类的成员属性 操作注解 反射的性"/>
 
@@ -126,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 2686 words </span>
+          <span class="more-meta"> 2747 words </span>
           <span class="more-meta"> 6 mins read </span>
         
       </div>
@@ -192,7 +188,7 @@
 </li>
 <li><a href="#%E5%8F%8D%E5%B0%84%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98">反射的性能问题</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-05-17 16:13</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-05-17 00:27</em>|</p>
 <hr>
 <h1 id="反射">反射</h1>
 <blockquote>
@@ -234,10 +230,11 @@ If it is possible to perform an operation without using reflection, then it is p
 <p>对于公共成员、默认（打包）访问成员、受保护成员和私有成员，在分别使用 Field、Method 或 Constructor 对象来设置或获得字段、调用方法，或者创建和初始化类的新实例的时候，会执行访问检查。<br>
 在反射对象中设置 accessible 标志允许具有足够特权的复杂应用程序（比如 Java Object Serialization 或其他持久性机制）以某种通常禁止使用的方式来操作对象。</p>
 <blockquote>
-<p>将此对象的 accessible 标志设置为指示的布尔值。值为 true 则指示反射的对象在使用时应该取消 Java 语言访问检查。值为 false 则指示反射的对象应该实施 Java 语言访问检查。<br>
+<p>将此对象的 accessible 标志设置为指示的布尔值。<br>
+true 表示反射的对象在使用时应该取消 Java 语言访问检查， 反之则要进行。<br>
 此标志不会告诉您java访问修饰符是否可以访问该字段，它会告诉您当前是否忽略这些修饰符。</p>
 </blockquote>
-<p>实际上setAccessible是启用和禁用访问安全检查的开关,并不是为true就能访问为false就不能访问，一般情况下，我们并不能对类的私有字段进行操作，利用反射也不例外，<br>
+<p>实际上setAccessible是启用和禁用访问安全检查的开关,并不是为true就能访问，为false就不能访问，一般情况下，我们并不能对类的私有字段进行操作，利用反射也不例外，<br>
 但有的时候，例如要序列化的时候，我们又必须有能力去处理这些字段，这时候，我们就需要调用<code>AccessibleObject</code>上的<code>setAccessible(true)</code>方法来允许这种访问，<br>
 而由于反射类中的Field，Method和Constructor继承自AccessibleObject，因此，通过在这些类上调用setAccessible()方法，我们可以实现对这些字段的操作。<br>
 但有的时候这将会成为一个安全隐患，为此，我们可以启用java.security.manager来判断程序是否具有调用setAccessible()的权限。</p>
@@ -245,7 +242,7 @@ If it is possible to perform an operation without using reflection, then it is p
 <p>默认情况下，<code>内核API</code>和<code>扩展目录</code>的代码具有该权限，而<code>类路径</code>或<code>通过URLClassLoader加载</code>的应用程序不拥有此权限。</p>
 </blockquote>
 <ul>
-<li><input disabled="" type="checkbox"> 仍然存疑, 什么情况下才是 默认可访问的</li>
+<li><input disabled="" type="checkbox"> 仍然存疑, 什么情况下才是 默认可访问的。什么情况下 true 不能访问</li>
 </ul>
 <h2 id="annotation">Annotation</h2>
 <h2 id="class">Class</h2>
@@ -257,10 +254,10 @@ If it is possible to perform an operation without using reflection, then it is p
 <p>The Modifier class provides static methods and constants to decode class and member access modifiers.<br>
 <a href="https://docs.oracle.com/javase/8/docs/api/index.html?java/lang/reflect/Modifier.html">API: modifier</a></p>
 </blockquote>
-<p><code>Java的访问权限信息啥的都是以2的N次幂来作为表示的 一共有12个常用修饰符 也就使用了12位来标记</code></p>
+<p><code>Java的访问权限信息是以2的N次幂也就是bitmap的方式进行存储 一共有12个常用修饰符 也就使用了12位来标记</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -283,45 +280,46 @@ If it is possible to perform an operation without using reflection, then it is p
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 公共的, 意义一致
-</span><span class="c1"></span>    <span class="n">PUBLIC</span>           <span class="o">=</span> <span class="n">0x00000001</span><span class="o">;</span>
-    <span class="n">PRIVATE</span>          <span class="o">=</span> <span class="n">0x00000002</span><span class="o">;</span>
-    <span class="n">PROTECTED</span>        <span class="o">=</span> <span class="n">0x00000004</span><span class="o">;</span>
-    <span class="n">STATIC</span>           <span class="o">=</span> <span class="n">0x00000008</span><span class="o">;</span>
-    <span class="n">FINAL</span>            <span class="o">=</span> <span class="n">0x00000010</span><span class="o">;</span>
-    <span class="n">SYNCHRONIZED</span>     <span class="o">=</span> <span class="n">0x00000020</span><span class="o">;</span>
-    <span class="n">VOLATILE</span>         <span class="o">=</span> <span class="n">0x00000040</span><span class="o">;</span>
-    <span class="n">TRANSIENT</span>        <span class="o">=</span> <span class="n">0x00000080</span><span class="o">;</span>
-    <span class="n">NATIVE</span>           <span class="o">=</span> <span class="n">0x00000100</span><span class="o">;</span>
-    <span class="n">INTERFACE</span>        <span class="o">=</span> <span class="n">0x00000200</span><span class="o">;</span>
-    <span class="n">ABSTRACT</span>         <span class="o">=</span> <span class="n">0x00000400</span><span class="o">;</span>
-    <span class="n">STRICT</span>           <span class="o">=</span> <span class="n">0x00000800</span><span class="o">;</span>
-
-    <span class="c1">// 不公开, 意义依据方法或者属性 不定
-</span><span class="c1"></span>    <span class="n">BRIDGE</span>      <span class="o">=</span> <span class="n">0x00000040</span><span class="o">;</span>
-    <span class="n">VARARGS</span>     <span class="o">=</span> <span class="n">0x00000080</span><span class="o">;</span>
-    <span class="n">SYNTHETIC</span>   <span class="o">=</span> <span class="n">0x00001000</span><span class="o">;</span>
-    <span class="n">ANNOTATION</span>  <span class="o">=</span> <span class="n">0x00002000</span><span class="o">;</span>
-    <span class="n">ENUM</span>        <span class="o">=</span> <span class="n">0x00004000</span><span class="o">;</span>
-    <span class="n">MANDATED</span>    <span class="o">=</span> <span class="n">0x00008000</span><span class="o">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 公共的, 意义一致
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">PUBLIC</span>           <span class="o">=</span> <span class="n">0x00000001</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">PRIVATE</span>          <span class="o">=</span> <span class="n">0x00000002</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">PROTECTED</span>        <span class="o">=</span> <span class="n">0x00000004</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">STATIC</span>           <span class="o">=</span> <span class="n">0x00000008</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FINAL</span>            <span class="o">=</span> <span class="n">0x00000010</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SYNCHRONIZED</span>     <span class="o">=</span> <span class="n">0x00000020</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VOLATILE</span>         <span class="o">=</span> <span class="n">0x00000040</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TRANSIENT</span>        <span class="o">=</span> <span class="n">0x00000080</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">NATIVE</span>           <span class="o">=</span> <span class="n">0x00000100</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">INTERFACE</span>        <span class="o">=</span> <span class="n">0x00000200</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ABSTRACT</span>         <span class="o">=</span> <span class="n">0x00000400</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">STRICT</span>           <span class="o">=</span> <span class="n">0x00000800</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 不公开, 意义依据方法或者属性而定， 最大到16位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">BRIDGE</span>      <span class="o">=</span> <span class="n">0x00000040</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VARARGS</span>     <span class="o">=</span> <span class="n">0x00000080</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SYNTHETIC</span>   <span class="o">=</span> <span class="n">0x00001000</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ANNOTATION</span>  <span class="o">=</span> <span class="n">0x00002000</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ENUM</span>        <span class="o">=</span> <span class="n">0x00004000</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MANDATED</span>    <span class="o">=</span> <span class="n">0x00008000</span><span class="o">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>判断属性是否被 final 修饰 <code>(field.getModifiers() &amp; Modifier.FINAL) != 0</code></li>
+<li>判断属性是否被 final 修饰 <code>Modifier.isFinal(field.getModifiers())</code></li>
 <li>移除 final 修饰符 <code>field.getModifiers() &amp; ~Modifier.FINAL</code></li>
 </ul>
-<p><code>去除属性上的final修饰符</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Field</span> <span class="n">modifiersField</span> <span class="o">=</span> <span class="n">Field</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&#34;modifiers&#34;</span><span class="o">);</span>
-    <span class="n">modifiersField</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-    <span class="n">modifiersField</span><span class="o">.</span><span class="na">setInt</span><span class="o">(</span><span class="n">field</span><span class="o">,</span> <span class="n">field</span><span class="o">.</span><span class="na">getModifiers</span><span class="o">()</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">Modifier</span><span class="o">.</span><span class="na">FINAL</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Field</span> <span class="n">field</span> <span class="o">=</span> <span class="n">ReflectTargetObject</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&#34;staticFinalString&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Field</span> <span class="n">modifiersField</span> <span class="o">=</span> <span class="n">Field</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&#34;modifiers&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">modifiersField</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">modifiersField</span><span class="o">.</span><span class="na">setInt</span><span class="o">(</span><span class="n">field</span><span class="o">,</span> <span class="n">field</span><span class="o">.</span><span class="na">getModifiers</span><span class="o">()</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">Modifier</span><span class="o">.</span><span class="na">FINAL</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="使用">使用</h1>
@@ -371,102 +369,102 @@ If it is possible to perform an operation without using reflection, then it is p
 <p>使用Class类中的getConstructors()获取所有构造方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-    <span class="n">Constructor</span><span class="o">&lt;?&gt;[]</span> <span class="n">constructors</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getConstructors</span><span class="o">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Constructor</span><span class="o">&lt;?&gt;[]</span> <span class="n">constructors</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getConstructors</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用Class类中的getConstructor获取指定参数类型的构造方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">  <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-  <span class="n">Constructor</span> <span class="n">constructor</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getConstructor</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-  <span class="c1">// 实例化对象
-</span><span class="c1"></span>  <span class="n">Book</span> <span class="n">book</span> <span class="o">=</span> <span class="o">(</span><span class="n">Book</span><span class="o">)</span> <span class="n">constructor</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&#34;java&#34;</span><span class="o">,</span> <span class="s">&#34;123&#34;</span><span class="o">);</span>
-  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">book</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">  <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Constructor</span> <span class="n">constructor</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getConstructor</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 实例化对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Book</span> <span class="n">book</span> <span class="o">=</span> <span class="o">(</span><span class="n">Book</span><span class="o">)</span> <span class="n">constructor</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&#34;java&#34;</span><span class="o">,</span> <span class="s">&#34;123&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">book</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="操作类中方法">操作类中方法</h3>
 <p><code>getDeclaredMethods()</code> 获取类本身定义的所有方法， 不包含由继承获取到的方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-    <span class="n">Method</span><span class="o">[]</span> <span class="n">methods</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredMethods</span><span class="o">();</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">Method</span> <span class="n">method</span> <span class="o">:</span> <span class="n">methods</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">method</span><span class="o">);</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Method</span><span class="o">[]</span> <span class="n">methods</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredMethods</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Method</span> <span class="n">method</span> <span class="o">:</span> <span class="n">methods</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">method</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>获取指定的方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 传入方法名和参数类型
-</span><span class="c1"></span>    <span class="n">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">&#34;setName&#34;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 传入方法名和参数类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">&#34;setName&#34;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>getMethods()</code> 获取所有方法， 包含由继承获取到的方法, 但无法取得自身私有方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-    <span class="n">Method</span><span class="o">[]</span> <span class="n">methods</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getMethods</span><span class="o">();</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">Method</span> <span class="n">method</span> <span class="o">:</span> <span class="n">methods</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">method</span><span class="o">);</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Method</span><span class="o">[]</span> <span class="n">methods</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getMethods</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Method</span> <span class="n">method</span> <span class="o">:</span> <span class="n">methods</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">method</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>获取指定的方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;setName&#34;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;setName&#34;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>调用方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-    <span class="n">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
-    <span class="n">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;setName&#34;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-    <span class="c1">// 调用方法
-</span><span class="c1"></span>    <span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="s">&#34;hello&#34;</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;setName&#34;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 调用方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="s">&#34;hello&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="操作类的成员属性">操作类的成员属性</h3>
 <blockquote>
@@ -474,60 +472,60 @@ If it is possible to perform an operation without using reflection, then it is p
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-    <span class="n">Field</span><span class="o">[]</span> <span class="n">fields</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredFields</span><span class="o">();</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">Field</span> <span class="n">field</span> <span class="o">:</span> <span class="n">fields</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Field</span><span class="o">[]</span> <span class="n">fields</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredFields</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Field</span> <span class="n">field</span> <span class="o">:</span> <span class="n">fields</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>获取单个成员</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-    <span class="n">Field</span> <span class="n">field</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Field</span> <span class="n">field</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>取得所有成员， 包含由继承获取的成员， 但无法取得自身私有成员</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-    <span class="n">Field</span><span class="o">[]</span> <span class="n">fields</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getFields</span><span class="o">();</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">Field</span> <span class="n">field</span> <span class="o">:</span> <span class="n">fields</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Field</span><span class="o">[]</span> <span class="n">fields</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getFields</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Field</span> <span class="n">field</span> <span class="o">:</span> <span class="n">fields</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>set 和 get 属性的值</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -537,15 +535,15 @@ If it is possible to perform an operation without using reflection, then it is p
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-    <span class="n">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
-    <span class="n">Field</span> <span class="n">field</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
-    <span class="c1">// 取消Java安全性检查
-</span><span class="c1"></span>    <span class="n">field</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-    <span class="c1">// 设置值
-</span><span class="c1"></span>    <span class="n">field</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="s">&#34;你好&#34;</span><span class="o">);</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">field</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">object</span><span class="o">));</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Field</span> <span class="n">field</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 取消Java安全性检查
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">field</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 设置值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">field</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="s">&#34;你好&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">field</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">object</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="操作注解">操作注解</h3>
 <blockquote>
@@ -553,36 +551,36 @@ If it is possible to perform an operation without using reflection, then it is p
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-    <span class="n">Annotation</span><span class="o">[]</span> <span class="n">as</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getAnnotations</span><span class="o">();</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">Annotation</span> <span class="n">a</span> <span class="o">:</span> <span class="n">as</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Annotation</span><span class="o">[]</span> <span class="n">as</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getAnnotations</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Annotation</span> <span class="n">a</span> <span class="o">:</span> <span class="n">as</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>获取指定的Annotation</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
-    <span class="n">GetItem</span> <span class="n">annotation</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getAnnotation</span><span class="o">(</span><span class="n">Deprecated</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">annotation</span><span class="o">.</span><span class="na">name</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">annotation</span><span class="o">.</span><span class="na">value</span><span class="o">());</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;first.Book&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">GetItem</span> <span class="n">annotation</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">getAnnotation</span><span class="o">(</span><span class="n">Deprecated</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">annotation</span><span class="o">.</span><span class="na">name</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">annotation</span><span class="o">.</span><span class="na">value</span><span class="o">());</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <p><a href="https://github.com/Kuangcp/JavaBase/tree/class/src/test/java/com/github/kuangcp/reflects">Github: 更多反射Demo</a></p>
@@ -598,6 +596,7 @@ If it is possible to perform an operation without using reflection, then it is p
 <a href="https://github.com/Kuangcp/JavaBase/blob/class/src/test/java/com/github/kuangcp/reflects/ReflectPerformanceTest.java">性能测试对比: 反射 set/get cglib mapstruct</a></p>
 </blockquote>
 <p>Spring 中的 IOC 主要是依据反射来实现的, 只在启动阶段性能有所损耗, 关注性能以及热点代码最好避免使用反射 例如常见的BeanCopy</p>
+<p><a href="https://club.perfma.com/article/54786">从一起GC血案谈到反射原理</a><code>总结： Method等Accessor对象每次get时会复制构造出新的对象，所以一般需要缓存； 反射数据是软引用</code></p>
 <blockquote>
 <p>优化方案</p>
 </blockquote>
@@ -671,10 +670,10 @@ If it is possible to perform an operation without using reflection, then it is p
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -691,7 +690,7 @@ If it is possible to perform an operation without using reflection, then it is p
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

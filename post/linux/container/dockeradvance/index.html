@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2020-04-27 23:42| Docker Advance 文件系统 Dock" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2021-02-03 17:25| Docker Advance 文件系统 Dock" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/linux/container/dockeradvance/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Docker进阶" />
-<meta property="og:description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2020-04-27 23:42| Docker Advance 文件系统 Dock" />
+<meta property="og:description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2021-02-03 17:25| Docker Advance 文件系统 Dock" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/dockeradvance/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/dockeradvance/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T11:25:27+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:25:27+00:00" />
+
 <meta itemprop="name" content="Docker进阶">
-<meta itemprop="description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2020-04-27 23:42| Docker Advance 文件系统 Dock">
-<meta itemprop="datePublished" content="2018-12-15T11:25:27+00:00" />
+<meta itemprop="description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2021-02-03 17:25| Docker Advance 文件系统 Dock"><meta itemprop="datePublished" content="2018-12-15T11:25:27+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:25:27+00:00" />
-<meta itemprop="wordCount" content="908">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="907">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker进阶"/>
-<meta name="twitter:description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2020-04-27 23:42| Docker Advance 文件系统 Dock"/>
+<meta name="twitter:description" content="目录 start Docker Advance 文件系统 AUFS OverlayFS 配置 更改数据的存放目录 提供底层接口访问 暴露守护进程端口 持有套接字文件 Tips 孤儿进程以及僵死进程 目录 end|2021-02-03 17:25| Docker Advance 文件系统 Dock"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/docker/"> Docker </a>
             </div>
-          <span class="more-meta"> 908 words </span>
+          <span class="more-meta"> 907 words </span>
           <span class="more-meta"> 2 mins read </span>
         
       </div>
@@ -187,7 +183,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-02-03 17:25</em>|</p>
 <hr>
 <h1 id="docker-advance">Docker Advance</h1>
 <h2 id="文件系统">文件系统</h2>
@@ -233,7 +229,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -243,15 +239,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">service docker stop
-cp -prf /var/lib/docker /data/
-rm -rf /var/lib/docker
-
-vi /etc/fstab <span class="c1"># 追加一下内容：</span>
-/data/docker /var/lib/docker none <span class="nb">bind</span> <span class="m">0</span> <span class="m">0</span>
-mount -a
-service docker start
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">service docker stop
+</span></span><span class="line"><span class="cl">cp -prf /var/lib/docker /data/
+</span></span><span class="line"><span class="cl">rm -rf /var/lib/docker
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vi /etc/fstab <span class="c1"># 追加一下内容：</span>
+</span></span><span class="line"><span class="cl">/data/docker /var/lib/docker none <span class="nb">bind</span> <span class="m">0</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">mount -a
+</span></span><span class="line"><span class="cl">service docker start
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="2">
 <li>还尝试过将文件复制出去, 然后用软链接的方式, 但是失败了 报的错也没怎么看懂</li>
@@ -259,7 +255,7 @@ service docker start
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -275,27 +271,25 @@ service docker start
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
-</span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">-g, --graph=&#34;&#34;
-  Path to use as the root of the Docker runtime. Default is /var/lib/docker.
-
-如 docker -d --graph=/opt/docker
-docker daemon 的启动参数修改方法
-
-rhel/centos 下, 默认启动参数在 /etc/sysconfig/docker, 如:
-
-6.x:
-other_args=&#34;--graph=/opt/docker &#34;
-
-7.x: (update: 2015-01-21)
-OPTIONS=&#34;--graph=/opt/docker &#34;
-
-debian/ubuntu 下, 默认启动参数在 /etc/default/docker, 如:
-DOCKER_OPTS=&#34;--graph=/opt/docker &#34;
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-g, --graph=&#34;&#34;
+</span></span><span class="line"><span class="cl">  Path to use as the root of the Docker runtime. Default is /var/lib/docker.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">如 docker -d --graph=/opt/docker
+</span></span><span class="line"><span class="cl">docker daemon 的启动参数修改方法
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">rhel/centos 下, 默认启动参数在 /etc/sysconfig/docker, 如:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">6.x:
+</span></span><span class="line"><span class="cl">other_args=&#34;--graph=/opt/docker &#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">7.x: (update: 2015-01-21)
+</span></span><span class="line"><span class="cl">OPTIONS=&#34;--graph=/opt/docker &#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">debian/ubuntu 下, 默认启动参数在 /etc/default/docker, 如:
+</span></span><span class="line"><span class="cl">DOCKER_OPTS=&#34;--graph=/opt/docker &#34;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="提供底层接口访问">提供底层接口访问</h3>
 <h4 id="暴露守护进程端口">暴露守护进程端口</h4>
@@ -304,15 +298,15 @@ DOCKER_OPTS=&#34;--graph=/opt/docker &#34;
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="k">[Service]</span>
-    <span class="na">ExecStart</span><span class="o">=</span><span class="s">
-</span><span class="s">    ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock </span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl">    <span class="na">ExecStart</span><span class="o">=</span><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">    ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock </span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>以上所处文件为: /etc/systemd/system/docker.service.d/override.conf</p>
@@ -425,10 +419,10 @@ Docker1.11版本之后孤儿进程不会成为僵死进程</p>
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -445,7 +439,7 @@ Docker1.11版本之后孤儿进程不会成为僵死进程</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

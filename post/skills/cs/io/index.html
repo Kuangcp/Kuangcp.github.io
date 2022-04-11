@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 计算机中的IO IO模型 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路复用函数" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/skills/cs/io/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="计算机中的IO" />
-<meta property="og:description" content="目录 start 计算机中的IO IO模型 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路复用函数" />
+<meta property="og:description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/cs/io/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/cs/io/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-04-20T12:16:10+00:00" />
 <meta property="article:modified_time" content="2019-04-20T12:16:10+00:00" />
+
 <meta itemprop="name" content="计算机中的IO">
-<meta itemprop="description" content="目录 start 计算机中的IO IO模型 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路复用函数">
-<meta itemprop="datePublished" content="2019-04-20T12:16:10+00:00" />
+<meta itemprop="description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路"><meta itemprop="datePublished" content="2019-04-20T12:16:10+00:00" />
 <meta itemprop="dateModified" content="2019-04-20T12:16:10+00:00" />
-<meta itemprop="wordCount" content="5037">
-
-
-
-<meta itemprop="keywords" content="IO," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="5095">
+<meta itemprop="keywords" content="IO," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="计算机中的IO"/>
-<meta name="twitter:description" content="目录 start 计算机中的IO IO模型 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路复用函数"/>
+<meta name="twitter:description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
             </div>
-          <span class="more-meta"> 5037 words </span>
+          <span class="more-meta"> 5095 words </span>
           <span class="more-meta"> 11 mins read </span>
         
       </div>
@@ -139,6 +135,7 @@
   <ul>
     <li><a href="#io模型">IO模型</a>
       <ul>
+        <li><a href="#基础概念">基础概念</a></li>
         <li><a href="#blocking-io">Blocking IO</a></li>
         <li><a href="#nonblocking-io">Nonblocking IO</a></li>
         <li><a href="#io-multiplexing">IO multiplexing</a></li>
@@ -177,6 +174,7 @@
 <ol>
 <li><a href="#io%E6%A8%A1%E5%9E%8B">IO模型</a>
 <ol>
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5">基础概念</a></li>
 <li><a href="#blocking-io">Blocking IO</a></li>
 <li><a href="#nonblocking-io">Nonblocking IO</a></li>
 <li><a href="#io-multiplexing">IO multiplexing</a></li>
@@ -208,7 +206,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-03-17 18:06</em>|</p>
 <hr>
 <h1 id="计算机中的io">计算机中的IO</h1>
 <blockquote>
@@ -226,17 +224,19 @@
 <blockquote>
 <p><a href="https://www.ibm.com/developerworks/cn/linux/l-async/">参考: 使用异步 I/O 大大提高应用程序的性能</a></p>
 </blockquote>
+<h3 id="基础概念">基础概念</h3>
 <p>对于一个network IO (这里我们以read举例)，它会涉及到两个系统对象:</p>
 <ul>
-<li>调用这个IO的process (or thread)</li>
-<li>系统内核(kernel)。</li>
+<li>调用这个 IO 的 用户线程 (process/thread)</li>
+<li>系统内核(kernel)</li>
 </ul>
-<p>当一个read操作发生时，它会经历两个阶段：</p>
+<p>当一个 read 操作发生时，它会经历两个阶段：</p>
 <ol>
 <li><code>等待数据准备</code> (Waiting for the data to be ready)</li>
-<li><code>将数据从内核拷贝到进程中</code> (Copying the data from the kernel to the process)</li>
+<li><code>将数据从内核缓存中拷贝到用户缓存(用户进程)中</code> (Copying the data from the kernel to the process)</li>
 </ol>
 <p>记住这两点很重要，因为这些IO Model的区别就是在两个阶段上各有不同的情况。</p>
+<p>同步和异步的概念描述的是用户线程与内核的交互方式 阻塞和非阻塞的概念描述的是用户线程调用内核IO操作的方式</p>
 <h3 id="blocking-io">Blocking IO</h3>
 <blockquote>
 <p>Blocking IO的特点就是在IO执行的两个阶段都被 block了</p>
@@ -250,8 +250,12 @@
 <p>当用户进程调用了select，那么整个进程会被block，而同时，kernel会“监视”所有select负责的socket，当任何一个socket中的数据准备好了，select就会返回。这个时候用户进程再调用read操作，将数据从kernel拷贝到用户进程。</p>
 </blockquote>
 <p>在IO multiplexing Model中，实际中，对于每一个socket，一般都设置成为non-blocking，但是 整个用户的process其实是一直被block的。只不过process是被select这个函数block，而不是被socket IO被block。</p>
-<p>如果处理的连接数不是很高的话，使用select/epoll的web server不一定比使用multi-threading + blocking IO的web server性能更好，可能延迟还更大。select/epoll的优势并不是对于单个连接能处理得更快，而是在于能处理更多的连接。</p>
+<p>如果处理的连接数不是很高的话，使用select/epoll的web server不一定比使用multi-threading + blocking IO的web server性能更好，可能延迟还更大。<br>
+select/epoll的优势<code>不在于单个连接能处理得更快，而在于能处理更多的连接</code>。</p>
 <h3 id="signal-driven-io">Signal driven IO</h3>
+<blockquote>
+<p>使用较少</p>
+</blockquote>
 <p>在信号驱动IO模型中，当用户线程发起一个IO请求操作，会给对应的socket注册一个信号函数，然后用户线程会继续执行<br>
 当内核数据就绪时会发送一个信号给用户线程，用户线程接收到信号之后，便在信号函数中调用IO读写操作来进行实际的IO请求操作。</p>
 <h3 id="asynchronous-io">Asynchronous IO</h3>
@@ -263,9 +267,9 @@
 <h3 id="经典比喻">经典比喻</h3>
 <p>有 A，B，C，D 四个人在钓鱼 (BIO, NIO, IO multiplexing, AIO) :</p>
 <ul>
-<li>A 用的是最老式的鱼竿，所以呢，得一直守着，等到鱼上钩了再拉杆；</li>
-<li>B 用的鱼竿有浮漂，所以呢，B就和旁边的MM聊天，隔会再看看有没有鱼上钩，有的话就迅速拉杆；</li>
-<li>C 用的鱼竿和B差不多，但他想了一个好办法，就是同时放好几根鱼竿，然后守在旁边，一旦有显示说鱼上钩了，它就将对应的鱼竿拉起来； 这样一个人就能处理好多个鱼竿</li>
+<li>A 用的是最老式的鱼竿（只有线和竿），所以得一直守着，等到鱼上钩了再拉杆；</li>
+<li>B 用的鱼竿有浮漂，B就能和旁边的MM聊天，隔会再看看有没有鱼上钩，有的话就迅速拉杆；</li>
+<li>C 用的鱼竿和B差不多，但他想了一个好办法，<code>就是同时放好几根鱼竿</code>，然后守在旁边，一旦提示鱼上钩了，它就将对应的鱼竿拉起来； 这样一个人就能处理好多个鱼竿</li>
 <li>D 是个有钱人，干脆雇了一个人帮他钓鱼，一旦那个人把鱼钓上来了，就给D发个短信。</li>
 </ul>
 <hr>
@@ -281,20 +285,19 @@
 <p>在说明synchronous IO和asynchronous IO的区别之前，需要先给出两者的定义。Stevens给出的定义（其实是POSIX的定义）是这样子的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    A synchronous I/O operation causes the requesting process to be blocked until that I/O operation completes;
-    An asynchronous I/O operation does not cause the requesting process to be blocked;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    A synchronous I/O operation causes the requesting process to be blocked until that I/O operation completes;
+</span></span><span class="line"><span class="cl">    An asynchronous I/O operation does not cause the requesting process to be blocked;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>两者的区别就在于 synchronous IO 做 <code>IO operation</code> 的时候会将process阻塞。<br>
 按照这个定义，之前所述的 blocking IO，non-blocking IO，IO multiplexing <code>都属于 synchronous IO</code>。<br>
-在处理 IO 的时候，阻塞和非阻塞都是同步 IO。只有使用了特殊的 API 才是异步 IO。 Linux aio, Windows IOCP</p>
-<p>有人可能会说，non-blocking IO并没有被block啊。<br>
-这是因为在第一阶段, 数据没有准备好就直接返回没有阻塞, 但是如果数据准备好了就要执行第二阶段 数据复制 的操作, 这个操作是会阻塞对应的进程的 <br>
-而 asynchronous IO则不一样，当进程发起IO 操作之后，就直接返回再也不理睬了，直到kernel发送一个信号，告诉进程说IO完成。<br>
+<code>在处理 IO 的时候，阻塞和非阻塞都是同步 IO</code>，只有使用特定API才是异步 IO： Linux aio, Windows IOCP</p>
+<p>有人可能会说，non-blocking IO 并没有被 block， 这是因为在第一阶段, 数据没有准备好就直接返回这里没有阻塞, 等数据准备好了就要执行第二阶段 数据复制 的操作, 这个操作是会阻塞对应的进程<br>
+而 asynchronous IO 则不一样，当进程发起 IO 操作之后，就直接返回，直到 kernel 发送一个信号，告诉进程说IO完成 <code>也就是数据复制完成后才通知</code><br>
 在这整个过程中，进程完全没有被block。</p>
 <hr>
 <p>阻塞，非阻塞：进程/线程要访问的数据是否就绪，进程/线程是否需要等待；<br>
@@ -303,7 +306,7 @@
 <p><a href="https://www.zhihu.com/question/19732473/answer/117012135">知乎: 阻塞非阻塞和同步异步的区别</a></p>
 </blockquote>
 <p>讨论究竟是异步还是同步，一定要严格说明说的是哪一部分。<br>
-非阻塞是同步而不是异步，这毫无疑问是正确的，然而说某个框架是异步IO的框架，这也是正确的，因为说的其实是框架提供给业务代码的接口是异步的<br>
+<code>非阻塞是同步而不是异步</code>，这毫无疑问是正确的，然而说某个框架是异步IO的框架，这也是正确的，因为说的其实是框架提供给业务代码的接口是异步的<br>
 不管是回调还是协程，比如说我们可以说某个库是异步的HTTPClient，并没有什么问题，因为说的是给业务代码的接口。</p>
 <blockquote>
 <p><a href="https://www.zhihu.com/question/19732473/answer/88599695">参考</a></p>
@@ -331,9 +334,10 @@
 <h3 id="无差别轮询">无差别轮询</h3>
 <p>为了避免白白浪费CPU时间，我们采用另外一种轮询方式，无差别的轮询方式。即通过引进一个代理，这个代理为 select/poll ,这个代理可以同时观察多个流的I/O事件。<br>
 当所有的流都没有准备就绪时，会把当前线程阻塞掉；当有一个或多个流的I/O事件就绪时，就从阻塞状态中醒来，然后轮询一遍所有的流，处理已经准备好的I/O事件。</p>
-<p>如果I/O事件准备就绪，那么我们的程序就会阻塞在select处。我们通过select那里只是知道了有I/O事件准备好了，但不知道具体是哪几个流（可能有一个，也可能有多个），所以需要无差别的轮询所有的流，找出已经准备就绪的流。可以看到，使用select时，我们需要O(n)的时间复杂度来处理流，处理的流越多，消耗的时间也就越多。</p>
+<p>如果I/O事件准备就绪，那么我们的程序就会阻塞在select处。我们通过select那里只是知道了有I/O事件准备好了，但不知道具体是哪几个流（可能有一个，也可能有多个），所以需要无差别的轮询所有的流，找出已经准备就绪的流。<br>
+可以看到，使用select时，我们需要O(n)的时间复杂度来处理流，需要处理的流越多，消耗的时间也就越多。</p>
 <h3 id="最小轮询">最小轮询</h3>
-<p>即通过epoll方式来观察多个流，epoll只会把发生了I/O事件的流通知我们，我们对这些流的操作都是有意义的，时间复杂度降低到O（k），其中k为产生I/O事件的流个数。</p>
+<p>通过epoll方式来观察多个流，epoll<code>只把发生了I/O事件的流</code>通知我们，我们对这些流的操作都是有意义的，时间复杂度降低到O（k），其中k为产生I/O事件的流个数。</p>
 <h2 id="io多路复用函数">IO多路复用函数</h2>
 <blockquote>
 <p><a href="https://www.cnblogs.com/jeakeven/p/5435916.html">参考: IO多路复用之select、poll、epoll详解</a><br>
@@ -407,7 +411,7 @@ epoll使用一个文件描述符管理多个文件描述符，将用户关心的
           <a href="/tags/io/">IO</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/skills/protobuf/">
+        <a class="prev" href="/post/skills/serialization/protobuf/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Protobuf</span>
             <span class="prev-text nav-mobile">Prev</span>
@@ -451,10 +455,10 @@ epoll使用一个文件描述符管理多个文件描述符，将用户关心的
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -471,7 +475,7 @@ epoll使用一个文件描述符管理多个文件描述符，将用户关心的
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

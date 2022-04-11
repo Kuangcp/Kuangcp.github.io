@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2020-11-17 14:17| Tmux Arch wiki: tmux tmux 入门 | tmux简洁教程及config关键配置 参考: 文本三巨头：zsh、" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2021-02-03 17:25| Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程序员高效技巧系列 基本操作 新" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/linux/tool/tmux/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Tmux" />
-<meta property="og:description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2020-11-17 14:17| Tmux Arch wiki: tmux tmux 入门 | tmux简洁教程及config关键配置 参考: 文本三巨头：zsh、" />
+<meta property="og:description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2021-02-03 17:25| Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程序员高效技巧系列 基本操作 新" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/tool/tmux/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/tool/tmux/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-02-28T17:43:53+00:00" />
 <meta property="article:modified_time" content="2019-02-28T17:43:53+00:00" />
+
 <meta itemprop="name" content="Tmux">
-<meta itemprop="description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2020-11-17 14:17| Tmux Arch wiki: tmux tmux 入门 | tmux简洁教程及config关键配置 参考: 文本三巨头：zsh、">
-<meta itemprop="datePublished" content="2019-02-28T17:43:53+00:00" />
+<meta itemprop="description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2021-02-03 17:25| Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程序员高效技巧系列 基本操作 新"><meta itemprop="datePublished" content="2019-02-28T17:43:53+00:00" />
 <meta itemprop="dateModified" content="2019-02-28T17:43:53+00:00" />
-<meta itemprop="wordCount" content="367">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="344">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tmux"/>
-<meta name="twitter:description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2020-11-17 14:17| Tmux Arch wiki: tmux tmux 入门 | tmux简洁教程及config关键配置 参考: 文本三巨头：zsh、"/>
+<meta name="twitter:description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2021-02-03 17:25| Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程序员高效技巧系列 基本操作 新"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/%E5%B7%A5%E5%85%B7/"> 工具 </a>
             </div>
-          <span class="more-meta"> 367 words </span>
+          <span class="more-meta"> 344 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -178,17 +174,14 @@
 </li>
 <li><a href="#tips">Tips</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-11-17 14:17</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-02-03 17:25</em>|</p>
 <hr>
 <h1 id="tmux">Tmux</h1>
 <blockquote>
 <p><a href="https://wiki.archlinux.org/index.php/Tmux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Arch wiki: tmux</a></p>
 </blockquote>
 <blockquote>
-<p><a href="http://blog.jobbole.com/87278/">tmux 入门</a> | <a href="https://www.jianshu.com/p/fd3bbdba9dc9">tmux简洁教程及config关键配置</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://blog.jobbole.com/86571/">参考: 文本三巨头：zsh、tmux 和 vim</a>
+<p><a href="https://www.jianshu.com/p/fd3bbdba9dc9">tmux简洁教程及config关键配置</a>
 <a href="http://cenalulu.github.io/linux/professional-tmux-skills/">参考: 程序员高效技巧系列</a></p>
 </blockquote>
 <hr>
@@ -242,11 +235,11 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    set -g mouse on
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    set -g mouse on
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>按住Shift即可照常使用鼠标选中文本</p>
 <hr>
@@ -359,10 +352,10 @@ prefix c-r 加载历史会话</p>
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -379,7 +372,7 @@ prefix c-r 加载历史会话</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

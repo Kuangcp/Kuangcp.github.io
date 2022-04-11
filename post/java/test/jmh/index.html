@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/test/jmh/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="JMH" />
 <meta property="og:description" content="目录 start JMH 简易Demo 最佳实践 目录 end|2020-05-06 01:45| JMH Official Site jmh demos 参考: Java微基准测试框架JMH Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations =" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/test/jmh/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/test/jmh/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-05-06T01:44:38+00:00" />
 <meta property="article:modified_time" content="2020-05-06T01:44:38+00:00" />
+
 <meta itemprop="name" content="JMH">
-<meta itemprop="description" content="目录 start JMH 简易Demo 最佳实践 目录 end|2020-05-06 01:45| JMH Official Site jmh demos 参考: Java微基准测试框架JMH Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations =">
-<meta itemprop="datePublished" content="2020-05-06T01:44:38+00:00" />
+<meta itemprop="description" content="目录 start JMH 简易Demo 最佳实践 目录 end|2020-05-06 01:45| JMH Official Site jmh demos 参考: Java微基准测试框架JMH Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations ="><meta itemprop="datePublished" content="2020-05-06T01:44:38+00:00" />
 <meta itemprop="dateModified" content="2020-05-06T01:44:38+00:00" />
 <meta itemprop="wordCount" content="98">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JMH"/>
 <meta name="twitter:description" content="目录 start JMH 简易Demo 最佳实践 目录 end|2020-05-06 01:45| JMH Official Site jmh demos 参考: Java微基准测试框架JMH Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations ="/>
 
@@ -169,7 +165,7 @@
 <h2 id="简易demo">简易Demo</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -185,21 +181,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@BenchmarkMode</span><span class="o">(</span><span class="n">Mode</span><span class="o">.</span><span class="na">Throughput</span><span class="o">)</span>
-    <span class="nd">@Warmup</span><span class="o">(</span><span class="n">iterations</span> <span class="o">=</span> <span class="n">5</span><span class="o">)</span>
-    <span class="nd">@Measurement</span><span class="o">(</span><span class="n">iterations</span> <span class="o">=</span> <span class="n">10</span><span class="o">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">1</span><span class="o">)</span>
-    <span class="nd">@Threads</span><span class="o">(</span><span class="n">2</span><span class="o">)</span>
-    <span class="nd">@OutputTimeUnit</span><span class="o">(</span><span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">)</span>
-    <span class="kd">class</span> <span class="nc">Target</span><span class="o">{</span>
-        <span class="nd">@Benchmark</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">max</span><span class="o">(){</span>
-
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 运行 JMH
-</span><span class="c1"></span>    <span class="k">new</span> <span class="n">Runner</span><span class="o">(</span><span class="k">new</span> <span class="n">OptionsBuilder</span><span class="o">().</span><span class="na">include</span><span class="o">(</span><span class="n">Target</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">()).</span><span class="na">build</span><span class="o">()).</span><span class="na">run</span><span class="o">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="nd">@BenchmarkMode</span><span class="o">(</span><span class="n">Mode</span><span class="o">.</span><span class="na">Throughput</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Warmup</span><span class="o">(</span><span class="n">iterations</span> <span class="o">=</span> <span class="n">5</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Measurement</span><span class="o">(</span><span class="n">iterations</span> <span class="o">=</span> <span class="n">10</span><span class="o">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Threads</span><span class="o">(</span><span class="n">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@OutputTimeUnit</span><span class="o">(</span><span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">class</span> <span class="nc">Target</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Benchmark</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">max</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 运行 JMH
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">new</span> <span class="n">Runner</span><span class="o">(</span><span class="k">new</span> <span class="n">OptionsBuilder</span><span class="o">().</span><span class="na">include</span><span class="o">(</span><span class="n">Target</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">()).</span><span class="na">build</span><span class="o">()).</span><span class="na">run</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="最佳实践">最佳实践</h2>
 
@@ -229,7 +225,7 @@
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         <a class="next" href="/post/skills/media/pictureformat/">
-            <span class="next-text nav-default">图片格式</span>
+            <span class="next-text nav-default">图像格式</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -267,10 +263,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -287,7 +283,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

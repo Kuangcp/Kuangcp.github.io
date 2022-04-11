@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install Guide to Elasticsearch in Java Java 构建出 RestHighLevelClient 使用 bulk search 接口" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install | Docker Guide to Elasticsearch in Java docker run -d --name es7 --net es-network -p 9200:9200 -p 9300:9300 -e &amp;quot;discovery.type=single-node&amp;quot; -e ES_JAVA_OPTS=&amp;quot;-Xms2560m -Xmx2560m&amp;quot; elasticsearch:7.14.2 GUI 浏览器插件： Elasticvue" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/skills/search/elasticsearch/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Elasticsearch" />
-<meta property="og:description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install Guide to Elasticsearch in Java Java 构建出 RestHighLevelClient 使用 bulk search 接口" />
+<meta property="og:description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install | Docker Guide to Elasticsearch in Java docker run -d --name es7 --net es-network -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e ES_JAVA_OPTS=&quot;-Xms2560m -Xmx2560m&quot; elasticsearch:7.14.2 GUI 浏览器插件： Elasticvue" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/search/elasticsearch/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/search/elasticsearch/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-05-10T18:10:21+00:00" />
 <meta property="article:modified_time" content="2019-05-10T18:10:21+00:00" />
+
 <meta itemprop="name" content="Elasticsearch">
-<meta itemprop="description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install Guide to Elasticsearch in Java Java 构建出 RestHighLevelClient 使用 bulk search 接口">
-<meta itemprop="datePublished" content="2019-05-10T18:10:21+00:00" />
+<meta itemprop="description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install | Docker Guide to Elasticsearch in Java docker run -d --name es7 --net es-network -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e ES_JAVA_OPTS=&quot;-Xms2560m -Xmx2560m&quot; elasticsearch:7.14.2 GUI 浏览器插件： Elasticvue"><meta itemprop="datePublished" content="2019-05-10T18:10:21+00:00" />
 <meta itemprop="dateModified" content="2019-05-10T18:10:21+00:00" />
-<meta itemprop="wordCount" content="39">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="55">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Elasticsearch"/>
-<meta name="twitter:description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install Guide to Elasticsearch in Java Java 构建出 RestHighLevelClient 使用 bulk search 接口"/>
+<meta name="twitter:description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install | Docker Guide to Elasticsearch in Java docker run -d --name es7 --net es-network -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e ES_JAVA_OPTS=&quot;-Xms2560m -Xmx2560m&quot; elasticsearch:7.14.2 GUI 浏览器插件： Elasticvue"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/elk/"> ELK </a>
             </div>
-          <span class="more-meta"> 39 words </span>
+          <span class="more-meta"> 55 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -137,8 +133,11 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#install">Install</a></li>
-    <li><a href="#java">Java</a></li>
+    <li><a href="#install">Install</a>
+      <ul>
+        <li><a href="#gui">GUI</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -162,11 +161,12 @@
 </blockquote>
 <h2 id="install">Install</h2>
 <blockquote>
-<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html">install</a><br>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html">install</a> | <a href="https://hub.docker.com/_/elasticsearch/">Docker</a><br>
 <a href="https://www.baeldung.com/elasticsearch-java">Guide to Elasticsearch in Java</a></p>
 </blockquote>
-<h2 id="java">Java</h2>
-<p>构建出 RestHighLevelClient  使用 bulk search 接口</p>
+<p><code>docker run -d --name es7 --net es-network -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e ES_JAVA_OPTS=&quot;-Xms2560m -Xmx2560m&quot;   elasticsearch:7.14.2</code></p>
+<h3 id="gui">GUI</h3>
+<p>浏览器插件： Elasticvue</p>
 
     </div>
 
@@ -232,10 +232,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -252,7 +252,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

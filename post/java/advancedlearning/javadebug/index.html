@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Debug 远程调试 目录 end|2020-04-27 23:42| Debug 参考: 深入 Java 调试体系 jdb 远程调试" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Debug 远程调试 目录 end|2021-05-17 00:15| Debug 参考: 深入 Java 调试体系 jdb 参考: IDEA 的 debug 怎么实现？ 方案 应用方法CPU耗时或线程异常 表现： 应用启动慢，业务方法运行慢等等 思" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/javadebug/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Java中的Debug" />
-<meta property="og:description" content="目录 start Debug 远程调试 目录 end|2020-04-27 23:42| Debug 参考: 深入 Java 调试体系 jdb 远程调试" />
+<meta property="og:description" content="目录 start Debug 远程调试 目录 end|2021-05-17 00:15| Debug 参考: 深入 Java 调试体系 jdb 参考: IDEA 的 debug 怎么实现？ 方案 应用方法CPU耗时或线程异常 表现： 应用启动慢，业务方法运行慢等等 思" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javadebug/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javadebug/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-07-21T18:08:40+00:00" />
 <meta property="article:modified_time" content="2019-07-21T18:08:40+00:00" />
+
 <meta itemprop="name" content="Java中的Debug">
-<meta itemprop="description" content="目录 start Debug 远程调试 目录 end|2020-04-27 23:42| Debug 参考: 深入 Java 调试体系 jdb 远程调试">
-<meta itemprop="datePublished" content="2019-07-21T18:08:40+00:00" />
+<meta itemprop="description" content="目录 start Debug 远程调试 目录 end|2021-05-17 00:15| Debug 参考: 深入 Java 调试体系 jdb 参考: IDEA 的 debug 怎么实现？ 方案 应用方法CPU耗时或线程异常 表现： 应用启动慢，业务方法运行慢等等 思"><meta itemprop="datePublished" content="2019-07-21T18:08:40+00:00" />
 <meta itemprop="dateModified" content="2019-07-21T18:08:40+00:00" />
-<meta itemprop="wordCount" content="28">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="230">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java中的Debug"/>
-<meta name="twitter:description" content="目录 start Debug 远程调试 目录 end|2020-04-27 23:42| Debug 参考: 深入 Java 调试体系 jdb 远程调试"/>
+<meta name="twitter:description" content="目录 start Debug 远程调试 目录 end|2021-05-17 00:15| Debug 参考: 深入 Java 调试体系 jdb 参考: IDEA 的 debug 怎么实现？ 方案 应用方法CPU耗时或线程异常 表现： 应用启动慢，业务方法运行慢等等 思"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 28 words </span>
+          <span class="more-meta"> 230 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -137,6 +133,11 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
+    <li><a href="#方案">方案</a>
+      <ul>
+        <li><a href="#应用方法cpu耗时或线程异常">应用方法CPU耗时或线程异常</a></li>
+      </ul>
+    </li>
     <li><a href="#远程调试">远程调试</a></li>
   </ul>
 </nav>
@@ -151,7 +152,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-05-17 00:15</em>|</p>
 <hr>
 <h1 id="debug">Debug</h1>
 <blockquote>
@@ -159,6 +160,29 @@
 </blockquote>
 <ol>
 <li><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jdb.html">jdb</a></li>
+</ol>
+<blockquote>
+<p><a href="https://club.perfma.com/article/2405747">参考: IDEA 的 debug 怎么实现？</a></p>
+</blockquote>
+<h2 id="方案">方案</h2>
+<h3 id="应用方法cpu耗时或线程异常">应用方法CPU耗时或线程异常</h3>
+<p>表现：</p>
+<p>应用启动慢，业务方法运行慢等等</p>
+<p>思路：</p>
+<ol>
+<li>jstack 分析方法 在业务进入前，执行中，执行完毕后 等若干个节点上的线程差别，找出可能异常的线程和方法栈</li>
+<li>profile 查看CPU火焰图，找出耗时高的栈</li>
+<li>arthas 的 monitor 指令进行分析方法栈耗时监控，找出异常方法</li>
+</ol>
+<blockquote>
+<p>项目启动慢</p>
+</blockquote>
+<ol>
+<li>场景： Linux系统 hostname 没有配置到 /etc/hosts 文件中， 启动过程中频繁jstack能看出某线程被 getLocalHost 方法所阻塞
+<ul>
+<li>方案： hostname配置到 /etc/hosts</li>
+</ul>
+</li>
 </ol>
 <h2 id="远程调试">远程调试</h2>
 
@@ -226,10 +250,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -246,7 +270,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

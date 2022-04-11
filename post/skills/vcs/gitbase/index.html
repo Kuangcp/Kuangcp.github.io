@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Git基础 开源许可证 Git常用命令 基本命令 config clone Shallow Clone add rm status commit restore revert show log 对比两个分支的差异 查看文件的修改记录 blame diff diff 创建 patch apply format-patch am tag notes reset 回滚ad" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Git基础 开源许可证 Git常用命令 基本命令 config clone Shallow Clone sparse checkout 稀疏检出 add rm status commit restore revert show log 对比两个分支的差异 查看文件的修改记录 blame diff diff 创建 patch apply format-patch am tag" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/skills/vcs/gitbase/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Git基础" />
-<meta property="og:description" content="目录 start Git基础 开源许可证 Git常用命令 基本命令 config clone Shallow Clone add rm status commit restore revert show log 对比两个分支的差异 查看文件的修改记录 blame diff diff 创建 patch apply format-patch am tag notes reset 回滚ad" />
+<meta property="og:description" content="目录 start Git基础 开源许可证 Git常用命令 基本命令 config clone Shallow Clone sparse checkout 稀疏检出 add rm status commit restore revert show log 对比两个分支的差异 查看文件的修改记录 blame diff diff 创建 patch apply format-patch am tag" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/vcs/gitbase/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/vcs/gitbase/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Git基础">
-<meta itemprop="description" content="目录 start Git基础 开源许可证 Git常用命令 基本命令 config clone Shallow Clone add rm status commit restore revert show log 对比两个分支的差异 查看文件的修改记录 blame diff diff 创建 patch apply format-patch am tag notes reset 回滚ad">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start Git基础 开源许可证 Git常用命令 基本命令 config clone Shallow Clone sparse checkout 稀疏检出 add rm status commit restore revert show log 对比两个分支的差异 查看文件的修改记录 blame diff diff 创建 patch apply format-patch am tag"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="8106">
-
-
-
-<meta itemprop="keywords" content="基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="8828">
+<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Git基础"/>
-<meta name="twitter:description" content="目录 start Git基础 开源许可证 Git常用命令 基本命令 config clone Shallow Clone add rm status commit restore revert show log 对比两个分支的差异 查看文件的修改记录 blame diff diff 创建 patch apply format-patch am tag notes reset 回滚ad"/>
+<meta name="twitter:description" content="目录 start Git基础 开源许可证 Git常用命令 基本命令 config clone Shallow Clone sparse checkout 稀疏检出 add rm status commit restore revert show log 对比两个分支的差异 查看文件的修改记录 blame diff diff 创建 patch apply format-patch am tag"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"> 版本控制 </a>
             </div>
-          <span class="more-meta"> 8106 words </span>
-          <span class="more-meta"> 17 mins read </span>
+          <span class="more-meta"> 8828 words </span>
+          <span class="more-meta"> 18 mins read </span>
         
       </div>
     </header>
@@ -167,6 +163,7 @@
         <li><a href="#stash">stash</a></li>
         <li><a href="#branch">branch</a></li>
         <li><a href="#checkout">checkout</a></li>
+        <li><a href="#分支合并">分支合并</a></li>
         <li><a href="#merge">merge</a></li>
         <li><a href="#rebase">rebase</a></li>
         <li><a href="#cherry-pick">cherry-pick</a></li>
@@ -214,6 +211,7 @@
 <li><a href="#clone">clone</a>
 <ol>
 <li><a href="#shallow-clone">Shallow Clone</a></li>
+<li><a href="#sparse-checkout-%E7%A8%80%E7%96%8F%E6%A3%80%E5%87%BA">sparse checkout 稀疏检出</a></li>
 </ol>
 </li>
 <li><a href="#add">add</a></li>
@@ -265,6 +263,7 @@
 </li>
 <li><a href="#branch">branch</a></li>
 <li><a href="#checkout">checkout</a></li>
+<li><a href="#%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6">分支合并</a></li>
 <li><a href="#merge">merge</a></li>
 <li><a href="#rebase">rebase</a></li>
 <li><a href="#cherry-pick">cherry-pick</a></li>
@@ -300,31 +299,27 @@
 </li>
 <li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6">自定义插件</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-11-11 21:09</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-11-22 22:56</em>|</p>
 <hr>
 <h1 id="git基础">Git基础</h1>
 <blockquote>
 <p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. &ndash; <a href="https://git-scm.com/">git-scm.com</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://github.com/git/git">Github:git</a> | <a href="https://git-scm.com/docs">official doc: git</a><br>
-<a href="https://wiki.archlinux.org/index.php/Git">arch wiki: Git</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://gitee.com/all-about-git">Gitee: about git</a></p>
+<p><a href="https://github.com/git/git">Github:git</a> | <a href="https://git-scm.com/docs">Official Doc: git</a> | <a href="https://wiki.archlinux.org/index.php/Git">Arch Wiki: Git</a> | <a href="https://gitee.com/all-about-git">Gitee: about git</a> | <a href="https://npm.taobao.org/mirrors/git-for-windows/">git-for-windows mirrors</a></p>
 </blockquote>
 <ul>
-<li>
-<p>index stage work 三个概念上的区域</p>
+<li>index stage work 三个概念上的区域
 <ul>
 <li>index: 已经 commit 的内容, 不可更改历史commit</li>
 <li>stage: 执行 add 命令, 将文件缓存到该区</li>
 <li>work: 工作目录, 日常做修改的就是该分区</li>
 </ul>
 </li>
-<li>
-<p><a href="https://github.com/jonas/tig">tig</a></p>
-</li>
+</ul>
+<hr>
+<ul>
+<li><a href="https://git-lfs.github.com/">Git LFS</a> large file system</li>
 </ul>
 <h1 id="开源许可证">开源许可证</h1>
 <blockquote>
@@ -344,9 +339,6 @@
 <p><a href="http://www.techug.com/post/review-of-linus-torvalds-on-git.html">参考: 重看”Linus Torvalds on Git”视频</a>
 <a href="https://git-scm.com/downloads/guisQ">GUI客户端</a></p>
 </blockquote>
-<ul>
-<li><a href="http://jonas.nitro.dk/tig/manual.html">tig</a> <code>tig命令，git的加强版</code></li>
-</ul>
 <hr>
 <h2 id="基本命令">基本命令</h2>
 <blockquote>
@@ -378,7 +370,7 @@
 <p>打开<code>~/.gitconfig</code>文件能够发现这是 ini 格式的配置文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -393,20 +385,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[user]</span>
-    <span class="na">email</span> <span class="o">=</span> <span class="s">kuangcp@aliyun.com
-</span><span class="s">    name = kuangcp</span>
-<span class="k">[core]</span>
-    <span class="na">quotepath</span> <span class="o">=</span> <span class="s">false # 配置路径显示为中文
-</span><span class="s">    autocrlf = false
-</span><span class="s">    safecrlf = false</span>
-<span class="k">[credential]</span>
-    <span class="na">helper</span> <span class="o">=</span> <span class="s">store</span>
-<span class="k">[merge]</span>
-    <span class="na">tool</span> <span class="o">=</span> <span class="s">kdiff3 # 用于比较差异时使用的工具</span>
-<span class="na">[diff]    </span>
-    <span class="na">tool</span> <span class="o">=</span> <span class="s">meld # 配置在merge中发生冲突时的编辑工具,和diff中的tool近乎一致</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[user]</span>
+</span></span><span class="line"><span class="cl">    <span class="na">email</span> <span class="o">=</span> <span class="s">kuangcp@aliyun.com
+</span></span></span><span class="line"><span class="cl"><span class="s">    name = kuangcp</span>
+</span></span><span class="line"><span class="cl"><span class="k">[core]</span>
+</span></span><span class="line"><span class="cl">    <span class="na">quotepath</span> <span class="o">=</span> <span class="s">false # 配置路径显示为中文
+</span></span></span><span class="line"><span class="cl"><span class="s">    autocrlf = false
+</span></span></span><span class="line"><span class="cl"><span class="s">    safecrlf = false</span>
+</span></span><span class="line"><span class="cl"><span class="k">[credential]</span>
+</span></span><span class="line"><span class="cl">    <span class="na">helper</span> <span class="o">=</span> <span class="s">store</span>
+</span></span><span class="line"><span class="cl"><span class="k">[merge]</span>
+</span></span><span class="line"><span class="cl">    <span class="na">tool</span> <span class="o">=</span> <span class="s">kdiff3 # 用于比较差异时使用的工具</span>
+</span></span><span class="line"><span class="cl"><span class="na">[diff]    </span>
+</span></span><span class="line"><span class="cl">    <span class="na">tool</span> <span class="o">=</span> <span class="s">meld # 配置在merge中发生冲突时的编辑工具,和diff中的tool近乎一致</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>可用： opendiff kdiff3 tkdiff xxdiff meld kompare gvimdiff diffuse diffmerge ecmerge p4merge araxis bc codecompare smerge vimdiff emerge<br>
@@ -427,9 +419,13 @@
 </ul>
 <h4 id="shallow-clone">Shallow Clone</h4>
 <ul>
-<li><code>git clone --depth 1 URL</code> 只克隆最近一次提交的历史, 能大大减小拉取的大小
+<li>
+<p><code>git fetch --unshallow</code> 转换为完整仓库</p>
+</li>
+<li>
+<p><code>git clone --depth 1 URL</code> 只克隆最近一次提交的历史, 能大大减小拉取的大小</p>
 <ul>
-<li>但是如果要新建一个远程仓库, 并推送过去，会报错:<code>shallow update not allowed</code> 因为本地库是残缺的
+<li>但是如果要新建一个分支, 并推送过去，会报错:<code>shallow update not allowed</code> 因为本地库是残缺的
 <ul>
 <li>此时需要 <code>git remote set-branches origin '*'</code> 然后 <code>git pull</code> 就会拉取所有信息成为完整的仓库</li>
 </ul>
@@ -446,8 +442,21 @@
 </ul>
 <ol>
 <li>只克隆 指定标签或分支 且不包含内容 <code>git clone -b &lt;tag_name&gt; --single-branch --depth 1 &lt;repo_url&gt;</code> <strong>大大缩减需下载的仓库大小</strong></li>
-<li>TODO 变基 补充 shallow commit</li>
 </ol>
+<h4 id="sparse-checkout-稀疏检出">sparse checkout 稀疏检出</h4>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/680f2c6c84de">参考: git sparse checkout (稀疏检出)</a></p>
+</blockquote>
+<ol>
+<li>git init name</li>
+<li>cd name</li>
+<li>git remote add origin URL</li>
+<li>git config core.sparsecheckout true</li>
+<li>echo &ldquo;path1/&rdquo; &raquo; .git/info/sparse-checkout</li>
+<li>echo &ldquo;path2/&rdquo; &raquo; .git/info/sparse-checkout</li>
+<li>git pull origin master</li>
+</ol>
+<p>此时，只会pull下符合 sparse-checkout 文件内规则(与 .gitignore 写法一致)的目录或文件</p>
 <hr>
 <h3 id="add">add</h3>
 <ul>
@@ -520,8 +529,9 @@
 <hr>
 <h3 id="restore">restore</h3>
 <ul>
-<li>将 Readme.md 回滚到 master倒数第三个 commit 的状态 <code>git restore -s master~2 Readme.md</code>
+<li>丢弃所有改动，将 Readme.md
 <ul>
+<li>回滚到 master倒数第三个 commit <code>git restore -s master~2 Readme.md</code></li>
 <li>回滚至指定提交 <code>git restore -s commitid filepath</code></li>
 </ul>
 </li>
@@ -553,7 +563,7 @@
 <hr>
 <h3 id="show">show</h3>
 <blockquote>
-<p>展示提交信息</p>
+<p>展示提交的详细信息 注意show和 diff 的输出仅仅相似 不可用于 patch</p>
 </blockquote>
 <ul>
 <li>显示当前提交的差异 <code>git show HEAD</code>
@@ -625,19 +635,19 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nb">alias</span> <span class="nv">glogc</span><span class="o">=</span><span class="s2">&#34;git log --graph --pretty=format:&#39;%Cred%h%Creset %Cgreen%ad%Creset | %C(bold cyan)&lt;%an&gt;%Creset %C(yellow)%d%Creset %s &#39; --abbrev-commit --date=short&#34;</span> <span class="c1"># 彩色输出</span>
-    <span class="nb">alias</span> <span class="nv">gloga</span><span class="o">=</span><span class="s1">&#39;git log --oneline --decorate --graph --all&#39;</span> <span class="c1"># 简短彩色输出</span>
-    <span class="nb">alias</span> <span class="nv">glo</span><span class="o">=</span><span class="s1">&#39;git log --oneline --decorate&#39;</span> <span class="c1"># 最简单</span>
-    <span class="nb">alias</span> <span class="nv">glol</span><span class="o">=</span><span class="s1">&#39;git log --graph --pretty=&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39;</span><span class="se">\&#39;</span>
-    <span class="nb">alias</span> <span class="nv">glola</span><span class="o">=</span><span class="s1">&#39;git log --graph --pretty=&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39;</span><span class="se">\&#39;</span><span class="s1">&#39; --all&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="nb">alias</span> <span class="nv">glogc</span><span class="o">=</span><span class="s2">&#34;git log --graph --pretty=format:&#39;%Cred%h%Creset %Cgreen%ad%Creset | %C(bold cyan)&lt;%an&gt;%Creset %C(yellow)%d%Creset %s &#39; --abbrev-commit --date=short&#34;</span> <span class="c1"># 彩色输出</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">alias</span> <span class="nv">gloga</span><span class="o">=</span><span class="s1">&#39;git log --oneline --decorate --graph --all&#39;</span> <span class="c1"># 简短彩色输出</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">alias</span> <span class="nv">glo</span><span class="o">=</span><span class="s1">&#39;git log --oneline --decorate&#39;</span> <span class="c1"># 最简单</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">alias</span> <span class="nv">glol</span><span class="o">=</span><span class="s1">&#39;git log --graph --pretty=&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39;</span><span class="se">\&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">alias</span> <span class="nv">glola</span><span class="o">=</span><span class="s1">&#39;git log --graph --pretty=&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39;</span><span class="se">\&#39;</span><span class="s1">&#39; --all&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="对比两个分支的差异">对比两个分支的差异</h4>
 <blockquote>
@@ -678,6 +688,11 @@
 <li>git log fileName 或者 git log &ndash;pretty=oneline fileName 更容易看到 sha-1 值</li>
 <li>git show sha-1的值 就能看到该次提交的所有修改</li>
 </ol>
+<h4 id="全局搜索修改内容">全局搜索修改内容</h4>
+<blockquote>
+<p>如果忘记了修改的分支名，仅记得修改部分的关键字</p>
+</blockquote>
+<p>git log &ndash;oneline -S &ldquo;search keyword&rdquo; &ndash;source &ndash;all</p>
 <hr>
 <h3 id="blame">blame</h3>
 <blockquote>
@@ -695,19 +710,19 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    git diff [options] [&lt;commit&gt;] [--] [&lt;path&gt;...]
-    git diff [options] --cached [&lt;commit&gt;] [--] [&lt;path&gt;...]
-    git diff [options] &lt;commit&gt; &lt;commit&gt; [--] [&lt;path&gt;...]
-    git diff [options] &lt;blob&gt; &lt;blob&gt;
-    git diff [options] [--no-index] [--] &lt;path&gt; &lt;path&gt;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    git diff [options] [&lt;commit&gt;] [--] [&lt;path&gt;...]
+</span></span><span class="line"><span class="cl">    git diff [options] --cached [&lt;commit&gt;] [--] [&lt;path&gt;...]
+</span></span><span class="line"><span class="cl">    git diff [options] &lt;commit&gt; &lt;commit&gt; [--] [&lt;path&gt;...]
+</span></span><span class="line"><span class="cl">    git diff [options] &lt;blob&gt; &lt;blob&gt;
+</span></span><span class="line"><span class="cl">    git diff [options] [--no-index] [--] &lt;path&gt; &lt;path&gt;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p><a href="https://github.com/so-fancy/diff-so-fancy">Github:diff-so-fancy</a><code>一个更方便查看diff的工具</code></p>
@@ -728,7 +743,7 @@
 <hr>
 <h3 id="apply">apply</h3>
 <blockquote>
-<p>使用 diff 或者 stash 得到的 patch 文件</p>
+<p>将patch文件应用到 index区。  Apply a patch to files and/or to the index</p>
 </blockquote>
 <ul>
 <li><code>git apply --ignore-space-change --ignore-whitespace first.patch</code></li>
@@ -737,8 +752,11 @@
 <hr>
 <h3 id="format-patch">format-patch</h3>
 <blockquote>
-<p>Prepare patches for e-mail submission<br>
+<p>将patch文件应用为commit。 Prepare patches for e-mail submission<br>
 <a href="https://devconnected.com/how-to-create-and-apply-git-patch-files/">参考: How To Create and Apply Git Patch Files</a></p>
+</blockquote>
+<blockquote>
+<p>创建 patch</p>
 </blockquote>
 <ul>
 <li>
@@ -754,6 +772,10 @@
 <p><code>git format-patch master  --stdout &gt; total.patch</code> 将所有patch文件合并为一个</p>
 </li>
 </ul>
+<blockquote>
+<p>使用 patch</p>
+</blockquote>
+<p>使用<a href="#am">am</a> 或者 <a href="#apply">apply</a> 命令</p>
 <hr>
 <h3 id="am">am</h3>
 <blockquote>
@@ -777,7 +799,7 @@
 <p>查看所有标签 <code>git tag</code></p>
 <ul>
 <li><code>-l 'v1.0.*'</code> 列出v1.0.*</li>
-<li><code>git show tagname</code>　展示标签注释信息</li>
+<li><code>git show tagname</code> 展示标签注释信息</li>
 </ul>
 </li>
 <li>
@@ -814,7 +836,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -829,20 +851,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">用法：git reset [--mixed | --soft | --hard | --merge | --keep] [-q] [&lt;提交&gt;]
-  或：git reset [-q] [&lt;树或提交&gt;] [--] &lt;路径&gt;...
-  或：git reset --patch [&lt;树或提交&gt;] [--] [&lt;路径&gt;...]
-
-    -q, --quiet           安静模式，只报告错误
-    --mixed               重置 HEAD 和索引
-    --soft                只重置 HEAD
-    --hard                重置 HEAD、索引和工作区
-    --merge               重置 HEAD、索引和工作区
-    --keep                重置 HEAD 但保存本地变更
-    --recurse-submodules[=&lt;reset&gt;]  control recursive updating of submodules
-    -p, --patch           交互式挑选数据块
-    -N, --intent-to-add   将删除的路径标记为稍后添加
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">用法：git reset [--mixed | --soft | --hard | --merge | --keep] [-q] [&lt;提交&gt;]
+</span></span><span class="line"><span class="cl">  或：git reset [-q] [&lt;树或提交&gt;] [--] &lt;路径&gt;...
+</span></span><span class="line"><span class="cl">  或：git reset --patch [&lt;树或提交&gt;] [--] [&lt;路径&gt;...]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    -q, --quiet           安静模式，只报告错误
+</span></span><span class="line"><span class="cl">    --mixed               重置 HEAD 和索引
+</span></span><span class="line"><span class="cl">    --soft                只重置 HEAD
+</span></span><span class="line"><span class="cl">    --hard                重置 HEAD、索引和工作区
+</span></span><span class="line"><span class="cl">    --merge               重置 HEAD、索引和工作区
+</span></span><span class="line"><span class="cl">    --keep                重置 HEAD 但保存本地变更
+</span></span><span class="line"><span class="cl">    --recurse-submodules[=&lt;reset&gt;]  control recursive updating of submodules
+</span></span><span class="line"><span class="cl">    -p, --patch           交互式挑选数据块
+</span></span><span class="line"><span class="cl">    -N, --intent-to-add   将删除的路径标记为稍后添加
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p><a href="https://www.v2ex.com/t/296286">参考: 使用reset回滚代码</a></p>
@@ -1031,10 +1053,15 @@
 <blockquote>
 <p><a href="https://stackoverflow.com/questions/89332/how-to-recover-a-dropped-stash-in-git">How to recover a dropped stash in Git?</a></p>
 </blockquote>
-<p>可以恢复 误操作 stash drop 或者 clean 的内容</p>
+<p>可以恢复 stash drop 或者 clean 的内容。stash drop后会输出 <code>Dropped refs/stash@{0} (......)</code>， 括号内就是该次stash对应的commitId</p>
 <ul>
-<li><code>git fsck --no-reflog | awk '/dangling commit/ {print $3}'</code></li>
-<li>WIP 开头的就是 stash 对应的 commit , 找到对应的 sha1 id 建立新分支即可 (在命令后接管道 <code> | xargs git show</code>, 查找代码内容)
+<li><code>git fsck --no-reflog | awk '/dangling commit/ {print $3}'</code>
+<ul>
+<li>使用 gitk 显示<code>gitk --all $(git fsck --no-reflog | awk '/dangling commit/ {print $3}')</code></li>
+<li>或者在命令后接管道 <code> | xargs git show</code>, 查找代码内容</li>
+</ul>
+</li>
+<li>WIP 开头的就是 stash 对应的 commit , 找到对应的 sha1 id 建立新分支即可
 <ul>
 <li>也就是说 stash 仍然是采用 分支 来实现的, 在某个分支stash 就相当于在该分支进行 commit</li>
 </ul>
@@ -1118,27 +1145,45 @@
 <blockquote>
 <p>实验性命令： git switch branch</p>
 </blockquote>
+<h3 id="分支合并">分支合并</h3>
+<blockquote>
+<p>merge rebase</p>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/192972614">这才是真正的 Git——分支合并</a></p>
+<p>Git 在合并分支的时候使用的是 三向合并策略，即当前分支和目标分支的共同祖先commit节点， 和两个分支的当前commmit节点进行比较确定哪一方发生修改需要纳入，如果两方都修改就要提示冲突</p>
+<p><code>git merge-base 分支1 分支2</code> 可以查看两个分支的共同祖先</p>
+<blockquote>
+<p><img src="img/git-merge-situation.drawio.svg" alt=""></p>
+</blockquote>
+<p>根据 Git 的合并策略，在合并两个有分叉的分支（上图中的 D、E‘）时，Git 默认会选择 Recursive 策略。找到 D 和 E’的最短路径共同祖先节点 B，以 B 为 base，对 D，E‘做三向合并。</p>
+<p>B 中有 http.js，D 中有 http.js 和 main.js，E’中什么都没有。根据三向合并，B、D 中都有 http.js 且没有变更，E‘删除了 http.js，所以合并结果就是没有 http.js，没有冲突，所以 http.js 最终会被删除。</p>
 <h3 id="merge">merge</h3>
 <ul>
 <li><a href="https://git-scm.com/docs/git-merge">官方文档</a></li>
 </ul>
 <blockquote>
-<p><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%AB%98%E7%BA%A7%E5%90%88%E5%B9%B6">Official Doc: 高级合并</a>
-<a href="http://blog.jobbole.com/97911/">参考: 解决 Git 冲突的 14 个建议和工具</a></p>
+<p><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%AB%98%E7%BA%A7%E5%90%88%E5%B9%B6">Official Doc: 高级合并</a><br>
+<a href="https://www.jianshu.com/p/58a166f24c81">参考: git-merge完全解析</a></p>
 </blockquote>
 <ul>
-<li><code>git merge develop </code>默认会直接将当前分支指向Develop分支。(一条拐弯的分支线)</li>
-<li>推荐: <code>git merge --no-ff develop</code> 在当前分支<code>主动合并</code>分支Develop，在当前分支上生成一个新节点(有一个环的线)</li>
-</ul>
-<ol>
-<li>merge 就是获取对方的修改, 与自己这一份进行合并(对 对方没有任何影响)
+<li>
+<p><code>git merge develop</code> 默认 是 ff(fast forward) 不生成新节点，直接将当前分支指向Develop分支。(一条拐弯的分支线)</p>
 <ul>
-<li><code>master merge dev</code> 就是 master 下载 dev 的那一份代码, 与自己的这份代码合并为一份</li>
+<li>推荐: <code>git merge --no-ff develop</code> 在当前分支<code>主动合并</code>分支Develop，生成一个新节点，分支图的合并路径清晰</li>
 </ul>
 </li>
-</ol>
+<li>
+<p><code>--squash</code> 和 <code>--no-squash</code> 该参数和 <code>--no-ff</code> 冲突</p>
 <ul>
-<li>如果遇到冲突：
+<li>使用 <code>--squash</code> 时，当一个合并发生时，从当前分支和对方分支的共同祖先节点，一直到对方分支的顶部节点内的所有提交内容将修改当前工作区，使用者可以经过审视后进行提交，产生一个新的节点。</li>
+<li>这种情况下分支图看不到合并的环，只会看作一个简单的提交</li>
+</ul>
+</li>
+<li>
+<p>查看两个分支共同祖先 <code>git merge-base 分支1 分支2</code></p>
+</li>
+<li>
+<p>如果遇到冲突：</p>
 <ul>
 <li><code>git mergetool</code> 使用工具进行分析冲突文件方便修改</li>
 </ul>
@@ -1162,11 +1207,10 @@
 <blockquote>
 <p>衍和操作 <a href="http://blog.csdn.net/endlu/article/details/51605861">参考博客</a> |
 <a href="http://blog.csdn.net/zwlove5280/article/details/46649799">Git rebase -i 交互变基</a> |
-<a href="http://blog.csdn.net/zwlove5280/article/details/46708969">git rebase的原理之多人合作分支管理</a> <br>
-他会将分支中的圈, 消除掉, 成为线性结构</p>
+<a href="http://blog.csdn.net/zwlove5280/article/details/46708969">git rebase的原理之多人合作分支管理</a><br>
+这种合并方式，不会像merge方式那样在分支图上出现多个圈，而是线性演进, 但是遇到冲突后会改动历史提交，导致提交不是按时间演进，不利于分布式协作</p>
 </blockquote>
 <ul>
-<li>效果和merge差不多，但是分支图更清晰?TODO 有待详细学习</li>
 <li>与master合并：<code>git merge master</code> 换成 <code>git rebase master</code></li>
 <li>当遇到冲突：
 <ul>
@@ -1181,7 +1225,7 @@ dev 提交了 d,e</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1192,16 +1236,16 @@ dev 提交了 d,e</p>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">merge master: 
-
-master: a - b - c 
-             \   \
-dev:          d - e
-
-rebase master: 
-
-master: a - b - c - d&#39; - e&#39;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">merge master: 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">master: a - b - c 
+</span></span><span class="line"><span class="cl">             \   \
+</span></span><span class="line"><span class="cl">dev:          d - e
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">rebase master: 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">master: a - b - c - d&#39; - e&#39;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>merge 会保留分支图, rebase 会保持提交记录为单分支</p>
 <hr>
@@ -1373,10 +1417,29 @@ master: a - b - c - d&#39; - e&#39;
 <p>不仅仅是 fetch 代码, 还会进行 merge 操作, 所以安全起见, 是先 fetch 然后再手动 merge</p>
 </blockquote>
 <ul>
-<li><code>git pull origin dev</code> 下拉指定远程的指定分支</li>
-<li><code>git pull --all</code> 下拉默认远程的所有分支代码并自动合并</li>
+<li>
+<p><code>git pull origin dev</code> 下拉指定远程的指定分支</p>
+</li>
+<li>
+<p><code>git pull --all</code> 下拉默认远程的所有分支代码并自动合并</p>
+</li>
+<li>
+<p>拉取项目所有远程分支到本地</p>
+</li>
 </ul>
-<hr>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git branch -r <span class="p">|</span> grep -v <span class="s1">&#39;\-&gt;&#39;</span> <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> remote<span class="p">;</span> <span class="k">do</span> git branch --track <span class="s2">&#34;</span><span class="si">${</span><span class="nv">remote</span><span class="p">#origin/</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$remote</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">done</span>
+</span></span><span class="line"><span class="cl">git fetch --all
+</span></span><span class="line"><span class="cl">git pull --all
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h2 id="submodule">Submodule</h2>
 <blockquote>
 <p><a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">Official Doc</a></p>
@@ -1452,7 +1515,7 @@ master: a - b - c - d&#39; - e&#39;
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1462,15 +1525,15 @@ master: a - b - c - d&#39; - e&#39;
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    */ #忽略所有文件
-    build/ #所有build目录
-    /build #只忽略当前目录的build, 子目录的不忽略
-    *.iml #所有iml文件
-    ?.log #忽略所有 后缀为log, 文件名字只有一个字母
-    !*.java #不忽略所有java文件
-    a.[abc] #忽略 后缀为 a或者b或者c 的文件
-    doc/*.txt #忽略 doc一级子目录的txt文件, 不忽略多级子目录中txt
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    */ #忽略所有文件
+</span></span><span class="line"><span class="cl">    build/ #所有build目录
+</span></span><span class="line"><span class="cl">    /build #只忽略当前目录的build, 子目录的不忽略
+</span></span><span class="line"><span class="cl">    *.iml #所有iml文件
+</span></span><span class="line"><span class="cl">    ?.log #忽略所有 后缀为log, 文件名字只有一个字母
+</span></span><span class="line"><span class="cl">    !*.java #不忽略所有java文件
+</span></span><span class="line"><span class="cl">    a.[abc] #忽略 后缀为 a或者b或者c 的文件
+</span></span><span class="line"><span class="cl">    doc/*.txt #忽略 doc一级子目录的txt文件, 不忽略多级子目录中txt
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="gitattributes">gitattributes</h2>
@@ -1522,7 +1585,7 @@ master: a - b - c - d&#39; - e&#39;
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         <a class="next" href="/post/skills/vcs/gitaction/">
-            <span class="next-text nav-default">Git小技巧</span>
+            <span class="next-text nav-default">Git实践技巧</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -1560,10 +1623,10 @@ master: a - b - c - d&#39; - e&#39;
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -1580,7 +1643,7 @@ master: a - b - c - d&#39; - e&#39;
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

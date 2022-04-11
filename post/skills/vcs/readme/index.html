@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="常见VCS Git 分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便 最大的区别是其他的 VCS 都是 一个增量式的文件集合, git 是文件的一系列快照, 类" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="常见VCS Git 分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便 缺点有 处理大仓库时会很慢, 没有访问权限的控制， 不适用二进制文件管理， s" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/skills/vcs/readme/" />
@@ -35,26 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="" />
-<meta property="og:description" content="常见VCS Git 分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便 最大的区别是其他的 VCS 都是 一个增量式的文件集合, git 是文件的一系列快照, 类" />
+<meta property="og:description" content="常见VCS Git 分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便 缺点有 处理大仓库时会很慢, 没有访问权限的控制， 不适用二进制文件管理， s" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/vcs/readme/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/vcs/readme/" /><meta property="article:section" content="post" />
+
+
 
 <meta itemprop="name" content="">
-<meta itemprop="description" content="常见VCS Git 分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便 最大的区别是其他的 VCS 都是 一个增量式的文件集合, git 是文件的一系列快照, 类">
+<meta itemprop="description" content="常见VCS Git 分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便 缺点有 处理大仓库时会很慢, 没有访问权限的控制， 不适用二进制文件管理， s">
 
-<meta itemprop="wordCount" content="542">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="610">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="常见VCS Git 分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便 最大的区别是其他的 VCS 都是 一个增量式的文件集合, git 是文件的一系列快照, 类"/>
+<meta name="twitter:description" content="常见VCS Git 分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便 缺点有 处理大仓库时会很慢, 没有访问权限的控制， 不适用二进制文件管理， s"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 0001-01-01 </span>
         
-          <span class="more-meta"> 542 words </span>
+          <span class="more-meta"> 610 words </span>
           <span class="more-meta"> 2 mins read </span>
         
       </div>
@@ -134,6 +132,7 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#git">Git</a></li>
+    <li><a href="#repo">Repo</a></li>
     <li><a href="#svn">SVN</a></li>
     <li><a href="#perforce">PerForce</a></li>
     <li><a href="#mercurial">Mercurial</a></li>
@@ -146,15 +145,17 @@
       <h1 id="常见vcs">常见VCS</h1>
 <h2 id="git">Git</h2>
 <blockquote>
-<p>分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便</p>
+<p>分布式的去中心化的, 大多数操作是本地化操作, 速度快, 更方便
+缺点有 处理大仓库时会很慢, 没有访问权限的控制， 不适用二进制文件管理， submodules使用不方便</p>
 </blockquote>
 <ul>
 <li>最大的区别是其他的 VCS 都是 一个增量式的文件集合, git 是文件的一系列快照, 类似于 AUFS 文件系统一层一层那样</li>
 </ul>
-<p><a href="https://git-lfs.github.com/">Git LFS</a></p>
+<h2 id="repo">Repo</h2>
+<p>Repo 简化了跨多个代码库运行的流程，与 Git 相辅相成</p>
 <h2 id="svn">SVN</h2>
 <blockquote>
-<p><a href="/Linux/Svn.md">Svn笔记</a></p>
+<p><a href="/Skills/Vcs/Svn.md">Svn笔记</a></p>
 </blockquote>
 <ol>
 <li>中心化的, 代码统一保存, 如果中心发生错误, 代码会全部毁掉, 提交是必须要和服务端通信才能完成</li>
@@ -162,7 +163,7 @@
 <li>优点: 能够精确控制每个目录的每个人的访问权限</li>
 </ol>
 <hr>
-<p><strong><code>git和SVN一起用</code></strong></p>
+<p><strong><code>Git和SVN同时使用</code></strong></p>
 <p>可以通过 git-svn 使用Git的命令与SVN服务器进行交互</p>
 <blockquote>
 <p><a href="https://git-scm.com/docs/git-svn">Official doc: git-svn</a></p>
@@ -172,17 +173,17 @@
 <a href="https://www.cnblogs.com/dasusu/p/7774469.html">参考: 为啥要同时用 SVN 和 Git 管理项目</a></p>
 </blockquote>
 <ol>
-<li>避免LRLF LF 问题</li>
+<li>避免 CRLF LF 问题</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    git config --global core.autocrlf <span class="nb">false</span>
-    git config --global core.safecrlf <span class="nb">false</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    git config --global core.autocrlf <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">    git config --global core.safecrlf <span class="nb">false</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>互相忽略各自配置目录 .svn .git</li>
@@ -221,7 +222,7 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/skills/softwareengineering/situation/">
+        <a class="prev" href="/post/skills/test/readme/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default"></span>
             <span class="prev-text nav-mobile">Prev</span>
@@ -265,10 +266,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -285,7 +286,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

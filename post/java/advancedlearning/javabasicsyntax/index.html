@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 基础语法 代码风格 结构 判断 循环 标准输入输出 Runtime 数据类型 自动拆装箱 基础数据类型 byte char boolean short int long float double 封装类型 String Float Double Integer Long Boolean Void 枚举类型 内部类 类型强转 时" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 基础语法 代码风格 结构 判断 循环 标准输入输出 Runtime 优雅关机 数据类型 自动拆装箱 基础数据类型 byte char boolean short int long float double 封装类型 String Float Double Integer Long Boolean Void 枚举类型 内部类 类" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/javabasicsyntax/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Java基础语法" />
-<meta property="og:description" content="目录 start 基础语法 代码风格 结构 判断 循环 标准输入输出 Runtime 数据类型 自动拆装箱 基础数据类型 byte char boolean short int long float double 封装类型 String Float Double Integer Long Boolean Void 枚举类型 内部类 类型强转 时" />
+<meta property="og:description" content="目录 start 基础语法 代码风格 结构 判断 循环 标准输入输出 Runtime 优雅关机 数据类型 自动拆装箱 基础数据类型 byte char boolean short int long float double 封装类型 String Float Double Integer Long Boolean Void 枚举类型 内部类 类" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javabasicsyntax/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javabasicsyntax/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Java基础语法">
-<meta itemprop="description" content="目录 start 基础语法 代码风格 结构 判断 循环 标准输入输出 Runtime 数据类型 自动拆装箱 基础数据类型 byte char boolean short int long float double 封装类型 String Float Double Integer Long Boolean Void 枚举类型 内部类 类型强转 时">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start 基础语法 代码风格 结构 判断 循环 标准输入输出 Runtime 优雅关机 数据类型 自动拆装箱 基础数据类型 byte char boolean short int long float double 封装类型 String Float Double Integer Long Boolean Void 枚举类型 内部类 类"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="5871">
-
-
-
-<meta itemprop="keywords" content="基础,语法," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="6026">
+<meta itemprop="keywords" content="基础,语法," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java基础语法"/>
-<meta name="twitter:description" content="目录 start 基础语法 代码风格 结构 判断 循环 标准输入输出 Runtime 数据类型 自动拆装箱 基础数据类型 byte char boolean short int long float double 封装类型 String Float Double Integer Long Boolean Void 枚举类型 内部类 类型强转 时"/>
+<meta name="twitter:description" content="目录 start 基础语法 代码风格 结构 判断 循环 标准输入输出 Runtime 优雅关机 数据类型 自动拆装箱 基础数据类型 byte char boolean short int long float double 封装类型 String Float Double Integer Long Boolean Void 枚举类型 内部类 类"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 5871 words </span>
-          <span class="more-meta"> 12 mins read </span>
+          <span class="more-meta"> 6026 words </span>
+          <span class="more-meta"> 13 mins read </span>
         
       </div>
     </header>
@@ -145,7 +141,11 @@
       </ul>
     </li>
     <li><a href="#标准输入输出">标准输入输出</a></li>
-    <li><a href="#runtime">Runtime</a></li>
+    <li><a href="#runtime">Runtime</a>
+      <ul>
+        <li><a href="#优雅关机">优雅关机</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
@@ -249,7 +249,11 @@
 </ol>
 </li>
 <li><a href="#%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">标准输入输出</a></li>
-<li><a href="#runtime">Runtime</a></li>
+<li><a href="#runtime">Runtime</a>
+<ol>
+<li><a href="#%E4%BC%98%E9%9B%85%E5%85%B3%E6%9C%BA">优雅关机</a></li>
+</ol>
+</li>
 </ol>
 </li>
 <li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>
@@ -347,7 +351,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-11-25 16:19</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-05-17 00:15</em>|</p>
 <hr>
 <h1 id="基础语法">基础语法</h1>
 <h2 id="代码风格">代码风格</h2>
@@ -405,9 +409,19 @@
 <li><code>Runtime.getRuntime().addShutdownHook(Thread thread)</code></li>
 </ul>
 <ol>
-<li>在JVM正常退出时会调用注册的Hook</li>
-<li>例如 System.exit(), 或者 Java 进程收到退出的信号 SIGTERM SIGINT SIGQUIT 等等, 但是暴力退出是不会被调用到Hook的</li>
+<li>在JVM正常退出时会调用 已注册的Hook
+<ol>
+<li>例如 System.exit(), 或者 Java 进程收到退出的信号 SIGTERM SIGINT SIGQUIT 等等</li>
+<li>但是 SIGKILL 方式， Runtime.halt(), 断电， 系统Crash 等问题不可能有时机执行Hook</li>
 </ol>
+</li>
+</ol>
+<h3 id="优雅关机">优雅关机</h3>
+<p>当关闭服务器A时，先将该服务器的入口流量屏蔽，防止新的请求进入，然后等服务器完成原有请求的响应，以及一些资源清理行为后，完全关闭</p>
+<blockquote>
+<p><a href="https://cloud.tencent.com/developer/article/1409225">参考: Kubernetes 中如何保证优雅地停止 Pod</a><br>
+<a href="https://www.cnblogs.com/yuandluck/p/9517700.html">参考: JVM安全退出（如何优雅的关闭java服务）</a></p>
+</blockquote>
 <hr>
 <h1 id="数据类型">数据类型</h1>
 <blockquote>
@@ -577,13 +591,13 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="k">assert</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">1</span><span class="o">)</span> <span class="o">==</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
-    <span class="k">assert</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">128</span><span class="o">)</span> <span class="o">!=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">128</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">1</span><span class="o">)</span> <span class="o">==</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">128</span><span class="o">)</span> <span class="o">!=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">128</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="string">String</h3>
 <blockquote>
@@ -595,7 +609,7 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
 <ul>
 <li>存放于方法区(虚拟机规范中所声明)内，依据不同的JVM实现
 <ul>
-<li>方法区实现的存储位置也不一致，在JDK 1.7之前存于永久区，1.7及之后都在堆中(方法区处于堆中)</li>
+<li>方法区实现的存储位置也不一致，在JDK 7以前的版本中，字符串常量池是放在永久代中的。在JDK 7中，放于堆内存中。 在JDK 8中，彻底移除了永久代，放在元空间中</li>
 </ul>
 </li>
 <li><a href="https://segmentfault.com/a/1190000009888357">String：字符串常量池</a></li>
@@ -661,24 +675,24 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">LeavesVisitor</span><span class="o">&lt;</span><span class="n">OUT</span><span class="o">&gt;{</span>
-        <span class="n">OUT</span> <span class="nf">visit</span><span class="o">(</span><span class="n">Leaf1</span> <span class="n">leaf</span><span class="o">);</span>
-        <span class="n">OUT</span> <span class="nf">visit</span><span class="o">(</span><span class="n">Leaf2</span> <span class="n">leaf</span><span class="o">);</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">LeavesVisitor</span><span class="o">&lt;</span><span class="n">OUT</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">OUT</span> <span class="nf">visit</span><span class="o">(</span><span class="n">Leaf1</span> <span class="n">leaf</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">OUT</span> <span class="nf">visit</span><span class="o">(</span><span class="n">Leaf2</span> <span class="n">leaf</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>When you will implement your visitor you can explicitly set OUT to be Void so that you know your visitor will always return null, instead of using Object</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -690,17 +704,17 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyVoidVisitor</span> <span class="kd">implements</span> <span class="n">LeavesVisitor</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;{</span>
-        <span class="n">Void</span> <span class="nf">visit</span><span class="o">(</span><span class="n">Leaf1</span> <span class="n">leaf</span><span class="o">){</span>
-            <span class="c1">//...do what you want on your leaf
-</span><span class="c1"></span>            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">Void</span> <span class="nf">visit</span><span class="o">(</span><span class="n">Leaf2</span> <span class="n">leaf</span><span class="o">){</span>
-            <span class="c1">//...do what you want on your leaf
-</span><span class="c1"></span>            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyVoidVisitor</span> <span class="kd">implements</span> <span class="n">LeavesVisitor</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Void</span> <span class="nf">visit</span><span class="o">(</span><span class="n">Leaf1</span> <span class="n">leaf</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//...do what you want on your leaf
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Void</span> <span class="nf">visit</span><span class="o">(</span><span class="n">Leaf2</span> <span class="n">leaf</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//...do what you want on your leaf
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="枚举类型">枚举类型</h2>
@@ -724,7 +738,7 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -738,19 +752,19 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">enum</span> <span class="n">Tool</span><span class="o">{</span>
-        <span class="n">INSTANCE</span><span class="o">(</span><span class="n">12</span><span class="o">);</span> 
-        <span class="kd">private</span> <span class="kt">int</span> <span class="n">num</span><span class="o">;</span> 
-        <span class="n">Tool</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">){</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">num</span> <span class="o">=</span> <span class="n">num</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="kd">public</span> <span class="nf">getNum</span><span class="o">(){</span>
-            <span class="k">return</span> <span class="n">num</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="c1">// 使用的时候
-</span><span class="c1"></span>    <span class="n">Tool</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">.</span><span class="na">getNum</span><span class="o">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">enum</span> <span class="n">Tool</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">INSTANCE</span><span class="o">(</span><span class="n">12</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="kt">int</span> <span class="n">num</span><span class="o">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">Tool</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">num</span> <span class="o">=</span> <span class="n">num</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="nf">getNum</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">num</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 使用的时候
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Tool</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">.</span><span class="na">getNum</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p><a href="https://segmentfault.com/q/1010000000306839">参考: 关于java枚举类型的疑问 </a><br>
@@ -915,27 +929,22 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
 <a href="https://juejin.im/post/5bce68226fb9a05ce46a0476">这一次，彻底解决Java的值传递和引用传递</a><code>C++ C# 都支持，C Java 仅支持值传递</code></p>
 </blockquote>
 <ul>
-<li>
-<p><code>实参</code>：方法调用前就完成初始化或为null，方法调用时传入，在Java中就是调用时被复制</p>
-</li>
-<li>
-<p><code>形参</code>： 声明在方法参数列表内，仅在函数调用的时候进行申请内存空间，函数调用结束就释放该内存空间</p>
-</li>
-<li>
-<p><code>值类型</code>: 存储在线程栈中的数据类型，如int型, 以及对象的引用变量</p>
-</li>
-<li>
-<p><code>引用类型</code> :存储在堆中数据的数据类型，如Date型，或自定义class对象；</p>
-</li>
-<li>
-<p><code>值传递</code>: 每次传递变量时，都是对栈里的原始值进行拷贝</p>
+<li><code>实参</code>：方法调用前就完成初始化或为null，方法调用时传入，在Java中就是调用时被复制</li>
+<li><code>形参</code>： 声明在方法参数列表内，仅在函数调用的时候进行申请内存空间，函数调用结束就释放该内存空间</li>
+</ul>
+<hr>
+<ul>
+<li><code>值类型</code>: 存储在线程栈中的数据类型，如int型, 以及对象的引用变量</li>
+<li><code>引用类型</code> :存储在堆中数据的数据类型，如Date型，或自定义class对象；</li>
+</ul>
+<hr>
+<ul>
+<li><code>值传递</code>: 每次传递变量时，都是对栈里的原始值进行拷贝
 <ul>
 <li>如栈地址0001处存放一个整数值4，值传递时，先copy整数值4，将之存放在栈地址0002处的内存空间，再将栈地址0002作为形参传入方法；</li>
 </ul>
 </li>
-<li>
-<p><code>引用传递</code>: 每次传递变量时，直接传递栈地址，如栈地址0001处存放一个整数值4，引用传递时，直接传递栈地址0001，而不做复制。</p>
-</li>
+<li><code>引用传递</code>: 每次传递变量时，直接传递栈地址，如栈地址0001处存放一个整数值4，引用传递时，直接传递栈地址0001，而不做复制。</li>
 </ul>
 <blockquote>
 <p>总结: Java只有值传递</p>
@@ -1326,10 +1335,10 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -1346,7 +1355,7 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

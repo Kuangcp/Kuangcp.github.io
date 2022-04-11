@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/springmvc/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="SpringMVC" />
 <meta property="og:description" content="目录 start SpringMVC MVC思想 原理 API 传统项目配置完整流程 配置依赖 Maven Gradle web.xml ApplicationContext.xml 全局异常处理 自定义错误页面 中文编码问题 创建Controller 使用 配置类型转换 拦" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/springmvc/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/springmvc/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-21T10:53:11+00:00" />
 <meta property="article:modified_time" content="2018-12-21T10:53:11+00:00" />
+
 <meta itemprop="name" content="SpringMVC">
-<meta itemprop="description" content="目录 start SpringMVC MVC思想 原理 API 传统项目配置完整流程 配置依赖 Maven Gradle web.xml ApplicationContext.xml 全局异常处理 自定义错误页面 中文编码问题 创建Controller 使用 配置类型转换 拦">
-<meta itemprop="datePublished" content="2018-12-21T10:53:11+00:00" />
+<meta itemprop="description" content="目录 start SpringMVC MVC思想 原理 API 传统项目配置完整流程 配置依赖 Maven Gradle web.xml ApplicationContext.xml 全局异常处理 自定义错误页面 中文编码问题 创建Controller 使用 配置类型转换 拦"><meta itemprop="datePublished" content="2018-12-21T10:53:11+00:00" />
 <meta itemprop="dateModified" content="2018-12-21T10:53:11+00:00" />
 <meta itemprop="wordCount" content="2402">
-
-
-
-<meta itemprop="keywords" content="Spring," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Spring," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SpringMVC"/>
 <meta name="twitter:description" content="目录 start SpringMVC MVC思想 原理 API 传统项目配置完整流程 配置依赖 Maven Gradle web.xml ApplicationContext.xml 全局异常处理 自定义错误页面 中文编码问题 创建Controller 使用 配置类型转换 拦"/>
 
@@ -247,7 +243,7 @@
 <h4 id="maven">Maven</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -280,54 +276,54 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;properties&gt;</span>
-        <span class="nt">&lt;spring.version&gt;</span>4.3.9.RELEASE<span class="nt">&lt;/spring.version&gt;</span>
-    <span class="nt">&lt;/properties&gt;</span>
-    ......
-    <span class="nt">&lt;dependency&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>spring-web<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/dependency&gt;</span>
-    <span class="nt">&lt;dependency&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>spring-webmvc<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/dependency&gt;</span>
-    <span class="c">&lt;!-- 如果使用JSP作为视图层,还需 --&gt;</span>
-    <span class="nt">&lt;dependency&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>javax.servlet-api<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/dependency&gt;</span>
-    <span class="nt">&lt;dependency&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>javax.servlet.jsp<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>jsp-api<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>2.2<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/dependency&gt;</span>
-    <span class="nt">&lt;dependency&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>jstl<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>1.2<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/dependency&gt;</span>
-    <span class="nt">&lt;dependency&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;properties&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;spring.version&gt;</span>4.3.9.RELEASE<span class="nt">&lt;/spring.version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/properties&gt;</span>
+</span></span><span class="line"><span class="cl">    ......
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>spring-web<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>spring-webmvc<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 如果使用JSP作为视图层,还需 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>javax.servlet-api<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>javax.servlet.jsp<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>jsp-api<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>2.2<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>jstl<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>1.2<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="gradle">Gradle</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;org.springframework:spring-web:4.3.9.RELEASE&#39;</span><span class="o">)</span>
-    <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;org.springframework:spring-webmvc:4.3.9.RELEASE&#39;</span><span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;org.springframework:spring-web:4.3.9.RELEASE&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;org.springframework:spring-webmvc:4.3.9.RELEASE&#39;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="webxml">web.xml</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -346,29 +342,29 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">  <span class="nt">&lt;servlet&gt;</span>
-    <span class="nt">&lt;servlet-name&gt;</span>mysql<span class="nt">&lt;/servlet-name&gt;</span>
-    <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
-    <span class="nt">&lt;init-param&gt;</span>
-      <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
-      <span class="nt">&lt;param-value&gt;</span>/WEB-INF/applicationContext.xml<span class="nt">&lt;/param-value&gt;</span>
-    <span class="nt">&lt;/init-param&gt;</span>
-    <span class="nt">&lt;load-on-startup&gt;</span>1<span class="nt">&lt;/load-on-startup&gt;</span>
-  <span class="nt">&lt;/servlet&gt;</span>
-
-  <span class="nt">&lt;listener&gt;</span>
-    <span class="nt">&lt;listener-class&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="nt">&lt;/listener-class&gt;</span>
-  <span class="nt">&lt;/listener&gt;</span>
-  <span class="nt">&lt;servlet-mapping&gt;</span>
-    <span class="nt">&lt;servlet-name&gt;</span>mysql<span class="nt">&lt;/servlet-name&gt;</span>
-    <span class="nt">&lt;url-pattern&gt;</span>/<span class="nt">&lt;/url-pattern&gt;</span>
-  <span class="nt">&lt;/servlet-mapping&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">  <span class="nt">&lt;servlet&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;servlet-name&gt;</span>mysql<span class="nt">&lt;/servlet-name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;init-param&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;param-value&gt;</span>/WEB-INF/applicationContext.xml<span class="nt">&lt;/param-value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/init-param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;load-on-startup&gt;</span>1<span class="nt">&lt;/load-on-startup&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/servlet&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;listener&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;listener-class&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="nt">&lt;/listener-class&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/listener&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;servlet-mapping&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;servlet-name&gt;</span>mysql<span class="nt">&lt;/servlet-name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;url-pattern&gt;</span>/<span class="nt">&lt;/url-pattern&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/servlet-mapping&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="applicationcontextxml">ApplicationContext.xml</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -413,55 +409,55 @@
 </span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-    <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
-        <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-        <span class="na">xmlns:context=</span><span class="s">&#34;http://www.springframework.org/schema/context&#34;</span>
-        <span class="na">xmlns:mvc=</span><span class="s">&#34;http://www.springframework.org/schema/mvc&#34;</span>
-        <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
-</span><span class="s">                http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-</span><span class="s">                    http://www.sprinControllergframework.org/schema/context
-</span><span class="s">                http://www.springframework.org/schema/context/spring-context-3.2.xsd
-</span><span class="s">                http://www.springframework.org/schema/mvc
-</span><span class="s">                http://www.springframework.org/schema/mvc/spring-mvc.xsd&#34;</span><span class="nt">&gt;</span>
-    <span class="c">&lt;!--启用spring的一些annotation --&gt;</span>
-    <span class="nt">&lt;context:annotation-config/&gt;</span>
-    <span class="c">&lt;!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 --&gt;</span>
-    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;com.test.controller&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;context:include-filter</span> <span class="na">type=</span><span class="s">&#34;annotation&#34;</span> <span class="na">expression=</span><span class="s">&#34;org.springframework.stereotype.Controller&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/context:component-scan&gt;</span>
-    <span class="c">&lt;!--HandlerMapping 无需配置，springmvc可以默认启动--&gt;</span>
-    <span class="c">&lt;!--静态资源映射--&gt;</span>
-    <span class="c">&lt;!--本项目把静态资源放在了WEB-INF的statics目录下，资源映射如下--&gt;</span>
-    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/css/**&#34; location=&#34;/WEB-INF/statics/css/&#34;/&gt;--&gt;</span>
-    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/js/**&#34; location=&#34;/WEB-INF/statics/js/&#34;/&gt;--&gt;</span>
-    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/image/**&#34; location=&#34;/WEB-INF/statics/image/&#34;/&gt;--&gt;</span>
-    <span class="c">&lt;!--但是项目部署到linux下发现WEB-INF的静态资源会出现无法解析的情况，但是本地tomcat访问正常，因此建议还是直接把静态资源放在webapp的statics下，映射配置如下--&gt;</span>
-    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/css/**&#34; location=&#34;/statics/css/&#34;/&gt;--&gt;</span>
-    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/js/**&#34; location=&#34;/statics/js/&#34;/&gt;--&gt;</span>
-    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/image/**&#34; location=&#34;/statics/images/&#34;/&gt;--&gt;</span>
-    <span class="c">&lt;!-- 配置注解驱动 可以将request参数与绑定到controller参数上 --&gt;</span>
-    <span class="nt">&lt;mvc:annotation-driven/&gt;</span>
-    <span class="c">&lt;!-- 对模型视图名称的解析，即在模型视图名称添加前后缀(如果最后一个还是表示文件夹,则最后的斜杠不要漏了) 使用JSP--&gt;</span>
-    <span class="c">&lt;!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- --&gt;</span>
-    <span class="c">&lt;!--&lt;bean id=&#34;defaultViewResolver&#34; class=&#34;org.springframework.web.servlet.view.InternalResourceViewResolver&#34;&gt;--&gt;</span>
-        <span class="c">&lt;!--&lt;property name=&#34;viewClass&#34; value=&#34;org.springframework.web.servlet.view.JstlView&#34;/&gt;--&gt;</span>
-        <span class="c">&lt;!--&lt;property name=&#34;prefix&#34; value=&#34;/WEB-INF/views/&#34;/&gt;&amp;lt;!&amp;ndash;设置JSP文件的目录位置&amp;ndash;&amp;gt;--&gt;</span>
-        <span class="c">&lt;!--&lt;property name=&#34;suffix&#34; value=&#34;.jsp&#34;/&gt;--&gt;</span>
-    <span class="c">&lt;!--&lt;/bean&gt;--&gt;</span>
-    <span class="c">&lt;!-- springmvc文件上传需要配置的节点--&gt;</span>
-    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;multipartResolver&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.web.multipart.commons.CommonsMultipartResolver&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;maxUploadSize&#34;</span> <span class="na">value=</span><span class="s">&#34;20971500&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;defaultEncoding&#34;</span> <span class="na">value=</span><span class="s">&#34;UTF-8&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;resolveLazily&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/bean&gt;</span>
-    <span class="nt">&lt;/beans&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">xmlns:context=</span><span class="s">&#34;http://www.springframework.org/schema/context&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">xmlns:mvc=</span><span class="s">&#34;http://www.springframework.org/schema/mvc&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
+</span></span></span><span class="line"><span class="cl"><span class="s">                http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+</span></span></span><span class="line"><span class="cl"><span class="s">                    http://www.sprinControllergframework.org/schema/context
+</span></span></span><span class="line"><span class="cl"><span class="s">                http://www.springframework.org/schema/context/spring-context-3.2.xsd
+</span></span></span><span class="line"><span class="cl"><span class="s">                http://www.springframework.org/schema/mvc
+</span></span></span><span class="line"><span class="cl"><span class="s">                http://www.springframework.org/schema/mvc/spring-mvc.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--启用spring的一些annotation --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;context:annotation-config/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;com.test.controller&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;context:include-filter</span> <span class="na">type=</span><span class="s">&#34;annotation&#34;</span> <span class="na">expression=</span><span class="s">&#34;org.springframework.stereotype.Controller&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/context:component-scan&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--HandlerMapping 无需配置，springmvc可以默认启动--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--静态资源映射--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--本项目把静态资源放在了WEB-INF的statics目录下，资源映射如下--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/css/**&#34; location=&#34;/WEB-INF/statics/css/&#34;/&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/js/**&#34; location=&#34;/WEB-INF/statics/js/&#34;/&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/image/**&#34; location=&#34;/WEB-INF/statics/image/&#34;/&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--但是项目部署到linux下发现WEB-INF的静态资源会出现无法解析的情况，但是本地tomcat访问正常，因此建议还是直接把静态资源放在webapp的statics下，映射配置如下--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/css/**&#34; location=&#34;/statics/css/&#34;/&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/js/**&#34; location=&#34;/statics/js/&#34;/&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--&lt;mvc:resources mapping=&#34;/image/**&#34; location=&#34;/statics/images/&#34;/&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 配置注解驱动 可以将request参数与绑定到controller参数上 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;mvc:annotation-driven/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 对模型视图名称的解析，即在模型视图名称添加前后缀(如果最后一个还是表示文件夹,则最后的斜杠不要漏了) 使用JSP--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--&lt;bean id=&#34;defaultViewResolver&#34; class=&#34;org.springframework.web.servlet.view.InternalResourceViewResolver&#34;&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--&lt;property name=&#34;viewClass&#34; value=&#34;org.springframework.web.servlet.view.JstlView&#34;/&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--&lt;property name=&#34;prefix&#34; value=&#34;/WEB-INF/views/&#34;/&gt;&amp;lt;!&amp;ndash;设置JSP文件的目录位置&amp;ndash;&amp;gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--&lt;property name=&#34;suffix&#34; value=&#34;.jsp&#34;/&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--&lt;/bean&gt;--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- springmvc文件上传需要配置的节点--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;multipartResolver&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.web.multipart.commons.CommonsMultipartResolver&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;maxUploadSize&#34;</span> <span class="na">value=</span><span class="s">&#34;20971500&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;defaultEncoding&#34;</span> <span class="na">value=</span><span class="s">&#34;UTF-8&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;resolveLazily&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/bean&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/beans&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="全局异常处理">全局异常处理</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -494,38 +490,38 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionHandler</span> <span class="kd">implements</span> <span class="n">HandlerExceptionResolver</span> <span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">resolveException</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">,</span> <span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
-        <span class="n">model</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;ex&#34;</span><span class="o">,</span> <span class="n">ex</span><span class="o">);</span>
-        <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span><span class="c1">//打印异常信息
-</span><span class="c1"></span>        <span class="c1">// 根据不同错误转向不同页面
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">ex</span> <span class="k">instanceof</span> <span class="n">CSRFException</span><span class="o">)</span> <span class="o">{</span><span class="c1">//受到csrf攻击
-</span><span class="c1"></span>           <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;/errorPage/error&#34;</span><span class="o">,</span> <span class="n">model</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">ex</span> <span class="k">instanceof</span> <span class="n">BusinessException</span><span class="o">)</span> <span class="o">{</span><span class="c1">//业务逻辑处理出错
-</span><span class="c1"></span>            <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;errorPage/businessError&#34;</span><span class="o">,</span> <span class="n">model</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ex</span> <span class="k">instanceof</span> <span class="n">ParameterException</span><span class="o">)</span> <span class="o">{</span><span class="c1">//参数处理出错。
-</span><span class="c1"></span>            <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;errorPage/parameterError&#34;</span><span class="o">,</span> <span class="n">model</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>  <span class="c1">//其他数据类型错误
-</span><span class="c1"></span>            <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;errorPage/error&#34;</span><span class="o">,</span> <span class="n">model</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;error&#34;</span><span class="o">,</span> <span class="n">model</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// 或者是在 Controller 层直接处理
-</span><span class="c1"></span>    <span class="nd">@ControllerAdvice</span>
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionHandle</span><span class="o">{</span>
-    <span class="nd">@EXceptionHandler</span><span class="o">({</span><span class="n">Exception</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
-    <span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">dealException</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-        <span class="n">ModelAndView</span> <span class="n">view</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;exception&#34;</span><span class="o">;</span>
-        <span class="n">Exception</span> <span class="n">e</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Exception</span><span class="o">(</span><span class="s">&#34;错误信息&#34;</span><span class="o">);</span>
-        <span class="n">view</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-        <span class="k">return</span> <span class="n">view</span><span class="o">;</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionHandler</span> <span class="kd">implements</span> <span class="n">HandlerExceptionResolver</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">resolveException</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">,</span> <span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">model</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;ex&#34;</span><span class="o">,</span> <span class="n">ex</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span><span class="c1">//打印异常信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 根据不同错误转向不同页面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">ex</span> <span class="k">instanceof</span> <span class="n">CSRFException</span><span class="o">)</span> <span class="o">{</span><span class="c1">//受到csrf攻击
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>           <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;/errorPage/error&#34;</span><span class="o">,</span> <span class="n">model</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">ex</span> <span class="k">instanceof</span> <span class="n">BusinessException</span><span class="o">)</span> <span class="o">{</span><span class="c1">//业务逻辑处理出错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;errorPage/businessError&#34;</span><span class="o">,</span> <span class="n">model</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ex</span> <span class="k">instanceof</span> <span class="n">ParameterException</span><span class="o">)</span> <span class="o">{</span><span class="c1">//参数处理出错。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;errorPage/parameterError&#34;</span><span class="o">,</span> <span class="n">model</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>  <span class="c1">//其他数据类型错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;errorPage/error&#34;</span><span class="o">,</span> <span class="n">model</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;error&#34;</span><span class="o">,</span> <span class="n">model</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 或者是在 Controller 层直接处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@ControllerAdvice</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionHandle</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@EXceptionHandler</span><span class="o">({</span><span class="n">Exception</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ModelAndView</span> <span class="nf">dealException</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ModelAndView</span> <span class="n">view</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ModelAndView</span><span class="o">(</span><span class="s">&#34;exception&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Exception</span> <span class="n">e</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Exception</span><span class="o">(</span><span class="s">&#34;错误信息&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">view</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">view</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>但如果是前后端分离的话， 就只能统一处理异常然后然后对应的错误码和提示信息了
@@ -535,7 +531,7 @@
 <h4 id="自定义错误页面">自定义错误页面</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -547,17 +543,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 自定义错误页面 需要放在静态资源下面
-</span><span class="c1"></span>    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">EmbeddedServletContainerCustomizer</span> <span class="nf">containerCustomizer</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="o">(</span><span class="n">container</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="n">ErrorPage</span> <span class="n">error401Page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorPage</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">FORBIDDEN</span><span class="o">,</span> <span class="s">&#34;/500.html&#34;</span><span class="o">);</span>
-            <span class="n">ErrorPage</span> <span class="n">error404Page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorPage</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">NOT_FOUND</span><span class="o">,</span> <span class="s">&#34;/404.html&#34;</span><span class="o">);</span>
-            <span class="n">ErrorPage</span> <span class="n">error500Page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorPage</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">INTERNAL_SERVER_ERROR</span><span class="o">,</span> <span class="s">&#34;/500.html&#34;</span><span class="o">);</span>
-            <span class="n">container</span><span class="o">.</span><span class="na">addErrorPages</span><span class="o">(</span><span class="n">error401Page</span><span class="o">,</span> <span class="n">error404Page</span><span class="o">,</span> <span class="n">error500Page</span><span class="o">);</span>
-        <span class="o">});</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 自定义错误页面 需要放在静态资源下面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">EmbeddedServletContainerCustomizer</span> <span class="nf">containerCustomizer</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">(</span><span class="n">container</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ErrorPage</span> <span class="n">error401Page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorPage</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">FORBIDDEN</span><span class="o">,</span> <span class="s">&#34;/500.html&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ErrorPage</span> <span class="n">error404Page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorPage</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">NOT_FOUND</span><span class="o">,</span> <span class="s">&#34;/404.html&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ErrorPage</span> <span class="n">error500Page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorPage</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">INTERNAL_SERVER_ERROR</span><span class="o">,</span> <span class="s">&#34;/500.html&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">container</span><span class="o">.</span><span class="na">addErrorPages</span><span class="o">(</span><span class="n">error401Page</span><span class="o">,</span> <span class="n">error404Page</span><span class="o">,</span> <span class="n">error500Page</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="中文编码问题">中文编码问题</h4>
 <blockquote>
@@ -569,7 +565,7 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -585,27 +581,27 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"> <span class="nt">&lt;mvc:annotation-driven&gt;</span>
-        <span class="nt">&lt;mvc:message-converters&gt;</span>
-            <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&#34;org.springframework.http.converter.StringHttpMessageConverter&#34;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;supportedMediaTypes&#34;</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;list&gt;</span>
-                    <span class="c">&lt;!-- 如果是前后端使用JSON作为主要数据交换格式就把JSON列为第一个， 否则就会被认为是Text --&gt;</span>
-                        <span class="nt">&lt;value&gt;</span>application/json; charset=UTF-8<span class="nt">&lt;/value&gt;</span>
-                        <span class="nt">&lt;value&gt;</span>text/plain; charset=UTF-8<span class="nt">&lt;/value&gt;</span>
-                        <span class="nt">&lt;value&gt;</span>text/html; charset=UTF-8<span class="nt">&lt;/value&gt;</span>
-                    <span class="nt">&lt;/list&gt;</span>
-                <span class="nt">&lt;/property&gt;</span>
-            <span class="nt">&lt;/bean&gt;</span>
-        <span class="nt">&lt;/mvc:message-converters&gt;</span>
-    <span class="nt">&lt;/mvc:annotation-driven&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"> <span class="nt">&lt;mvc:annotation-driven&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;mvc:message-converters&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&#34;org.springframework.http.converter.StringHttpMessageConverter&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;supportedMediaTypes&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;list&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="c">&lt;!-- 如果是前后端使用JSON作为主要数据交换格式就把JSON列为第一个， 否则就会被认为是Text --&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;value&gt;</span>application/json; charset=UTF-8<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;value&gt;</span>text/plain; charset=UTF-8<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;value&gt;</span>text/html; charset=UTF-8<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;/list&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/bean&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/mvc:message-converters&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/mvc:annotation-driven&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="创建controller">创建Controller</h3>
 <p>包 com.test.controller 下创建一个类</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -615,22 +611,22 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@RestController</span>
-<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/hi&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hi</span> <span class="o">{</span>
-    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/hi&#34;</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">hi</span><span class="o">(){</span>
-        <span class="k">return</span> <span class="s">&#34;Hi&#34;</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@RestController</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/hi&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hi</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/hi&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">hi</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Hi&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>使用上 ResponseEntity 让响应结果规范</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -640,15 +636,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"> <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/handle&#34;</span><span class="o">)</span>
- <span class="kd">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">handle</span><span class="o">()</span> <span class="o">{</span>
-   <span class="n">URI</span> <span class="n">location</span> <span class="o">=</span> <span class="o">...;</span>
-   <span class="n">HttpHeaders</span> <span class="n">responseHeaders</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpHeaders</span><span class="o">();</span>
-   <span class="n">responseHeaders</span><span class="o">.</span><span class="na">setLocation</span><span class="o">(</span><span class="n">location</span><span class="o">);</span>
-   <span class="n">responseHeaders</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;MyResponseHeader&#34;</span><span class="o">,</span> <span class="s">&#34;MyValue&#34;</span><span class="o">);</span>
-   <span class="k">return</span> <span class="k">new</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="s">&#34;Hello World&#34;</span><span class="o">,</span> <span class="n">responseHeaders</span><span class="o">,</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">);</span>
- <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&#34;/handle&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"> <span class="kd">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">handle</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">URI</span> <span class="n">location</span> <span class="o">=</span> <span class="o">...;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">HttpHeaders</span> <span class="n">responseHeaders</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpHeaders</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">   <span class="n">responseHeaders</span><span class="o">.</span><span class="na">setLocation</span><span class="o">(</span><span class="n">location</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">responseHeaders</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;MyResponseHeader&#34;</span><span class="o">,</span> <span class="s">&#34;MyValue&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="k">new</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="s">&#34;Hello World&#34;</span><span class="o">,</span> <span class="n">responseHeaders</span><span class="o">,</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="使用">使用</h2>
@@ -659,7 +655,7 @@
 <h3 id="配置类型转换">配置类型转换</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -671,17 +667,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;mvc:annotation-driven</span> <span class="na">conversion-service=</span><span class="s">&#34;conversionService&#34;</span> <span class="nt">/&gt;</span>
-    <span class="c">&lt;!--配置ConversionService --&gt;</span>
-    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;conversionService&#34;</span>
-        <span class="na">class=</span><span class="s">&#34;org.springframework.context.support.ConversionServiceFactoryBean&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;converters&#34;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;set&gt;</span>
-                <span class="nt">&lt;ref</span> <span class="na">bean=</span><span class="s">&#34;DateConverter&#34;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;/set&gt;</span>
-        <span class="nt">&lt;/property&gt;</span>
-    <span class="nt">&lt;/bean&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;mvc:annotation-driven</span> <span class="na">conversion-service=</span><span class="s">&#34;conversionService&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--配置ConversionService --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;conversionService&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">class=</span><span class="s">&#34;org.springframework.context.support.ConversionServiceFactoryBean&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;converters&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;set&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;ref</span> <span class="na">bean=</span><span class="s">&#34;DateConverter&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/set&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/bean&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="拦截器">拦截器</h3>
 <h4 id="拦截器机制">拦截器机制</h4>
@@ -691,7 +687,7 @@ PostHandle 在渲染视图之前，
 afterCompletion 渲染视图之后调用，释放资源</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -699,13 +695,13 @@ afterCompletion 渲染视图之后调用，释放资源</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;mvc:interceptors&gt;</span>
-        <span class="nt">&lt;mvc:interceptor&gt;</span>
-            <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&#34;&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
-            <span class="nt">&lt;mvc:mapping</span> <span class="na">path=</span><span class="s">&#34;/**&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/mvc:interceptor&gt;</span>
-    <span class="nt">&lt;/mvc:interceptors&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;mvc:interceptors&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;mvc:interceptor&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&#34;&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;mvc:mapping</span> <span class="na">path=</span><span class="s">&#34;/**&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/mvc:interceptor&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/mvc:interceptors&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="自定义拦截器">自定义拦截器</h4>
 <ul>
@@ -714,7 +710,7 @@ afterCompletion 渲染视图之后调用，释放资源</p>
 <p><code>定义拦截器类</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -731,27 +727,27 @@ afterCompletion 渲染视图之后调用，释放资源</p>
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MythInterceptor</span> <span class="kd">extends</span> <span class="n">HandlerInterceptorAdapter</span><span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">preHandle</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="n">Long</span> <span class="n">startTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
-        <span class="n">request</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;startTime&#34;</span><span class="o">,</span><span class="n">startTime</span><span class="o">);</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span><span class="c1">// true就继续跳转，false就停止
-</span><span class="c1"></span>    <span class="o">}</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postHandle</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">,</span> <span class="n">ModelAndView</span> <span class="n">modelAndView</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="kt">long</span> <span class="n">startTime</span> <span class="o">=</span> <span class="o">(</span><span class="n">Long</span><span class="o">)</span><span class="n">request</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">&#34;startTime&#34;</span><span class="o">);</span>
-        <span class="n">request</span><span class="o">.</span><span class="na">removeAttribute</span><span class="o">(</span><span class="s">&#34;startTime&#34;</span><span class="o">);</span>
-        <span class="n">Long</span> <span class="n">endTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
-        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getRequestURL</span><span class="o">()+</span><span class="s">&#34;发起请求耗时:[ &#34;</span><span class="o">+</span> <span class="o">(</span><span class="n">endTime</span> <span class="o">-</span> <span class="n">startTime</span><span class="o">)</span> <span class="o">+</span><span class="s">&#34;  ms]&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MythInterceptor</span> <span class="kd">extends</span> <span class="n">HandlerInterceptorAdapter</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">preHandle</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Long</span> <span class="n">startTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">request</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;startTime&#34;</span><span class="o">,</span><span class="n">startTime</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span><span class="c1">// true就继续跳转，false就停止
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postHandle</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">,</span> <span class="n">Object</span> <span class="n">handler</span><span class="o">,</span> <span class="n">ModelAndView</span> <span class="n">modelAndView</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">long</span> <span class="n">startTime</span> <span class="o">=</span> <span class="o">(</span><span class="n">Long</span><span class="o">)</span><span class="n">request</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">&#34;startTime&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">request</span><span class="o">.</span><span class="na">removeAttribute</span><span class="o">(</span><span class="s">&#34;startTime&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Long</span> <span class="n">endTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getRequestURL</span><span class="o">()+</span><span class="s">&#34;发起请求耗时:[ &#34;</span><span class="o">+</span> <span class="o">(</span><span class="n">endTime</span> <span class="o">-</span> <span class="n">startTime</span><span class="o">)</span> <span class="o">+</span><span class="s">&#34;  ms]&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>配置MVC的配置类</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -768,22 +764,22 @@ afterCompletion 渲染视图之后调用，释放资源</p>
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebMvcConfig</span> <span class="kd">extends</span> <span class="n">WebMvcConfigurerAdapter</span><span class="o">{</span>
-    <span class="c1">//自定义拦截器bean
-</span><span class="c1"></span>    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="n">MythInterceptor</span> <span class="nf">mythInterceptor</span><span class="o">(){</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">MythInterceptor</span><span class="o">();</span>
-    <span class="o">}</span>
-    <span class="c1">//注册拦截器
-</span><span class="c1"></span>    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addInterceptors</span><span class="o">(</span><span class="n">InterceptorRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">//拦截器的URL正则
-</span><span class="c1"></span>        <span class="n">registry</span><span class="o">.</span><span class="na">addInterceptor</span><span class="o">(</span><span class="n">mythInterceptor</span><span class="o">()).</span><span class="na">addPathPatterns</span><span class="o">(</span><span class="s">&#34;/**&#34;</span><span class="o">);</span>
-        <span class="kd">super</span><span class="o">.</span><span class="na">addInterceptors</span><span class="o">(</span><span class="n">registry</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebMvcConfig</span> <span class="kd">extends</span> <span class="n">WebMvcConfigurerAdapter</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//自定义拦截器bean
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">MythInterceptor</span> <span class="nf">mythInterceptor</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">MythInterceptor</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//注册拦截器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addInterceptors</span><span class="o">(</span><span class="n">InterceptorRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//拦截器的URL正则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">registry</span><span class="o">.</span><span class="na">addInterceptor</span><span class="o">(</span><span class="n">mythInterceptor</span><span class="o">()).</span><span class="na">addPathPatterns</span><span class="o">(</span><span class="s">&#34;/**&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">addInterceptors</span><span class="o">(</span><span class="n">registry</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="websocket">WebSocket</h4>
 <ul>
@@ -876,10 +872,10 @@ afterCompletion 渲染视图之后调用，释放资源</p>
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -896,7 +892,7 @@ afterCompletion 渲染视图之后调用，释放资源</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

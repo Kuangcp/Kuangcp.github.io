@@ -22,7 +22,7 @@
       <pubDate>Sat, 15 Dec 2018 12:08:54 +0000</pubDate>
       
       <guid>https://blogs.kuangcp.top/post/python/pythonnet/</guid>
-      <description>目录 start 网络编程 Socket WebSocket 邮件 WebAPI JSON Web工具 爬虫 安装所需模块 目录 end|2020-04-27 23:42| 网络编程 Socket 作为网络编程的抽象概念，用于描述IP地址和端口，表示打开了一个网络连接</description>
+      <description>目录 start 网络编程 WebAPI JSON Web工具 爬虫 安装所需模块 目录 end|2020-12-14 19:57| 网络编程 WebAPI JSON 1 2 3 4 5 6 7 8 9 10 11 # json response import requests import json def main(): url = &amp;#34;https://xxxx.com/user/get&amp;#34; request = requests.get(url) re_dict = json.loads(request.text) for i in range(len(re_dict)): event = re_dict[i] print(event[&amp;#39;project&amp;#39;][&amp;#39;path&amp;#39;]) 1</description>
     </item>
     
     <item>

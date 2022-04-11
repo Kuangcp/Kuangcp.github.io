@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/script/zsh/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Zsh" />
 <meta property="og:description" content="目录 start Zsh 为什么要使用 Tips oh-my-zsh 插件 主题 自己定制 目录 end|2020-11-05 16:05| Zsh arch zsh wiki 为什么要使用 mac 装了 oh my zsh 后比用 bash 具体好在哪儿？ 终极 Shell——ZSH 某人的配置 Zsh 开" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/script/zsh/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/script/zsh/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T12:06:10+00:00" />
 <meta property="article:modified_time" content="2018-12-15T12:06:10+00:00" />
+
 <meta itemprop="name" content="Zsh">
-<meta itemprop="description" content="目录 start Zsh 为什么要使用 Tips oh-my-zsh 插件 主题 自己定制 目录 end|2020-11-05 16:05| Zsh arch zsh wiki 为什么要使用 mac 装了 oh my zsh 后比用 bash 具体好在哪儿？ 终极 Shell——ZSH 某人的配置 Zsh 开">
-<meta itemprop="datePublished" content="2018-12-15T12:06:10+00:00" />
+<meta itemprop="description" content="目录 start Zsh 为什么要使用 Tips oh-my-zsh 插件 主题 自己定制 目录 end|2020-11-05 16:05| Zsh arch zsh wiki 为什么要使用 mac 装了 oh my zsh 后比用 bash 具体好在哪儿？ 终极 Shell——ZSH 某人的配置 Zsh 开"><meta itemprop="datePublished" content="2018-12-15T12:06:10+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T12:06:10+00:00" />
 <meta itemprop="wordCount" content="361">
-
-
-
-<meta itemprop="keywords" content="Shell," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Shell," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Zsh"/>
 <meta name="twitter:description" content="目录 start Zsh 为什么要使用 Tips oh-my-zsh 插件 主题 自己定制 目录 end|2020-11-05 16:05| Zsh arch zsh wiki 为什么要使用 mac 装了 oh my zsh 后比用 bash 具体好在哪儿？ 终极 Shell——ZSH 某人的配置 Zsh 开"/>
 
@@ -203,15 +199,15 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    plugins=(
-        git mvn docker
-    )
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    plugins=(
+</span></span><span class="line"><span class="cl">        git mvn docker
+</span></span><span class="line"><span class="cl">    )
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="插件">插件</h3>
 <blockquote>
@@ -258,7 +254,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -267,14 +263,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    wget https://raw.githubusercontent.com/caiogondim/bullet-train.zsh/master/bullet-train.zsh-theme -O /home/kcp/.oh-my-zsh/custom/themes
-
-    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-    mv PowerlineSymbols.otf ~/.local/share/fonts/
-    fc-cache -vf ~/.local/share/fonts/
-    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    wget https://raw.githubusercontent.com/caiogondim/bullet-train.zsh/master/bullet-train.zsh-theme -O /home/kcp/.oh-my-zsh/custom/themes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+</span></span><span class="line"><span class="cl">    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+</span></span><span class="line"><span class="cl">    mv PowerlineSymbols.otf ~/.local/share/fonts/
+</span></span><span class="line"><span class="cl">    fc-cache -vf ~/.local/share/fonts/
+</span></span><span class="line"><span class="cl">    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -373,10 +369,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -393,7 +389,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/springshell/" />
@@ -35,26 +35,22 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="SpringShell.md" />
 <meta property="og:description" content="目录 start Spring Shell 目录 end|2020-04-27 23:42| Spring Shell 添加依赖 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;org.springframework.shell&lt;/groupId&gt; &lt;artifactId&gt;spring-shell-starter&lt;/artifactId&gt; &lt;version&gt;2.0.0.RELEASE&lt;/version&gt; &lt;/dependency&gt; 自定义命令 1 2 3 4 5 6 7 8 9 10 @ShellComponent public class MyShell { @ShellMethod(&#34;求和函数&#3" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/springshell/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/springshell/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-10-19T17:04:25+00:00" />
 <meta property="article:modified_time" content="2019-10-19T17:04:25+00:00" />
+
 <meta itemprop="name" content="SpringShell.md">
-<meta itemprop="description" content="目录 start Spring Shell 目录 end|2020-04-27 23:42| Spring Shell 添加依赖 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;org.springframework.shell&lt;/groupId&gt; &lt;artifactId&gt;spring-shell-starter&lt;/artifactId&gt; &lt;version&gt;2.0.0.RELEASE&lt;/version&gt; &lt;/dependency&gt; 自定义命令 1 2 3 4 5 6 7 8 9 10 @ShellComponent public class MyShell { @ShellMethod(&#34;求和函数&#3">
-<meta itemprop="datePublished" content="2019-10-19T17:04:25+00:00" />
+<meta itemprop="description" content="目录 start Spring Shell 目录 end|2020-04-27 23:42| Spring Shell 添加依赖 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;org.springframework.shell&lt;/groupId&gt; &lt;artifactId&gt;spring-shell-starter&lt;/artifactId&gt; &lt;version&gt;2.0.0.RELEASE&lt;/version&gt; &lt;/dependency&gt; 自定义命令 1 2 3 4 5 6 7 8 9 10 @ShellComponent public class MyShell { @ShellMethod(&#34;求和函数&#3"><meta itemprop="datePublished" content="2019-10-19T17:04:25+00:00" />
 <meta itemprop="dateModified" content="2019-10-19T17:04:25+00:00" />
 <meta itemprop="wordCount" content="1355">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SpringShell.md"/>
 <meta name="twitter:description" content="目录 start Spring Shell 目录 end|2020-04-27 23:42| Spring Shell 添加依赖 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;org.springframework.shell&lt;/groupId&gt; &lt;artifactId&gt;spring-shell-starter&lt;/artifactId&gt; &lt;version&gt;2.0.0.RELEASE&lt;/version&gt; &lt;/dependency&gt; 自定义命令 1 2 3 4 5 6 7 8 9 10 @ShellComponent public class MyShell { @ShellMethod(&#34;求和函数&#3"/>
 
@@ -149,26 +145,26 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.shell&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-shell-starter&lt;/artifactId&gt;
-    &lt;version&gt;2.0.0.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;dependency&gt;
+</span></span><span class="line"><span class="cl">    &lt;groupId&gt;org.springframework.shell&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">    &lt;artifactId&gt;spring-shell-starter&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">    &lt;version&gt;2.0.0.RELEASE&lt;/version&gt;
+</span></span><span class="line"><span class="cl">&lt;/dependency&gt;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
 <p>自定义命令</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -180,17 +176,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@ShellComponent</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyShell</span> <span class="o">{</span>
-    
-    <span class="nd">@ShellMethod</span><span class="o">(</span><span class="s">&#34;求和函数&#34;</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="nd">@ShellOption</span><span class="o">(</span><span class="n">help</span> <span class="o">=</span> <span class="s">&#34;第一个数&#34;</span><span class="o">,</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="s">&#34;0&#34;</span><span class="o">)</span> <span class="kt">int</span> <span class="n">n1</span><span class="o">,</span>
-                   <span class="nd">@ShellOption</span><span class="o">(</span><span class="n">help</span> <span class="o">=</span> <span class="s">&#34;第二个数&#34;</span><span class="o">,</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="s">&#34;5&#34;</span><span class="o">)</span> <span class="kt">int</span> <span class="n">n2</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span><span class="o">;</span>
-    <span class="o">}</span>
-    
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ShellComponent</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyShell</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@ShellMethod</span><span class="o">(</span><span class="s">&#34;求和函数&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="nd">@ShellOption</span><span class="o">(</span><span class="n">help</span> <span class="o">=</span> <span class="s">&#34;第一个数&#34;</span><span class="o">,</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="s">&#34;0&#34;</span><span class="o">)</span> <span class="kt">int</span> <span class="n">n1</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                   <span class="nd">@ShellOption</span><span class="o">(</span><span class="n">help</span> <span class="o">=</span> <span class="s">&#34;第二个数&#34;</span><span class="o">,</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="s">&#34;5&#34;</span><span class="o">)</span> <span class="kt">int</span> <span class="n">n2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">n1</span> <span class="o">+</span> <span class="n">n2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -219,19 +215,19 @@
 <p>自定义参数键</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">@ShellMethod(value = &#34;求和函数&#34;, key = &#34;sum&#34;, prefix = &#34;-&#34;)
-public int sum(@ShellOption(help = &#34;第一个数&#34;, defaultValue = &#34;0&#34;) int a,
-               @ShellOption(help = &#34;第二个数&#34;, defaultValue = &#34;5&#34;, value = &#34;-two&#34;) int b) {
-    return a + b;
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@ShellMethod(value = &#34;求和函数&#34;, key = &#34;sum&#34;, prefix = &#34;-&#34;)
+</span></span><span class="line"><span class="cl">public int sum(@ShellOption(help = &#34;第一个数&#34;, defaultValue = &#34;0&#34;) int a,
+</span></span><span class="line"><span class="cl">               @ShellOption(help = &#34;第二个数&#34;, defaultValue = &#34;5&#34;, value = &#34;-two&#34;) int b) {
+</span></span><span class="line"><span class="cl">    return a + b;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -251,7 +247,7 @@ public int sum(@ShellOption(help = &#34;第一个数&#34;, defaultValue = &#34;0
 <p>将参数映射到集合或数组</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -261,15 +257,15 @@ public int sum(@ShellOption(help = &#34;第一个数&#34;, defaultValue = &#34;0
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">@ShellMethod(value = &#34;求和函数&#34;)
-public int sum1(@ShellOption(arity = 4) int[] arrs) {
-    int sum = 0;
-    for (int n : arrs) {
-        sum += n;
-    }
-    return sum;
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@ShellMethod(value = &#34;求和函数&#34;)
+</span></span><span class="line"><span class="cl">public int sum1(@ShellOption(arity = 4) int[] arrs) {
+</span></span><span class="line"><span class="cl">    int sum = 0;
+</span></span><span class="line"><span class="cl">    for (int n : arrs) {
+</span></span><span class="line"><span class="cl">        sum += n;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    return sum;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -284,17 +280,17 @@ public int sum1(@ShellOption(arity = 4) int[] arrs) {
 <p>参数为布尔型</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">@ShellMethod(&#34;布尔型&#34;)
-public String bool(@ShellOption boolean yes) {
-    return &#34;yes is &#34; + yes;
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@ShellMethod(&#34;布尔型&#34;)
+</span></span><span class="line"><span class="cl">public String bool(@ShellOption boolean yes) {
+</span></span><span class="line"><span class="cl">    return &#34;yes is &#34; + yes;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -309,17 +305,17 @@ public String bool(@ShellOption boolean yes) {
 <p>校验参数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">@ShellMethod(&#34;str&#34;)
-public String echo(@Size(min = 3) String str) {
-    return &#34;str is &#34; + str;
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">@ShellMethod(&#34;str&#34;)
+</span></span><span class="line"><span class="cl">public String echo(@Size(min = 3) String str) {
+</span></span><span class="line"><span class="cl">    return &#34;str is &#34; + str;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -337,7 +333,7 @@ public String echo(@Size(min = 3) String str) {
 <p>要禁用所有内置命令时，可以通过排除相关依赖</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -350,25 +346,25 @@ public String echo(@Size(min = 3) String str) {
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.shell&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-shell-starter&lt;/artifactId&gt;
-    &lt;version&gt;2.0.0.RELEASE&lt;/version&gt;
-    &lt;exclusions&gt;
-        &lt;exclusion&gt;
-            &lt;groupId&gt;org.springframework.shell&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-shell-standard-commands&lt;/artifactId&gt;
-        &lt;/exclusion&gt;
-    &lt;/exclusions&gt;
-&lt;/dependency&gt;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;dependency&gt;
+</span></span><span class="line"><span class="cl">    &lt;groupId&gt;org.springframework.shell&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">    &lt;artifactId&gt;spring-shell-starter&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">    &lt;version&gt;2.0.0.RELEASE&lt;/version&gt;
+</span></span><span class="line"><span class="cl">    &lt;exclusions&gt;
+</span></span><span class="line"><span class="cl">        &lt;exclusion&gt;
+</span></span><span class="line"><span class="cl">            &lt;groupId&gt;org.springframework.shell&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">            &lt;artifactId&gt;spring-shell-standard-commands&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">        &lt;/exclusion&gt;
+</span></span><span class="line"><span class="cl">    &lt;/exclusions&gt;
+</span></span><span class="line"><span class="cl">&lt;/dependency&gt;
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>如果只是需要禁用部分内置命令，可以在启动类中将指定的命令禁用(不排除相关依赖，此处禁用<code>clear</code>方法)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -380,24 +376,24 @@ public String echo(@Size(min = 3) String str) {
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SpringBootApplication</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpringShellStudyApplication</span> <span class="o">{</span>
-        
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">disabledCommands</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;--spring.shell.command.clear.enabled=false&#34;</span><span class="o">};</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">fullArgs</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">concatenateStringArrays</span><span class="o">(</span><span class="n">args</span><span class="o">,</span> <span class="n">disabledCommands</span><span class="o">);</span><span class="n">disabledCommands</span>
-        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">SpringShellStudyApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">fullArgs</span><span class="o">);</span>
-    <span class="o">}</span>
-        
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootApplication</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpringShellStudyApplication</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span><span class="o">[]</span> <span class="n">disabledCommands</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;--spring.shell.command.clear.enabled=false&#34;</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span><span class="o">[]</span> <span class="n">fullArgs</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">concatenateStringArrays</span><span class="o">(</span><span class="n">args</span><span class="o">,</span> <span class="n">disabledCommands</span><span class="o">);</span><span class="n">disabledCommands</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">SpringShellStudyApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">fullArgs</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>重写并覆盖内置命令</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -407,15 +403,15 @@ public String echo(@Size(min = 3) String str) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@ShellComponent</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClearCommand</span> <span class="kd">implements</span> <span class="n">Clear</span><span class="o">.</span><span class="na">Command</span> <span class="o">{</span>
-        
-    <span class="nd">@ShellMethod</span><span class="o">(</span><span class="s">&#34;my clear&#34;</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;clear...&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ShellComponent</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClearCommand</span> <span class="kd">implements</span> <span class="n">Clear</span><span class="o">.</span><span class="na">Command</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@ShellMethod</span><span class="o">(</span><span class="s">&#34;my clear&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;clear...&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -440,7 +436,7 @@ public String echo(@Size(min = 3) String str) {
 <p>示例</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -484,49 +480,49 @@ public String echo(@Size(min = 3) String str) {
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
-</span><span class="cm">*   数据模型
-</span><span class="cm">*/</span>
-<span class="nd">@Getter</span>
-<span class="nd">@Setter</span>
-<span class="nd">@ToString</span>
-<span class="nd">@AllArgsConstructor</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Model</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">host</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="cm">/**
-</span><span class="cm">*   命令
-</span><span class="cm">*/</span>
-<span class="nd">@ShellComponent</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyShell</span> <span class="o">{</span>
-    
-    <span class="nd">@ShellMethod</span><span class="o">(</span><span class="s">&#34;Converter&#34;</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">converter</span><span class="o">(</span><span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="cm">/**
-</span><span class="cm">*   转换器
-</span><span class="cm">*/</span>
-<span class="nd">@Component</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ModelConverter</span> <span class="kd">implements</span> <span class="n">Converter</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Model</span><span class="o">&gt;</span> <span class="o">{</span>
-        
-        
-    <span class="cm">/**
-</span><span class="cm">     * 假设接收一个字符串，各属性间以@分开
-</span><span class="cm">     * @param s
-</span><span class="cm">     * @return
-</span><span class="cm">     */</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">Model</span> <span class="nf">convert</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">arrays</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;@&#34;</span><span class="o">);</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">Model</span><span class="o">(</span><span class="n">arrays</span><span class="o">[</span><span class="n">0</span><span class="o">],</span> <span class="n">arrays</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">*   数据模型
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Getter</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Setter</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@ToString</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@AllArgsConstructor</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Model</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">host</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">*   命令
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@ShellComponent</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyShell</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@ShellMethod</span><span class="o">(</span><span class="s">&#34;Converter&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">converter</span><span class="o">(</span><span class="n">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">*   转换器
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ModelConverter</span> <span class="kd">implements</span> <span class="n">Converter</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Model</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 假设接收一个字符串，各属性间以@分开
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param s
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Model</span> <span class="nf">convert</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span><span class="o">[]</span> <span class="n">arrays</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;@&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">Model</span><span class="o">(</span><span class="n">arrays</span><span class="o">[</span><span class="n">0</span><span class="o">],</span> <span class="n">arrays</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -610,10 +606,10 @@ public String echo(@Size(min = 3) String str) {
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -630,7 +626,7 @@ public String echo(@Size(min = 3) String str) {
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

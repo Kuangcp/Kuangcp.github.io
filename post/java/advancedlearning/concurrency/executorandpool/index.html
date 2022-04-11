@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 目录 end|2020-04-27 23:42| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线程池能节省" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 线程池监控 目录 end|2021-05-17 00:15| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/executorandpool/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Executor框架" />
-<meta property="og:description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 目录 end|2020-04-27 23:42| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线程池能节省" />
+<meta property="og:description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 线程池监控 目录 end|2021-05-17 00:15| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/executorandpool/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/executorandpool/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-04-19T12:42:09+00:00" />
 <meta property="article:modified_time" content="2019-04-19T12:42:09+00:00" />
+
 <meta itemprop="name" content="Executor框架">
-<meta itemprop="description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 目录 end|2020-04-27 23:42| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线程池能节省">
-<meta itemprop="datePublished" content="2019-04-19T12:42:09+00:00" />
+<meta itemprop="description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 线程池监控 目录 end|2021-05-17 00:15| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线"><meta itemprop="datePublished" content="2019-04-19T12:42:09+00:00" />
 <meta itemprop="dateModified" content="2019-04-19T12:42:09+00:00" />
-<meta itemprop="wordCount" content="1499">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1536">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Executor框架"/>
-<meta name="twitter:description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 目录 end|2020-04-27 23:42| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线程池能节省"/>
+<meta name="twitter:description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 线程池监控 目录 end|2021-05-17 00:15| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,8 +120,8 @@
       <div class="post-meta">
         <span class="post-time"> 2019-04-19 </span>
         
-          <span class="more-meta"> 1499 words </span>
-          <span class="more-meta"> 3 mins read </span>
+          <span class="more-meta"> 1536 words </span>
+          <span class="more-meta"> 4 mins read </span>
         
       </div>
     </header>
@@ -158,8 +154,9 @@
 <li><a href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%96%B9%E6%B3%95">创建线程池的方法</a></li>
 </ol>
 </li>
+<li><a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9B%91%E6%8E%A7">线程池监控</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-05-17 00:15</em>|</p>
 <hr>
 <h1 id="executor框架">Executor框架</h1>
 <blockquote>
@@ -240,7 +237,7 @@
 <li>使用<code>schedule(Runnable command, long delay, TimeUnit unit)</code>方法提交任务时，可让任务延迟执行，如下延迟1分钟执行示例:
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -248,19 +245,19 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 定义执行器，创建一个缓存线程池
-</span><span class="c1"></span><span class="n">ScheduledExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newScheduledThreadPool</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
-<span class="c1">// 提交任务
-</span><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">schedule</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello: &#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">()),</span> <span class="n">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
-<span class="c1">// 关闭执行器资源
-</span><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 定义执行器，创建一个缓存线程池
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ScheduledExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newScheduledThreadPool</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 提交任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">schedule</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello: &#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">()),</span> <span class="n">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 关闭执行器资源
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>使用<code>scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit)</code>方法提交任务，可让任务延迟并周期性执行，如下让任务延迟一秒后没3秒执行一次:
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -268,13 +265,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 定义执行器，创建一个缓存线程池
-</span><span class="c1"></span><span class="n">ScheduledExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newScheduledThreadPool</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
-<span class="c1">// 提交任务
-</span><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello: &#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">()),</span> <span class="n">1</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
-<span class="c1">// 周期性执行任务时不要关闭执行器，否则不会周期性执行
-</span><span class="c1">//executor.shutdown();
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 定义执行器，创建一个缓存线程池
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ScheduledExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newScheduledThreadPool</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 提交任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello: &#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">()),</span> <span class="n">1</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 周期性执行任务时不要关闭执行器，否则不会周期性执行
+</span></span></span><span class="line"><span class="cl"><span class="c1">//executor.shutdown();
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -292,6 +289,8 @@
 </ul>
 </li>
 </ul>
+<h1 id="线程池监控">线程池监控</h1>
+<p>TODO Spring 监控submit或者execute 任务数 活跃线程数</p>
 
     </div>
 
@@ -357,10 +356,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -377,7 +376,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

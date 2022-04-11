@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 GC" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 J" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/jvm/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="JVM" />
-<meta property="og:description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 GC" />
+<meta property="og:description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 J" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/jvm/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/jvm/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-04-02T10:56:52+00:00" />
 <meta property="article:modified_time" content="2019-04-02T10:56:52+00:00" />
+
 <meta itemprop="name" content="JVM">
-<meta itemprop="description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 GC">
-<meta itemprop="datePublished" content="2019-04-02T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 J"><meta itemprop="datePublished" content="2019-04-02T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2019-04-02T10:56:52+00:00" />
-<meta itemprop="wordCount" content="8302">
-
-
-
-<meta itemprop="keywords" content="JVM," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="3584">
+<meta itemprop="keywords" content="JVM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JVM"/>
-<meta name="twitter:description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 GC"/>
+<meta name="twitter:description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 J"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 8302 words </span>
-          <span class="more-meta"> 17 mins read </span>
+          <span class="more-meta"> 3584 words </span>
+          <span class="more-meta"> 8 mins read </span>
         
       </div>
     </header>
@@ -148,36 +144,6 @@
       </ul>
     </li>
     <li><a href="#元空间">元空间</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#gc-术语">GC 术语</a></li>
-    <li><a href="#判断存活算法">判断存活算法</a>
-      <ul>
-        <li><a href="#引用计数算法">引用计数算法</a></li>
-        <li><a href="#可达性分析算法">可达性分析算法</a></li>
-      </ul>
-    </li>
-    <li><a href="#gc算法">GC算法</a>
-      <ul>
-        <li><a href="#标记清除算法">标记清除算法</a></li>
-        <li><a href="#复制算法">复制算法</a></li>
-        <li><a href="#标记整理算法">标记整理算法</a></li>
-      </ul>
-    </li>
-    <li><a href="#垃圾收集器">垃圾收集器</a>
-      <ul>
-        <li><a href="#serial">Serial</a></li>
-        <li><a href="#parnew">ParNew</a></li>
-        <li><a href="#parallel-scavenge">Parallel Scavenge</a></li>
-        <li><a href="#serial-old">Serial Old</a></li>
-        <li><a href="#parallel-old">Parallel Old</a></li>
-        <li><a href="#cms">CMS</a></li>
-        <li><a href="#g1">G1</a></li>
-        <li><a href="#zgc">ZGC</a></li>
-        <li><a href="#shenandoahgc">ShenandoahGC</a></li>
-      </ul>
-    </li>
   </ul>
 
   <ul>
@@ -216,37 +182,6 @@
 </ol>
 </li>
 <li><a href="#jvm%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE">JVM基本参数配置</a></li>
-<li><a href="#gc">GC</a>
-<ol>
-<li><a href="#gc-%E6%9C%AF%E8%AF%AD">GC 术语</a></li>
-<li><a href="#%E5%88%A4%E6%96%AD%E5%AD%98%E6%B4%BB%E7%AE%97%E6%B3%95">判断存活算法</a>
-<ol>
-<li><a href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E7%AE%97%E6%B3%95">引用计数算法</a></li>
-<li><a href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95">可达性分析算法</a></li>
-</ol>
-</li>
-<li><a href="#gc%E7%AE%97%E6%B3%95">GC算法</a>
-<ol>
-<li><a href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95">标记清除算法</a></li>
-<li><a href="#%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95">复制算法</a></li>
-<li><a href="#%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95">标记整理算法</a></li>
-</ol>
-</li>
-<li><a href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8">垃圾收集器</a>
-<ol>
-<li><a href="#serial">Serial</a></li>
-<li><a href="#parnew">ParNew</a></li>
-<li><a href="#parallel-scavenge">Parallel Scavenge</a></li>
-<li><a href="#serial-old">Serial Old</a></li>
-<li><a href="#parallel-old">Parallel Old</a></li>
-<li><a href="#cms">CMS</a></li>
-<li><a href="#g1">G1</a></li>
-<li><a href="#zgc">ZGC</a></li>
-<li><a href="#shenandoahgc">ShenandoahGC</a></li>
-</ol>
-</li>
-</ol>
-</li>
 <li><a href="#jvm%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0">JVM不同实现</a>
 <ol>
 <li><a href="#hotspot-jvm">Hotspot JVM</a></li>
@@ -255,7 +190,7 @@
 </ol>
 </li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-11-25 16:19</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-11-22 22:56</em>|</p>
 <hr>
 <h1 id="jvm">JVM</h1>
 <blockquote>
@@ -271,6 +206,10 @@
 <p><code>书籍</code></p>
 <ul>
 <li>《深入理解 Java 虚拟机》(周志明 第二版) 大部分内容来源于此, 但是部分内容是依据Java8有所改动</li>
+</ul>
+<p><code>社区</code></p>
+<ul>
+<li><a href="https://club.perfma.com/">prefma</a></li>
 </ul>
 <hr>
 <p><img src="img/004-jvm-structure.drawio.svg" alt="JVM基本结构"></p>
@@ -435,11 +374,11 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 <hr>
 <h1 id="jvm基本参数配置">JVM基本参数配置</h1>
 <blockquote>
-<p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html">JDK8 java</a></p>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html">JDK8 Java 参数概览</a></p>
 </blockquote>
 <ul>
 <li><code>-XX:SurvivorRatio</code> 配置 Edgen 和 单个Survivor 的比例, 如果配置为2 则是 2:1:1</li>
-<li><code>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</code>  开启远程调试
+<li><code>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</code>  开启远程调试端口 8000
 <ul>
 <li>If you want to debug from start of application use <code>suspend=y</code> , this will keep remote application suspended until you connect from eclipse.</li>
 </ul>
@@ -447,391 +386,13 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 <li><code>-XX:CompressedClassSpaceSize=500m</code> 压缩类元空间大小 默认是1g</li>
 <li><code>-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false</code>
 <ul>
-<li>开启无需认证 非SSL的JMX端口</li>
+<li>开启无需认证 非SSL的JMX端口: 9999</li>
 </ul>
 </li>
 <li><code>-XX:+TraceClassUnloading -XX:+TraceClassLoading</code> 打印类装载</li>
 <li><code>-Xloggc:/home/logs/gc.log</code></li>
+<li><code>-Xmn</code> TODO  未设置时默认值的计算方式</li>
 </ul>
-<hr>
-<h1 id="gc">GC</h1>
-<blockquote>
-<p>Garbage Collection</p>
-</blockquote>
-<blockquote>
-<p><a href="https://github.com/openjdk/jdk/tree/jdk-12+33/src/hotspot/share/gc">Github: OpenJDK 12 GC 算法源码</a></p>
-<blockquote>
-<p>cms(JDK14中被移除) epsilon  g1 parallel serial shared shenandoah  zgc</p>
-</blockquote>
-</blockquote>
-<ul>
-<li><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/toc.html">Oracle JDK8 GC调优指南</a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/11/gctuning/introduction-garbage-collection-tuning.html">JDK11 GC调优指南</a></li>
-<li><a href="https://www.cubrid.org/blog/how-to-tune-java-garbage-collection/">How to Tune Java Garbage Collection</a></li>
-<li><a href="https://my.oschina.net/u/4030990/blog/3149182">《沙盘模拟系列》JVM如何调优</a></li>
-</ul>
-<hr>
-<p>GC 的目的是识别出不再使用的内存，并将其变为可用的。现代垃圾收集器通常分几个阶段以及根据不同的分代使用不同的垃圾收集器来完成回收过程</p>
-<blockquote>
-<p>什么时候, 对什么东西, 做了什么</p>
-</blockquote>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/41922036/answer/93079526">RednaxelaFX</a></p>
-</blockquote>
-<ul>
-<li><code>Partial GC</code>：并不收集整个GC堆的模式
-<ul>
-<li><code>Young GC</code>：只收集young gen的GC</li>
-<li><code>Old GC</code>：只收集old gen的GC。只有CMS的concurrent collection是这个模式</li>
-<li><code>Mixed GC</code>：收集整个young gen以及部分old gen的GC。只有G1有这个模式</li>
-</ul>
-</li>
-<li><code>Full GC</code>：收集整个堆，包括young gen、old gen、perm gen（如果存在的话）等所有部分的模式。</li>
-</ul>
-<hr>
-<p><code>新生代GC Minor GC</code><br>
-发生在新生代的垃圾收集动作, 因为大多数对象都是存活时间很短, 所以 Minor GC 非常频繁, 一般回收速度也比较快.<br>
-扫描过后将 Eden 和 现在使用的 Survivor 两个区中的存活对象 全搬去空闲的 Survivor.<br>
-如果 存活的对象内存大小大于 Survivor 区大小, 则需要<code>分配担保机制</code>提前将对象转移到老年代中</p>
-<p><code>老年代GC Major GC</code><br>
-发生在老年代的GC, 出现了 Major GC, 往往会伴随至少一次 Minor GC. Major GC 的速度一般会比 Minor GC 慢10倍以上.</p>
-<blockquote>
-<p><a href="https://stackoverflow.com/questions/42226785/what-causes-a-full-gc-to-run">What causes a Full GC to run?</a></p>
-</blockquote>
-<hr>
-<blockquote>
-<p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/generations.html#sthref16">Oracle Java8 Doc: Generation</a></p>
-</blockquote>
-<p><img src="img/003-jvm-generation-design.drawio.svg" alt=""></p>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/44929481">参考: JVM中新生代为什么要有两个Survivor（form,to）？</a><br>
-<a href="https://blog.csdn.net/antony9118/article/details/51425581">参考: 为什么新生代内存需要有两个Survivor区</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://ifeve.com/jvm-yong-generation/">聊聊JVM的年轻代</a><br>
-我是一个普通的java对象，我出生在Eden区，在Eden区我还看到和我长的很像的小兄弟，我们在Eden区中玩了挺长时间。<br>
-有一天Eden区中的人实在是太多了，我就被迫去了Survivor区的“From”区，自从去了Survivor区，我就开始漂了，<br>
-有时候在Survivor的“From”区，有时候在Survivor的“To”区，居无定所。<br>
-直到我18岁的时候，爸爸说我成人了，该去社会上闯闯了。于是我就去了年老代那边，年老代里，人很多，并且年龄都挺大的，我在这里也认识了很多人。<br>
-在年老代里，我生活了20年(每次GC加一岁)，然后被回收。</p>
-</blockquote>
-<h2 id="gc-术语">GC 术语</h2>
-<ul>
-<li><code>并行（Parallel）</code> 运行中的 JVM 包含应用程序线程和 GC 线程。在并行阶段，会运行多个 GC 线程，也就是说任务被拆分给它们去完成。至于 GC 线程是否可以与正在运行的应用程序线程重叠，这个在规范中并没有特别说明。</li>
-<li><code>串行（Serial）</code> 只有单个 GC 线程在运行。与上面的并行阶段一样，规范中也没有说明 GC 线程是否可以与当前运行的应用程序线程重叠。</li>
-<li><code>并发（Concurrent）</code> GC 线程和应用程序线程并发执行。</li>
-<li><code>Stop The World（STW）</code> 应用程序线程被暂停，让 GC 线程执行它们的任务。当你遇到 GC 停顿时，说明虚拟机进入了 STW 阶段。</li>
-<li><code>增量（Incremental）</code> 在增量阶段，它可以运行一段时间，并基于某些条件提前终止，例如时间预算或执行更高优先级的 GC 阶段。</li>
-</ul>
-<h2 id="判断存活算法">判断存活算法</h2>
-<h3 id="引用计数算法">引用计数算法</h3>
-<blockquote>
-<p>给对象添加一个引用计数器, 每当有一个地方引用该对象就加一, 引用失效就减一; 计数器值为零的对象就是不可能被使用的对象</p>
-</blockquote>
-<p>但是该算法无法解决 对象间循环引用的问题, 例如 A 引用 B, B 引用 A, 但是这两个对象都是没有被别的对象引用</p>
-<ul>
-<li><input disabled="" type="checkbox"> 如何解决循环引用问题?</li>
-</ul>
-<h3 id="可达性分析算法">可达性分析算法</h3>
-<p>当一个对象到 GC Roots 对象没有任何引用链相连时(或者说从 GC Roots 到该对象不可达), 则证明该对象是不可用的</p>
-<p>GC Roots 对象包含:</p>
-<ul>
-<li>虚拟机栈(栈帧中的本地变量表)中引用的对象</li>
-<li>方法区中类静态属性引用的对象</li>
-<li>方法去中常量引用的对象</li>
-<li>本地方法栈中 JNI (Native 方法) 引用的对象</li>
-</ul>
-<hr>
-<h2 id="gc算法">GC算法</h2>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/41922036">参考: Major GC和Full GC的区别是什么？</a></p>
-</blockquote>
-<hr>
-<ul>
-<li><input disabled="" type="checkbox"> HotSpot 上 一次 Full GC: 针对 新生代 老生代 元空间 的全局范围的GC, 将会 STW(Stop The World)</li>
-</ul>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/41922036/answer/93079526">https://www.zhihu.com/question/41922036/answer/93079526</a></p>
-</blockquote>
-<ul>
-<li>最简单的分代式GC策略，按HotSpot VM的serial GC的实现来看，触发条件是：
-<ul>
-<li>young GC：当young gen 中的 eden gen 分配满的时候触发。注意young GC中有部分存活对象会晋升到old gen，所以young GC后old gen的占用量通常会有所升高。</li>
-<li>full GC：当准备要触发一次young GC时，如果发现统计数据说之前young GC的平均晋升大小比目前old gen剩余的空间大，则不会触发young GC而是转为触发full GC</li>
-<li>（因为HotSpot VM的GC里，除了CMS的concurrent collection之外，其它能收集old gen的GC都会同时收集整个GC堆，包括young gen，所以不需要事先触发一次单独的young GC）；</li>
-<li>或者，如果有perm gen的话，要在perm gen分配空间但已经没有足够空间时，也要触发一次full GC；或者System.gc()、heap dump带GC，默认也是触发full GC。</li>
-</ul>
-</li>
-</ul>
-<h3 id="标记清除算法">标记清除算法</h3>
-<blockquote>
-<p>首先标记出所有需要回收的对象, 在标记完成后统一回收</p>
-</blockquote>
-<p><code>缺点</code></p>
-<ol>
-<li>效率问题: 标记和清除两个过程的效率不高</li>
-<li>空间问题: 容易引起内存碎片化问题, 碎片太多可能导致后期需要分配较大对象时找不到足够大的连续内存
-<ul>
-<li>并因此触发一次垃圾收集动作</li>
-</ul>
-</li>
-</ol>
-<h3 id="复制算法">复制算法</h3>
-<blockquote>
-<p>将内存按容量划分为等大的两块, 每次只使用其中的一块, 当这块的内存用到需要回收了, 就将需要存活的对象复制到另一块上去, 将该块全部清理掉<br>
-转而只使用另一个块 这样就不会有内存碎片化问题, 但是可使用的内存只有原来的一半</p>
-</blockquote>
-<p>适用于新生代</p>
-<h3 id="标记整理算法">标记整理算法</h3>
-<blockquote>
-<p>标记过程和标记清除算法是一致的, 但是后续是让存活的对象往一端移动, 清理掉端边界以外的内存.</p>
-</blockquote>
-<p>适用于老年代</p>
-<hr>
-<h2 id="垃圾收集器">垃圾收集器</h2>
-<blockquote>
-<p>JVM垃圾收集器发展历程</p>
-</blockquote>
-<ul>
-<li>第一阶段，Serial（串行）收集器
-<ul>
-<li>在jdk1.3.1之前，java虚拟机仅仅能使用Serial收集器。 Serial收集器是一个单线程的收集器，但它的“单线程”的意义并不仅仅是说明它只会使用一个CPU或一条收集线程去完成垃圾收集工作，更重要的是在它进行垃圾收集时，必须暂停其他所有的工作线程，直到它收集结束。</li>
-</ul>
-</li>
-<li>第二阶段，Parallel（并行）收集器
-<ul>
-<li>Parallel收集器也称吞吐量收集器，相比Serial收集器，Parallel最主要的优势在于使用多线程去完成垃圾清理工作，这样可以充分利用多核的特性，大幅降低gc时间。</li>
-</ul>
-</li>
-<li>第三阶段，CMS（并发）收集器
-<ul>
-<li>CMS收集器在Minor GC时会暂停所有的应用线程，并以多线程的方式进行垃圾回收。在Full GC时不再暂停应用线程，而是使用若干个后台线程定期的对老年代空间进行扫描，及时回收其中不再使用的对象。</li>
-</ul>
-</li>
-<li>第四阶段，G1（并发）收集器
-<ul>
-<li>G1收集器（或者垃圾优先收集器）的设计初衷是为了尽量缩短处理超大堆（大于4GB）时产生的停顿。相对于CMS的优势而言是内存碎片的产生率大大降低。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><code>java -XX:+PrintCommandLineFlags -version</code> 可以通过该命令快速知道当前版本JDK默认垃圾收集器</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>JVM垃圾收集器种类</p>
-</blockquote>
-<p>根据设计, 往往是新生代和老年代使用不同的垃圾收集器并组合使用, 因为各分代之间特性不同</p>
-<ol>
-<li>新生代
-<ul>
-<li>Serial (第一代)</li>
-<li>PraNew (第二代)</li>
-<li>Parallel Scavenge (第三代)</li>
-<li>G1收集器(第四代)</li>
-</ul>
-</li>
-<li>老年代
-<ul>
-<li>Serial Old (第一代)</li>
-<li>Parallel Old (第二代)</li>
-<li>CMS (第三代)</li>
-<li>G1收集器 (第四代)</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>收集器搭配时的限制条件:
-<ul>
-<li>CMS不能和 Parallel Scavenge 一起用</li>
-<li>Parallel Old 只能和 Parallel Scavenge 一起用</li>
-<li>G1 只能单独使用(独自处理新生代和老年代)</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li><code>吞吐量 = 运行用户代码时间 / (用户代码时间 + 垃圾收集时间)</code></li>
-<li>并行和并发
-<ul>
-<li>并行：充分利用多核CPU来缩短STW的时间, 并发：部分其他收集器需要停顿的逻辑也和用户进程并发执行</li>
-</ul>
-</li>
-</ul>
-<hr>
-<blockquote>
-<p>查看当前使用的垃圾收集器</p>
-</blockquote>
-<ul>
-<li><code>-XX:+PrintCommandLineFlags</code> 或者查看GC日志中代的名称 <code>-XX:+PrintGCDetails</code></li>
-<li>JDK1.7 1.8 默认垃圾收集器Parallel Scavenge（新生代）+Parallel Old（老年代）</li>
-<li>JDK1.9 以上 默认垃圾收集器G1</li>
-</ul>
-<hr>
-<h3 id="serial">Serial</h3>
-<blockquote>
-<p>单线程垃圾收集器 JDK1.3.1之前唯一选择, 仅用于新生代</p>
-</blockquote>
-<p>单线程的收集器, 采用复制算法, client模式下默认收集器, 因为client的内存一般不会很大, 单线程反而效率更高, STW的时间也不会很长</p>
-<h3 id="parnew">ParNew</h3>
-<blockquote>
-<p>Serial 收集器的多线程版本, 仅用于新生代</p>
-</blockquote>
-<p>仅有该收集器和Serial收集器能和CMS收集器一起使用, 当使用CMS的时候默认是ParNew</p>
-<blockquote>
-<p>注: 单核服务器时, 该收集器性能必然比Serial差, 因为线程调度开销</p>
-</blockquote>
-<h3 id="parallel-scavenge">Parallel Scavenge</h3>
-<blockquote>
-<p>并行多线程收集器, 同样使用标记复制算法 着重点是可控制的吞吐量, 可以高效率利用CPU时间, 仅用于新生代</p>
-</blockquote>
-<p><code>-XX:-UseParallelGC</code></p>
-<ul>
-<li>控制最大垃圾收集停顿时间 <code>-XX:MaxGCPauseMillis</code> (大于0的整数 millis)
-<ul>
-<li>该值并不是越小越好, GC停顿时间缩短是牺牲吞吐量和新生代空间来换取的</li>
-<li>新生代空间越小则垃圾收集器回收时间则更短, 但是也更频繁, 停顿时间降下来了,但是吞吐量就下降了</li>
-</ul>
-</li>
-<li>直接设置吞吐量大小 <code>-XX:GCTimeRatio</code> (0,100)
-<ul>
-<li>收集器将尽可能保证内存回收的时间不超过设置值, 值为垃圾收集时间占总时间的比率, 相当于吞吐量的倒数</li>
-<li>如果设置为 49 则允许的最大GC时间占总时间的 1/(1+49)</li>
-</ul>
-</li>
-<li>GC自适应策略 <code>-XX:+UseAdaptiveSizePolicy</code>
-<ul>
-<li>该参数启用后, 就无需手动设置新生代的大小(-Xmn)和Eden和Survivor的比例(-XX:SurvivorRatio) 晋升老年代对象大小(-XX:PretenureSizeThreshold) 等细节参数了</li>
-<li>虚拟机将动态调整这些参数</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="serial-old">Serial Old</h3>
-<blockquote>
-<p>Serial收集器的老年代版本, 单线程收集器</p>
-</blockquote>
-<p>主要用于client模式下<br>
-server模式下: 1.5之前的版本与Parallel Scavenge搭配使用, 或者作为CMS的备选方案</p>
-<h3 id="parallel-old">Parallel Old</h3>
-<blockquote>
-<p>是Parallel Scavenge 收集器的老年代版本</p>
-</blockquote>
-<p><code>-XX:+UseParallelOldGC</code></p>
-<h3 id="cms">CMS</h3>
-<blockquote>
-<p>Concurrent Mark Sweep 着重点是尽可能缩短垃圾收集时用户线程的停顿时间 <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/cms.html">Oracle Doc</a></p>
-</blockquote>
-<p><code>-XX:+UseConcMarkSweepGC</code></p>
-<p>工作流程, 依次执行</p>
-<ol>
-<li>初始标记 CMS initial mark</li>
-<li>并发标记 CMS concurrent mark</li>
-<li>最终标记 CMS final remark</li>
-<li>并发清除 CMS concurrent sweep</li>
-</ol>
-<blockquote>
-<p>例如：</p>
-</blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">4936.782: [GC (CMS Initial Mark) [1 CMS-initial-mark: 747140K(1494272K)] 752384K(1800960K), 0.0043788 secs] [Times: user=0.01 sys=0.00, real=0.00 secs] 
-4936.787: [CMS-concurrent-mark-start]
-4936.942: [CMS-concurrent-mark: 0.156/0.156 secs] [Times: user=0.23 sys=0.01, real=0.16 secs] 
-4936.942: [CMS-concurrent-preclean-start]
-4936.948: [CMS-concurrent-preclean: 0.005/0.005 secs] [Times: user=0.01 sys=0.00, real=0.00 secs] 
-4936.948: [CMS-concurrent-abortable-preclean-start]
-4938.832: [GC (Allocation Failure) 2020-11-23T17:06:01.905+0800: 4938.832: [ParNew: 277821K-&gt;4257K(306688K), 0.0088608 secs] 1024961K-&gt;751463K(1800960K), 0.0089994 secs] [Times: user=
-4939.249: [CMS-concurrent-abortable-preclean: 0.774/2.301 secs] [Times: user=1.32 sys=0.09, real=2.31 secs] 
-4939.250: [GC (CMS Final Remark) [YG occupancy: 142153 K (306688 K)]2020-11-23T17:06:02.323+0800: 4939.250: [Rescan (parallel) , 0.0225236 secs]2020-11-23T17:06:02.346+0800: 4939.273:
-4939.382: [CMS-concurrent-sweep-start]
-4939.627: [CMS-concurrent-sweep: 0.235/0.245 secs] [Times: user=0.43 sys=0.03, real=0.24 secs] 
-4939.627: [CMS-concurrent-reset-start]
-4939.631: [CMS-concurrent-reset: 0.004/0.004 secs] [Times: user=0.00 sys=0.00, real=0.01 secs]
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>优点: 并发低停顿</li>
-<li>缺点:
-<ol>
-<li>因为会和用户进程抢占CPU资源, 会导致应用程序变慢, 造成总吞吐量的下降. 默认启动的线程数为 (CPU数量+3)/4</li>
-<li>无法处理浮动垃圾, 可能出现 Concurrent Mode Failure 从而引起新一次FullGC
-<ul>
-<li>并发清理阶段用户线程还在运行，这段时间就可能产生新的垃圾，新的垃圾在此次GC无法清除，只能等到下次清理</li>
-</ul>
-</li>
-<li>由于使用的是标记清除算法, 容易导致大量空间碎片, 这样的后果是分配大内存对象会很麻烦, 往往出现老年代总空间还有大量剩余, 但是没有足够大的连续空间
-<ul>
-<li>为了解决该问题, 提供了参数 <code>-XX:+UseCMSCompactAtFullCollection</code> 默认开启, 用于在FullGC时进行内存碎片的合并, 该过程无法并发还是要 STW</li>
-<li>还有一个参数 <code>-XX:CMSFullGCsBeforeCompaction</code> 默认为0, 设置多少次不压缩的FullGC后进行一次压缩的FullGC(内存合并的FullGC)</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<p>其中 初始标记 和 重新标记 仍然需要 STW, 两个并发的过程是和用户线程并发执行的对吞吐量有一定影响<br>
-且由于是并发执行的, 那么并发的两个阶段用户进程是需要执行的, 就需要给这些线程预留足够的内存空间, 默认触发GC的阈值是 老年代使用了68%后(1.5) 1.6是92%<br>
-可通过 <code>-XXCMSInitiatingOccupancyFraction</code> 进行设置. 如果CMS执行期间发现剩余内存不足以让程序正常运行, 就会临时启用 Serial Old<br>
-所以该参数不可设置过高, 否则容易导致频繁采用单线程版的垃圾回收器, 大大延长 STW 时间</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MzUyMDE1ODQ3NQ==&amp;mid=2247483851&amp;idx=1&amp;sn=8cb444039449848531b7ca72c396e07e&amp;chksm=f9efedafce9864b9dbb645863d7d3c8b34e83888d07e175dd9c931576db2ecc0aa90835fcf50&amp;scene=21#wechat_redirect">参考: JVM 源码解读之 CMS GC 触发条件 </a></p>
-</blockquote>
-<h3 id="g1">G1</h3>
-<blockquote>
-<p>Garbage First 面向服务端应用的垃圾收集器, JDK7发布, JDK9作为默认GC <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/g1_gc.html#garbage_first_garbage_collection">Oracle Doc</a></p>
-</blockquote>
-<p><code>-XX:+UseG1GC</code></p>
-<ul>
-<li>分代收集
-<ul>
-<li>虽然G1可以独立管理整个堆, 但同样具有分代的概念</li>
-</ul>
-</li>
-<li>空间整合
-<ul>
-<li>从整体上看是基于标记整理算法, 局部(两个Region之间)上基于标记复制算法, 相比于CMS不容易产生内存碎片</li>
-</ul>
-</li>
-<li>可预测的停顿
-<ul>
-<li>G1除了追求低停顿, 还能建立可预测的停顿时间模型, 能让使用者明确指定在一个长度为M毫秒的时间片段内, 消耗在垃圾收集上的时间不得超过N毫秒</li>
-<li>几乎是RTSJ的特征</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><a href="https://my.oschina.net/u/3959491/blog/3029276">参考: JVM系列篇：深入剖析G1收集器</a></p>
-</blockquote>
-<h3 id="zgc">ZGC</h3>
-<blockquote>
-<p>JDK11引入 JDK15正式使用 <a href="https://wiki.openjdk.java.net/display/zgc/Main">wiki: ZGC</a> | <a href="https://www.oracle.com/technetwork/java/javase/11-relnote-issues-5012449.html#JDK-8197831">ZGC Release note</a></p>
-</blockquote>
-<p><code>-XX:+UnlockExperimentalVMOptions -XX:+UseZGC</code></p>
-<blockquote>
-<p><a href="https://www.infoq.cn/article/oracle-release-java-gc-zgc">参考: Oracle 即将发布的全新 Java 垃圾收集器 ZGC</a></p>
-</blockquote>
-<h3 id="shenandoahgc">ShenandoahGC</h3>
-<blockquote>
-<p>JDK12  <a href="https://wiki.openjdk.java.net/display/shenandoah/Main">wiki: ShenandoahGC</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://juejin.im/post/5c934a5d5188252dad05d82a">参考: JDK12 ShenandoahGC小试牛刀</a></p>
-</blockquote>
 <hr>
 <h1 id="jvm不同实现">JVM不同实现</h1>
 <h2 id="hotspot-jvm">Hotspot JVM</h2>
@@ -930,10 +491,10 @@ server模式下: 1.5之前的版本与Parallel Scavenge搭配使用, 或者作�
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -950,7 +511,7 @@ server模式下: 1.5之前的版本与Parallel Scavenge搭配使用, 或者作�
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

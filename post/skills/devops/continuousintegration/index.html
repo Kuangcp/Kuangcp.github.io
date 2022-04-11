@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 sonarqube 监控 目录 end|2020-06-24 02:06| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行持续集成 目前个" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Mythos" /><meta name="description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 Bug跟踪 sonarqube 测试平台 目录 end|2021-04-14 14:37| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.78.1 with theme even" />
+<meta name="generator" content="Hugo 0.93.2 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/skills/devops/continuousintegration/" />
@@ -35,28 +35,24 @@
 
 
 
-<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="ContinuousIntegration" />
-<meta property="og:description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 sonarqube 监控 目录 end|2020-06-24 02:06| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行持续集成 目前个" />
+<meta property="og:description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 Bug跟踪 sonarqube 测试平台 目录 end|2021-04-14 14:37| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/devops/continuousintegration/" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/devops/continuousintegration/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="ContinuousIntegration">
-<meta itemprop="description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 sonarqube 监控 目录 end|2020-06-24 02:06| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行持续集成 目前个">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 Bug跟踪 sonarqube 测试平台 目录 end|2021-04-14 14:37| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="347">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="429">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ContinuousIntegration"/>
-<meta name="twitter:description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 sonarqube 监控 目录 end|2020-06-24 02:06| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行持续集成 目前个"/>
+<meta name="twitter:description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 Bug跟踪 sonarqube 测试平台 目录 end|2021-04-14 14:37| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2018-11-21 </span>
         
-          <span class="more-meta"> 347 words </span>
+          <span class="more-meta"> 429 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -143,6 +139,7 @@
   </ul>
 
   <ul>
+    <li><a href="#bug跟踪">Bug跟踪</a></li>
     <li><a href="#sonarqube">sonarqube</a></li>
   </ul>
 </nav>
@@ -162,12 +159,13 @@
 </li>
 <li><a href="#%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86">代码质量管理</a>
 <ol>
+<li><a href="#bug%E8%B7%9F%E8%B8%AA">Bug跟踪</a></li>
 <li><a href="#sonarqube">sonarqube</a></li>
 </ol>
 </li>
-<li><a href="#%E7%9B%91%E6%8E%A7">监控</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0">测试平台</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-06-24 02:06</em>|</p>
+<p><strong>目录 end</strong>|<em>2021-04-14 14:37</em>|</p>
 <hr>
 <h1 id="持续集成">持续集成</h1>
 <blockquote>
@@ -201,7 +199,7 @@
 <blockquote>
 <p><a href="https://drone.io/">官网</a></p>
 </blockquote>
-<p>一个原生支持 docker 的 CI</p>
+<p>go语言实现，一个原生支持 docker 的 CI</p>
 <blockquote>
 <p><a href="https://aisensiy.github.io/2017/08/04/drone-best-ci/">参考: Drone 一个原生支持 docker 的 CI</a><br>
 <a href="https://zmcdbp.com/drone-ci-gitlab-base-build/">参考: Drone CI + GitLab持续集成的基础设施搭建</a> | <a href="https://zmcdbp.com/drone-ci-basic-use/">参考: Drone CI的持续集成的基本使用</a></p>
@@ -211,6 +209,11 @@
 <blockquote>
 <p><a href="https://flow.ci/">官网</a> | <a href="https://github.com/FlowCI/docs/blob/master/intro_base.md">文档</a></p>
 </blockquote>
+<hr>
+<ul>
+<li><a href="https://gitee.com/dev-ops/gopub">gopub</a></li>
+<li><a href="https://gitee.com/gokins/gokins">gokins</a></li>
+</ul>
 <h2 id="三方平台">三方平台</h2>
 <ul>
 <li><a href="https://ci.appveyor.com/projects">appveyor</a></li>
@@ -220,6 +223,11 @@
 </blockquote>
 <hr>
 <h1 id="代码质量管理">代码质量管理</h1>
+<h2 id="bug跟踪">Bug跟踪</h2>
+<ul>
+<li><a href="https://bugzilla.readthedocs.io/en/latest/installing/quick-start.html">bugzilla</a></li>
+<li>redmine</li>
+</ul>
 <h2 id="sonarqube">sonarqube</h2>
 <blockquote>
 <p><a href="https://www.sonarqube.org/">官网</a> | <a href="https://hub.docker.com/_/sonarqube/">Docker Hub</a></p>
@@ -228,10 +236,66 @@
 <p>快速使用</p>
 </blockquote>
 <ol>
-<li><code>docker run -d --name sonarqube -p 9000:9000  sonarqube:8-community</code></li>
-<li><a href="https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/">maven集成</a></li>
+<li>
+<p><code>docker run -d --name sonarqube -p 9000:9000  sonarqube:8-community</code></p>
+</li>
+<li>
+<p><a href="https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/">sonarscanner</a></p>
+<ol>
 <li>Maven会输出当前分析项目的结果URL</li>
 </ol>
+</li>
+<li>
+<p>sonar-scanner 命令行工具安装</p>
+<ol>
+<li>配置工具 <code>/etc/sonar-scanner/sonar-scanner.properties</code>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">  <span class="na">sonar.host.url</span><span class="o">=</span><span class="s">http://localhost:9000
+</span></span></span><span class="line"><span class="cl"><span class="s">  sonar.sourceEncoding=UTF-8
+</span></span></span><span class="line"><span class="cl"><span class="s">  sonar.login=admin
+</span></span></span><span class="line"><span class="cl"><span class="s">  sonar.password=admin</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>配置项目根路径 <code>sonar-project.properties</code>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">  <span class="na">sonar.projectKey</span><span class="o">=</span><span class="s">com.github.kuangcp.gobase
+</span></span></span><span class="line"><span class="cl"><span class="s">  sonar.projectName=GoBase</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><a href="https://cloud.tencent.com/developer/article/1684515">参考: 有赞 GO 项目单测、集成、增量覆盖率统计与分析</a><br>
+<a href="https://docs.sonarqube.org/latest/analysis/languages/go/">支持 Go</a></p>
+</blockquote>
+<hr>
+<h1 id="测试平台">测试平台</h1>
+<blockquote>
+<p><a href="https://metersphere.io/">metersphere.io</a></p>
+</blockquote>
 
     </div>
 
@@ -253,9 +317,9 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/skills/devops/continuousdeployment/">
+        <a class="prev" href="/post/functional/clojure/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">ContinuousDeployment</span>
+            <span class="prev-text nav-default">Clojure</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         <a class="next" href="/post/skills/test/cucumber/">
@@ -297,10 +361,10 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2020<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
   </span>
 </div>
 
@@ -317,7 +381,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 
