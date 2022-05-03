@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/linux/container/dockerfiles/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="DockerFile" />
 <meta property="og:description" content="目录 start Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置 CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL HEALTHCHECK ONBUILD 中间镜像 Practice dockerignore文件的使用" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/dockerfiles/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/dockerfiles/" />
 <meta property="article:published_time" content="2018-12-15T11:27:03+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:27:03+00:00" />
-
 <meta itemprop="name" content="DockerFile">
-<meta itemprop="description" content="目录 start Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置 CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL HEALTHCHECK ONBUILD 中间镜像 Practice dockerignore文件的使用"><meta itemprop="datePublished" content="2018-12-15T11:27:03+00:00" />
+<meta itemprop="description" content="目录 start Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置 CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL HEALTHCHECK ONBUILD 中间镜像 Practice dockerignore文件的使用">
+<meta itemprop="datePublished" content="2018-12-15T11:27:03+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:27:03+00:00" />
 <meta itemprop="wordCount" content="2885">
-<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="基础," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DockerFile"/>
 <meta name="twitter:description" content="目录 start Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置 CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL HEALTHCHECK ONBUILD 中间镜像 Practice dockerignore文件的使用"/>
 
@@ -227,7 +231,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -235,13 +239,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl">    <span class="c1">#随意写的</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    FROM alpine<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    MAINTAINER Mythos<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    ENV DIRPATH /path<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    WORKDIR <span class="nv">$DIRPATH</span>/<span class="nv">$DIRNAME</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN pwd<span class="err">
-</span></span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile">    <span class="c1">#随意写的</span><span class="err">
+</span><span class="err"></span>    FROM alpine<span class="err">
+</span><span class="err"></span>    MAINTAINER Mythos<span class="err">
+</span><span class="err"></span>    ENV DIRPATH /path<span class="err">
+</span><span class="err"></span>    WORKDIR <span class="nv">$DIRPATH</span>/<span class="nv">$DIRNAME</span><span class="err">
+</span><span class="err"></span>    RUN pwd<span class="err">
+</span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>docker build .</code> 如果成功则会得到一个没有名字的镜像 <code>none:none</code>
@@ -312,7 +316,7 @@
 <p>例如基于一个编译环境镜像, 编译得到结果文件, 然后基于运行环境, 将结果文件复制过来, 构建成新的镜像, 最终镜像将不包含编译环境</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -320,13 +324,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> maven:3.5.0-jdk-8-alpine AS builder</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> mvn clean package<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">From</span><span class="s"> openjdk:8-jre-alpine</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>builder target/demo.jar demo.jar<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;demo.jar&#34;</span><span class="p">]</span><span class="err">
-</span></span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> maven:3.5.0-jdk-8-alpine AS builder</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> mvn clean package<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">From</span><span class="s"> openjdk:8-jre-alpine</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>builder target/demo.jar demo.jar<span class="err">
+</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;demo.jar&#34;</span><span class="p">]</span><span class="err">
+</span></code></pre></td></tr></table>
 </div>
 </div><h3 id="maintainer">MAINTAINER</h3>
 <ul>
@@ -373,7 +377,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -387,19 +391,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># Alpine </span>
-</span></span><span class="line"><span class="cl">    RUN apk --no-cache add tzdata  <span class="o">&amp;&amp;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>        ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;Asia/Shanghai&#34;</span> &gt; /etc/timezone
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1"># Ubuntu</span>
-</span></span><span class="line"><span class="cl">    RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;Asia/Shanghai&#34;</span> &gt; /etc/timezone <span class="o">&amp;&amp;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>        dpkg-reconfigure -f noninteractive tzdata
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1"># Centos</span>
-</span></span><span class="line"><span class="cl">    RUN <span class="nb">echo</span> <span class="s2">&#34;Asia/shanghai&#34;</span> &gt; /etc/timezone<span class="p">;</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># Alpine </span>
+    RUN apk --no-cache add tzdata  <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>        ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;Asia/Shanghai&#34;</span> &gt; /etc/timezone
+
+    <span class="c1"># Ubuntu</span>
+    RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;Asia/Shanghai&#34;</span> &gt; /etc/timezone <span class="o">&amp;&amp;</span> <span class="se">\
+</span><span class="se"></span>        dpkg-reconfigure -f noninteractive tzdata
+
+    <span class="c1"># Centos</span>
+    RUN <span class="nb">echo</span> <span class="s2">&#34;Asia/shanghai&#34;</span> &gt; /etc/timezone<span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>对于 alpine 以及 Ubuntu ln -s 建立到时间文件的软链接就已经够了, 但是确保没问题就最好还是修改下 时区文件</p>
@@ -461,13 +465,13 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    ENTRYPOINT [&#34;memcached&#34;]
-</span></span><span class="line"><span class="cl">    USER daemon
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ENTRYPOINT [&#34;memcached&#34;]
+    USER daemon
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="expose">EXPOSE</h3>
 <ul>
@@ -581,7 +585,7 @@
 <h3 id="中间镜像">中间镜像</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -592,16 +596,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl">    FROM imageA AS builder<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN ...<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    FROM imageB AS final<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN ...<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="c1"># 可以引用builder镜像中的文件</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY --from<span class="o">=</span>builder /path/to/a /app<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;/app&#34;</span><span class="o">]</span><span class="err">
-</span></span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile">    FROM imageA AS builder<span class="err">
+</span><span class="err"></span>    RUN ...<span class="err">
+</span><span class="err">
+</span><span class="err"></span>    FROM imageB AS final<span class="err">
+</span><span class="err"></span>    RUN ...<span class="err">
+</span><span class="err">
+</span><span class="err"></span>    <span class="c1"># 可以引用builder镜像中的文件</span><span class="err">
+</span><span class="err"></span>    COPY --from<span class="o">=</span>builder /path/to/a /app<span class="err">
+</span><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;/app&#34;</span><span class="o">]</span><span class="err">
+</span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="practice">Practice</h1>
@@ -632,7 +636,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -641,14 +645,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl">    FROM ubuntu<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    MAINTAINER <span class="s2">&#34;your email&#34;</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN apt-get update <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="o">&amp;&amp;</span> apt-get install -ysoftware-properties-common <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="o">&amp;&amp;</span> add-apt-repository ppa:git-core/ppa <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="o">&amp;&amp;</span> apt-get update <span class="o">&amp;&amp;</span> apt-get install -y git<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;git&#34;</span><span class="o">]</span><span class="err">
-</span></span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile">    FROM ubuntu<span class="err">
+</span><span class="err"></span>    MAINTAINER <span class="s2">&#34;your email&#34;</span><span class="err">
+</span><span class="err"></span>    RUN apt-get update <span class="se">\
+</span><span class="se"></span>        <span class="o">&amp;&amp;</span> apt-get install -ysoftware-properties-common <span class="se">\
+</span><span class="se"></span>        <span class="o">&amp;&amp;</span> add-apt-repository ppa:git-core/ppa <span class="se">\
+</span><span class="se"></span>        <span class="o">&amp;&amp;</span> apt-get update <span class="o">&amp;&amp;</span> apt-get install -y git<span class="err">
+</span><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;git&#34;</span><span class="o">]</span><span class="err">
+</span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>构建镜像<code>docker build -t git:new .</code></li>
@@ -657,17 +661,17 @@
 <h3 id="dockerfile中新建用户">Dockerfile中新建用户</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl">    RUN useradd -ms /bin/bash mythos<span class="p">;</span><span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;mythos:jiushi&#34;</span> <span class="p">|</span> chpasswd<span class="p">;</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    USER mythos<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    WORKDIR /home/mythos<span class="err">
-</span></span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile">    RUN useradd -ms /bin/bash mythos<span class="p">;</span><span class="se">\
+</span><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;mythos:jiushi&#34;</span> <span class="p">|</span> chpasswd<span class="p">;</span><span class="err">
+</span><span class="err"></span>    USER mythos<span class="err">
+</span><span class="err"></span>    WORKDIR /home/mythos<span class="err">
+</span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <blockquote>
@@ -743,7 +747,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -760,7 +764,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

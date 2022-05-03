@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/tool/gradle/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Gradle" />
 <meta property="og:description" content="目录 start Gradle 书籍 发行版本列表 安装 Chocolate Docker安装 手动配置 Wrapper CUI使用 命令行选项 动作 build test 守护进程 配置 全局配置文件 build.gradle SourceSet 依赖管理 依赖排除以及指定依赖" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/tool/gradle/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/tool/gradle/" />
 <meta property="article:published_time" content="2018-12-12T21:29:59+00:00" />
 <meta property="article:modified_time" content="2018-12-12T21:29:59+00:00" />
-
 <meta itemprop="name" content="Gradle">
-<meta itemprop="description" content="目录 start Gradle 书籍 发行版本列表 安装 Chocolate Docker安装 手动配置 Wrapper CUI使用 命令行选项 动作 build test 守护进程 配置 全局配置文件 build.gradle SourceSet 依赖管理 依赖排除以及指定依赖"><meta itemprop="datePublished" content="2018-12-12T21:29:59+00:00" />
+<meta itemprop="description" content="目录 start Gradle 书籍 发行版本列表 安装 Chocolate Docker安装 手动配置 Wrapper CUI使用 命令行选项 动作 build test 守护进程 配置 全局配置文件 build.gradle SourceSet 依赖管理 依赖排除以及指定依赖">
+<meta itemprop="datePublished" content="2018-12-12T21:29:59+00:00" />
 <meta itemprop="dateModified" content="2018-12-12T21:29:59+00:00" />
 <meta itemprop="wordCount" content="3913">
-<meta itemprop="keywords" content="Gradle," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="Gradle," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Gradle"/>
 <meta name="twitter:description" content="目录 start Gradle 书籍 发行版本列表 安装 Chocolate Docker安装 手动配置 Wrapper CUI使用 命令行选项 动作 build test 守护进程 配置 全局配置文件 build.gradle SourceSet 依赖管理 依赖排除以及指定依赖"/>
 
@@ -350,19 +354,19 @@
 如果使用的不是这个wrapper，那么别人在下载项目后，运行gradle命令就要先安装gradle，使用wrapper更好</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">   <span class="n">task</span> <span class="nf">wrapper</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Wrapper</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">      <span class="n">gradleVersion</span> <span class="o">=</span> <span class="s1">&#39;4.8&#39;</span>
-</span></span><span class="line"><span class="cl">      <span class="n">distributionUrl</span> <span class="o">=</span> <span class="s1">&#39;限定访问内网的URL&#39;</span>
-</span></span><span class="line"><span class="cl">      <span class="n">distributionPath</span> <span class="o">=</span> <span class="s1">&#39;包装器被解压缩放的相对路径&#39;</span>
-</span></span><span class="line"><span class="cl">   <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">   <span class="n">task</span> <span class="nf">wrapper</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Wrapper</span><span class="o">){</span>
+      <span class="n">gradleVersion</span> <span class="o">=</span> <span class="s1">&#39;4.8&#39;</span>
+      <span class="n">distributionUrl</span> <span class="o">=</span> <span class="s1">&#39;限定访问内网的URL&#39;</span>
+      <span class="n">distributionPath</span> <span class="o">=</span> <span class="s1">&#39;包装器被解压缩放的相对路径&#39;</span>
+   <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>运行 gradle wrapper 一次即可开始使用包装器的脚本来构建项目了</li>
@@ -425,7 +429,7 @@
 <p><em>~/.gradle/init.gradle</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -451,31 +455,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">allprojects</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">repositories</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="kt">def</span> <span class="n">ALIYUN_REPOSITORY_URL</span> <span class="o">=</span> <span class="s1">&#39;https://maven.aliyun.com/nexus/content/groups/public&#39;</span>
-</span></span><span class="line"><span class="cl">            <span class="kt">def</span> <span class="n">ALIYUN_JCENTER_URL</span> <span class="o">=</span> <span class="s1">&#39;https://maven.aliyun.com/nexus/content/repositories/jcenter&#39;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">all</span> <span class="o">{</span> 
-</span></span><span class="line"><span class="cl">                <span class="n">ArtifactRepository</span> <span class="n">repo</span> <span class="o">-&gt;</span>
-</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="o">(</span><span class="n">repo</span> <span class="k">instanceof</span> <span class="n">MavenArtifactRepository</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">                    <span class="kt">def</span> <span class="n">url</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">url</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="o">(</span><span class="n">url</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s1">&#39;https://repo1.maven.org/maven2&#39;</span><span class="o">))</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                        <span class="n">project</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">lifecycle</span> <span class="s2">&#34;Repository ${repo.url} replaced by $ALIYUN_REPOSITORY_URL.&#34;</span>
-</span></span><span class="line"><span class="cl">                        <span class="n">remove</span> <span class="n">repo</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="o">(</span><span class="n">url</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s1">&#39;https://jcenter.bintray.com/&#39;</span><span class="o">))</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                        <span class="n">project</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">lifecycle</span> <span class="s2">&#34;Repository ${repo.url} replaced by $ALIYUN_JCENTER_URL.&#34;</span>
-</span></span><span class="line"><span class="cl">                        <span class="n">remove</span> <span class="n">repo</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">                <span class="o">}</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">            <span class="n">maven</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">url</span> <span class="n">ALIYUN_REPOSITORY_URL</span>
-</span></span><span class="line"><span class="cl">                <span class="n">url</span> <span class="n">ALIYUN_JCENTER_URL</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">allprojects</span><span class="o">{</span>
+        <span class="n">repositories</span> <span class="o">{</span>
+            <span class="kt">def</span> <span class="n">ALIYUN_REPOSITORY_URL</span> <span class="o">=</span> <span class="s1">&#39;https://maven.aliyun.com/nexus/content/groups/public&#39;</span>
+            <span class="kt">def</span> <span class="n">ALIYUN_JCENTER_URL</span> <span class="o">=</span> <span class="s1">&#39;https://maven.aliyun.com/nexus/content/repositories/jcenter&#39;</span>
+            <span class="n">all</span> <span class="o">{</span> 
+                <span class="n">ArtifactRepository</span> <span class="n">repo</span> <span class="o">-&gt;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">repo</span> <span class="k">instanceof</span> <span class="n">MavenArtifactRepository</span><span class="o">){</span>
+                    <span class="kt">def</span> <span class="n">url</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="na">url</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">url</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s1">&#39;https://repo1.maven.org/maven2&#39;</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="n">project</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">lifecycle</span> <span class="s2">&#34;Repository ${repo.url} replaced by $ALIYUN_REPOSITORY_URL.&#34;</span>
+                        <span class="n">remove</span> <span class="n">repo</span>
+                    <span class="o">}</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">url</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s1">&#39;https://jcenter.bintray.com/&#39;</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="n">project</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">lifecycle</span> <span class="s2">&#34;Repository ${repo.url} replaced by $ALIYUN_JCENTER_URL.&#34;</span>
+                        <span class="n">remove</span> <span class="n">repo</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="n">maven</span> <span class="o">{</span>
+                <span class="n">url</span> <span class="n">ALIYUN_REPOSITORY_URL</span>
+                <span class="n">url</span> <span class="n">ALIYUN_JCENTER_URL</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="buildgradle">build.gradle</h2>
 <blockquote>
@@ -483,7 +487,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -494,16 +498,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">   <span class="n">task</span> <span class="n">helloworld</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">      <span class="n">doLast</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">         <span class="n">printf</span> <span class="s1">&#39;Hello World!&#39;</span>
-</span></span><span class="line"><span class="cl">      <span class="o">}</span>
-</span></span><span class="line"><span class="cl">   <span class="o">}</span>
-</span></span><span class="line"><span class="cl">   <span class="c1">// 或者是 使用 &lt;&lt; 代表doLast：
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">task</span> <span class="n">helloworld</span><span class="o">&lt;&lt;{</span>
-</span></span><span class="line"><span class="cl">      <span class="n">println</span> <span class="s1">&#39;Hello world!&#39;</span>
-</span></span><span class="line"><span class="cl">   <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">   <span class="n">task</span> <span class="n">helloworld</span><span class="o">{</span>
+      <span class="n">doLast</span> <span class="o">{</span>
+         <span class="n">printf</span> <span class="s1">&#39;Hello World!&#39;</span>
+      <span class="o">}</span>
+   <span class="o">}</span>
+   <span class="c1">// 或者是 使用 &lt;&lt; 代表doLast：
+</span><span class="c1"></span>   <span class="n">task</span> <span class="n">helloworld</span><span class="o">&lt;&lt;{</span>
+      <span class="n">println</span> <span class="s1">&#39;Hello world!&#39;</span>
+   <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>运行：<code>gradle -q helloworld</code></p>
 <hr>
@@ -517,7 +521,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -529,17 +533,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">sourceSets</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">main</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">proto</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">srcDir</span> <span class="s1">&#39;proto/proto&#39;</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">            <span class="n">java</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">srcDir</span> <span class="s1">&#39;out/build/generated/main&#39;</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">sourceSets</span><span class="o">{</span>
+        <span class="n">main</span><span class="o">{</span>
+            <span class="n">proto</span><span class="o">{</span>
+                <span class="n">srcDir</span> <span class="s1">&#39;proto/proto&#39;</span>
+            <span class="o">}</span>
+            <span class="n">java</span><span class="o">{</span>
+                <span class="n">srcDir</span> <span class="s1">&#39;out/build/generated/main&#39;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="依赖管理">依赖管理</h3>
@@ -603,19 +607,19 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 <li>本地目录依赖
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">repositories</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">flatDir</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dirs</span> <span class="s1">&#39;libs&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">flatDir</span> <span class="o">{</span>
+        <span class="n">dirs</span> <span class="s1">&#39;libs&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
@@ -626,24 +630,24 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">configurations</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">compile</span><span class="o">.</span><span class="na">exclude</span> <span class="nl">module:</span> <span class="s1">&#39;commons&#39;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">all</span><span class="o">*.</span><span class="na">exclude</span> <span class="nl">group:</span> <span class="s1">&#39;org.gradle.test.excludes&#39;</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">&#39;reports&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">configurations</span> <span class="o">{</span>
+        <span class="n">compile</span><span class="o">.</span><span class="na">exclude</span> <span class="nl">module:</span> <span class="s1">&#39;commons&#39;</span>
+        <span class="n">all</span><span class="o">*.</span><span class="na">exclude</span> <span class="nl">group:</span> <span class="s1">&#39;org.gradle.test.excludes&#39;</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">&#39;reports&#39;</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>在具体的某个dependency中排除</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -677,39 +681,39 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">dependencies</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 依赖排除
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;&#39;</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">exclude</span> <span class="nl">group:</span> <span class="s1">&#39;&#39;</span> <span class="c1">// 按group排除
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">exclude</span> <span class="nl">module:</span> <span class="s1">&#39;&#39;</span> <span class="c1">// 按 artifact 排除
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">exclude</span> <span class="nl">grop:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">&#39;&#39;</span> <span class="c1">// 按 group artifact 排除
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 全局依赖排除
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">all</span><span class="o">*.</span><span class="na">exclude</span> <span class="nl">group:</span><span class="s1">&#39;org.unwanted&#39;</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">&#39;iAmBuggy&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// 禁用依赖传递
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;com.zhyea:ar4j:1.0&#39;</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">transitive</span> <span class="o">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        
-</span></span><span class="line"><span class="cl">        <span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">transitive</span> <span class="o">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// 强制使用指定版本的依赖
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;com.zhyea:ar4j:1.0&#39;</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">force</span> <span class="o">=</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 始终使用最新的依赖,  若 1.+ 则是 1.xx版本的最新版
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">compile</span> <span class="s1">&#39;com.zhyea:ar4j:+&#39;</span>
-</span></span><span class="line"><span class="cl">        
-</span></span><span class="line"><span class="cl">        <span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">resolutionStrategy</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">force</span> <span class="s1">&#39;org.hamcrest:hamcrest-core:1.3&#39;</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">dependencies</span><span class="o">{</span>
+        <span class="c1">// 依赖排除
+</span><span class="c1"></span>        <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;&#39;</span><span class="o">){</span>
+            <span class="n">exclude</span> <span class="nl">group:</span> <span class="s1">&#39;&#39;</span> <span class="c1">// 按group排除
+</span><span class="c1"></span>            <span class="n">exclude</span> <span class="nl">module:</span> <span class="s1">&#39;&#39;</span> <span class="c1">// 按 artifact 排除
+</span><span class="c1"></span>            <span class="n">exclude</span> <span class="nl">grop:</span> <span class="s1">&#39;&#39;</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">&#39;&#39;</span> <span class="c1">// 按 group artifact 排除
+</span><span class="c1"></span>        <span class="o">}</span>
+        <span class="c1">// 全局依赖排除
+</span><span class="c1"></span>        <span class="n">all</span><span class="o">*.</span><span class="na">exclude</span> <span class="nl">group:</span><span class="s1">&#39;org.unwanted&#39;</span><span class="o">,</span> <span class="nl">module:</span> <span class="s1">&#39;iAmBuggy&#39;</span>
+
+        <span class="c1">// 禁用依赖传递
+</span><span class="c1"></span>        <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;com.zhyea:ar4j:1.0&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">transitive</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="o">}</span>
+        
+        <span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
+            <span class="n">transitive</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 强制使用指定版本的依赖
+</span><span class="c1"></span>        <span class="n">compile</span><span class="o">(</span><span class="s1">&#39;com.zhyea:ar4j:1.0&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">force</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="o">}</span>
+        <span class="c1">// 始终使用最新的依赖,  若 1.+ 则是 1.xx版本的最新版
+</span><span class="c1"></span>        <span class="n">compile</span> <span class="s1">&#39;com.zhyea:ar4j:+&#39;</span>
+        
+        <span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
+            <span class="n">resolutionStrategy</span> <span class="o">{</span>
+                <span class="n">force</span> <span class="s1">&#39;org.hamcrest:hamcrest-core:1.3&#39;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><hr>
 <h4 id="统一管理依赖">统一管理依赖</h4>
@@ -720,7 +724,7 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 <li>新建一个文件 <em>dependency.gradle</em>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -730,15 +734,15 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">rootProject</span><span class="o">.</span><span class="na">ext</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">ver</span> <span class="o">=</span> <span class="o">[</span>
-</span></span><span class="line"><span class="cl">            <span class="n">junit</span>     <span class="o">:</span> <span class="s1">&#39;4.12&#39;</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">        <span class="o">]</span>
-</span></span><span class="line"><span class="cl">        <span class="n">libs</span> <span class="o">=</span> <span class="o">[</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;junit&#34;</span>   <span class="o">:</span> <span class="s2">&#34;junit:junit:$rootProject.ver.junit&#34;</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">        <span class="o">]</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">rootProject</span><span class="o">.</span><span class="na">ext</span> <span class="o">{</span>
+        <span class="n">ver</span> <span class="o">=</span> <span class="o">[</span>
+            <span class="n">junit</span>     <span class="o">:</span> <span class="s1">&#39;4.12&#39;</span><span class="o">,</span>
+        <span class="o">]</span>
+        <span class="n">libs</span> <span class="o">=</span> <span class="o">[</span>
+            <span class="s2">&#34;junit&#34;</span>   <span class="o">:</span> <span class="s2">&#34;junit:junit:$rootProject.ver.junit&#34;</span><span class="o">,</span>
+        <span class="o">]</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>在 build.gradle 中引入 <code>apply from: 'dependency.gradle'</code></li>
@@ -754,7 +758,7 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -771,22 +775,22 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Groovy" data-lang="Groovy"><span class="line"><span class="cl">  <span class="n">repositories</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mavenLocal</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">def</span> <span class="n">aliyun</span> <span class="o">=</span> <span class="s2">&#34;http://maven.aliyun.com/nexus/content/groups/public/&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">def</span> <span class="n">abroad</span> <span class="o">=</span> <span class="s2">&#34;http://central.maven.org/maven2/&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">maven</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">      <span class="n">url</span> <span class="o">=</span> <span class="n">aliyun</span>
-</span></span><span class="line"><span class="cl">      <span class="n">artifactUrls</span> <span class="n">abroad</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 码云上自己的仓库
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">maven</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">      <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://gitee.com/gin9/MavenRepos/raw/master&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">mavenCentral</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">jcenter</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">  <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-Groovy" data-lang="Groovy">  <span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">mavenLocal</span><span class="o">()</span>
+    <span class="kt">def</span> <span class="n">aliyun</span> <span class="o">=</span> <span class="s2">&#34;http://maven.aliyun.com/nexus/content/groups/public/&#34;</span>
+    <span class="kt">def</span> <span class="n">abroad</span> <span class="o">=</span> <span class="s2">&#34;http://central.maven.org/maven2/&#34;</span>
+    <span class="n">maven</span> <span class="o">{</span>
+      <span class="n">url</span> <span class="o">=</span> <span class="n">aliyun</span>
+      <span class="n">artifactUrls</span> <span class="n">abroad</span>
+    <span class="o">}</span>
+    <span class="c1">// 码云上自己的仓库
+</span><span class="c1"></span>    <span class="n">maven</span> <span class="o">{</span>
+      <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;https://gitee.com/gin9/MavenRepos/raw/master&#34;</span>
+    <span class="o">}</span>
+    <span class="n">mavenCentral</span><span class="o">()</span>
+    <span class="n">jcenter</span><span class="o">()</span>
+  <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="插件">插件</h3>
 <blockquote>
@@ -794,7 +798,7 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -806,17 +810,17 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="c1">// 1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;java&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 2
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">apply</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="s1">&#39;java&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 3 Gradle5 推荐
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">plugins</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">id</span> <span class="s1">&#39;java&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="c1">// 1
+</span><span class="c1"></span>    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;java&#39;</span>
+    <span class="c1">// 2
+</span><span class="c1"></span>    <span class="n">apply</span><span class="o">{</span>
+        <span class="s1">&#39;java&#39;</span>
+    <span class="o">}</span>
+    <span class="c1">// 3 Gradle5 推荐
+</span><span class="c1"></span>    <span class="n">plugins</span><span class="o">{</span>
+        <span class="n">id</span> <span class="s1">&#39;java&#39;</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h4 id="lombok">Lombok</h4>
 <blockquote>
@@ -874,7 +878,7 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -891,26 +895,26 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="c1">// 一个典型的根项目的构建文件结构
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">buildscript</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//  构建脚本段落可以配置整个项目需要的插件，构建过程中的依赖以及依赖类库的版本号等
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">allprojects</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//  在这个段落中你可以声明对于所有项目（含根项目）都适用的配置，比如依赖性的仓储等
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">subprojects</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//  * 在这个段落中你可以声明适用于各子项目的配置（不包括根项目哦）
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">version</span> <span class="o">=</span> <span class="s2">&#34;0.0.1&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//  * 对于子项目的特殊配置
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span> <span class="o">{}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:api&#39;</span><span class="o">)</span> <span class="o">{}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:report&#39;</span><span class="o">)</span> <span class="o">{}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="c1">// 一个典型的根项目的构建文件结构
+</span><span class="c1"></span>    <span class="n">buildscript</span> <span class="o">{</span>
+        <span class="c1">//  构建脚本段落可以配置整个项目需要的插件，构建过程中的依赖以及依赖类库的版本号等
+</span><span class="c1"></span>    <span class="o">}</span>
+    <span class="n">allprojects</span> <span class="o">{</span>
+        <span class="c1">//  在这个段落中你可以声明对于所有项目（含根项目）都适用的配置，比如依赖性的仓储等
+</span><span class="c1"></span>    <span class="o">}</span>
+    <span class="n">subprojects</span> <span class="o">{</span>
+        <span class="c1">//  * 在这个段落中你可以声明适用于各子项目的配置（不包括根项目哦）
+</span><span class="c1"></span>        <span class="n">version</span> <span class="o">=</span> <span class="s2">&#34;0.0.1&#34;</span>
+    <span class="o">}</span>
+    <span class="c1">//  * 对于子项目的特殊配置
+</span><span class="c1"></span>    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span> <span class="o">{}</span>
+    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:api&#39;</span><span class="o">)</span> <span class="o">{}</span>
+    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:report&#39;</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -935,30 +939,30 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dependencies</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-data-rest&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-data-mongodb&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.projectlombok:lombok:${lombokVersion}&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:api&#39;</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dependencies</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-devtools&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:report&#39;</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dependencies</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-devtools&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="n">compile</span> <span class="nf">files</span><span class="o">([</span><span class="s2">&#34;lib/simsun.jar&#34;</span><span class="o">])</span>
-</span></span><span class="line"><span class="cl">            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-web&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-data-rest&#34;</span><span class="o">)</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-data-mongodb&#34;</span><span class="o">)</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.projectlombok:lombok:${lombokVersion}&#34;</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:api&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-devtools&#34;</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">project</span><span class="o">(</span><span class="s1">&#39;:report&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">compile</span> <span class="nf">project</span><span class="o">(</span><span class="s1">&#39;:common&#39;</span><span class="o">)</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-devtools&#34;</span><span class="o">)</span>
+            <span class="n">compile</span> <span class="nf">files</span><span class="o">([</span><span class="s2">&#34;lib/simsun.jar&#34;</span><span class="o">])</span>
+            <span class="n">compile</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-starter-web&#34;</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><a href="https://github.com/Kuangcp/GradleIntegrationMultipleModules">有关多模块的构建详情参考这里</a></li>
@@ -972,7 +976,7 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -990,23 +994,23 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s2">&#34;maven-publish&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// publish with source code
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">task</span> <span class="nf">sourceJar</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Jar</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">from</span> <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">allJava</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">publishing</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">publications</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">mavenJava</span><span class="o">(</span><span class="n">MavenPublication</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">from</span> <span class="n">components</span><span class="o">.</span><span class="na">java</span>
-</span></span><span class="line"><span class="cl">                <span class="n">artifact</span> <span class="n">sourceJar</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">classifier</span> <span class="s2">&#34;sources&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="o">}</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s2">&#34;maven-publish&#34;</span>
+
+    <span class="c1">// publish with source code
+</span><span class="c1"></span>    <span class="n">task</span> <span class="nf">sourceJar</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Jar</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">from</span> <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">allJava</span>
+    <span class="o">}</span>
+    <span class="n">publishing</span> <span class="o">{</span>
+        <span class="n">publications</span> <span class="o">{</span>
+            <span class="n">mavenJava</span><span class="o">(</span><span class="n">MavenPublication</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">from</span> <span class="n">components</span><span class="o">.</span><span class="na">java</span>
+                <span class="n">artifact</span> <span class="n">sourceJar</span> <span class="o">{</span>
+                    <span class="n">classifier</span> <span class="s2">&#34;sources&#34;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="上传至构件仓库">上传至构件仓库</h2>
 <blockquote>
@@ -1032,7 +1036,7 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 <li>依据模板新建项目 <code>gradle init --type java-application</code>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1043,34 +1047,34 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="c1">// 主要是如下配置
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">plugins</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Apply the java plugin to add support for Java
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">id</span> <span class="s1">&#39;java&#39;</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Apply the application plugin to add support for building an application
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">id</span> <span class="s1">&#39;application&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Define the main class for the application
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">mainClassName</span> <span class="o">=</span> <span class="s1">&#39;App&#39;</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="c1">// 主要是如下配置
+</span><span class="c1"></span>    <span class="n">plugins</span> <span class="o">{</span>
+        <span class="c1">// Apply the java plugin to add support for Java
+</span><span class="c1"></span>        <span class="n">id</span> <span class="s1">&#39;java&#39;</span>
+        <span class="c1">// Apply the application plugin to add support for building an application
+</span><span class="c1"></span>        <span class="n">id</span> <span class="s1">&#39;application&#39;</span>
+    <span class="o">}</span>
+    <span class="c1">// Define the main class for the application
+</span><span class="c1"></span>    <span class="n">mainClassName</span> <span class="o">=</span> <span class="s1">&#39;App&#39;</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>add this config to build.gradle
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">jar</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">manifest</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">attributes</span> <span class="s1">&#39;Main-Class&#39;</span><span class="o">:</span> <span class="s1">&#39;base.Main&#39;</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">jar</span> <span class="o">{</span>
+        <span class="n">manifest</span> <span class="o">{</span>
+            <span class="n">attributes</span> <span class="s1">&#39;Main-Class&#39;</span><span class="o">:</span> <span class="s1">&#39;base.Main&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>run : <code>gradle clean jar &amp;&amp; java -jar file</code></li>
@@ -1084,7 +1088,7 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1100,21 +1104,21 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">task</span> <span class="nf">uberJar</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Jar</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">archiveClassifier</span> <span class="o">=</span> <span class="s1">&#39;all-dependency&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">from</span> <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">output</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">dependsOn</span> <span class="n">configurations</span><span class="o">.</span><span class="na">runtimeClasspath</span>
-</span></span><span class="line"><span class="cl">        <span class="n">from</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">configurations</span><span class="o">.</span><span class="na">runtimeClasspath</span><span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">endsWith</span><span class="o">(</span><span class="s1">&#39;jar&#39;</span><span class="o">)</span> <span class="o">}.</span><span class="na">collect</span> <span class="o">{</span> <span class="n">zipTree</span><span class="o">(</span><span class="n">it</span><span class="o">)</span> <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">manifest</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">attributes</span> <span class="s1">&#39;Main-Class&#39;</span><span class="o">:</span> <span class="s1">&#39;com.xxx.Main&#39;</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">task</span> <span class="nf">uberJar</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Jar</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">archiveClassifier</span> <span class="o">=</span> <span class="s1">&#39;all-dependency&#39;</span>
+
+        <span class="n">from</span> <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span><span class="o">.</span><span class="na">output</span>
+
+        <span class="n">dependsOn</span> <span class="n">configurations</span><span class="o">.</span><span class="na">runtimeClasspath</span>
+        <span class="n">from</span> <span class="o">{</span>
+            <span class="n">configurations</span><span class="o">.</span><span class="na">runtimeClasspath</span><span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">endsWith</span><span class="o">(</span><span class="s1">&#39;jar&#39;</span><span class="o">)</span> <span class="o">}.</span><span class="na">collect</span> <span class="o">{</span> <span class="n">zipTree</span><span class="o">(</span><span class="n">it</span><span class="o">)</span> <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">manifest</span> <span class="o">{</span>
+            <span class="n">attributes</span> <span class="s1">&#39;Main-Class&#39;</span><span class="o">:</span> <span class="s1">&#39;com.xxx.Main&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>通过插件</p>
@@ -1129,7 +1133,7 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 <p><em>build.gradle</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1157,38 +1161,38 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl">    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;docker&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">buildscript</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">ext</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">springBootVersion</span> <span class="o">=</span> <span class="s1">&#39;2.0.1.RELEASE&#39;</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="n">repositories</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">mavenCentral</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dependencies</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">classpath</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="n">classpath</span><span class="o">(</span><span class="s1">&#39;se.transmode.gradle:gradle-docker:1.2&#39;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">task</span> <span class="nf">buildDocker</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Docker</span><span class="o">,</span> <span class="nl">dependsOn:</span> <span class="n">build</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//设置自动上传的话，命名就不能乱取了，仓库名/镜像名：tag
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//    push = true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">test</span><span class="o">.</span><span class="na">enabled</span><span class="o">=</span><span class="kc">false</span>
-</span></span><span class="line"><span class="cl">        <span class="n">applicationName</span> <span class="o">=</span> <span class="n">jar</span><span class="o">.</span><span class="na">baseName</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dockerfile</span> <span class="o">=</span> <span class="n">file</span><span class="o">(</span><span class="s1">&#39;src/main/docker/Dockerfile&#39;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">doFirst</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">copy</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">from</span> <span class="n">war</span>
-</span></span><span class="line"><span class="cl">                <span class="n">into</span> <span class="n">stageDir</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-groovy" data-lang="groovy">    <span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;docker&#39;</span>
+    <span class="n">buildscript</span> <span class="o">{</span>
+        <span class="n">ext</span> <span class="o">{</span>
+            <span class="n">springBootVersion</span> <span class="o">=</span> <span class="s1">&#39;2.0.1.RELEASE&#39;</span>
+        <span class="o">}</span>
+        <span class="n">repositories</span> <span class="o">{</span>
+            <span class="n">mavenCentral</span><span class="o">()</span>
+        <span class="o">}</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">classpath</span><span class="o">(</span><span class="s2">&#34;org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}&#34;</span><span class="o">)</span>
+            <span class="n">classpath</span><span class="o">(</span><span class="s1">&#39;se.transmode.gradle:gradle-docker:1.2&#39;</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">task</span> <span class="nf">buildDocker</span><span class="o">(</span><span class="nl">type:</span> <span class="n">Docker</span><span class="o">,</span> <span class="nl">dependsOn:</span> <span class="n">build</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//设置自动上传的话，命名就不能乱取了，仓库名/镜像名：tag
+</span><span class="c1"></span>    <span class="c1">//    push = true
+</span><span class="c1"></span>        <span class="n">test</span><span class="o">.</span><span class="na">enabled</span><span class="o">=</span><span class="kc">false</span>
+        <span class="n">applicationName</span> <span class="o">=</span> <span class="n">jar</span><span class="o">.</span><span class="na">baseName</span>
+        <span class="n">dockerfile</span> <span class="o">=</span> <span class="n">file</span><span class="o">(</span><span class="s1">&#39;src/main/docker/Dockerfile&#39;</span><span class="o">)</span>
+        <span class="n">doFirst</span> <span class="o">{</span>
+            <span class="n">copy</span> <span class="o">{</span>
+                <span class="n">from</span> <span class="n">war</span>
+                <span class="n">into</span> <span class="n">stageDir</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><p><em>Dockerfile</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1196,13 +1200,13 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl">    FROM frolvlad/alpine-oraclejdk8:slim<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    VOLUME /tmp<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="c1"># 配置通配符是为了不受版本影响</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    ADD weixin*.war app.war<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="c1"># ENTRYPOINT [&#34;java&#34;,&#34;-Djava.security.egd=file:/dev/./urandom&#34;,&#34;-jar&#34;,&#34;/app.war&#34;]</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;java&#34;</span>,<span class="s2">&#34;-jar&#34;</span>,<span class="s2">&#34;/app.war&#34;</span><span class="o">]</span><span class="err">
-</span></span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile">    FROM frolvlad/alpine-oraclejdk8:slim<span class="err">
+</span><span class="err"></span>    VOLUME /tmp<span class="err">
+</span><span class="err"></span>    <span class="c1"># 配置通配符是为了不受版本影响</span><span class="err">
+</span><span class="err"></span>    ADD weixin*.war app.war<span class="err">
+</span><span class="err"></span>    <span class="c1"># ENTRYPOINT [&#34;java&#34;,&#34;-Djava.security.egd=file:/dev/./urandom&#34;,&#34;-jar&#34;,&#34;/app.war&#34;]</span><span class="err">
+</span><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;java&#34;</span>,<span class="s2">&#34;-jar&#34;</span>,<span class="s2">&#34;/app.war&#34;</span><span class="o">]</span><span class="err">
+</span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>gradle buildDocker</code> 即可构建镜像</li>
@@ -1282,7 +1286,7 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -1299,7 +1303,7 @@ Gradle 中取代 compile 的方式, 使用范围比 compile 略小, 比如</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

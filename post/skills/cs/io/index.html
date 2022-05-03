@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/skills/cs/io/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="计算机中的IO" />
 <meta property="og:description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/cs/io/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/cs/io/" />
 <meta property="article:published_time" content="2019-04-20T12:16:10+00:00" />
 <meta property="article:modified_time" content="2019-04-20T12:16:10+00:00" />
-
 <meta itemprop="name" content="计算机中的IO">
-<meta itemprop="description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路"><meta itemprop="datePublished" content="2019-04-20T12:16:10+00:00" />
+<meta itemprop="description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路">
+<meta itemprop="datePublished" content="2019-04-20T12:16:10+00:00" />
 <meta itemprop="dateModified" content="2019-04-20T12:16:10+00:00" />
 <meta itemprop="wordCount" content="5095">
-<meta itemprop="keywords" content="IO," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="IO," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="计算机中的IO"/>
 <meta name="twitter:description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路"/>
 
@@ -285,13 +289,13 @@ select/epoll的优势<code>不在于单个连接能处理得更快，而在于�
 <p>在说明synchronous IO和asynchronous IO的区别之前，需要先给出两者的定义。Stevens给出的定义（其实是POSIX的定义）是这样子的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    A synchronous I/O operation causes the requesting process to be blocked until that I/O operation completes;
-</span></span><span class="line"><span class="cl">    An asynchronous I/O operation does not cause the requesting process to be blocked;
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    A synchronous I/O operation causes the requesting process to be blocked until that I/O operation completes;
+    An asynchronous I/O operation does not cause the requesting process to be blocked;
+</code></pre></td></tr></table>
 </div>
 </div><p>两者的区别就在于 synchronous IO 做 <code>IO operation</code> 的时候会将process阻塞。<br>
 按照这个定义，之前所述的 blocking IO，non-blocking IO，IO multiplexing <code>都属于 synchronous IO</code>。<br>
@@ -458,7 +462,7 @@ epoll使用一个文件描述符管理多个文件描述符，将用户关心的
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -475,7 +479,7 @@ epoll使用一个文件描述符管理多个文件描述符，将用户关心的
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

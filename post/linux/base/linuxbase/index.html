@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxbase/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Linux基础" />
 <meta property="og:description" content="目录 start Linux系统 用户管理 用户 用户组 sudo 终端和登录 输入输出 环境变量 进程 信号量 孤儿进程和僵死进程 孤儿进程 僵死进程 守护进程 文件描述符 FD 线程 时间 服" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxbase/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxbase/" />
 <meta property="article:published_time" content="2018-12-15T11:11:23+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:11:23+00:00" />
-
 <meta itemprop="name" content="Linux基础">
-<meta itemprop="description" content="目录 start Linux系统 用户管理 用户 用户组 sudo 终端和登录 输入输出 环境变量 进程 信号量 孤儿进程和僵死进程 孤儿进程 僵死进程 守护进程 文件描述符 FD 线程 时间 服"><meta itemprop="datePublished" content="2018-12-15T11:11:23+00:00" />
+<meta itemprop="description" content="目录 start Linux系统 用户管理 用户 用户组 sudo 终端和登录 输入输出 环境变量 进程 信号量 孤儿进程和僵死进程 孤儿进程 僵死进程 守护进程 文件描述符 FD 线程 时间 服">
+<meta itemprop="datePublished" content="2018-12-15T11:11:23+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:11:23+00:00" />
 <meta itemprop="wordCount" content="6248">
-<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="基础," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux基础"/>
 <meta name="twitter:description" content="目录 start Linux系统 用户管理 用户 用户组 sudo 终端和登录 输入输出 环境变量 进程 信号量 孤儿进程和僵死进程 孤儿进程 僵死进程 守护进程 文件描述符 FD 线程 时间 服"/>
 
@@ -585,19 +589,19 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> 1 HUP      2 INT      3 QUIT     4 ILL      5 TRAP     6 ABRT     7 BUS
-</span></span><span class="line"><span class="cl"> 8 FPE      9 KILL    10 USR1    11 SEGV    12 USR2    13 PIPE    14 ALRM
-</span></span><span class="line"><span class="cl">15 TERM    16 STKFLT  17 CHLD    18 CONT    19 STOP    20 TSTP    21 TTIN
-</span></span><span class="line"><span class="cl">22 TTOU    23 URG     24 XCPU    25 XFSZ    26 VTALRM  27 PROF    28 WINCH
-</span></span><span class="line"><span class="cl">29 POLL    30 PWR     31 SYS
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"> 1 HUP      2 INT      3 QUIT     4 ILL      5 TRAP     6 ABRT     7 BUS
+ 8 FPE      9 KILL    10 USR1    11 SEGV    12 USR2    13 PIPE    14 ALRM
+15 TERM    16 STKFLT  17 CHLD    18 CONT    19 STOP    20 TSTP    21 TTIN
+22 TTOU    23 URG     24 XCPU    25 XFSZ    26 VTALRM  27 PROF    28 WINCH
+29 POLL    30 PWR     31 SYS
+</code></pre></td></tr></table>
 </div>
 </div><p>编号为<code>1 ~ 31</code>的信号为传统UNIX支持的信号，是不可靠信号(非实时的)，编号为<code>32 ~ 63</code>的信号是后来扩充的，称做可靠信号(实时信号)。<br>
 不可靠信号和可靠信号的区别在于前者不支持排队，只是负责发送, 不负责存储和接收, 可能会造成信号丢失，而后者不会。</p>
@@ -818,17 +822,17 @@
 <p><em>系统运行级别</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    0        系统停机状态
-</span></span><span class="line"><span class="cl">    1        单用户或系统维护状态
-</span></span><span class="line"><span class="cl">    2~5      多用户状态
-</span></span><span class="line"><span class="cl">    6        重新启动 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    0        系统停机状态
+    1        单用户或系统维护状态
+    2~5      多用户状态
+    6        重新启动 
+</code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="系统资源管理">系统资源管理</h1>
@@ -859,13 +863,13 @@
 <p>持久化修改设置： <strong>/etc/security/limits.conf</strong> 文件中添加，注销或重启后生效</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">* soft nofile <span class="m">4096</span>
-</span></span><span class="line"><span class="cl">* hard nofile <span class="m">4096</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">* soft nofile <span class="m">4096</span>
+* hard nofile <span class="m">4096</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
@@ -1366,7 +1370,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -1383,7 +1387,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

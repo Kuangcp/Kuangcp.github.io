@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/scala/sbt/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="SBT" />
 <meta property="og:description" content="目录 start SBT 目录 end|2020-04-27 23:42| SBT Scala 的构建工具 Official doc | scaladex类似于 MvnRepos 参考: Building Java Projects With Sbt 配置代理 Official Doc ~/.sbt/repositories 1 2 3 [repositories] local aliyun: http://maven.aliyun.com/nexus/content/groups/public/" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/scala/sbt/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/scala/sbt/" />
 <meta property="article:published_time" content="2018-12-15T12:09:32+00:00" />
 <meta property="article:modified_time" content="2018-12-15T12:09:32+00:00" />
-
 <meta itemprop="name" content="SBT">
-<meta itemprop="description" content="目录 start SBT 目录 end|2020-04-27 23:42| SBT Scala 的构建工具 Official doc | scaladex类似于 MvnRepos 参考: Building Java Projects With Sbt 配置代理 Official Doc ~/.sbt/repositories 1 2 3 [repositories] local aliyun: http://maven.aliyun.com/nexus/content/groups/public/"><meta itemprop="datePublished" content="2018-12-15T12:09:32+00:00" />
+<meta itemprop="description" content="目录 start SBT 目录 end|2020-04-27 23:42| SBT Scala 的构建工具 Official doc | scaladex类似于 MvnRepos 参考: Building Java Projects With Sbt 配置代理 Official Doc ~/.sbt/repositories 1 2 3 [repositories] local aliyun: http://maven.aliyun.com/nexus/content/groups/public/">
+<meta itemprop="datePublished" content="2018-12-15T12:09:32+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T12:09:32+00:00" />
 <meta itemprop="wordCount" content="52">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SBT"/>
 <meta name="twitter:description" content="目录 start SBT 目录 end|2020-04-27 23:42| SBT Scala 的构建工具 Official doc | scaladex类似于 MvnRepos 参考: Building Java Projects With Sbt 配置代理 Official Doc ~/.sbt/repositories 1 2 3 [repositories] local aliyun: http://maven.aliyun.com/nexus/content/groups/public/"/>
 
@@ -153,15 +157,15 @@
 <strong><code>~/.sbt/repositories</code></strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="k">[repositories]</span>
-</span></span><span class="line"><span class="cl">    <span class="na">local</span>
-</span></span><span class="line"><span class="cl">    <span class="na">aliyun: http://maven.aliyun.com/nexus/content/groups/public/</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="k">[repositories]</span>
+    <span class="na">local</span>
+    <span class="na">aliyun: http://maven.aliyun.com/nexus/content/groups/public/</span>
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -231,7 +235,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -248,7 +252,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/linux/container/docker/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Docker" />
 <meta property="og:description" content="目录 start Docker 简介 学习资源 安装与卸载 Linux 安装包安装 不加sudo执行docker命令 Ubuntu Debian Centos Arch Windows 基础管理 图形化管理工具 Portainer 配置镜像源 搭建本地镜像仓库 基础命" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/docker/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/docker/" />
 <meta property="article:published_time" content="2018-12-15T11:24:44+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:24:44+00:00" />
-
 <meta itemprop="name" content="Docker">
-<meta itemprop="description" content="目录 start Docker 简介 学习资源 安装与卸载 Linux 安装包安装 不加sudo执行docker命令 Ubuntu Debian Centos Arch Windows 基础管理 图形化管理工具 Portainer 配置镜像源 搭建本地镜像仓库 基础命"><meta itemprop="datePublished" content="2018-12-15T11:24:44+00:00" />
+<meta itemprop="description" content="目录 start Docker 简介 学习资源 安装与卸载 Linux 安装包安装 不加sudo执行docker命令 Ubuntu Debian Centos Arch Windows 基础管理 图形化管理工具 Portainer 配置镜像源 搭建本地镜像仓库 基础命">
+<meta itemprop="datePublished" content="2018-12-15T11:24:44+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:24:44+00:00" />
 <meta itemprop="wordCount" content="5902">
-<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="基础," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker"/>
 <meta name="twitter:description" content="目录 start Docker 简介 学习资源 安装与卸载 Linux 安装包安装 不加sudo执行docker命令 Ubuntu Debian Centos Arch Windows 基础管理 图形化管理工具 Portainer 配置镜像源 搭建本地镜像仓库 基础命"/>
 
@@ -416,12 +420,12 @@
 <li><code>sudo apt-get install docker-ce</code></li>
 </ul>
 <ol>
-<li><code>前置软件</code> sudo apt-get install <br>
-apt-transport-https <br>
-ca-certificates <br>
-curl <br>
-gnupg2 <br>
-lsb-release <br>
+<li><code>前置软件</code> sudo apt-get install<br>
+apt-transport-https<br>
+ca-certificates<br>
+curl<br>
+gnupg2<br>
+lsb-release<br>
 software-properties-common</li>
 </ol>
 <blockquote>
@@ -487,11 +491,11 @@ software-properties-common</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">    <span class="p">{</span><span class="nt">&#34;registry-mirrors&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;https://registry.docker-cn.com&#34;</span><span class="p">]}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-json" data-lang="json">    <span class="p">{</span><span class="nt">&#34;registry-mirrors&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;https://registry.docker-cn.com&#34;</span><span class="p">]}</span>
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>时速云</p>
@@ -689,11 +693,11 @@ software-properties-common</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;PortBindings&#34;</span><span class="err">:</span><span class="p">{</span><span class="nt">&#34;3306/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;3360&#34;</span><span class="p">}]}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;PortBindings&#34;</span><span class="err">:</span><span class="p">{</span><span class="nt">&#34;3306/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;3360&#34;</span><span class="p">}]}</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>config.v2.json
@@ -702,11 +706,11 @@ software-properties-common</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;Ports&#34;</span><span class="err">:</span><span class="p">{</span><span class="nt">&#34;8080/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;0.0.0.0&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;8888&#34;</span><span class="p">}],</span><span class="nt">&#34;8081/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;0.0.0.0&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;8881&#34;</span><span class="p">}]}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;Ports&#34;</span><span class="err">:</span><span class="p">{</span><span class="nt">&#34;8080/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;0.0.0.0&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;8888&#34;</span><span class="p">}],</span><span class="nt">&#34;8081/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;0.0.0.0&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;8881&#34;</span><span class="p">}]}</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -723,7 +727,7 @@ software-properties-common</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -738,20 +742,20 @@ software-properties-common</li>
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    .ID 	    Container ID
-</span></span><span class="line"><span class="cl">    .Image 	    Image ID
-</span></span><span class="line"><span class="cl">    .Command 	Quoted command
-</span></span><span class="line"><span class="cl">    .CreatedAt 	Time when the container was created.
-</span></span><span class="line"><span class="cl">    .RunningFor Elapsed time since the container was started.
-</span></span><span class="line"><span class="cl">    .Ports 	    Exposed ports.
-</span></span><span class="line"><span class="cl">    .Status 	Container status.
-</span></span><span class="line"><span class="cl">    .Size 	    Container disk size.
-</span></span><span class="line"><span class="cl">    .Names 	    Container names.
-</span></span><span class="line"><span class="cl">    .Labels 	All labels assigned to the container.
-</span></span><span class="line"><span class="cl">    .Label 	    Value of a specific label for this container. For example &#39;{{.Label &#34;com.docker.swarm.cpu&#34;}}&#39;
-</span></span><span class="line"><span class="cl">    .Mounts 	Names of the volumes mounted in this container.
-</span></span><span class="line"><span class="cl">    .Networks 	Names of the networks attached to this container.
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    .ID 	    Container ID
+    .Image 	    Image ID
+    .Command 	Quoted command
+    .CreatedAt 	Time when the container was created.
+    .RunningFor Elapsed time since the container was started.
+    .Ports 	    Exposed ports.
+    .Status 	Container status.
+    .Size 	    Container disk size.
+    .Names 	    Container names.
+    .Labels 	All labels assigned to the container.
+    .Label 	    Value of a specific label for this container. For example &#39;{{.Label &#34;com.docker.swarm.cpu&#34;}}&#39;
+    .Mounts 	Names of the volumes mounted in this container.
+    .Networks 	Names of the networks attached to this container.
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="create">create</h3>
 <blockquote>
@@ -948,7 +952,7 @@ software-properties-common</li>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -958,19 +962,19 @@ software-properties-common</li>
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">networks</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">xxx</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ipam</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">config</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="m">10.12.0.0</span><span class="l">/16</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">xxx</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
+</span><span class="w">    </span><span class="nt">ipam</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span><span class="w">      </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="m">10.12.0.0</span><span class="l">/16</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -989,24 +993,24 @@ software-properties-common</li>
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">zookeeper</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${IMAGE_NAME:-defaultImage}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">expose</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;6666&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;6666:6666&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/etc/localtime:/etc/localtime</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="c"># 可不配置，Docker会默认分配一个ip 172.xx 开头</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">xxx </span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">./bin/start.sh</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">links</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;mysql:mysql&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">NAME=who</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
+</span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">zookeeper</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${IMAGE_NAME:-defaultImage}</span><span class="w">
+</span><span class="w">    </span><span class="nt">expose</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;6666&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;6666:6666&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">/etc/localtime:/etc/localtime</span><span class="w">
+</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="c"># 可不配置，Docker会默认分配一个ip 172.xx 开头</span><span class="w">
+</span><span class="w">      </span>- <span class="l">xxx </span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">./bin/start.sh</span><span class="w">
+</span><span class="w">    </span><span class="nt">links</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="s2">&#34;mysql:mysql&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">NAME=who</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><h3 id="使用命令">使用命令</h3>
 <blockquote>
@@ -1058,15 +1062,15 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 <p>/etc/docker/daemon.json 顶级元素加入如下配置网段</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">  <span class="s2">&#34;default-address-pools&#34;</span><span class="err">:</span><span class="p">[</span>
-</span></span><span class="line"><span class="cl">     <span class="p">{</span><span class="nt">&#34;scope&#34;</span><span class="p">:</span><span class="s2">&#34;local&#34;</span><span class="p">,</span><span class="nt">&#34;base&#34;</span><span class="p">:</span><span class="s2">&#34;172.80.0.0/16&#34;</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">24</span><span class="p">},</span>
-</span></span><span class="line"><span class="cl">     <span class="p">{</span><span class="nt">&#34;scope&#34;</span><span class="p">:</span><span class="s2">&#34;global&#34;</span><span class="p">,</span><span class="nt">&#34;base&#34;</span><span class="p">:</span><span class="s2">&#34;172.90.0.0/16&#34;</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">24</span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-json" data-lang="json">  <span class="s2">&#34;default-address-pools&#34;</span><span class="err">:</span><span class="p">[</span>
+     <span class="p">{</span><span class="nt">&#34;scope&#34;</span><span class="p">:</span><span class="s2">&#34;local&#34;</span><span class="p">,</span><span class="nt">&#34;base&#34;</span><span class="p">:</span><span class="s2">&#34;172.80.0.0/16&#34;</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">24</span><span class="p">},</span>
+     <span class="p">{</span><span class="nt">&#34;scope&#34;</span><span class="p">:</span><span class="s2">&#34;global&#34;</span><span class="p">,</span><span class="nt">&#34;base&#34;</span><span class="p">:</span><span class="s2">&#34;172.90.0.0/16&#34;</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">24</span><span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="none">None</h2>
 <blockquote>
@@ -1134,7 +1138,7 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1154,25 +1158,25 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    upstream backend {
-</span></span><span class="line"><span class="cl">        server 172.17.0.4:8888;
-</span></span><span class="line"><span class="cl">    }
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    server {
-</span></span><span class="line"><span class="cl">        listen 80;
-</span></span><span class="line"><span class="cl">        server_name backend;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        location / {
-</span></span><span class="line"><span class="cl">            proxy_set_header X-Real-IP $remote_addr;
-</span></span><span class="line"><span class="cl">            proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
-</span></span><span class="line"><span class="cl">            proxy_set_header Host $http_host;
-</span></span><span class="line"><span class="cl">            proxy_set_header X-Nginx-Proxt true;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            proxy_pass http://backend;
-</span></span><span class="line"><span class="cl">            proxy_redirect off;
-</span></span><span class="line"><span class="cl">        }
-</span></span><span class="line"><span class="cl">    }
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    upstream backend {
+        server 172.17.0.4:8888;
+    }
+
+    server {
+        listen 80;
+        server_name backend;
+
+        location / {
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Nginx-Proxt true;
+
+            proxy_pass http://backend;
+            proxy_redirect off;
+        }
+    }
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p><a href="https://www.weave.works/">weave</a> <code>能解决跨宿主机的容器互联问题</code></p>
@@ -1280,7 +1284,7 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -1297,7 +1301,7 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

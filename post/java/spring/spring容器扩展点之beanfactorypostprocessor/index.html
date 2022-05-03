@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/spring%E5%AE%B9%E5%99%A8%E6%89%A9%E5%B1%95%E7%82%B9%E4%B9%8Bbeanfactorypostprocessor/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Spring容器扩展点之BeanFactoryPostProcessor.md" />
 <meta property="og:description" content="目录 start Spring容器扩展点之BeanFactoryPostProcessor 目录 end|2020-04-27 23:42| Spring容器扩展点之BeanFactoryPost" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/spring%E5%AE%B9%E5%99%A8%E6%89%A9%E5%B1%95%E7%82%B9%E4%B9%8Bbeanfactorypostprocessor/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/spring%E5%AE%B9%E5%99%A8%E6%89%A9%E5%B1%95%E7%82%B9%E4%B9%8Bbeanfactorypostprocessor/" />
 <meta property="article:published_time" content="2019-10-19T17:04:25+00:00" />
 <meta property="article:modified_time" content="2019-10-19T17:04:25+00:00" />
-
 <meta itemprop="name" content="Spring容器扩展点之BeanFactoryPostProcessor.md">
-<meta itemprop="description" content="目录 start Spring容器扩展点之BeanFactoryPostProcessor 目录 end|2020-04-27 23:42| Spring容器扩展点之BeanFactoryPost"><meta itemprop="datePublished" content="2019-10-19T17:04:25+00:00" />
+<meta itemprop="description" content="目录 start Spring容器扩展点之BeanFactoryPostProcessor 目录 end|2020-04-27 23:42| Spring容器扩展点之BeanFactoryPost">
+<meta itemprop="datePublished" content="2019-10-19T17:04:25+00:00" />
 <meta itemprop="dateModified" content="2019-10-19T17:04:25+00:00" />
 <meta itemprop="wordCount" content="1100">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Spring容器扩展点之BeanFactoryPostProcessor.md"/>
 <meta name="twitter:description" content="目录 start Spring容器扩展点之BeanFactoryPostProcessor 目录 end|2020-04-27 23:42| Spring容器扩展点之BeanFactoryPost"/>
 
@@ -145,7 +149,7 @@
 <code>BeanFactoryPostProcessor</code>允许对bean的定义(配置的元数据)进行修改。例如我们常见的下列配置：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -157,32 +161,32 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!--加载配置文件--&gt;
-</span></span><span class="line"><span class="cl">&lt;context:property-placeholder        location=&#34;classpath:jdbc.properties&#34;/&gt;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">&lt;!--配置c3p0连接池--&gt;
-</span></span><span class="line"><span class="cl">&lt;bean id=&#34;dataSource&#34; class=&#34;com.mchange.v2.c3p0.ComboPooledDataSource&#34;&gt;
-</span></span><span class="line"><span class="cl">    &lt;property name=&#34;driverClass&#34; value=&#34;${jdbc.driver}&#34;/&gt;
-</span></span><span class="line"><span class="cl">    &lt;property name=&#34;jdbcUrl&#34; value=&#34;${jdbc.url}&#34;/&gt;
-</span></span><span class="line"><span class="cl">    &lt;property name=&#34;user&#34; value=&#34;${jdbc.user}&#34;/&gt;
-</span></span><span class="line"><span class="cl">    &lt;property name=&#34;password&#34; value=&#34;${jdbc.password}&#34;/&gt;
-</span></span><span class="line"><span class="cl">&lt;/bean&gt;
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;!--加载配置文件--&gt;
+&lt;context:property-placeholder        location=&#34;classpath:jdbc.properties&#34;/&gt;
+
+&lt;!--配置c3p0连接池--&gt;
+&lt;bean id=&#34;dataSource&#34; class=&#34;com.mchange.v2.c3p0.ComboPooledDataSource&#34;&gt;
+    &lt;property name=&#34;driverClass&#34; value=&#34;${jdbc.driver}&#34;/&gt;
+    &lt;property name=&#34;jdbcUrl&#34; value=&#34;${jdbc.url}&#34;/&gt;
+    &lt;property name=&#34;user&#34; value=&#34;${jdbc.user}&#34;/&gt;
+    &lt;property name=&#34;password&#34; value=&#34;${jdbc.password}&#34;/&gt;
+&lt;/bean&gt;
+</code></pre></td></tr></table>
 </div>
 </div><p>在以上对于数据库的配置中，我们引用了配置文件<code>jdbc.properties</code>中的值</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">jdbc.driver = com.mysql.jdbc.Driver
-</span></span><span class="line"><span class="cl">jdbc.url = jdbc:mysql:///BookManager
-</span></span><span class="line"><span class="cl">jdbc.user = root
-</span></span><span class="line"><span class="cl">jdbc.password =123
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">jdbc.driver = com.mysql.jdbc.Driver
+jdbc.url = jdbc:mysql:///BookManager
+jdbc.user = root
+jdbc.password =123
+</code></pre></td></tr></table>
 </div>
 </div><p>那么问题来了，在Spring将bean实例化时是如何将配置元数据中的<code>${jdbc.driver}</code>替换成真实的<code>com.mysql.jdbc.Driver</code>的呢？这便就是<code>BeanFactoryPostProcessor</code>在Spring容器中的最典型的使用场景之一。该处理的实现类为<code>PropertyPlaceholderConfigurer</code>，它实现了接口<code>BeanFactoryPostProcessor</code>中的<code>postProcessBeanFactory</code>方法，负责在bean实例化之前将配置元数据中的如同<code>${jdbc.driver}</code>的配置替换为它真实的值，然后Spring便就可以正常的实例化了。</p>
 <ul>
@@ -190,7 +194,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -213,35 +217,35 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
-</span></span></span><span class="line"><span class="cl"><span class="cm">    * {@linkplain #mergeProperties Merge}, {@linkplain #convertProperties convert} and
-</span></span></span><span class="line"><span class="cl"><span class="cm">    * {@linkplain #processProperties process} properties against the given bean factory.
-</span></span></span><span class="line"><span class="cl"><span class="cm">    * @throws BeanInitializationException if any properties cannot be loaded
-</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">postProcessBeanFactory</span><span class="o">(</span><span class="n">ConfigurableListableBeanFactory</span> <span class="n">beanFactory</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">BeansException</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 读取配置中配置的properties文件
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Properties</span> <span class="n">mergedProps</span> <span class="o">=</span> <span class="n">mergeProperties</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// Convert the merged properties, if necessary.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">convertProperties</span><span class="o">(</span><span class="n">mergedProps</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// Let the subclass process the properties.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">processProperties</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">,</span> <span class="n">mergedProps</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">BeanInitializationException</span><span class="o">(</span><span class="s">&#34;Could not load properties&#34;</span><span class="o">,</span> <span class="n">ex</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">    * {@linkplain #mergeProperties Merge}, {@linkplain #convertProperties convert} and
+</span><span class="cm">    * {@linkplain #processProperties process} properties against the given bean factory.
+</span><span class="cm">    * @throws BeanInitializationException if any properties cannot be loaded
+</span><span class="cm">    */</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">postProcessBeanFactory</span><span class="o">(</span><span class="n">ConfigurableListableBeanFactory</span> <span class="n">beanFactory</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">BeansException</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">// 读取配置中配置的properties文件
+</span><span class="c1"></span>        <span class="n">Properties</span> <span class="n">mergedProps</span> <span class="o">=</span> <span class="n">mergeProperties</span><span class="o">();</span>
+
+        <span class="c1">// Convert the merged properties, if necessary.
+</span><span class="c1"></span>        <span class="n">convertProperties</span><span class="o">(</span><span class="n">mergedProps</span><span class="o">);</span>
+
+        <span class="c1">// Let the subclass process the properties.
+</span><span class="c1"></span>        <span class="n">processProperties</span><span class="o">(</span><span class="n">beanFactory</span><span class="o">,</span> <span class="n">mergedProps</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">BeanInitializationException</span><span class="o">(</span><span class="s">&#34;Could not load properties&#34;</span><span class="o">,</span> <span class="n">ex</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>其中<code>processProperties</code>方法在<code>PropertyPlaceholderConfigurer</code>中的实现为</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -254,18 +258,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
-</span></span></span><span class="line"><span class="cl"><span class="cm">    * Visit each bean definition in the given bean factory and attempt to replace ${...} property
-</span></span></span><span class="line"><span class="cl"><span class="cm">    * placeholders with values from the given properties.
-</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">processProperties</span><span class="o">(</span><span class="n">ConfigurableListableBeanFactory</span> <span class="n">beanFactoryToProcess</span><span class="o">,</span> <span class="n">Properties</span> <span class="n">props</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="kd">throws</span> <span class="n">BeansException</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">StringValueResolver</span> <span class="n">valueResolver</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PlaceholderResolvingStringValueResolver</span><span class="o">(</span><span class="n">props</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">doProcessProperties</span><span class="o">(</span><span class="n">beanFactoryToProcess</span><span class="o">,</span> <span class="n">valueResolver</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">    * Visit each bean definition in the given bean factory and attempt to replace ${...} property
+</span><span class="cm">    * placeholders with values from the given properties.
+</span><span class="cm">    */</span>
+<span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">processProperties</span><span class="o">(</span><span class="n">ConfigurableListableBeanFactory</span> <span class="n">beanFactoryToProcess</span><span class="o">,</span> <span class="n">Properties</span> <span class="n">props</span><span class="o">)</span>
+        <span class="kd">throws</span> <span class="n">BeansException</span> <span class="o">{</span>
+
+    <span class="n">StringValueResolver</span> <span class="n">valueResolver</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PlaceholderResolvingStringValueResolver</span><span class="o">(</span><span class="n">props</span><span class="o">);</span>
+    <span class="n">doProcessProperties</span><span class="o">(</span><span class="n">beanFactoryToProcess</span><span class="o">,</span> <span class="n">valueResolver</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>好了，如果有兴趣的同学可以去仔细看看源码哦，这里只是简单的阐述下<code>BeanFactoryPostProcessor</code>的使用场景</p>
 
@@ -336,7 +340,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -353,7 +357,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

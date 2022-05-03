@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/functional/clojure/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Clojure" />
 <meta property="og:description" content="目录 start Clojure 安装 基础 目录 end|2020-12-18 15:50| Clojure Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程 安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp clojure-1.8.0.jar clojure.main Linux" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/functional/clojure/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/functional/clojure/" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
-
 <meta itemprop="name" content="Clojure">
-<meta itemprop="description" content="目录 start Clojure 安装 基础 目录 end|2020-12-18 15:50| Clojure Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程 安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp clojure-1.8.0.jar clojure.main Linux"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start Clojure 安装 基础 目录 end|2020-12-18 15:50| Clojure Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程 安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp clojure-1.8.0.jar clojure.main Linux">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="wordCount" content="765">
-<meta itemprop="keywords" content="基础,函数式编程," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="基础,函数式编程," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Clojure"/>
 <meta name="twitter:description" content="目录 start Clojure 安装 基础 目录 end|2020-12-18 15:50| Clojure Lisp的方言 参考博客 Clojure 学习笔记 :0 零基础教程 安装 Clojure官网下载地址 解压后运行jar包进入REPL java -cp clojure-1.8.0.jar clojure.main Linux"/>
 
@@ -190,13 +194,13 @@
 <p><code>java -cp clojure-1.8.0.jar clojure.main</code>进入REPL终端</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-clojure" data-lang="clojure"><span class="line"><span class="cl">    <span class="nv">user</span> <span class="nv">=&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">hello</span><span class="p">(</span><span class="k">fn </span><span class="p">[]</span> <span class="s">&#34;hello&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">user</span> <span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">hello</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-clojure" data-lang="clojure">    <span class="nv">user</span> <span class="nv">=&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">hello</span><span class="p">(</span><span class="k">fn </span><span class="p">[]</span> <span class="s">&#34;hello&#34;</span><span class="p">))</span>
+    <span class="nv">user</span> <span class="nv">=&gt;</span> <span class="p">(</span><span class="nf">hello</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -269,7 +273,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -286,7 +290,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

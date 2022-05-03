@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxnetwork/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Linux网络管理" />
 <meta property="og:description" content="目录 start Linux网络管理 内核配置 DNS 修改DNS Route IPv4和IPv6 Bridge 基础命令工具 ping traceroute tc netstat iproute2 tcpdump netcat scp rsync curl wget 常用服务 邮件服务器postfix和dev" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxnetwork/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxnetwork/" />
 <meta property="article:published_time" content="2018-12-15T11:15:55+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:15:55+00:00" />
-
 <meta itemprop="name" content="Linux网络管理">
-<meta itemprop="description" content="目录 start Linux网络管理 内核配置 DNS 修改DNS Route IPv4和IPv6 Bridge 基础命令工具 ping traceroute tc netstat iproute2 tcpdump netcat scp rsync curl wget 常用服务 邮件服务器postfix和dev"><meta itemprop="datePublished" content="2018-12-15T11:15:55+00:00" />
+<meta itemprop="description" content="目录 start Linux网络管理 内核配置 DNS 修改DNS Route IPv4和IPv6 Bridge 基础命令工具 ping traceroute tc netstat iproute2 tcpdump netcat scp rsync curl wget 常用服务 邮件服务器postfix和dev">
+<meta itemprop="datePublished" content="2018-12-15T11:15:55+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:15:55+00:00" />
 <meta itemprop="wordCount" content="6218">
-<meta itemprop="keywords" content="基础,网络," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="基础,网络," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux网络管理"/>
 <meta name="twitter:description" content="目录 start Linux网络管理 内核配置 DNS 修改DNS Route IPv4和IPv6 Bridge 基础命令工具 ping traceroute tc netstat iproute2 tcpdump netcat scp rsync curl wget 常用服务 邮件服务器postfix和dev"/>
 
@@ -343,13 +347,13 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    nameserver 8.8.8.8 
-</span></span><span class="line"><span class="cl">    nameserver 8.8.8.4
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    nameserver 8.8.8.8 
+    nameserver 8.8.8.4
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>刷新本地缓存</p>
@@ -683,7 +687,7 @@ tbf 指令牌桶算法</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -699,21 +703,21 @@ tbf 指令牌桶算法</p>
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    -1：使用ssh协议版本1； 
-</span></span><span class="line"><span class="cl">    -2：使用ssh协议版本2； 
-</span></span><span class="line"><span class="cl">    -4：使用ipv4； 
-</span></span><span class="line"><span class="cl">    -6：使用ipv6； 
-</span></span><span class="line"><span class="cl">    -B：以批处理模式运行； 
-</span></span><span class="line"><span class="cl">    -C：使用压缩； 
-</span></span><span class="line"><span class="cl">    -F：指定ssh配置文件； 
-</span></span><span class="line"><span class="cl">    -l：指定宽带限制； 
-</span></span><span class="line"><span class="cl">    -o：指定使用的ssh选项； 
-</span></span><span class="line"><span class="cl">    -i: 指定私钥文件
-</span></span><span class="line"><span class="cl">    -P：指定远程主机的端口号； 
-</span></span><span class="line"><span class="cl">    -p：保留文件的最后修改时间，最后访问时间和权限模式； 
-</span></span><span class="line"><span class="cl">    -q：不显示复制进度； 
-</span></span><span class="line"><span class="cl">    -r：以递归方式复制。
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    -1：使用ssh协议版本1； 
+    -2：使用ssh协议版本2； 
+    -4：使用ipv4； 
+    -6：使用ipv6； 
+    -B：以批处理模式运行； 
+    -C：使用压缩； 
+    -F：指定ssh配置文件； 
+    -l：指定宽带限制； 
+    -o：指定使用的ssh选项； 
+    -i: 指定私钥文件
+    -P：指定远程主机的端口号； 
+    -p：保留文件的最后修改时间，最后访问时间和权限模式； 
+    -q：不显示复制进度； 
+    -r：以递归方式复制。
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>远程到本地 <code>scp root@10.10.10.10:/opt/soft/nginx-0.5.38.tar.gz /opt/soft/</code></li>
@@ -965,7 +969,7 @@ tbf 指令牌桶算法</p>
 <p><code>/etc/vsftpd.conf </code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -980,20 +984,20 @@ tbf 指令牌桶算法</p>
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    # 限制用户对主目录以外目录访问
-</span></span><span class="line"><span class="cl">    chroot_local_user=YES
-</span></span><span class="line"><span class="cl">    # 指定一个 userlist 存放允许访问 ftp 的用户列表
-</span></span><span class="line"><span class="cl">    userlist_deny=NO
-</span></span><span class="line"><span class="cl">    userlist_enable=YES
-</span></span><span class="line"><span class="cl">    # 记录允许访问 ftp 用户列表
-</span></span><span class="line"><span class="cl">    userlist_file=/etc/vsftpd.user_list
-</span></span><span class="line"><span class="cl">    # 不配置可能导致莫名的530问题
-</span></span><span class="line"><span class="cl">    seccomp_sandbox=NO
-</span></span><span class="line"><span class="cl">    # 允许文件上传
-</span></span><span class="line"><span class="cl">    write_enable=YES
-</span></span><span class="line"><span class="cl">    # 使用utf8编码
-</span></span><span class="line"><span class="cl">    utf8_filesystem=YES
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    # 限制用户对主目录以外目录访问
+    chroot_local_user=YES
+    # 指定一个 userlist 存放允许访问 ftp 的用户列表
+    userlist_deny=NO
+    userlist_enable=YES
+    # 记录允许访问 ftp 用户列表
+    userlist_file=/etc/vsftpd.user_list
+    # 不配置可能导致莫名的530问题
+    seccomp_sandbox=NO
+    # 允许文件上传
+    write_enable=YES
+    # 使用utf8编码
+    utf8_filesystem=YES
+</code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>新建文件 sudo touch /etc/vsftpd.user_list</li>
@@ -1005,7 +1009,7 @@ tbf 指令牌桶算法</p>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1019,19 +1023,19 @@ tbf 指令牌桶算法</p>
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    $ sudo mkdir /home/common
-</span></span><span class="line"><span class="cl">    $ sudo touch /home/common/welcome.txt
-</span></span><span class="line"><span class="cl">    $ sudo useradd -d /home/common -s /bin/bash common
-</span></span><span class="line"><span class="cl">    $ sudo passwd common
-</span></span><span class="line"><span class="cl">    $ sudo rm /etc/pam.d/vsftpd
-</span></span><span class="line"><span class="cl">    $ sudo usermod -s /sbin/nologin common
-</span></span><span class="line"><span class="cl">    $ sudo chmod a+w /etc/vsftpd.conf
-</span></span><span class="line"><span class="cl">    $ sudo vim /etc/vsftpd.conf
-</span></span><span class="line"><span class="cl">    $ sudo vim /etc/vsftpd.user_list
-</span></span><span class="line"><span class="cl">    $ sudo chmod a-w /home/common
-</span></span><span class="line"><span class="cl">    $ sudo mkdir /home/common/public <span class="o">&amp;&amp;</span> sudo chmod <span class="m">777</span> -R /home/common/public
-</span></span><span class="line"><span class="cl">    $ sudo systemctl restart vsftpd.service
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">    $ sudo mkdir /home/common
+    $ sudo touch /home/common/welcome.txt
+    $ sudo useradd -d /home/common -s /bin/bash common
+    $ sudo passwd common
+    $ sudo rm /etc/pam.d/vsftpd
+    $ sudo usermod -s /sbin/nologin common
+    $ sudo chmod a+w /etc/vsftpd.conf
+    $ sudo vim /etc/vsftpd.conf
+    $ sudo vim /etc/vsftpd.user_list
+    $ sudo chmod a-w /home/common
+    $ sudo mkdir /home/common/public <span class="o">&amp;&amp;</span> sudo chmod <span class="m">777</span> -R /home/common/public
+    $ sudo systemctl restart vsftpd.service
+</code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="ssh">SSH</h2>
@@ -1091,7 +1095,7 @@ tbf 指令牌桶算法</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1101,15 +1105,15 @@ tbf 指令牌桶算法</p>
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">    <span class="p">{</span> 
-</span></span><span class="line"><span class="cl">	    <span class="nt">&#34;server&#34;</span><span class="p">:</span><span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	    <span class="nt">&#34;server_port&#34;</span><span class="p">:</span><span class="mi">443</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	    <span class="nt">&#34;localport&#34;</span><span class="p">:</span><span class="mi">1080</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	    <span class="nt">&#34;password&#34;</span><span class="p">:</span><span class="s2">&#34;password&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	    <span class="nt">&#34;timeout&#34;</span><span class="p">:</span><span class="mi">600</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	    <span class="nt">&#34;method&#34;</span><span class="p">:</span><span class="s2">&#34;aes-256-cfb&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-json" data-lang="json">    <span class="p">{</span> 
+	    <span class="nt">&#34;server&#34;</span><span class="p">:</span><span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>
+	    <span class="nt">&#34;server_port&#34;</span><span class="p">:</span><span class="mi">443</span><span class="p">,</span>
+	    <span class="nt">&#34;localport&#34;</span><span class="p">:</span><span class="mi">1080</span><span class="p">,</span>
+	    <span class="nt">&#34;password&#34;</span><span class="p">:</span><span class="s2">&#34;password&#34;</span><span class="p">,</span>
+	    <span class="nt">&#34;timeout&#34;</span><span class="p">:</span><span class="mi">600</span><span class="p">,</span>
+	    <span class="nt">&#34;method&#34;</span><span class="p">:</span><span class="s2">&#34;aes-256-cfb&#34;</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>sslocal -c /etc/ss/json</code></li>
@@ -1123,13 +1127,13 @@ tbf 指令牌桶算法</p>
 <li>包管理器
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo pacman -S community/proxychains-ng <span class="c1"># Arch</span>
-</span></span><span class="line"><span class="cl">sudo apt install proxychains  <span class="c1"># apt</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo pacman -S community/proxychains-ng <span class="c1"># Arch</span>
+sudo apt install proxychains  <span class="c1"># apt</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -1137,7 +1141,7 @@ tbf 指令牌桶算法</p>
 <li>配置 配合楼上的 shadowsocks，修改文件 <code>/etc/proxychains.conf</code>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1145,13 +1149,13 @@ tbf 指令牌桶算法</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[ProxyList]
-</span></span><span class="line"><span class="cl"># add proxy here ...
-</span></span><span class="line"><span class="cl"># meanwile
-</span></span><span class="line"><span class="cl"># defaults set to &#34;tor&#34;
-</span></span><span class="line"><span class="cl"># socks4        127.0.0.1 9050
-</span></span><span class="line"><span class="cl">socks5  127.0.0.1  1080
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[ProxyList]
+# add proxy here ...
+# meanwile
+# defaults set to &#34;tor&#34;
+# socks4        127.0.0.1 9050
+socks5  127.0.0.1  1080
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -1165,7 +1169,7 @@ tbf 指令牌桶算法</p>
 <li>配置文件 <code>connect.ovpn</code>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1182,34 +1186,34 @@ tbf 指令牌桶算法</p>
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    client
-</span></span><span class="line"><span class="cl">    dev tun
-</span></span><span class="line"><span class="cl">    proto tcp
-</span></span><span class="line"><span class="cl">    remote IP PORT               # 服务端IP地址映射的公网IP地址 端口
-</span></span><span class="line"><span class="cl">    resolv-retry infinite
-</span></span><span class="line"><span class="cl">    nobind
-</span></span><span class="line"><span class="cl">    persist-key
-</span></span><span class="line"><span class="cl">    persist-tun
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    ca ca.crt # ca 文件
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    auth-user-pass # 可选 password 文件
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    comp-lzo
-</span></span><span class="line"><span class="cl">    verb 3
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    client
+    dev tun
+    proto tcp
+    remote IP PORT               # 服务端IP地址映射的公网IP地址 端口
+    resolv-retry infinite
+    nobind
+    persist-key
+    persist-tun
+
+    ca ca.crt # ca 文件
+
+    auth-user-pass # 可选 password 文件
+
+    comp-lzo
+    verb 3
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>账户密码文件 <code>passwd</code>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">用户名
-</span></span><span class="line"><span class="cl">密码
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">用户名
+密码
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>启动 sudo openvpn &ndash;daemon &ndash;cd /etc/openvpn/client &ndash;config connect.ovpn &ndash;auth-user-pass /etc/openvpn/client/passwd &ndash;log-append /path/to/log.log</li>
@@ -1374,7 +1378,7 @@ tbf 指令牌桶算法</p>
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -1391,7 +1395,7 @@ tbf 指令牌桶算法</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

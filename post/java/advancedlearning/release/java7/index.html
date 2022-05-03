@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/release/java7/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Java7" />
 <meta property="og:description" content="目录 start Java7 异常处理 TWR NIO 2.0 Path 文件系统 I/O 异步 I/O 目录 end|2020-07-05 16:28| 参考: JDK各个版本比较 JDK5~JDK10 Java7 Official: Java 7 API 小特性 Switch 支持 String Java6之前case语句中的常亮只支持 byte," />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/release/java7/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/release/java7/" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
-
 <meta itemprop="name" content="Java7">
-<meta itemprop="description" content="目录 start Java7 异常处理 TWR NIO 2.0 Path 文件系统 I/O 异步 I/O 目录 end|2020-07-05 16:28| 参考: JDK各个版本比较 JDK5~JDK10 Java7 Official: Java 7 API 小特性 Switch 支持 String Java6之前case语句中的常亮只支持 byte,"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start Java7 异常处理 TWR NIO 2.0 Path 文件系统 I/O 异步 I/O 目录 end|2020-07-05 16:28| 参考: JDK各个版本比较 JDK5~JDK10 Java7 Official: Java 7 API 小特性 Switch 支持 String Java6之前case语句中的常亮只支持 byte,">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="wordCount" content="1235">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java7"/>
 <meta name="twitter:description" content="目录 start Java7 异常处理 TWR NIO 2.0 Path 文件系统 I/O 异步 I/O 目录 end|2020-07-05 16:28| 参考: JDK各个版本比较 JDK5~JDK10 Java7 Official: Java 7 API 小特性 Switch 支持 String Java6之前case语句中的常亮只支持 byte,"/>
 
@@ -202,7 +206,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -214,32 +218,32 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 从URL下载文件, 其中的资源都会自动关闭
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 但是要注意发生异常后,资源也不会自动关闭, 所以确保TWR生效,正确的用法是为各个资源声明独立变量.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">try</span><span class="o">(</span><span class="n">OutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">InputStream</span> <span class="n">is</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="na">openStream</span><span class="o">()){</span>
-</span></span><span class="line"><span class="cl">            <span class="kt">byte</span><span class="o">[]</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">1024</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">len</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="o">((</span><span class="n">len</span> <span class="o">=</span> <span class="n">is</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buf</span><span class="o">))</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">                <span class="n">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buf</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 从URL下载文件, 其中的资源都会自动关闭
+</span><span class="c1"></span>    <span class="c1">// 但是要注意发生异常后,资源也不会自动关闭, 所以确保TWR生效,正确的用法是为各个资源声明独立变量.
+</span><span class="c1"></span>    <span class="k">try</span><span class="o">(</span><span class="n">OutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+        <span class="n">InputStream</span> <span class="n">is</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="na">openStream</span><span class="o">()){</span>
+            <span class="kt">byte</span><span class="o">[]</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">1024</span><span class="o">];</span>
+            <span class="kt">int</span> <span class="n">len</span><span class="o">;</span> 
+            <span class="k">while</span> <span class="o">((</span><span class="n">len</span> <span class="o">=</span> <span class="n">is</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buf</span><span class="o">))</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">){</span>
+                <span class="n">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buf</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+            <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>另一个好处就是改善了错误跟踪的能力, 能够更准确地跟踪堆栈中的异常, 在Java7之前,处理资源时抛出的异常经常会被覆盖,TWR也可能会出现这种情况.</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="k">try</span><span class="o">((</span><span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="n">getNullStream</span><span class="o">())){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">in</span><span class="o">.</span><span class="na">available</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="k">try</span><span class="o">((</span><span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="n">getNullStream</span><span class="o">())){</span>
+        <span class="n">in</span><span class="o">.</span><span class="na">available</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>在这种改进后的跟踪堆栈中能看到提示, 其中的NullPointException是能够抛出来看到的.没有被隐藏</li>
@@ -254,7 +258,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -265,22 +269,22 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 不允许创建已知类型的泛型数组, 编译报错
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;[</span><span class="n">2</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 只能这样写  这样的编写也只是权宜之计, 编译器会警告: 
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 可以将array定义为HashMap&lt;String, String&gt;数组,但是又不能创建这个类型的实例  所以这里只是将原始类型实例化了放进去.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">[</span><span class="n">2</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 现在能够这样编写:
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">doSomething</span><span class="o">(</span><span class="n">T</span><span class="o">...</span> <span class="n">entries</span><span class="o">){}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 不允许创建已知类型的泛型数组, 编译报错
+</span><span class="c1"></span>    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;[</span><span class="n">2</span><span class="o">];</span>
+
+    <span class="c1">// 只能这样写  这样的编写也只是权宜之计, 编译器会警告: 
+</span><span class="c1"></span>    <span class="c1">// 可以将array定义为HashMap&lt;String, String&gt;数组,但是又不能创建这个类型的实例  所以这里只是将原始类型实例化了放进去.
+</span><span class="c1"></span>    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">[</span><span class="n">2</span><span class="o">];</span>
+
+    <span class="c1">// 现在能够这样编写:
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">doSomething</span><span class="o">(</span><span class="n">T</span><span class="o">...</span> <span class="n">entries</span><span class="o">){}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="nio-20">NIO 2.0</h2>
 <h3 id="path">Path</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -294,24 +298,24 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 创建路径
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Path</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;xmlStudy&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 获取文件名
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">getFileName</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 获取名称元素数量
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">getNameCount</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;test.xml&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 将旧API的File转换成新的Path
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">toPath</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 将Path转换成File
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">File</span> <span class="n">fiel2</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="na">toFile</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 创建路径
+</span><span class="c1"></span>    <span class="n">Path</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;xmlStudy&#34;</span><span class="o">);</span>
+    <span class="c1">// 获取文件名
+</span><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">getFileName</span><span class="o">());</span>
+    <span class="c1">// 获取名称元素数量
+</span><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">getNameCount</span><span class="o">());</span>
+
+    <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;test.xml&#34;</span><span class="o">);</span>
+    <span class="c1">// 将旧API的File转换成新的Path
+</span><span class="c1"></span>    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">toPath</span><span class="o">();</span>
+    <span class="c1">// 将Path转换成File
+</span><span class="c1"></span>    <span class="n">File</span> <span class="n">fiel2</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="na">toFile</span><span class="o">();</span>
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="文件系统-io">文件系统 I/O</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -327,28 +331,28 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 创建文件
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test2.xml&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Path</span> <span class="n">file</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">createFile</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 删除文件
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Files</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 复制
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Path</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test2.xml&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;src/test2.xml&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Files</span><span class="o">.</span><span class="na">copy</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">path</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 移动
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test2.xml&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Path</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;src/test2.xml&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Files</span><span class="o">.</span><span class="na">move</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">path</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 创建文件
+</span><span class="c1"></span>    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test2.xml&#34;</span><span class="o">);</span>
+    <span class="n">Path</span> <span class="n">file</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">createFile</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="c1">// 删除文件
+</span><span class="c1"></span>    <span class="n">Files</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+
+    <span class="c1">// 复制
+</span><span class="c1"></span>    <span class="n">Path</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test2.xml&#34;</span><span class="o">);</span>
+    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;src/test2.xml&#34;</span><span class="o">);</span>
+    <span class="n">Files</span><span class="o">.</span><span class="na">copy</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">path</span><span class="o">);</span>
+    <span class="c1">// 移动
+</span><span class="c1"></span>    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test2.xml&#34;</span><span class="o">);</span>
+    <span class="n">Path</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;src/test2.xml&#34;</span><span class="o">);</span>
+    <span class="n">Files</span><span class="o">.</span><span class="na">move</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">path</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>读写数据 (可指定文件的打开方式, WRITE, READ, APPEND (StandardOpenOption.WRITE))</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -368,25 +372,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test.txt&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 打开一个带缓冲区的读取器
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">try</span> <span class="o">(</span><span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">newBufferedReader</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">))</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">line</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">line</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 打开带有一个缓冲区的写入器
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">try</span> <span class="o">(</span><span class="n">BufferedWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">newBufferedWriter</span><span class="o">(</span><span class="n">path</span><span class="o">))</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&#34;测试&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">// java7简化后的读取全部行和字节
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">readAllLines</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">readAllBytes</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">lines</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test.txt&#34;</span><span class="o">);</span>
+    <span class="c1">// 打开一个带缓冲区的读取器
+</span><span class="c1"></span>    <span class="k">try</span> <span class="o">(</span><span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">newBufferedReader</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">line</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">line</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 打开带有一个缓冲区的写入器
+</span><span class="c1"></span>    <span class="k">try</span> <span class="o">(</span><span class="n">BufferedWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">newBufferedWriter</span><span class="o">(</span><span class="n">path</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&#34;测试&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// java7简化后的读取全部行和字节
+</span><span class="c1"></span>    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">readAllLines</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">readAllBytes</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">lines</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="异步-io">异步 I/O</h3>
 <ul>
@@ -394,7 +398,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -408,26 +412,26 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test.txt&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 异步打开文件
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">AsynchronousFileChannel</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">AsynchronousFileChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 读取100000字节
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="n">100_000</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Future</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(!</span><span class="n">result</span><span class="o">.</span><span class="na">isDone</span><span class="o">())</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;其他事&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 获取结果
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Integer</span> <span class="n">bytesRead</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bytesRead</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test.txt&#34;</span><span class="o">);</span>
+    <span class="c1">// 异步打开文件
+</span><span class="c1"></span>    <span class="n">AsynchronousFileChannel</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">AsynchronousFileChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="c1">// 读取100000字节
+</span><span class="c1"></span>    <span class="n">ByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="n">100_000</span><span class="o">);</span>
+    <span class="n">Future</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+    <span class="k">while</span> <span class="o">(!</span><span class="n">result</span><span class="o">.</span><span class="na">isDone</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;其他事&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// 获取结果
+</span><span class="c1"></span>    <span class="n">Integer</span> <span class="n">bytesRead</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bytesRead</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>回调式</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -446,24 +450,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test.txt&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 异步打开文件
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">AsynchronousFileChannel</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">AsynchronousFileChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 读取100000字节
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="n">100_000</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">channel</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">buffer</span><span class="o">,</span> <span class="k">new</span> <span class="n">CompletionHandler</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">ByteBuffer</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 读取调取完成时的回调方法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">completed</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">,</span> <span class="n">ByteBuffer</span> <span class="n">attachment</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">failed</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">exc</span><span class="o">,</span> <span class="n">ByteBuffer</span> <span class="n">attachment</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">exc</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">});</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;test.txt&#34;</span><span class="o">);</span>
+    <span class="c1">// 异步打开文件
+</span><span class="c1"></span>    <span class="n">AsynchronousFileChannel</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">AsynchronousFileChannel</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="c1">// 读取100000字节
+</span><span class="c1"></span>    <span class="n">ByteBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="n">100_000</span><span class="o">);</span>
+    
+    <span class="n">channel</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">buffer</span><span class="o">,</span> <span class="k">new</span> <span class="n">CompletionHandler</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">ByteBuffer</span><span class="o">&gt;()</span> <span class="o">{</span>
+        <span class="c1">// 读取调取完成时的回调方法
+</span><span class="c1"></span>        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">completed</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">,</span> <span class="n">ByteBuffer</span> <span class="n">attachment</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">failed</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">exc</span><span class="o">,</span> <span class="n">ByteBuffer</span> <span class="n">attachment</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">exc</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -533,7 +537,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -550,7 +554,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

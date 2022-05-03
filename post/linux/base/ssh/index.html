@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/ssh/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="SSH使用总结" />
 <meta property="og:description" content="目录 start SSH 安装 建立连接 复制粘贴建立密钥对 使用 ssh-copy-id 脚本 SSH客户端配置 多密钥对 服务端配置 访问图形化 SSH登录并执行一系列命令 通过SSH执行命令时的" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/ssh/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/ssh/" />
 <meta property="article:published_time" content="2018-12-15T11:20:07+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:20:07+00:00" />
-
 <meta itemprop="name" content="SSH使用总结">
-<meta itemprop="description" content="目录 start SSH 安装 建立连接 复制粘贴建立密钥对 使用 ssh-copy-id 脚本 SSH客户端配置 多密钥对 服务端配置 访问图形化 SSH登录并执行一系列命令 通过SSH执行命令时的"><meta itemprop="datePublished" content="2018-12-15T11:20:07+00:00" />
+<meta itemprop="description" content="目录 start SSH 安装 建立连接 复制粘贴建立密钥对 使用 ssh-copy-id 脚本 SSH客户端配置 多密钥对 服务端配置 访问图形化 SSH登录并执行一系列命令 通过SSH执行命令时的">
+<meta itemprop="datePublished" content="2018-12-15T11:20:07+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:20:07+00:00" />
 <meta itemprop="wordCount" content="1980">
-<meta itemprop="keywords" content="工具使用经验," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="工具使用经验," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SSH使用总结"/>
 <meta name="twitter:description" content="目录 start SSH 安装 建立连接 复制粘贴建立密钥对 使用 ssh-copy-id 脚本 SSH客户端配置 多密钥对 服务端配置 访问图形化 SSH登录并执行一系列命令 通过SSH执行命令时的"/>
 
@@ -302,7 +306,7 @@
 <p><code>~/.ssh/config</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -310,18 +314,18 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    Host aliyun
-</span></span><span class="line"><span class="cl">        HostName www.ttlsa.com
-</span></span><span class="line"><span class="cl">        Port 22
-</span></span><span class="line"><span class="cl">        User root
-</span></span><span class="line"><span class="cl">        IdentityFile  ~/.ssh/id_rsa.pub
-</span></span><span class="line"><span class="cl">        IdentitiesOnly yes
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    Host aliyun
+        HostName www.ttlsa.com
+        Port 22
+        User root
+        IdentityFile  ~/.ssh/id_rsa.pub
+        IdentitiesOnly yes
+</code></pre></td></tr></table>
 </div>
 </div><p><em>参数解释</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -329,13 +333,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    HostName 指定登录的主机名或IP地址
-</span></span><span class="line"><span class="cl">    Port 指定登录的端口号
-</span></span><span class="line"><span class="cl">    User 登录用户名
-</span></span><span class="line"><span class="cl">    IdentityFile 登录的公/私钥文件 奇怪的是有时候用公有时候用私??
-</span></span><span class="line"><span class="cl">    IdentitiesOnly 只接受SSH key 登录
-</span></span><span class="line"><span class="cl">    PubkeyAuthentication
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    HostName 指定登录的主机名或IP地址
+    Port 指定登录的端口号
+    User 登录用户名
+    IdentityFile 登录的公/私钥文件 奇怪的是有时候用公有时候用私??
+    IdentitiesOnly 只接受SSH key 登录
+    PubkeyAuthentication
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>ssh aliyun</code> 即可登录 但是要输入生成公钥时的密码， <em>方便多公钥的情况</em>
@@ -376,17 +380,17 @@
 <p><em>config</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    Host default
-</span></span><span class="line"><span class="cl">    HostName github.com
-</span></span><span class="line"><span class="cl">    User git
-</span></span><span class="line"><span class="cl">    IdentityFile ~/.ssh/default_id_rsa.pub
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    Host default
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/default_id_rsa.pub
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>测试配置是否正确: <code>ssh -T git@default</code></li>
@@ -398,31 +402,31 @@
 <p>一般需要重启ssh服务才生效<code>/etc/ssh/sshd_config</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    #禁用密码验证 
-</span></span><span class="line"><span class="cl">    PasswordAuthentication no
-</span></span><span class="line"><span class="cl">    #启用密钥验证
-</span></span><span class="line"><span class="cl">    RSAAuthentication yes
-</span></span><span class="line"><span class="cl">    PubkeyAuthentication yes
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    #禁用密码验证 
+    PasswordAuthentication no
+    #启用密钥验证
+    RSAAuthentication yes
+    PubkeyAuthentication yes
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="访问图形化">访问图形化</h2>
 <p>在<code>/etc/ssh/sshd_config</code>添加以下信息，然后重启ssh服务</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    X11Forwarding yes
-</span></span><span class="line"><span class="cl">    X11DisplayOffset 10
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    X11Forwarding yes
+    X11DisplayOffset 10
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>ssh -X -p port user@host</code> 登录即可
@@ -434,13 +438,13 @@
 <h2 id="ssh登录并执行一系列命令">SSH登录并执行一系列命令</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    ssh user@host <span class="s1">&#39;cmd \
-</span></span></span><span class="line"><span class="cl"><span class="s1">        &amp;&amp; cmd \&#39;</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">    ssh user@host <span class="s1">&#39;cmd \
+</span><span class="s1">        &amp;&amp; cmd \&#39;</span>
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="通过ssh执行命令时的环境变量问题">通过SSH执行命令时的环境变量问题</h3>
 <p>详细在于不同的shell中 Linux 环境变量加载的不同</p>
@@ -454,13 +458,13 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;PermitRootLogin without-password&#34;</span> &gt;&gt; /etc/ssh/sshd_config <span class="p">;</span><span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nb">echo</span> <span class="s2">&#34;PermitRootLogin yes&#34;</span> &gt;&gt; /etc/ssh/sshd_config <span class="p">;</span><span class="se">\
-</span></span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nb">echo</span> <span class="s2">&#34;PermitRootLogin without-password&#34;</span> &gt;&gt; /etc/ssh/sshd_config <span class="p">;</span><span class="se">\
+</span><span class="se"></span>    <span class="nb">echo</span> <span class="s2">&#34;PermitRootLogin yes&#34;</span> &gt;&gt; /etc/ssh/sshd_config <span class="p">;</span><span class="se">\
+</span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>或者尝试 <code>echo &quot;sshd: ALL&quot; &gt;&gt; /etc/hosts.allow &amp;&amp; service sshd restart</code></li>
@@ -472,13 +476,13 @@
 <p>服务端和客户端配置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    ServerAliveInterval 60
-</span></span><span class="line"><span class="cl">    ServerAliveCountMax 3
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ServerAliveInterval 60
+    ServerAliveCountMax 3
+</code></pre></td></tr></table>
 </div>
 </div><hr>
 <blockquote>
@@ -486,7 +490,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -496,15 +500,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ ssh -p <span class="m">8888</span> git@184.170.220.117
-</span></span><span class="line"><span class="cl">    The authenticity of host <span class="s1">&#39;[184.170.220.117]:8888 ([184.170.220.117]:8888)&#39;</span> can<span class="s1">&#39;t be established.
-</span></span></span><span class="line"><span class="cl"><span class="s1">    ECDSA key fingerprint is SHA256:Ha9k9dsMxtTaDgN4maUy1VoNzzsm+uMb84zcib6U5jU.
-</span></span></span><span class="line"><span class="cl"><span class="s1">    Are you sure you want to continue connecting (yes/no)? yes
-</span></span></span><span class="line"><span class="cl"><span class="s1">    Warning: Permanently added &#39;</span><span class="o">[</span>184.170.220.117<span class="o">]</span>:8888<span class="err">&#39;</span> <span class="o">(</span>ECDSA<span class="o">)</span> to the list of known hosts.
-</span></span><span class="line"><span class="cl">    PTY allocation request failed on channel <span class="m">0</span>
-</span></span><span class="line"><span class="cl">    Welcome to GitLab, Carlsiry Chen!
-</span></span><span class="line"><span class="cl">    Connection to 184.170.220.117 closed.
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ ssh -p <span class="m">8888</span> git@184.170.220.117
+    The authenticity of host <span class="s1">&#39;[184.170.220.117]:8888 ([184.170.220.117]:8888)&#39;</span> can<span class="s1">&#39;t be established.
+</span><span class="s1">    ECDSA key fingerprint is SHA256:Ha9k9dsMxtTaDgN4maUy1VoNzzsm+uMb84zcib6U5jU.
+</span><span class="s1">    Are you sure you want to continue connecting (yes/no)? yes
+</span><span class="s1">    Warning: Permanently added &#39;</span><span class="o">[</span>184.170.220.117<span class="o">]</span>:8888<span class="err">&#39;</span> <span class="o">(</span>ECDSA<span class="o">)</span> to the list of known hosts.
+    PTY allocation request failed on channel <span class="m">0</span>
+    Welcome to GitLab, Carlsiry Chen!
+    Connection to 184.170.220.117 closed.
+</code></pre></td></tr></table>
 </div>
 </div><hr>
 <blockquote>
@@ -607,7 +611,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -624,7 +628,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

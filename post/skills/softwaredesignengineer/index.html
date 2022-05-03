@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/skills/softwaredesignengineer/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="软考知识点" />
 <meta property="og:description" content="目录 start 软考知识点 【1.计算机组成与结构】 【计算机中数据的表示】： 【CPU】： 【存储系统】： 【例题】 【输入输出系统】： 【总线系统】： 【加密算法" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/softwaredesignengineer/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/softwaredesignengineer/" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
-
 <meta itemprop="name" content="软考知识点">
-<meta itemprop="description" content="目录 start 软考知识点 【1.计算机组成与结构】 【计算机中数据的表示】： 【CPU】： 【存储系统】： 【例题】 【输入输出系统】： 【总线系统】： 【加密算法"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start 软考知识点 【1.计算机组成与结构】 【计算机中数据的表示】： 【CPU】： 【存储系统】： 【例题】 【输入输出系统】： 【总线系统】： 【加密算法">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="18598">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="18600">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="软考知识点"/>
 <meta name="twitter:description" content="目录 start 软考知识点 【1.计算机组成与结构】 【计算机中数据的表示】： 【CPU】： 【存储系统】： 【例题】 【输入输出系统】： 【总线系统】： 【加密算法"/>
 
@@ -122,7 +126,7 @@
         <div class="post-category">
             <a href="/categories/%E5%BA%94%E8%AF%95/"> 应试 </a>
             </div>
-          <span class="more-meta"> 18598 words </span>
+          <span class="more-meta"> 18600 words </span>
           <span class="more-meta"> 38 mins read </span>
         
       </div>
@@ -391,15 +395,15 @@
 <p><strong>指令译码器</strong>（ID）：指令分为操作码和地址码两部分，由该部分进行解析，协调硬件的运行</p>
 <ul>
 <li>
-<pre><code>  时序控制逻辑：控制指令的执行时间顺序
+<pre><code>    时序控制逻辑：控制指令的执行时间顺序
 </code></pre>
 </li>
 <li>
-<pre><code>  总线逻辑：为多个功能部件服务的信息通路的控制电路
+<pre><code>    总线逻辑：为多个功能部件服务的信息通路的控制电路
 </code></pre>
 </li>
 <li>
-<pre><code>  中断逻辑：控制各种中断请求，根据优先级来对中断请求排队。逐个交给CPU执行
+<pre><code>    中断逻辑：控制各种中断请求，根据优先级来对中断请求排队。逐个交给CPU执行
 </code></pre>
 </li>
 </ul>
@@ -453,7 +457,7 @@
 <ul>
 <li>磁盘存储器：由盘片，驱动器，控制器和接口组成。其存储容量有两种指标：格式化容量和非格式化容量。
 <ul>
-<li>非格式化容量 = 面数*（磁道数/面）<em>内圆周长</em>最大位密度</li>
+<li>非格式化容量 = 面数*（磁道数/面）*内圆周长*最大位密度</li>
 <li>格式化容量 = 面数 <em>（磁道数/面）</em>（扇区数/道）*（字节数/扇区）</li>
 </ul>
 </li>
@@ -468,7 +472,7 @@
 去掉十个0 单位就成了kb,然后就是2的5,6,7次方求和   得到224KB</p>
 <h3 id="输入输出系统">【输入输出系统】：</h3>
 <pre><code>DMA方式：
-	无需CPU介入，流程：向CPU申请DMA传送，获取CPU允许后，DMA控制器接管系统总线的控制权；过程中不需要CPU结束回到CPU控制
+    无需CPU介入，流程：向CPU申请DMA传送，获取CPU允许后，DMA控制器接管系统总线的控制权；过程中不需要CPU结束回到CPU控制
 </code></pre>
 <h3 id="总线系统">【总线系统】：</h3>
 <ul>
@@ -507,8 +511,8 @@ max{k|1&lt;k&lt;j,&lsquo;p 1 p 2……p k-1 &lsquo;=&lsquo;p j-k+1 …… p j-1&
 }
 假设 p 为 abaabaca  那么函数值为01122341
 【答案的解释】：</p>
-<pre><code>	j: 1 2 3 4 5 6 7 8
-	p: a b a a b a c a
+<pre><code>    j: 1 2 3 4 5 6 7 8
+    p: a b a a b a c a
 </code></pre>
 <p>next(j): 0 1 1 2 2 3 4 1
 【自己的理解】：
@@ -1552,13 +1556,13 @@ NFA：无限自动机
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    - 生成器 Builder，是一种对象构建模式，模式通常包含Builder，ConcreteBuilder。Director 和 Product四部分
-</span></span><span class="line"><span class="cl">    - 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    - 生成器 Builder，是一种对象构建模式，模式通常包含Builder，ConcreteBuilder。Director 和 Product四部分
+    - 
+</code></pre></td></tr></table>
 </div>
 </div><h4 id="2结构型设计模式">2.结构型设计模式</h4>
 <blockquote>
@@ -1953,7 +1957,7 @@ NFA：无限自动机
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -1970,7 +1974,7 @@ NFA：无限自动机
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

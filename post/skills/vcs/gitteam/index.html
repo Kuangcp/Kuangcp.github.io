@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/skills/vcs/gitteam/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Git在团队协作时的使用" />
 <meta property="og:description" content="目录 start 使用Git进行团队协作 基础思想 Git Flow Github Flow 提交准则 commit template Tips master作为线上分支时，误提交功能并推送怎么处理 GUI git-cola GitBlade gitg tig Guitar GitAhead SourceTree 小规模团队使用" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/vcs/gitteam/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/vcs/gitteam/" />
 <meta property="article:published_time" content="2018-12-20T10:29:41+00:00" />
 <meta property="article:modified_time" content="2018-12-20T10:29:41+00:00" />
-
 <meta itemprop="name" content="Git在团队协作时的使用">
-<meta itemprop="description" content="目录 start 使用Git进行团队协作 基础思想 Git Flow Github Flow 提交准则 commit template Tips master作为线上分支时，误提交功能并推送怎么处理 GUI git-cola GitBlade gitg tig Guitar GitAhead SourceTree 小规模团队使用"><meta itemprop="datePublished" content="2018-12-20T10:29:41+00:00" />
+<meta itemprop="description" content="目录 start 使用Git进行团队协作 基础思想 Git Flow Github Flow 提交准则 commit template Tips master作为线上分支时，误提交功能并推送怎么处理 GUI git-cola GitBlade gitg tig Guitar GitAhead SourceTree 小规模团队使用">
+<meta itemprop="datePublished" content="2018-12-20T10:29:41+00:00" />
 <meta itemprop="dateModified" content="2018-12-20T10:29:41+00:00" />
 <meta itemprop="wordCount" content="3733">
-<meta itemprop="keywords" content="软件工程," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="软件工程," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Git在团队协作时的使用"/>
 <meta name="twitter:description" content="目录 start 使用Git进行团队协作 基础思想 Git Flow Github Flow 提交准则 commit template Tips master作为线上分支时，误提交功能并推送怎么处理 GUI git-cola GitBlade gitg tig Guitar GitAhead SourceTree 小规模团队使用"/>
 
@@ -370,13 +374,13 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    [commit]
-</span></span><span class="line"><span class="cl">    template = ~/.gitmessage
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [commit]
+    template = ~/.gitmessage
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>配置好后 git commit 不指定-m 参数就会调用该模板</p>
@@ -389,7 +393,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -400,31 +404,31 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">* 259cf80 2021-01-23 18:20:46 五 (HEAD -&gt; master) kcp fea2: remove
-</span></span><span class="line"><span class="cl">*   46e3af2 2021-01-23 18:20:32 五 kcp Merge branch &#39;fea-1&#39;
-</span></span><span class="line"><span class="cl">|\  
-</span></span><span class="line"><span class="cl">| * abf3d18 2021-01-23 18:12:14 五 (fea-1) kcp fea1: add
-</span></span><span class="line"><span class="cl">* | 7d7d5a3 2021-01-23 18:10:50 五 kcp fea2: update
-</span></span><span class="line"><span class="cl">* | e5d95da 2021-01-23 18:10:40 五 kcp fea2: add
-</span></span><span class="line"><span class="cl">|/  
-</span></span><span class="line"><span class="cl">* a75d6fd 2021-01-23 18:10:16 五 kcp release 1.0
-</span></span><span class="line"><span class="cl">* ebffe4d 2021-01-23 18:09:53 五 kcp init
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">* 259cf80 2021-01-23 18:20:46 五 (HEAD -&gt; master) kcp fea2: remove
+*   46e3af2 2021-01-23 18:20:32 五 kcp Merge branch &#39;fea-1&#39;
+|\  
+| * abf3d18 2021-01-23 18:12:14 五 (fea-1) kcp fea1: add
+* | 7d7d5a3 2021-01-23 18:10:50 五 kcp fea2: update
+* | e5d95da 2021-01-23 18:10:40 五 kcp fea2: add
+|/  
+* a75d6fd 2021-01-23 18:10:16 五 kcp release 1.0
+* ebffe4d 2021-01-23 18:09:53 五 kcp init
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>fea-1 分支</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">* abf3d18 2021-01-23 18:12:14 五 (HEAD -&gt; fea-1) kcp fea1: add
-</span></span><span class="line"><span class="cl">* a75d6fd 2021-01-23 18:10:16 五 kcp release 1.0
-</span></span><span class="line"><span class="cl">* ebffe4d 2021-01-23 18:09:53 五 kcp init
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">* abf3d18 2021-01-23 18:12:14 五 (HEAD -&gt; fea-1) kcp fea1: add
+* a75d6fd 2021-01-23 18:10:16 五 kcp release 1.0
+* ebffe4d 2021-01-23 18:09:53 五 kcp init
+</code></pre></td></tr></table>
 </div>
 </div><p>目标： master分支撤销所有 fea2 提交信息的提交(<em>错误提交</em>)</p>
 <ol>
@@ -636,7 +640,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -653,7 +657,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

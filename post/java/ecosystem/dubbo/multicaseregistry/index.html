@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/ecosystem/dubbo/multicaseregistry/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="MulticaseRegistry" />
 <meta property="og:description" content="目录 start Dubbo 的 Multicast 实现 目录 end|2020-04-27 23:42| Dubbo 的 Multicast 实现 参考: Dubbo Multicast 注册中心即相关代码实现 通过 wireshark 抓包， 可以看到大致的流程 provider 或者 customer 都是先 register 然后 subscribe 1 2 3 4 5 6 7 8 9 10 11" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/ecosystem/dubbo/multicaseregistry/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/ecosystem/dubbo/multicaseregistry/" />
 <meta property="article:published_time" content="2019-05-09T20:31:03+00:00" />
 <meta property="article:modified_time" content="2019-05-09T20:31:03+00:00" />
-
 <meta itemprop="name" content="MulticaseRegistry">
-<meta itemprop="description" content="目录 start Dubbo 的 Multicast 实现 目录 end|2020-04-27 23:42| Dubbo 的 Multicast 实现 参考: Dubbo Multicast 注册中心即相关代码实现 通过 wireshark 抓包， 可以看到大致的流程 provider 或者 customer 都是先 register 然后 subscribe 1 2 3 4 5 6 7 8 9 10 11"><meta itemprop="datePublished" content="2019-05-09T20:31:03+00:00" />
+<meta itemprop="description" content="目录 start Dubbo 的 Multicast 实现 目录 end|2020-04-27 23:42| Dubbo 的 Multicast 实现 参考: Dubbo Multicast 注册中心即相关代码实现 通过 wireshark 抓包， 可以看到大致的流程 provider 或者 customer 都是先 register 然后 subscribe 1 2 3 4 5 6 7 8 9 10 11">
+<meta itemprop="datePublished" content="2019-05-09T20:31:03+00:00" />
 <meta itemprop="dateModified" content="2019-05-09T20:31:03+00:00" />
 <meta itemprop="wordCount" content="131">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MulticaseRegistry"/>
 <meta name="twitter:description" content="目录 start Dubbo 的 Multicast 实现 目录 end|2020-04-27 23:42| Dubbo 的 Multicast 实现 参考: Dubbo Multicast 注册中心即相关代码实现 通过 wireshark 抓包， 可以看到大致的流程 provider 或者 customer 都是先 register 然后 subscribe 1 2 3 4 5 6 7 8 9 10 11"/>
 
@@ -152,7 +156,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -175,28 +179,28 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    register dubbo://UUUU?application=first-dubbo-provider
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    subscribe provider://UUUU?application=first-dubbo-provider&amp;bind.ip=172.17.0.1&amp;bind.port=20880&amp;category=configurators&amp;check=false
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    * register consumer://172.17.0.1/org.apache.dubbo.samples.api.GreetingsService?application=first-dubbo-consumer&amp;category=consumers&amp;check=false&amp;default.generic=false&amp;dubbo=2.0.2&amp;generic=false&amp;interface=org.apache.dubbo.samples.api.GreetingsService&amp;methods=sayHi&amp;pid=27381&amp;release=2.7.0&amp;side=consumer&amp;timestamp=1557386946272
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    * subscribe consumer://172.17.0.1/org.apache.dubbo.samples.api.GreetingsService?application=first-dubbo-consumer&amp;category=providers,configurators,routers&amp;default.generic=false&amp;dubbo=2.0.2&amp;generic=false&amp;interface=org.apache.dubbo.samples.api.GreetingsService&amp;methods=sayHi&amp;pid=27381&amp;release=2.7.0&amp;side=consumer&amp;timestamp=1557386946272
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    // provider 进程开始停止
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    unregister dubbo://UUUU?application=first-dubbo-provider
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    unregister provider://UUUU?application=first-dubbo-provider&amp;bind.ip=172.17.0.1&amp;bind.port=20880&amp;category=configurators&amp;check=false
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    unsubscribe provider://UUUU?application=first-dubbo-provider&amp;bind.ip=172.17.0.1&amp;bind.port=20880&amp;category=configurators&amp;check=false
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    unregister dubbo://UUUU?application=first-dubbo-provider
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    unregister provider://UUUU?application=first-dubbo-provider&amp;bind.ip=172.17.0.1&amp;bind.port=20880&amp;category=configurators&amp;check=false
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    unsubscribe provider://UUUU?application=first-dubbo-provider&amp;bind.ip=172.17.0.1&amp;bind.port=20880&amp;category=configurators&amp;check=false
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    register dubbo://UUUU?application=first-dubbo-provider
+
+    subscribe provider://UUUU?application=first-dubbo-provider&amp;bind.ip=172.17.0.1&amp;bind.port=20880&amp;category=configurators&amp;check=false
+
+    * register consumer://172.17.0.1/org.apache.dubbo.samples.api.GreetingsService?application=first-dubbo-consumer&amp;category=consumers&amp;check=false&amp;default.generic=false&amp;dubbo=2.0.2&amp;generic=false&amp;interface=org.apache.dubbo.samples.api.GreetingsService&amp;methods=sayHi&amp;pid=27381&amp;release=2.7.0&amp;side=consumer&amp;timestamp=1557386946272
+
+    * subscribe consumer://172.17.0.1/org.apache.dubbo.samples.api.GreetingsService?application=first-dubbo-consumer&amp;category=providers,configurators,routers&amp;default.generic=false&amp;dubbo=2.0.2&amp;generic=false&amp;interface=org.apache.dubbo.samples.api.GreetingsService&amp;methods=sayHi&amp;pid=27381&amp;release=2.7.0&amp;side=consumer&amp;timestamp=1557386946272
+
+    // provider 进程开始停止
+
+    unregister dubbo://UUUU?application=first-dubbo-provider
+
+    unregister provider://UUUU?application=first-dubbo-provider&amp;bind.ip=172.17.0.1&amp;bind.port=20880&amp;category=configurators&amp;check=false
+
+    unsubscribe provider://UUUU?application=first-dubbo-provider&amp;bind.ip=172.17.0.1&amp;bind.port=20880&amp;category=configurators&amp;check=false
+
+    unregister dubbo://UUUU?application=first-dubbo-provider
+
+    unregister provider://UUUU?application=first-dubbo-provider&amp;bind.ip=172.17.0.1&amp;bind.port=20880&amp;category=configurators&amp;check=false
+
+    unsubscribe provider://UUUU?application=first-dubbo-provider&amp;bind.ip=172.17.0.1&amp;bind.port=20880&amp;category=configurators&amp;check=false
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>UUU表示 172.17.0.1:20880/org.apache.dubbo.samples.api.GreetingsService</p>
@@ -272,7 +276,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -289,7 +293,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

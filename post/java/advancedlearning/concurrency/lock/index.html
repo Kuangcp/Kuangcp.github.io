@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/lock/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Java中的锁" />
 <meta property="og:description" content="目录 start Lock 队列同步器 目录 end|2020-04-27 23:42| Lock 1 2 3 4 5 6 7 8 Lock lock = new ReentrantLock(); // 不能放在 try中, 防止 获取锁失败, 并执行了释放锁 lock.lock(); try { } finally { lock.lock(); } 队列同步器 AbstractQueuedSynchronizer 队列同步" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/lock/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/lock/" />
 <meta property="article:published_time" content="2019-04-22T15:49:53+00:00" />
 <meta property="article:modified_time" content="2019-04-22T15:49:53+00:00" />
-
 <meta itemprop="name" content="Java中的锁">
-<meta itemprop="description" content="目录 start Lock 队列同步器 目录 end|2020-04-27 23:42| Lock 1 2 3 4 5 6 7 8 Lock lock = new ReentrantLock(); // 不能放在 try中, 防止 获取锁失败, 并执行了释放锁 lock.lock(); try { } finally { lock.lock(); } 队列同步器 AbstractQueuedSynchronizer 队列同步"><meta itemprop="datePublished" content="2019-04-22T15:49:53+00:00" />
+<meta itemprop="description" content="目录 start Lock 队列同步器 目录 end|2020-04-27 23:42| Lock 1 2 3 4 5 6 7 8 Lock lock = new ReentrantLock(); // 不能放在 try中, 防止 获取锁失败, 并执行了释放锁 lock.lock(); try { } finally { lock.lock(); } 队列同步器 AbstractQueuedSynchronizer 队列同步">
+<meta itemprop="datePublished" content="2019-04-22T15:49:53+00:00" />
 <meta itemprop="dateModified" content="2019-04-22T15:49:53+00:00" />
 <meta itemprop="wordCount" content="225">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java中的锁"/>
 <meta name="twitter:description" content="目录 start Lock 队列同步器 目录 end|2020-04-27 23:42| Lock 1 2 3 4 5 6 7 8 Lock lock = new ReentrantLock(); // 不能放在 try中, 防止 获取锁失败, 并执行了释放锁 lock.lock(); try { } finally { lock.lock(); } 队列同步器 AbstractQueuedSynchronizer 队列同步"/>
 
@@ -152,7 +156,7 @@
 <h1 id="lock">Lock</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -162,15 +166,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Lock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 不能放在 try中, 防止 获取锁失败, 并执行了释放锁
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Lock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span><span class="o">();</span>
+    <span class="c1">// 不能放在 try中, 防止 获取锁失败, 并执行了释放锁
+</span><span class="c1"></span>    <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+    <span class="k">try</span> <span class="o">{</span>
+
+    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+        <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="队列同步器">队列同步器</h2>
 <p>AbstractQueuedSynchronizer 队列同步器, 是构建锁和其他同步组件的基础框架
@@ -243,7 +247,7 @@ AQS核心思想是，如果被请求的共享资源空闲，则将当前请求�
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -260,7 +264,7 @@ AQS核心思想是，如果被请求的共享资源空闲，则将当前请求�
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

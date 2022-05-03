@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/release/java8/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Java8" />
 <meta property="og:description" content="目录 start Java8 接口的变化 default方法 static方法 函数式 函数式接口 构造函数的引用 函数式接口案例 Lambda 行为参数化 Lambda基础 Lambda 实现原理 Lambda 局限" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/release/java8/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/release/java8/" />
 <meta property="article:published_time" content="2018-12-13T16:05:51+00:00" />
 <meta property="article:modified_time" content="2018-12-13T16:05:51+00:00" />
-
 <meta itemprop="name" content="Java8">
-<meta itemprop="description" content="目录 start Java8 接口的变化 default方法 static方法 函数式 函数式接口 构造函数的引用 函数式接口案例 Lambda 行为参数化 Lambda基础 Lambda 实现原理 Lambda 局限"><meta itemprop="datePublished" content="2018-12-13T16:05:51+00:00" />
+<meta itemprop="description" content="目录 start Java8 接口的变化 default方法 static方法 函数式 函数式接口 构造函数的引用 函数式接口案例 Lambda 行为参数化 Lambda基础 Lambda 实现原理 Lambda 局限">
+<meta itemprop="datePublished" content="2018-12-13T16:05:51+00:00" />
 <meta itemprop="dateModified" content="2018-12-13T16:05:51+00:00" />
 <meta itemprop="wordCount" content="14354">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java8"/>
 <meta name="twitter:description" content="目录 start Java8 接口的变化 default方法 static方法 函数式 函数式接口 构造函数的引用 函数式接口案例 Lambda 行为参数化 Lambda基础 Lambda 实现原理 Lambda 局限"/>
 
@@ -541,7 +545,7 @@
 你可以创建一个giveMeFruit方法，给它一个String和一个Integer，它就可以创建出不同重量的各种水果：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -552,33 +556,33 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Fruit</span><span class="o">&gt;&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;apple&#34;</span><span class="o">,</span> <span class="n">Apple</span><span class="o">::</span><span class="k">new</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;orange&#34;</span><span class="o">,</span> <span class="n">Orange</span><span class="o">::</span><span class="k">new</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// etc...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Fruit</span> <span class="nf">giveMeFruit</span><span class="o">(</span><span class="n">String</span> <span class="n">fruit</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">weight</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">fruit</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">()).</span><span class="na">apply</span><span class="o">(</span><span class="n">weight</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Fruit</span><span class="o">&gt;&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;apple&#34;</span><span class="o">,</span> <span class="n">Apple</span><span class="o">::</span><span class="k">new</span><span class="o">);</span>
+        <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;orange&#34;</span><span class="o">,</span> <span class="n">Orange</span><span class="o">::</span><span class="k">new</span><span class="o">);</span>
+    <span class="c1">// etc...
+</span><span class="c1"></span>    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Fruit</span> <span class="nf">giveMeFruit</span><span class="o">(</span><span class="n">String</span> <span class="n">fruit</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">weight</span><span class="o">){</span>
+        <span class="k">return</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">fruit</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">()).</span><span class="na">apply</span><span class="o">(</span><span class="n">weight</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>利用JDK提供的函数式接口 可以实现将一个,两个参数的构造函数转变为构造函数引用, 那么可以自定义实现三个参数的接口</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TriFunction</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">U</span><span class="o">,</span> <span class="n">V</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">R</span> <span class="nf">apply</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">,</span> <span class="n">U</span> <span class="n">u</span><span class="o">,</span> <span class="n">V</span> <span class="n">v</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">TriFunction</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">Color</span><span class="o">&gt;</span> <span class="n">colorFactory</span> <span class="o">=</span> <span class="n">Color</span><span class="o">::</span><span class="k">new</span><span class="o">;</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TriFunction</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">U</span><span class="o">,</span> <span class="n">V</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;{</span>
+        <span class="n">R</span> <span class="nf">apply</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">,</span> <span class="n">U</span> <span class="n">u</span><span class="o">,</span> <span class="n">V</span> <span class="n">v</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="n">TriFunction</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">Color</span><span class="o">&gt;</span> <span class="n">colorFactory</span> <span class="o">=</span> <span class="n">Color</span><span class="o">::</span><span class="k">new</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="函数式接口案例">函数式接口案例</h2>
 <table>
@@ -632,25 +636,25 @@
 <li>比如函数式接口BufferedReaderProcessor，它显式声明了一个IOException：
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="nd">@FunctionalInterface</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">BufferedReaderProcessor</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="nf">process</span><span class="o">(</span><span class="n">BufferedReader</span> <span class="n">b</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">BufferedReaderProcessor</span> <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="n">BufferedReader</span> <span class="n">br</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@FunctionalInterface</span>
+    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">BufferedReaderProcessor</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="nf">process</span><span class="o">(</span><span class="n">BufferedReader</span> <span class="n">b</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">BufferedReaderProcessor</span> <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="n">BufferedReader</span> <span class="n">br</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>但是你可能是在使用一个接受函数式接口的API，比如Function&lt;T, R&gt;，没有办法自己创建一个。这种情况下， 你可以显式捕捉受检异常：
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -659,14 +663,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">BufferedReader</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="o">(</span><span class="n">BufferedReader</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">};</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">BufferedReader</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="o">(</span><span class="n">BufferedReader</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -722,7 +726,7 @@ Java API中的很多方法都可以用不同的行为来参数化。这些方法
 <p>例如 <code>() -&gt; void</code> 是一个参数列表为空 返回值为void的函数, Runnable 的 run 方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -734,17 +738,17 @@ Java API中的很多方法都可以用不同的行为来参数化。这些方法
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">fetch</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 返回的方法的方法签名是 () -&gt; String
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="s">&#34;Tricky example ;-)&#34;</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 方法签名为 () -&gt; void
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">execute</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{});</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">r</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">fetch</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 返回的方法的方法签名是 () -&gt; String
+</span><span class="c1"></span>        <span class="k">return</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="s">&#34;Tricky example ;-)&#34;</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 方法签名为 () -&gt; void
+</span><span class="c1"></span>    <span class="n">execute</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{});</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">r</span><span class="o">){</span>
+        <span class="n">r</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><p><strong><code>实践</code></strong></p>
 <ul>
@@ -756,7 +760,7 @@ Java API中的很多方法都可以用不同的行为来参数化。这些方法
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -775,24 +779,24 @@ Java API中的很多方法都可以用不同的行为来参数化。这些方法
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 简单的从文件读取一行
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">processFile</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">(</span><span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">FileReader</span><span class="o">(</span><span class="s">&#34;data.txt&#34;</span><span class="o">)))</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 如果将行为参数化, 就能通用的完成需求
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@FunctionalInterface</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">BufferedReaderProcessor</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="nf">process</span><span class="o">(</span><span class="n">BufferedReader</span> <span class="n">b</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">processFile</span><span class="o">(</span><span class="n">BufferedReaderProcessor</span> <span class="n">p</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 处理一行
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="n">twoLines</span> <span class="o">=</span><span class="n">processFile</span><span class="o">((</span><span class="n">BufferedReader</span> <span class="n">br</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 处理两行
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">processFile</span><span class="o">((</span><span class="n">BufferedReader</span> <span class="n">br</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">()</span> <span class="o">+</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 简单的从文件读取一行
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">processFile</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">(</span><span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">FileReader</span><span class="o">(</span><span class="s">&#34;data.txt&#34;</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 如果将行为参数化, 就能通用的完成需求
+</span><span class="c1"></span>    <span class="nd">@FunctionalInterface</span>
+    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">BufferedReaderProcessor</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="nf">process</span><span class="o">(</span><span class="n">BufferedReader</span> <span class="n">b</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">processFile</span><span class="o">(</span><span class="n">BufferedReaderProcessor</span> <span class="n">p</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{}</span>
+    <span class="c1">// 处理一行
+</span><span class="c1"></span>    <span class="n">String</span> <span class="n">twoLines</span> <span class="o">=</span><span class="n">processFile</span><span class="o">((</span><span class="n">BufferedReader</span> <span class="n">br</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+    <span class="c1">// 处理两行
+</span><span class="c1"></span>    <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">processFile</span><span class="o">((</span><span class="n">BufferedReader</span> <span class="n">br</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">()</span> <span class="o">+</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="lambda-实现原理">Lambda 实现原理</h3>
 <ol>
@@ -806,15 +810,15 @@ Java API中的很多方法都可以用不同的行为来参数化。这些方法
 <li>当方法上具有<code>类范围</code>的泛型参数时无法使用 Lambda 写法
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Test</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">T</span> <span class="nf">execute</span><span class="o">(</span><span class="n">T</span> <span class="n">param</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Test</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="n">T</span> <span class="nf">execute</span><span class="o">(</span><span class="n">T</span> <span class="n">param</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
@@ -853,30 +857,30 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 <p>比如，前面提到的Callable和PrivilegedAction，这两个接口 都代表着什么也不接受且返回一个泛型T的函数。 因此，下面两个赋值是有效的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Callable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">42</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">PrivilegedAction</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">42</span><span class="o">;</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Callable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">42</span><span class="o">;</span>
+    <span class="n">PrivilegedAction</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">42</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
 </div><p><strong><code>特殊的void兼容规则</code></strong>
 如果一个Lambda的主体是一个语句表达式， 它就和一个返回void的函数描述符兼容（当然需要参数列表也兼容）。
 例如，以下两行都是合法的，尽管List的add方法返回了一个 boolean，而不是Consumer上下文（T -&gt; void） 所要求的void：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// Predicate返回了一个boolean
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Consumer返回了一个void
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// Predicate返回了一个boolean
+</span><span class="c1"></span>    <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+    <span class="c1">// Consumer返回了一个void
+</span><span class="c1"></span>    <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><ol>
 <li><code>Object o = () -&gt; {System.out.println(&quot;Tricky example&quot;); };</code> 不能通过编译
@@ -895,30 +899,30 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 无类型推断
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">Apple</span> <span class="n">a1</span><span class="o">,</span> <span class="n">Apple</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getWeight</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getWeight</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 有类型推断
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">a1</span><span class="o">,</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getWeight</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getWeight</span><span class="o">());</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 无类型推断
+</span><span class="c1"></span>    <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">Apple</span> <span class="n">a1</span><span class="o">,</span> <span class="n">Apple</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getWeight</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getWeight</span><span class="o">());</span>
+    <span class="c1">// 有类型推断
+</span><span class="c1"></span>    <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">a1</span><span class="o">,</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getWeight</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getWeight</span><span class="o">());</span>
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="使用局部变量">使用局部变量</h3>
 <p>我们迄今为止所介绍的所有Lambda表达式都只用到了其主体里面的参数。但Lambda表达式也允许使用自由变量（不是参数，而是在外层作用域中定义的变量），
 就像匿名类一样。 它们被称作捕获Lambda。例如，下面的Lambda捕获了portNumber变量：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">portNumber</span> <span class="o">=</span> <span class="n">1337</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Runnable</span> <span class="n">r</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portNumber</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kt">int</span> <span class="n">portNumber</span> <span class="o">=</span> <span class="n">1337</span><span class="o">;</span>
+    <span class="n">Runnable</span> <span class="n">r</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portNumber</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>尽管如此，还有一点点小麻烦：关于能对这些变量做什么有一些限制。 Lambda可以没有限制地捕获（也就是在其主体中引用）实例变量和静态变量。
 但局部变量必须显式声明为final，或事实上是final。
@@ -926,15 +930,15 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 <p>例如，下面的代码无法编译，因为portNumber 变量被赋值两次：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">portNumber</span> <span class="o">=</span> <span class="n">1337</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Runnable</span> <span class="n">r</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portNumber</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">portNumber</span> <span class="o">=</span> <span class="n">31337</span><span class="o">;</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kt">int</span> <span class="n">portNumber</span> <span class="o">=</span> <span class="n">1337</span><span class="o">;</span>
+    <span class="n">Runnable</span> <span class="n">r</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portNumber</span><span class="o">);</span>
+    <span class="n">portNumber</span> <span class="o">=</span> <span class="n">31337</span><span class="o">;</span>
+</code></pre></td></tr></table>
 </div>
 </div><p><strong><code>对局部变量的限制</code></strong></p>
 <ul>
@@ -993,7 +997,7 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 <p>可以把Function接口所代表的Lambda表达式复合起来。 Function接口为此配了andThen和compose两个默认方法，它们都会返回Function的一个实例。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1004,16 +1008,16 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">2</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">h</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">andThen</span><span class="o">(</span><span class="n">g</span><span class="o">);</span> <span class="c1">// g(f(x))
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">2</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">h</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">compose</span><span class="o">(</span><span class="n">g</span><span class="o">);</span> <span class="c1">// f(g(x))
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">2</span><span class="o">;</span>
+    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">h</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">andThen</span><span class="o">(</span><span class="n">g</span><span class="o">);</span> <span class="c1">// g(f(x))
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+
+    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">2</span><span class="o">;</span>
+    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">h</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">compose</span><span class="o">(</span><span class="n">g</span><span class="o">);</span> <span class="c1">// f(g(x))
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>使用场景 用String表示的一封信做文本转换：现在你可以通过复合这些工具方法来创建各种转型流水线了<br>
@@ -1021,31 +1025,31 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">addHeader</span> <span class="o">=</span> <span class="n">Letter</span><span class="o">::</span><span class="n">addHeader</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">transformationPipeline</span> <span class="o">=</span> <span class="n">addHeader</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">andThen</span><span class="o">(</span><span class="n">Letter</span><span class="o">::</span><span class="n">checkSpelling</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">andThen</span><span class="o">(</span><span class="n">Letter</span><span class="o">::</span><span class="n">addFooter</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">addHeader</span> <span class="o">=</span> <span class="n">Letter</span><span class="o">::</span><span class="n">addHeader</span><span class="o">;</span>
+    <span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">transformationPipeline</span> <span class="o">=</span> <span class="n">addHeader</span>
+        <span class="o">.</span><span class="na">andThen</span><span class="o">(</span><span class="n">Letter</span><span class="o">::</span><span class="n">checkSpelling</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">andThen</span><span class="o">(</span><span class="n">Letter</span><span class="o">::</span><span class="n">addFooter</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><p><strong><code>和数学对比</code></strong>
 例如 根据给定的某个函数 以及上下限, 求积分: 定义函数 integrate <code>integrate(f, 3, 7)</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">integrate</span><span class="o">(</span><span class="n">DoubleFunction</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">,</span> <span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">double</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">(</span><span class="n">f</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">b</span><span class="o">))</span> <span class="o">*</span> <span class="o">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">.</span><span class="na">0</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">integrate</span><span class="o">(</span><span class="n">DoubleFunction</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">,</span> <span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">double</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">f</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">a</span><span class="o">)</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">b</span><span class="o">))</span> <span class="o">*</span> <span class="o">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">.</span><span class="na">0</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="利用lambda开发dsl框架">利用Lambda开发DSL框架</h2>
 <hr>
@@ -1135,24 +1139,24 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Java 8 &#34;</span><span class="o">,</span> <span class="s">&#34;Lambdas &#34;</span><span class="o">,</span> <span class="s">&#34;In &#34;</span><span class="o">,</span> <span class="s">&#34;Action&#34;</span><span class="o">);</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Java 8 &#34;</span><span class="o">,</span> <span class="s">&#34;Lambdas &#34;</span><span class="o">,</span> <span class="s">&#34;In &#34;</span><span class="o">,</span> <span class="s">&#34;Action&#34;</span><span class="o">);</span> 
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>由数组创建流</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="o">{</span><span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">5</span><span class="o">,</span> <span class="n">7</span><span class="o">,</span> <span class="n">11</span><span class="o">,</span> <span class="n">13</span><span class="o">};</span> 
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">numbers</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="o">{</span><span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">5</span><span class="o">,</span> <span class="n">7</span><span class="o">,</span> <span class="n">11</span><span class="o">,</span> <span class="n">13</span><span class="o">};</span> 
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">numbers</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span> 
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>由文件生成流</p>
@@ -1160,17 +1164,17 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 <p>Java中用于处理文件等I/O操作的NIO  API（非阻塞I/O）已更新，以便利用Stream  API。java.nio.file.Files中的很多静态方法都会返回一个流。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">uniqueWords</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;data.txt&#34;</span><span class="o">),</span> <span class="n">Charset</span><span class="o">.</span><span class="na">defaultCharset</span><span class="o">())){</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">uniqueWords</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">))).</span><span class="na">distinct</span><span class="o">()</span> <span class="o">.</span><span class="na">count</span><span class="o">();</span> 
-</span></span><span class="line"><span class="cl">    <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">){}</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kt">long</span> <span class="n">uniqueWords</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> 
+    <span class="k">try</span><span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;data.txt&#34;</span><span class="o">),</span> <span class="n">Charset</span><span class="o">.</span><span class="na">defaultCharset</span><span class="o">())){</span> 
+        <span class="n">uniqueWords</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">))).</span><span class="na">distinct</span><span class="o">()</span> <span class="o">.</span><span class="na">count</span><span class="o">();</span> 
+    <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">){}</span> 
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="无限流">无限流</h3>
 <blockquote>
@@ -1180,7 +1184,7 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 <p><strong><code>迭代</code></strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1188,18 +1192,18 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">2</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">10</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> 
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 获取斐波那契序列 元组
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">0</span><span class="o">,</span> <span class="n">1</span><span class="o">},</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">],</span> <span class="n">t</span><span class="o">[</span><span class="n">0</span><span class="o">]+</span><span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]})</span> 
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">20</span><span class="o">)</span> 
-</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">t</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;(&#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;,&#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">+</span><span class="s">&#34;)&#34;</span><span class="o">));</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">2</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">10</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> 
+
+    <span class="c1">// 获取斐波那契序列 元组
+</span><span class="c1"></span>    <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">0</span><span class="o">,</span> <span class="n">1</span><span class="o">},</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">],</span> <span class="n">t</span><span class="o">[</span><span class="n">0</span><span class="o">]+</span><span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]})</span> 
+      <span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">20</span><span class="o">)</span> 
+      <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">t</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;(&#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;,&#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">+</span><span class="s">&#34;)&#34;</span><span class="o">));</span> 
+</code></pre></td></tr></table>
 </div>
 </div><p><strong><code>生成</code></strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1215,21 +1219,21 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Stream</span><span class="o">.</span><span class="na">generate</span><span class="o">(</span><span class="n">Math</span><span class="o">::</span><span class="n">random</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">5</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> 
-</span></span><span class="line"><span class="cl">    <span class="c1">// 很重要的一点是，在并行代码中使用有状态的供应源是不安全的。因此下面的代码仅仅是为了内容完整，应尽量避免使用！
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">IntSupplier</span> <span class="n">fib</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntSupplier</span><span class="o">(){</span> 
-</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="kt">int</span> <span class="n">previous</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="kt">int</span> <span class="n">current</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAsInt</span><span class="o">(){</span> 
-</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">oldPrevious</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">previous</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">nextValue</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">previous</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">current</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">previous</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">current</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">current</span> <span class="o">=</span> <span class="n">nextValue</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">oldPrevious</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">        <span class="o">}</span> 
-</span></span><span class="line"><span class="cl">    <span class="o">};</span> 
-</span></span><span class="line"><span class="cl">    <span class="n">IntStream</span><span class="o">.</span><span class="na">generate</span><span class="o">(</span><span class="n">fib</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">10</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Stream</span><span class="o">.</span><span class="na">generate</span><span class="o">(</span><span class="n">Math</span><span class="o">::</span><span class="n">random</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">5</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> 
+    <span class="c1">// 很重要的一点是，在并行代码中使用有状态的供应源是不安全的。因此下面的代码仅仅是为了内容完整，应尽量避免使用！
+</span><span class="c1"></span>    <span class="n">IntSupplier</span> <span class="n">fib</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntSupplier</span><span class="o">(){</span> 
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">previous</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> 
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">current</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> 
+        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAsInt</span><span class="o">(){</span> 
+            <span class="kt">int</span> <span class="n">oldPrevious</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">previous</span><span class="o">;</span> 
+            <span class="kt">int</span> <span class="n">nextValue</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">previous</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">current</span><span class="o">;</span> 
+            <span class="k">this</span><span class="o">.</span><span class="na">previous</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">current</span><span class="o">;</span> 
+            <span class="k">this</span><span class="o">.</span><span class="na">current</span> <span class="o">=</span> <span class="n">nextValue</span><span class="o">;</span> 
+            <span class="k">return</span> <span class="n">oldPrevious</span><span class="o">;</span> 
+        <span class="o">}</span> 
+    <span class="o">};</span> 
+    <span class="n">IntStream</span><span class="o">.</span><span class="na">generate</span><span class="o">(</span><span class="n">fib</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">10</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> 
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>判断无限流： <code>stream.spliterator().estimateSize()</code></p>
@@ -1240,30 +1244,30 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 <p><strong>映射到数值流</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 例如求和, 里面有一个隐含的拆箱操作 再求和
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">numbers</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">Integer</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 请注意，如果流是空的，sum默认返回 0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">numbers</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">().</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">Integer</span><span class="o">::</span><span class="n">intValue</span><span class="o">).</span><span class="na">sum</span><span class="o">()</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 例如求和, 里面有一个隐含的拆箱操作 再求和
+</span><span class="c1"></span>    <span class="n">numbers</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">Integer</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
+
+    <span class="c1">// 请注意，如果流是空的，sum默认返回 0
+</span><span class="c1"></span>    <span class="n">numbers</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">().</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">Integer</span><span class="o">::</span><span class="n">intValue</span><span class="o">).</span><span class="na">sum</span><span class="o">()</span> 
+</code></pre></td></tr></table>
 </div>
 </div><p><strong>映射到对象流</strong>
 使用 boxed() 方法即可</p>
 <p><strong>默认值OptionalInt</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">OptionalInt</span> <span class="n">maxCalories</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">).</span><span class="na">max</span><span class="o">();</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">OptionalInt</span> <span class="n">maxCalories</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">).</span><span class="na">max</span><span class="o">();</span> 
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="数值范围">数值范围</h3>
 <p>IntStream和LongStream 的 range() 或者 rangeClose() 方法能产生一个数值流</p>
@@ -1275,7 +1279,7 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1284,14 +1288,14 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Stream</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pythagoreanTriples</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">100</span><span class="o">).</span><span class="na">boxed</span><span class="o">()</span> <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">100</span><span class="o">)</span> 
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">b</span> <span class="o">-&gt;</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">)</span> <span class="o">%</span> <span class="n">1</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> 
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">mapToObj</span><span class="o">(</span><span class="n">b</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span><span class="o">)})</span> 
-</span></span><span class="line"><span class="cl">            <span class="o">);</span> 
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">pythagoreanTriples</span><span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">5</span><span class="o">)</span> <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">t</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">2</span><span class="o">]));</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Stream</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pythagoreanTriples</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">100</span><span class="o">).</span><span class="na">boxed</span><span class="o">()</span> <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> 
+        <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">100</span><span class="o">)</span> 
+                <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">b</span> <span class="o">-&gt;</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="o">)</span> <span class="o">%</span> <span class="n">1</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> 
+                <span class="o">.</span><span class="na">mapToObj</span><span class="o">(</span><span class="n">b</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span><span class="o">)})</span> 
+            <span class="o">);</span> 
+    
+    <span class="n">pythagoreanTriples</span><span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">5</span><span class="o">)</span> <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">t</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">t</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">2</span><span class="o">]));</span> 
+</code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="stream操作">Stream操作</h2>
@@ -1507,35 +1511,35 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">dishNameLengths</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span> 
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span> <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">String</span><span class="o">::</span><span class="n">length</span><span class="o">)</span> <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">dishNameLengths</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span> 
+        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span> <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">String</span><span class="o">::</span><span class="n">length</span><span class="o">)</span> <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span> 
+</code></pre></td></tr></table>
 </div>
 </div><p><strong><code>flatMap</code></strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">uniqueCharacters</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span> 
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">w</span> <span class="o">-&gt;</span> <span class="n">w</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">))</span>  <span class="c1">// Stream&lt;Arrays&gt;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">Arrays</span><span class="o">::</span><span class="n">stream</span><span class="o">)</span> <span class="c1">// 扁平化流 (合并)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">distinct</span><span class="o">()</span> 
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">uniqueCharacters</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span> 
+        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">w</span> <span class="o">-&gt;</span> <span class="n">w</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">))</span>  <span class="c1">// Stream&lt;Arrays&gt;
+</span><span class="c1"></span>        <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">Arrays</span><span class="o">::</span><span class="n">stream</span><span class="o">)</span> <span class="c1">// 扁平化流 (合并)
+</span><span class="c1"></span>        <span class="o">.</span><span class="na">distinct</span><span class="o">()</span> 
+        <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span> 
+</code></pre></td></tr></table>
 </div>
 </div><p><strong>使用流的方式嵌套迭代</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1544,14 +1548,14 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 给定两个数字列表，如何返回所有的数对呢？例如，给定列表[1, 2, 3]和列表[3, 4]，应该返回[(1, 3), (1, 4), (2, 3), (2, 4), (3, 3), (3, 4)]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numbers1</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> 
-</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numbers2</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span> 
-</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pairs</span> <span class="o">=</span> <span class="n">numbers1</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span> 
-</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">numbers2</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span> <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">j</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">})</span>
-</span></span><span class="line"><span class="cl">    <span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 给定两个数字列表，如何返回所有的数对呢？例如，给定列表[1, 2, 3]和列表[3, 4]，应该返回[(1, 3), (1, 4), (2, 3), (2, 4), (3, 3), (3, 4)]
+</span><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numbers1</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> 
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numbers2</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span> 
+<span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pairs</span> <span class="o">=</span> <span class="n">numbers1</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span> 
+    <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> 
+        <span class="n">numbers2</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span> <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">j</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">})</span>
+    <span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">toList</span><span class="o">());</span> 
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="查找和匹配">查找和匹配</h3>
 <blockquote>
@@ -1580,7 +1584,7 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 <h4 id="求和">求和</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1594,24 +1598,24 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">:</span> <span class="n">numbers</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">sum</span> <span class="o">+=</span> <span class="n">x</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// reduce 参数: 初始值 函数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">Integer</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 无初始值 返回 Optional 对象
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">));</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> 
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">:</span> <span class="n">numbers</span><span class="o">){</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">x</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// reduce 参数: 初始值 函数
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">);</span>
+
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">Integer</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
+
+    <span class="c1">// 无初始值 返回 Optional 对象
+</span><span class="c1"></span>    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">));</span>
+</code></pre></td></tr></table>
 </div>
 </div><h4 id="极值">极值</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1619,13 +1623,13 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 最大值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">max</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">Integer</span><span class="o">::</span><span class="n">max</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 最小值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">Integer</span><span class="o">::</span><span class="n">min</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">((</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="o">?</span> <span class="n">x</span> <span class="o">:</span> <span class="n">y</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 最大值
+</span><span class="c1"></span>    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">max</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">Integer</span><span class="o">::</span><span class="n">max</span><span class="o">);</span>
+
+    <span class="c1">// 最小值
+</span><span class="c1"></span>    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">Integer</span><span class="o">::</span><span class="n">min</span><span class="o">);</span>
+    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">((</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="o">?</span> <span class="n">x</span> <span class="o">:</span> <span class="n">y</span><span class="o">);</span>
+</code></pre></td></tr></table>
 </div>
 </div><h4 id="归约的优势与并行化">归约的优势与并行化</h4>
 <p>相比于前面写的逐步迭代求和，使用 reduce 的好处在于，这里的迭代被内部迭代抽象掉了，这让内部实现得以选择并行执行reduce 操作。<br>
@@ -1657,13 +1661,13 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<!-- raw H
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">IntSummaryStatistics</span> <span class="n">menuStatistics</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">summarizingInt</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">));</span> 
-</span></span><span class="line"><span class="cl">    <span class="c1">// toString(): IntSummaryStatistics{count=9, sum=4300, min=120, average=477.777778, max=800} 
-</span></span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">IntSummaryStatistics</span> <span class="n">menuStatistics</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">summarizingInt</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">));</span> 
+    <span class="c1">// toString(): IntSummaryStatistics{count=9, sum=4300, min=120, average=477.777778, max=800} 
+</span></code></pre></td></tr></table>
 </div>
 </div><p><strong><code>连接字符串</code></strong>
 joining工厂方法返回的收集器会把对流中每一个对象应用toString方法得到的所有字符串连接成一个字符串。
@@ -1703,17 +1707,17 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 该方案 效率不高, 所有字符串被反复连接, 每次迭代都需创建新String对象
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">strings</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">sorted</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// joining 内部会使用 StringBuilder
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">strings</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">sorted</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">());</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 该方案 效率不高, 所有字符串被反复连接, 每次迭代都需创建新String对象
+</span><span class="c1"></span>    <span class="n">strings</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">sorted</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">);</span>
+    <span class="c1">// joining 内部会使用 StringBuilder
+</span><span class="c1"></span>    <span class="n">strings</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">sorted</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">());</span>
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>场景: 一个对象(含时间和整数两个属性)集合, 完成的操作是获取到最大时间以及数值平均值&hellip;等等多个值</p>
@@ -1732,7 +1736,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1747,20 +1751,20 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 实现复杂的分类函数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">enum</span> <span class="n">CaloricLevel</span> <span class="o">{</span> <span class="n">DIET</span><span class="o">,</span> <span class="n">NORMAL</span><span class="o">,</span> <span class="n">FAT</span> <span class="o">}</span> 
-</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">CaloricLevel</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;&gt;</span> <span class="n">dishesByCaloricLevel</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span> 
-</span></span><span class="line"><span class="cl">            <span class="n">groupingBy</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="o">{</span> 
-</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">400</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">DIET</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">                <span class="o">}</span> 
-</span></span><span class="line"><span class="cl">                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">700</span><span class="o">){</span> 
-</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">NORMAL</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">                <span class="o">}</span><span class="k">else</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">FAT</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">                <span class="o">}</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}));</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 实现复杂的分类函数
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">enum</span> <span class="n">CaloricLevel</span> <span class="o">{</span> <span class="n">DIET</span><span class="o">,</span> <span class="n">NORMAL</span><span class="o">,</span> <span class="n">FAT</span> <span class="o">}</span> 
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">CaloricLevel</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;&gt;</span> <span class="n">dishesByCaloricLevel</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span> 
+            <span class="n">groupingBy</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="o">{</span> 
+                <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">400</span><span class="o">){</span>
+                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">DIET</span><span class="o">;</span> 
+                <span class="o">}</span> 
+                <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">700</span><span class="o">){</span> 
+                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">NORMAL</span><span class="o">;</span> 
+                <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">FAT</span><span class="o">;</span> 
+                <span class="o">}</span>
+            <span class="o">}));</span> 
+</code></pre></td></tr></table>
 </div>
 </div><h5 id="多级分组">多级分组</h5>
 <blockquote>
@@ -1768,7 +1772,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1784,21 +1788,21 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">CaloricLevel</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;&gt;&gt;</span> <span class="n">dishesByTypeCaloricLevel</span> <span class="o">=</span> 
-</span></span><span class="line"><span class="cl">    <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">groupingBy</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span>  
-</span></span><span class="line"><span class="cl">            <span class="n">groupingBy</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="o">{</span>  
-</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">400</span><span class="o">){</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">DIET</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">                <span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">700</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">NORMAL</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">                <span class="o">}</span><span class="k">else</span><span class="o">{</span> 
-</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">FAT</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">                <span class="o">}</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="o">)</span> 
-</span></span><span class="line"><span class="cl">        <span class="o">)</span> 
-</span></span><span class="line"><span class="cl">    <span class="o">);</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">CaloricLevel</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;&gt;&gt;</span> <span class="n">dishesByTypeCaloricLevel</span> <span class="o">=</span> 
+    <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span> 
+        <span class="n">groupingBy</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span>  
+            <span class="n">groupingBy</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="o">{</span>  
+                <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">400</span><span class="o">){</span>
+                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">DIET</span><span class="o">;</span> 
+                <span class="o">}</span><span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">700</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">NORMAL</span><span class="o">;</span>
+                <span class="o">}</span><span class="k">else</span><span class="o">{</span> 
+                    <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">FAT</span><span class="o">;</span> 
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="o">)</span> 
+        <span class="o">)</span> 
+    <span class="o">);</span> 
+</code></pre></td></tr></table>
 </div>
 </div><h5 id="按子组收集数据">按子组收集数据</h5>
 <blockquote>
@@ -1809,7 +1813,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1818,14 +1822,14 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;&gt;</span> <span class="n">mostCaloricByType</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">groupingBy</span><span class="o">(</span>
-</span></span><span class="line"><span class="cl">                <span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">                <span class="n">maxBy</span><span class="o">(</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">comparingInt</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                <span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">));</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">&gt;&gt;</span> <span class="n">mostCaloricByType</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">groupingBy</span><span class="o">(</span>
+                <span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span>
+                <span class="n">maxBy</span><span class="o">(</span>
+                    <span class="n">comparingInt</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">)</span>
+                <span class="o">)</span>
+            <span class="o">));</span> 
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>这个分组的结果显然是一个map，以Dish的类型作为键，以包装了该类型中热量最高的Dish的Optional<!-- raw HTML omitted -->作为值
@@ -1842,7 +1846,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 <p>因为前述例子中的Optional存在意义不是很大, 所以 把收集器返回的结果转换为另一种类型，你可以使用Collectors.collectingAndThen工厂方法返回的收集器</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1851,14 +1855,14 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Dish</span><span class="o">&gt;</span> <span class="n">mostCaloricByType</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">groupingBy</span><span class="o">(</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">collectingAndThen</span><span class="o">(</span>
-</span></span><span class="line"><span class="cl">                        <span class="n">maxBy</span><span class="o">(</span><span class="n">comparingInt</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">)),</span>
-</span></span><span class="line"><span class="cl">                        <span class="n">Optional</span><span class="o">::</span><span class="n">get</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">));</span>  
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Dish</span><span class="o">&gt;</span> <span class="n">mostCaloricByType</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">groupingBy</span><span class="o">(</span>
+                    <span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span>
+                    <span class="n">collectingAndThen</span><span class="o">(</span>
+                        <span class="n">maxBy</span><span class="o">(</span><span class="n">comparingInt</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">)),</span>
+                        <span class="n">Optional</span><span class="o">::</span><span class="n">get</span><span class="o">)</span>
+                    <span class="o">));</span>  
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>这个工厂方法接受两个参数——要转换的收集器以及转换函数，并返回另一个收集器。</li>
@@ -1874,22 +1878,22 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 <p>一般来说，通过groupingBy工厂方法的第二个参数传递的收集器将会对分到同一组中的所有流元素执行进一步归约操作。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 对每一组Dish求和
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">totalCaloriesByType</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">groupingBy</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span> 
-</span></span><span class="line"><span class="cl">                <span class="n">summingInt</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">)));</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 对每一组Dish求和
+</span><span class="c1"></span>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">totalCaloriesByType</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">groupingBy</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span> 
+                <span class="n">summingInt</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getCalories</span><span class="o">)));</span> 
+</code></pre></td></tr></table>
 </div>
 </div><p>然而常常和groupingBy联合使用的另一个收集器是mapping方法生成的。这个方法接受两个参数：一个函数对流中的元素做变换，另一个则将变换的结果对象收集起来。
 其目的是在累加之前对每个输入元素应用一个映射函数，这样就可以让接受特定类型元素的收集器适应不同类型的对象。我们来看一个使用这个收集器的实际例子。
 比方说你想要知道，对于每种类型的Dish，菜单中都有哪些CaloricLevel。我们可以把groupingBy和mapping收集器结合起来，如下所示：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1897,19 +1901,19 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">CaloricLevel</span><span class="o">&gt;&gt;</span> <span class="n">caloricLevelsByType</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">groupingBy</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span> <span class="n">mapping</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">400</span><span class="o">)</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">DIET</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">700</span><span class="o">)</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">NORMAL</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">FAT</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">        <span class="o">},</span> <span class="n">toSet</span><span class="o">())));</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">CaloricLevel</span><span class="o">&gt;&gt;</span> <span class="n">caloricLevelsByType</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span> 
+        <span class="n">groupingBy</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span> <span class="n">mapping</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">400</span><span class="o">)</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">DIET</span><span class="o">;</span> 
+            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">700</span><span class="o">)</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">NORMAL</span><span class="o">;</span> 
+            <span class="k">else</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">FAT</span><span class="o">;</span> 
+        <span class="o">},</span> <span class="n">toSet</span><span class="o">())));</span> 
+</code></pre></td></tr></table>
 </div>
 </div><p>这里，就像我们前面见到过的，传递给映射方法的转换函数将Dish映射成了它的CaloricLevel：生成的CaloricLevel流传递给一个toSet收集器，它和toList类似，
 不过是把流中的元素累积到一个Set而不是List中，以便仅保留各不相同的值。如先前的示例所示，这个映射收集器将会收集分组函数生成的各个子流中的元素</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1918,14 +1922,14 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 可以给它传递一个构造函数引用来要求 HashSet
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">CaloricLevel</span><span class="o">&gt;&gt;</span> <span class="n">caloricLevelsByType</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">groupingBy</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span> <span class="n">mapping</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="o">{</span> 
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">400</span><span class="o">)</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">DIET</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">700</span><span class="o">)</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">NORMAL</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">FAT</span><span class="o">;</span> 
-</span></span><span class="line"><span class="cl">        <span class="o">},</span><span class="n">toCollection</span><span class="o">(</span><span class="n">HashSet</span><span class="o">::</span><span class="k">new</span><span class="o">)</span> <span class="o">)));</span> 
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 可以给它传递一个构造函数引用来要求 HashSet
+</span><span class="c1"></span>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Dish</span><span class="o">.</span><span class="na">Type</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">CaloricLevel</span><span class="o">&gt;&gt;</span> <span class="n">caloricLevelsByType</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span> 
+        <span class="n">groupingBy</span><span class="o">(</span><span class="n">Dish</span><span class="o">::</span><span class="n">getType</span><span class="o">,</span> <span class="n">mapping</span><span class="o">(</span><span class="n">dish</span> <span class="o">-&gt;</span> <span class="o">{</span> 
+            <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">400</span><span class="o">)</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">DIET</span><span class="o">;</span> 
+            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">dish</span><span class="o">.</span><span class="na">getCalories</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">700</span><span class="o">)</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">NORMAL</span><span class="o">;</span> 
+            <span class="k">else</span> <span class="k">return</span> <span class="n">CaloricLevel</span><span class="o">.</span><span class="na">FAT</span><span class="o">;</span> 
+        <span class="o">},</span><span class="n">toCollection</span><span class="o">(</span><span class="n">HashSet</span><span class="o">::</span><span class="k">new</span><span class="o">)</span> <span class="o">)));</span> 
+</code></pre></td></tr></table>
 </div>
 </div><h4 id="分区">分区</h4>
 <h3 id="自定义收集器-collector">自定义收集器 Collector</h3>
@@ -2023,7 +2027,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2053,35 +2057,35 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 原始写法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">readDuration</span><span class="o">(</span><span class="n">Properties</span> <span class="n">props</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="n">i</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">                <span class="o">}</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">nfe</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 改进
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">stringToInt</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">readDuration</span><span class="o">(</span><span class="n">Properties</span> <span class="n">props</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">props</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">name</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">OptionalUtility</span><span class="o">::</span><span class="n">stringToInt</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 原始写法
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">readDuration</span><span class="o">(</span><span class="n">Properties</span> <span class="n">props</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">value</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="n">i</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">nfe</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">// 改进
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">stringToInt</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">readDuration</span><span class="o">(</span><span class="n">Properties</span> <span class="n">props</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">props</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">name</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">OptionalUtility</span><span class="o">::</span><span class="n">stringToInt</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="时间处理">时间处理</h1>
@@ -2117,7 +2121,7 @@ It can be accessed using other duration-based units, such as minutes and hours.<
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2128,16 +2132,16 @@ It can be accessed using other duration-based units, such as minutes and hours.<
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// LocalDateTime 获取毫秒以及秒  也可以手动指定中国的时区 ZoneOffset.of(&#34;+8&#34;)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ZonedDateTime</span> <span class="n">zonedDateTime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="na">atZone</span><span class="o">(</span><span class="n">ZoneOffset</span><span class="o">.</span><span class="na">systemDefault</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Instant</span> <span class="n">instant</span> <span class="o">=</span> <span class="n">zonedDateTime</span><span class="o">.</span><span class="na">toInstant</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="n">Date</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">instant</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">// LocalDateTime -&gt; Date
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Date</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">datetime</span><span class="o">.</span><span class="na">atZone</span><span class="o">(</span><span class="n">ZoneId</span><span class="o">.</span><span class="na">systemDefault</span><span class="o">()).</span><span class="na">toInstant</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Date -&gt; LocalDateTime 
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">ofInstant</span><span class="o">(</span><span class="n">date</span><span class="o">.</span><span class="na">toInstant</span><span class="o">(),</span> <span class="n">ZoneOffset</span><span class="o">.</span><span class="na">systemDefault</span><span class="o">());</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// LocalDateTime 获取毫秒以及秒  也可以手动指定中国的时区 ZoneOffset.of(&#34;+8&#34;)
+</span><span class="c1"></span>    <span class="n">ZonedDateTime</span> <span class="n">zonedDateTime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="na">atZone</span><span class="o">(</span><span class="n">ZoneOffset</span><span class="o">.</span><span class="na">systemDefault</span><span class="o">());</span>
+    <span class="n">Instant</span> <span class="n">instant</span> <span class="o">=</span> <span class="n">zonedDateTime</span><span class="o">.</span><span class="na">toInstant</span><span class="o">();</span>
+    <span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="n">Date</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">instant</span><span class="o">);</span>
+    
+    <span class="c1">// LocalDateTime -&gt; Date
+</span><span class="c1"></span>    <span class="n">Date</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">datetime</span><span class="o">.</span><span class="na">atZone</span><span class="o">(</span><span class="n">ZoneId</span><span class="o">.</span><span class="na">systemDefault</span><span class="o">()).</span><span class="na">toInstant</span><span class="o">());</span>
+    <span class="c1">// Date -&gt; LocalDateTime 
+</span><span class="c1"></span>    <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">ofInstant</span><span class="o">(</span><span class="n">date</span><span class="o">.</span><span class="na">toInstant</span><span class="o">(),</span> <span class="n">ZoneOffset</span><span class="o">.</span><span class="na">systemDefault</span><span class="o">());</span>
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="localdate">LocalDate</h3>
 <ul>
@@ -2218,7 +2222,7 @@ It can be accessed using other duration-based units, such as minutes and hours.<
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -2235,7 +2239,7 @@ It can be accessed using other duration-based units, such as minutes and hours.<
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

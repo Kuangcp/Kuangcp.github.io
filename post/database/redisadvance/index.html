@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/database/redisadvance/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Redis进阶" />
 <meta property="og:description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/database/redisadvance/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/database/redisadvance/" />
 <meta property="article:published_time" content="2018-12-16T17:29:06+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:29:06+00:00" />
-
 <meta itemprop="name" content="Redis进阶">
-<meta itemprop="description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制"><meta itemprop="datePublished" content="2018-12-16T17:29:06+00:00" />
+<meta itemprop="description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制">
+<meta itemprop="datePublished" content="2018-12-16T17:29:06+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:29:06+00:00" />
 <meta itemprop="wordCount" content="6126">
-<meta itemprop="keywords" content="Redis," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="Redis," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Redis进阶"/>
 <meta name="twitter:description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制"/>
 
@@ -254,19 +258,19 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0           00110000
-</span></span><span class="line"><span class="cl">(short 0)   0011000001010011
-</span></span><span class="line"><span class="cl">0L          0011000001001100
-</span></span><span class="line"><span class="cl">&#34;&#34;          0010001000100010
-</span></span><span class="line"><span class="cl">new byte[0] 011110000010011100100111
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">0           00110000
+(short 0)   0011000001010011
+0L          0011000001001100
+&#34;&#34;          0010001000100010
+new byte[0] 011110000010011100100111
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="链表">链表</h2>
 <h2 id="字典">字典</h2>
@@ -281,7 +285,7 @@
 而 zskiplist 结构则用于保存跳跃表节点的相关信息， 比如节点的数量， 以及指向表头节点和表尾节点的指针 等等。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -300,24 +304,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">zskiplistNode</span> 
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 后退指针
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">backward</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 分值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">double</span> <span class="n">score</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 成员对象
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">robj</span> <span class="o">*</span><span class="n">obj</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// 层
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">struct</span> <span class="n">zskiplistLevel</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// 前进指针
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">forward</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// 跨度
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">span</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="n">level</span><span class="p">[];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="n">zskiplistNode</span><span class="p">;</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-C" data-lang="C">    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">zskiplistNode</span> 
+    <span class="p">{</span>
+        <span class="c1">// 后退指针
+</span><span class="c1"></span>        <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">backward</span><span class="p">;</span>
+        <span class="c1">// 分值
+</span><span class="c1"></span>        <span class="kt">double</span> <span class="n">score</span><span class="p">;</span>
+        <span class="c1">// 成员对象
+</span><span class="c1"></span>        <span class="n">robj</span> <span class="o">*</span><span class="n">obj</span><span class="p">;</span>
+
+        <span class="c1">// 层
+</span><span class="c1"></span>        <span class="k">struct</span> <span class="n">zskiplistLevel</span> <span class="p">{</span>
+            <span class="c1">// 前进指针
+</span><span class="c1"></span>            <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">forward</span><span class="p">;</span>
+            <span class="c1">// 跨度
+</span><span class="c1"></span>            <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">span</span><span class="p">;</span>
+        <span class="p">}</span> <span class="n">level</span><span class="p">[];</span>
+    <span class="p">}</span> <span class="n">zskiplistNode</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="整数集合">整数集合</h2>
 <h2 id="压缩列表">压缩列表</h2>
@@ -751,7 +755,7 @@ Redis Cluster采用虚拟槽分区，所有的键根据哈希函数映射到0～
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -768,7 +772,7 @@ Redis Cluster采用虚拟槽分区，所有的键根据哈希函数映射到0～
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/frontend/javascript/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="JavaScript" />
 <meta property="og:description" content="目录 start JavaScript 数据类型 字符串 函数 函数传值 JSON 常用功能小模块 输入校验 Ajax 事件 鼠标 滚轮 常用库和框架 Jquery Ajax form插件 echarts 资源文件 图片 目录 end|2020-06-24 02:06| JavaScript 数据类型 字符串 字" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/frontend/javascript/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/frontend/javascript/" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
-
 <meta itemprop="name" content="JavaScript">
-<meta itemprop="description" content="目录 start JavaScript 数据类型 字符串 函数 函数传值 JSON 常用功能小模块 输入校验 Ajax 事件 鼠标 滚轮 常用库和框架 Jquery Ajax form插件 echarts 资源文件 图片 目录 end|2020-06-24 02:06| JavaScript 数据类型 字符串 字"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start JavaScript 数据类型 字符串 函数 函数传值 JSON 常用功能小模块 输入校验 Ajax 事件 鼠标 滚轮 常用库和框架 Jquery Ajax form插件 echarts 资源文件 图片 目录 end|2020-06-24 02:06| JavaScript 数据类型 字符串 字">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="974">
-<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="926">
+
+
+
+<meta itemprop="keywords" content="基础," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JavaScript"/>
 <meta name="twitter:description" content="目录 start JavaScript 数据类型 字符串 函数 函数传值 JSON 常用功能小模块 输入校验 Ajax 事件 鼠标 滚轮 常用库和框架 Jquery Ajax form插件 echarts 资源文件 图片 目录 end|2020-06-24 02:06| JavaScript 数据类型 字符串 字"/>
 
@@ -122,7 +126,7 @@
         <div class="post-category">
             <a href="/categories/javascript/"> JavaScript </a>
             </div>
-          <span class="more-meta"> 974 words </span>
+          <span class="more-meta"> 926 words </span>
           <span class="more-meta"> 2 mins read </span>
         
       </div>
@@ -237,7 +241,7 @@
 <h3 id="函数传值">函数传值</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -255,23 +259,23 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">handlerGet</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">role</span><span class="p">,</span> <span class="nx">success</span><span class="p">,</span> <span class="nx">fail</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;xxx&#39;</span><span class="o">+</span><span class="nx">url</span>
-</span></span><span class="line"><span class="cl">    <span class="p">});</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">request</span><span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="nx">success</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">request</span><span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">fail</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">testRole</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">handlerGet</span><span class="p">(</span><span class="s1">&#39;/world&#39;</span><span class="p">,</span> <span class="s1">&#39;student&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">layer</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">&#39;获取成功&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">layer</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">&#39;身份认证已过期， 请重新登录&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="p">})</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-js" data-lang="js">    <span class="kd">function</span> <span class="nx">handlerGet</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">role</span><span class="p">,</span> <span class="nx">success</span><span class="p">,</span> <span class="nx">fail</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+        <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+        <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;xxx&#39;</span><span class="o">+</span><span class="nx">url</span>
+    <span class="p">});</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="nx">success</span><span class="p">);</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nx">fail</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">testRole</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">handlerGet</span><span class="p">(</span><span class="s1">&#39;/world&#39;</span><span class="p">,</span> <span class="s1">&#39;student&#39;</span><span class="p">,</span>
+            <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">layer</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">&#39;获取成功&#39;</span><span class="p">);</span>
+            <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">layer</span><span class="p">.</span><span class="nx">msg</span><span class="p">(</span><span class="s1">&#39;身份认证已过期， 请重新登录&#39;</span><span class="p">);</span>
+            <span class="p">})</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="json">JSON</h2>
@@ -286,16 +290,16 @@
 </ul>
 </li>
 <li>
-<p>但是有时候不能使用，会undefined，eval(&rsquo;(&rsquo;+data+&rsquo;)&rsquo;)解析后才能用</p>
+<p>但是有时候不能使用，会undefined，eval('('+data+')')解析后才能用</p>
 <ul>
-<li>原因在于Response Headers 的 <code>Content-Type:application/json;charset=UTF-8</code> 如果回应的类型是 text/plain 就需要使用 eval(&rsquo;(&rsquo;+data+&rsquo;)&rsquo;)才能用</li>
+<li>原因在于Response Headers 的 <code>Content-Type:application/json;charset=UTF-8</code> 如果回应的类型是 text/plain 就需要使用 eval('('+data+')')才能用</li>
 <li>如果设置成JSON就可以直接点引用和循环迭代, <em>并且不需要强制的JSON规范, 值为数字时不加双引号也是正常解析的</em></li>
 </ul>
 </li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -319,29 +323,29 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;a&#34;</span><span class="o">:</span> <span class="s2">&#34;abc&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;b&#34;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;c&#34;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;d&#34;</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;james&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;age&#34;</span><span class="o">:</span> <span class="mi">28</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;e&#34;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="s2">&#34;f&#34;</span><span class="o">:</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">    <span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">//遍历array方式1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="k">in</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">y</span> <span class="k">in</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;key = &#34;</span> <span class="o">+</span> <span class="nx">y</span> <span class="o">+</span> <span class="s2">&#34; value = &#34;</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">][</span><span class="nx">y</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;key = &#34;</span> <span class="o">+</span> <span class="nx">x</span> <span class="o">+</span> <span class="s2">&#34; value = &#34;</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">]);</span> <span class="c1">// 非array object
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&#34;a&#34;</span><span class="o">:</span> <span class="s2">&#34;abc&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;b&#34;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+        <span class="s2">&#34;c&#34;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&#34;d&#34;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;james&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;age&#34;</span><span class="o">:</span> <span class="mi">28</span>
+        <span class="p">},</span>
+        <span class="s2">&#34;e&#34;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="s2">&#34;f&#34;</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">};</span>
+
+    <span class="c1">//遍历array方式1
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="k">in</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">y</span> <span class="k">in</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;key = &#34;</span> <span class="o">+</span> <span class="nx">y</span> <span class="o">+</span> <span class="s2">&#34; value = &#34;</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">][</span><span class="nx">y</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;key = &#34;</span> <span class="o">+</span> <span class="nx">x</span> <span class="o">+</span> <span class="s2">&#34; value = &#34;</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">x</span><span class="p">]);</span> <span class="c1">// 非array object
+</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="常用功能小模块">常用功能小模块</h2>
 <h3 id="输入校验">输入校验</h3>
@@ -354,7 +358,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -384,35 +388,35 @@
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">handle</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">httpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">httpRequest</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">httpRequest</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="cm">/**
-</span></span></span><span class="line"><span class="cl"><span class="cm">        * 获取数据后的处理程序
-</span></span></span><span class="line"><span class="cl"><span class="cm">        */</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">httpRequest</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">httpRequest</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="nx">httpRequest</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">handle</span><span class="p">(</span><span class="nx">httpRequest</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">post</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">handle</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//使用HTTP POST请求与服务器交互数据
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&#34;POST&#34;</span><span class="p">,</span> <span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//设置发送数据的请求格式
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">&#39;content-type&#39;</span><span class="p">,</span> <span class="s1">&#39;application/json&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">handle</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//将用户输入值序列化成字符串
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">handle</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">httpRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+    <span class="nx">httpRequest</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">httpRequest</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+    <span class="cm">/**
+</span><span class="cm">        * 获取数据后的处理程序
+</span><span class="cm">        */</span>
+    <span class="nx">httpRequest</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">httpRequest</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="nx">httpRequest</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">handle</span><span class="p">(</span><span class="nx">httpRequest</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">post</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">handle</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+    <span class="c1">//使用HTTP POST请求与服务器交互数据
+</span><span class="c1"></span>    <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&#34;POST&#34;</span><span class="p">,</span> <span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="c1">//设置发送数据的请求格式
+</span><span class="c1"></span>    <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">&#39;content-type&#39;</span><span class="p">,</span> <span class="s1">&#39;application/json&#39;</span><span class="p">);</span>
+    <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">handle</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">//将用户输入值序列化成字符串
+</span><span class="c1"></span>    <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="事件">事件</h2>
 <h3 id="键盘">键盘</h3>
@@ -437,17 +441,17 @@
 <p><em>原生方式异步提交Form</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">    <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#set-form&#34;</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;prepare submit&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">});</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-js" data-lang="js">    <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#set-form&#34;</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;prepare submit&#39;</span><span class="p">)</span>
+    <span class="p">});</span>
+</code></pre></td></tr></table>
 </div>
 </div><h3 id="echarts">echarts</h3>
 <blockquote>
@@ -529,7 +533,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -546,7 +550,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

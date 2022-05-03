@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/go/readme/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Go学习概览" />
 <meta property="og:description" content="目录 start Golang 社区 教程 书籍 安装 Docker 环境变量解释 开发环境搭建 目录 end|2020-05-04 17:40| Golang go dev | awesome-go | awesome-go-cn 学习Go的知乎话题 Java 20年：转角遇到Go Golang vs Rust vs Dlang 哪个更有前途大致就" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/go/readme/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/go/readme/" />
 <meta property="article:published_time" content="2020-03-22T12:40:12+00:00" />
 <meta property="article:modified_time" content="2020-03-22T12:40:12+00:00" />
-
 <meta itemprop="name" content="Go学习概览">
-<meta itemprop="description" content="目录 start Golang 社区 教程 书籍 安装 Docker 环境变量解释 开发环境搭建 目录 end|2020-05-04 17:40| Golang go dev | awesome-go | awesome-go-cn 学习Go的知乎话题 Java 20年：转角遇到Go Golang vs Rust vs Dlang 哪个更有前途大致就"><meta itemprop="datePublished" content="2020-03-22T12:40:12+00:00" />
+<meta itemprop="description" content="目录 start Golang 社区 教程 书籍 安装 Docker 环境变量解释 开发环境搭建 目录 end|2020-05-04 17:40| Golang go dev | awesome-go | awesome-go-cn 学习Go的知乎话题 Java 20年：转角遇到Go Golang vs Rust vs Dlang 哪个更有前途大致就">
+<meta itemprop="datePublished" content="2020-03-22T12:40:12+00:00" />
 <meta itemprop="dateModified" content="2020-03-22T12:40:12+00:00" />
 <meta itemprop="wordCount" content="1406">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go学习概览"/>
 <meta name="twitter:description" content="目录 start Golang 社区 教程 书籍 安装 Docker 环境变量解释 开发环境搭建 目录 end|2020-05-04 17:40| Golang go dev | awesome-go | awesome-go-cn 学习Go的知乎话题 Java 20年：转角遇到Go Golang vs Rust vs Dlang 哪个更有前途大致就"/>
 
@@ -229,19 +233,20 @@
 <li><code>*shrc</code> 或者 <code>/etc/profile</code> 中添加
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="nb">export</span> <span class="nv">GOROOT</span><span class="o">=</span>/usr/local/go
-</span></span><span class="line"><span class="cl">    <span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/Code/go <span class="c1"># workspace</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">export</span> <span class="nv">GOBIN</span><span class="o">=</span><span class="nv">$GOPATH</span>/bin <span class="c1"># &#39;go install&#39; command install dir</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$GOBIN</span>:<span class="nv">$GOPATH</span>:<span class="nv">$GOROOT</span>/bin
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nb">export</span> <span class="nv">GOROOT</span><span class="o">=</span>/usr/local/go
+    <span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/Code/go <span class="c1"># workspace</span>
+    <span class="nb">export</span> <span class="nv">GOBIN</span><span class="o">=</span><span class="nv">$GOPATH</span>/bin <span class="c1"># &#39;go install&#39; command install dir</span>
+    <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$GOBIN</span>:<span class="nv">$GOPATH</span>:<span class="nv">$GOROOT</span>/bin
+</code></pre></td></tr></table>
 </div>
-</div>``</li>
+</div><p>``</p>
+</li>
 <li><strong>查看版本</strong> <code>go version</code>正常输出go的版本则是配置成功</li>
 </ol>
 <h3 id="hello-world">Hello World</h3>
@@ -249,19 +254,19 @@
 <li>在 <code>$HOME/Code/go</code> 下 新建 test.go
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">    <span class="kn">package</span> <span class="nx">main</span>
-</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;hello, world&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-go" data-lang="go">    <span class="kn">package</span> <span class="nx">main</span>
+    <span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+    <span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;hello, world&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div></li>
 <li>go run test.go 或者 go build 然后执行可执行文件</li>
@@ -332,7 +337,7 @@
 <p><strong>汇总一下命令</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -348,25 +353,25 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># 必须在 GOPATH 下执行</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">cd</span> <span class="nv">$GOPATH</span>
-</span></span><span class="line"><span class="cl">    mkdir -p src/golang.org/x/tools
-</span></span><span class="line"><span class="cl">    git clone --depth <span class="m">1</span> https://github.com/golang/tools src/golang.org/x/tools
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    mkdir -p src/golang.org/x/lint
-</span></span><span class="line"><span class="cl">    git clone --depth <span class="m">1</span> https://github.com/golang/lint  src/golang.org/x/lint
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    go get golang.org/x/tools/cmd/guru 
-</span></span><span class="line"><span class="cl">    go get golang.org/x/tools/cmd/gorename 
-</span></span><span class="line"><span class="cl">    go get golang.org/x/tools/cmd/goimports
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    go get golang.org/x/lint
-</span></span><span class="line"><span class="cl">    go get golang.org/x/lint/golint
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># 必须在 GOPATH 下执行</span>
+    <span class="nb">cd</span> <span class="nv">$GOPATH</span>
+    mkdir -p src/golang.org/x/tools
+    git clone --depth <span class="m">1</span> https://github.com/golang/tools src/golang.org/x/tools
+
+    mkdir -p src/golang.org/x/lint
+    git clone --depth <span class="m">1</span> https://github.com/golang/lint  src/golang.org/x/lint
+
+    go get golang.org/x/tools/cmd/guru 
+    go get golang.org/x/tools/cmd/gorename 
+    go get golang.org/x/tools/cmd/goimports
+
+    go get golang.org/x/lint
+    go get golang.org/x/lint/golint
+</code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -382,21 +387,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># 可在任意目录执行</span>
-</span></span><span class="line"><span class="cl">    go get github.com/ramya-rao-a/go-outline
-</span></span><span class="line"><span class="cl">    go get github.com/acroca/go-symbols
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">## 仅为了提速</span>
-</span></span><span class="line"><span class="cl">    mkdir -p src/github.com/golang/dep
-</span></span><span class="line"><span class="cl">    git clone --depth <span class="m">1</span> https://github.com/golang/dep src/github.com/golang/dep
-</span></span><span class="line"><span class="cl">    go get github.com/golang/dep
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    go get github.com/sqs/goreturns
-</span></span><span class="line"><span class="cl">    go get github.com/rogpeppe/godef
-</span></span><span class="line"><span class="cl">    go get github.com/uudashr/gopkgs/cmd/gopkgs
-</span></span><span class="line"><span class="cl">    go get github.com/go-delve/delve/cmd/dlv
-</span></span><span class="line"><span class="cl">    go get github.com/mdempsky/gocode
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># 可在任意目录执行</span>
+    go get github.com/ramya-rao-a/go-outline
+    go get github.com/acroca/go-symbols
+    
+    <span class="c1">## 仅为了提速</span>
+    mkdir -p src/github.com/golang/dep
+    git clone --depth <span class="m">1</span> https://github.com/golang/dep src/github.com/golang/dep
+    go get github.com/golang/dep
+
+    go get github.com/sqs/goreturns
+    go get github.com/rogpeppe/godef
+    go get github.com/uudashr/gopkgs/cmd/gopkgs
+    go get github.com/go-delve/delve/cmd/dlv
+    go get github.com/mdempsky/gocode
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -466,7 +471,7 @@
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -483,7 +488,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

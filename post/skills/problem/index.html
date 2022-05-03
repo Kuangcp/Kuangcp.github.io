@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/skills/problem/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="问题及解决方案" />
 <meta property="og:description" content="目录 start 问题及解决方案 Linux JDK IDE IDEA Docker Firefox SSL_ERROR_RX_RECORD_TOO_LONG 目录 end|2021-04-28 15:31| 问题及解决方案 Linux 详细 JDK Picked up _JAVA_OPTIONS: 例如这样的提示, 由于设置了 _JAVA_OPTIONS 或者 JAVA_OPTIONS 就一定会输出这个提示 参考: Disabling Java_Options On Java Console" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/problem/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/problem/" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
-
 <meta itemprop="name" content="问题及解决方案">
-<meta itemprop="description" content="目录 start 问题及解决方案 Linux JDK IDE IDEA Docker Firefox SSL_ERROR_RX_RECORD_TOO_LONG 目录 end|2021-04-28 15:31| 问题及解决方案 Linux 详细 JDK Picked up _JAVA_OPTIONS: 例如这样的提示, 由于设置了 _JAVA_OPTIONS 或者 JAVA_OPTIONS 就一定会输出这个提示 参考: Disabling Java_Options On Java Console"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start 问题及解决方案 Linux JDK IDE IDEA Docker Firefox SSL_ERROR_RX_RECORD_TOO_LONG 目录 end|2021-04-28 15:31| 问题及解决方案 Linux 详细 JDK Picked up _JAVA_OPTIONS: 例如这样的提示, 由于设置了 _JAVA_OPTIONS 或者 JAVA_OPTIONS 就一定会输出这个提示 参考: Disabling Java_Options On Java Console">
+<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="wordCount" content="406">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="问题及解决方案"/>
 <meta name="twitter:description" content="目录 start 问题及解决方案 Linux JDK IDE IDEA Docker Firefox SSL_ERROR_RX_RECORD_TOO_LONG 目录 end|2021-04-28 15:31| 问题及解决方案 Linux 详细 JDK Picked up _JAVA_OPTIONS: 例如这样的提示, 由于设置了 _JAVA_OPTIONS 或者 JAVA_OPTIONS 就一定会输出这个提示 参考: Disabling Java_Options On Java Console"/>
 
@@ -190,15 +194,15 @@
 <p>但是又不能直接 unset, 这个变量似乎是用来解决字体锯齿问题的, 所以需要如下配置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="nv">_SILENT_JAVA_OPTIONS</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$_JAVA_OPTIONS</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">unset</span> _JAVA_OPTIONS
-</span></span><span class="line"><span class="cl">    <span class="nb">alias</span> <span class="nv">java</span><span class="o">=</span><span class="s1">&#39;java &#34;$_SILENT_JAVA_OPTIONS&#34;&#39;</span>
-</span></span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nv">_SILENT_JAVA_OPTIONS</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$_JAVA_OPTIONS</span><span class="s2">&#34;</span>
+    <span class="nb">unset</span> _JAVA_OPTIONS
+    <span class="nb">alias</span> <span class="nv">java</span><span class="o">=</span><span class="s1">&#39;java &#34;$_SILENT_JAVA_OPTIONS&#34;&#39;</span>
+</code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>只需将该配置加到  <code>/etc/profile</code> 文件尾部, 这样的话, 终端不会有如上提示</li>
@@ -305,7 +309,7 @@ FireFox 报错 SSL_ERROR_RX_RECORD_TOO_LONG
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -322,7 +326,7 @@ FireFox 报错 SSL_ERROR_RX_RECORD_TOO_LONG
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 

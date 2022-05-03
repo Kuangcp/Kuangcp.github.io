@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.93.2 with theme even" />
+<meta name="generator" content="Hugo 0.76.5 with theme even" />
 
 
 <link rel="canonical" href="https://blogs.kuangcp.top/post/database/oracleperformances/" />
@@ -35,22 +35,26 @@
 
 
 
-<link href="/sass/main.min.154ed883776547b0e136be39b3037f61350da06f888d0868d1756a9463cd9520.css" rel="stylesheet">
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="Oracle性能优化" />
 <meta property="og:description" content="目录 start 1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/database/oracleperformances/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://blogs.kuangcp.top/post/database/oracleperformances/" />
 <meta property="article:published_time" content="2018-12-16T17:26:53+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:26:53+00:00" />
-
 <meta itemprop="name" content="Oracle性能优化">
-<meta itemprop="description" content="目录 start 1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务"><meta itemprop="datePublished" content="2018-12-16T17:26:53+00:00" />
+<meta itemprop="description" content="目录 start 1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务">
+<meta itemprop="datePublished" content="2018-12-16T17:26:53+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:26:53+00:00" />
 <meta itemprop="wordCount" content="2462">
-<meta itemprop="keywords" content="Oracle," /><meta name="twitter:card" content="summary"/>
+
+
+
+<meta itemprop="keywords" content="Oracle," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Oracle性能优化"/>
 <meta name="twitter:description" content="目录 start 1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务"/>
 
@@ -429,14 +433,14 @@ alter system kill session 杀死用户进程</p>
 <h3 id="65-创建本地管理的表空间">6.5 创建本地管理的表空间</h3>
 <ul>
 <li>create tablespace 名字</li>
-<li>datafile &rsquo;&rsquo; size 50m,&rsquo;&rsquo; size 30m</li>
+<li>datafile '' size 50m,'' size 30m</li>
 <li>extent management local</li>
 <li>uniform size 1m;</li>
 </ul>
 <h4 id="查询">查询</h4>
 <ul>
 <li>select tablespace_name,block_size,extent_management,segment_space_management from dba_tablespaces</li>
-<li>where tablespace_name like &lsquo;myth%&rsquo;;</li>
+<li>where tablespace_name like &lsquo;myth%';</li>
 </ul>
 <h3 id="68-默认临时表空间">6.8 默认临时表空间</h3>
 <ul>
@@ -477,17 +481,17 @@ alter system kill session 杀死用户进程</p>
 <ul>
 <li>自动扩展
 <ul>
-<li>alter database datafile &rsquo;&rsquo; autoextent on next 1m;</li>
+<li>alter database datafile '&rsquo; autoextent on next 1m;</li>
 </ul>
 </li>
 <li>手动重置数据文件大小
 <ul>
-<li>alter database datafile &rsquo;&rsquo; resize 100m;</li>
+<li>alter database datafile '' resize 100m;</li>
 </ul>
 </li>
 <li>添加数据文件
 <ul>
-<li>alter tablespace myth add datafile &rsquo;&rsquo; size 80m;</li>
+<li>alter tablespace myth add datafile '' size 80m;</li>
 </ul>
 </li>
 </ul>
@@ -495,7 +499,7 @@ alter system kill session 杀死用户进程</p>
 <h5 id="方法一">方法一：</h5>
 <p>该语句适用于没有活动的还原数据或者是临时段的非系统表空间中的数据文件，使用语句中表空间必须是脱机且目标数据文件必须存在</p>
 <ul>
-<li>alter tablespace 表空间名 rename datafile &lsquo;&rsquo;[,&rsquo;&rsquo;] to &lsquo;&rsquo;[,&rsquo;&rsquo;]
+<li>alter tablespace 表空间名 rename datafile &lsquo;'[,''] to &lsquo;'[,'']
 <ul>
 <li>1.使用数据字典查询所需信息</li>
 <li>2.将表空间置为脱机</li>
@@ -510,7 +514,7 @@ alter system kill session 杀死用户进程</p>
 <h5 id="方法二">方法二：</h5>
 <p>该语句适用于系统表空间和不能置为脱机的表空间的数据文件，要求使用该语句时数据库处于mount状态</p>
 <ul>
-<li>alter database 数据库名 rename file &lsquo;&rsquo;[,&rsquo;&rsquo;] to &lsquo;&rsquo;[,&rsquo;&rsquo;]
+<li>alter database 数据库名 rename file &lsquo;'[,''] to &lsquo;'[,'']
 <ul>
 <li>1.使用数据字典查询信息</li>
 <li>2.关闭数据库</li>
@@ -588,7 +592,7 @@ alter system kill session 杀死用户进程</p>
     2022<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Mythos</span>
     
-    <br/><span><a href='https://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号-1</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
   </span>
 </div>
 
@@ -605,7 +609,7 @@ alter system kill session 杀死用户进程</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
 
 
 
