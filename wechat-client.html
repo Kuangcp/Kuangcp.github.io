@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeChat Client</title>
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="jquery.min.js"></script> -->
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #2B2B2B;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-box {
+        background-color: #2B2B2B;
+        width: 1000px;
+        height: 120px;
+        font-size: 17px;
+        border: 3px solid green;
+        border-top: none;
+        color: white;
+    }
+</style>
+
+<body>
+<!-- Docker36: 绑定到了 10000003 的 Kuancp 客户 -->
+<div id='msg-box' style="height: 700px;overflow-y: auto; border: solid green; width: 1000px;">
+    <div id='msgMainWindow'></div>
+</div>
+
+<div style="text-align: center;">
+    <textarea id="msg" class='input-box'></textarea>
+
+    <div>
+        <select id="sendInterval" onclick="switchInterval()">
+            <option value=0 selected>停止定时</option>
+            <option value=100>100ms</option>
+            <option value=300>300ms</option>
+            <option value=600>600ms</option>
+            <option value=1000>1s</option>
+            <option value=2000>2s</option>
+            <option value=5000>5s</option>
+        </select>
+
+        <select id="partsNum">
+            <option value=0 selected>条数</option>
+            <option value=1>1</option>
+            <option value=3>3</option>
+            <option value=20>20</option>
+            <option value=50>50</option>
+            <option value=200>200</option>
+        </select>
+
+        <select id="proto">
+            <option value="wss" selected>wss</option>
+            <option value="ws">ws</option>
+        </select>
+
+        <select id="env">
+            <option value="local36" >local 36</option>
+            <option value="docker35">docker 35</option>
+            <option value="docker36">docker 36</option>
+            <option value="docker37">docker 37</option>
+            <option value="test35">test35</option>
+            <option value="test36">test36</option>
+            <option value="test37">test37</option>
+            <option value="online" selected>online</option>
+            <option value="online_www">online www</option>
+        </select>
+        <button onclick="init()" style="height: 22px;">Connect</button>
+        <button onclick="closeSession()" style="height: 22px;">Close</button>
+        <button id="submit" onclick="sendMsg()" style="height: 22px;">Send</button>
+    </div>
+</div>
+</body>
+
+<script>
+    let loopSendMsgTask;
+    let connected = false;
+    let repeatContentNum = 1
+    let lockReconnect = false //避免重复连接
+    let reconnectNum = 0
+    let maxReconnectNum = 20
+    const heartbeatDuration = 10_000; // 心跳间隔
+
+    let ws;
+    let url;
+    let pongMarker;
+
+    // currentWxId='wxid_xevvzpwnoe3b22'
+    let currentWxId = 'wx-kcp' // 当前微信帐号
+    let userNo = 'test-no'
+    let userName = 'Wechat-client'
+    let clientWxId = 'wxid_9ord10k4bhdr22'
+    const envDict = {
+        online: 'session.51peiq.com',
+        online_www: 'www.51peiq.com',
+        // local36: 'session-pq.kcp.lo',
+        // local36: '192.168.7.181',
+        // local36: 'localhost:7094',
+        local36: 'docker-pq.qipeipu.net',
+        docker35: 'test35-pq.51peiq.com',
+        docker36: 'test36-pq-ws.51peiq.com',
+        docker37: 'test37-pq.51peiq.com',
+        test35: 'test35-pq-ws.51peiq.com',
+        test36: 'test36-pq-ws.51peiq.com',
+        test37: 'test37-pq-ws.51peiq.com'
+    }
+
+    function initWs(){
+        setBorderColor('orange')
+
+        let protoStr = document.getElementById('proto').value
+
+        let envStr = document.getElementById('env').value
+        if (envStr === 'online') {
+            currentWxId = 'online-wx-kcp' // 当前微信帐号
+            userNo = 'no'
+            userName = 'name'
+            clientWxId = 'test-client-id'
+        }
+
+        let domain = envDict[envStr]
+
+        // url ='ws://192.168.7.110:8080/pq-web/ws/wechat?wxId='
+        url = protoStr+'://' + domain + '/pq-web/ws/wechat'
+        url = url + '?wxId=' + currentWxId + '&wxNo=' + userNo + '&userName=' + userName
+        ws = new WebSocket(url);
+        console.log(protoStr,url, ws)
+        let wsId = getUUID()
+    }
+
+    function newMsg() {
+        return JSON.parse('{"msgId":"' + getUUID() + '","type":1,"msgContent":""}')
+    }
+
+    function getUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+            return (c === 'x' ? (Math.random() * 16 | 0) : ('r&0x3' | '0x8')).toString(16)
+        })
+    }
+
+    function sleep(time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    function setBorderColor(color) {
+        if (color == 'orange') {
+            connected = false
+        } else {
+            connected = true
+        }
+        let msgBox = document.getElementById('msg-box')
+        msgBox.style.borderColor = color
+        msgBox = document.getElementById('msg')
+        msgBox.style.borderColor = color
+    }
+
+    function buildInquiryMsg(content) {
+        let payload = {
+            type: 1,
+            msgContent: ""
+        }
+        let inquiry = {
+            type: 1,
+            fromUserId: clientWxId,
+            toUserId: currentWxId,
+            content: content
+        }
+        payload.msgContent = JSON.stringify(inquiry)
+        return JSON.stringify(payload)
+    }
+
+    function buildMsgContent() {
+        let num = document.getElementById("partsNum").value
+        let actualDuration = document.getElementById("sendInterval").value
+
+        let msgContent = ""
+        if (num > 0 && actualDuration > 0) {
+            for (let i = 0; i < num; i++) {
+                msgContent = msgContent + (Math.random().toString(36).substr(2)) + "\n"
+            }
+        } else {
+            msgContent = document.getElementById("msg").value
+        }
+
+        return msgContent;
+    }
+
+    function appendMsgBox(div) {
+        div.style.width = '500px'
+        div.style.border = '0px solid none';
+        div.style.wordWrap = 'break-word';
+        div.style.wordBreak = 'normal';
+        div.style.overflow = 'hidden';
+
+        div.style.padding = '5px';
+        div.style.marginTop = '3px';
+        div.style.borderRadius = '6px'
+        div.style.whiteSpace = 'pre'
+
+        let mainWin = document.getElementById("msgMainWindow");
+        mainWin.appendChild(div);
+        // mainWin.appendChild(document.createElement("br"));
+        // 滚动至底部
+        document.getElementById('msg-box').scrollTop = document.getElementById('msgMainWindow').clientHeight
+    }
+
+    // 渲染 收到的普通消息
+    function renderReceiveMsg(msgDTO, msgContent) {
+        let senderContent = JSON.parse(msgDTO.msgContent);
+
+        let div = document.createElement("div");
+        div.setAttribute('title', msgContent)
+        div.innerText = senderContent.content;
+        div.style.marginLeft = '5px';
+        // div.style.float = 'left';
+        div.style.backgroundColor = '#ffffff';
+        div.style.backgroundColor = '#8E8E8E';
+
+        appendMsgBox(div)
+    }
+
+    function sendMsg() {
+        if (!connected) {
+            return
+        }
+
+        let msgContent = buildMsgContent()
+        if (msgContent === "") {
+            return
+        }
+
+        let div = document.createElement("div");
+        div.innerText = msgContent;
+        div.style.marginRight = '5px';
+        div.style.marginLeft = '470px';
+        div.style.backgroundColor = '#75BFFF';
+        // div.style.float = 'right';
+        div.style.backgroundColor = '#5898CE';
+        appendMsgBox(div)
+
+        let inquiryMsg = buildInquiryMsg(msgContent)
+        // console.log('send', msg)
+        for (let i = 0; i < repeatContentNum; i++) {
+            ws.send(inquiryMsg)
+        }
+    }
+
+    function switchInterval() {
+        if (loopSendMsgTask) {
+            stopTask()
+        }
+        startTask()
+    }
+
+    function startTask() {
+        let actualDuration = document.getElementById("sendInterval").value
+        if (actualDuration === "0") {
+            return;
+        }
+        loopSendMsgTask = setInterval(sendMsg, actualDuration)
+    }
+
+    function stopTask() {
+        clearInterval(loopSendMsgTask)
+        loopSendMsgTask = null;
+    }
+
+    function closeSession(){
+        ws.close()
+        console.log('close', ws);
+    }
+
+    function init() {
+        initWs()
+
+        ws.onopen = function () {
+            lockReconnect = true
+            reconnectNum = 0
+            pongMarker = "start"
+
+            console.log("connected", url);
+            setBorderColor('green')
+
+            let heartbeatChecker = setInterval(function () {
+                if (!pongMarker) {
+                    console.log(wsId, "no pong")
+                    ws.close()
+                    clearInterval(heartbeatChecker)
+                    return
+                }
+                ws.send("ping")
+                pongMarker = null
+            }, heartbeatDuration)
+        };
+
+        ws.onmessage = function (evt) {
+            let msgContent = evt.data
+            console.log('receive: ', msgContent)
+
+            if (evt.data == 'pong') {
+                pongMarker = "pong"
+                return
+            }
+
+            let msgDTO = JSON.parse(msgContent)
+            let originType = msgDTO.type
+
+            sendFeedbackMsg(msgContent)
+
+            if (originType == 2) {
+                uploadUser(msgDTO)
+            } else {
+                renderReceiveMsg(msgDTO, msgContent)
+            }
+        };
+
+        ws.onclose = function (evt) {
+            console.warn("ws close", evt);
+            setBorderColor('orange')
+
+            lockReconnect = false
+            reconnect()
+        };
+
+        ws.onerror = function (evt) {
+            console.error("ws error", evt);
+            setBorderColor('orange')
+        };
+    }
+
+    // 上报好友和群
+    function uploadUser(msgDTO) {
+        let users = [{
+            userId: clientWxId,
+            avatar: "http://avatar.com",
+            nickName: "测试客户-wx",
+            area: "area",
+            remark: "user1"
+        }, {
+            userId: 'clientWxIdbbb',
+            avatar: "http://q.qlogo.cn/headimg_dl?dst_uin=763474727&spec=100",
+            nickName: "测试客户-bbbb",
+            area: "area",
+            remark: "bbbbb"
+        }, {
+            userId: "user-13@chatroom",
+            avatar: "http://q.qlogo.cn/headimg_dl?dst_uin=763474727&spec=100",
+            nickName: "测试群-wx",
+            area: "area"
+        }, {
+            userId: "user-15@chatroom",
+            avatar: "http://q.qlogo.cn/headimg_dl?dst_uin=763474727&spec=100",
+            nickName: "测试群2-wx",
+            area: "area"
+        }]
+
+        // 上报内容
+        msgDTO.type = 5
+        msgDTO.msgContent = JSON.stringify(users)
+        msgDTO.msgId = getUUID()
+        ws.send(JSON.stringify(msgDTO))
+
+        // 上报结束
+        msgDTO.type = 7
+        msgDTO.msgContent = ""
+        msgDTO.msgId = getUUID()
+        ws.send(JSON.stringify(msgDTO))
+    }
+
+    // 回复确认消息
+    function sendFeedbackMsg(msgContent) {
+        let msgDTO = JSON.parse(msgContent)
+        let obj = {
+            originMsgId: msgDTO.msgId,
+            success: true
+        }
+        msgDTO.msgContent = JSON.stringify(obj)
+        msgDTO.msgId = getUUID()
+        msgDTO.type = 3
+        ws.send(JSON.stringify(msgDTO))
+    }
+
+    function reconnect() {
+        if (lockReconnect || reconnectNum > maxReconnectNum) {
+            return
+        }
+
+        lockReconnect = true
+        setTimeout(function () {
+            console.info(`正在重连第${reconnectNum + 1}次`)
+            init()
+            reconnectNum++
+            lockReconnect = false
+        }, 10000); //这里设置重连间隔(ms)
+    }
+
+    init()
+</script>
+
+</html>
