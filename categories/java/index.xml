@@ -5,7 +5,7 @@
     <link>https://www.kuangcp.top/categories/java/</link>
     <description>Recent content in Java on Mythos · Java Developer</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
+    <language>en</language>
     <lastBuildDate>Wed, 04 Oct 2023 11:46:08 +0000</lastBuildDate><atom:link href="https://www.kuangcp.top/categories/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java中的日志</title>
@@ -377,111 +377,21 @@
     </item>
     
     <item>
-      <title>Java并发</title>
-      <link>https://www.kuangcp.top/post/java/advancedlearning/javaconcurrency/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/advancedlearning/javaconcurrency/</guid>
-      <description>💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. AQS 3.3. 功能</description>
-    </item>
-    
-    <item>
-      <title>Java的JDK以及JRE</title>
-      <link>https://www.kuangcp.top/post/java/advancedlearning/release/jdkandjre/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/advancedlearning/release/jdkandjre/</guid>
-      <description>💠 JDK And JRE Oracle 2.1. Oracle JDK 2.2. Oracle JRE OpenJDK 商业组织JDK 4.1. Corretto JDK源码 💠 2024-10-02 22:33:00 JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示</description>
-    </item>
-    
-    <item>
-      <title>Java的集合</title>
-      <link>https://www.kuangcp.top/post/java/collection/javacollection/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/collection/javacollection/</guid>
-      <description>💠 JDK中的集合 1.1. 集合继承和实现关系 1.2. Iterator 1.2.1. 规避 ConcurrentModificationException 1.3. Map 1.3.1. HashMap 1.3.2. TreeMap 1.4. List 1.5. Set 第三方开源集合框架 2.1. fastutil 2.2. Koloboke 2.3. Trove 💠 2024-07-13 00:44:21 JDK中的集合 Java集合必会14问</description>
-    </item>
-    
-    <item>
-      <title>Java的字节码</title>
-      <link>https://www.kuangcp.top/post/java/advancedlearning/javaclass/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/advancedlearning/javaclass/</guid>
-      <description>💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠</description>
-    </item>
-    
-    <item>
-      <title>Java反射原理以及使用</title>
-      <link>https://www.kuangcp.top/post/java/advancedlearning/javareflection/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/advancedlearning/javareflection/</guid>
-      <description>💠 反射 概念 实现原理 3.1. Inflation 基础类 4.1. AccessibleObject 4.2. Annotation 4.3. Class 4.4. Field 4.5. Method 4.6. Constructor 4.7. Modifier 使用 5.1. 获取Class对象的方式 5.2. 反射的基本使用 5.2.1. 操作构造方法 5.2.2. 操作类中方法 5.2.3. 操作类的</description>
-    </item>
-    
-    <item>
-      <title>Java泛型</title>
-      <link>https://www.kuangcp.top/post/java/advancedlearning/javagenerics/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/advancedlearning/javagenerics/</guid>
-      <description>💠 泛型 1.1. 简单使用 1.2. 类型擦除 1.3. 约束和局限性 1.4. 泛型类型的继承规则 1.5. 通配符类型 1.5.1. 子类 类型限定的通配符 extends 1.5.2. 基类 类型限定的通配符 super 1.5.3. 无限定通配符 1.5.4. 通配</description>
-    </item>
-    
-    <item>
-      <title>Java基础语法</title>
-      <link>https://www.kuangcp.top/post/java/basic/javabasicsyntax/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/basic/javabasicsyntax/</guid>
-      <description>💠 基础语法 1.1. 代码风格 1.2. 结构 1.2.1. 判断 1.2.2. 循环 1.3. 标准输入输出 1.4. Runtime 数据类型 2.1. 自动拆装箱 2.2. 基础数据类型 2.2.1. byte 2.2.2. char 2.2.3. boolean 2.2.4. short 2.2.5. int 2.2.6. long 2.2.7. float 2.2.8. double 2.3. 封装类型 2.3.1. String 2.3.2. Float</description>
-    </item>
-    
-    <item>
-      <title>Java快速开发框架</title>
-      <link>https://www.kuangcp.top/post/java/ecosystem/javaboot/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/ecosystem/javaboot/</guid>
-      <description>💠 关于Java的快速开发框架 1.1. Springboot 1.2. Jboot 1.3. NuzBoot 1.4. OpenLiberty 1.5. ActiveJ 💠 2024-04-22 00:47:57 关于Java的快速开发框架 Springboot 基于Spring Jboot 基于JFinal NuzBoot OpenLiberty Github ActiveJ Github</description>
-    </item>
-    
-    <item>
-      <title>Java网络编程</title>
-      <link>https://www.kuangcp.top/post/java/advancedlearning/javanetwork/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/advancedlearning/javanetwork/</guid>
-      <description>💠 Java网络编程 1.1. 基础 1.1.1. Socket 1.2. Tips 💠 2024-03-04 14:39:31 Java网络编程 参考: Java网络教程 java proxy 基础 获取主机网络信息 获取本地ip Getting the IP address of the current machine using Java Socket 码农翻</description>
-    </item>
-    
-    <item>
-      <title>Java线程</title>
-      <link>https://www.kuangcp.top/post/java/advancedlearning/javathread/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/advancedlearning/javathread/</guid>
-      <description>💠 Java线程 生命周期 2.1. 创建 2.2. 控制 2.2.1. yield 2.2.2. join 2.2.3. interrupt 2.2.4. Signal 2.3. 销毁 2.3.1. 观测异常 ThreadLocal 3.1. Hook 3.2. 优雅关机 CompletableFuture 线程池 协程 6.1. Quasar 6.2. Virtual Threads 💠 2024-09-13 10:39:04 Java线程 个人学习代码 Jav</description>
-    </item>
-    
-    <item>
-      <title>Java应用的部署</title>
-      <link>https://www.kuangcp.top/post/java/basic/javadeploy/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/basic/javadeploy/</guid>
-      <description>💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 Tips 3.1. Java在Linux上的时区问题 3.2. 容器中J</description>
-    </item>
-    
-    <item>
       <title>Java中的IO</title>
       <link>https://www.kuangcp.top/post/java/advancedlearning/javaio/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/advancedlearning/javaio/</guid>
       <description>目录 start Java中的IO IO 简史 BIO NIO AIO 字节流 字符流 应用 文件IO 读取配置文件 可执行jar读取外部配置文件 Maven项目 网络IO NIO Buffer 目录 end|2023-07-24 18:06| Java</description>
+    </item>
+    
+    <item>
+      <title>Java中的注解</title>
+      <link>https://www.kuangcp.top/post/java/basic/javaannotation/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/basic/javaannotation/</guid>
+      <description>目录 start 注解 自定义Annotation 读取 目录 end|2021-05-17 00:15| 注解 参考博客 全面解析Java注解 | Java注解（2）-运行时框架 参考项目 AnnotationDemo 注解定义包含四个元</description>
     </item>
     
     <item>
@@ -503,21 +413,111 @@
     </item>
     
     <item>
-      <title>Java中的注解</title>
-      <link>https://www.kuangcp.top/post/java/basic/javaannotation/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://www.kuangcp.top/post/java/basic/javaannotation/</guid>
-      <description>目录 start 注解 自定义Annotation 读取 目录 end|2021-05-17 00:15| 注解 参考博客 全面解析Java注解 | Java注解（2）-运行时框架 参考项目 AnnotationDemo 注解定义包含四个元</description>
-    </item>
-    
-    <item>
       <title>Java主要发行版概述</title>
       <link>https://www.kuangcp.top/post/java/advancedlearning/release/javareleaseversion/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/advancedlearning/release/javareleaseversion/</guid>
       <description>💠 Java主要发行版本 1.1. Java5 1.2. Java6 1.3. Java7 1.4. Java8 LST 1.5. Java9 1.6. Java10 1.7. Java11 LTS 1.8. Java12 1.9. Java13 1.10. Java14 1.11. Java15 1.12. Java16 1.13. Java17 LTS 1.14. Java18 1.15. Java21 LTS 💠 2024-06-21 16:17:04 Java主要发行版本 官网 Release Note Java语言特性</description>
+    </item>
+    
+    <item>
+      <title>Java反射原理以及使用</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javareflection/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javareflection/</guid>
+      <description>💠 反射 概念 实现原理 3.1. Inflation 基础类 4.1. AccessibleObject 4.2. Annotation 4.3. Class 4.4. Field 4.5. Method 4.6. Constructor 4.7. Modifier 使用 5.1. 获取Class对象的方式 5.2. 反射的基本使用 5.2.1. 操作构造方法 5.2.2. 操作类中方法 5.2.3. 操作类的</description>
+    </item>
+    
+    <item>
+      <title>Java基础语法</title>
+      <link>https://www.kuangcp.top/post/java/basic/javabasicsyntax/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/basic/javabasicsyntax/</guid>
+      <description>💠 基础语法 1.1. 代码风格 1.2. 结构 1.2.1. 判断 1.2.2. 循环 1.3. 标准输入输出 1.4. Runtime 数据类型 2.1. 自动拆装箱 2.2. 基础数据类型 2.2.1. byte 2.2.2. char 2.2.3. boolean 2.2.4. short 2.2.5. int 2.2.6. long 2.2.7. float 2.2.8. double 2.3. 封装类型 2.3.1. String 2.3.2. Float</description>
+    </item>
+    
+    <item>
+      <title>Java并发</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javaconcurrency/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javaconcurrency/</guid>
+      <description>💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. AQS 3.3. 功能</description>
+    </item>
+    
+    <item>
+      <title>Java应用的部署</title>
+      <link>https://www.kuangcp.top/post/java/basic/javadeploy/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/basic/javadeploy/</guid>
+      <description>💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 Tips 3.1. Java在Linux上的时区问题 3.2. 容器中J</description>
+    </item>
+    
+    <item>
+      <title>Java快速开发框架</title>
+      <link>https://www.kuangcp.top/post/java/ecosystem/javaboot/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/ecosystem/javaboot/</guid>
+      <description>💠 关于Java的快速开发框架 1.1. Springboot 1.2. Jboot 1.3. NuzBoot 1.4. OpenLiberty 1.5. ActiveJ 💠 2024-04-22 00:47:57 关于Java的快速开发框架 Springboot 基于Spring Jboot 基于JFinal NuzBoot OpenLiberty Github ActiveJ Github</description>
+    </item>
+    
+    <item>
+      <title>Java泛型</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javagenerics/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javagenerics/</guid>
+      <description>💠 泛型 1.1. 简单使用 1.2. 类型擦除 1.3. 约束和局限性 1.4. 泛型类型的继承规则 1.5. 通配符类型 1.5.1. 子类 类型限定的通配符 extends 1.5.2. 基类 类型限定的通配符 super 1.5.3. 无限定通配符 1.5.4. 通配</description>
+    </item>
+    
+    <item>
+      <title>Java的JDK以及JRE</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/release/jdkandjre/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/release/jdkandjre/</guid>
+      <description>💠 JDK And JRE Oracle 2.1. Oracle JDK 2.2. Oracle JRE OpenJDK 商业组织JDK 4.1. Corretto JDK源码 💠 2024-10-02 22:33:00 JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示</description>
+    </item>
+    
+    <item>
+      <title>Java的字节码</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javaclass/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javaclass/</guid>
+      <description>💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠</description>
+    </item>
+    
+    <item>
+      <title>Java的集合</title>
+      <link>https://www.kuangcp.top/post/java/collection/javacollection/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/collection/javacollection/</guid>
+      <description>💠 JDK中的集合 1.1. 集合继承和实现关系 1.2. Iterator 1.2.1. 规避 ConcurrentModificationException 1.3. Map 1.3.1. HashMap 1.3.2. TreeMap 1.4. List 1.5. Set 第三方开源集合框架 2.1. fastutil 2.2. Koloboke 2.3. Trove 💠 2024-07-13 00:44:21 JDK中的集合 Java集合必会14问</description>
+    </item>
+    
+    <item>
+      <title>Java线程</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javathread/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javathread/</guid>
+      <description>💠 Java线程 生命周期 2.1. 创建 2.2. 控制 2.2.1. yield 2.2.2. join 2.2.3. interrupt 2.2.4. Signal 2.3. 销毁 2.3.1. 观测异常 ThreadLocal 3.1. Hook 3.2. 优雅关机 CompletableFuture 线程池 协程 6.1. Quasar 6.2. Virtual Threads 💠 2024-09-13 10:39:04 Java线程 个人学习代码 Jav</description>
+    </item>
+    
+    <item>
+      <title>Java网络编程</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javanetwork/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javanetwork/</guid>
+      <description>💠 Java网络编程 1.1. 基础 1.1.1. Socket 1.2. Tips 💠 2024-03-04 14:39:31 Java网络编程 参考: Java网络教程 java proxy 基础 获取主机网络信息 获取本地ip Getting the IP address of the current machine using Java Socket 码农翻</description>
     </item>
     
     <item>
