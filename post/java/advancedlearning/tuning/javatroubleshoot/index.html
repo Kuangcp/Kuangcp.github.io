@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-14 16:40:22 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-18 14:31:55 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Java问题排查手册" />
-<meta property="og:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-14 16:40:22 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" />
+<meta property="og:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-18 14:31:55 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/tuning/javatroubleshoot/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-08-25T15:51:12+00:00" />
 <meta property="article:modified_time" content="2023-08-25T15:51:12+00:00" />
 
 <meta itemprop="name" content="Java问题排查手册">
-<meta itemprop="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-14 16:40:22 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"><meta itemprop="datePublished" content="2023-08-25T15:51:12+00:00" />
+<meta itemprop="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-18 14:31:55 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"><meta itemprop="datePublished" content="2023-08-25T15:51:12+00:00" />
 <meta itemprop="dateModified" content="2023-08-25T15:51:12+00:00" />
 <meta itemprop="wordCount" content="2209">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java问题排查手册"/>
-<meta name="twitter:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-14 16:40:22 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"/>
+<meta name="twitter:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-18 14:31:55 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -119,7 +119,9 @@
 
       <div class="post-meta">
         <span class="post-time"> 2023-08-25 </span>
-        
+        <div class="post-category">
+            <a href="/categories/troubleshoot/"> Troubleshoot </a>
+            </div>
           <span class="more-meta"> 2209 words </span>
           <span class="more-meta"> 5 mins read </span>
         
@@ -151,11 +153,6 @@
 </nav>
   </div>
 </div>
-  <div class="post-outdated">
-    <div class="warn">
-      <p>[NOTE] Updated <span class="timeago" datetime="2023-08-25T15:51:12" title="August 25, 2023">August 25, 2023</span>. This article may have outdated content or subject matter.</p>
-    </div>
-  </div>
     <div class="post-content">
       <p>💠</p>
 <ul>
@@ -179,7 +176,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-14 16:40:22</p>
+<p>💠 2024-11-18 14:31:55</p>
 <hr>
 <h1 id="troubleshoot">Troubleshoot</h1>
 <p>当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总</p>
@@ -430,17 +427,12 @@ JVM层：记录好后续排查分析故障现场的必要信息后（dump，日�
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
-  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
-    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
-    timeago().render(document.querySelectorAll('.timeago'), languageCode);
-    timeago.cancel();  
-  </script>
 
 
 
 <script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
 
 
 
