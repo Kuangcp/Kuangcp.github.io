@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Executor框架 - Mythos</title>
+  <title>线程池 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 线程池监控 目录 end|2021-05-17 00:15| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-09-13 10:39:04 线程池 Java线程池实现原理及" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/executorandpool/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/concurrency/executorandpool/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,24 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Executor框架" />
-<meta property="og:description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 线程池监控 目录 end|2021-05-17 00:15| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线" />
+<meta property="og:title" content="线程池" />
+<meta property="og:description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-09-13 10:39:04 线程池 Java线程池实现原理及" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/executorandpool/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/concurrency/executorandpool/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-04-19T12:42:09+00:00" />
 <meta property="article:modified_time" content="2019-04-19T12:42:09+00:00" />
-<meta itemprop="name" content="Executor框架">
-<meta itemprop="description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 线程池监控 目录 end|2021-05-17 00:15| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线">
-<meta itemprop="datePublished" content="2019-04-19T12:42:09+00:00" />
+
+<meta itemprop="name" content="线程池">
+<meta itemprop="description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-09-13 10:39:04 线程池 Java线程池实现原理及"><meta itemprop="datePublished" content="2019-04-19T12:42:09+00:00" />
 <meta itemprop="dateModified" content="2019-04-19T12:42:09+00:00" />
-<meta itemprop="wordCount" content="1536">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Executor框架"/>
-<meta name="twitter:description" content="目录 start Executor框架 线程池 常用方法 创建线程池的方法 线程池监控 目录 end|2021-05-17 00:15| Executor框架 为什么要使用线程池? 为什么要使用该框架? 使用线"/>
+<meta itemprop="wordCount" content="3842">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="线程池"/>
+<meta name="twitter:description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-09-13 10:39:04 线程池 Java线程池实现原理及"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -119,91 +115,156 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Executor框架</h1>
+      <h1 class="post-title">线程池</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2019-04-19 </span>
         
-          <span class="more-meta"> 1536 words </span>
-          <span class="more-meta"> 4 mins read </span>
+          <span class="more-meta"> 约 3842 字 </span>
+          <span class="more-meta"> 预计阅读 8 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
     <li><a href="#线程池">线程池</a>
       <ul>
-        <li><a href="#常用方法">常用方法</a></li>
+        <li><a href="#executorservice-接口">ExecutorService 接口</a></li>
+        <li><a href="#executors">Executors</a></li>
+        <li><a href="#completionservice-接口">CompletionService 接口</a></li>
+        <li><a href="#scheduledthreadpoolexecutor-stpe">ScheduledThreadPoolExecutor STPE</a></li>
+        <li><a href="#分支合并框架-forkjoin">分支合并框架 Fork/Join</a></li>
       </ul>
     </li>
-    <li><a href="#创建线程池的方法">创建线程池的方法</a></li>
+    <li><a href="#spring">Spring</a>
+      <ul>
+        <li><a href="#threadpooltaskexecutor">ThreadPoolTaskExecutor</a></li>
+      </ul>
+    </li>
+    <li><a href="#实践">实践</a>
+      <ul>
+        <li><a href="#线程池-参数优化-监控">线程池 参数优化 监控</a></li>
+        <li><a href="#业务线程池">业务线程池</a></li>
+        <li><a href="#停止线程池">停止线程池</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-04-19T12:42:09" title="April 19, 2019">April 19, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#executor%E6%A1%86%E6%9E%B6">Executor框架</a>
-<ol>
-<li><a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0">线程池</a>
-<ol>
-<li><a href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95">常用方法</a></li>
+<li><a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0">线程池</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#executorservice-%E6%8E%A5%E5%8F%A3">ExecutorService 接口</a></li>
+<li>1.2. <a href="#executors">Executors</a></li>
+<li>1.3. <a href="#completionservice-%E6%8E%A5%E5%8F%A3">CompletionService 接口</a></li>
+<li>1.4. <a href="#scheduledthreadpoolexecutor-stpe">ScheduledThreadPoolExecutor STPE</a></li>
+<li>1.5. <a href="#%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6%E6%A1%86%E6%9E%B6-forkjoin">分支合并框架 Fork/Join</a></li>
+</ul>
 </li>
-<li><a href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%96%B9%E6%B3%95">创建线程池的方法</a></li>
+<li>
+<ol start="2">
+<li><a href="#spring">Spring</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#threadpooltaskexecutor">ThreadPoolTaskExecutor</a></li>
+</ul>
 </li>
-<li><a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9B%91%E6%8E%A7">线程池监控</a></li>
+<li>
+<ol start="3">
+<li><a href="#%E5%AE%9E%E8%B7%B5">实践</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-05-17 00:15</em>|</p>
+<ul>
+<li>3.1. <a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96-%E7%9B%91%E6%8E%A7">线程池 参数优化 监控</a></li>
+<li>3.2. <a href="#%E4%B8%9A%E5%8A%A1%E7%BA%BF%E7%A8%8B%E6%B1%A0">业务线程池</a></li>
+<li>3.3. <a href="#%E5%81%9C%E6%AD%A2%E7%BA%BF%E7%A8%8B%E6%B1%A0">停止线程池</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-09-13 10:39:04</p>
 <hr>
-<h1 id="executor框架">Executor框架</h1>
+<h1 id="线程池">线程池</h1>
 <blockquote>
-<p>为什么要使用线程池? 为什么要使用该框架?</p>
-</blockquote>
-<ol>
-<li>使用线程池能节省线程创建销毁的开销， 且能通过线程池的参数设置限流</li>
-</ol>
-<h2 id="线程池">线程池</h2>
-<blockquote>
-<p><a href="https://github.com/Kuangcp/JavaBase/blob/thread/src/main/java/com/github/kuangcp/UseThreadPool.java">使用默认的线程池策略</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://segmentfault.com/a/1190000012916473">线程池 BlockingQueue synchronized volatile</a>
+<p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html">Java线程池实现原理及其在美团业务中的实践</a>
+<a href="https://segmentfault.com/a/1190000012916473">线程池 BlockingQueue synchronized volatile</a>
 <a href="http://www.trinea.cn/android/java-android-thread-pool/">参考: Java(Android)线程池</a>
 <a href="http://codefine.site/2941.html">参考: Java ThreadPoolExecutor线程池使用的一个误区</a>
 <a href="http://ifeve.com/java-threadpool/">参考: 聊聊并发（三）Java线程池的分析和使用</a>
 <a href="http://ifeve.com/thread-pools/">参考: 线程池</a></p>
 </blockquote>
-<h3 id="常用方法">常用方法</h3>
+<blockquote>
+<p>快速创建命名策略的线程池 <code>依赖common-lang3</code></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">new</span> <span class="n">ThreadPoolExecutor</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">5</span><span class="o">,</span> <span class="n">0L</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">LinkedBlockingQueue</span><span class="o">&lt;&gt;(),</span> <span class="k">new</span> <span class="n">BasicThreadFactory</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">namingPattern</span><span class="o">(</span><span class="s">&#34;test-%d&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="executorservice-接口">ExecutorService 接口</h2>
+<blockquote>
+<p><a href="https://github.com/Kuangcp/JavaBase/tree/master/concurrency/src/main/java/thread/pool">Github Demo</a></p>
+</blockquote>
 <ul>
-<li><code>execute</code>：用于将任务提交给执行器执行
+<li>
+<p><code>execute</code>：用于将任务提交给执行器执行</p>
 <ul>
-<li>(会吞异常) 参数为Runable</li>
+<li>参数为Runable</li>
+<li>无返回，对于调用方来说无法感知异常，但是异常栈会被输出到 System.err ，依然有迹可查</li>
 </ul>
 </li>
-<li><code>submit</code>：功能同<code>execute</code>，但该方法有返回值
+<li>
+<p><code>submit</code>：功能同<code>execute</code>，但该方法可以返回值或抛出异常 Future 对象</p>
 <ul>
 <li>参数为Callable</li>
+<li>返回的Future对象如果不调用get方法，任务的异常栈在系统中<strong>没有任何痕迹</strong></li>
 </ul>
 </li>
-<li><code>shutdown()</code>：用于关闭执行器资源，执行器会拒绝后面的任务提交，并等待线程池中的任务结束后关闭资源
+<li>
+<p><code>shutdown()</code>：用于关闭执行器资源，执行器会拒绝后面的任务提交，并等待线程池中的任务结束后关闭资源</p>
 <ul>
 <li>应用关闭前尽量显式调用该方法关闭所有的线程池，避免资源泄漏</li>
 </ul>
 </li>
-<li><code>shutdownNow()</code>：立即关闭执行器，不再执行线程池中等待执行的任务，正在执行的任务将会继续</li>
-<li><code>isShutdown()</code>：调用了<code>shutdown()</code>后该方法将返回<code>true</code></li>
-<li><code>awaitTermination(long timeout, TimeUnit unit)</code>：该方法会阻塞调用执行器的线程，并等待执行器内任务完成会到达指定的时间</li>
-<li><code>invokeAny(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks)</code>：该方法返回到值为第一个完成的任务返回的值</li>
-<li><code>invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks)</code>：该任务的返回值为所有任务完成的结果</li>
+<li>
+<p><code>shutdownNow()</code>：立即关闭执行器，返回等待队列的任务，正在执行的线程将收到interupt但是不一定会停止</p>
+</li>
+<li>
+<p><code>isShutdown()</code>：是否调用过<code>shutdown()</code></p>
+</li>
+<li>
+<p><code>awaitTermination(long timeout, TimeUnit unit)</code>：该方法会阻塞调用线程，等待执行器内任务完成直到超时</p>
+</li>
+<li>
+<p><code>invokeAny(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks)</code>：返回 任意的第一个完成任务的返回值</p>
+</li>
+<li>
+<p><code>invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks)</code>：返回所有任务对应的Future对象</p>
+</li>
 </ul>
-<h2 id="创建线程池的方法">创建线程池的方法</h2>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<p>上述的 execute 和 submit 行为只针对 <code>ThreadPoolExecutor</code>. 对于 ScheduledThreadPoolExecutor 来说，execute行为不一样， execute提交的任务 抛出异常时也是<strong>没有任何痕迹</strong></p>
+<h2 id="executors">Executors</h2>
 <blockquote>
 <p>该处讲述的方法都为<code>java.util.concurrent.Executors</code>的方法 (静态工厂模式)</p>
 </blockquote>
@@ -241,7 +302,7 @@
 <li>使用<code>schedule(Runnable command, long delay, TimeUnit unit)</code>方法提交任务时，可让任务延迟执行，如下延迟1分钟执行示例:
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -249,19 +310,19 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 定义执行器，创建一个缓存线程池
-</span><span class="c1"></span><span class="n">ScheduledExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newScheduledThreadPool</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
-<span class="c1">// 提交任务
-</span><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">schedule</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello: &#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">()),</span> <span class="n">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
-<span class="c1">// 关闭执行器资源
-</span><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 定义执行器，创建一个缓存线程池
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ScheduledExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newScheduledThreadPool</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 提交任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">schedule</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello: &#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">()),</span> <span class="n">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 关闭执行器资源
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>使用<code>scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit)</code>方法提交任务，可让任务延迟并周期性执行，如下让任务延迟一秒后没3秒执行一次:
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -269,13 +330,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 定义执行器，创建一个缓存线程池
-</span><span class="c1"></span><span class="n">ScheduledExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newScheduledThreadPool</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
-<span class="c1">// 提交任务
-</span><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello: &#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">()),</span> <span class="n">1</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
-<span class="c1">// 周期性执行任务时不要关闭执行器，否则不会周期性执行
-</span><span class="c1">//executor.shutdown();
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 定义执行器，创建一个缓存线程池
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ScheduledExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newScheduledThreadPool</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 提交任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">executor</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello: &#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">()),</span> <span class="n">1</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 周期性执行任务时不要关闭执行器，否则不会周期性执行
+</span></span></span><span class="line"><span class="cl"><span class="c1">//executor.shutdown();
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -293,18 +354,226 @@
 </ul>
 </li>
 </ul>
-<h1 id="线程池监控">线程池监控</h1>
-<p>TODO Spring 监控submit或者execute 任务数 活跃线程数</p>
+<h2 id="completionservice-接口">CompletionService 接口</h2>
+<blockquote>
+<p>实现类 ExecutorCompletionService 类JavaDoc上有使用示例</p>
+</blockquote>
+<ul>
+<li>submit</li>
+<li>take</li>
+<li>poll</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/Kuangcp/JavaBase/blob/master/concurrency/src/test/java/situation/timoutpool/TimeoutExecPoolTest.java">TimeoutExecPoolTest</a><code>限时并行消费任务获取结果，时间到期则丢弃所有未完成的任务</code></p>
+</blockquote>
+<h2 id="scheduledthreadpoolexecutor-stpe">ScheduledThreadPoolExecutor STPE</h2>
+<ul>
+<li>线程池的大小可以预定义， 也可自适应</li>
+<li>所安排的任务可以定期执行，也可只运行一次</li>
+<li>STPE 扩展了 ThreadPoolExecutor 类，很相似但不具备定期调度能力
+<ul>
+<li>STPE 和并发包里的类结合使用是常见的模式之一</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>核心API： 提交任务</p>
+</blockquote>
+<ul>
+<li><code>schedule(Runnable command, long delay, TimeUnit unit)</code></li>
+<li><code>schedule(Callable&lt;V&gt; callable, long delay, TimeUnit unit)</code></li>
+<li><code>scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit)</code>
+<ul>
+<li>不管上一次Runnable执行结束的时间，总是以固定延迟时间执行 即 上一个Runnable执行开始时候 + 延时时间 = 下一个Runnable执行的时间点</li>
+</ul>
+</li>
+<li><code>scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)</code>
+<ul>
+<li>当上一个Runnable执行结束后+固定延迟 = 下一个Runnable执行的时间点</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>如何实现调度: <a href="https://juejin.cn/post/7035415187783942152">ScheduledThreadPoolExecutor实现原理</a> | <a href="https://github.com/Kuangcp/JavaBase/blob/master/concurrency/src/test/java/thread/schdule/SchedulerPoolTest.java">验证单元测试</a></p>
+</blockquote>
+<ul>
+<li>核心依赖 DelayedWorkQueue 实现延迟调度
+<ul>
+<li>全部线程繁忙时，调度会发生什么问题？</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="分支合并框架-forkjoin">分支合并框架 Fork/Join</h2>
+<blockquote>
+<p><a href="/Java/AdvancedLearning/Concurrency/ForkAndJoin.md">Note： Fork Join</a></p>
+</blockquote>
+<hr>
+<h1 id="spring">Spring</h1>
+<h2 id="threadpooltaskexecutor">ThreadPoolTaskExecutor</h2>
+<blockquote>
+<p>Spring的线程池封装实现</p>
+</blockquote>
+<ul>
+<li>setTaskDecorator: 线程池装饰器，通常用来ThreadLocal值的传递，例如 TraceId，授权对象</li>
+<li>setWaitForTasksToCompleteOnShutdown 等待线程正常执行完才退出全部线程</li>
+</ul>
+<hr>
+<h1 id="实践">实践</h1>
+<p>目标： 合理利用资源，让线程池安全可控的消费任务</p>
+<blockquote>
+<p><a href="https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing">About Pool Sizing</a> | <a href="https://github.com/brettwooldridge/HikariCP/issues/1023">About Pool Sizing in distributed environments / microservices</a><code>如何设置数据库连接池线程数</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/BdVqvm2wLNv05vMTieevMg"> 合理使用线程池以及线程变量 </a><br>
+<a href="https://nurkiewicz.com/2014/11/executorservice-10-tips-and-tricks.html">ExecutorService - 10 tips and tricks</a><br>
+<a href="/Java/Tool/TomcatDesign.md#%E7%BA%BF%E7%A8%8B%E6%B1%A0">Tomcat 线程池</a></p>
+</blockquote>
+<ul>
+<li>增加全局异常处理 <code>Thread.setUncaughtExceptionHandler()</code>, 或手动catch任务块全部代码 避免异常被吞 <a href="https://github.com/Kuangcp/JavaBase/blob/master/concurrency/src/test/java/thread/pool/PoolExceptionTest.java">测试代码</a></li>
+<li>避免局部线程池，容易遗忘线程资源回收，注意线程是GCRoot对象</li>
+<li>依据业务和监控合理设置参数，动态调整
+<ul>
+<li>监控指标核心诉求是 忙不忙，在忙什么，还有多少要忙。</li>
+<li>设置参数值（核心，最大，队列大小等等），活跃线程数，任务执行量，等待队列大小，执行拒绝策略次数。</li>
+</ul>
+</li>
+<li>管理好上下文参数</li>
+</ul>
+<h2 id="线程池-参数优化-监控">线程池 参数优化 监控</h2>
+<p>目的：观测线程池运行情况，优化吞吐量和延迟，规避资源分配不合理导致瓶颈甚至宕机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    Ncpu = cpu的核心数
+</span></span><span class="line"><span class="cl">    Ucpu = cpu的利用率
+</span></span><span class="line"><span class="cl">    W = 线程等待时间
+</span></span><span class="line"><span class="cl">    C = 线程执行计算时间
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>公式1：Nthreads = Ncpu * Ucpu * W/C</p>
+</blockquote>
+<ul>
+<li>此方案偏理论化，cpu的实际利用率（即分配多少cpu给线程池使用）和线程的计算，等待时间非常难评估，并且最后计算出来的结果也很容易偏离实际应用场景。</li>
+</ul>
+<blockquote>
+<p>公式2：coreSize = 2 * Ncpu , maxSize = 25 * Ncpu</p>
+</blockquote>
+<ul>
+<li>实际使用过程中不同的业务对线程池的需求不一样，所以统一采用cpu核心数来配置显然不太合理</li>
+</ul>
+<blockquote>
+<p>公式3：coreSize = tps * C , maxSize = tps * C * (1.7~2)</p>
+</blockquote>
+<ul>
+<li>依据tps和耗时来计算时刻内需要占用多少线程，这种适合资源充足时为了尽量降低等待时间</li>
+</ul>
+<hr>
+<p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html">Java线程池实现原理及其在美团业务中的实践</a>
+- 场景设计具有一定的开拓性，将无法预估的业务负载通过监控和动态伸缩来及时发现异常应对异常。
+- <a href="https://github.com/dromara/dynamic-tp">线程池动态监控</a><code>支持修改和监控告警</code></p>
+<p><a href="https://www.cnblogs.com/dennyzhangdd/p/6909771.html">根据CPU核心数确定线程池并发线程数</a><br>
+<a href="https://www.cnblogs.com/thisiswhy/p/12690630.html">如何设置线程池参数？</a>
+<a href="https://www.jianshu.com/p/6f6e2bcb8128">线程池实时管理与监控工具的实现与思考</a></p>
+<p><a href="https://heapdump.cn/article/4012121">线程池如何监控，才能帮助开发者快速定位线上错误？</a><code>将基准数据采集到数据库表里</code></p>
+<hr>
+<h2 id="业务线程池">业务线程池</h2>
+<p>在实际业务系统中，出于不同业务的吞吐量能力，故障影响，保障优先级 等方面的考虑，通常会对不同的业务模块划分不同的线程池，并依据对应的需求设置不同的参数和策略。<br>
+例如： HTTP客户端线程池，WEB服务器NIO线程池，缓存同步线程池，Websocket消息推送线程池 等等。</p>
+<p>基于以上的设计考量，会遇到一些问题</p>
+<ol>
+<li>
+<p>固定的线程参数无法应对动态的业务变化。</p>
+<ul>
+<li>方案： 上文的线程池监控告警以及动态参数调整，需要人为守护调整，或依据实际业务场景实现固定的动态扩缩容策略</li>
+</ul>
+</li>
+<li>
+<p>不同线程池，上下文传递以及事务问题, 以及异步交错问题。</p>
+<ul>
+<li>异步交错问题： 例如一个业务方法需要做ABC先后完成，但是三件事在不同的线程池中，由于不同线程池的执行效率不同导致未能按期望顺序执行
+<ul>
+<li>方案： 1. 通过 CompletableFuture 实现异步之间的依赖和组合</li>
+</ul>
+</li>
+<li>上下文传递问题： 可以使用TTL线程池，或者在线程池使用装饰器，手动复制需要的上下文</li>
+<li>事务传递问题： TODO</li>
+</ul>
+</li>
+<li>
+<p>随着业务需求的变化，线程池边界会模糊，导致吞吐量大的服务被低并发参数的线程池产生短板效应，吞吐量低的服务被高并发参数的线程池任务失败量突增甚至被打垮。</p>
+<ul>
+<li>例如HTTP请求任务被提交到了缓存同步线程池，大量的HTTP请求任务占用了很多资源导致系统缓存的实时性大大降低。</li>
+<li>方案： TODO</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="停止线程池">停止线程池</h2>
+<blockquote>
+<p>如何实现JVM停止时等待线程池中任务执行完成 即 优雅停机</p>
+</blockquote>
+<p>为了实现优雅停机的目标，应当先调用shutdown方法，调用这个方法也就意味着，这个线程池不会再接收任何新的任务，但是已经提交的任务还会继续执行。
+之后还应当调用awaitTermination方法，这个方法可以设定线程池在关闭之前的最大超时时间，如果在超时时间结束之前线程池能够正常关闭则会返回true，否则，超时会返回false。
+通常需要根据业务场景预估一个合理的超时时间。</p>
+<p>如果awaitTermination方法返回false，但又希望尽可能在线程池关闭之后再做其他资源回收工作，可以考虑再调用一次shutdownNow方法，此时队列中所有尚未被处理的任务都会被丢弃，同时会设置线程池中每个线程的中断标志位。
+shutdownNow <strong>并不保证</strong>一定会让正在运行的线程停止工作，除非提交给线程的任务能够正确响应中断。</p>
+<blockquote>
+<p>线程池停止时，如何感知到 被中断的 运行中和等待中的任务</p>
+</blockquote>
+<ul>
+<li>默认的shutdown接口返回的是Runnable匿名实例，无法明确获取业务特征
+<ul>
+<li>可以自己实现 Runnable 附带业务信息进去</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Task</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">Runnable</span> <span class="n">task</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="nf">Task</span><span class="o">(</span><span class="n">String</span> <span class="n">id</span><span class="o">,</span> <span class="n">Runnable</span> <span class="n">task</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">task</span> <span class="o">=</span> <span class="n">task</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">task</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-04-19
         
@@ -316,14 +585,14 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/java/advancedlearning/basic/stringconcat/">
+        <a class="prev" href="/post/skills/cs/io/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">StringConcat</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-default">计算机中的IO</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/linux/base/effectivelinux/">
+        <a class="next" href="/post/linux/base/linuxeffective/">
             <span class="next-text nav-default">高效的Linux</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -341,17 +610,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -359,11 +628,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -373,16 +642,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

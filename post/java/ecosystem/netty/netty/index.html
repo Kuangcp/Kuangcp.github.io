@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Netty - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Netty 使用 1.1. 基础构件 1.2. 编解码相关 1.2.1. Protobuf Websocket 衍生框架 Reactor Netty 💠 2024-07-24 17:28:31 Netty 使用 NettyServer与SpringBoot集成 Netty NIO 框架性能压测-短链接-对比T" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/java/ecosystem/netty/netty/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Netty" />
+<meta property="og:description" content="💠 Netty 使用 1.1. 基础构件 1.2. 编解码相关 1.2.1. Protobuf Websocket 衍生框架 Reactor Netty 💠 2024-07-24 17:28:31 Netty 使用 NettyServer与SpringBoot集成 Netty NIO 框架性能压测-短链接-对比T" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/ecosystem/netty/netty/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
+<meta itemprop="name" content="Netty">
+<meta itemprop="description" content="💠 Netty 使用 1.1. 基础构件 1.2. 编解码相关 1.2.1. Protobuf Websocket 衍生框架 Reactor Netty 💠 2024-07-24 17:28:31 Netty 使用 NettyServer与SpringBoot集成 Netty NIO 框架性能压测-短链接-对比T"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="1138">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Netty"/>
+<meta name="twitter:description" content="💠 Netty 使用 1.1. 基础构件 1.2. 编解码相关 1.2.1. Protobuf Websocket 衍生框架 Reactor Netty 💠 2024-07-24 17:28:31 Netty 使用 NettyServer与SpringBoot集成 Netty NIO 框架性能压测-短链接-对比T"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Netty</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        
+          <span class="more-meta"> 约 1138 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#netty-使用">Netty 使用</a>
+      <ul>
+        <li><a href="#基础构件">基础构件</a></li>
+        <li><a href="#编解码相关">编解码相关</a>
+          <ul>
+            <li><a href="#protobuf">Protobuf</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#websocket">Websocket</a></li>
+    <li><a href="#衍生框架">衍生框架</a></li>
+    <li><a href="#reactor-netty">Reactor Netty</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#netty-%E4%BD%BF%E7%94%A8">Netty 使用</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E5%9F%BA%E7%A1%80%E6%9E%84%E4%BB%B6">基础构件</a></li>
+<li>1.2. <a href="#%E7%BC%96%E8%A7%A3%E7%A0%81%E7%9B%B8%E5%85%B3">编解码相关</a>
+<ul>
+<li>1.2.1. <a href="#protobuf">Protobuf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#websocket">Websocket</a></li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E8%A1%8D%E7%94%9F%E6%A1%86%E6%9E%B6">衍生框架</a></li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li><a href="#reactor-netty">Reactor Netty</a></li>
+</ol>
+</li>
+</ul>
+<p>💠 2024-07-24 17:28:31</p>
+<hr>
+<h1 id="netty-使用">Netty 使用</h1>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000004919133">NettyServer与SpringBoot集成</a><br>
+<a href="http://www.oschina.net/question/12_8749">Netty NIO 框架性能压测-短链接-对比Tomcat </a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/netty/netty/tree/4.1/example">Github: Netty Example</a></p>
+</blockquote>
+<h2 id="基础构件">基础构件</h2>
+<ul>
+<li>
+<p>Channel</p>
+<ul>
+<li>Channel 是 NIO 基本的结构：一个 用于连接到实体(硬件设备 、文件 、网络套接字或程序组件)，能够执行一个或多个不同的 I/O 操作（读或写）的开放连接。</li>
+</ul>
+</li>
+<li>
+<p>Callback</p>
+<ul>
+<li>回调方法，常用于通知其他模块操作已完成</li>
+</ul>
+</li>
+<li>
+<p>Future</p>
+<ul>
+<li>提供了一种 通知应用操作已经完成 的方式： 这个 对象 作为一个 <strong>异步操作结果的占位符</strong>， 它在 将来的某个时候 完成并提供结果。</li>
+<li>JDK java.util.concurrent.Future 提供的实现只允许您手动检查操作是否完成或阻塞了， Netty自己开发了ChannelFuture</li>
+<li>ChannelFuture 可注册多个 ChannelFutureListener
+<ul>
+<li>在Future操作完成时会调用 Listener的operationComplete</li>
+<li>如果Future有执行异常返回的值是CauseHolder的实例包住了产生的Throwable</li>
+</ul>
+</li>
+<li>ChannelFutureListener 提供的通知机制不需要手动检查操作是否完成的   每个 Netty 的 outbound I/O 操作都会返回一个 ChannelFuture，这样就不会阻塞</li>
+<li>这就是 Netty 所谓的 <code>自底向上的异步和事件驱动</code></li>
+</ul>
+</li>
+<li>
+<p>Event和Handler</p>
+<ul>
+<li>事件驱动：使用不同的Event通知状态的变更，Handler响应不同的Event。</li>
+<li>Event 大致分类： 活跃或非活跃连接，数据读取，用户事件，异常</li>
+<li>Handler 大致分类： 日志，数据转换，流控制，应用程序逻辑</li>
+<li>Netty 的 ChannelHandler 是各种 处理程序的基本抽象 。每个 处理器实例 就是一个 回调 ，用于 执行对各种事件的响应</li>
+<li>Netty 也提供了一组丰富的预定义的处理程序， 比如，各种协议的编解码器包括 HTTP 和 SSL/TLS</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>组合使用</p>
+</blockquote>
+<ul>
+<li>
+<p>Future, Callback 和 Handler</p>
+<ul>
+<li>Netty 的异步编程模型是建立在 future 和 callback 的概念上的</li>
+<li><strong>拦截操作</strong> 和 <strong>转换入站或出站数据</strong> 只需要 提供回调 或 获取 future 操作返回的数据</li>
+<li>一个 Netty 的设计的主要目标是促进 关注点分离 ： <code>使业务逻辑从网络基础设施应用程序中分离</code></li>
+</ul>
+</li>
+<li>
+<p>Selector, Event, EventLoop</p>
+<ul>
+<li>通过 触发事件 从 应用程序 中 抽象 出 Selector ，从而避免手写调度代码</li>
+<li>EventLoop 分配给每个 Channel 来处理所有的事件 ，包括
+<ul>
+<li>被注册关注的事件</li>
+<li>调度事件给 ChannelHandler</li>
+</ul>
+</li>
+<li>EventLoop 本身是由<strong>单线程</strong>去处理 Channel 所有的 I/O 事件，并且在 EventLoop 的生命周期内不会改变</li>
+<li>这个简单而强大的线程模型，使得 ChannelHandler 无需关注线程同步问题</li>
+</ul>
+</li>
+</ul>
+<h2 id="编解码相关">编解码相关</h2>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000013122610">Netty 编解码技术 数据通信和心跳监控案例</a><br>
+<a href="https://segmentfault.com/a/1190000013039327">Netty 拆包粘包和服务启动流程分析</a><br>
+<a href="https://crossoverjie.top/2018/08/03/netty/Netty(3)TCP-Sticky/">参考: Netty(三) 什么是 TCP 拆、粘包？如何解决？</a></p>
+</blockquote>
+<h3 id="protobuf">Protobuf</h3>
+<blockquote>
+<p><a href="/Java/AdvancedLearning/ClassFile.md#protobuf">Protobuf基础</a> |
+<a href="https://github.com/Kuangcp/NettyBook2/blob/master/src/main/java/com/phei/netty/codec/protobuf/README.md">Netty中的使用案例</a></p>
+<blockquote>
+<p>要搭配处理半包的解码器</p>
+</blockquote>
+</blockquote>
+<ol>
+<li>使用 ProtobufVarint32FrameDecoder</li>
+<li>继承自 LengthFieldBasedFrameDecoder</li>
+<li>继承自 ByteToMessageDecoder 自己处理</li>
+</ol>
+<hr>
+<h1 id="websocket">Websocket</h1>
+<blockquote>
+<p>接收数据buffer读取流程： 优势是新连接申请的内存低，实际使用中会对申请的buffer扩缩容，平衡缓存池利用率和读取效率</p>
+</blockquote>
+<ol>
+<li>读取Socket中数据入口： <code>io.netty.channel.nio.AbstractNioByteChannel.NioByteUnsafe#read</code>
+<ul>
+<li>在 byteBuf = allocHandle.allocate(allocator); 调用中会依据以往读取值 <code>AdaptiveRecvByteBufAllocator.HandleImpl#guess()</code> 一个大小并使用
+<ul>
+<li>其中 allocHandle 是 <code>AdaptiveRecvByteBufAllocator</code> allocator 是 <code>PooledByteBufAllocator</code></li>
+</ul>
+</li>
+<li>每次读取完成后都会 <code>AdaptiveRecvByteBufAllocator.HandleImpl#record()</code> 方法记录,按 AdaptiveRecvByteBufAllocator.SIZE_TABLE 做梯度扩缩容</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/30c26a755a87">参考: Netty WebSocket 拆包浅析</a></p>
+</blockquote>
+<ul>
+<li>io.netty.handler.codec.http.websocketx.WebSocket08FrameDecoder#decode</li>
+<li><input disabled="" type="checkbox"> 文本数据达到多大，会遇到拆包问题</li>
+</ul>
+<hr>
+<h1 id="衍生框架">衍生框架</h1>
+<blockquote>
+<p><a href="https://github.com/mrniko/netty-socketio">netty-socketio</a><br>
+<a href="https://github.com/szhnet/kcp-netty">kcp-netty</a><br>
+<a href="https://github.com/ReactiveX/RxNetty">Reactive Extension (Rx) Adaptor for Netty </a> RxNetty
+<a href="https://github.com/wangzihaogithub/spring-boot-protocol">Netty Servlet</a></p>
+</blockquote>
+<hr>
+<h1 id="reactor-netty">Reactor Netty</h1>
+<blockquote>
+<p><a href="https://projectreactor.io/docs/netty/release/reference/index.html#about-doc">Doc</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/Kuangcp/JavaBase/tree/master/netty/src/main/java/reactor">个人 样例代码</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/ecosystem/mybatis/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Mybatis</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/frontend/node/nodejs/">
+            <span class="next-text nav-default">NodeJS</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

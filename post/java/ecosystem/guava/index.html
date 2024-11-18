@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Guava - Mythos</title>
+  <title>Guava - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Guava 基础部分 EventBus 目录 end|2020-06-24 02:06| Guava Github地址 官方手册 | git地址:https://github.com/google/guava.wiki." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Guava 1.1. 基础部分 1.2. 集合 独立组件 2.1. Cache 2.2. RateLimiter 2.3. EventBus 💠 2024-10-25 18:09:58 Guava Github地址 官方手册 git clone https://github.com/google/guava.wiki.git 翻译版 Guava Guide Guava工程包含了若干被Google的 Java项目" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/ecosystem/guava/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/ecosystem/guava/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Guava" />
-<meta property="og:description" content="目录 start Guava 基础部分 EventBus 目录 end|2020-06-24 02:06| Guava Github地址 官方手册 | git地址:https://github.com/google/guava.wiki." />
+<meta property="og:description" content="💠 Guava 1.1. 基础部分 1.2. 集合 独立组件 2.1. Cache 2.2. RateLimiter 2.3. EventBus 💠 2024-10-25 18:09:58 Guava Github地址 官方手册 git clone https://github.com/google/guava.wiki.git 翻译版 Guava Guide Guava工程包含了若干被Google的 Java项目" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/ecosystem/guava/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/ecosystem/guava/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Guava">
-<meta itemprop="description" content="目录 start Guava 基础部分 EventBus 目录 end|2020-06-24 02:06| Guava Github地址 官方手册 | git地址:https://github.com/google/guava.wiki.">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 Guava 1.1. 基础部分 1.2. 集合 独立组件 2.1. Cache 2.2. RateLimiter 2.3. EventBus 💠 2024-10-25 18:09:58 Guava Github地址 官方手册 git clone https://github.com/google/guava.wiki.git 翻译版 Guava Guide Guava工程包含了若干被Google的 Java项目"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="553">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="788">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Guava"/>
-<meta name="twitter:description" content="目录 start Guava 基础部分 EventBus 目录 end|2020-06-24 02:06| Guava Github地址 官方手册 | git地址:https://github.com/google/guava.wiki."/>
+<meta name="twitter:description" content="💠 Guava 1.1. 基础部分 1.2. 集合 独立组件 2.1. Cache 2.2. RateLimiter 2.3. EventBus 💠 2024-10-25 18:09:58 Guava Github地址 官方手册 git clone https://github.com/google/guava.wiki.git 翻译版 Guava Guide Guava工程包含了若干被Google的 Java项目"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,19 +122,27 @@
         <div class="post-category">
             <a href="/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%BA%93/"> 工具类库 </a>
             </div>
-          <span class="more-meta"> 553 words </span>
-          <span class="more-meta"> 2 mins read </span>
+          <span class="more-meta"> 约 788 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#基础部分">基础部分</a>
+    <li><a href="#guava">Guava</a>
       <ul>
+        <li><a href="#基础部分">基础部分</a></li>
+        <li><a href="#集合">集合</a></li>
+      </ul>
+    </li>
+    <li><a href="#独立组件">独立组件</a>
+      <ul>
+        <li><a href="#cache">Cache</a></li>
+        <li><a href="#ratelimiter">RateLimiter</a></li>
         <li><a href="#eventbus">EventBus</a></li>
       </ul>
     </li>
@@ -146,34 +150,48 @@
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#guava">Guava</a>
-<ol>
-<li><a href="#%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86">基础部分</a>
-<ol>
-<li><a href="#eventbus">EventBus</a></li>
+<li><a href="#guava">Guava</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86">基础部分</a></li>
+<li>1.2. <a href="#%E9%9B%86%E5%90%88">集合</a></li>
+</ul>
 </li>
+<li>
+<ol start="2">
+<li><a href="#%E7%8B%AC%E7%AB%8B%E7%BB%84%E4%BB%B6">独立组件</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#cache">Cache</a></li>
+<li>2.2. <a href="#ratelimiter">RateLimiter</a></li>
+<li>2.3. <a href="#eventbus">EventBus</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-06-24 02:06</em>|</p>
+</ul>
+<p>💠 2024-10-25 18:09:58</p>
 <hr>
 <h1 id="guava">Guava</h1>
 <blockquote>
-<p><a href="https://github.com/google/guava">Github地址</a>
-<a href="https://github.com/google/guava/wiki">官方手册</a> | git地址:<code>https://github.com/google/guava.wiki.git</code>
-<a href="http://ifeve.com/google-guava/">翻译版</a></p>
+<p><a href="https://github.com/google/guava">Github地址</a><br>
+<a href="https://github.com/google/guava/wiki">官方手册</a> <code>git clone https://github.com/google/guava.wiki.git</code><br>
+<a href="http://ifeve.com/google-guava/">翻译版</a><br>
+<a href="https://www.baeldung.com/guava-guide">Guava Guide</a></p>
 </blockquote>
-<ul>
-<li>Guava工程包含了若干被Google的 Java项目广泛依赖 的核心库，例如：集合 [collections] 、缓存 [caching] 、原生类型支持 [primitives support] 、并发库 [concurrency libraries] 、通用注解 [common annotations] 、字符串处理 [string processing] 、I/O 等等。 所有这些工具每天都在被Google的工程师应用在产品服务中。</li>
-</ul>
+<p>Guava工程包含了若干被Google的 Java项目广泛依赖 的核心库，例如：集合 collections 、缓存 caching 、原生类型支持 [primitives support] 、并发库 concurrency libraries 、通用注解 common annotations 、字符串处理 string processing 、I/O 等等。 所有这些工具每天都在被Google的工程师应用在产品服务中。</p>
 <p><em>包结构</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -182,18 +200,43 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    com.google.common.annotations
-    com.google.common.base
-    com.google.common.collect
-    com.google.common.io
-    com.google.common.net
-    com.google.common.primitives
-    com.google.common.util.concurrent
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    com.google.common.annotations
+</span></span><span class="line"><span class="cl">    com.google.common.base
+</span></span><span class="line"><span class="cl">    com.google.common.collect
+</span></span><span class="line"><span class="cl">    com.google.common.io
+</span></span><span class="line"><span class="cl">    com.google.common.net
+</span></span><span class="line"><span class="cl">    com.google.common.primitives
+</span></span><span class="line"><span class="cl">    com.google.common.util.concurrent
+</span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><h2 id="基础部分">基础部分</h2>
+<blockquote>
+<p>Optional的设计和Java8的Optional是差不多的,Java8可能是参考的Guava。</p>
+</blockquote>
+<h2 id="集合">集合</h2>
+<hr>
+<h1 id="独立组件">独立组件</h1>
+<h2 id="cache">Cache</h2>
+<blockquote>
+<p><a href="https://www.baeldung.com/guava-cache">Guava Cache | Baeldung</a></p>
+</blockquote>
+<p>但是api设计上没有 <a href="/Java/AdvancedLearning/Cache/Caffeine.md">Caffeine</a> 灵活</p>
+<h2 id="ratelimiter">RateLimiter</h2>
+<blockquote>
+<p>令牌桶算法实现</p>
+</blockquote>
+<p>Beta 状态，官方TODO优化为nano级别，降低存储成本</p>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/60979444">RateLimiter限流原理解析</a></p>
+</blockquote>
+<h2 id="eventbus">EventBus</h2>
+<blockquote>
+<p><a href="https://github.com/google/guava/wiki/EventBusExplained">官方文档</a> | <a href="http://www.cnblogs.com/peida/p/EventBus.html">Guava学习笔记：EventBus</a>
+<a href="http://ifeve.com/google-guava-eventbus/">并发编程网 event bus</a> | <a href="https://www.yeetrack.com/?p=1177">走进Guava</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -204,78 +247,47 @@
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [Google Guava] 7-原生类型
-    [Google Guava] 12-数学运算
-    [Google Guava] 排序: Guava强大的”流畅风格比较器”
-    [Google Guava] 2.1-不可变集合
-    [Google Guava] 10-散列
-    [Google Guava] 9-I/O
-    [Google Guava] 1.2-前置条件
-    [Google Guava] 4-函数式编程
-    [Google Guava] 6-字符串处理：分割，连接，填充
-    [Google Guava] 1.1-使用和避免null
-    [Google Guava] 8-区间
-    [Google Guava] 2.4-集合扩展工具类
-    [Google Guava] 1.3-常见Object方法    @Bean
-    public RedisTemplate&lt;Object,Object&gt; redisTemplate(RedisConnectionFactory factory) {
-        RedisTemplate&lt;Object,Object&gt; template = new RedisTemplate&lt;&gt;();
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer&lt;&gt;(Object.class);
-        template.setConnectionFactory(factory);
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
-        // 值序列化采用 jackson2JsonRedisSerializer
-        template.setValueSerializer(jackson2JsonRedisSerializer);
-        // 键序列化采用 StringRedisSerializer
-        template.setKeySerializer(new StringRedisSerializer());
-        template.afterPropertiesSet();
-        return template;
-    }
-    google Guava包的ListenableFuture解析
-    [Google Guava] 11-事件总线
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 快速使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">EventBus</span> <span class="n">eventBus</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EventBus</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">eventBus</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Subscribe</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">hehe</span><span class="o">(</span><span class="n">Integer</span> <span class="n">num</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">num</span> <span class="o">+</span> <span class="s">&#34;:&#34;</span> <span class="o">+</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">sleep</span><span class="o">(</span><span class="n">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">eventBus</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="基础部分">基础部分</h2>
-<blockquote>
-<p>Optional的设计和Java8的Optional是差不多的, 只是方法的命名不一样而已</p>
+</div><blockquote>
+<p>注意 只使用 <code>@Subscribe</code>注解的话，如果有两个同类事件触发，也是要排队执行的，因为包装的是 <code>Subscriber.SynchronizedSubscriber</code> 实现，同类事件并发执行需要加上 <code>@AllowConcurrentEvents</code></p>
 </blockquote>
-<h3 id="eventbus">EventBus</h3>
-<blockquote>
-<p><a href="https://github.com/google/guava/wiki/EventBusExplained">官方文档</a> | <a href="http://www.cnblogs.com/peida/p/EventBus.html">Guava学习笔记：EventBus</a>
-<a href="http://ifeve.com/google-guava-eventbus/">并发编程网 event bus</a> | <a href="https://www.yeetrack.com/?p=1177">走进Guava</a></p>
-</blockquote>
+<p>基础组件</p>
+<ul>
+<li>Executor ： EventBus#executor 默认是当前线程，通常指定自定义线程池</li>
+<li>SubscriberRegistry ： Subscriber注册器，每个带有@Subscribe的方法会被注册到该类中</li>
+<li>Dispatcher ： 调度器，负责将事件，分发给事件对应的Subscriber，使用Executor执行这些Subscriber
+<ul>
+<li>PerThreadQueuedDispatcher 执行线程内将会按事件发布顺序进行消费， 执行线程间仍异步乱序。<code>ThreadLocal&lt;Queue&gt;</code> 实现线程间队列隔离</li>
+<li>LegacyAsyncDispatcher 默认用于 AsyncEventBus，异步实现即可能出现不同的线程不同的事件消费顺序，同一线程对先后发布的事件消费顺序也可能不一致，注释都说这个有没有必要用队列 emmm</li>
+<li>ImmediateDispatcher 无队列，立即投送事件给Subscriber，积压在Executor的队列中， 事件的消费可能有序可能无序取决于不同的Subscriber实现</li>
+</ul>
+</li>
+<li>SubscriberExceptionHandler ： 异常处理器</li>
+</ul>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-11-21
         
@@ -287,14 +299,14 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/database/graphql/">
+        <a class="prev" href="/post/skills/web/graphql/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">GraphQL</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/skills/test/hamcrest/">
             <span class="next-text nav-default">Hamcrest</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -312,17 +324,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -330,11 +342,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -344,16 +356,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java异常处理 - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 常见问题 1.3.1. 异常被吞 1.3.2. 异常栈被隐藏 1.3.3. 应该使用大块的try还是细颗粒度的try? 1.3.4. try和for谁包住谁更好?" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/java/basic/javaexception/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java异常处理" />
+<meta property="og:description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 常见问题 1.3.1. 异常被吞 1.3.2. 异常栈被隐藏 1.3.3. 应该使用大块的try还是细颗粒度的try? 1.3.4. try和for谁包住谁更好?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/basic/javaexception/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-12-13T16:15:05+00:00" />
+<meta property="article:modified_time" content="2018-12-13T16:15:05+00:00" />
+
+<meta itemprop="name" content="Java异常处理">
+<meta itemprop="description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 常见问题 1.3.1. 异常被吞 1.3.2. 异常栈被隐藏 1.3.3. 应该使用大块的try还是细颗粒度的try? 1.3.4. try和for谁包住谁更好?"><meta itemprop="datePublished" content="2018-12-13T16:15:05+00:00" />
+<meta itemprop="dateModified" content="2018-12-13T16:15:05+00:00" />
+<meta itemprop="wordCount" content="2977">
+<meta itemprop="keywords" content="异常处理," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java异常处理"/>
+<meta name="twitter:description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 常见问题 1.3.1. 异常被吞 1.3.2. 异常栈被隐藏 1.3.3. 应该使用大块的try还是细颗粒度的try? 1.3.4. try和for谁包住谁更好?"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java异常处理</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-13 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 约 2977 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#异常">异常</a>
+      <ul>
+        <li><a href="#异常的继承关系">异常的继承关系</a></li>
+        <li><a href="#常见异常">常见异常</a></li>
+        <li><a href="#常见问题">常见问题</a>
+          <ul>
+            <li><a href="#异常被吞">异常被吞</a></li>
+            <li><a href="#异常栈被隐藏">异常栈被隐藏</a></li>
+            <li><a href="#应该使用大块的try还是细颗粒度的try">应该使用大块的try还是细颗粒度的try?</a></li>
+            <li><a href="#try和for谁包住谁更好">try和for谁包住谁更好?</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#异常处理">异常处理</a>
+      <ul>
+        <li><a href="#全局异常处理">全局异常处理</a></li>
+        <li><a href="#异常和日志的结合">异常和日志的结合</a></li>
+        <li><a href="#自定义异常">自定义异常</a>
+          <ul>
+            <li><a href="#自定义异常的错误码">自定义异常的错误码</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#实现机制">实现机制</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-13T16:15:05" title="December 13, 2018">December 13, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#%E5%BC%82%E5%B8%B8">异常</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E5%BC%82%E5%B8%B8%E7%9A%84%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB">异常的继承关系</a></li>
+<li>1.2. <a href="#%E5%B8%B8%E8%A7%81%E5%BC%82%E5%B8%B8">常见异常</a></li>
+<li>1.3. <a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a>
+<ul>
+<li>1.3.1. <a href="#%E5%BC%82%E5%B8%B8%E8%A2%AB%E5%90%9E">异常被吞</a></li>
+<li>1.3.2. <a href="#%E5%BC%82%E5%B8%B8%E6%A0%88%E8%A2%AB%E9%9A%90%E8%97%8F">异常栈被隐藏</a></li>
+<li>1.3.3. <a href="#%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%9D%97%E7%9A%84try%E8%BF%98%E6%98%AF%E7%BB%86%E9%A2%97%E7%B2%92%E5%BA%A6%E7%9A%84try">应该使用大块的try还是细颗粒度的try?</a></li>
+<li>1.3.4. <a href="#try%E5%92%8Cfor%E8%B0%81%E5%8C%85%E4%BD%8F%E8%B0%81%E6%9B%B4%E5%A5%BD">try和for谁包住谁更好?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86">异常处理</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86">全局异常处理</a></li>
+<li>2.2. <a href="#%E5%BC%82%E5%B8%B8%E5%92%8C%E6%97%A5%E5%BF%97%E7%9A%84%E7%BB%93%E5%90%88">异常和日志的结合</a></li>
+<li>2.3. <a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8">自定义异常</a>
+<ul>
+<li>2.3.1. <a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E7%9A%84%E9%94%99%E8%AF%AF%E7%A0%81">自定义异常的错误码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6">实现机制</a></li>
+</ol>
+</li>
+</ul>
+<p>💠 2024-11-06 10:59:32</p>
+<hr>
+<h1 id="异常">异常</h1>
+<blockquote>
+<p>相关博客:<a href="http://www.cnblogs.com/focusj/archive/2011/12/26/2301524.html">Java异常浅谈</a></p>
+</blockquote>
+<h2 id="异常的继承关系">异常的继承关系</h2>
+<p><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Java/Exception/structure.png" alt="异常结构"></p>
+<blockquote>
+<p>Java将所有非正常情况分为两种 异常（Exception）和错误（Error） 它们都继承Throwable父类。<br>
+Error一般是指与虚拟机相关的问题，如系统崩溃，虚拟机错误，动态链接失败等，这种错误无法恢复或不可能捕获，将导致应用程序中断，通常应用程序无法处理这些错误;<br>
+因此应用程序通常不应该使用catch块来捕获Error对象,在定义方法时也无须在其throws子句中声明该方法可能抛出Error及任何子类。</p>
+</blockquote>
+<p>非受检异常： 继承于RunTimeException或Error. 其他的都属于受检异常</p>
+<h2 id="常见异常">常见异常</h2>
+<blockquote>
+<p>常发生于集合并发修改和迭代时 <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html">ConcurrentModificationException</a></p>
+</blockquote>
+<hr>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="异常被吞">异常被吞</h3>
+<blockquote>
+<ul>
+<li>catch 代码块中出现异常</li>
+</ul>
+</blockquote>
+<p>会导致栈中看不到try块中的异常</p>
+<h3 id="异常栈被隐藏">异常栈被隐藏</h3>
+<blockquote>
+<p><a href="https://jjlu521016.github.io/2018/12/12/java%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF%E4%B8%8D%E8%A7%81%E4%BA%86.html">Java堆栈信息不见了 </a></p>
+</blockquote>
+<p>在使用服务器模式下，会默认开启 Fast Throw 机制， 以下异常被频繁抛出时(大于5000)，会隐藏错误栈</p>
+<ul>
+<li>NullPointerException</li>
+<li>ArithmeticException</li>
+<li>ArrayIndexOutOfBoundsException</li>
+<li>ArrayStoreException</li>
+<li>ClassCastException</li>
+</ul>
+<p>JVM参数关闭该特性 <code>-XX:-OmitStackTraceInFastThrow</code></p>
+<h3 id="应该使用大块的try还是细颗粒度的try">应该使用大块的try还是细颗粒度的try?</h3>
+<blockquote>
+<p>为了避免我们遗漏掉一些可能会出现异常的代码, 所以建议使用大块的try, 因为检查型异常是容易发现的, 但是运行时异常却往往不能在编码的第一时间发现</p>
+</blockquote>
+<blockquote>
+<p>检验异常在开发中如果不进行处理(捕获处理或声明抛出)编译器就会报错不让通过的, 如果平时没有注意异常的系统性学习,<br>
+开发就会有这样一种现象: 程序中通篇只有校验异常. 一般这种校验异常默认的处理方式(使用IDE)是颗粒度小的.<br>
+但是程序运行出问题的大多是运行时异常, 空指针, 数组越界, 类型不匹配, 除数为0 等等.<br>
+使用大try就不会遗漏运行时异常,但是不能仅仅依靠他, 运行时异常还是尽量使用好的编程习惯来规避的.<br>
+当然也是可以在大try中使用小try进行开发这样就能对异常进行具体的捕获和处理以及响应</p>
+</blockquote>
+<blockquote>
+<p>按下葫芦浮起瓢, 关于异常, 可以从另一个角度: 性能方面的维度去考虑:<br>
+异常机制的设计初衷是用于不正常的情形, JVM很少对其生成的字节码进行优化, 把尽可能多的代码放在try块中就会阻止了JVM实行原本可以执行的某些特定优化</p>
+</blockquote>
+<h3 id="try和for谁包住谁更好">try和for谁包住谁更好?</h3>
+<blockquote>
+<p>具体业务具体分析, 如果要求循环一出问题后续的循环还是要继续执行, 那么就把try写到for中;<br>
+如果要求后续的循环不执行就用try包住for</p>
+</blockquote>
+<p>另外: 手动创建线程实现的定时任务在循环处理数据时出现异常必须要及时处理, 否则线程会停止 <code>尽量使用Schduler线程池</code></p>
+<hr>
+<h1 id="异常处理">异常处理</h1>
+<blockquote>
+<p>一般来说, 异常都是层层上抛, 针对 Service Dao Controller 这种结构的设计, 业务异常在Service层手动处理，参数校验则在Controller层统一处理<br>
+除非这个异常是无关大局的, 即局部发生对其他模块没有影响, 那么就可以就地捕获不需要上抛</p>
+</blockquote>
+<p>大的try块中 特别处理要看情况抛出, 一般进行封装后, 抛出自定义异常, 上层接收后, 进行二次处理和转化,<br>
+直到最外层的调用处, 由最外层调用者决定最终如何处理 只要在使用对象前进行对象的非空判断, 基本就能杜绝空指针异常,<br>
+这样的话要引入大量的if块, 如果的确很复杂了可以使用设计模式做优化 例如策略模式，否则不需要</p>
+<h2 id="全局异常处理">全局异常处理</h2>
+<blockquote>
+<p>JavaSE</p>
+</blockquote>
+<p><a href="https://www.baeldung.com/java-global-exception-handler">Java Global Exception Handler</a><br>
+<a href="/Java/AdvancedLearning/JavaThread.md#%E8%A7%82%E6%B5%8B%E5%BC%82%E5%B8%B8">线程默认异常处理</a></p>
+<hr>
+<blockquote>
+<p>SpringMVC</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// Controller层全局异常处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 如果exception方法定义在具体的Controller类里，则内部的方法会替代全局异常处理方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Slf4j</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@RestControllerAdvice</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">RestExceptionHandler</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="n">Exception</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">INTERNAL_SERVER_ERROR</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">Resp</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">exception</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;EXCEPTION {}&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Resp</span><span class="o">.</span><span class="na">fail</span><span class="o">(</span><span class="n">RespCode</span><span class="o">.</span><span class="na">ERROR</span><span class="o">.</span><span class="na">getCode</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>源码入口 <code>org.springframework.web.servlet.DispatcherServlet#processDispatchResult</code></p>
+<hr>
+<h2 id="异常和日志的结合">异常和日志的结合</h2>
+<blockquote>
+<p>异常一定要和日志结合使用, 日志记录的简约优雅, 维护才越轻松, 日志的存在就是为了解决问题的方便和有迹可循,<br>
+所以要记录的任何信息都是为了解决问题, 无关信息就没有必要放进来了(日志存储和解析搜索也是需要成本的)</p>
+</blockquote>
+<p>常见日志格式：时间 线程 类 方法 行数 报错信息<br>
+根据业务需要还可以加上 traceId, 用户id, 订单id等等</p>
+<h2 id="自定义异常">自定义异常</h2>
+<blockquote>
+<p>虽然Java提供了大量的异常类, 但是这些异常类还是难以满足业务开发时的诉求。</p>
+</blockquote>
+<p>通常自定义异常只要继承Exception 重写相关构造器即可.<br>
+一般来说自定义异常具有以下类型: 业务异常, 用户异常, 系统异常, 接口异常, 网络异常, 参数异常等等.</p>
+<p>根据项目需要, 可以将异常细分, 比如写一个订单保存, 那么针对订单保存的业务可以在不同的代码逻辑里提示不同的异常信息, 接口级异常也是如此，目的是为了将Exception进行封装, 形成易于理解的异常信息.</p>
+<p><em>自定义异常的设计原则</em></p>
+<ol>
+<li>用户层面: 用户提示信息优雅</li>
+<li>系统层面: 让自己维护起来更方便</li>
+<li>接口层面: 查询问题更直观, 轻松, 为自己留证据, 避免推诿扯皮</li>
+<li>网络层面: 及时发现问题, 及时进行处理</li>
+</ol>
+<h3 id="自定义异常的错误码">自定义异常的错误码</h3>
+<blockquote>
+<p>正规项目中都会有接口文档, 也会有规范注释, 在项目中也会有一些静态常量</p>
+</blockquote>
+<p>假设定义一个错误码 00X1 表示空指针, 定义要有规律和分类, 方便查询和管理， 通常来说这个错误码不是给客户使用，而是给运营和开发人员快速排查问题。</p>
+<hr>
+<h1 id="实现机制">实现机制</h1>
+<blockquote>
+<p><a href="https://pdai.tech/md/java/basic/java-basic-x-exception.html">Java 基础 - 异常机制详解</a><br>
+<a href="https://www.cnblogs.com/newstar/archive/2011/01/04/Exception.html">透过JVM看Exception本质</a><br>
+<a href="https://blog.51cto.com/u_16202392/7798771">Java异常到底是个啥——一次异常引发的思考</a><br>
+<a href="https://cloud.tencent.com/developer/article/1786449">Java 虚拟机：JVM是如何处理异常的？</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testThrow</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看字节码： javap -v class 或者通过IDEA中插件 <code>jclasslib Bytecode Viewer</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Code</span><span class="o">:</span>         
+</span></span><span class="line"><span class="cl">      <span class="n">stack</span><span class="o">=</span><span class="n">3</span><span class="o">,</span> <span class="n">locals</span><span class="o">=</span><span class="n">3</span><span class="o">,</span> <span class="n">args_size</span><span class="o">=</span><span class="n">1</span>        
+</span></span><span class="line"><span class="cl">         <span class="n">0</span><span class="o">:</span> <span class="n">iconst_1</span>
+</span></span><span class="line"><span class="cl">         <span class="n">1</span><span class="o">:</span> <span class="n">istore_1</span>
+</span></span><span class="line"><span class="cl">         <span class="n">2</span><span class="o">:</span> <span class="n">iconst_1</span>
+</span></span><span class="line"><span class="cl">         <span class="n">3</span><span class="o">:</span> <span class="n">istore_2</span>
+</span></span><span class="line"><span class="cl">         <span class="n">4</span><span class="o">:</span> <span class="n">iload_1</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">5</span><span class="o">:</span> <span class="n">iload_2</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">6</span><span class="o">:</span> <span class="n">if_icmpne</span>     <span class="n">17</span>   
+</span></span><span class="line"><span class="cl">         <span class="n">9</span><span class="o">:</span> <span class="k">new</span>           <span class="err">#</span><span class="n">2</span>     <span class="c1">// class java/lang/RuntimeException  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">12</span><span class="o">:</span> <span class="n">dup</span>   
+</span></span><span class="line"><span class="cl">        <span class="n">13</span><span class="o">:</span> <span class="n">invokespecial</span> <span class="err">#</span><span class="n">3</span>     <span class="c1">// Method java/lang/RuntimeException.&#34;&lt;init&gt;&#34;:()V 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">16</span><span class="o">:</span> <span class="n">athrow</span>
+</span></span><span class="line"><span class="cl">        <span class="n">17</span><span class="o">:</span> <span class="n">getstatic</span>     <span class="err">#</span><span class="n">4</span>     <span class="c1">// Field java/lang/System.out:Ljava/io/PrintStream; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">20</span><span class="o">:</span> <span class="n">iload_1</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">21</span><span class="o">:</span> <span class="n">iload_2</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">22</span><span class="o">:</span> <span class="n">iadd</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">23</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="n">5</span>     <span class="c1">// Method java/io/PrintStream.println:(I)V        
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">26</span><span class="o">:</span> <span class="k">goto</span>          <span class="n">46</span>   
+</span></span><span class="line"><span class="cl">        <span class="n">29</span><span class="o">:</span> <span class="n">astore_1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">30</span><span class="o">:</span> <span class="n">aload_1</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">31</span><span class="o">:</span> <span class="n">athrow</span>
+</span></span><span class="line"><span class="cl">        <span class="n">32</span><span class="o">:</span> <span class="n">astore_1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">33</span><span class="o">:</span> <span class="n">getstatic</span>     <span class="err">#</span><span class="n">8</span>     <span class="c1">// Field log:Lorg/slf4j/Logger;      
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">36</span><span class="o">:</span> <span class="n">ldc</span><span class="err">#</span><span class="n">9</span>     <span class="c1">// String  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">38</span><span class="o">:</span> <span class="n">aload_1</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">39</span><span class="o">:</span> <span class="n">invokeinterface</span> <span class="err">#</span><span class="n">10</span><span class="o">,</span>  <span class="n">3</span>           <span class="c1">// InterfaceMethod org/slf4j/Logger.error:(Ljava/lang/String;Ljava/lang/Throwable;)V     
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">44</span><span class="o">:</span> <span class="n">aload_1</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">45</span><span class="o">:</span> <span class="n">athrow</span>
+</span></span><span class="line"><span class="cl">        <span class="n">46</span><span class="o">:</span> <span class="k">return</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Exception</span> <span class="n">table</span><span class="o">:</span>         
+</span></span><span class="line"><span class="cl">         <span class="n">from</span>    <span class="n">to</span>  <span class="n">target</span> <span class="n">type</span> 
+</span></span><span class="line"><span class="cl"><span class="n">0</span>    <span class="n">26</span>    <span class="n">29</span>   <span class="n">Class</span> <span class="n">java</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="n">IndexOutOfBoundsException</span>
+</span></span><span class="line"><span class="cl"><span class="n">0</span>    <span class="n">26</span>    <span class="n">32</span>   <span class="n">Class</span> <span class="n">java</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="n">Exception</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>流程：</p>
+<ol>
+<li>偏移9: new一个RuntimeException对象</li>
+<li>12: dup 复制上诉对象到栈顶</li>
+<li>13: invokespecial 调用异常类构造器</li>
+<li>16: athrow
+<ul>
+<li>这个指令运作过程大致是首先检查操作栈顶，这时栈顶必须存在一个reference类型的值，并且是java.lang.Throwable的子类（虚拟机规范中要求如果遇到null则当作NPE异常使用）</li>
+<li>然后暂时先把这个引用出栈，接着搜索本方法的异常表(Exception table)找一下本方法中是否有能处理这个异常的handler
+<ul>
+<li>如果能找到合适的handler就会重新初始化PC寄存器指针指向此异常handler的第一个指令的偏移地址。接着把当前栈帧的操作栈清空，再把刚刚出栈的引用重新入栈。</li>
+<li>如果在当前方法中找不到handler，那只好把当前方法的栈帧出栈（这个栈是VM栈，不要和前面的操作栈搞混了，栈帧出栈就意味着当前方法退出）
+<ul>
+<li>这个方法的调用者的栈帧就自然在这条线程VM栈的栈顶了，然后再对这个新的当前方法再做一次刚才做过的异常handler搜索</li>
+<li>如果还是找不到，继续把这个栈帧踢掉，这样一直到找
+<ul>
+<li>要么找到一个能使用的handler，转到这个handler的第一条指令开始继续执行。</li>
+<li>要么把VM栈的栈帧抛光了都没有找到期望的handler，这样的话这条线程就只好被迫终止、退出了 <code>线程可设置默认handler setDefaultUncaughtExceptionHandler</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>Exception table： 异常匹配的表格 如果<code>from</code> 和 <code>to</code> 之间匹配到 <code>type</code>的异常抛出，就转到 <code>target</code> 处执行代码</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-12-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">异常处理</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/frontend/font/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">字体</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/release/java8/">
+            <span class="next-text nav-default">Java8</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

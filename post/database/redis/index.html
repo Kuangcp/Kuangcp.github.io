@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Redis - Mythos</title>
+  <title>Redis - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Redis Book 安装和配置 Windows Linux Docker方式安装 解压即用 Redis配置文件 数据类型 String BitMap HyperLogLog List Set Zset Hash GEO地理位置 Scan O(n) 复杂度的命令 Pipelining Pub/Sub发" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. Stream 3.7. GEO地理位置 Scan Pipelining Pub/Sub发" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/database/redis/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/database/redis/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Redis" />
-<meta property="og:description" content="目录 start Redis Book 安装和配置 Windows Linux Docker方式安装 解压即用 Redis配置文件 数据类型 String BitMap HyperLogLog List Set Zset Hash GEO地理位置 Scan O(n) 复杂度的命令 Pipelining Pub/Sub发" />
+<meta property="og:description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. Stream 3.7. GEO地理位置 Scan Pipelining Pub/Sub发" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/database/redis/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/database/redis/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-16T17:28:55+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:28:55+00:00" />
+
 <meta itemprop="name" content="Redis">
-<meta itemprop="description" content="目录 start Redis Book 安装和配置 Windows Linux Docker方式安装 解压即用 Redis配置文件 数据类型 String BitMap HyperLogLog List Set Zset Hash GEO地理位置 Scan O(n) 复杂度的命令 Pipelining Pub/Sub发">
-<meta itemprop="datePublished" content="2018-12-16T17:28:55+00:00" />
+<meta itemprop="description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. Stream 3.7. GEO地理位置 Scan Pipelining Pub/Sub发"><meta itemprop="datePublished" content="2018-12-16T17:28:55+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:28:55+00:00" />
-<meta itemprop="wordCount" content="4166">
-
-
-
-<meta itemprop="keywords" content="Redis," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="4375">
+<meta itemprop="keywords" content="Redis," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Redis"/>
-<meta name="twitter:description" content="目录 start Redis Book 安装和配置 Windows Linux Docker方式安装 解压即用 Redis配置文件 数据类型 String BitMap HyperLogLog List Set Zset Hash GEO地理位置 Scan O(n) 复杂度的命令 Pipelining Pub/Sub发"/>
+<meta name="twitter:description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. Stream 3.7. GEO地理位置 Scan Pipelining Pub/Sub发"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,149 +122,192 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
             </div>
-          <span class="more-meta"> 4166 words </span>
-          <span class="more-meta"> 9 mins read </span>
+          <span class="more-meta"> 约 4375 字 </span>
+          <span class="more-meta"> 预计阅读 9 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#book">Book</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#windows">Windows</a></li>
-    <li><a href="#linux">Linux</a>
+    <li><a href="#redis">Redis</a>
       <ul>
-        <li><a href="#docker方式安装">Docker方式安装</a></li>
-        <li><a href="#解压即用">解压即用</a></li>
+        <li><a href="#book">Book</a></li>
       </ul>
     </li>
-    <li><a href="#redis配置文件">Redis配置文件</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#string">String</a>
+    <li><a href="#安装和配置">安装和配置</a>
       <ul>
-        <li><a href="#bitmap">BitMap</a></li>
-        <li><a href="#hyperloglog">HyperLogLog</a></li>
+        <li><a href="#windows">Windows</a></li>
+        <li><a href="#linux">Linux</a>
+          <ul>
+            <li><a href="#docker-方式">Docker 方式</a></li>
+            <li><a href="#解压即用">解压即用</a></li>
+          </ul>
+        </li>
+        <li><a href="#redis配置文件">Redis配置文件</a></li>
       </ul>
     </li>
-    <li><a href="#list">List</a></li>
-    <li><a href="#set">Set</a></li>
-    <li><a href="#zset">Zset</a></li>
-    <li><a href="#hash">Hash</a></li>
-    <li><a href="#geo地理位置">GEO地理位置</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#on-复杂度的命令">O(n) 复杂度的命令</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#java">Java</a></li>
-    <li><a href="#python">Python</a></li>
-    <li><a href="#gui客户端">GUI客户端</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#codis">Codis</a></li>
-    <li><a href="#webdis">webdis</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#作为日志记录">作为日志记录</a></li>
-    <li><a href="#作为网站统计数据">作为网站统计数据</a></li>
-    <li><a href="#存储配置信息">存储配置信息</a></li>
-    <li><a href="#搜索">搜索</a></li>
-    <li><a href="#任务队列">任务队列</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#雪崩">雪崩</a></li>
-    <li><a href="#击穿">击穿</a></li>
-    <li><a href="#穿透">穿透</a></li>
+    <li><a href="#数据类型">数据类型</a>
+      <ul>
+        <li><a href="#string">String</a>
+          <ul>
+            <li><a href="#bitmap">BitMap</a></li>
+            <li><a href="#hyperloglog">HyperLogLog</a></li>
+          </ul>
+        </li>
+        <li><a href="#list">List</a></li>
+        <li><a href="#set">Set</a></li>
+        <li><a href="#zset">Zset</a></li>
+        <li><a href="#hash">Hash</a></li>
+        <li><a href="#stream">Stream</a></li>
+        <li><a href="#geo地理位置">GEO地理位置</a></li>
+      </ul>
+    </li>
+    <li><a href="#scan">Scan</a></li>
+    <li><a href="#pipelining">Pipelining</a></li>
+    <li><a href="#pubsub发布和订阅">Pub/Sub发布和订阅</a></li>
+    <li><a href="#客户端">客户端</a>
+      <ul>
+        <li><a href="#java">Java</a></li>
+        <li><a href="#python">Python</a></li>
+        <li><a href="#gui客户端">GUI客户端</a></li>
+        <li><a href="#cli">Cli</a></li>
+      </ul>
+    </li>
+    <li><a href="#project">Project</a>
+      <ul>
+        <li><a href="#codis">Codis</a></li>
+        <li><a href="#webdis">webdis</a></li>
+        <li><a href="#redis-stack">Redis Stack</a></li>
+      </ul>
+    </li>
+    <li><a href="#redis的应用场景">Redis的应用场景</a>
+      <ul>
+        <li><a href="#分布式锁">分布式锁</a></li>
+        <li><a href="#消息队列">消息队列</a></li>
+      </ul>
+    </li>
+    <li><a href="#redis-缓存相关问题">Redis 缓存相关问题</a>
+      <ul>
+        <li><a href="#缓存雪崩">缓存雪崩</a></li>
+        <li><a href="#缓存击穿">缓存击穿</a></li>
+        <li><a href="#缓存穿透">缓存穿透</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-16T17:28:55" title="December 16, 2018">December 16, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#redis">Redis</a>
-<ol>
-<li><a href="#book">Book</a></li>
+<li><a href="#redis">Redis</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#book">Book</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE">安装和配置</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#windows">Windows</a></li>
+<li>2.2. <a href="#linux">Linux</a>
+<ul>
+<li>2.2.1. <a href="#docker-%E6%96%B9%E5%BC%8F">Docker 方式</a></li>
+<li>2.2.2. <a href="#%E8%A7%A3%E5%8E%8B%E5%8D%B3%E7%94%A8">解压即用</a></li>
+</ul>
+</li>
+<li>2.3. <a href="#redis%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">Redis配置文件</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#string">String</a>
+<ul>
+<li>3.1.1. <a href="#bitmap">BitMap</a></li>
+<li>3.1.2. <a href="#hyperloglog">HyperLogLog</a></li>
+</ul>
+</li>
+<li>3.2. <a href="#list">List</a></li>
+<li>3.3. <a href="#set">Set</a></li>
+<li>3.4. <a href="#zset">Zset</a></li>
+<li>3.5. <a href="#hash">Hash</a></li>
+<li>3.6. <a href="#stream">Stream</a></li>
+<li>3.7. <a href="#geo%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE">GEO地理位置</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#scan">Scan</a></li>
 </ol>
 </li>
-<li><a href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE">安装和配置</a>
-<ol>
-<li><a href="#windows">Windows</a></li>
-<li><a href="#linux">Linux</a>
-<ol>
-<li><a href="#docker%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85">Docker方式安装</a></li>
-<li><a href="#%E8%A7%A3%E5%8E%8B%E5%8D%B3%E7%94%A8">解压即用</a></li>
-</ol>
-</li>
-<li><a href="#redis%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">Redis配置文件</a></li>
-</ol>
-</li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>
-<ol>
-<li><a href="#string">String</a>
-<ol>
-<li><a href="#bitmap">BitMap</a></li>
-<li><a href="#hyperloglog">HyperLogLog</a></li>
-</ol>
-</li>
-<li><a href="#list">List</a></li>
-<li><a href="#set">Set</a></li>
-<li><a href="#zset">Zset</a></li>
-<li><a href="#hash">Hash</a></li>
-<li><a href="#geo%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE">GEO地理位置</a></li>
-</ol>
-</li>
-<li><a href="#scan">Scan</a>
-<ol>
-<li><a href="#on-%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E5%91%BD%E4%BB%A4">O(n) 复杂度的命令</a></li>
-</ol>
-</li>
+<li>
+<ol start="5">
 <li><a href="#pipelining">Pipelining</a></li>
+</ol>
+</li>
+<li>
+<ol start="6">
 <li><a href="#pubsub%E5%8F%91%E5%B8%83%E5%92%8C%E8%AE%A2%E9%98%85">Pub/Sub发布和订阅</a></li>
-<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF">客户端</a>
-<ol>
-<li><a href="#java">Java</a></li>
-<li><a href="#python">Python</a></li>
-<li><a href="#gui%E5%AE%A2%E6%88%B7%E7%AB%AF">GUI客户端</a></li>
 </ol>
 </li>
-<li><a href="#project">Project</a>
-<ol>
-<li><a href="#codis">Codis</a></li>
-<li><a href="#webdis">webdis</a></li>
+<li>
+<ol start="7">
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF">客户端</a></li>
 </ol>
+<ul>
+<li>7.1. <a href="#java">Java</a></li>
+<li>7.2. <a href="#python">Python</a></li>
+<li>7.3. <a href="#gui%E5%AE%A2%E6%88%B7%E7%AB%AF">GUI客户端</a></li>
+<li>7.4. <a href="#cli">Cli</a></li>
+</ul>
 </li>
-<li><a href="#redis%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">Redis的应用场景</a>
-<ol>
-<li><a href="#%E4%BD%9C%E4%B8%BA%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95">作为日志记录</a></li>
-<li><a href="#%E4%BD%9C%E4%B8%BA%E7%BD%91%E7%AB%99%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE">作为网站统计数据</a></li>
-<li><a href="#%E5%AD%98%E5%82%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF">存储配置信息</a></li>
-<li><a href="#%E6%90%9C%E7%B4%A2">搜索</a></li>
-<li><a href="#%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97">任务队列</a></li>
+<li>
+<ol start="8">
+<li><a href="#project">Project</a></li>
 </ol>
+<ul>
+<li>8.1. <a href="#codis">Codis</a></li>
+<li>8.2. <a href="#webdis">webdis</a></li>
+<li>8.3. <a href="#redis-stack">Redis Stack</a></li>
+</ul>
 </li>
-<li><a href="#redis-%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98">Redis 缓存相关问题</a>
-<ol>
-<li><a href="#%E9%9B%AA%E5%B4%A9">雪崩</a></li>
-<li><a href="#%E5%87%BB%E7%A9%BF">击穿</a></li>
-<li><a href="#%E7%A9%BF%E9%80%8F">穿透</a></li>
+<li>
+<ol start="9">
+<li><a href="#redis%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">Redis的应用场景</a></li>
 </ol>
+<ul>
+<li>9.1. <a href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81">分布式锁</a></li>
+<li>9.2. <a href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97">消息队列</a></li>
+</ul>
 </li>
+<li>
+<ol start="10">
+<li><a href="#redis-%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98">Redis 缓存相关问题</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-05-27 21:59</em>|</p>
+<ul>
+<li>10.1. <a href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9">缓存雪崩</a></li>
+<li>10.2. <a href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF">缓存击穿</a></li>
+<li>10.3. <a href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F">缓存穿透</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-09-14 11:51:16</p>
 <hr>
 <h1 id="redis">Redis</h1>
 <blockquote>
@@ -278,7 +317,8 @@
 <li><a href="http://redisdoc.com/index.html">Redis Official doc zh</a></li>
 </ul>
 <blockquote>
-<p><a href="https://www.cnblogs.com/laozhbook/p/nodejs_redis_connection_pool.html">参考: nodejs + redis/mysql 连接池问题</a><code>单线程问题</code></p>
+<p><a href="https://www.cnblogs.com/laozhbook/p/nodejs_redis_connection_pool.html">参考: nodejs + redis/mysql 连接池问题</a><code>单线程问题</code>
+<a href="http://doc.redisfans.com/index.html">Redis 命令参考</a><code>中文版，注意版本时效性</code></p>
 </blockquote>
 <h2 id="book">Book</h2>
 <blockquote>
@@ -308,7 +348,7 @@
 </ul>
 <h2 id="linux">Linux</h2>
 <p>包管理器安装 redis 如 debian系<code>apt install redis</code> arch系<code>pacman -S redis</code></p>
-<h3 id="docker方式安装">Docker方式安装</h3>
+<h3 id="docker-方式">Docker 方式</h3>
 <blockquote>
 <p><a href="/Linux/Container/DockerSoft.md#redis">docker-install-redis</a></p>
 </blockquote>
@@ -411,6 +451,7 @@
 </ul>
 </li>
 </ul>
+<p>可以基于bitmap手动实现BloomFilter，也可以直接使用RedisStack的BloomFilter组件。</p>
 <h3 id="hyperloglog">HyperLogLog</h3>
 <blockquote>
 <p>用于做基数统计的算法</p>
@@ -562,6 +603,7 @@
 <li>HSCAN</li>
 <li>HSTRLEN</li>
 </ul>
+<h2 id="stream">Stream</h2>
 <hr>
 <h2 id="geo地理位置">GEO地理位置</h2>
 <ul>
@@ -574,18 +616,6 @@
 </ul>
 <hr>
 <h1 id="scan">Scan</h1>
-<blockquote>
-<p><a href="http://doc.redisfans.com/key/scan.html">Doc: Scan</a></p>
-</blockquote>
-<p>由于 Redis 是单线程多路复用机制(Redis6引入多线程)，使用 O(n) 复杂度的命令容易阻塞进程，因此需要 scan 命令来实现分批执行 (<code>注意 scan如果模式匹配的范围比较大会有 keys 一样的影响</code>)</p>
-<h2 id="on-复杂度的命令">O(n) 复杂度的命令</h2>
-<ul>
-<li>List： lindex、lset、linsert</li>
-<li>Hash： hgetall、hkeys、hvals</li>
-<li>Set： smembers、sunion、sunionstore、sinter、sinterstore、sdiff、sdiffstore</li>
-<li>Sorted Set： zrange、zrevrange、zrangebyscore、zrevrangebyscore、zremrangebyrank、zremrangebyscore</li>
-</ul>
-<hr>
 <ul>
 <li>
 <p><strong>SCAN</strong> 命令用于迭代当前数据库中的数据库键 相较于 keys 降低阻塞进程的概率。</p>
@@ -598,7 +628,7 @@
 </li>
 <li>count 数量
 <ul>
-<li>redis 不保证返回的数据数量严格等于 count 只保证大于等于 <strong>注意count不能小于1 否则报 syntax error</strong></li>
+<li>redis 只保证返回的数据数量大于等于 count. <strong>注意count不能小于1 否则报 syntax error</strong></li>
 </ul>
 </li>
 <li>match pattern 匹配key的模式</li>
@@ -696,8 +726,7 @@
 </blockquote>
 <blockquote>
 <p><a href="https://github.com/uglide/RedisDesktopManager/">Redis Desktop Manager</a><br>
-<a href="https://gitee.com/qishibo/AnotherRedisDesktopManager">Another Redis DeskTop Manager</a><br>
-<a href="https://docs.redislabs.com/">RedisInsight</a></p>
+<a href="https://gitee.com/qishibo/AnotherRedisDesktopManager">Another Redis DeskTop Manager</a></p>
 </blockquote>
 <blockquote>
 <p>arch 上暂时存在这个问题导致无法使用 Redis Desktop Manager <a href="https://github.com/uglide/RedisDesktopManager/issues/4826">Github Issues</a></p>
@@ -707,6 +736,15 @@
 <li>rm -rf ~/snap/redis-desktop-manager/common/.cache/fontconfig</li>
 <li>fc-cache -r</li>
 </ol>
+<h2 id="cli">Cli</h2>
+<ul>
+<li>redis-cli</li>
+<li>redli
+<ul>
+<li>go install github.com/IBM-Cloud/redli@latest</li>
+</ul>
+</li>
+</ul>
 <hr>
 <blockquote>
 <p><a href="https://fastoredis.com/">FastoRedis</a><br>
@@ -733,6 +771,20 @@ p3x-redis-ui</p>
 <blockquote>
 <p><a href="http://webd.is/">官网</a> | <a href="https://github.com/nicolasff/webdis">Github地址</a></p>
 </blockquote>
+<h2 id="redis-stack">Redis Stack</h2>
+<blockquote>
+<p><a href="https://github.com/redis-stack/redis-stack">Github Redis Stack</a></p>
+</blockquote>
+<p>Redis Stack 是一组软件套件，它主要由三部分组成。Redis Stack Server，RedisInsight，Redis Stack 客户端 SDK。 其中 Redis Stack Server 由 Redis，RedisSearch，RedisJSON，RedisGraph，RedisTimeSeries 和 RedisBloom 组成。</p>
+<p>可支撑如下业务</p>
+<ul>
+<li>索引和查询Redis数据，聚合运算，<code>全文检索</code></li>
+<li>运行高级向量相似性搜索 <code>(KNN)</code></li>
+<li>有效地存储和操作嵌套的 <code>JSON 文档</code></li>
+<li>将关系构建和建模为<code>属性图</code></li>
+<li>存储、查询和聚合<code>时间序列数据</code></li>
+<li>利用快速、空间和计算高效的<code>概率数据结构</code></li>
+</ul>
 <hr>
 <h1 id="redis的应用场景">Redis的应用场景</h1>
 <blockquote>
@@ -741,21 +793,38 @@ p3x-redis-ui</p>
 <blockquote>
 <p><a href="https://my.oschina.net/u/3971241/blog/2221560">参考: 为什么我们做分布式使用Redis？</a><code>缓存的场景和应对措施</code></p>
 </blockquote>
-<h2 id="作为日志记录">作为日志记录</h2>
-<h2 id="作为网站统计数据">作为网站统计数据</h2>
-<h2 id="存储配置信息">存储配置信息</h2>
-<h2 id="搜索">搜索</h2>
-<h2 id="任务队列">任务队列</h2>
+<h2 id="分布式锁">分布式锁</h2>
 <blockquote>
-<p>Pub/Sub 或者 Stream 可实现</p>
+<p><a href="http://cndoc.github.io/redis-doc-cn/cn/commands/setnx.html">Doc: setnx</a><code>包含以此命令设计锁的一些缺陷</code><br>
+<a href="https://github.com/redisson/redisson">redisson</a></p>
 </blockquote>
-<ul>
-<li>发送邮件</li>
-</ul>
+<p>单机 使用 setnx， redis分布式部署的情况下使用RedLock</p>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/JTsJCDuasgIJ0j95K8Ay8w">基于Redis的分布式锁到底安全吗（上）？</a><br>
+<a href="https://mp.weixin.qq.com/s/4CUe7OpM6y1kQRK8TOC_qQ?">基于Redis的分布式锁到底安全吗（下）？</a><br>
+<a href="https://zhuanlan.zhihu.com/p/161078350">参考: Redis 分布式锁进化史解读 + 缺陷分析</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/seapeak007/article/details/99337781">参考: redis分布式锁在MySQL事务代码中使用</a><br>
+<a href="https://www.cnblogs.com/demingblog/p/9542124.html">参考: Lua脚本在redis分布式锁场景的运用</a></p>
+</blockquote>
+<h2 id="消息队列">消息队列</h2>
+<blockquote>
+<p>List, Pub/Sub, Stream 可实现, 可靠性依次增加，但依然会有消息丢失问题</p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/hibiken/asynq">asynq</a></p>
+</blockquote>
+<hr>
+<p><code>搜索</code></p>
+<blockquote>
+<p><a href="https://github.com/RediSearch/RediSearch">RediSearch</a></p>
+</blockquote>
 <hr>
 <h1 id="redis-缓存相关问题">Redis 缓存相关问题</h1>
-<h2 id="雪崩">雪崩</h2>
-<p>同一时间大量缓存失效，请求都打到DB，导致DB负载过大甚至宕机</p>
+<h2 id="缓存雪崩">缓存雪崩</h2>
+<p>同一时间大量缓存失效，请求都打到DB，导致DB负载过大甚至宕机。</p>
+<p>与此同时，大量缓存集中失效会让Redis瞬时OPS很高，操作的延迟会突增。</p>
 <ol>
 <li>大量 key 使用了相同的过期时间
 <ul>
@@ -770,17 +839,21 @@ p3x-redis-ui</p>
 </ul>
 </li>
 </ol>
-<h2 id="击穿">击穿</h2>
+<h2 id="缓存击穿">缓存击穿</h2>
 <p>针对缓存中没有但是DB中有的数据请求</p>
 <ol>
 <li>当某个Key失效后，瞬间涌入大量的请求同一个Key，这些请求不会命中Redis，都会请求到DB，导致数据库压力过大
 <ol>
 <li>设置热点Key，自动检测热点Key，将热点Key的过期时间加大或者永不过期。</li>
-<li>在更新缓存时加互斥锁。当发现没有命中Redis，去查数据库的时候，在执行更新缓存的操作上加锁，当一个线程访问时，其它线程等待，这个线程访问过后，缓存中的数据会被重建，这样其他线程就可以从缓存中取值。</li>
+<li>在更新缓存时加互斥锁。当发现没有命中Redis，去查数据库的时候，在执行更新缓存的操作上加锁，当一个线程访问时，其它线程等待
+<ul>
+<li>这个线程访问过后，缓存中的数据会被重建，这样其他线程就可以从缓存中取值。</li>
+</ul>
+</li>
 </ol>
 </li>
 </ol>
-<h2 id="穿透">穿透</h2>
+<h2 id="缓存穿透">缓存穿透</h2>
 <p>针对缓存和 DB 都没有的数据 请求</p>
 <ol>
 <li>对查询结果为空的情况也进行缓存，这样，再次访问时，缓存层会直接返回空值。缓存时间设置短一点，或者该key对应的数据insert了之后清理缓存。</li>
@@ -791,11 +864,11 @@ p3x-redis-ui</p>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-16
         
@@ -812,11 +885,11 @@ p3x-redis-ui</p>
         <a class="prev" href="/post/database/redisadvance/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Redis进阶</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/database/postgresqladvance/">
             <span class="next-text nav-default">PostgreSQL进阶</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -834,17 +907,17 @@ p3x-redis-ui</p>
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -852,11 +925,11 @@ p3x-redis-ui</p>
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -866,16 +939,21 @@ p3x-redis-ui</p>
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

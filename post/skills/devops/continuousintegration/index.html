@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>ContinuousIntegration - Mythos</title>
+  <title>ContinuousIntegration - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 Bug跟踪 sonarqube 测试平台 目录 end|2021-04-14 14:37| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 持续集成 1.1. Jenkins 1.2. GoCD 1.3. Drone 1.4. flow.ci 1.5. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-09-03 14:05:18 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/devops/continuousintegration/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/devops/continuousintegration/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="ContinuousIntegration" />
-<meta property="og:description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 Bug跟踪 sonarqube 测试平台 目录 end|2021-04-14 14:37| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行" />
+<meta property="og:description" content="💠 持续集成 1.1. Jenkins 1.2. GoCD 1.3. Drone 1.4. flow.ci 1.5. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-09-03 14:05:18 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/devops/continuousintegration/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/devops/continuousintegration/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="ContinuousIntegration">
-<meta itemprop="description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 Bug跟踪 sonarqube 测试平台 目录 end|2021-04-14 14:37| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 持续集成 1.1. Jenkins 1.2. GoCD 1.3. Drone 1.4. flow.ci 1.5. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-09-03 14:05:18 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="429">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="579">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ContinuousIntegration"/>
-<meta name="twitter:description" content="目录 start 持续集成 Jenkins GoCD Drone flow.ci 三方平台 代码质量管理 Bug跟踪 sonarqube 测试平台 目录 end|2021-04-14 14:37| 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用Travis进行"/>
+<meta name="twitter:description" content="💠 持续集成 1.1. Jenkins 1.2. GoCD 1.3. Drone 1.4. flow.ci 1.5. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-09-03 14:05:18 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,52 +120,81 @@
       <div class="post-meta">
         <span class="post-time"> 2018-11-21 </span>
         
-          <span class="more-meta"> 429 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 579 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#jenkins">Jenkins</a></li>
-    <li><a href="#gocd">GoCD</a></li>
-    <li><a href="#drone">Drone</a></li>
-    <li><a href="#flowci">flow.ci</a></li>
-    <li><a href="#三方平台">三方平台</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#bug跟踪">Bug跟踪</a></li>
-    <li><a href="#sonarqube">sonarqube</a></li>
+    <li><a href="#持续集成">持续集成</a>
+      <ul>
+        <li><a href="#jenkins">Jenkins</a></li>
+        <li><a href="#gocd">GoCD</a></li>
+        <li><a href="#drone">Drone</a></li>
+        <li><a href="#flowci">flow.ci</a></li>
+        <li><a href="#三方平台">三方平台</a></li>
+      </ul>
+    </li>
+    <li><a href="#代码质量管理">代码质量管理</a>
+      <ul>
+        <li><a href="#bug跟踪">Bug跟踪</a></li>
+        <li><a href="#sonarqube">sonarqube</a>
+          <ul>
+            <li><a href="#项目端">项目端</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#测试平台">测试平台</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90">持续集成</a>
-<ol>
-<li><a href="#jenkins">Jenkins</a></li>
-<li><a href="#gocd">GoCD</a></li>
-<li><a href="#drone">Drone</a></li>
-<li><a href="#flowci">flow.ci</a></li>
-<li><a href="#%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0">三方平台</a></li>
+<li><a href="#%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90">持续集成</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#jenkins">Jenkins</a></li>
+<li>1.2. <a href="#gocd">GoCD</a></li>
+<li>1.3. <a href="#drone">Drone</a></li>
+<li>1.4. <a href="#flowci">flow.ci</a></li>
+<li>1.5. <a href="#%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0">三方平台</a></li>
+</ul>
 </li>
-<li><a href="#%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86">代码质量管理</a>
-<ol>
-<li><a href="#bug%E8%B7%9F%E8%B8%AA">Bug跟踪</a></li>
-<li><a href="#sonarqube">sonarqube</a></li>
+<li>
+<ol start="2">
+<li><a href="#%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86">代码质量管理</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#bug%E8%B7%9F%E8%B8%AA">Bug跟踪</a></li>
+<li>2.2. <a href="#sonarqube">sonarqube</a>
+<ul>
+<li>2.2.1. <a href="#%E9%A1%B9%E7%9B%AE%E7%AB%AF">项目端</a></li>
+</ul>
 </li>
+</ul>
+</li>
+<li>
+<ol start="3">
 <li><a href="#%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B0">测试平台</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-04-14 14:37</em>|</p>
+</li>
+</ul>
+<p>💠 2024-09-03 14:05:18</p>
 <hr>
 <h1 id="持续集成">持续集成</h1>
 <blockquote>
@@ -237,63 +262,96 @@
 <p><a href="https://www.sonarqube.org/">官网</a> | <a href="https://hub.docker.com/_/sonarqube/">Docker Hub</a></p>
 </blockquote>
 <blockquote>
-<p>快速使用</p>
+<p>快速使用 (H2 内存数据库存储)</p>
 </blockquote>
 <ol>
-<li>
-<p><code>docker run -d --name sonarqube -p 9000:9000  sonarqube:8-community</code></p>
-</li>
-<li>
-<p><a href="https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/">sonarscanner</a></p>
+<li><code>docker run -d --name sonarqube -p 9000:9000  sonarqube:8-community</code></li>
+</ol>
+<blockquote>
+<p>使用 PG 数据库存储</p>
+</blockquote>
+<ul>
+<li>docker run &ndash;name db_sonar -e POSTGRES_USER=sonar -e POSTGRES_PASSWORD=sonar -d postgres</li>
+<li>docker run &ndash;name sonarqube_test &ndash;link db_sonar -e SONARQUBE_JDBC_URL=jdbc:postgresql://db_sonar:5432/sonar -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD=sonar  -p 9000:9000 -d sonarqube:8-community</li>
+</ul>
+<blockquote>
+<p>调整虚拟内存</p>
+</blockquote>
+<ul>
+<li>sysctl -w vm.max_map_count=524288</li>
+</ul>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/58908668/sonarqube-badge-not-working-on-github-readme">Sonarqube badge not working on github README</a></p>
+</blockquote>
+<ul>
+<li>公开项目并且设置：Force user authentication&quot; in Administration -&gt; Configuration -&gt; General settings -&gt; Security, has to be set to false</li>
+<li>私有项目支持Badges <a href="https://github.com/taptap/sonarqube-badges">sonarqube-badges</a></li>
+</ul>
+<h3 id="项目端">项目端</h3>
 <ol>
-<li>Maven会输出当前分析项目的结果URL</li>
+<li><a href="https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/">sonarscanner</a>
+<ol>
+<li>Maven构建的过程会输出当前分析项目的结果URL</li>
 </ol>
 </li>
-<li>
-<p>sonar-scanner 命令行工具安装</p>
+</ol>
+<blockquote>
+<p>第一种 sonar-scanner 命令工具 方式</p>
+</blockquote>
 <ol>
-<li>配置工具 <code>/etc/sonar-scanner/sonar-scanner.properties</code>
-<ul>
-<li>
+<li>配置 基础配置 <code>/etc/sonar-scanner/sonar-scanner.properties</code></li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="na">sonar.host.url</span><span class="o">=</span><span class="s">http://localhost:9000
-</span><span class="s">  sonar.sourceEncoding=UTF-8
-</span><span class="s">  sonar.login=admin
-</span><span class="s">  sonar.password=admin</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">sonar.host.url</span><span class="o">=</span><span class="s">http://localhost:9000</span>
+</span></span><span class="line"><span class="cl"><span class="na">sonar.sourceEncoding</span><span class="o">=</span><span class="s">UTF-8</span>
+</span></span><span class="line"><span class="cl"><span class="na">sonar.login</span><span class="o">=</span><span class="s">admin</span>
+</span></span><span class="line"><span class="cl"><span class="na">sonar.password</span><span class="o">=</span><span class="s">admin</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-</li>
-<li>配置项目根路径 <code>sonar-project.properties</code>
-<ul>
-<li>
+</div><ol start="2">
+<li>配置环境变量</li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="na">sonar.projectKey</span><span class="o">=</span><span class="s">com.github.kuangcp.gobase
-</span><span class="s">  sonar.projectName=GoBase</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">export SONAR_SCANNER_HOME=&#34;/opt/sonar-scanner&#34;
+</span></span><span class="line"><span class="cl">export PATH=&#34;${SONAR_SCANNER_HOME}/bin:${PATH}&#34; 
+</span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-</li>
+</div><ol start="3">
+<li>配置项目根路径 <code>sonar-project.properties</code></li>
 </ol>
-</li>
-</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">sonar.projectKey</span><span class="o">=</span><span class="s">com.github.kuangcp.gobase</span>
+</span></span><span class="line"><span class="cl"><span class="na">sonar.projectName</span><span class="o">=</span><span class="s">GoBase</span>
+</span></span><span class="line"><span class="cl"><span class="na">sonar.sources</span><span class="o">=</span><span class="s">.</span>
+</span></span><span class="line"><span class="cl"><span class="na">sonar.java.binaries</span><span class="o">=</span><span class="s">.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>第二种 <a href="https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/">Maven插件方式</a></p>
+</blockquote>
+<hr>
 <blockquote>
 <p><a href="https://cloud.tencent.com/developer/article/1684515">参考: 有赞 GO 项目单测、集成、增量覆盖率统计与分析</a><br>
-<a href="https://docs.sonarqube.org/latest/analysis/languages/go/">支持 Go</a></p>
+<a href="https://docs.sonarqube.org/latest/analysis/languages/go/">sonar Go</a></p>
 </blockquote>
 <hr>
 <h1 id="测试平台">测试平台</h1>
@@ -305,11 +363,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-11-21
         
@@ -324,11 +382,11 @@
         <a class="prev" href="/post/functional/clojure/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Clojure</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/skills/test/cucumber/">
             <span class="next-text nav-default">Cucumber</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -346,17 +404,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -364,11 +422,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -378,16 +436,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>基准测试 - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 基准测试 1.1. 目标 1.2. 测试对象 1.3. 准备 1.4. 关注指标项 1.4.1. client 1.4.2. server 1.5. 测试方式 1.6. 测试环境准备 💠 2023-10-09 19:16 基准测试 目标 1 挖掘系统瓶颈点，优化系统性能 尤其对新系统上线" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/test/benchmark/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="基准测试" />
+<meta property="og:description" content="💠 基准测试 1.1. 目标 1.2. 测试对象 1.3. 准备 1.4. 关注指标项 1.4.1. client 1.4.2. server 1.5. 测试方式 1.6. 测试环境准备 💠 2023-10-09 19:16 基准测试 目标 1 挖掘系统瓶颈点，优化系统性能 尤其对新系统上线" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/test/benchmark/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-27T20:10:23+00:00" />
+<meta property="article:modified_time" content="2023-03-27T20:10:23+00:00" />
+
+<meta itemprop="name" content="基准测试">
+<meta itemprop="description" content="💠 基准测试 1.1. 目标 1.2. 测试对象 1.3. 准备 1.4. 关注指标项 1.4.1. client 1.4.2. server 1.5. 测试方式 1.6. 测试环境准备 💠 2023-10-09 19:16 基准测试 目标 1 挖掘系统瓶颈点，优化系统性能 尤其对新系统上线"><meta itemprop="datePublished" content="2023-03-27T20:10:23+00:00" />
+<meta itemprop="dateModified" content="2023-03-27T20:10:23+00:00" />
+<meta itemprop="wordCount" content="1588">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="基准测试"/>
+<meta name="twitter:description" content="💠 基准测试 1.1. 目标 1.2. 测试对象 1.3. 准备 1.4. 关注指标项 1.4.1. client 1.4.2. server 1.5. 测试方式 1.6. 测试环境准备 💠 2023-10-09 19:16 基准测试 目标 1 挖掘系统瓶颈点，优化系统性能 尤其对新系统上线"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">基准测试</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-03-27 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%B5%8B%E8%AF%95/"> 测试 </a>
+            </div>
+          <span class="more-meta"> 约 1588 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基准测试">基准测试</a>
+      <ul>
+        <li><a href="#目标">目标</a></li>
+        <li><a href="#测试对象">测试对象</a></li>
+        <li><a href="#准备">准备</a></li>
+        <li><a href="#关注指标项">关注指标项</a>
+          <ul>
+            <li><a href="#client">client</a></li>
+            <li><a href="#server">server</a></li>
+          </ul>
+        </li>
+        <li><a href="#测试方式">测试方式</a></li>
+        <li><a href="#测试环境准备">测试环境准备</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2023-03-27T20:10:23" title="March 27, 2023">March 27, 2023</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95">基准测试</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E7%9B%AE%E6%A0%87">目标</a></li>
+<li>1.2. <a href="#%E6%B5%8B%E8%AF%95%E5%AF%B9%E8%B1%A1">测试对象</a></li>
+<li>1.3. <a href="#%E5%87%86%E5%A4%87">准备</a></li>
+<li>1.4. <a href="#%E5%85%B3%E6%B3%A8%E6%8C%87%E6%A0%87%E9%A1%B9">关注指标项</a>
+<ul>
+<li>1.4.1. <a href="#client">client</a></li>
+<li>1.4.2. <a href="#server">server</a></li>
+</ul>
+</li>
+<li>1.5. <a href="#%E6%B5%8B%E8%AF%95%E6%96%B9%E5%BC%8F">测试方式</a></li>
+<li>1.6. <a href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87">测试环境准备</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2023-10-09 19:16</p>
+<hr>
+<h1 id="基准测试">基准测试</h1>
+<h2 id="目标">目标</h2>
+<p>1 挖掘系统瓶颈点，优化系统性能</p>
+<p>尤其对新系统上线，缺乏性能基线数据，此时压测一般没有明确的qps/rt等指标，而是通过不断施压，不断逼近系统的极限，从而暴露问题，修复问题。
+2 建立性能基线</p>
+<p>主要是为了收集系统当前的最大性能指标，一般会根据业务特点，先确定对rt和错误率的容忍度，然后通过压测推算出能够支持的最大qps, 并发量等。</p>
+<p>同时可以结合性能指标和监控数据，来建立合理的预警机制，设立系统水位报警项，限流阈值，弹性策略等。</p>
+<p>量化系统能力/SLA等 （比如在竞标中引用）。
+3 性能回归</p>
+<p>对于已上线系统，或者性能需求明确的系统，可以根据线上实际的运行情况，确定系统需要支撑的qps/rt, 然后在涉及性能影响前做回归校验，确保性能满足预期。
+4 系统稳定性</p>
+<p>更侧重在一定压力的情况下，系统是否能长时间稳定持续的提供SLA保障。</p>
+<p>一般可以考虑将压力设定到业务峰值的80%，持续施压。
+5 网络/线路延迟稳定性等</p>
+<p>在一些特殊的业务场合，对延迟的容忍度极小，比如DNS解析，CDN服务，多人实时在线游戏，高频交易等等，需要网络质量，尤其是不同线路（电信/联通/教育网/&hellip;）间的差异。</p>
+<h2 id="测试对象">测试对象</h2>
+<ul>
+<li>后端
+<ul>
+<li>单api</li>
+<li>单业务逻辑场景</li>
+</ul>
+</li>
+<li>前端
+<ul>
+<li>单request</li>
+<li>单操作</li>
+<li>单页</li>
+<li>整体页面平均情况</li>
+</ul>
+</li>
+</ul>
+<h2 id="准备">准备</h2>
+<h2 id="关注指标项">关注指标项</h2>
+<p>QPS
+TPS
+PV
+RT
+CPU占用率
+CPU Load 逻辑核心数1.2以下?
+内存占用率
+出向和入向流量</p>
+<h3 id="client">client</h3>
+<ul>
+<li><a href="https://www.infoq.cn/article/uhsl0goghtl2bm*vjios">前端框架基准测试</a>
+<ul>
+<li>TTI（Time to Interactive）：让一个页面变得可交互需要多长时间。</li>
+<li>速度指数（Speed Index）：页面处理内容的速度，分数越低也好。</li>
+<li>FCP（First Contentful Paint）：从导航一个页面到浏览器开始渲染 DOM 第一个字节的时间。</li>
+<li>FCI（First CPU Idle）：页面达到最小化可交互的时间（不需要等到页面上的所有元素都可交互，只要可以对大部分用户输入做出响应即可）。</li>
+<li>FMP（First Meaningful Paint）：用户感知到页面主要内容可见的时间。</li>
+<li>预估的输入延迟（Estimated Input Latency）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="server">server</h3>
+<ul>
+<li>PV</li>
+<li>QPS</li>
+<li>RT</li>
+<li>成功率</li>
+<li>cpu usage</li>
+<li>load
+<ul>
+<li>最大用户同时在线数 （用户登录系统，一般不需要额外压测，除非业务场景特殊）。</li>
+</ul>
+</li>
+<li>mem</li>
+<li>jvm/fullGC</li>
+<li>连接数(netstat)</li>
+<li>disk io (iostat / iotop)</li>
+</ul>
+<h2 id="测试方式">测试方式</h2>
+<ol>
+<li>寻找一个初步的并发数, 执行测试, 观察记录以上指标值</li>
+<li>调整并发数,观察记录指标值, 观察不同并发数导致的数据变化规律</li>
+<li>依据以上多份数据找到并发数增长情况下 哪些指标值出现明显瓶颈,对症分析和优化</li>
+</ol>
+<blockquote>
+<p>注意:</p>
+<ul>
+<li>首次确认的并发数可以通过预估 以及 历史项目的经验值</li>
+<li>输入为 并发数 总请求量, 输出为观测指标值, 相同的输入情况需要多次测量降低误差</li>
+<li>测试时需要考虑每次测试的环境差异( 数据库缓存, 应用缓存, CPU负载波动, )</li>
+</ul>
+</blockquote>
+<h2 id="测试环境准备">测试环境准备</h2>
+<p>硬件配置信息: CPU,内存,硬盘,网络
+软件配置情况: 集群节点数, 集群策略, 缓存策略,网络拓扑</p>
+<blockquote>
+<p>Clickhouse 性能瓶颈</p>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/366421463">Zookeeper在Clickhouse中的应用</a><br>
+<a href="https://developer.aliyun.com/article/762917">ReplicatedMergeTree 引擎</a></p>
+<p>需要协调分布式 DDL 的执行(once语义)
+- 单个节点A收到用户的分布式DDL指令
+- 节点A校验 分布式DDL 请求合法性, 在ZK 任务队列中创建Znode 上传 DDL LogEntry,节点下创建 finish和 active节点
+- 集群内所有节点消费 LogEntry队列, 将节点自身注册到active上,将处理结果写入finish节点
+- 节点A 轮询ZK检查 finish是否全部节点都完成. 以及active节点是否有超时现象.</p>
+<p>ReplicatedMergeTree表主备节点之间的状态同步
+- 重度依赖ZK</p>
+<p>CK架构是 每个节点都是平等的, 没有master worker的这种角色差异. 也导致了数据的协调和管理工作落在了CK上,
+用户发出的指令可以落在任意的节点上执行, 默认命令都是单机执行,需要加 on cluster才会触发集群内所有节点执行对应的指令.</p>
+<ol>
+<li>数据工具体系项目 产品介入, 标准开发流程, 全局视图</li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-03-27
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/database/olap/clickhouse/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Clickhouse</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/collection/map/linkedhashmap/">
+            <span class="next-text nav-default">LinkedHashMap</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

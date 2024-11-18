@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Docker - Mythos</title>
+  <title>Docker - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Docker 简介 学习资源 安装与卸载 Linux 安装包安装 不加sudo执行docker命令 Ubuntu Debian Centos Arch Windows 基础管理 图形化管理工具 Portainer 配置镜像源 搭建本地镜像仓库 基础命" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Docker 1.1. 简介 1.2. 学习资源 安装与卸载 2.1. Linux 2.1.1. 安装包安装 2.1.2. 无需sudo去执行docker命令 2.1.3. Ubuntu 2.1.4. Debian 2.1.5. Centos 2.1.6. Arch 2.2. Windows 2.3. 图形化管理工具 2.3.1. Portainer 基础管理 3.1. 配置代理" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/container/docker/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/container/docker/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Docker" />
-<meta property="og:description" content="目录 start Docker 简介 学习资源 安装与卸载 Linux 安装包安装 不加sudo执行docker命令 Ubuntu Debian Centos Arch Windows 基础管理 图形化管理工具 Portainer 配置镜像源 搭建本地镜像仓库 基础命" />
+<meta property="og:description" content="💠 Docker 1.1. 简介 1.2. 学习资源 安装与卸载 2.1. Linux 2.1.1. 安装包安装 2.1.2. 无需sudo去执行docker命令 2.1.3. Ubuntu 2.1.4. Debian 2.1.5. Centos 2.1.6. Arch 2.2. Windows 2.3. 图形化管理工具 2.3.1. Portainer 基础管理 3.1. 配置代理" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/docker/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/container/docker/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T11:24:44+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:24:44+00:00" />
+
 <meta itemprop="name" content="Docker">
-<meta itemprop="description" content="目录 start Docker 简介 学习资源 安装与卸载 Linux 安装包安装 不加sudo执行docker命令 Ubuntu Debian Centos Arch Windows 基础管理 图形化管理工具 Portainer 配置镜像源 搭建本地镜像仓库 基础命">
-<meta itemprop="datePublished" content="2018-12-15T11:24:44+00:00" />
+<meta itemprop="description" content="💠 Docker 1.1. 简介 1.2. 学习资源 安装与卸载 2.1. Linux 2.1.1. 安装包安装 2.1.2. 无需sudo去执行docker命令 2.1.3. Ubuntu 2.1.4. Debian 2.1.5. Centos 2.1.6. Arch 2.2. Windows 2.3. 图形化管理工具 2.3.1. Portainer 基础管理 3.1. 配置代理"><meta itemprop="datePublished" content="2018-12-15T11:24:44+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:24:44+00:00" />
-<meta itemprop="wordCount" content="5902">
-
-
-
-<meta itemprop="keywords" content="基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="5845">
+<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker"/>
-<meta name="twitter:description" content="目录 start Docker 简介 学习资源 安装与卸载 Linux 安装包安装 不加sudo执行docker命令 Ubuntu Debian Centos Arch Windows 基础管理 图形化管理工具 Portainer 配置镜像源 搭建本地镜像仓库 基础命"/>
+<meta name="twitter:description" content="💠 Docker 1.1. 简介 1.2. 学习资源 安装与卸载 2.1. Linux 2.1.1. 安装包安装 2.1.2. 无需sudo去执行docker命令 2.1.3. Ubuntu 2.1.4. Debian 2.1.5. Centos 2.1.6. Arch 2.2. Windows 2.3. 图形化管理工具 2.3.1. Portainer 基础管理 3.1. 配置代理"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,184 +122,223 @@
         <div class="post-category">
             <a href="/categories/docker/"> Docker </a>
             </div>
-          <span class="more-meta"> 5902 words </span>
-          <span class="more-meta"> 12 mins read </span>
+          <span class="more-meta"> 约 5845 字 </span>
+          <span class="more-meta"> 预计阅读 12 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#简介">简介</a></li>
-    <li><a href="#学习资源">学习资源</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#linux">Linux</a>
+    <li><a href="#docker">Docker</a>
       <ul>
-        <li><a href="#安装包安装">安装包安装</a></li>
-        <li><a href="#不加sudo执行docker命令">不加sudo执行docker命令</a></li>
-        <li><a href="#ubuntu">Ubuntu</a></li>
-        <li><a href="#debian">Debian</a></li>
-        <li><a href="#centos">Centos</a></li>
-        <li><a href="#arch">Arch</a></li>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#学习资源">学习资源</a></li>
       </ul>
     </li>
-    <li><a href="#windows">Windows</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#图形化管理工具">图形化管理工具</a>
+    <li><a href="#安装与卸载">安装与卸载</a>
       <ul>
-        <li><a href="#portainer">Portainer</a></li>
+        <li><a href="#linux">Linux</a>
+          <ul>
+            <li><a href="#安装包安装">安装包安装</a></li>
+            <li><a href="#无需sudo去执行docker命令">无需sudo去执行docker命令</a></li>
+            <li><a href="#ubuntu">Ubuntu</a></li>
+            <li><a href="#debian">Debian</a></li>
+            <li><a href="#centos">Centos</a></li>
+            <li><a href="#arch">Arch</a></li>
+          </ul>
+        </li>
+        <li><a href="#windows">Windows</a></li>
+        <li><a href="#图形化管理工具">图形化管理工具</a>
+          <ul>
+            <li><a href="#portainer">Portainer</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#配置镜像源">配置镜像源</a>
+    <li><a href="#基础管理">基础管理</a>
       <ul>
-        <li><a href="#搭建本地镜像仓库">搭建本地镜像仓库</a></li>
+        <li><a href="#配置代理">配置代理</a></li>
+        <li><a href="#配置镜像源">配置镜像源</a></li>
+        <li><a href="#搭建本地镜像仓库">搭建本地镜像仓库</a>
+          <ul>
+            <li><a href="#push-over-http">Push over HTTP</a></li>
+          </ul>
+        </li>
+        <li><a href="#基础命令">基础命令</a></li>
+        <li><a href="#镜像">镜像</a></li>
+        <li><a href="#容器">容器</a>
+          <ul>
+            <li><a href="#ps">ps</a></li>
+            <li><a href="#create">create</a></li>
+            <li><a href="#run">run</a></li>
+            <li><a href="#exec">exec</a></li>
+            <li><a href="#port">port</a></li>
+          </ul>
+        </li>
+        <li><a href="#端口映射">端口映射</a></li>
       </ul>
     </li>
-    <li><a href="#基础命令">基础命令</a></li>
-    <li><a href="#镜像">镜像</a></li>
-    <li><a href="#容器">容器</a>
+    <li><a href="#数据存储">数据存储</a>
       <ul>
-        <li><a href="#ps">ps</a></li>
-        <li><a href="#create">create</a></li>
-        <li><a href="#run">run</a></li>
-        <li><a href="#exec">exec</a></li>
-        <li><a href="#commit">commit</a></li>
-        <li><a href="#port">port</a></li>
+        <li><a href="#文件系统">文件系统</a></li>
+        <li><a href="#数据卷">数据卷</a></li>
+        <li><a href="#数据卷容器">数据卷容器</a></li>
       </ul>
     </li>
-    <li><a href="#端口映射">端口映射</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#文件系统">文件系统</a></li>
-    <li><a href="#数据卷">数据卷</a></li>
-    <li><a href="#数据卷容器">数据卷容器</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#docker-compose">Docker-Compose</a>
+    <li><a href="#容器编排">容器编排</a>
       <ul>
-        <li><a href="#配置文件">配置文件</a></li>
-        <li><a href="#使用命令">使用命令</a></li>
-        <li><a href="#tips">Tips</a></li>
+        <li><a href="#docker-compose">Docker-Compose</a>
+          <ul>
+            <li><a href="#配置文件">配置文件</a></li>
+            <li><a href="#使用命令">使用命令</a></li>
+            <li><a href="#tips">Tips</a></li>
+          </ul>
+        </li>
+        <li><a href="#docker-machine">Docker-Machine</a></li>
+        <li><a href="#docker-swarm">Docker-Swarm</a></li>
       </ul>
     </li>
-    <li><a href="#docker-machine">Docker-Machine</a></li>
-    <li><a href="#docker-swarm">Docker-Swarm</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#none">None</a></li>
-    <li><a href="#host">Host</a></li>
-    <li><a href="#bridge">Bridge</a></li>
-    <li><a href="#user-defined">User-defined</a></li>
-    <li><a href="#跨主机容器通信">跨主机容器通信</a>
+    <li><a href="#网络">网络</a>
       <ul>
-        <li><a href="#overlay">overlay</a></li>
+        <li><a href="#none">None</a></li>
+        <li><a href="#host">Host</a></li>
+        <li><a href="#bridge">Bridge</a></li>
+        <li><a href="#user-defined">User-defined</a></li>
+        <li><a href="#跨主机容器通信">跨主机容器通信</a>
+          <ul>
+            <li><a href="#overlay">overlay</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
+    <li><a href="#dockerfile">Dockerfile</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-15T11:24:44" title="December 15, 2018">December 15, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#docker">Docker</a>
-<ol>
-<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
-<li><a href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90">学习资源</a></li>
+<li><a href="#docker">Docker</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
+<li>1.2. <a href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90">学习资源</a></li>
+</ul>
 </li>
-<li><a href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD">安装与卸载</a>
-<ol>
-<li><a href="#linux">Linux</a>
-<ol>
-<li><a href="#%E5%AE%89%E8%A3%85%E5%8C%85%E5%AE%89%E8%A3%85">安装包安装</a></li>
-<li><a href="#%E4%B8%8D%E5%8A%A0sudo%E6%89%A7%E8%A1%8Cdocker%E5%91%BD%E4%BB%A4">不加sudo执行docker命令</a></li>
-<li><a href="#ubuntu">Ubuntu</a></li>
-<li><a href="#debian">Debian</a></li>
-<li><a href="#centos">Centos</a></li>
-<li><a href="#arch">Arch</a></li>
+<li>
+<ol start="2">
+<li><a href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD">安装与卸载</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#linux">Linux</a>
+<ul>
+<li>2.1.1. <a href="#%E5%AE%89%E8%A3%85%E5%8C%85%E5%AE%89%E8%A3%85">安装包安装</a></li>
+<li>2.1.2. <a href="#%E6%97%A0%E9%9C%80sudo%E5%8E%BB%E6%89%A7%E8%A1%8Cdocker%E5%91%BD%E4%BB%A4">无需sudo去执行docker命令</a></li>
+<li>2.1.3. <a href="#ubuntu">Ubuntu</a></li>
+<li>2.1.4. <a href="#debian">Debian</a></li>
+<li>2.1.5. <a href="#centos">Centos</a></li>
+<li>2.1.6. <a href="#arch">Arch</a></li>
+</ul>
 </li>
-<li><a href="#windows">Windows</a></li>
+<li>2.2. <a href="#windows">Windows</a></li>
+<li>2.3. <a href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7">图形化管理工具</a>
+<ul>
+<li>2.3.1. <a href="#portainer">Portainer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86">基础管理</a></li>
 </ol>
+<ul>
+<li>3.1. <a href="#%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86">配置代理</a></li>
+<li>3.2. <a href="#%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F%E6%BA%90">配置镜像源</a></li>
+<li>3.3. <a href="#%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93">搭建本地镜像仓库</a>
+<ul>
+<li>3.3.1. <a href="#push-over-http">Push over HTTP</a></li>
+</ul>
 </li>
-<li><a href="#%E5%9F%BA%E7%A1%80%E7%AE%A1%E7%90%86">基础管理</a>
-<ol>
-<li><a href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7">图形化管理工具</a>
-<ol>
-<li><a href="#portainer">Portainer</a></li>
+<li>3.4. <a href="#%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4">基础命令</a></li>
+<li>3.5. <a href="#%E9%95%9C%E5%83%8F">镜像</a></li>
+<li>3.6. <a href="#%E5%AE%B9%E5%99%A8">容器</a>
+<ul>
+<li>3.6.1. <a href="#ps">ps</a></li>
+<li>3.6.2. <a href="#create">create</a></li>
+<li>3.6.3. <a href="#run">run</a>
+<ul>
+<li>3.6.3.1. <a href="#%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6">资源限制</a></li>
+</ul>
+</li>
+<li>3.6.4. <a href="#exec">exec</a></li>
+<li>3.6.5. <a href="#port">port</a></li>
+</ul>
+</li>
+<li>3.7. <a href="#%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84">端口映射</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8">数据存储</a></li>
 </ol>
+<ul>
+<li>4.1. <a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a></li>
+<li>4.2. <a href="#%E6%95%B0%E6%8D%AE%E5%8D%B7">数据卷</a></li>
+<li>4.3. <a href="#%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%AE%B9%E5%99%A8">数据卷容器</a></li>
+</ul>
 </li>
-<li><a href="#%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F%E6%BA%90">配置镜像源</a>
-<ol>
-<li><a href="#%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93">搭建本地镜像仓库</a></li>
+<li>
+<ol start="5">
+<li><a href="#%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92">容器编排</a></li>
 </ol>
+<ul>
+<li>5.1. <a href="#docker-compose">Docker-Compose</a>
+<ul>
+<li>5.1.1. <a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">配置文件</a></li>
+<li>5.1.2. <a href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4">使用命令</a></li>
+<li>5.1.3. <a href="#tips">Tips</a></li>
+</ul>
 </li>
-<li><a href="#%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4">基础命令</a></li>
-<li><a href="#%E9%95%9C%E5%83%8F">镜像</a></li>
-<li><a href="#%E5%AE%B9%E5%99%A8">容器</a>
-<ol>
-<li><a href="#ps">ps</a></li>
-<li><a href="#create">create</a></li>
-<li><a href="#run">run</a>
-<ol>
-<li><a href="#%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6">资源限制</a></li>
+<li>5.2. <a href="#docker-machine">Docker-Machine</a></li>
+<li>5.3. <a href="#docker-swarm">Docker-Swarm</a></li>
+</ul>
+</li>
+<li>
+<ol start="6">
+<li><a href="#%E7%BD%91%E7%BB%9C">网络</a></li>
 </ol>
+<ul>
+<li>6.1. <a href="#none">None</a></li>
+<li>6.2. <a href="#host">Host</a></li>
+<li>6.3. <a href="#bridge">Bridge</a></li>
+<li>6.4. <a href="#user-defined">User-defined</a></li>
+<li>6.5. <a href="#%E8%B7%A8%E4%B8%BB%E6%9C%BA%E5%AE%B9%E5%99%A8%E9%80%9A%E4%BF%A1">跨主机容器通信</a>
+<ul>
+<li>6.5.1. <a href="#overlay">overlay</a></li>
+</ul>
 </li>
-<li><a href="#exec">exec</a></li>
-<li><a href="#commit">commit</a></li>
-<li><a href="#port">port</a></li>
-</ol>
+</ul>
 </li>
-<li><a href="#%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84">端口映射</a></li>
-</ol>
-</li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8">数据存储</a>
-<ol>
-<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E5%8D%B7">数据卷</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%AE%B9%E5%99%A8">数据卷容器</a></li>
-</ol>
-</li>
-<li><a href="#%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92">容器编排</a>
-<ol>
-<li><a href="#docker-compose">Docker-Compose</a>
-<ol>
-<li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">配置文件</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4">使用命令</a></li>
-<li><a href="#tips">Tips</a></li>
-</ol>
-</li>
-<li><a href="#docker-machine">Docker-Machine</a></li>
-<li><a href="#docker-swarm">Docker-Swarm</a></li>
-</ol>
-</li>
-<li><a href="#%E7%BD%91%E7%BB%9C">网络</a>
-<ol>
-<li><a href="#none">None</a></li>
-<li><a href="#host">Host</a></li>
-<li><a href="#bridge">Bridge</a></li>
-<li><a href="#user-defined">User-defined</a></li>
-<li><a href="#%E8%B7%A8%E4%B8%BB%E6%9C%BA%E5%AE%B9%E5%99%A8%E9%80%9A%E4%BF%A1">跨主机容器通信</a>
-<ol>
-<li><a href="#overlay">overlay</a></li>
-</ol>
-</li>
-</ol>
-</li>
+<li>
+<ol start="7">
 <li><a href="#dockerfile">Dockerfile</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-07-02 02:28</em>|</p>
+</li>
+</ul>
+<p>💠 2024-11-10 13:14:39</p>
 <hr>
 <h1 id="docker">Docker</h1>
 <blockquote>
@@ -316,6 +351,9 @@
 <li>
 <p><a href="https://yeasy.gitbooks.io/docker_practice/content/">Gitbook: docker 从入门到实践</a></p>
 </li>
+<li>
+<p><a href="https://github.com/budtmo/docker-android">docker-android</a></p>
+</li>
 </ul>
 <h2 id="简介">简介</h2>
 <blockquote>
@@ -323,9 +361,18 @@
 </blockquote>
 <h2 id="学习资源">学习资源</h2>
 <ul>
-<li><a href="https://labs.play-with-docker.com/">PMD: player with docker</a><code>线上练习Docker环境</code></li>
-<li><a href="https://github.com/docker-slim/docker-slim">docker-slim</a><code>镜像瘦身</code></li>
-<li><input disabled="" type="checkbox"> todo <a href="https://docs.docker.com/develop/develop-images/multistage-build/">Use multi-stage builds</a> <code>17.05+</code></li>
+<li>
+<p><a href="https://labs.play-with-docker.com/">PMD: player with docker</a><code>线上练习Docker环境</code></p>
+</li>
+<li>
+<p><a href="https://github.com/docker-slim/docker-slim">docker-slim</a><code>镜像瘦身</code></p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> todo <a href="https://docs.docker.com/develop/develop-images/multistage-build/">Use multi-stage builds</a> <code>17.05+</code></p>
+</li>
+<li>
+<p><a href="https://github.com/collabnix/dockerlabs">dockerlabs</a></p>
+</li>
 </ul>
 <hr>
 <blockquote>
@@ -375,19 +422,15 @@
 <blockquote>
 <p><a href="https://download.docker.com/linux/">官方文件地址</a></p>
 </blockquote>
-<ul>
-<li><em>Debian系</em>
+<p><em>Debian系</em></p>
 <ul>
 <li><a href="https://download.docker.com/linux/debian/dists/">deb包选择</a></li>
 <li>进去后选择debain的版本，deepin15.4 的版本是stretch 然后pool/stable/amd64/选版本即可</li>
-<li>例如：<a href="https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/">Deepin 15.4直接点这里</a></li>
-<li><code>这两种方式装的是同一个版本号</code></li>
+<li>例如：<a href="https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/">Deepin 15.4直接点这里</a> <code>这两种方式装的是同一个版本号</code></li>
 <li>双击或者<code>sudo dpkg -i deb文件</code></li>
 <li>测试安装成功 <code>sudo docker run hello-world</code></li>
 </ul>
-</li>
-</ul>
-<h3 id="不加sudo执行docker命令">不加sudo执行docker命令</h3>
+<h3 id="无需sudo去执行docker命令">无需sudo去执行docker命令</h3>
 <blockquote>
 <p><a href="https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user">官方文档</a></p>
 </blockquote>
@@ -420,12 +463,12 @@
 <li><code>sudo apt-get install docker-ce</code></li>
 </ul>
 <ol>
-<li><code>前置软件</code> sudo apt-get install<br>
-apt-transport-https<br>
-ca-certificates<br>
-curl<br>
-gnupg2<br>
-lsb-release<br>
+<li><code>前置软件</code> sudo apt-get install <br>
+apt-transport-https <br>
+ca-certificates <br>
+curl <br>
+gnupg2 <br>
+lsb-release <br>
 software-properties-common</li>
 </ol>
 <blockquote>
@@ -457,13 +500,6 @@ software-properties-common</li>
 <li>安装完成后就会有三个图标在桌面上，然后进入Docker Quickstart Terminal后 <code>docker run hello-world</code> 有正常输出即可</li>
 </ul>
 <hr>
-<h1 id="基础管理">基础管理</h1>
-<blockquote>
-<p>docker 所有的数据默认存储在 <code>/var/lib/docker</code></p>
-</blockquote>
-<blockquote>
-<p><a href="https://github.com/bcicen/ctop">ctop</a><code>Top-like interface for container metrics</code></p>
-</blockquote>
 <h2 id="图形化管理工具">图形化管理工具</h2>
 <blockquote>
 <p><a href="https://github.com/jesseduffield/lazydocker">lazydocker</a></p>
@@ -476,6 +512,57 @@ software-properties-common</li>
 <li><code>docker volume create portainer_data</code></li>
 <li><code>docker run --name portainer -d -p 8000:8000 -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce</code></li>
 </ol>
+<h1 id="基础管理">基础管理</h1>
+<blockquote>
+<p>docker 所有的数据默认存储在 <code>/var/lib/docker</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/bcicen/ctop">ctop</a><code>Top-like interface for container metrics</code></p>
+</blockquote>
+<ul>
+<li><a href="https://bitnami.com/">bitnami</a><code>非官方，但是维护了很多常用软件的镜像</code></li>
+</ul>
+<h2 id="配置代理">配置代理</h2>
+<p>2024-06-06 开始封禁Dockerhub及国内源，所以最稳妥的还是用代理</p>
+<blockquote>
+<p>设置代理方式</p>
+</blockquote>
+<ul>
+<li>mkdir -p /etc/systemd/system/docker.service.d</li>
+<li>vim /etc/systemd/system/docker.service.d/http-proxy.conf
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[Service]
+</span></span><span class="line"><span class="cl">Environment=&#34;HTTP_PROXY=http://localhost:7890&#34;
+</span></span><span class="line"><span class="cl">Environment=&#34;HTTPS_PROXY=http://localhost:7890&#34;
+</span></span><span class="line"><span class="cl"># 可选项，配置不走代理的仓库
+</span></span><span class="line"><span class="cl">Environment=&#34;NO_PROXY=your-registry.com,10.10.10.10,*.example.com&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>systemctl daemon-reload</li>
+<li>systemctl restart docker</li>
+<li>检查环境变量 systemctl show &ndash;property=Environment docker</li>
+<li>查看代理 docker info</li>
+</ul>
+<blockquote>
+<p>Windows WSL 配置</p>
+</blockquote>
+<ul>
+<li>WSL无法注册为Service,直接dockerd 方式启动 的情况, 只能通过配置 &ndash;http-proxy &ndash;https-proxy
+<ul>
+<li>无法通过配置 /etc/default/docker 等方式</li>
+<li>无法通过 docker run &ndash;env HTTP_PROXY=&ldquo;<a href="http://x.x.x.x">http://x.x.x.x</a>&rdquo;</li>
+</ul>
+</li>
+</ul>
 <h2 id="配置镜像源">配置镜像源</h2>
 <blockquote>
 <p>默认的DockerHub因为在国外所以网络不太稳定，需要使用国内镜像源</p>
@@ -491,11 +578,11 @@ software-properties-common</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json">    <span class="p">{</span><span class="nt">&#34;registry-mirrors&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;https://registry.docker-cn.com&#34;</span><span class="p">]}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">    <span class="p">{</span><span class="nt">&#34;registry-mirrors&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;https://registry.docker-cn.com&#34;</span><span class="p">]}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>时速云</p>
@@ -503,58 +590,9 @@ software-properties-common</li>
 <ul>
 <li><code>sudo docker pull index.tenxcloud.com/&lt;namespace&gt;/&lt;repository&gt;:&lt;tag&gt;</code></li>
 <li>下载后可以用别名 <code>docker tag index.tenxcloud.com/docker_library/node:lastest node:lastest</code></li>
-<li>然后为了控制台干净可以直接将原来的长命名tag直接删除</li>
 </ul>
-<blockquote>
-<p>阿里云</p>
-</blockquote>
-<ul>
-<li><a href="https://dev.aliyun.com/search.html">开发者平台</a></li>
-<li>配置命名空间，仓库，然后使用文档的配置即可</li>
-</ul>
-<blockquote>
-<p>百度云</p>
-</blockquote>
-<ul>
-<li>个人较为推荐使用  | <a href="https://cloud.baidu.com/doc/CCE/GettingStarted.html#.E9.95.9C.E5.83.8F.E4.BB.93.E5.BA.93">官方文档</a></li>
-</ul>
-<ol>
-<li>
-<p>登录百度云镜像仓库</p>
-<ul>
-<li>sudo docker login &ndash;username=[username] hub.baidubce.com</li>
-<li>username:镜像仓库名称，即是<code>开通镜像仓库时填写的用户名</code>。输入密码后完成登录。</li>
-</ul>
-</li>
-<li>
-<p>上传镜像</p>
-<ul>
-<li>sudo docker tag [ImageId] hub.baidubce.com/[namespace]/[ImageName]:[镜像版本号]</li>
-<li>sudo docker push hub.baidubce.com/[namespace]/[ImageName]:[镜像版本号]
-<ul>
-<li>ImageId和镜像版本号根据镜像信息补充</li>
-<li>namespace是开通镜像仓库时填写的命名空间</li>
-<li>ImageName是在控制台创建的镜像名称</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>下载镜像</p>
-<ul>
-<li>登录到镜像仓库，需输入密码</li>
-<li>sudo docker pull hub.baidubce.com/[namespace]/[ImageName]:[镜像版本号]</li>
-</ul>
-</li>
-<li>
-<p>使用加速器</p>
-<ul>
-<li>docker软件源地址：https://mirror.baidubce.com</li>
-</ul>
-</li>
-</ol>
 <hr>
-<h3 id="搭建本地镜像仓库">搭建本地镜像仓库</h3>
+<h2 id="搭建本地镜像仓库">搭建本地镜像仓库</h2>
 <blockquote>
 <p><a href="https://docs.docker.com/registry/#requirements">Official doc</a></p>
 </blockquote>
@@ -581,6 +619,7 @@ software-properties-common</li>
 <li>一样的设置好别名， 然后push上去</li>
 <li>查看仓库中的镜像 <code>curl IP:5000/v2/_catalog</code></li>
 </ul>
+<h3 id="push-over-http">Push over HTTP</h3>
 <blockquote>
 <p><strong>注意</strong> 由于 docker client 默认是用的 HTTPS 方式通信， 但是这个本地的 registry 默认是 HTTP 的， 所以有几种解决方案</p>
 </blockquote>
@@ -588,11 +627,11 @@ software-properties-common</li>
 <li>直接将本地仓库的IP和端口 设置为本地Docker的白名单
 <ul>
 <li>给dockerd 添加参数 <code>DOCKER_OPTS=&quot;--insecure-registry ip:port&quot;</code></li>
-<li>或者配置 /etc/docker/daemon.json  <code>{ &quot;insecure-registries&quot;:[&quot;IP:PORT&quot;] }</code></li>
-<li>重启Docker服务</li>
+<li>或者配置 <code>/etc/docker/daemon.json</code> 增加白名单  <code>{ &quot;insecure-registries&quot;:[&quot;IP:PORT&quot;] }</code></li>
+<li><strong>重启</strong>Docker服务</li>
 </ul>
 </li>
-<li>配置 registry 为 HTTPS， 那么就需要配置SSL证书， 使用本地证书或者公网证书</li>
+<li>将 registry 配置为 HTTPS， 那么就需要配置SSL证书， 使用本地证书或者公网证书</li>
 </ol>
 <hr>
 <h2 id="基础命令">基础命令</h2>
@@ -601,9 +640,15 @@ software-properties-common</li>
 </blockquote>
 <p><em>登录镜像仓库</em></p>
 <ul>
-<li>登录hub.docker ：<code>docker login </code> 或者 <code>docker login -u username -p password</code></li>
-<li>登录时速云：<code>sudo docker login index.tenxcloud.com</code></li>
-<li>登录百度云： <code>docker login --username=[username] hub.baidubce.com</code></li>
+<li>
+<p>登录hub.docker ：<code>docker login </code> 或者 <code>docker login -u username -p password</code></p>
+</li>
+<li>
+<p>登录时速云：<code>sudo docker login index.tenxcloud.com</code></p>
+</li>
+<li>
+<p>清理全部未使用的资源 docker system prune -a</p>
+</li>
 </ul>
 <h2 id="镜像">镜像</h2>
 <blockquote>
@@ -622,7 +667,7 @@ software-properties-common</li>
 <li>安装 ： <code>docker pull 镜像名</code></li>
 <li>删除 ： <code>docker rmi 镜像名</code></li>
 <li>查看详细： <code>docker inspect [-f {{&quot;.Architesture&quot;}}]</code>  -f 查看JSON格式的具体节点的数据值</li>
-<li>查看历史：<code>docker history imagename</code></li>
+<li>查看Layer历史：<code>docker history imagename</code> 每一层的Layer id 和 执行的操作</li>
 <li>添加标签（别名）： <code>docker tag originname newname</code></li>
 <li>导出镜像文件：<code>docker save -o ubuntu.tar  ubuntu:14.04</code>
 <ul>
@@ -630,6 +675,7 @@ software-properties-common</li>
 </ul>
 </li>
 <li>上传镜像： <code>docker push mythos/test:lastest</code></li>
+<li>删除所有未使用的image <code>docker image prune --all</code></li>
 </ul>
 <hr>
 <h2 id="容器">容器</h2>
@@ -670,13 +716,26 @@ software-properties-common</li>
 <p>重命名 ： <code>docker rename origin new</code></p>
 </li>
 <li>
-<p>导入导出 （容器快照）：</p>
+<p>复制文件或目录 <strong>容器启动或停止都可操作</strong></p>
+<ul>
+<li>容器复制到宿主机 <code>docker cp my_container:/path/in/container /path/on/host</code></li>
+<li>宿主机复制到容器 <code>docker cp /path/on/host my_container:/path/in/container</code></li>
+<li>但是不支持通配 <code>docker cp *.sh redis:/tmp</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>导入导出</p>
+</blockquote>
+<ul>
+<li>导入导出 （容器快照）： <strong>注意此方式不会保留layer历史，无法回滚</strong>
 <ul>
 <li>导出： <code>docker export -o test.tar 容器名</code> <code>docker export 容器name &gt; test.tar</code></li>
 <li>导入： <code>docker import [-c |--change=[]] [-m | --message=[]] file|URL - [repository]:[tag]</code></li>
 <li>-c | &ndash;change=[] 选项在导入的同时执行对容器就行修改的Dockerfile指令。</li>
 </ul>
 </li>
+<li>将容器导出为镜像： <code>docker commit container_name image:tag</code></li>
 </ul>
 <blockquote>
 <p><a href="http://jpetazzo.github.io/2015/01/13/docker-mount-dynamic-volumes/">Attach a volume to a container while it is running</a></p>
@@ -693,11 +752,11 @@ software-properties-common</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;PortBindings&#34;</span><span class="err">:</span><span class="p">{</span><span class="nt">&#34;3306/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;3360&#34;</span><span class="p">}]}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;PortBindings&#34;</span><span class="err">:</span><span class="p">{</span><span class="nt">&#34;3306/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;3360&#34;</span><span class="p">}]}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>config.v2.json
@@ -706,11 +765,11 @@ software-properties-common</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;Ports&#34;</span><span class="err">:</span><span class="p">{</span><span class="nt">&#34;8080/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;0.0.0.0&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;8888&#34;</span><span class="p">}],</span><span class="nt">&#34;8081/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;0.0.0.0&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;8881&#34;</span><span class="p">}]}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;Ports&#34;</span><span class="err">:</span><span class="p">{</span><span class="nt">&#34;8080/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;0.0.0.0&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;8888&#34;</span><span class="p">}],</span><span class="nt">&#34;8081/tcp&#34;</span><span class="p">:[{</span><span class="nt">&#34;HostIp&#34;</span><span class="p">:</span><span class="s2">&#34;0.0.0.0&#34;</span><span class="p">,</span><span class="nt">&#34;HostPort&#34;</span><span class="p">:</span><span class="s2">&#34;8881&#34;</span><span class="p">}]}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -727,7 +786,7 @@ software-properties-common</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -742,20 +801,20 @@ software-properties-common</li>
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    .ID 	    Container ID
-    .Image 	    Image ID
-    .Command 	Quoted command
-    .CreatedAt 	Time when the container was created.
-    .RunningFor Elapsed time since the container was started.
-    .Ports 	    Exposed ports.
-    .Status 	Container status.
-    .Size 	    Container disk size.
-    .Names 	    Container names.
-    .Labels 	All labels assigned to the container.
-    .Label 	    Value of a specific label for this container. For example &#39;{{.Label &#34;com.docker.swarm.cpu&#34;}}&#39;
-    .Mounts 	Names of the volumes mounted in this container.
-    .Networks 	Names of the networks attached to this container.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    .ID 	    Container ID
+</span></span><span class="line"><span class="cl">    .Image 	    Image ID
+</span></span><span class="line"><span class="cl">    .Command 	Quoted command
+</span></span><span class="line"><span class="cl">    .CreatedAt 	Time when the container was created.
+</span></span><span class="line"><span class="cl">    .RunningFor Elapsed time since the container was started.
+</span></span><span class="line"><span class="cl">    .Ports 	    Exposed ports.
+</span></span><span class="line"><span class="cl">    .Status 	Container status.
+</span></span><span class="line"><span class="cl">    .Size 	    Container disk size.
+</span></span><span class="line"><span class="cl">    .Names 	    Container names.
+</span></span><span class="line"><span class="cl">    .Labels 	All labels assigned to the container.
+</span></span><span class="line"><span class="cl">    .Label 	    Value of a specific label for this container. For example &#39;{{.Label &#34;com.docker.swarm.cpu&#34;}}&#39;
+</span></span><span class="line"><span class="cl">    .Mounts 	Names of the volumes mounted in this container.
+</span></span><span class="line"><span class="cl">    .Networks 	Names of the networks attached to this container.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="create">create</h3>
 <blockquote>
@@ -774,8 +833,9 @@ software-properties-common</li>
 <li><code>-i</code> 交互模式运行容器(标准输入和标准输出) <code>docker run  -it ubuntu /bin/bash</code></li>
 <li><code>-t</code> 容器启动后进入其命令行</li>
 <li><code>-v</code> 将本地文件夹建立映射到容器内 <code>-v 本机:容器</code></li>
-<li><code>-p</code> 端口映射左本机右容器：<code>-p 44:22</code>, 主机容器端口相同：<code>-p 22</code>, 将容器所有EXPOSE的端口映射到宿主机随机端口<code>-P</code>
+<li><code>-p</code> 端口映射左本机右容器：<code>-p 44:22</code>, 主机容器端口相同：<code>-p 22</code>
 <ul>
+<li>将所有EXPOSE的端口映射到宿主机上的随机端口<code>-P</code></li>
 <li>绑定udp端口 <code>-p 44:22/udp</code></li>
 </ul>
 </li>
@@ -787,7 +847,8 @@ software-properties-common</li>
 <li><code>--link</code> 链接其他容器</li>
 <li><code>--rm</code> 容器运行结束退出就自动删除该容器 注意和<code>-d</code>不能共存</li>
 <li><code>--restart=always</code> 设置该容器随dokcer 服务自启动</li>
-<li><code>--hostname 容器hostname</code> 指定容器的hostname</li>
+<li><code>--hostname hostname</code> 指定容器的 hostname</li>
+<li><code>--init</code> 能增加 docker-init 进程作为1号进程 entrypoint 或 cmd 中的命令成为docker-init 子进程</li>
 </ul>
 </li>
 </ul>
@@ -835,10 +896,6 @@ software-properties-common</li>
 <li>nsenter &ndash;target $PID &ndash;mount &ndash;uts &ndash;ipc &ndash;net &ndash;pid</li>
 </ul>
 </li>
-</ul>
-<h3 id="commit">commit</h3>
-<ul>
-<li><code>docker commit 容器id 镜像name</code> 将容器为id的当前容器 保存为name镜像</li>
 </ul>
 <h3 id="port">port</h3>
 <blockquote>
@@ -952,7 +1009,7 @@ software-properties-common</li>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -962,19 +1019,19 @@ software-properties-common</li>
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">xxx</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
-</span><span class="w">    </span><span class="nt">ipam</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
-</span><span class="w">      </span><span class="nt">config</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="m">10.12.0.0</span><span class="l">/16</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">xxx</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ipam</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="m">10.12.0.0</span><span class="l">/16</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -993,24 +1050,24 @@ software-properties-common</li>
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
-</span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">zookeeper</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${IMAGE_NAME:-defaultImage}</span><span class="w">
-</span><span class="w">    </span><span class="nt">expose</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="s2">&#34;6666&#34;</span><span class="w">
-</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="s2">&#34;6666:6666&#34;</span><span class="w">
-</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">/etc/localtime:/etc/localtime</span><span class="w">
-</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="c"># 可不配置，Docker会默认分配一个ip 172.xx 开头</span><span class="w">
-</span><span class="w">      </span>- <span class="l">xxx </span><span class="w">
-</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">./bin/start.sh</span><span class="w">
-</span><span class="w">    </span><span class="nt">links</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;mysql:mysql&#34;</span><span class="w">
-</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">NAME=who</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">zookeeper</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${IMAGE_NAME:-defaultImage}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">expose</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;6666&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;6666:6666&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/etc/localtime:/etc/localtime</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="c"># 可不配置，Docker会默认分配一个ip 172.xx 开头</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">xxx </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">./bin/start.sh</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">links</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;mysql:mysql&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">NAME=who</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="使用命令">使用命令</h3>
 <blockquote>
@@ -1062,15 +1119,15 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 <p>/etc/docker/daemon.json 顶级元素加入如下配置网段</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json">  <span class="s2">&#34;default-address-pools&#34;</span><span class="err">:</span><span class="p">[</span>
-     <span class="p">{</span><span class="nt">&#34;scope&#34;</span><span class="p">:</span><span class="s2">&#34;local&#34;</span><span class="p">,</span><span class="nt">&#34;base&#34;</span><span class="p">:</span><span class="s2">&#34;172.80.0.0/16&#34;</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">24</span><span class="p">},</span>
-     <span class="p">{</span><span class="nt">&#34;scope&#34;</span><span class="p">:</span><span class="s2">&#34;global&#34;</span><span class="p">,</span><span class="nt">&#34;base&#34;</span><span class="p">:</span><span class="s2">&#34;172.90.0.0/16&#34;</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">24</span><span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">  <span class="s2">&#34;default-address-pools&#34;</span><span class="err">:</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">     <span class="p">{</span><span class="nt">&#34;scope&#34;</span><span class="p">:</span><span class="s2">&#34;local&#34;</span><span class="p">,</span><span class="nt">&#34;base&#34;</span><span class="p">:</span><span class="s2">&#34;172.80.0.0/16&#34;</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">24</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">     <span class="p">{</span><span class="nt">&#34;scope&#34;</span><span class="p">:</span><span class="s2">&#34;global&#34;</span><span class="p">,</span><span class="nt">&#34;base&#34;</span><span class="p">:</span><span class="s2">&#34;172.90.0.0/16&#34;</span><span class="p">,</span><span class="nt">&#34;size&#34;</span><span class="p">:</span><span class="mi">24</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="none">None</h2>
 <blockquote>
@@ -1138,7 +1195,7 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1158,25 +1215,25 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    upstream backend {
-        server 172.17.0.4:8888;
-    }
-
-    server {
-        listen 80;
-        server_name backend;
-
-        location / {
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
-            proxy_set_header Host $http_host;
-            proxy_set_header X-Nginx-Proxt true;
-
-            proxy_pass http://backend;
-            proxy_redirect off;
-        }
-    }
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    upstream backend {
+</span></span><span class="line"><span class="cl">        server 172.17.0.4:8888;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    server {
+</span></span><span class="line"><span class="cl">        listen 80;
+</span></span><span class="line"><span class="cl">        server_name backend;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        location / {
+</span></span><span class="line"><span class="cl">            proxy_set_header X-Real-IP $remote_addr;
+</span></span><span class="line"><span class="cl">            proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+</span></span><span class="line"><span class="cl">            proxy_set_header Host $http_host;
+</span></span><span class="line"><span class="cl">            proxy_set_header X-Nginx-Proxt true;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            proxy_pass http://backend;
+</span></span><span class="line"><span class="cl">            proxy_redirect off;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p><a href="https://www.weave.works/">weave</a> <code>能解决跨宿主机的容器互联问题</code></p>
@@ -1205,6 +1262,7 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 </li>
 </ol>
 <h2 id="跨主机容器通信">跨主机容器通信</h2>
+<p><code>--ipc=host</code> IPC</p>
 <h3 id="overlay">overlay</h3>
 <blockquote>
 <p><a href="http://dockone.io/article/2717">参考: DOCKER的内置OVERLAY网络</a></p>
@@ -1219,11 +1277,11 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-15
         
@@ -1240,11 +1298,11 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
         <a class="prev" href="/post/linux/container/dockeradvance/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Docker进阶</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/linux/redhat/centosbase/">
             <span class="next-text nav-default">Centos</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -1262,17 +1320,17 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -1280,11 +1338,11 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -1294,16 +1352,21 @@ Error with pre-create check: &ldquo;This computer doesn&rsquo;t have VT-X/AMD-v 
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

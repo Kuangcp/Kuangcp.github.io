@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>常用工具手册 - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 软件使用记事 1.1. 包管理 1.1.1. sdkman 1.2. 服务管理 1.2.1. oneinstack 1.3. 日常工具 1.3.1. Termux 1.3.2. iSH 1.3.3. kite 1.4. 开发调试工具&amp;amp;技巧 1.4.1. 网络 1.4.2. Debug 1.5. IDE 1.5.1. Idea 1.5.2. Eclipse 1.6. 绘图工具 1.6.1. 思维导图 💠 2024-01-22 09:40:06 软" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/application/appmanual/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="常用工具手册" />
+<meta property="og:description" content="💠 软件使用记事 1.1. 包管理 1.1.1. sdkman 1.2. 服务管理 1.2.1. oneinstack 1.3. 日常工具 1.3.1. Termux 1.3.2. iSH 1.3.3. kite 1.4. 开发调试工具&amp;技巧 1.4.1. 网络 1.4.2. Debug 1.5. IDE 1.5.1. Idea 1.5.2. Eclipse 1.6. 绘图工具 1.6.1. 思维导图 💠 2024-01-22 09:40:06 软" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/application/appmanual/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
+<meta itemprop="name" content="常用工具手册">
+<meta itemprop="description" content="💠 软件使用记事 1.1. 包管理 1.1.1. sdkman 1.2. 服务管理 1.2.1. oneinstack 1.3. 日常工具 1.3.1. Termux 1.3.2. iSH 1.3.3. kite 1.4. 开发调试工具&amp;技巧 1.4.1. 网络 1.4.2. Debug 1.5. IDE 1.5.1. Idea 1.5.2. Eclipse 1.6. 绘图工具 1.6.1. 思维导图 💠 2024-01-22 09:40:06 软"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="1147">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="常用工具手册"/>
+<meta name="twitter:description" content="💠 软件使用记事 1.1. 包管理 1.1.1. sdkman 1.2. 服务管理 1.2.1. oneinstack 1.3. 日常工具 1.3.1. Termux 1.3.2. iSH 1.3.3. kite 1.4. 开发调试工具&amp;技巧 1.4.1. 网络 1.4.2. Debug 1.5. IDE 1.5.1. Idea 1.5.2. Eclipse 1.6. 绘图工具 1.6.1. 思维导图 💠 2024-01-22 09:40:06 软"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">常用工具手册</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        
+          <span class="more-meta"> 约 1147 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#软件使用记事">软件使用记事</a>
+      <ul>
+        <li><a href="#包管理">包管理</a>
+          <ul>
+            <li><a href="#sdkman">sdkman</a></li>
+          </ul>
+        </li>
+        <li><a href="#服务管理">服务管理</a>
+          <ul>
+            <li><a href="#oneinstack">oneinstack</a></li>
+          </ul>
+        </li>
+        <li><a href="#日常工具">日常工具</a>
+          <ul>
+            <li><a href="#termux">Termux</a></li>
+            <li><a href="#ish">iSH</a></li>
+            <li><a href="#kite">kite</a></li>
+          </ul>
+        </li>
+        <li><a href="#开发调试工具技巧">开发调试工具&amp;技巧</a>
+          <ul>
+            <li><a href="#网络">网络</a></li>
+            <li><a href="#debug">Debug</a></li>
+          </ul>
+        </li>
+        <li><a href="#ide">IDE</a>
+          <ul>
+            <li><a href="#idea">Idea</a></li>
+            <li><a href="#eclipse">Eclipse</a></li>
+          </ul>
+        </li>
+        <li><a href="#绘图工具">绘图工具</a>
+          <ul>
+            <li><a href="#思维导图">思维导图</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8%E8%AE%B0%E4%BA%8B">软件使用记事</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E5%8C%85%E7%AE%A1%E7%90%86">包管理</a>
+<ul>
+<li>1.1.1. <a href="#sdkman">sdkman</a></li>
+</ul>
+</li>
+<li>1.2. <a href="#%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86">服务管理</a>
+<ul>
+<li>1.2.1. <a href="#oneinstack">oneinstack</a></li>
+</ul>
+</li>
+<li>1.3. <a href="#%E6%97%A5%E5%B8%B8%E5%B7%A5%E5%85%B7">日常工具</a>
+<ul>
+<li>1.3.1. <a href="#termux">Termux</a></li>
+<li>1.3.2. <a href="#ish">iSH</a></li>
+<li>1.3.3. <a href="#kite">kite</a></li>
+</ul>
+</li>
+<li>1.4. <a href="#%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7&amp;%E6%8A%80%E5%B7%A7">开发调试工具&amp;技巧</a>
+<ul>
+<li>1.4.1. <a href="#%E7%BD%91%E7%BB%9C">网络</a></li>
+<li>1.4.2. <a href="#debug">Debug</a></li>
+</ul>
+</li>
+<li>1.5. <a href="#ide">IDE</a>
+<ul>
+<li>1.5.1. <a href="#idea">Idea</a></li>
+<li>1.5.2. <a href="#eclipse">Eclipse</a></li>
+</ul>
+</li>
+<li>1.6. <a href="#%E7%BB%98%E5%9B%BE%E5%B7%A5%E5%85%B7">绘图工具</a>
+<ul>
+<li>1.6.1. <a href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE">思维导图</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-01-22 09:40:06</p>
+<hr>
+<h1 id="软件使用记事">软件使用记事</h1>
+<h2 id="包管理">包管理</h2>
+<h3 id="sdkman">sdkman</h3>
+<p><code>安装</code></p>
+<ul>
+<li>安装sdkman <code>curl -s &quot;https://get.sdkman.io?rcupdate=false&quot; | bash</code> 依赖 zip unzip curl sed</li>
+<li>依据提示配置 sdkman-init.sh 或者重启终端就可以使用了</li>
+<li>查看sdkman版本 <code>sdk version</code></li>
+</ul>
+<p><code>使用</code></p>
+<ul>
+<li><a href="http://sdkman.io/usage.html">官网文档</a></li>
+<li>查看所有 <code>sdk list</code>
+<ul>
+<li>查看某sdk的版本 <code>sdk list java </code></li>
+</ul>
+</li>
+<li>安装最新稳定版 <code>sdk install java</code> 安装指定版本 <code>sdk default java 8u131-zulu</code></li>
+<li>使用指定版本 <code>sdk use scala 2.12.1</code></li>
+<li>查看当前版本 <code>sdk current java</code></li>
+<li>验证是否成功 <code>java -version</code></li>
+<li>移除 <code>sdk uninstall scala 2.11.6</code></li>
+</ul>
+<hr>
+<h2 id="服务管理">服务管理</h2>
+<h3 id="oneinstack">oneinstack</h3>
+<blockquote>
+<p>一键配置环境 <a href="https://oneinstack.com/install/">官方文档</a></p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Linux/install_oneinstack.png" alt="配图"></p>
+<ul>
+<li><code>apt -y install wget screen curl python</code></li>
+<li>下载源码：
+<ul>
+<li><code>wget http://aliyun-oss.linuxeye.com/oneinstack-full.tar.gz</code> #阿里云经典网络下载</li>
+<li><code>wget http://mirrors.linuxeye.com/oneinstack-full.tar.gz</code> #包含源码，国内外均可下载</li>
+<li><code>wget http://mirrors.linuxeye.com/oneinstack.tar.gz</code> #不包含源码，建议仅国外主机下载</li>
+</ul>
+</li>
+<li><code>tar xzf oneinstack-full.tar.gz</code></li>
+<li><code>cd oneinstack</code> #如果需要修改目录(安装、数据存储、Nginx日志)，请修改options.conf文件</li>
+<li><code>screen -S oneinstack</code> #如果网路出现中断，可以执行命令<code>screen -R oneinstack</code>重新连接安装窗口</li>
+<li><code>sudo ./install.sh</code> #注：请勿sh install.sh或者bash install.sh这样执行</li>
+</ul>
+<hr>
+<h2 id="日常工具">日常工具</h2>
+<blockquote>
+<p>iOS 相关</p>
+</blockquote>
+<p><a href="https://holzschu.github.io/a-Shell_iOS/">a shell</a> <code>iOS13</code></p>
+<h3 id="termux">Termux</h3>
+<blockquote>
+<p>安卓上安装的Linux模拟器, 几乎完整的运行时，只有Docker等虚拟化不支持，常见命令和开发环境均支持（前提是技术组件支持arm架构指令）<br>
+只建议 Google Play中安装，通过换机软件导入的运行时，文件及环境变量会有缺失和损坏</p>
+</blockquote>
+<blockquote>
+<p><a href="https://wiki.termux.com/wiki/FAQ">wiki FAQ</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://tonybai.com/2017/11/09/hello-termux/">参考: Hello，Termux</a>
+<a href="https://www.asmodeus.cn/archives/769">参考: Termux：让Android手机摇身一变成为高级Linux终端</a></p>
+</blockquote>
+<ul>
+<li>开启ssh服务 pkg install openssh 对应端口默认 8022</li>
+<li>执行 termux-setup-storage 命令，建立常用目录软链接</li>
+</ul>
+<h3 id="ish">iSH</h3>
+<blockquote>
+<p>iOS体系内终端模拟器。耗电发热大，且必须前台运行才能保持软件内开启的各种服务线程(ssh,http,tcp等)，因为iOS会冻结后台</p>
+</blockquote>
+<ul>
+<li>apk add openssh</li>
+<li>ssh root@ip 方式登录iOS设备
+<ul>
+<li>但是 ip只能通过设置中的wifi信息看机子的局域网ip <code>ifconfig命令在iSH内执行无效</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="kite">kite</h3>
+<blockquote>
+<p><a href="https://www.kite.com/">Official Site</a><br>
+Free AI Coding Assistant and Code Auto-Complete</p>
+</blockquote>
+<p>支持 VS Code IDEA Vim 等等</p>
+<hr>
+<h2 id="开发调试工具技巧">开发调试工具&amp;技巧</h2>
+<h3 id="网络">网络</h3>
+<ul>
+<li>
+<p><strong>xswtich</strong> <code>Chrome插件</code></p>
+<ul>
+<li>浏览器层面通过劫持ajax请求，修改请求的实际地址从而达到访问某网站时指定替换加载的静态资源（js css）,或者是替换请求的服务端地址</li>
+<li>场景：访问前后端分离的某应用服务，浏览器打开测试环境时，修改配置使前端对测试环境后端发起请求实际被替换请求到本地，方便调试</li>
+<li>由于Firefox不兼容，自己基于go开发的替代品 <a href="https://github.com/Kuangcp/GoBase/tree/master/toolbox/dev-proxy">dev-proxy</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Multi-Account-Container</strong> <code>Firefox 插件</code></p>
+<ul>
+<li>同一网站同时登录多个账号，账号之间cookie等信息会隔离</li>
+</ul>
+</li>
+<li>
+<p><strong>potatso</strong> iOS体系内代理软件 iOS 15兼容有问题</p>
+</li>
+</ul>
+<h3 id="debug">Debug</h3>
+<hr>
+<h2 id="ide">IDE</h2>
+<h3 id="idea">Idea</h3>
+<blockquote>
+<p><a href="/Java/Tool/IDEA.md">详细内容</a></p>
+</blockquote>
+<h3 id="eclipse">Eclipse</h3>
+<blockquote>
+<p><a href="/Java/Tool/Eclipse.md">详细内容</a></p>
+</blockquote>
+<hr>
+<h2 id="绘图工具">绘图工具</h2>
+<h3 id="思维导图">思维导图</h3>
+<blockquote>
+<p><a href="https://blog.csdn.net/zuochao_2013/article/details/68928381">参考: 这 7 款开源思维导图工具真的很神奇</a></p>
+</blockquote>
+<ol>
+<li>
+<p><a href="https://www.processon.com/">processon</a><code>免费额度比较小, 但是使用很方便</code></p>
+</li>
+<li>
+<p><a href="https://github.com/fex-team/kityminder">百度脑图在线版</a></p>
+<ul>
+<li><a href="https://github.com/NaoTu/DesktopNaotu">百度脑图客户端</a></li>
+<li>vscode-mindmap 百度脑图VSCode插件版</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/ondras/my-mind">my-mind</a><code>简单轻巧</code></p>
+</li>
+<li>
+<p>FreeMind</p>
+</li>
+<li>
+<p><a href="https://github.com/freeplane/freeplane">freeplane</a><code>Java编写的, FreeMind衍生</code></p>
+</li>
+<li>
+<p>XMind 收费,占用资源大, 文件是二进制,不方便做版本控制</p>
+</li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/frontend/frame/vue/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Vue</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/skills/website/">
+            <span class="next-text nav-default">常用网站</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

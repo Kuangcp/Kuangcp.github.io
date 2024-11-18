@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>DockerFile - Mythos</title>
+  <title>DockerFile - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置 CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL HEALTHCHECK ONBUILD 中间镜像 Practice dockerignore文件的使用" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Dockerfile 1.1. 使用入门案例 1.2. docker build 1.2.1. docker buildx 1.3. Dockerfile命令 1.3.1. FROM 1.3.2. MAINTAINER 1.3.3. RUN 1.3.3.1. 修改容器时区设置 1.3.3.2. 修改 hosts 1.3.3.3. 软件安装后缓存文件的清理 1.3.4. CMD 1.3.5. ENTRYPOINT 1.3.6. USER 1.3.7. EXPOSE 1.3.8. ENV" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/container/dockerfiles/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/container/dockerfiles/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="DockerFile" />
-<meta property="og:description" content="目录 start Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置 CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL HEALTHCHECK ONBUILD 中间镜像 Practice dockerignore文件的使用" />
+<meta property="og:description" content="💠 Dockerfile 1.1. 使用入门案例 1.2. docker build 1.2.1. docker buildx 1.3. Dockerfile命令 1.3.1. FROM 1.3.2. MAINTAINER 1.3.3. RUN 1.3.3.1. 修改容器时区设置 1.3.3.2. 修改 hosts 1.3.3.3. 软件安装后缓存文件的清理 1.3.4. CMD 1.3.5. ENTRYPOINT 1.3.6. USER 1.3.7. EXPOSE 1.3.8. ENV" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/dockerfiles/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/container/dockerfiles/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T11:27:03+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:27:03+00:00" />
+
 <meta itemprop="name" content="DockerFile">
-<meta itemprop="description" content="目录 start Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置 CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL HEALTHCHECK ONBUILD 中间镜像 Practice dockerignore文件的使用">
-<meta itemprop="datePublished" content="2018-12-15T11:27:03+00:00" />
+<meta itemprop="description" content="💠 Dockerfile 1.1. 使用入门案例 1.2. docker build 1.2.1. docker buildx 1.3. Dockerfile命令 1.3.1. FROM 1.3.2. MAINTAINER 1.3.3. RUN 1.3.3.1. 修改容器时区设置 1.3.3.2. 修改 hosts 1.3.3.3. 软件安装后缓存文件的清理 1.3.4. CMD 1.3.5. ENTRYPOINT 1.3.6. USER 1.3.7. EXPOSE 1.3.8. ENV"><meta itemprop="datePublished" content="2018-12-15T11:27:03+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:27:03+00:00" />
-<meta itemprop="wordCount" content="2885">
-
-
-
-<meta itemprop="keywords" content="基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="3243">
+<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DockerFile"/>
-<meta name="twitter:description" content="目录 start Dockerfile 使用入门案例 Tips Dockerfile命令 FROM MAINTAINER RUN 修改容器时区设置 CMD ENTRYPOINT USER EXPOSE ENV LABEL ARG COPY ADD VOLUME WORKDIR STOPSIGNAL HEALTHCHECK ONBUILD 中间镜像 Practice dockerignore文件的使用"/>
+<meta name="twitter:description" content="💠 Dockerfile 1.1. 使用入门案例 1.2. docker build 1.2.1. docker buildx 1.3. Dockerfile命令 1.3.1. FROM 1.3.2. MAINTAINER 1.3.3. RUN 1.3.3.1. 修改容器时区设置 1.3.3.2. 修改 hosts 1.3.3.3. 软件安装后缓存文件的清理 1.3.4. CMD 1.3.5. ENTRYPOINT 1.3.6. USER 1.3.7. EXPOSE 1.3.8. ENV"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,103 +122,129 @@
         <div class="post-category">
             <a href="/categories/docker/"> Docker </a>
             </div>
-          <span class="more-meta"> 2885 words </span>
-          <span class="more-meta"> 6 mins read </span>
+          <span class="more-meta"> 约 3243 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#使用入门案例">使用入门案例</a></li>
-    <li><a href="#tips">Tips</a></li>
-    <li><a href="#dockerfile命令">Dockerfile命令</a>
+    <li><a href="#dockerfile">Dockerfile</a>
       <ul>
-        <li><a href="#from">FROM</a></li>
-        <li><a href="#maintainer">MAINTAINER</a></li>
-        <li><a href="#run">RUN</a></li>
-        <li><a href="#cmd">CMD</a></li>
-        <li><a href="#entrypoint">ENTRYPOINT</a></li>
-        <li><a href="#user">USER</a></li>
-        <li><a href="#expose">EXPOSE</a></li>
-        <li><a href="#env">ENV</a></li>
-        <li><a href="#label">LABEL</a></li>
-        <li><a href="#arg">ARG</a></li>
-        <li><a href="#copy">COPY</a></li>
-        <li><a href="#add">ADD</a></li>
-        <li><a href="#volume">VOLUME</a></li>
-        <li><a href="#workdir">WORKDIR</a></li>
-        <li><a href="#stopsignal">STOPSIGNAL</a></li>
-        <li><a href="#healthcheck">HEALTHCHECK</a></li>
-        <li><a href="#onbuild">ONBUILD</a></li>
-        <li><a href="#中间镜像">中间镜像</a></li>
+        <li><a href="#使用入门案例">使用入门案例</a></li>
+        <li><a href="#docker-build">docker build</a>
+          <ul>
+            <li><a href="#docker-buildx">docker buildx</a></li>
+          </ul>
+        </li>
+        <li><a href="#dockerfile命令">Dockerfile命令</a>
+          <ul>
+            <li><a href="#from">FROM</a></li>
+            <li><a href="#maintainer">MAINTAINER</a></li>
+            <li><a href="#run">RUN</a></li>
+            <li><a href="#cmd">CMD</a></li>
+            <li><a href="#entrypoint">ENTRYPOINT</a></li>
+            <li><a href="#user">USER</a></li>
+            <li><a href="#expose">EXPOSE</a></li>
+            <li><a href="#env">ENV</a></li>
+            <li><a href="#label">LABEL</a></li>
+            <li><a href="#arg">ARG</a></li>
+            <li><a href="#copy">COPY</a></li>
+            <li><a href="#add">ADD</a></li>
+            <li><a href="#volume">VOLUME</a></li>
+            <li><a href="#workdir">WORKDIR</a></li>
+            <li><a href="#stopsignal">STOPSIGNAL</a></li>
+            <li><a href="#healthcheck">HEALTHCHECK</a></li>
+            <li><a href="#onbuild">ONBUILD</a></li>
+            <li><a href="#中间镜像">中间镜像</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#dockerignore文件的使用">dockerignore文件的使用</a></li>
-    <li><a href="#exercises">Exercises</a>
+    <li><a href="#practice">Practice</a>
       <ul>
-        <li><a href="#打包最新版git">打包最新版git</a></li>
-        <li><a href="#dockerfile中新建用户">Dockerfile中新建用户</a></li>
+        <li><a href="#dockerignore文件的使用">dockerignore文件的使用</a></li>
+        <li><a href="#exercises">Exercises</a>
+          <ul>
+            <li><a href="#打包最新版git">打包最新版git</a></li>
+            <li><a href="#dockerfile中新建用户">Dockerfile中新建用户</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-15T11:27:03" title="December 15, 2018">December 15, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#dockerfile">Dockerfile</a>
-<ol>
-<li><a href="#%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B">使用入门案例</a></li>
-<li><a href="#tips">Tips</a></li>
-<li><a href="#dockerfile%E5%91%BD%E4%BB%A4">Dockerfile命令</a>
-<ol>
-<li><a href="#from">FROM</a></li>
-<li><a href="#maintainer">MAINTAINER</a></li>
-<li><a href="#run">RUN</a>
-<ol>
-<li><a href="#%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE">修改容器时区设置</a></li>
+<li><a href="#dockerfile">Dockerfile</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B">使用入门案例</a></li>
+<li>1.2. <a href="#docker-build">docker build</a>
+<ul>
+<li>1.2.1. <a href="#docker-buildx">docker buildx</a></li>
+</ul>
 </li>
-<li><a href="#cmd">CMD</a></li>
-<li><a href="#entrypoint">ENTRYPOINT</a></li>
-<li><a href="#user">USER</a></li>
-<li><a href="#expose">EXPOSE</a></li>
-<li><a href="#env">ENV</a></li>
-<li><a href="#label">LABEL</a></li>
-<li><a href="#arg">ARG</a></li>
-<li><a href="#copy">COPY</a></li>
-<li><a href="#add">ADD</a></li>
-<li><a href="#volume">VOLUME</a></li>
-<li><a href="#workdir">WORKDIR</a></li>
-<li><a href="#stopsignal">STOPSIGNAL</a></li>
-<li><a href="#healthcheck">HEALTHCHECK</a></li>
-<li><a href="#onbuild">ONBUILD</a></li>
-<li><a href="#%E4%B8%AD%E9%97%B4%E9%95%9C%E5%83%8F">中间镜像</a></li>
-</ol>
+<li>1.3. <a href="#dockerfile%E5%91%BD%E4%BB%A4">Dockerfile命令</a>
+<ul>
+<li>1.3.1. <a href="#from">FROM</a></li>
+<li>1.3.2. <a href="#maintainer">MAINTAINER</a></li>
+<li>1.3.3. <a href="#run">RUN</a>
+<ul>
+<li>1.3.3.1. <a href="#%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE">修改容器时区设置</a></li>
+<li>1.3.3.2. <a href="#%E4%BF%AE%E6%94%B9-hosts">修改 hosts</a></li>
+<li>1.3.3.3. <a href="#%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%90%8E%E7%BC%93%E5%AD%98%E6%96%87%E4%BB%B6%E7%9A%84%E6%B8%85%E7%90%86">软件安装后缓存文件的清理</a></li>
+</ul>
 </li>
-</ol>
+<li>1.3.4. <a href="#cmd">CMD</a></li>
+<li>1.3.5. <a href="#entrypoint">ENTRYPOINT</a></li>
+<li>1.3.6. <a href="#user">USER</a></li>
+<li>1.3.7. <a href="#expose">EXPOSE</a></li>
+<li>1.3.8. <a href="#env">ENV</a></li>
+<li>1.3.9. <a href="#label">LABEL</a></li>
+<li>1.3.10. <a href="#arg">ARG</a></li>
+<li>1.3.11. <a href="#copy">COPY</a></li>
+<li>1.3.12. <a href="#add">ADD</a></li>
+<li>1.3.13. <a href="#volume">VOLUME</a></li>
+<li>1.3.14. <a href="#workdir">WORKDIR</a></li>
+<li>1.3.15. <a href="#stopsignal">STOPSIGNAL</a></li>
+<li>1.3.16. <a href="#healthcheck">HEALTHCHECK</a></li>
+<li>1.3.17. <a href="#onbuild">ONBUILD</a></li>
+<li>1.3.18. <a href="#%E4%B8%AD%E9%97%B4%E9%95%9C%E5%83%8F">中间镜像</a></li>
+</ul>
 </li>
-<li><a href="#practice">Practice</a>
-<ol>
-<li><a href="#dockerignore%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8">dockerignore文件的使用</a></li>
-<li><a href="#exercises">Exercises</a>
-<ol>
-<li><a href="#%E6%89%93%E5%8C%85%E6%9C%80%E6%96%B0%E7%89%88git">打包最新版git</a></li>
-<li><a href="#dockerfile%E4%B8%AD%E6%96%B0%E5%BB%BA%E7%94%A8%E6%88%B7">Dockerfile中新建用户</a></li>
-</ol>
+</ul>
 </li>
+<li>
+<ol start="2">
+<li><a href="#practice">Practice</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#dockerignore%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8">dockerignore文件的使用</a></li>
+<li>2.2. <a href="#exercises">Exercises</a>
+<ul>
+<li>2.2.1. <a href="#%E6%89%93%E5%8C%85%E6%9C%80%E6%96%B0%E7%89%88git">打包最新版git</a></li>
+<li>2.2.2. <a href="#dockerfile%E4%B8%AD%E6%96%B0%E5%BB%BA%E7%94%A8%E6%88%B7">Dockerfile中新建用户</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2021-07-06 22:01</em>|</p>
+</ul>
+</li>
+</ul>
+<p>💠 2024-08-26 16:31:06</p>
 <hr>
 <h1 id="dockerfile">Dockerfile</h1>
 <h2 id="使用入门案例">使用入门案例</h2>
@@ -231,7 +253,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -239,13 +261,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile">    <span class="c1">#随意写的</span><span class="err">
-</span><span class="err"></span>    FROM alpine<span class="err">
-</span><span class="err"></span>    MAINTAINER Mythos<span class="err">
-</span><span class="err"></span>    ENV DIRPATH /path<span class="err">
-</span><span class="err"></span>    WORKDIR <span class="nv">$DIRPATH</span>/<span class="nv">$DIRNAME</span><span class="err">
-</span><span class="err"></span>    RUN pwd<span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl">    <span class="c1">#随意写的</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    FROM alpine<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    MAINTAINER Mythos<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    ENV DIRPATH /path<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    WORKDIR <span class="nv">$DIRPATH</span>/<span class="nv">$DIRNAME</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN pwd<span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>docker build .</code> 如果成功则会得到一个没有名字的镜像 <code>none:none</code>
@@ -255,17 +277,8 @@
 </li>
 <li>创建镜像成功后 <code>docker run --name ContainerName -d image:tag</code> 新建容器来运行镜像</li>
 </ul>
-<h2 id="tips">Tips</h2>
-<blockquote>
-<p><a href="https://blog.codeship.com/reduce-docker-image-size/">Reducing Your Docker Image Size</a></p>
-</blockquote>
 <hr>
-<h2 id="dockerfile命令">Dockerfile命令</h2>
-<ul>
-<li>Dockerfile是一个<code>镜像</code>的表示，可以通过Dockerfile来描述构建镜像的步骤，且可以自动构建一个容器</li>
-<li>所有的 Dockerfile 命令格式都是: <code>INSTRUCTION arguments</code></li>
-</ul>
-<p><em>docker build</em></p>
+<h2 id="docker-build">docker build</h2>
 <ul>
 <li>如果文件名是默认的<code>Dockerfile</code> 就使用 <code>.</code>
 <ul>
@@ -274,6 +287,16 @@
 </ul>
 </li>
 <li><code>-t</code>如果构建成功 可以指定保存新镜像的image和tag (多个的话就多个 -t就行了，例如 <code>docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .</code>)</li>
+</ul>
+<h3 id="docker-buildx">docker buildx</h3>
+<ul>
+<li><a href="https://github.com/docker/buildx">docker buildx</a></li>
+</ul>
+<hr>
+<h2 id="dockerfile命令">Dockerfile命令</h2>
+<ul>
+<li>Dockerfile是一个<code>镜像</code>的表示，可以通过Dockerfile来描述构建镜像的步骤，且可以自动构建一个容器</li>
+<li>所有的 Dockerfile 命令格式都是: <code>INSTRUCTION arguments</code></li>
 </ul>
 <blockquote>
 <p>注意</p>
@@ -316,7 +339,7 @@
 <p>例如基于一个编译环境镜像, 编译得到结果文件, 然后基于运行环境, 将结果文件复制过来, 构建成新的镜像, 最终镜像将不包含编译环境</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -324,13 +347,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> maven:3.5.0-jdk-8-alpine AS builder</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> mvn clean package<span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="k">From</span><span class="s"> openjdk:8-jre-alpine</span><span class="err">
-</span><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>builder target/demo.jar demo.jar<span class="err">
-</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;demo.jar&#34;</span><span class="p">]</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> maven:3.5.0-jdk-8-alpine AS builder</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> mvn clean package<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">From</span><span class="s"> openjdk:8-jre-alpine</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>builder target/demo.jar demo.jar<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;demo.jar&#34;</span><span class="p">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="maintainer">MAINTAINER</h3>
 <ul>
@@ -339,7 +362,7 @@
 </ul>
 <h3 id="run">RUN</h3>
 <blockquote>
-<p>每条RUN命令在当前镜像的基础上执行指定命令，并提交为新的镜像层，所以尽量将所有命令放在一个RUN里</p>
+<p>每条RUN命令在当前镜像的基础上执行指定命令，并提交为新的镜像层，所以尽量将所有命令放在一个RUN里, 便于后续构建时复用缓存和减少层数</p>
 </blockquote>
 <ul>
 <li>
@@ -366,10 +389,13 @@
 </li>
 <li>
 <p>当RUN命令执行完毕后，就会生成一个新的文件层。这个文件层会保存在缓存中作为下一个指令的基础镜像存在，如果不需要缓存就加上 <code>--no-cache</code></p>
-<ul>
-<li>所以就尽量是将所有的命令 放在一个RUN命令里减少镜像层数。</li>
-</ul>
 </li>
+</ul>
+<blockquote>
+<p>注意 apt update 会被Docker缓存,因为缓存的判定是依据命令字符，而不是文件的内容，会有这种<a href="https://github.com/moby/moby/issues/3313">奇怪的问题</a></p>
+</blockquote>
+<ul>
+<li>但是遇到了一种奇怪的场景，有时候会使用到缓存，但是有时候会重新执行update命令和安装软件的命令就会很费时甚至超时失败。</li>
 </ul>
 <h4 id="修改容器时区设置">修改容器时区设置</h4>
 <blockquote>
@@ -377,7 +403,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -391,24 +417,69 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># Alpine </span>
-    RUN apk --no-cache add tzdata  <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>        ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;Asia/Shanghai&#34;</span> &gt; /etc/timezone
-
-    <span class="c1"># Ubuntu</span>
-    RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;Asia/Shanghai&#34;</span> &gt; /etc/timezone <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>        dpkg-reconfigure -f noninteractive tzdata
-
-    <span class="c1"># Centos</span>
-    RUN <span class="nb">echo</span> <span class="s2">&#34;Asia/shanghai&#34;</span> &gt; /etc/timezone<span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># Alpine </span>
+</span></span><span class="line"><span class="cl">    RUN apk --no-cache add tzdata  <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;Asia/Shanghai&#34;</span> &gt; /etc/timezone
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Ubuntu 可能需要安装tzdata</span>
+</span></span><span class="line"><span class="cl">    RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;Asia/Shanghai&#34;</span> &gt; /etc/timezone <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        dpkg-reconfigure -f noninteractive tzdata
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Centos</span>
+</span></span><span class="line"><span class="cl">    RUN <span class="nb">echo</span> <span class="s2">&#34;Asia/shanghai&#34;</span> &gt; /etc/timezone<span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>对于 alpine 以及 Ubuntu ln -s 建立到时间文件的软链接就已经够了, 但是确保没问题就最好还是修改下 时区文件</p>
 </blockquote>
-<hr>
+<h4 id="修改-hosts">修改 hosts</h4>
+<p>由于Docker动态分配pod的虚拟ip，所以hosts会动态生成，单纯使用RUN命令在Dockerfile中修改hosts文件是不生效的。
+正确方式为:</p>
+<ul>
+<li>Docker  <code>docker run –add-host host:ip</code></li>
+<li>K8S
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="w">    </span><span class="nt">hostAliases</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">hostnames</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">api.xxxxx.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.1.5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">hostnames</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">user.xxxx.cn</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.1.9</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="软件安装后缓存文件的清理">软件安装后缓存文件的清理</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># Ubuntu </span>
+</span></span><span class="line"><span class="cl">    apt update <span class="o">&amp;&amp;</span> apt install tzdata <span class="o">&amp;&amp;</span> apt autoclean <span class="o">&amp;&amp;</span> rm -rf /var/lib/apt/lists/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Alpine </span>
+</span></span><span class="line"><span class="cl">    apk update <span class="o">&amp;&amp;</span> apk add bash <span class="o">&amp;&amp;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <blockquote>
 <p>关于Java的时区问题</p>
 </blockquote>
@@ -445,8 +516,8 @@
 </blockquote>
 <ul>
 <li><code>ENTRYPOINT echo &quot;Welcome!&quot;</code> 那么每次启动容器都有这个输出</li>
-<li><code>ENTRYPOINT cmd param1 param2 ...</code></li>
-<li><code>ENTRYPOINT [&quot;cmd&quot;, &quot;param1&quot;, &quot;param2&quot;...]</code></li>
+<li><code>ENTRYPOINT java param1 param2 ...</code> 注意这种写法会使用默认shell去解释执行这个命令，即sh进程下才是java进程</li>
+<li><code>ENTRYPOINT [&quot;java&quot;, &quot;param1&quot;, &quot;param2&quot;...]</code> 这种写法则会直接调用java命令</li>
 </ul>
 <h3 id="user">USER</h3>
 <ul>
@@ -465,13 +536,13 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ENTRYPOINT [&#34;memcached&#34;]
-    USER daemon
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    ENTRYPOINT [&#34;memcached&#34;]
+</span></span><span class="line"><span class="cl">    USER daemon
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="expose">EXPOSE</h3>
 <ul>
@@ -585,7 +656,7 @@
 <h3 id="中间镜像">中间镜像</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -596,16 +667,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile">    FROM imageA AS builder<span class="err">
-</span><span class="err"></span>    RUN ...<span class="err">
-</span><span class="err">
-</span><span class="err"></span>    FROM imageB AS final<span class="err">
-</span><span class="err"></span>    RUN ...<span class="err">
-</span><span class="err">
-</span><span class="err"></span>    <span class="c1"># 可以引用builder镜像中的文件</span><span class="err">
-</span><span class="err"></span>    COPY --from<span class="o">=</span>builder /path/to/a /app<span class="err">
-</span><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;/app&#34;</span><span class="o">]</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl">    FROM imageA AS builder<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN ...<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    FROM imageB AS final<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN ...<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="c1"># 可以引用builder镜像中的文件</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY --from<span class="o">=</span>builder /path/to/a /app<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;/app&#34;</span><span class="o">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="practice">Practice</h1>
@@ -616,6 +687,9 @@
 <li><a href="https://www.docker.io/learn/dockerfile/">官方文档 dockerfile</a></li>
 <li><a href="http://docs.docker.io/reference/builder/">官方文档 builder</a></li>
 </ul>
+<blockquote>
+<p><a href="https://blog.codeship.com/reduce-docker-image-size/">Reducing Your Docker Image Size</a></p>
+</blockquote>
 <h2 id="dockerignore文件的使用">dockerignore文件的使用</h2>
 <ul>
 <li>.dockerignore文件是依据 Go 的 PathMatch 规范来的，使用和.gitignore类似</li>
@@ -636,7 +710,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -645,14 +719,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile">    FROM ubuntu<span class="err">
-</span><span class="err"></span>    MAINTAINER <span class="s2">&#34;your email&#34;</span><span class="err">
-</span><span class="err"></span>    RUN apt-get update <span class="se">\
-</span><span class="se"></span>        <span class="o">&amp;&amp;</span> apt-get install -ysoftware-properties-common <span class="se">\
-</span><span class="se"></span>        <span class="o">&amp;&amp;</span> add-apt-repository ppa:git-core/ppa <span class="se">\
-</span><span class="se"></span>        <span class="o">&amp;&amp;</span> apt-get update <span class="o">&amp;&amp;</span> apt-get install -y git<span class="err">
-</span><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;git&#34;</span><span class="o">]</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl">    FROM ubuntu<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    MAINTAINER <span class="s2">&#34;your email&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN apt-get update <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="o">&amp;&amp;</span> apt-get install -ysoftware-properties-common <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="o">&amp;&amp;</span> add-apt-repository ppa:git-core/ppa <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="o">&amp;&amp;</span> apt-get update <span class="o">&amp;&amp;</span> apt-get install -y git<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    ENTRYPOINT <span class="o">[</span><span class="s2">&#34;git&#34;</span><span class="o">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>构建镜像<code>docker build -t git:new .</code></li>
@@ -661,17 +735,17 @@
 <h3 id="dockerfile中新建用户">Dockerfile中新建用户</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile">    RUN useradd -ms /bin/bash mythos<span class="p">;</span><span class="se">\
-</span><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;mythos:jiushi&#34;</span> <span class="p">|</span> chpasswd<span class="p">;</span><span class="err">
-</span><span class="err"></span>    USER mythos<span class="err">
-</span><span class="err"></span>    WORKDIR /home/mythos<span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl">    RUN useradd -ms /bin/bash mythos<span class="p">;</span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        <span class="nb">echo</span> <span class="s2">&#34;mythos:jiushi&#34;</span> <span class="p">|</span> chpasswd<span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    USER mythos<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    WORKDIR /home/mythos<span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <blockquote>
@@ -682,11 +756,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-15
         
@@ -703,11 +777,11 @@
         <a class="prev" href="/post/linux/container/dockersoft/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Docker的应用</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/linux/container/dockeradvance/">
             <span class="next-text nav-default">Docker进阶</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -725,17 +799,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -743,11 +817,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -757,16 +831,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

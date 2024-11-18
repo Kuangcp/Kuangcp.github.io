@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Python Concurrency - Mythos</title>
+  <title>Python Concurrency - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Concurrent GIL 目录 end|2020-04-27 23:42| Concurrency GIL Python的GIL是什么鬼，多线程性能究竟如何讲解了GIL以及使用其他并发库" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Concurrency 1.1. GIL 1.2. 协程 asyncio 1.3. 多线程 threading 1.4. 多进程 multiprocessing 实践 2.1. Ray 💠 2024-10-10 10:41:00 Concurrency Python中的并发编程可大致分为： 协程，多线程，多进程 协程Coroutine(asyn" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/python/pythonconcurrency/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/python/pythonconcurrency/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Python Concurrency" />
-<meta property="og:description" content="目录 start Concurrent GIL 目录 end|2020-04-27 23:42| Concurrency GIL Python的GIL是什么鬼，多线程性能究竟如何讲解了GIL以及使用其他并发库" />
+<meta property="og:description" content="💠 Concurrency 1.1. GIL 1.2. 协程 asyncio 1.3. 多线程 threading 1.4. 多进程 multiprocessing 实践 2.1. Ray 💠 2024-10-10 10:41:00 Concurrency Python中的并发编程可大致分为： 协程，多线程，多进程 协程Coroutine(asyn" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/python/pythonconcurrency/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/python/pythonconcurrency/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-13T16:00:40+00:00" />
 <meta property="article:modified_time" content="2018-12-13T16:00:40+00:00" />
+
 <meta itemprop="name" content="Python Concurrency">
-<meta itemprop="description" content="目录 start Concurrent GIL 目录 end|2020-04-27 23:42| Concurrency GIL Python的GIL是什么鬼，多线程性能究竟如何讲解了GIL以及使用其他并发库">
-<meta itemprop="datePublished" content="2018-12-13T16:00:40+00:00" />
+<meta itemprop="description" content="💠 Concurrency 1.1. GIL 1.2. 协程 asyncio 1.3. 多线程 threading 1.4. 多进程 multiprocessing 实践 2.1. Ray 💠 2024-10-10 10:41:00 Concurrency Python中的并发编程可大致分为： 协程，多线程，多进程 协程Coroutine(asyn"><meta itemprop="datePublished" content="2018-12-13T16:00:40+00:00" />
 <meta itemprop="dateModified" content="2018-12-13T16:00:40+00:00" />
-<meta itemprop="wordCount" content="50">
-
-
-
-<meta itemprop="keywords" content="Concurrency," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="788">
+<meta itemprop="keywords" content="Concurrency," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python Concurrency"/>
-<meta name="twitter:description" content="目录 start Concurrent GIL 目录 end|2020-04-27 23:42| Concurrency GIL Python的GIL是什么鬼，多线程性能究竟如何讲解了GIL以及使用其他并发库"/>
+<meta name="twitter:description" content="💠 Concurrency 1.1. GIL 1.2. 协程 asyncio 1.3. 多线程 threading 1.4. 多进程 multiprocessing 实践 2.1. Ray 💠 2024-10-10 10:41:00 Concurrency Python中的并发编程可大致分为： 协程，多线程，多进程 协程Coroutine(asyn"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,48 +122,116 @@
         <div class="post-category">
             <a href="/categories/python/"> Python </a>
             </div>
-          <span class="more-meta"> 50 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 788 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#gil">GIL</a></li>
+    <li><a href="#concurrency">Concurrency</a>
+      <ul>
+        <li><a href="#gil">GIL</a></li>
+        <li><a href="#协程-asyncio">协程 asyncio</a></li>
+        <li><a href="#多线程-threading">多线程 threading</a></li>
+        <li><a href="#多进程-multiprocessing">多进程 multiprocessing</a></li>
+      </ul>
+    </li>
+    <li><a href="#实践">实践</a>
+      <ul>
+        <li><a href="#ray">Ray</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-13T16:00:40" title="December 13, 2018">December 13, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#concurrent">Concurrent</a>
-<ol>
-<li><a href="#gil">GIL</a></li>
+<li><a href="#concurrency">Concurrency</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#gil">GIL</a></li>
+<li>1.2. <a href="#%E5%8D%8F%E7%A8%8B-asyncio">协程 asyncio</a></li>
+<li>1.3. <a href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B-threading">多线程 threading</a></li>
+<li>1.4. <a href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B-multiprocessing">多进程 multiprocessing</a></li>
+</ul>
 </li>
+<li>
+<ol start="2">
+<li><a href="#%E5%AE%9E%E8%B7%B5">实践</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<ul>
+<li>2.1. <a href="#ray">Ray</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-10-10 10:41:00</p>
 <hr>
 <h1 id="concurrency">Concurrency</h1>
+<p>Python中的并发编程可大致分为： 协程，多线程，多进程</p>
+<p>协程Coroutine(asyncio)</p>
+<ul>
+<li>优点： 任务单元和内核线程数是多对多关系，任务调度是用户态级别，线程切换开销小</li>
+<li>缺点： 相比于同步式需要换成异步的写法，现有的库支持不完善</li>
+<li>适用场景： 海量IO密集型任务</li>
+</ul>
+<p>多线程Thread(threading)</p>
+<ul>
+<li>优点： 任务单元和实际内核线程绑定，同步代码换成多线程实现时调整小，无须依赖的库做调整<code>只能说相对小，比如多线程里日志问题</code></li>
+<li>缺点： 相比协程有更大的线程切换开销，相比进程更轻量，GIL的存在导致只能实现并发而不是并行</li>
+<li>适用场景： 大量IO密集型任务</li>
+</ul>
+<p>多进程Process(multiprocessing)</p>
+<ul>
+<li>优点：多核并行计算，同步代码换成多进程时调整中等，无须依赖库调整，但需要全局考虑存在进程内数据共享的场景不支持</li>
+<li>缺点：资源占用重，应用数据共享时需要使用到进程间通信</li>
+<li>适用场景： CPU密集型任务</li>
+</ul>
+<p>通常来说</p>
+<ul>
+<li>IO绑定的场景适用 协程和多线程（存在GIL），例如用户输入，数据库，文件，网络；</li>
+<li>CPU绑定的场景适用多进程，例如 矩阵乘法，搜索，加解密，正则匹配，图像处理</li>
+</ul>
 <h2 id="gil">GIL</h2>
 <blockquote>
-<p><a href="http://cenalulu.github.io/python/gil-in-python/">Python的GIL是什么鬼，多线程性能究竟如何</a><code>讲解了GIL以及使用其他并发库</code></p>
+<p><a href="https://realpython.com/python-gil/">What Is the Python Global Interpreter Lock (GIL)?</a><br>
+<a href="http://cenalulu.github.io/python/gil-in-python/">Python的GIL是什么鬼，多线程性能究竟如何</a><code>讲解了GIL以及使用其他并发库</code><br>
+<a href="https://docs.celeryq.dev/en/stable/">Celery</a></p>
 </blockquote>
+<p>简单来说，GIL在早期将C的库集成入Python时，GIL的存在使得应用开发无须考虑并发安全问题，也就无须考虑锁的开销，单线程的性能也很高。
+而且Python有多种解释器实现，只有CPython中有GIL</p>
+<h2 id="协程-asyncio">协程 asyncio</h2>
+<h2 id="多线程-threading">多线程 threading</h2>
+<p>创建并绑定操作系统的内核线程，但是无法像Java，Go那样并行执行，每个线程在执行前都需要获取GIL锁，即至多只有一个线程能使用CPU计算。</p>
+<p>思考： 如何实现像Java一样完备的状态管理和异常管理。 如何实现线程池，如何实现生产者消费者队列加多线程。</p>
+<h2 id="多进程-multiprocessing">多进程 multiprocessing</h2>
+<hr>
+<h1 id="实践">实践</h1>
+<h2 id="ray">Ray</h2>
+<p>分布式多进程框架</p>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-13
         
@@ -184,11 +248,11 @@
         <a class="prev" href="/post/python/python/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Python 基础</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/java/tool/gradle/">
             <span class="next-text nav-default">Gradle</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -206,17 +270,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -224,11 +288,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -238,16 +302,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

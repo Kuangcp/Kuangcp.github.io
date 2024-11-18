@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>MySQL索引 - Mythos</title>
+  <title>MySQL索引 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 索引 Explain 为何选择 B&#43; 树结构 基本SQL用法 索引的类型 普通索引 唯一索引 主键索引 聚集索引 辅助索引/非聚集索引 Hash 索引 倒排索引 需要使用索引的场景 索引" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 索引 1.1. Explain 1.2. SHOW PROFILE 1.3. 为何选择 B&#43; 树结构 1.4. 基本DDL 索引的类型 2.1. 普通索引 2.2. 唯一索引 2.3. 主键索引 2.4. 主键索引/聚集索引 2.5. 辅助索引/非聚集索引 2.6. Hash 索引 2.6.1. AHI" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/database/mysqlindex/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/database/mysqlindex/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="MySQL索引" />
-<meta property="og:description" content="目录 start 索引 Explain 为何选择 B&#43; 树结构 基本SQL用法 索引的类型 普通索引 唯一索引 主键索引 聚集索引 辅助索引/非聚集索引 Hash 索引 倒排索引 需要使用索引的场景 索引" />
+<meta property="og:description" content="💠 索引 1.1. Explain 1.2. SHOW PROFILE 1.3. 为何选择 B&#43; 树结构 1.4. 基本DDL 索引的类型 2.1. 普通索引 2.2. 唯一索引 2.3. 主键索引 2.4. 主键索引/聚集索引 2.5. 辅助索引/非聚集索引 2.6. Hash 索引 2.6.1. AHI" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/database/mysqlindex/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/database/mysqlindex/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-05-27T21:36:58+00:00" />
 <meta property="article:modified_time" content="2021-05-27T21:36:58+00:00" />
+
 <meta itemprop="name" content="MySQL索引">
-<meta itemprop="description" content="目录 start 索引 Explain 为何选择 B&#43; 树结构 基本SQL用法 索引的类型 普通索引 唯一索引 主键索引 聚集索引 辅助索引/非聚集索引 Hash 索引 倒排索引 需要使用索引的场景 索引">
-<meta itemprop="datePublished" content="2021-05-27T21:36:58+00:00" />
+<meta itemprop="description" content="💠 索引 1.1. Explain 1.2. SHOW PROFILE 1.3. 为何选择 B&#43; 树结构 1.4. 基本DDL 索引的类型 2.1. 普通索引 2.2. 唯一索引 2.3. 主键索引 2.4. 主键索引/聚集索引 2.5. 辅助索引/非聚集索引 2.6. Hash 索引 2.6.1. AHI"><meta itemprop="datePublished" content="2021-05-27T21:36:58+00:00" />
 <meta itemprop="dateModified" content="2021-05-27T21:36:58+00:00" />
-<meta itemprop="wordCount" content="5184">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="5498">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MySQL索引"/>
-<meta name="twitter:description" content="目录 start 索引 Explain 为何选择 B&#43; 树结构 基本SQL用法 索引的类型 普通索引 唯一索引 主键索引 聚集索引 辅助索引/非聚集索引 Hash 索引 倒排索引 需要使用索引的场景 索引"/>
+<meta name="twitter:description" content="💠 索引 1.1. Explain 1.2. SHOW PROFILE 1.3. 为何选择 B&#43; 树结构 1.4. 基本DDL 索引的类型 2.1. 普通索引 2.2. 唯一索引 2.3. 主键索引 2.4. 主键索引/聚集索引 2.5. 辅助索引/非聚集索引 2.6. Hash 索引 2.6.1. AHI"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,75 +120,110 @@
       <div class="post-meta">
         <span class="post-time"> 2021-05-27 </span>
         
-          <span class="more-meta"> 5184 words </span>
-          <span class="more-meta"> 11 mins read </span>
+          <span class="more-meta"> 约 5498 字 </span>
+          <span class="more-meta"> 预计阅读 11 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#explain">Explain</a></li>
-    <li><a href="#为何选择-b-树结构">为何选择 B+ 树结构</a></li>
-    <li><a href="#基本sql用法">基本SQL用法</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#普通索引">普通索引</a></li>
-    <li><a href="#唯一索引">唯一索引</a></li>
-    <li><a href="#主键索引">主键索引</a></li>
-    <li><a href="#聚集索引">聚集索引</a></li>
-    <li><a href="#辅助索引非聚集索引">辅助索引/非聚集索引</a></li>
-    <li><a href="#hash-索引">Hash 索引</a></li>
-    <li><a href="#倒排索引">倒排索引</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#索引优化场景">索引优化场景</a>
+    <li><a href="#索引">索引</a>
       <ul>
-        <li><a href="#统计报表">统计报表</a></li>
+        <li><a href="#explain">Explain</a></li>
+        <li><a href="#show-profile">SHOW PROFILE</a></li>
+        <li><a href="#为何选择-b-树结构">为何选择 B+ 树结构</a></li>
+        <li><a href="#基本ddl">基本DDL</a></li>
       </ul>
     </li>
+    <li><a href="#索引的类型">索引的类型</a>
+      <ul>
+        <li><a href="#普通索引">普通索引</a></li>
+        <li><a href="#唯一索引">唯一索引</a></li>
+        <li><a href="#主键索引">主键索引</a></li>
+        <li><a href="#主键索引聚集索引">主键索引/聚集索引</a></li>
+        <li><a href="#辅助索引非聚集索引">辅助索引/非聚集索引</a></li>
+        <li><a href="#hash-索引">Hash 索引</a>
+          <ul>
+            <li><a href="#ahi-自适应哈希索引">AHI 自适应哈希索引</a></li>
+          </ul>
+        </li>
+        <li><a href="#全文索引">全文索引</a></li>
+      </ul>
+    </li>
+    <li><a href="#索引使用场景">索引使用场景</a>
+      <ul>
+        <li><a href="#索引优化">索引优化</a>
+          <ul>
+            <li><a href="#统计报表">统计报表</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#sql查询未命中索引的场景">SQL查询未命中索引的场景</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2021-05-27T21:36:58" title="May 27, 2021">May 27, 2021</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E7%B4%A2%E5%BC%95">索引</a>
-<ol>
-<li><a href="#explain">Explain</a></li>
-<li><a href="#%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9-b+-%E6%A0%91%E7%BB%93%E6%9E%84">为何选择 B+ 树结构</a></li>
-<li><a href="#%E5%9F%BA%E6%9C%ACsql%E7%94%A8%E6%B3%95">基本SQL用法</a></li>
+<li><a href="#%E7%B4%A2%E5%BC%95">索引</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#explain">Explain</a></li>
+<li>1.2. <a href="#show-profile">SHOW PROFILE</a></li>
+<li>1.3. <a href="#%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9-b+-%E6%A0%91%E7%BB%93%E6%9E%84">为何选择 B+ 树结构</a></li>
+<li>1.4. <a href="#%E5%9F%BA%E6%9C%ACddl">基本DDL</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E7%B1%BB%E5%9E%8B">索引的类型</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#%E6%99%AE%E9%80%9A%E7%B4%A2%E5%BC%95">普通索引</a></li>
+<li>2.2. <a href="#%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95">唯一索引</a></li>
+<li>2.3. <a href="#%E4%B8%BB%E9%94%AE%E7%B4%A2%E5%BC%95">主键索引</a></li>
+<li>2.4. <a href="#%E4%B8%BB%E9%94%AE%E7%B4%A2%E5%BC%95%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95">主键索引/聚集索引</a></li>
+<li>2.5. <a href="#%E8%BE%85%E5%8A%A9%E7%B4%A2%E5%BC%95%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95">辅助索引/非聚集索引</a></li>
+<li>2.6. <a href="#hash-%E7%B4%A2%E5%BC%95">Hash 索引</a>
+<ul>
+<li>2.6.1. <a href="#ahi-%E8%87%AA%E9%80%82%E5%BA%94%E5%93%88%E5%B8%8C%E7%B4%A2%E5%BC%95">AHI 自适应哈希索引</a></li>
+</ul>
+</li>
+<li>2.7. <a href="#%E5%85%A8%E6%96%87%E7%B4%A2%E5%BC%95">全文索引</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E7%B4%A2%E5%BC%95%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF">索引使用场景</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96">索引优化</a>
+<ul>
+<li>3.1.1. <a href="#%E7%BB%9F%E8%AE%A1%E6%8A%A5%E8%A1%A8">统计报表</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#sql%E6%9F%A5%E8%AF%A2%E6%9C%AA%E5%91%BD%E4%B8%AD%E7%B4%A2%E5%BC%95%E7%9A%84%E5%9C%BA%E6%99%AF">SQL查询未命中索引的场景</a></li>
 </ol>
 </li>
-<li><a href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E7%B1%BB%E5%9E%8B">索引的类型</a>
-<ol>
-<li><a href="#%E6%99%AE%E9%80%9A%E7%B4%A2%E5%BC%95">普通索引</a></li>
-<li><a href="#%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95">唯一索引</a></li>
-<li><a href="#%E4%B8%BB%E9%94%AE%E7%B4%A2%E5%BC%95">主键索引</a></li>
-<li><a href="#%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95">聚集索引</a></li>
-<li><a href="#%E8%BE%85%E5%8A%A9%E7%B4%A2%E5%BC%95%E9%9D%9E%E8%81%9A%E9%9B%86%E7%B4%A2%E5%BC%95">辅助索引/非聚集索引</a></li>
-<li><a href="#hash-%E7%B4%A2%E5%BC%95">Hash 索引</a></li>
-<li><a href="#%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95">倒排索引</a></li>
-</ol>
-</li>
-<li><a href="#%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E7%9A%84%E5%9C%BA%E6%99%AF">需要使用索引的场景</a>
-<ol>
-<li><a href="#%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E5%9C%BA%E6%99%AF">索引优化场景</a>
-<ol>
-<li><a href="#%E7%BB%9F%E8%AE%A1%E6%8A%A5%E8%A1%A8">统计报表</a></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><a href="#sql%E6%9F%A5%E8%AF%A2%E6%97%B6%E4%B8%8D%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E7%9A%84%E5%9C%BA%E6%99%AF">SQL查询时不使用索引的场景</a></li>
-</ol>
-<p><strong>目录 end</strong>|<em>2022-01-25 01:55</em>|</p>
+</ul>
+<p>💠 2024-11-10 13:59:35</p>
 <hr>
 <h1 id="索引">索引</h1>
 <blockquote>
@@ -214,6 +245,7 @@
 <ol>
 <li>需要额外占用存储空间，如果索引建立太多可能会导致索引空间大于数据空间反而降低性能</li>
 <li>当对被索引的数据进行DML(增删改), 需要重建索引, 有一定性能影响</li>
+<li>如果是MySQL5.7及以下版本，在大表上建索引会阻塞很长时间。</li>
 </ol>
 <blockquote>
 <p>注意: <a href="https://dev.mysql.com/doc/refman/5.7/en/table-scan-avoidance.html">Avoiding Full Table Scans</a></p>
@@ -222,9 +254,15 @@
 <li>业务上具有唯一特性的字段，即使是多个字段的组合，也必须建成唯一索引</li>
 <li>对长度大于50的 varchar 字段建立索引时，按需求恰当的使用前缀索引，或使用其他方法(例如增加int类型列col_crc32，然后对col_crc32建立索引)</li>
 <li>合理创建联合索引(避免冗余)，区分度最高的在<code>最左边</code>，单个索引的字段数<code>不超过5个</code></li>
-<li>单张表的索引数量控制在5个以内，若单张表多个字段在查询需求上都要单独用到索引，需要经过DBA评估。查询性能问题无法解决的，应从产品设计上进行重构</li>
+<li>单张表的索引数量控制在5个以内，若单张表多个字段在查询需求上都要单独用到索引，需要经过DBA评估。查询性能问题无法解决的，应从产品设计，数据建模，技术架构上进行重构</li>
 </ul>
 <h2 id="explain">Explain</h2>
+<blockquote>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/using-explain.html">Explain</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/using-explain.html">Doc: Optimizing Queries with EXPLAIN</a><code>依据 explain 输出结果调优</code></p>
+</blockquote>
 <ul>
 <li>
 <p>使用 explain 判断SQL语句是否合理使用索引</p>
@@ -351,7 +389,7 @@
 </ol>
 </li>
 <li>
-<p>在实际的使用过程中, 需要重点去关注type、key、key_len、rows、extra这几个参数， type要努力优化到range级别，all要尽量少的出现，在查询的过程中要尽量使用索引</p>
+<p>在实际的使用过程中, 需要重点去关注type、key、key_len、rows、extra这几个参数， type要努力优化到<strong>range级别</strong>，all要尽量少的出现，在查询的过程中要尽量使用索引</p>
 </li>
 <li>
 <p>在extra里面出现 Using filesort, Using temporary 是不太好的，要去优化提高性能。</p>
@@ -363,32 +401,49 @@
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>注意Explain返回的是<strong>可能</strong>的查询器和优化器的执行策略。<br>
+<code>explain analyze</code> 会将SQL真正执行并记录被拆分后的SQL执行环节的大致耗时</p>
+</blockquote>
+<h2 id="show-profile">SHOW PROFILE</h2>
+<p>SHOW PROFILE可以深入的查看服务器执行语句的工作情况。以及也能帮助你理解执行语句消耗时间的情况。一些限制是它没有实现的功能，不能查看和剖析其他连接的语句，以及剖析时所引起的消耗。</p>
+<p>SHOW PROFILES显示最近发给服务器的多条语句，条数根据会话变量profiling_history_size定义，默认是15，最大值为100。设为0等价于关闭分析功能。</p>
+<p>SHOW PROFILE FOR QUERY n，这里的n就是对应SHOW PROFILES输出中的Query_ID。</p>
 <h2 id="为何选择-b-树结构">为何选择 B+ 树结构</h2>
 <blockquote>
-<p><a href="https://www.cnblogs.com/rjzheng/p/12316685.html">参考:【原创】为什么Mongodb索引用B树，而Mysql用B+树?</a>  <code>MongoDB PostgreSQL 都是使用B-Tree</code>
+<p><a href="https://www.cnblogs.com/rjzheng/p/12316685.html">参考:【原创】为什么Mongodb索引用B树，而Mysql用B+树?</a>  <code>MongoDB PostgreSQL 都是使用B-Tree</code><br>
 <a href="https://blog.csdn.net/wwh578867817/article/details/50493940">从 MongoDB 及 Mysql 谈B/B+树</a><br>
 <a href="http://www.itpub.net/2020/02/28/5356/">分布式数据库千亿级超大表性能优化实践</a></p>
 </blockquote>
 <ul>
-<li>
-<p>MySQL Innodb 设计索引块是固定大小，中间节点上存放数据就会导致能用来存放指针数据的空间变小，也就意味着引用的子节点更少，树的高度更高（增加了IO次数），极端情况下退化为线性表。</p>
-</li>
-<li>
-<p>叶子节点以链表形式连接，方便范围查询，索引排序</p>
-</li>
-<li>
-<p>联合索引原理：依据字段顺序 例如 (a,b,c)， 会先依据a有序，然后b有序，最后c有序的方式来组织B+树，据此才有<code>最左原则</code>限制，如果中间某列没有值或使用like会导致后面的列不走索引</p>
-</li>
-<li>
-<p>叶子节点上存放的数据：</p>
+<li>相较于平衡二叉树：节点的多叉导致数据节点发生变化时，调整成本更低，IO次数也更低</li>
+<li>MySQL Innodb 设计索引块是固定大小，中间节点上存放数据就会导致能用来存放指针数据的空间变小，也就意味着引用的子节点更少，树的高度更高（增加了IO次数），极端情况下退化为线性表。</li>
+<li>叶子节点用双向链表连接，方便范围查询，索引排序
 <ul>
-<li>如果是聚簇索引，则保存的是实际数据</li>
-<li>如果是非聚簇索引，则依然是和中间节点一样的索引节点，但是会有一个指针指向对应的数据块</li>
+<li>InnoDB B+树索引的每一层节点间，都通过前后指针组成双向链表相互连接</li>
+</ul>
+</li>
+<li>联合索引原理：依据字段顺序 例如 (a,b,c)，会先依据a有序，然后b有序，最后c有序的方式来组织B+树，据此才有<code>最左原则</code>的限制
+<ul>
+<li>如果中间某列没有值或使用like会导致后面的列不走索引</li>
 </ul>
 </li>
 </ul>
-<p>相较于平衡二叉树，由于单节点具有多叉，数据节点发生变化时，调整成本低</p>
-<h2 id="基本sql用法">基本SQL用法</h2>
+<blockquote>
+<p>特点：</p>
+</blockquote>
+<ul>
+<li>叶子节点：
+<ul>
+<li>如果是聚簇索引，则保存的是实际数据节点</li>
+<li>如果是非聚簇索引，保存的是主键id，需要走主键索引取数据</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://juejin.cn/post/7259411780375085114">InnoDB索引同层非叶子节点间，也是双向链表吗？</a> 数据结构层面展示MySQL的B+树实现</p>
+</blockquote>
+<h2 id="基本ddl">基本DDL</h2>
 <ol>
 <li>
 <p><strong>创建</strong></p>
@@ -426,36 +481,29 @@
 <li>
 <p><strong>强制使用索引</strong></p>
 <ul>
-<li><code>select * from test force index(id) where id = 1;</code></li>
+<li><code>select * from test force index(idx_name) where id = 1;</code></li>
 </ul>
 </li>
 </ol>
+<hr>
 <h1 id="索引的类型">索引的类型</h1>
-<p><code>索引分类的概念，非MySQL真实索引类型</code></p>
+<ul>
+<li>按「数据结构」分类：B+tree索引、Hash索引、Full-text索引。</li>
+<li>按「物理存储」分类：聚簇索引（主键索引）、二级索引（辅助索引）。</li>
+<li>按「字段特性」分类：主键索引、唯一索引、普通索引、前缀索引。</li>
+<li>按「字段个数」分类：单列索引、联合索引。</li>
+</ul>
 <blockquote>
 <p>覆盖索引</p>
 </blockquote>
 <ul>
-<li>InnoDB存储引擎支持覆盖索引（covering index，或称索引覆盖），即<code>仅从辅助索引中就可以得到查询的信息</code>，而不需要查询聚集索引中的记录。</li>
-<li>使用覆盖索引的一个好处是辅助索引不包含整行记录的所有信息，故其大小要远小于聚集索引，因此可以减少大量的IO操作。</li>
+<li>覆盖索引（covering index，或称索引覆盖），即<code>仅从辅助索引中就可以得到查询的信息</code>，而不需要查询聚集索引甚至回表。</li>
 </ul>
 <blockquote>
 <p>联合索引</p>
 </blockquote>
 <ul>
 <li>两个或更多个列上的索引被称作联合索引，联合索引又叫复合索引</li>
-</ul>
-<blockquote>
-<p>稠密索引</p>
-</blockquote>
-<ul>
-<li>每个索引键值都对应有一个索引项</li>
-</ul>
-<blockquote>
-<p>稀疏索引</p>
-</blockquote>
-<ul>
-<li>相对于稠密索引，稀疏索引只为某些搜索码值建立索引记录；在搜索时，找到其最大的搜索码值小于或等于所查找记录的搜索码值的索引项，然后从该记录开始向后顺序查询直到找到为止。</li>
 </ul>
 <h2 id="普通索引">普通索引</h2>
 <p>是最基本的索引，只在单列上建立索引，无特殊限制</p>
@@ -471,20 +519,19 @@
 </ol>
 </li>
 </ul>
-<h2 id="聚集索引">聚集索引</h2>
+<h2 id="主键索引聚集索引">主键索引/聚集索引</h2>
 <p>聚集索引(Clustered Index)</p>
-<p>聚集索引：指索引项的排序方式和表中数据记录存储排序方式一致的索引</p>
+<p>聚集索引：指该索引决定了表中数据行<strong>物理存储</strong>排序方式的索引，因此<code>一个表只能有一个聚集索引</code></p>
 <p>而聚集索引（clustered index）就是按照每张表的主键构造一棵B+树，同时叶子节点中存放的即为<code>整张表的行记录数据</code>，也将聚集索引的叶子节点称为数据页。<br>
 聚集索引的这个特性决定了索引组织表中数据也是索引的一部分。同B+树数据结构一样，每个数据页都通过一个双向链表来进行链接。</p>
+<p>聚簇索引中的叶子节点记录了主键值、事务 id、用于事务和 MVCC 的回滚指针以及所有的剩余列。</p>
 <h2 id="辅助索引非聚集索引">辅助索引/非聚集索引</h2>
 <p>辅助索引（Secondary Index，也称非聚集索引）</p>
-<p>叶子节点并不包含行记录的全部数据。叶子节点除了包含键值以外，每个叶子节点中的索引行中还包含了一个书签（bookmark）。<br>
-该书签用来告诉InnoDB存储引擎哪里可以找到与索引相对应的行数据。辅助索引的书签就是相应行数据的聚集索引键。<br>
-辅助索引的存在并不影响数据在聚集索引中的组织，因此每张表上可以有多个辅助索引。</p>
-<p>当通过辅助索引来寻找数据时，InnoDB存储引擎会遍历辅助索引并通过叶节点级别的指针获得指向主键索引的<code>主键</code>，然后再通过<code>主键索引</code>来找到一个完整的行记录，而 MyISAM 没有这个特性。</p>
+<p>叶子节点并不包含行记录的全部数据，只包含索引列 和 主键值（回查主键索引），辅助索引的存在并不影响数据聚集索引及数据存储，因此每张表上可以有多个辅助索引。</p>
+<p>当通过辅助索引来寻找数据时，InnoDB存储引擎会遍历辅助索引并通过叶节点级别的指针获得指向主键索引的<code>主键值</code>，然后再通过<code>主键索引</code>来找到一个完整的行记录，而 MyISAM 没有这个特性。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -498,22 +545,25 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- MySQL 5.7 
-</span><span class="c1"></span><span class="k">create</span> <span class="k">table</span> <span class="n">report_user_date</span><span class="p">(</span><span class="n">id</span> <span class="nb">bigint</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">auto_increment</span><span class="p">,</span> <span class="n">user_id</span> <span class="nb">bigint</span><span class="p">,</span>
- <span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span> <span class="n">avatar</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span> <span class="n">phone</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="n">a_c</span> <span class="nb">int</span> <span class="p">,</span> <span class="n">b_c</span> <span class="nb">int</span><span class="p">,</span> <span class="n">d_c</span> <span class="nb">int</span> <span class="p">,</span> <span class="n">e_c</span> <span class="nb">int</span><span class="p">,</span> <span class="n">crea</span> <span class="n">datetime</span><span class="p">);</span>
-
-<span class="k">alter</span> <span class="k">table</span> <span class="n">report_user_date</span> <span class="k">add</span> <span class="k">index</span> <span class="n">idx_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="n">crea</span><span class="p">);</span>
-
-<span class="c1">-- 如果只查询索引字段（user_id 或 crea），还能利用上联合索引，即使查询条件没有最左列
-</span><span class="c1">-- innodb 引擎时，由上述特性 查id 也能使用上联合索引，myisam 就不能了
-</span><span class="c1"></span><span class="k">explain</span> <span class="k">select</span> <span class="n">id</span>  <span class="k">from</span> <span class="n">report_user_date</span> <span class="k">where</span> <span class="n">crea</span> <span class="o">&lt;</span> <span class="s1">&#39;2021-12-26&#39;</span><span class="p">;</span>
-
-<span class="c1">-- 如果查询非索引字段，就用不上联合索引了; 字段越多，查询越慢
-</span><span class="c1"></span><span class="k">select</span> <span class="n">name</span>  <span class="k">from</span> <span class="n">report_user_date</span> <span class="k">where</span> <span class="n">crea</span> <span class="o">&lt;</span> <span class="s1">&#39;2021-12-26&#39;</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- MySQL 5.7 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">report_user_date</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span><span class="w"> </span><span class="n">avatar</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span><span class="w"> </span><span class="n">phone</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span><span class="w"> </span><span class="n">a_c</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">b_c</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">d_c</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">e_c</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">crea</span><span class="w"> </span><span class="n">datetime</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">report_user_date</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">idx_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="n">crea</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 如果只查询索引字段（user_id 或 crea），还能利用上联合索引，即使查询条件没有最左列
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- innodb 引擎时，由上述特性 查id 也能使用上联合索引，myisam 就不能了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">explain</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">report_user_date</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">crea</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;2021-12-26&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 如果查询非索引字段，就用不上联合索引了; 字段越多，查询越慢
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">report_user_date</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">crea</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;2021-12-26&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>非聚集索引的使用场合为 查询所获数据量较少时 或者 某字段中的数据的唯一性比较高时， 非聚集索引必须是稠密索引</p>
+</div><p>非聚集索引的使用场合为 查询所获数据量较少时 或者 某字段中的数据的唯一性比较高时， 非聚集索引必须是稠密索引<code>SQL查询的字段大部分有建索引</code></p>
+<hr>
 <h2 id="hash-索引">Hash 索引</h2>
+<p>对于Innodb而言不支持完整的hash索引，只有AHI。MEMORY/HEAP/NDB 才支持</p>
+<p>语法： <code>alter table xx add index idx_a(uid) using hash</code></p>
 <blockquote>
 <p>适用场景</p>
 </blockquote>
@@ -524,9 +574,9 @@
 <p>限制和缺点</p>
 </blockquote>
 <ol>
-<li>哈希索引只保存哈希码和指针，而不存储字段值，所以不能使用索引中的值来避免回表</li>
+<li>哈希索引只保存哈希码和指针，而不存储字段值，所以不能使用索引中的值来规避回表问题</li>
 <li>哈希索引数据并不是按照索引值顺序存储的，所以无法用于排序和范围查询</li>
-<li>哈希索引不支持 部分索引值 查找，因为哈希索引始终是使用索引列的全部内容来计算哈希码。</li>
+<li>哈希索引不支持 部分索引值 查找，因为哈希索引始终是使用<code>索引列的全部内容</code>来计算哈希码。</li>
 <li>HASH冲突（链地址法）会对整体维护加大负担（查询，新增，删除）。</li>
 </ol>
 <blockquote>
@@ -535,39 +585,40 @@
 <ol>
 <li>假如查询字段A较长，可用新列B存储字段A的hash值，再基于B列建立Hash索引，优化索引存储大小</li>
 </ol>
+<h3 id="ahi-自适应哈希索引">AHI 自适应哈希索引</h3>
 <blockquote>
-<p>自适应哈希索引</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-adaptive-hash.html">Adaptive Hash Index</a></p>
 </blockquote>
 <ul>
 <li>自适应哈希索引 默认开启 <code>show variables like &quot;innodb_adaptive_hash_index&quot;;</code></li>
 <li>查看引擎状况，能看到hash索引使用情况 <code>show engine innodb  status;</code></li>
 </ul>
 <p>存储引擎会自动对个索引页上的查询进行监控，如果能够通过使用自适应哈希索引来提高查询效率，其便会自动创建自适应哈希索引，不需要开发人员或运维人员进行任何设置操作。
-自适应哈希索引是对innodb的缓冲池的B+树页进行创建，不是对整张表创建，因此速度很快。</p>
-<h2 id="倒排索引">倒排索引</h2>
+自适应哈希索引是<code>对innodb的缓冲池的B+树页进行创建，不是对整张表创建</code>，因此适用于热点数据，如果查询是离散平均的还是建议直接建Hash索引，不适用AHI。</p>
+<h2 id="全文索引">全文索引</h2>
 <hr>
-<h1 id="需要使用索引的场景">需要使用索引的场景</h1>
+<h1 id="索引使用场景">索引使用场景</h1>
 <ol>
 <li>经常出现在 where 条件中的字段需添加索引。</li>
 <li>join 关联，被驱动表需要对关联字段添加索引。</li>
 <li>order by ，group by ，distinct的字段需要添加在索引的后面。</li>
 </ol>
 <blockquote>
-<p>创建索引时避免有如下极端误解：</p>
+<p>创建索引时避免有如下误解：</p>
 </blockquote>
 <ol>
 <li>宁滥勿缺。认为一个查询就需要建一个索引。</li>
 <li>宁缺勿滥。认为索引会消耗空间、严重拖慢更新和新增速度。</li>
 <li>抵制唯一索引。认为业务的唯一性一律需要在应用层通过“先查后插”方式解决。</li>
 </ol>
-<h2 id="索引优化场景">索引优化场景</h2>
+<h2 id="索引优化">索引优化</h2>
 <h3 id="统计报表">统计报表</h3>
 <blockquote>
 <p>如果使用MySQL存储 一定数据量的统计报表数据，使用 MyISAM 有更多优势, 没有事务，行锁等开销</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -583,28 +634,28 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql">    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">report_user_date</span><span class="o">`</span> <span class="p">(</span>
-    <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
-    <span class="o">`</span><span class="n">user_id</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="o">`</span><span class="n">avatar</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="o">`</span><span class="n">phone</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="o">`</span><span class="n">a_c</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="o">`</span><span class="n">b_c</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="o">`</span><span class="n">d_c</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="o">`</span><span class="n">e_c</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="o">`</span><span class="n">crea</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span>
-    <span class="k">KEY</span> <span class="o">`</span><span class="n">idx_user</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">crea</span><span class="o">`</span><span class="p">)</span>
-    <span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">report_user_date</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">`</span><span class="n">avatar</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">`</span><span class="n">phone</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">`</span><span class="n">a_c</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">`</span><span class="n">b_c</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">`</span><span class="n">d_c</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">`</span><span class="n">e_c</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">`</span><span class="n">crea</span><span class="o">`</span><span class="w"> </span><span class="n">datetime</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">KEY</span><span class="w"> </span><span class="o">`</span><span class="n">idx_user</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">crea</span><span class="o">`</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>构造测试数据</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -615,23 +666,23 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go">    <span class="c1">// 生成随机数据
-</span><span class="c1"></span>    <span class="nx">insertOne</span> <span class="o">:=</span> <span class="s">&#34;insert into report_user_date( user_id, name, avatar, phone, a_c, b_c, d_c, e_c,crea) value (?,?,?,?,?,?,?,?,?);&#34;</span>
-	<span class="nx">stmt</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Prepare</span><span class="p">(</span><span class="nx">insertOne</span><span class="p">)</span>
-	<span class="nx">now</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">()</span>
-	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">100000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-		<span class="nx">stmt</span><span class="p">.</span><span class="nf">Exec</span><span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="mi">2000</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprint</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprint</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprint</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="nx">now</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">i</span><span class="p">)))</span>
-	<span class="p">}</span>
-    <span class="c1">// 多次复制自身数据 扩大数据量 
-</span><span class="c1"></span>    <span class="c1">// insert into report_user_date( user_id, name, avatar, phone, a_c, b_c, d_c, e_c,crea) select user_id, name, avatar, phone, a_c, b_c, d_c, e_c,crea from report_user_date;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">    <span class="c1">// 生成随机数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">insertOne</span> <span class="o">:=</span> <span class="s">&#34;insert into report_user_date( user_id, name, avatar, phone, a_c, b_c, d_c, e_c,crea) value (?,?,?,?,?,?,?,?,?);&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">stmt</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Prepare</span><span class="p">(</span><span class="nx">insertOne</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">now</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">100000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">stmt</span><span class="p">.</span><span class="nf">Exec</span><span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="mi">2000</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprint</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprint</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprint</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="nx">now</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">i</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 多次复制自身数据 扩大数据量 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// insert into report_user_date( user_id, name, avatar, phone, a_c, b_c, d_c, e_c,crea) select user_id, name, avatar, phone, a_c, b_c, d_c, e_c,crea from report_user_date;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="2">
 <li>对比查询效率</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -646,23 +697,23 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- MySQL 5.7 340w数据
-</span><span class="c1"></span>
-<span class="k">select</span> <span class="n">user_id</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="n">a_c</span> <span class="p">)</span>  <span class="k">from</span> <span class="n">report_user_date</span> <span class="k">where</span> <span class="n">user_id</span> <span class="k">between</span> <span class="mi">100</span> <span class="k">and</span> <span class="mi">700</span>  <span class="k">group</span> <span class="k">by</span> <span class="n">user_id</span> <span class="p">;</span>
-<span class="c1">-- innodb 2700ms
-</span><span class="c1">-- myisam 900ms
-</span><span class="c1"></span>
-<span class="k">select</span> <span class="n">user_id</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="k">distinct</span> <span class="n">a_c</span> <span class="p">),</span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span> <span class="n">b_c</span> <span class="p">)</span> <span class="k">from</span> <span class="n">report_user_date</span> <span class="k">where</span> <span class="n">user_id</span> <span class="k">between</span> <span class="mi">100</span> <span class="k">and</span> <span class="mi">700</span> <span class="k">and</span> <span class="n">crea</span> <span class="o">&lt;</span> <span class="s1">&#39;2021-12-26 18:00:00&#39;</span> <span class="k">group</span> <span class="k">by</span> <span class="n">user_id</span> <span class="p">;</span>
-<span class="c1">-- innodb 2700ms
-</span><span class="c1">-- myisam 1100ms
-</span><span class="c1"></span>
-<span class="k">select</span> <span class="n">user_id</span> <span class="k">from</span> <span class="n">report_user_date</span> <span class="k">where</span> <span class="n">crea</span> <span class="o">&lt;</span> <span class="s1">&#39;2021-12-26&#39;</span><span class="p">;</span>
-<span class="c1">-- 如果只查询索引字段，还能利用上联合索引，即使查询条件没有最左列字段， 如果查询非索引字段，就用不上联合索引了，字段越多，查询越慢
-</span><span class="c1">-- 如果查询的是id 主键字段：innodb 会使用上索引，myisam 就不能了
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- MySQL 5.7 340w数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">a_c</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">report_user_date</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">700</span><span class="w">  </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- innodb 2700ms
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- myisam 900ms
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">a_c</span><span class="w"> </span><span class="p">),</span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">b_c</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">report_user_date</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">700</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">crea</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;2021-12-26 18:00:00&#39;</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- innodb 2700ms
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- myisam 1100ms
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">report_user_date</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">crea</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;2021-12-26&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 如果只查询索引字段，还能利用上联合索引，即使查询条件没有最左列字段， 如果查询非索引字段，就用不上联合索引了，字段越多，查询越慢
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 如果查询的是id 主键字段：innodb 会使用上索引，myisam 就不能了
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h1 id="sql查询时不使用索引的场景">SQL查询时不使用索引的场景</h1>
+<h1 id="sql查询未命中索引的场景">SQL查询未命中索引的场景</h1>
 <blockquote>
 <p>全局</p>
 </blockquote>
@@ -674,6 +725,7 @@
 </ul>
 </li>
 <li>注意: 索引列上存在 null 值, 索引仍能使用, 包括 is null 和 is not null, 但是 Null值可能会相比于默认值占用更多存储空间</li>
+<li>使用了索引字段做条件过滤，但是使用了非索引字段来做Order by</li>
 </ul>
 <blockquote>
 <p>联合索引</p>
@@ -715,11 +767,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2021-05-27
         
@@ -731,10 +783,14 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/database/mysqlinnodb/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">MySQL InnoDB</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/java/tool/mapstruct/">
             <span class="next-text nav-default">MapStruct</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -752,17 +808,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -770,11 +826,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -784,16 +840,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

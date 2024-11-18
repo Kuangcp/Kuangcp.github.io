@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Linux文件系统 - Mythos</title>
+  <title>Linux文件系统 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 文件管理 查找文件 find locate Anything Synapse 查看文件 stat file tree ls wc cat nl less tail head 比较文件内容 diff meld kdiff3 vimdiff 文件变更命令 rename chown chgrp ln cp rm mv 文件的分割与合并 监控文件变更 默认字符" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 IO 1.1. IO中断 1.2. DMA 1.3. 零拷贝 文件管理 2.1. 查找文件 2.1.1. find 2.2. 查看文件 2.2.1. stat 2.2.2. file 2.2.3. tree 2.2.4. ls 2.2.5. wc 2.2.6. cat 2.2.7. less 2.2.8. tail 2.2.9. head 2.2.10. ldd 2.3. 比较文件内容 2.3.1. diff 2.3.2. meld 2.3.3. VsCode 2.4. 文件变更命令 2.4.1." /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxfile/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/base/linuxfile/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Linux文件系统" />
-<meta property="og:description" content="目录 start 文件管理 查找文件 find locate Anything Synapse 查看文件 stat file tree ls wc cat nl less tail head 比较文件内容 diff meld kdiff3 vimdiff 文件变更命令 rename chown chgrp ln cp rm mv 文件的分割与合并 监控文件变更 默认字符" />
+<meta property="og:description" content="💠 IO 1.1. IO中断 1.2. DMA 1.3. 零拷贝 文件管理 2.1. 查找文件 2.1.1. find 2.2. 查看文件 2.2.1. stat 2.2.2. file 2.2.3. tree 2.2.4. ls 2.2.5. wc 2.2.6. cat 2.2.7. less 2.2.8. tail 2.2.9. head 2.2.10. ldd 2.3. 比较文件内容 2.3.1. diff 2.3.2. meld 2.3.3. VsCode 2.4. 文件变更命令 2.4.1." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxfile/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/base/linuxfile/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T11:14:54+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:14:54+00:00" />
+
 <meta itemprop="name" content="Linux文件系统">
-<meta itemprop="description" content="目录 start 文件管理 查找文件 find locate Anything Synapse 查看文件 stat file tree ls wc cat nl less tail head 比较文件内容 diff meld kdiff3 vimdiff 文件变更命令 rename chown chgrp ln cp rm mv 文件的分割与合并 监控文件变更 默认字符">
-<meta itemprop="datePublished" content="2018-12-15T11:14:54+00:00" />
+<meta itemprop="description" content="💠 IO 1.1. IO中断 1.2. DMA 1.3. 零拷贝 文件管理 2.1. 查找文件 2.1.1. find 2.2. 查看文件 2.2.1. stat 2.2.2. file 2.2.3. tree 2.2.4. ls 2.2.5. wc 2.2.6. cat 2.2.7. less 2.2.8. tail 2.2.9. head 2.2.10. ldd 2.3. 比较文件内容 2.3.1. diff 2.3.2. meld 2.3.3. VsCode 2.4. 文件变更命令 2.4.1."><meta itemprop="datePublished" content="2018-12-15T11:14:54+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:14:54+00:00" />
-<meta itemprop="wordCount" content="5242">
-
-
-
-<meta itemprop="keywords" content="基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="6485">
+<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux文件系统"/>
-<meta name="twitter:description" content="目录 start 文件管理 查找文件 find locate Anything Synapse 查看文件 stat file tree ls wc cat nl less tail head 比较文件内容 diff meld kdiff3 vimdiff 文件变更命令 rename chown chgrp ln cp rm mv 文件的分割与合并 监控文件变更 默认字符"/>
+<meta name="twitter:description" content="💠 IO 1.1. IO中断 1.2. DMA 1.3. 零拷贝 文件管理 2.1. 查找文件 2.1.1. find 2.2. 查看文件 2.2.1. stat 2.2.2. file 2.2.3. tree 2.2.4. ls 2.2.5. wc 2.2.6. cat 2.2.7. less 2.2.8. tail 2.2.9. head 2.2.10. ldd 2.3. 比较文件内容 2.3.1. diff 2.3.2. meld 2.3.3. VsCode 2.4. 文件变更命令 2.4.1."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,199 +122,321 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 5242 words </span>
-          <span class="more-meta"> 11 mins read </span>
+          <span class="more-meta"> 约 6485 字 </span>
+          <span class="more-meta"> 预计阅读 13 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#查找文件">查找文件</a>
+    <li><a href="#io">IO</a>
       <ul>
-        <li><a href="#find">find</a></li>
-        <li><a href="#locate">locate</a></li>
-        <li><a href="#anything">Anything</a></li>
-        <li><a href="#synapse">Synapse</a></li>
+        <li><a href="#io中断">IO中断</a></li>
+        <li><a href="#dma">DMA</a></li>
+        <li><a href="#零拷贝">零拷贝</a></li>
       </ul>
     </li>
-    <li><a href="#查看文件">查看文件</a>
+    <li><a href="#文件管理">文件管理</a>
       <ul>
-        <li><a href="#stat">stat</a></li>
-        <li><a href="#file">file</a></li>
-        <li><a href="#tree">tree</a></li>
-        <li><a href="#ls">ls</a></li>
-        <li><a href="#wc">wc</a></li>
-        <li><a href="#cat">cat</a></li>
-        <li><a href="#nl">nl</a></li>
-        <li><a href="#less">less</a></li>
-        <li><a href="#tail">tail</a></li>
-        <li><a href="#head">head</a></li>
+        <li><a href="#查找文件">查找文件</a>
+          <ul>
+            <li><a href="#find">find</a></li>
+          </ul>
+        </li>
+        <li><a href="#查看文件">查看文件</a>
+          <ul>
+            <li><a href="#stat">stat</a></li>
+            <li><a href="#file">file</a></li>
+            <li><a href="#tree">tree</a></li>
+            <li><a href="#ls">ls</a></li>
+            <li><a href="#wc">wc</a></li>
+            <li><a href="#cat">cat</a></li>
+            <li><a href="#less">less</a></li>
+            <li><a href="#tail">tail</a></li>
+            <li><a href="#head">head</a></li>
+            <li><a href="#ldd">ldd</a></li>
+          </ul>
+        </li>
+        <li><a href="#比较文件内容">比较文件内容</a>
+          <ul>
+            <li><a href="#diff">diff</a></li>
+            <li><a href="#meld">meld</a></li>
+            <li><a href="#vscode">VsCode</a></li>
+          </ul>
+        </li>
+        <li><a href="#文件变更命令">文件变更命令</a>
+          <ul>
+            <li><a href="#rename">rename</a></li>
+            <li><a href="#chown">chown</a></li>
+            <li><a href="#chgrp">chgrp</a></li>
+            <li><a href="#ln">ln</a></li>
+            <li><a href="#cp">cp</a></li>
+            <li><a href="#rm">rm</a></li>
+            <li><a href="#mv">mv</a></li>
+            <li><a href="#文件的分割与合并">文件的分割与合并</a></li>
+            <li><a href="#监控文件变更">监控文件变更</a></li>
+          </ul>
+        </li>
+        <li><a href="#默认字符编码">默认字符编码</a></li>
       </ul>
     </li>
-    <li><a href="#比较文件内容">比较文件内容</a>
+    <li><a href="#磁盘">磁盘</a>
       <ul>
-        <li><a href="#diff">diff</a></li>
-        <li><a href="#meld">meld</a></li>
-        <li><a href="#kdiff3">kdiff3</a></li>
-        <li><a href="#vimdiff">vimdiff</a></li>
+        <li><a href="#文件系统">文件系统</a>
+          <ul>
+            <li><a href="#ext3-ext4">ext3 ext4</a></li>
+            <li><a href="#tmpfs">Tmpfs</a></li>
+          </ul>
+        </li>
+        <li><a href="#安装系统时基本分区">安装系统时基本分区</a></li>
+        <li><a href="#设备列表">设备列表</a></li>
+        <li><a href="#常用命令">常用命令</a>
+          <ul>
+            <li><a href="#dd">dd</a></li>
+            <li><a href="#truncate">truncate</a></li>
+            <li><a href="#mount">mount</a></li>
+            <li><a href="#fdisk">fdisk</a></li>
+            <li><a href="#fsck">fsck</a></li>
+            <li><a href="#df">df</a></li>
+            <li><a href="#du">du</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#文件变更命令">文件变更命令</a>
+    <li><a href="#日志">日志</a>
       <ul>
-        <li><a href="#rename">rename</a></li>
-        <li><a href="#chown">chown</a></li>
-        <li><a href="#chgrp">chgrp</a></li>
-        <li><a href="#ln">ln</a></li>
-        <li><a href="#cp">cp</a></li>
-        <li><a href="#rm">rm</a></li>
-        <li><a href="#mv">mv</a></li>
-        <li><a href="#文件的分割与合并">文件的分割与合并</a></li>
-        <li><a href="#监控文件变更">监控文件变更</a></li>
+        <li><a href="#systemd">Systemd</a></li>
+        <li><a href="#应用日志">应用日志</a></li>
       </ul>
     </li>
-    <li><a href="#默认字符编码">默认字符编码</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#文件系统">文件系统</a>
+    <li><a href="#dfs">DFS</a>
       <ul>
-        <li><a href="#fsck">fsck</a></li>
+        <li><a href="#samba">Samba</a>
+          <ul>
+            <li><a href="#搭建匿名samba服务器">搭建匿名Samba服务器</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#安装系统时基本分区">安装系统时基本分区</a></li>
-    <li><a href="#设备列表">设备列表</a></li>
-    <li><a href="#常用命令">常用命令</a>
+    <li><a href="#tips">Tips</a>
       <ul>
-        <li><a href="#dd">dd</a></li>
-        <li><a href="#mount">mount</a></li>
-        <li><a href="#fdisk">fdisk</a></li>
-        <li><a href="#df">df</a></li>
-        <li><a href="#du">du</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#systemd">Systemd</a></li>
-    <li><a href="#应用日志">应用日志</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#设置交换内存文件">设置交换内存文件</a>
-      <ul>
-        <li><a href="#清空交换内存">清空交换内存</a></li>
-      </ul>
-    </li>
-    <li><a href="#清除缓存">清除缓存</a></li>
-    <li><a href="#善用shrc文件">善用*shrc文件</a>
-      <ul>
+        <li><a href="#善用shrc文件">善用*shrc文件</a></li>
         <li><a href="#善用alias">善用alias</a></li>
+        <li><a href="#desktop文件">desktop文件</a></li>
       </ul>
     </li>
-    <li><a href="#desktop文件">desktop文件</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-15T11:14:54" title="December 15, 2018">December 15, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86">文件管理</a>
-<ol>
-<li><a href="#%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6">查找文件</a>
-<ol>
-<li><a href="#find">find</a></li>
-<li><a href="#locate">locate</a></li>
-<li><a href="#anything">Anything</a></li>
-<li><a href="#synapse">Synapse</a></li>
+<li><a href="#io">IO</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#io%E4%B8%AD%E6%96%AD">IO中断</a></li>
+<li>1.2. <a href="#dma">DMA</a></li>
+<li>1.3. <a href="#%E9%9B%B6%E6%8B%B7%E8%B4%9D">零拷贝</a></li>
+</ul>
 </li>
-<li><a href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6">查看文件</a>
+<li>
+<ol start="2">
+<li><a href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86">文件管理</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6">查找文件</a>
+<ul>
+<li>2.1.1. <a href="#find">find</a></li>
+</ul>
+</li>
+<li>2.2. <a href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6">查看文件</a>
+<ul>
+<li>2.2.1. <a href="#stat">stat</a></li>
+<li>2.2.2. <a href="#file">file</a></li>
+<li>2.2.3. <a href="#tree">tree</a></li>
+<li>2.2.4. <a href="#ls">ls</a></li>
+<li>2.2.5. <a href="#wc">wc</a></li>
+<li>2.2.6. <a href="#cat">cat</a></li>
+<li>2.2.7. <a href="#less">less</a></li>
+<li>2.2.8. <a href="#tail">tail</a></li>
+<li>2.2.9. <a href="#head">head</a></li>
+<li>2.2.10. <a href="#ldd">ldd</a></li>
+</ul>
+</li>
+<li>2.3. <a href="#%E6%AF%94%E8%BE%83%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9">比较文件内容</a>
+<ul>
+<li>2.3.1. <a href="#diff">diff</a></li>
+<li>2.3.2. <a href="#meld">meld</a></li>
+<li>2.3.3. <a href="#vscode">VsCode</a></li>
+</ul>
+</li>
+<li>2.4. <a href="#%E6%96%87%E4%BB%B6%E5%8F%98%E6%9B%B4%E5%91%BD%E4%BB%A4">文件变更命令</a>
+<ul>
+<li>2.4.1. <a href="#rename">rename</a></li>
+<li>2.4.2. <a href="#chown">chown</a></li>
+<li>2.4.3. <a href="#chgrp">chgrp</a></li>
+<li>2.4.4. <a href="#ln">ln</a></li>
+<li>2.4.5. <a href="#cp">cp</a></li>
+<li>2.4.6. <a href="#rm">rm</a></li>
+<li>2.4.7. <a href="#mv">mv</a></li>
+<li>2.4.8. <a href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E5%90%88%E5%B9%B6">文件的分割与合并</a></li>
+<li>2.4.9. <a href="#%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E6%9B%B4">监控文件变更</a></li>
+</ul>
+</li>
+<li>2.5. <a href="#%E9%BB%98%E8%AE%A4%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81">默认字符编码</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E7%A3%81%E7%9B%98">磁盘</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a>
+<ul>
+<li>3.1.1. <a href="#ext3-ext4">ext3 ext4</a></li>
+<li>3.1.2. <a href="#tmpfs">Tmpfs</a></li>
+</ul>
+</li>
+<li>3.2. <a href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%9F%BA%E6%9C%AC%E5%88%86%E5%8C%BA">安装系统时基本分区</a></li>
+<li>3.3. <a href="#%E8%AE%BE%E5%A4%87%E5%88%97%E8%A1%A8">设备列表</a></li>
+<li>3.4. <a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a>
+<ul>
+<li>3.4.1. <a href="#dd">dd</a></li>
+<li>3.4.2. <a href="#truncate">truncate</a></li>
+<li>3.4.3. <a href="#mount">mount</a></li>
+<li>3.4.4. <a href="#fdisk">fdisk</a></li>
+<li>3.4.5. <a href="#fsck">fsck</a></li>
+<li>3.4.6. <a href="#df">df</a></li>
+<li>3.4.7. <a href="#du">du</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E6%97%A5%E5%BF%97">日志</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#systemd">Systemd</a></li>
+<li>4.2. <a href="#%E5%BA%94%E7%94%A8%E6%97%A5%E5%BF%97">应用日志</a></li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li><a href="#dfs">DFS</a></li>
+</ol>
+<ul>
+<li>5.1. <a href="#samba">Samba</a>
+<ul>
+<li>5.1.1. <a href="#%E6%90%AD%E5%BB%BA%E5%8C%BF%E5%90%8Dsamba%E6%9C%8D%E5%8A%A1%E5%99%A8">搭建匿名Samba服务器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="6">
+<li><a href="#tips">Tips</a></li>
+</ol>
+<ul>
+<li>6.1. <a href="#%E5%96%84%E7%94%A8shrc%E6%96%87%E4%BB%B6">善用*shrc文件</a></li>
+<li>6.2. <a href="#%E5%96%84%E7%94%A8alias">善用alias</a></li>
+<li>6.3. <a href="#desktop%E6%96%87%E4%BB%B6">desktop文件</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-11-15 14:49:06</p>
+<hr>
+<h1 id="io">IO</h1>
+<p>对于一次Network IO (这里我们以read举例)，它会涉及到两个系统对象:</p>
+<ul>
+<li>调用这个 IO 的 用户线程 (process/thread)</li>
+<li>系统内核(kernel)</li>
+</ul>
+<p>当一次 read 操作发生时，它会经历两个阶段：</p>
 <ol>
-<li><a href="#stat">stat</a></li>
-<li><a href="#file">file</a></li>
-<li><a href="#tree">tree</a></li>
-<li><a href="#ls">ls</a></li>
-<li><a href="#wc">wc</a></li>
-<li><a href="#cat">cat</a></li>
-<li><a href="#nl">nl</a></li>
-<li><a href="#less">less</a></li>
-<li><a href="#tail">tail</a></li>
-<li><a href="#head">head</a></li>
+<li><code>等待数据准备</code> (Waiting for the data to be ready)</li>
+<li><code>将数据从内核缓存中拷贝到用户缓存(用户进程)中</code> (Copying the data from the kernel to the process)</li>
 </ol>
-</li>
-<li><a href="#%E6%AF%94%E8%BE%83%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9">比较文件内容</a>
-<ol>
-<li><a href="#diff">diff</a></li>
-<li><a href="#meld">meld</a></li>
-<li><a href="#kdiff3">kdiff3</a></li>
-<li><a href="#vimdiff">vimdiff</a></li>
-</ol>
-</li>
-<li><a href="#%E6%96%87%E4%BB%B6%E5%8F%98%E6%9B%B4%E5%91%BD%E4%BB%A4">文件变更命令</a>
-<ol>
-<li><a href="#rename">rename</a></li>
-<li><a href="#chown">chown</a></li>
-<li><a href="#chgrp">chgrp</a></li>
-<li><a href="#ln">ln</a></li>
-<li><a href="#cp">cp</a></li>
-<li><a href="#rm">rm</a></li>
-<li><a href="#mv">mv</a></li>
-<li><a href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E5%90%88%E5%B9%B6">文件的分割与合并</a></li>
-<li><a href="#%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E6%9B%B4">监控文件变更</a></li>
-</ol>
-</li>
-<li><a href="#%E9%BB%98%E8%AE%A4%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81">默认字符编码</a></li>
-</ol>
-</li>
-<li><a href="#%E7%A3%81%E7%9B%98">磁盘</a>
-<ol>
-<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a>
-<ol>
-<li><a href="#fsck">fsck</a></li>
-</ol>
-</li>
-<li><a href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%9F%BA%E6%9C%AC%E5%88%86%E5%8C%BA">安装系统时基本分区</a></li>
-<li><a href="#%E8%AE%BE%E5%A4%87%E5%88%97%E8%A1%A8">设备列表</a></li>
-<li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a>
-<ol>
-<li><a href="#dd">dd</a></li>
-<li><a href="#mount">mount</a></li>
-<li><a href="#fdisk">fdisk</a></li>
-<li><a href="#df">df</a></li>
-<li><a href="#du">du</a></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><a href="#%E6%97%A5%E5%BF%97">日志</a>
-<ol>
-<li><a href="#systemd">Systemd</a></li>
-<li><a href="#%E5%BA%94%E7%94%A8%E6%97%A5%E5%BF%97">应用日志</a></li>
-</ol>
-</li>
-<li><a href="#tips">Tips</a>
-<ol>
-<li><a href="#%E8%AE%BE%E7%BD%AE%E4%BA%A4%E6%8D%A2%E5%86%85%E5%AD%98%E6%96%87%E4%BB%B6">设置交换内存文件</a>
-<ol>
-<li><a href="#%E6%B8%85%E7%A9%BA%E4%BA%A4%E6%8D%A2%E5%86%85%E5%AD%98">清空交换内存</a></li>
-</ol>
-</li>
-<li><a href="#%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98">清除缓存</a></li>
-<li><a href="#%E5%96%84%E7%94%A8shrc%E6%96%87%E4%BB%B6">善用*shrc文件</a>
-<ol>
-<li><a href="#%E5%96%84%E7%94%A8alias">善用alias</a></li>
-</ol>
-</li>
-<li><a href="#desktop%E6%96%87%E4%BB%B6">desktop文件</a></li>
-</ol>
-</li>
-</ol>
-<p><strong>目录 end</strong>|<em>2021-02-03 17:25</em>|</p>
+<p>记住这两点很重要，因为这些 IO Model 的区别就是在两个阶段上各有不同的情况。对于常见的网络通信场景：网卡复制到内核空间再复制到用户空间</p>
+<p>同步和异步的概念描述的是用户线程与内核的交互方式<br>
+阻塞和非阻塞的概念描述的是用户线程调用内核IO操作的方式</p>
+<h2 id="io中断">IO中断</h2>
+<h2 id="dma">DMA</h2>
+<h2 id="零拷贝">零拷贝</h2>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Zero-copy">Wiki</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.xiaolincoding.com/os/8_network_system/zero_copy.html">什么是零拷贝？</a><br>
+<a href="https://www.cnblogs.com/rickiyang/p/13265043.html">零拷贝(Zero-copy) 浅析及其应用</a></p>
+</blockquote>
+<p>用户态IO
+mmap + write
+sendfile
+sendfile + DMA gather copy
+splice
+写时复制
+缓冲区共享</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">拷贝方式</th>
+<th style="text-align:left">CPU拷贝</th>
+<th style="text-align:left">DMA拷贝</th>
+<th style="text-align:left">系统调用</th>
+<th style="text-align:left">上下文切换</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">传统方式(read + write)</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">read / write</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">内存映射(mmap + write)</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">mmap / write</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">sendfile</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">sendfile</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">sendfile + DMA gather copy</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">sendfile</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">splice</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">splice</td>
+<td style="text-align:left">2</td>
+</tr>
+</tbody>
+</table>
 <hr>
 <h1 id="文件管理">文件管理</h1>
 <blockquote>
@@ -331,6 +449,9 @@
 <blockquote>
 <p><a href="https://blog.mythsman.com/post/5d301940976abc05b345469f/">用文件头标识判断文件类型</a><code>而不是Windows那样默认以文件后缀来判断</code></p>
 </blockquote>
+<ul>
+<li><a href="https://github.com/sxyazi/yazi">yazi</a></li>
+</ul>
 <h2 id="查找文件">查找文件</h2>
 <blockquote>
 <p>silversearcher-ag <code>快速搜索文件的内容</code></p>
@@ -348,6 +469,9 @@
 <ul>
 <li>d 文件夹 f 普通文件 l 符号链接文件 b 块设备 c 字符设备 p 管道文件 s 套接字</li>
 </ul>
+</li>
+<li>
+<p><code>find . -mmin -30</code> 查找最近30分钟修改的文件</p>
 </li>
 <li>
 <p><strong>exec</strong> 嵌入一个命令</p>
@@ -372,15 +496,16 @@
 </li>
 <li>查找文件内容 <code>find etc/  |xargs grep -i java</code></li>
 </ol>
-<h3 id="locate">locate</h3>
+<p><strong>fzf</strong></p>
+<p><strong>locate</strong></p>
 <blockquote>
 <p>预先建立数据库，依此查询 速度较快，但是有时效问题</p>
 </blockquote>
-<h3 id="anything">Anything</h3>
+<p><strong>Anything</strong></p>
 <blockquote>
 <p>图形化 搜索文件 工具，也是预先建立数据库</p>
 </blockquote>
-<h3 id="synapse">Synapse</h3>
+<p><strong>Synapse</strong></p>
 <blockquote>
 <p>搜索文件 启动应用等功能</p>
 </blockquote>
@@ -394,7 +519,11 @@
 <ul>
 <li>file a.txt 查看文件类型
 <ul>
-<li>-i 输出文件的MIME类型</li>
+<li>-i 输出文件的MIME类型
+<ul>
+<li><code>file -b --mime-type filename | sed 's|/.*||'</code> 获取MIME短名称</li>
+</ul>
+</li>
 <li>-F &ldquo;#&rdquo; 修改输出分隔符</li>
 </ul>
 </li>
@@ -430,6 +559,7 @@
 <li>和 lt|gt 一起用 即 <code>ls -clt</code> 同上的排列顺序</li>
 </ul>
 </li>
+<li><code>S</code> 按文件大小逆序展示</li>
 </ul>
 </li>
 <li>
@@ -453,12 +583,13 @@
 <p><code>ls -lFh</code> 列出所有文件的详细信息, 并且文件大小是人类可阅读的</p>
 </li>
 </ul>
-<p>ls * | xargs md5sum &gt; b.log
-find . | xargs md5sum &gt; b.log
-le b.log | awk &lsquo;{print $1}'| kp.count  | head -n 17 &gt; re.log
-cat re.log | awk &lsquo;{print $2}&rsquo; | xargs -I {} grep  {} b.log  &gt; fin.log</p>
-<p>le fin.log | awk &lsquo;{print $2}&rsquo; | xargs -I {} mv {} ../
-le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
+<blockquote>
+<p>改进版</p>
+</blockquote>
+<ul>
+<li>exa</li>
+<li><a href="https://github.com/lsd-rs/lsd">lsd</a></li>
+</ul>
 <h3 id="wc">wc</h3>
 <ul>
 <li><code>wc [-lmw] </code> 参数说明： -l :多少行-m:多少字符 -w:多少字</li>
@@ -470,9 +601,12 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 <li>类似的还有 nl more less</li>
 </ul>
 <p>带行号输出 <code>cat -n file</code> 或者 <code>nl file</code>但是空行不会编号, 除非这样: <code>nl -b a file</code></p>
-<h3 id="nl">nl</h3>
+<blockquote>
+<p>改进版</p>
+</blockquote>
 <ul>
-<li><a href="http://www.cnblogs.com/peida/archive/2012/11/01/2749048.html#/">参考: 每天一个linux命令(11)：nl命令</a></li>
+<li>bat</li>
+<li>nl <a href="http://www.cnblogs.com/peida/archive/2012/11/01/2749048.html#/">参考: 每天一个linux命令(11)：nl命令</a></li>
 </ul>
 <h3 id="less">less</h3>
 <ul>
@@ -504,15 +638,15 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 <li>append to  *sh.rc
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># sh 在不同的系统 路径和名字都有可能不一样</span>
-<span class="nb">export</span> <span class="nv">LESSOPEN</span><span class="o">=</span><span class="s2">&#34;| /usr/bin/source-highlight-esc.sh %s&#34;</span>
-<span class="nb">export</span> <span class="nv">LESS</span><span class="o">=</span><span class="s1">&#39; -R&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># sh 在不同的系统 路径和名字都有可能不一样</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LESSOPEN</span><span class="o">=</span><span class="s2">&#34;| /usr/bin/source-highlight-esc.sh %s&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LESS</span><span class="o">=</span><span class="s1">&#39; -R&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
@@ -551,40 +685,45 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    tail file （显示文件file的最后10行） 
-    tail +20 file （显示文件file的内容，从第20行至文件末尾） 
-    tail -c 10 file （显示文件file的最后10个字符）
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    tail file （显示文件file的最后10行） 
+</span></span><span class="line"><span class="cl">    tail +20 file （显示文件file的内容，从第20行至文件末尾） 
+</span></span><span class="line"><span class="cl">    tail -c 10 file （显示文件file的最后10个字符）
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="head">head</h3>
 <ul>
 <li>查看文件头部, 默认前十行 使用 -n 指定行数</li>
 </ul>
+<h3 id="ldd">ldd</h3>
+<p>查看二进制执行文件依赖的动态库</p>
+<hr>
 <h2 id="比较文件内容">比较文件内容</h2>
-<ul>
-<li><code>grep -vwf 文件1 文件2</code></li>
-</ul>
 <blockquote>
 <p><a href="http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html">阮一峰: 读懂diff</a></p>
 </blockquote>
 <h3 id="diff">diff</h3>
 <blockquote>
-<p><a href="http://www.cnblogs.com/chenjianhong/archive/2012/09/26/4144940.html">参考博客 linux下比较两个文本文件的不同——diff命令</a></p>
+<p><a href="http://www.cnblogs.com/chenjianhong/archive/2012/09/26/4144940.html">参考博客 linux下比较两个文本文件的不同</a></p>
 </blockquote>
+<p><code>diff a b</code> 输出的 &lt; 表示a转为b文件时要删除的行 &gt; 表示要增加的行</p>
 <h3 id="meld">meld</h3>
 <blockquote>
 <p><a href="https://github.com/GNOME/meld">Github: meld</a></p>
 </blockquote>
 <blockquote>
-<p>可用于 git svn 查看差异, 或者简单的两个文件查看差异</p>
+<p>可用于 git svn 查看差异<br>
+选两个或三个文件去查看差异，完成patch补入</p>
 </blockquote>
-<h3 id="kdiff3">kdiff3</h3>
-<h3 id="vimdiff">vimdiff</h3>
+<h3 id="vscode">VsCode</h3>
+<p>code &ndash;diff</p>
+<hr>
+<p>kdiff3
+vimdiff</p>
 <h2 id="文件变更命令">文件变更命令</h2>
 <h3 id="rename">rename</h3>
 <p><code>rename命令的使用(基于perl)</code></p>
@@ -610,17 +749,12 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 </ul>
 <h3 id="ln">ln</h3>
 <ul>
+<li><code>ln path path</code> 默认创建硬链接</li>
 <li><code>ln -s 源文件或目录 目标绝对路径</code> 生成软链接（快捷方式）</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    ln -s <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/a.md ~/a.md 
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="cp">cp</h3>
+<p>硬链接： 只能链接文件，原始路径下文件删除后，能通过硬链接访问到原文件 即文件没有真正删除，只是引用数减一<br>
+软链接： 相当于快捷方式，原始文件或目录删除后，软链接也会失效</p>
+<h3 id="cp">cp</h3>
 <ul>
 <li>cp   <code>cp -ri 目录或正则 目录</code> 目录所有文件复制过去
 <ul>
@@ -634,6 +768,9 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 </ul>
 </li>
 </ul>
+<blockquote>
+<p><a href="https://github.com/Xfennec/progress">progress</a><code>cp mv等命令执行时，输出 进度提示,剩余耗时</code></p>
+</blockquote>
 <h3 id="rm">rm</h3>
 <ul>
 <li>rm  <code>rm -rf 目录</code> 不提示性删除
@@ -704,13 +841,13 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">LC_ALL</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
-<span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">LC_ALL</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="磁盘">磁盘</h1>
@@ -730,13 +867,45 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 <a href="https://www.ibm.com/developerworks/cn/linux/l-fuse/">参考: 使用 FUSE 开发自己的文件系统</a></p>
 </blockquote>
 <blockquote>
-<p>tmpfs <a href="https://wiki.archlinux.org/index.php/Tmpfs">wiki</a></p>
+<p><a href="https://github.com/spacedriveapp/spacedrive">spacedrive</a></p>
 </blockquote>
-<h3 id="fsck">fsck</h3>
+<h3 id="ext3-ext4">ext3 ext4</h3>
+<h3 id="tmpfs">Tmpfs</h3>
 <blockquote>
-<p>check and repair a Linux filesystem</p>
+<p>虚拟内存文件系统 <a href="https://wiki.archlinux.org/index.php/Tmpfs">wiki</a></p>
 </blockquote>
-<p>当系统突然断电而导致文件系统不一致时, 可使用该命令进行修复, 例如:<code>fsck.ext4 -vy /dev/sdaXX</code></p>
+<p>手动创建挂载tmp文件系统： <code>mount -t tmpfs -o size=100m tmpfs /mnt/tmp</code></p>
+<hr>
+<blockquote>
+<p><a href="https://cloud-atlas.readthedocs.io/zh-cn/latest/linux/redhat_linux/systemd/tmp_directory_cleanup_periodically.html">/tmp临时目录定期清理机制</a></p>
+</blockquote>
+<p>安装系统时，如果没有将/tmp指定独立的分区，将会在/分区下建立 tmp 目录，此时会有一个隐患 当系统段时间大量创建tmp文件时可能导致 / 分区满掉，从而导致整个系统hang住。<br>
+例如Java中使用EasyExcel大量导出Excel时需要临时文件落盘避免内存占用过大的问题, 当并发大量文件导出时容易引起tmp目录占满。</p>
+<blockquote>
+<p>systemd 方式来定期清理tmp <a href="https://www.baeldung.com/linux/systemd-tmpfiles-configure-temporary-files">Configuration of Temporary Files with systemd-tmpfiles</a></p>
+</blockquote>
+<p>例如：解决上述Excel临时文件的问题，最好是随用随删，该机制可作为兜底策略</p>
+<ul>
+<li>Java应用中指定临时文件目录为 /tmp/excel-tmp</li>
+<li>新建配置文件 <code>/etc/tmpfiles.d/excel-tmp.conf</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="na">d /tmp/dir_clean 0755 baeldung baeldung 10s</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>执行 <code>sudo systemd-tmpfiles --clean</code> 将删除最后修改时间超过当前时间10s的文件 <strong>可以加入cron</strong></li>
+<li>问题： 如果文件被打开，持续写入中，时间超过了10s这个时候是否会被删除？
+<ul>
+<li>如果进程占用在写入，不会被清除, 打开的句柄关掉后就不会修改文件的修改时间了，就会到期删除</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h2 id="安装系统时基本分区">安装系统时基本分区</h2>
 <ul>
 <li>/ 根目录, 操作系统安装的目录</li>
@@ -767,7 +936,10 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 </blockquote>
 <ul>
 <li>例如创建一个空4G文件: <code>dd if=/dev/zero of=/testfile bs=1024k count=4096</code></li>
+<li>创建全0填充文件，标准输出后计算MD5 <code>dd if=/dev/zero bs=1M count=1024 | md5sum</code></li>
 </ul>
+<h3 id="truncate">truncate</h3>
+<p>创建一个 5G 全0文件 <code>truncate -s 5G test.file</code></p>
 <h3 id="mount">mount</h3>
 <ul>
 <li>
@@ -801,10 +973,24 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 </ul>
 </li>
 </ol>
+<blockquote>
+<p>一个分区挂载到多个目录</p>
+</blockquote>
+<ul>
+<li>挂载分区到目录A sudo mount /dev/sda1 /mnt/partition</li>
+<li>创建新目录B sudo mkdir /mnt/newdir</li>
+<li>绑定分区到目录B sudo mount &ndash;bind /mnt/partition /mnt/newdir</li>
+<li>结果： /mnt/partition /mnt/newdir 访问的是一个分区</li>
+</ul>
 <h3 id="fdisk">fdisk</h3>
 <ul>
 <li>查看磁盘分区表信息 ：<code>sudo fdisk -l </code></li>
 </ul>
+<h3 id="fsck">fsck</h3>
+<blockquote>
+<p>check and repair a Linux filesystem</p>
+</blockquote>
+<p>当系统突然断电而导致文件系统不一致时, 可使用该命令进行修复, 例如:<code>fsck.ext4 -vy /dev/sdaXX</code></p>
 <h3 id="df">df</h3>
 <blockquote>
 <p>报告文件系统磁盘空间使用情况</p>
@@ -814,6 +1000,27 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 <li>-T 查看挂载文件系统的类型信息</li>
 <li>-a 所有文件系统</li>
 <li>-l 只显示本地文件系统</li>
+</ul>
+<p>如果留意到 <code>/分区</code> Avail空间明显小于Size减去Used<br>
+是因为 ext2/3/4 文件系统默认预留了5%的空间给root用户，为了防止普通用户写满磁盘后影响到root用户系统级应用数据落盘，从而引发系统故障<br>
+所以如果home目录单独分了区，就可以取消改设定，如果只有一个分区 / 就不建议删除保留设置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># 查看块情况</span>
+</span></span><span class="line"><span class="cl">    sudo tune2fs -l /dev/sda8
+</span></span><span class="line"><span class="cl">    <span class="c1"># 设置保留块比例为0%</span>
+</span></span><span class="line"><span class="cl">    sudo tune2fs -m <span class="m">0</span> /dev/sda8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>duf 现代化 df</li>
+<li>pydf</li>
 </ul>
 <h3 id="du">du</h3>
 <ul>
@@ -837,9 +1044,14 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 <li>head – 输出文件的前几行</li>
 </ul>
 </li>
-<li>
-<p><a href="https://dev.yorhel.nl/ncdu">ncdu</a></p>
-</li>
+</ul>
+<blockquote>
+<p>改进版</p>
+</blockquote>
+<ul>
+<li><a href="https://dev.yorhel.nl/ncdu">ncdu</a></li>
+<li><a href="https://github.com/bootandy/dust">dust</a></li>
+<li><a href="https://github.com/dundee/gdu">gdu</a></li>
 </ul>
 <hr>
 <h1 id="日志">日志</h1>
@@ -854,12 +1066,26 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 <blockquote>
 <p>通常使用 journalctl 查询 Systemd 的日志</p>
 </blockquote>
+<blockquote>
+<p>查看日志</p>
+</blockquote>
 <ul>
-<li>message catalog: <code>journalctl -xe</code></li>
+<li>当次启动日志 <code>journalctl -xe</code></li>
 <li>内核模块的日志 <code>journalctl -u systemd-modules-load.service</code></li>
-<li><strong>/var/log/journal</strong>
+</ul>
+<ol>
+<li><code>-r</code> 滚动到最后的日志</li>
+<li><code>-b -1</code> 查看相对启动次日志 0标识当前</li>
+<li><code>--since &quot;2015-01-10&quot;</code></li>
+<li><code>--until &quot;2015-01-11 03:00&quot;</code></li>
+</ol>
+<blockquote>
+<p>清理日志</p>
+</blockquote>
 <ul>
-<li><code>journalctl --vacuum-time=1w</code> 只保留1周日志</li>
+<li><code>journalctl --vacuum-time=1w</code> 只保留1周日志
+<ul>
+<li>路径：/var/log/journal</li>
 </ul>
 </li>
 </ul>
@@ -868,116 +1094,109 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 <p><a href="http://www.ruanyifeng.com/blog/2012/01/a_bash_script_of_apache_log_analysis.html">处理Apache日志的Bash脚本</a></p>
 </blockquote>
 <hr>
+<h1 id="dfs">DFS</h1>
+<p>分布式文件系统（Distributed File System），类似的还有NAS（Network Attached Storage）。</p>
+<blockquote>
+<p><a href="https://github.com/happyfish100/fastdfs">happyfish100/fastdfs</a></p>
+</blockquote>
+<h2 id="samba">Samba</h2>
+<p>服务器消息块（Server Message Block）是一种通用的文件共享协议，通常用于Windows系统。</p>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/b0fcf29a857a">Manjaro使用Samba实现局域网内跨系统文件共享 - 简书</a></p>
+</blockquote>
+<h3 id="搭建匿名samba服务器">搭建匿名Samba服务器</h3>
+<ol>
+<li>/etc/samba/smb.conf
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="k">[global]</span>
+</span></span><span class="line"><span class="cl">    <span class="na">workgroup</span> <span class="o">=</span> <span class="s">WORKGROUP       
+</span></span></span><span class="line"><span class="cl"><span class="s">    #所要加入的工作组或者域
+</span></span></span><span class="line"><span class="cl"><span class="s">    netbios name = Manjaro      
+</span></span></span><span class="line"><span class="cl"><span class="s">    #用于在 Windows 网上邻居上显示的主机名
+</span></span></span><span class="line"><span class="cl"><span class="s">    security = user             
+</span></span></span><span class="line"><span class="cl"><span class="s">    #定义安全级别
+</span></span></span><span class="line"><span class="cl"><span class="s">    map to guest = bad user     
+</span></span></span><span class="line"><span class="cl"><span class="s">    #将所有samba系统主机所不能正确识别的用户都映射成guest用户
+</span></span></span><span class="line"><span class="cl"><span class="s">    dns proxy = no              
+</span></span></span><span class="line"><span class="cl"><span class="s">    #是否开启dns代理服务</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="na">[share]                    </span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#共享显示的目录名 注意每级目录samba用户都要有权限 最简单就放最高层级的目录上</span>
+</span></span><span class="line"><span class="cl">    <span class="na">path</span> <span class="o">=</span> <span class="s">/share
+</span></span></span><span class="line"><span class="cl"><span class="s">    #实际共享路径
+</span></span></span><span class="line"><span class="cl"><span class="s">    browsable = yes             
+</span></span></span><span class="line"><span class="cl"><span class="s">    #共享的目录是否让所有人可见
+</span></span></span><span class="line"><span class="cl"><span class="s">    writable = yes              
+</span></span></span><span class="line"><span class="cl"><span class="s">    #是否可写
+</span></span></span><span class="line"><span class="cl"><span class="s">    guest ok = yes              
+</span></span></span><span class="line"><span class="cl"><span class="s">    #是否允许匿名(guest)访问,等同于public
+</span></span></span><span class="line"><span class="cl"><span class="s">    create mask = 0777          
+</span></span></span><span class="line"><span class="cl"><span class="s">    #客户端上传文件的默认权限
+</span></span></span><span class="line"><span class="cl"><span class="s">    directory mask = 0777       
+</span></span></span><span class="line"><span class="cl"><span class="s">    #客户端创建目录的默认权限
+</span></span></span><span class="line"><span class="cl"><span class="s">    #注意共享文件在系统本地的权限不能低于以上设置的共享权限。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>smbpasswd -a share #共享显示的目录名</li>
+<li>pdbedit -L 查看所有Samba用户</li>
+<li>chmod 777 -R /share</li>
+<li>systemctl restart smb nmb</li>
+<li>测试可用性 smbclient //192.168.0.10/share</li>
+</ol>
+<hr>
 <h1 id="tips">Tips</h1>
 <ul>
 <li>清空文件内容 <code>true &gt; a.txt </code></li>
 <li>安装上传下载文件的工具 <code>sudo apt install lrzsz</code></li>
 <li><code>cat ~/.ssh/id_rsa.pub | xsel -b</code> 将文件复制到剪贴板</li>
 </ul>
-<h2 id="设置交换内存文件">设置交换内存文件</h2>
-<ul>
-<li>
-<p>查看内存 <code>free -h</code></p>
-</li>
-<li>
-<p>创建一个4g 交换文件 <code>dd if=/dev/zero of=/swapfile bs=1024k count=4096</code></p>
-</li>
-<li>
-<p>格式化成交换文件的格式 <code>mkswap /swapfile</code></p>
-</li>
-<li>
-<p>启用该文件作为交换分区的文件 <code> swapon /swapfile</code></p>
-</li>
-<li>
-<p><code>/swapfile swap swap defaults 0 0</code> 写入<code>/etc/fstab</code>文件中，让交换分区的设置开机自启</p>
-</li>
-<li>
-<p>修改交换内存开始使用的阈值</p>
-<ul>
-<li><code>sudo sysctl vm.swappiness=15</code> 临时修改重启注销失效， 查看：<code>cat /proc/sys/vm/swappiness</code></li>
-<li>永久修改：<code>/etc/sysctl.conf </code> 文件中设置开始使用交换分区的触发值： <code>vm.swappiness=10</code></li>
-<li>表示物理内存剩余<code>10%</code> 才会开始使用交换分区</li>
-<li><code>建议，笔记本的硬盘低于 7200 转的不要设置太高的交换分区使用，大大影响性能，因为交换分区就是在硬盘上，频繁的交换数据</code></li>
-</ul>
-</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># 完整命令: root身份运行</span>
-    dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/swapfile <span class="nv">bs</span><span class="o">=</span>1024k <span class="nv">count</span><span class="o">=</span><span class="m">4096</span> <span class="o">&amp;&amp;</span> mkswap /swapfile <span class="o">&amp;&amp;</span> swapon /swapfile <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;/swapfile swap swap defaults 0 0&#34;</span> &gt;&gt; /etc/fstab
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="清空交换内存">清空交换内存</h3>
-<ul>
-<li>1.关闭交换分区 <code>sudo swapoff 交换分区文件</code>
-<ul>
-<li>2.开启交换分区 <code>sudo swapon 交换分区文件</code></li>
-</ul>
-</li>
-<li>或者 <code>swapoff -a &amp;&amp; swapon -a</code></li>
-</ul>
-<h2 id="清除缓存">清除缓存</h2>
-<blockquote>
-<p><a href="https://linux.cn/article-5627-1.html">参考: 如何在 Linux 中清除缓存（Cache）？</a> <code>注意要切换到root再运行命令</code><br>
-<a href="https://www.cnblogs.com/276815076/p/5478966.html">参考: Linux 内存中的Cache，真的能被回收么？</a></p>
-</blockquote>
-<blockquote>
-<p><code>/proc/sys/vm/drop_caches</code>
-设置值 <code>sync; echo 1 &gt; /proc/sys/vm/drop_caches</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">值</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">仅清除 page cache</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">表示清除回收slab分配器中的对象（包括目录项缓存和inode缓存）</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">表示清除page cache和slab分配器中的缓存对象</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>曾经因为缓存的问题会引发一些很诡异的问题
-<ul>
-<li>例如构建工具Maven, 也会因为在一个项目空间下, 多个同名项目的缓存问题
-<ul>
-<li>巨诡异 <code>if(true){}</code> 都能不执行, if 和 else 同时执行</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 <h2 id="善用shrc文件">善用*shrc文件</h2>
 <blockquote>
 <p>注意加载顺序 /etc/profile -&gt; ~/.*shrc <code>各种sh的rc文件</code> bash zsh ash</p>
 </blockquote>
-<h3 id="善用alias">善用alias</h3>
+<h2 id="善用alias">善用alias</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="k">if</span> <span class="o">[</span> -f ~/.bash_aliases <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-        . ~/.bash_aliases
-    <span class="k">fi</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> -f ~/.bash_aliases <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        . ~/.bash_aliases
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>在<code>~/.bashrc</code>添加这段，然后在 <code>.bash_aliases</code> 文件中设置别名
@@ -995,7 +1214,7 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1003,13 +1222,13 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    The first word of each simple command, if unquoted, is checked to see if it has an alias. If so, that word is replaced by the text of the alias. 
-    The characters ‘/’, ‘$’, ‘`’, ‘=’ and any of the shell metacharacters or quoting characters listed above may not appear in an alias name. 
-    The replacement text may contain any valid shell input, including shell metacharacters. The first word of the replacement text is tested for aliases, 
-    but a word that is identical to an alias being expanded is not expanded a second time. This means that one may alias ls to &#34;ls -F&#34;, for instance, 
-    and Bash does not try to recursively expand the replacement text. If the last character of the alias value is a space or tab character, 
-    then the next command word following the alias is also checked for alias expansion. 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    The first word of each simple command, if unquoted, is checked to see if it has an alias. If so, that word is replaced by the text of the alias. 
+</span></span><span class="line"><span class="cl">    The characters ‘/’, ‘$’, ‘`’, ‘=’ and any of the shell metacharacters or quoting characters listed above may not appear in an alias name. 
+</span></span><span class="line"><span class="cl">    The replacement text may contain any valid shell input, including shell metacharacters. The first word of the replacement text is tested for aliases, 
+</span></span><span class="line"><span class="cl">    but a word that is identical to an alias being expanded is not expanded a second time. This means that one may alias ls to &#34;ls -F&#34;, for instance, 
+</span></span><span class="line"><span class="cl">    and Bash does not try to recursively expand the replacement text. If the last character of the alias value is a space or tab character, 
+</span></span><span class="line"><span class="cl">    then the next command word following the alias is also checked for alias expansion. 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>如<a href="https://github.com/Kuangcp/Configs/tree/master/Linux/init">我的配置文件</a> <code>将配置文件分类放</code>
@@ -1026,7 +1245,7 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1038,21 +1257,20 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">	[Desktop Entry] #每个desktop文件都以这个标签开始，说明这是一个Desktop Entry文件
-	Version = 1.0 #标明Desktop Entry的版本（可选）
-	Name = Firefox #程序名称（必须），这里以创建一个Firefox的快捷方式为例
-	GenericName = Web Browser #程序通用名称（可选）
-	Comment = A Web Browser #程序描述（可选）
-	Exec = firefox %u #程序的启动命令（必选），可以带参数运行,当下面的Type为Application，此项有效
-	Icon = firefox #设置快捷方式的图标 svg(更好) png
-	Terminal = false #是否在终端中运行（可选），当Type为Application，此项有效
-	Type = Application #desktop的类型（必选），常见值有“Application”和“Link”
-	Categories = GNOME;Application;Network; #注明在菜单栏中显示的类别（可选）
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">	[Desktop Entry] #每个desktop文件都以这个标签开始，说明这是一个Desktop Entry文件
+</span></span><span class="line"><span class="cl">	Version = 1.0 #标明Desktop Entry的版本（可选）
+</span></span><span class="line"><span class="cl">	Name = Firefox #程序名称（必须），这里以创建一个Firefox的快捷方式为例
+</span></span><span class="line"><span class="cl">	GenericName = Web Browser #程序通用名称（可选）
+</span></span><span class="line"><span class="cl">	Comment = A Web Browser #程序描述（可选）
+</span></span><span class="line"><span class="cl">	Exec = firefox %u #程序的启动命令（必选），可以带参数运行,当下面的Type为Application，此项有效
+</span></span><span class="line"><span class="cl">	Icon = firefox #设置快捷方式的图标 svg(更好) png
+</span></span><span class="line"><span class="cl">	Terminal = false #是否在终端中运行（可选），当Type为Application，此项有效
+</span></span><span class="line"><span class="cl">	Type = Application #desktop的类型（必选），常见值有“Application”和“Link”
+</span></span><span class="line"><span class="cl">	Categories = GNOME;Application;Network; #注明在菜单栏中显示的类别（可选）
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li><a href="https://github.com/Kuangcp/Configs/blob/master/Linux/desktop/VSCode.desktop">示例文件</a></li>
-<li>如要将快捷方式放在启动菜单内 将 desktop 文件复制到 <code>/usr/share/applications/</code> 目录下即可
+<li>如要将快捷方式放在启动菜单内 只需将 desktop 文件复制到 <code>/usr/share/applications/</code> 目录下
 <ul>
 <li>注意：目录不能有空格 等特殊字符</li>
 </ul>
@@ -1063,11 +1281,11 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-15
         
@@ -1084,11 +1302,11 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
         <a class="prev" href="/post/linux/base/linuxmanual/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Linux 命令手册</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/linux/base/linuxdirectorystructure/">
             <span class="next-text nav-default">Linux目录结构</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -1106,17 +1324,17 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -1124,11 +1342,11 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -1138,16 +1356,21 @@ le fin.log | grep -v VID | awk &lsquo;{print $2}&rsquo; | xargs rm -f</p>
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

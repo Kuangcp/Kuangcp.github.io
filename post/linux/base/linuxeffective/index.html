@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>高效的Linux - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 高效的Linux 1.1. Terminal 1.1.1. Terminal 对比 1.2. 效率工具 1.2.1. 协作工具 1.2.2. 目录跳转 1.2.3. xdotool 1.2.4. rofi 1.3. 远程工具 1.4. 进程管理 1.5. 零散工具集合 1.5.1. 剪贴板管理 1.6. 检测工具 1.6.1. 硬盘 1.7. 文本处理" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/base/linuxeffective/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="高效的Linux" />
+<meta property="og:description" content="💠 高效的Linux 1.1. Terminal 1.1.1. Terminal 对比 1.2. 效率工具 1.2.1. 协作工具 1.2.2. 目录跳转 1.2.3. xdotool 1.2.4. rofi 1.3. 远程工具 1.4. 进程管理 1.5. 零散工具集合 1.5.1. 剪贴板管理 1.6. 检测工具 1.6.1. 硬盘 1.7. 文本处理" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/base/linuxeffective/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-04-18T22:04:15+00:00" />
+<meta property="article:modified_time" content="2019-04-18T22:04:15+00:00" />
+
+<meta itemprop="name" content="高效的Linux">
+<meta itemprop="description" content="💠 高效的Linux 1.1. Terminal 1.1.1. Terminal 对比 1.2. 效率工具 1.2.1. 协作工具 1.2.2. 目录跳转 1.2.3. xdotool 1.2.4. rofi 1.3. 远程工具 1.4. 进程管理 1.5. 零散工具集合 1.5.1. 剪贴板管理 1.6. 检测工具 1.6.1. 硬盘 1.7. 文本处理"><meta itemprop="datePublished" content="2019-04-18T22:04:15+00:00" />
+<meta itemprop="dateModified" content="2019-04-18T22:04:15+00:00" />
+<meta itemprop="wordCount" content="2983">
+<meta itemprop="keywords" content="Effective," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="高效的Linux"/>
+<meta name="twitter:description" content="💠 高效的Linux 1.1. Terminal 1.1.1. Terminal 对比 1.2. 效率工具 1.2.1. 协作工具 1.2.2. 目录跳转 1.2.3. xdotool 1.2.4. rofi 1.3. 远程工具 1.4. 进程管理 1.5. 零散工具集合 1.5.1. 剪贴板管理 1.6. 检测工具 1.6.1. 硬盘 1.7. 文本处理"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">高效的Linux</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-04-18 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 约 2983 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#高效的linux">高效的Linux</a>
+      <ul>
+        <li><a href="#terminal">Terminal</a>
+          <ul>
+            <li><a href="#terminal-对比">Terminal 对比</a></li>
+          </ul>
+        </li>
+        <li><a href="#效率工具">效率工具</a>
+          <ul>
+            <li><a href="#协作工具">协作工具</a></li>
+            <li><a href="#目录跳转">目录跳转</a></li>
+            <li><a href="#xdotool">xdotool</a></li>
+            <li><a href="#rofi">rofi</a></li>
+          </ul>
+        </li>
+        <li><a href="#远程工具">远程工具</a></li>
+        <li><a href="#进程管理">进程管理</a></li>
+        <li><a href="#零散工具集合">零散工具集合</a>
+          <ul>
+            <li><a href="#剪贴板管理">剪贴板管理</a></li>
+          </ul>
+        </li>
+        <li><a href="#检测工具">检测工具</a>
+          <ul>
+            <li><a href="#硬盘">硬盘</a></li>
+          </ul>
+        </li>
+        <li><a href="#文本处理">文本处理</a></li>
+        <li><a href="#文件操作">文件操作</a></li>
+        <li><a href="#安全工具">安全工具</a>
+          <ul>
+            <li><a href="#gpg">gpg</a></li>
+            <li><a href="#jumpserver">JumpServer</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#多媒体">多媒体</a>
+      <ul>
+        <li><a href="#ffmpeg">ffmpeg</a></li>
+        <li><a href="#图片处理">图片处理</a>
+          <ul>
+            <li><a href="#imagemagick">ImageMagick</a></li>
+            <li><a href="#asciinema">asciinema</a></li>
+            <li><a href="#图片浏览器">图片浏览器</a></li>
+            <li><a href="#截图">截图</a></li>
+            <li><a href="#录屏">录屏</a></li>
+          </ul>
+        </li>
+        <li><a href="#视频">视频</a></li>
+        <li><a href="#音频">音频</a></li>
+        <li><a href="#pdf">PDF</a></li>
+      </ul>
+    </li>
+    <li><a href="#运行-windows-应用">运行 Windows 应用</a></li>
+    <li><a href="#日常应用">日常应用</a>
+      <ul>
+        <li><a href="#office">Office</a>
+          <ul>
+            <li><a href="#qq">QQ</a></li>
+            <li><a href="#wechat">wechat</a></li>
+            <li><a href="#wework">wework</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#外设">外设</a>
+      <ul>
+        <li><a href="#鼠标">鼠标</a></li>
+      </ul>
+    </li>
+    <li><a href="#tips">Tips</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-04-18T22:04:15" title="April 18, 2019">April 18, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#%E9%AB%98%E6%95%88%E7%9A%84linux">高效的Linux</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#terminal">Terminal</a>
+<ul>
+<li>1.1.1. <a href="#terminal-%E5%AF%B9%E6%AF%94">Terminal 对比</a></li>
+</ul>
+</li>
+<li>1.2. <a href="#%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7">效率工具</a>
+<ul>
+<li>1.2.1. <a href="#%E5%8D%8F%E4%BD%9C%E5%B7%A5%E5%85%B7">协作工具</a></li>
+<li>1.2.2. <a href="#%E7%9B%AE%E5%BD%95%E8%B7%B3%E8%BD%AC">目录跳转</a></li>
+<li>1.2.3. <a href="#xdotool">xdotool</a></li>
+<li>1.2.4. <a href="#rofi">rofi</a></li>
+</ul>
+</li>
+<li>1.3. <a href="#%E8%BF%9C%E7%A8%8B%E5%B7%A5%E5%85%B7">远程工具</a></li>
+<li>1.4. <a href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86">进程管理</a></li>
+<li>1.5. <a href="#%E9%9B%B6%E6%95%A3%E5%B7%A5%E5%85%B7%E9%9B%86%E5%90%88">零散工具集合</a>
+<ul>
+<li>1.5.1. <a href="#%E5%89%AA%E8%B4%B4%E6%9D%BF%E7%AE%A1%E7%90%86">剪贴板管理</a></li>
+</ul>
+</li>
+<li>1.6. <a href="#%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7">检测工具</a>
+<ul>
+<li>1.6.1. <a href="#%E7%A1%AC%E7%9B%98">硬盘</a></li>
+</ul>
+</li>
+<li>1.7. <a href="#%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86">文本处理</a></li>
+<li>1.8. <a href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C">文件操作</a></li>
+<li>1.9. <a href="#%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7">安全工具</a>
+<ul>
+<li>1.9.1. <a href="#gpg">gpg</a></li>
+<li>1.9.2. <a href="#jumpserver">JumpServer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E5%A4%9A%E5%AA%92%E4%BD%93">多媒体</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#ffmpeg">ffmpeg</a></li>
+<li>2.2. <a href="#%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86">图片处理</a>
+<ul>
+<li>2.2.1. <a href="#imagemagick">ImageMagick</a>
+<ul>
+<li>2.2.1.1. <a href="#convert">convert</a></li>
+<li>2.2.1.2. <a href="#%E5%A4%9A%E5%9B%BE%E6%93%8D%E4%BD%9C">多图操作</a></li>
+</ul>
+</li>
+<li>2.2.2. <a href="#asciinema">asciinema</a></li>
+<li>2.2.3. <a href="#%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%99%A8">图片浏览器</a></li>
+<li>2.2.4. <a href="#%E6%88%AA%E5%9B%BE">截图</a></li>
+<li>2.2.5. <a href="#%E5%BD%95%E5%B1%8F">录屏</a></li>
+</ul>
+</li>
+<li>2.3. <a href="#%E8%A7%86%E9%A2%91">视频</a></li>
+<li>2.4. <a href="#%E9%9F%B3%E9%A2%91">音频</a></li>
+<li>2.5. <a href="#pdf">PDF</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E8%BF%90%E8%A1%8C-windows-%E5%BA%94%E7%94%A8">运行 Windows 应用</a></li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E6%97%A5%E5%B8%B8%E5%BA%94%E7%94%A8">日常应用</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#office">Office</a>
+<ul>
+<li>4.1.1. <a href="#qq">QQ</a></li>
+<li>4.1.2. <a href="#wechat">wechat</a></li>
+<li>4.1.3. <a href="#wework">wework</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li><a href="#%E5%A4%96%E8%AE%BE">外设</a></li>
+</ol>
+<ul>
+<li>5.1. <a href="#%E9%BC%A0%E6%A0%87">鼠标</a></li>
+</ul>
+</li>
+<li>
+<ol start="6">
+<li><a href="#tips">Tips</a></li>
+</ol>
+</li>
+</ul>
+<p>💠 2024-11-16 17:40:15</p>
+<hr>
+<h1 id="高效的linux">高效的Linux</h1>
+<blockquote>
+<p><a href="https://hookrace.net/blog/linux-desktop-setup/">Linux Desktop Setup</a> <code>一整套工具</code><br>
+<a href="https://github.com/luong-komorebi/Awesome-Linux-Software">Awesome Linux Software</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://linux.cn/article-10171-1.html">命令行：增强版 </a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/hsdji/tools">MAC平台 工具列表</a> <code>部分Linux可用</code></p>
+</blockquote>
+<h2 id="terminal">Terminal</h2>
+<p>终端是用户与Linux的沟通窗口，因此可以完成任意事项。</p>
+<blockquote>
+<p><a href="https://github.com/tsl0922/ttyd">ttyd</a></p>
+</blockquote>
+<hr>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Sixel">sixel</a> <code>终端中渲染图片</code> | <a href="https://saitoha.github.io/libsixel/">libsixel</a> | <a href="https://www.arewesixelyet.com/">Are We Sixel Yet?</a>
+<ul>
+<li><a href="https://www.reddit.com/r/commandline/comments/zkg75e/why_sixel/">Why Sixel? </a></li>
+</ul>
+</li>
+</ul>
+<p>Manjaro Xfce 使用 sixel： mlterm 或者 konsole</p>
+<ol>
+<li>yay libsixel, yay mlterm， mlterm -b &lsquo;#292B2E&rsquo; 安装和启动mlterm</li>
+<li>查看图片 img2sixel xx.jpg <code>ImageMagick</code></li>
+<li>渲染结果图 <a href="https://github.com/rs/jaggr">jagger</a> <strong>konsole不支持</strong></li>
+</ol>
+<hr>
+<p><a href="https://github.com/k4m4/terminals-are-sexy">Terminals Are Sexy</a></p>
+<h3 id="terminal-对比">Terminal 对比</h3>
+<blockquote>
+<p>列举出系统可安装终端</p>
+<ol>
+<li>Debian: <code>sudo apt search terminal | grep -E terminal.+amd64</code></li>
+<li>Arch: <code>yay terminal</code></li>
+<li><a href="https://github.com/topics/terminal-emulator">Github Topic: terminal-emulator </a></li>
+</ol>
+</blockquote>
+<p>终端可参考功能点： 终端透明化，终端背景图，快捷键设置，终端内颜色自定义，下拉式，标签水平垂直拆分，鼠标键盘交互性，资源占用少
+终极工具 <a href="/Linux/Tool/Tmux.md">Tmux</a> 可以摆脱终端模拟器的对比和选择，选择最简单省资源的模拟器即可</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">终端</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>xiki</code></td>
+<td style="text-align:left">鼠标和键盘高度交互 <br> 交互性和复杂度比较高</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>qterminal</code></td>
+<td style="text-align:left">设置设计清晰，功能完备</td>
+<td style="text-align:left">终端内容显示兼容性略有问题 资源消耗中等</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>xfce4-terminal</code></td>
+<td style="text-align:left">配合Xfce启动快，资源消耗少</td>
+<td style="text-align:left">配置繁琐</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>gnome-terminal</code></td>
+<td style="text-align:left">简洁 资源消耗少</td>
+<td style="text-align:left">多标签时，标签栏太大,标签页底部有白边；无法透明化</td>
+<td style="text-align:left">鼠标中键无法复制时需安装 <code>parcellite</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>mate-terminal</code></td>
+<td style="text-align:left">标签栏更简洁，和 <code>gnome-terminal</code> 一致</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>sakura</code></td>
+<td style="text-align:left">外观上和前两个几乎一样，标签页可以更简洁</td>
+<td style="text-align:left">配置复杂 繁琐</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>deepin-terminal</code></td>
+<td style="text-align:left">功能很多，主题很多，功能最为强大</td>
+<td style="text-align:left">字体仅可选择内置不可自定义</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>tilda</code></td>
+<td style="text-align:left">内嵌于桌面上, 小命令方便</td>
+<td style="text-align:left">需要查看文件时不方便</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>terminology</code></td>
+<td style="text-align:left">样式高度自定义</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>tilix</li>
+<li>vte 支持复制终端输出内容为HTML</li>
+<li>st 不支持中文，unicode字符支持良好</li>
+<li>black box</li>
+<li>Alacritty</li>
+</ul>
+<blockquote>
+<p>备注 sakura xfce4-terminal 快捷键配置</p>
+</blockquote>
+<ul>
+<li><code>~/.config/xfce4/terminal/accels.scm</code></li>
+<li>配置语法： <a href="http://troubleshooters.com/linux/sakura.htm">doc</a> | <a href="https://unix.stackexchange.com/questions/102474/configuring-shortcuts-for-sakura">config shortcut</a></li>
+<li>例如 <a href="https://bbs.archlinux.org/viewtopic.php?id=260755">修改 Ctrl C V 为复制快捷键</a> <code>Gtk3起 不支持所谓的鼠标悬浮改快捷键</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl">  <span class="p">(</span><span class="n">gtk_accel_path</span> <span class="s2">&#34;&lt;Actions&gt;/terminal-window/copy&#34;</span> <span class="s2">&#34;&lt;Primary&gt;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="n">gtk_accel_path</span> <span class="s2">&#34;&lt;Actions&gt;/terminal-window/paste&#34;</span> <span class="s2">&#34;&lt;Primary&gt;v&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>现代终端</p>
+</blockquote>
+<ul>
+<li><a href="https://wezfurlong.org/wezterm/index.html">wezterm</a></li>
+<li><a href="https://github.com/warpdotdev/Warp">Warp</a> <code>Rust+AI</code></li>
+<li>Tabby</li>
+<li>WindTerm</li>
+<li><a href="https://github.com/zellij-org/zellij">zellij</a></li>
+<li><a href="https://sw.kovidgoyal.net/kitty/">kitty</a> <code>GPU渲染</code></li>
+<li><a href="https://github.com/liamg/darktile">darktile</a></li>
+</ul>
+<blockquote>
+<p>终端工具</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/faressoft/terminalizer">terminalizer</a><code>录制终端</code></li>
+</ul>
+<hr>
+<h2 id="效率工具">效率工具</h2>
+<blockquote>
+<p>提高工作和开发效率</p>
+</blockquote>
+<blockquote>
+<p><code>通知提醒</code>
+<a href="https://wiki.archlinux.org/index.php/Desktop_notifications">Desktop notifications</a> | <a href="https://docs.xfce.org/apps/notifyd/preferences">xfce notify-send </a>
+<a href="https://developer.gnome.org/notification-spec/#protocol">Desktop Notifications Specification</a>
+<a href="https://wiki.ubuntu.com/NotificationDevelopmentGuidelines">Notification Development Guidelines</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/vlevit/notify-send.sh">Github notify-send.sh</a></p>
+</blockquote>
+<h3 id="协作工具">协作工具</h3>
+<p><strong>synergy</strong></p>
+<blockquote>
+<p>多系统间共享键鼠</p>
+</blockquote>
+<p><strong>scrpy</strong></p>
+<blockquote>
+<p>PC远程操作安卓</p>
+</blockquote>
+<p><a href="https://github.com/Genymobile/scrcpy">scrcpy</a></p>
+<ul>
+<li><a href="http://blog.lujun9972.win/blog/2019/03/20/%E4%BD%BF%E7%94%A8scrcpy%E6%8E%A7%E5%88%B6%E4%BD%A0%E7%9A%84%E6%89%8B%E6%9C%BA/">操作流程</a></li>
+</ul>
+<blockquote>
+<p>USB 连接方式
+推荐使用USB连接，这样操作起来比较流畅。手机通过USB连接到PC上,在弹出的USB用途中选择 传输文件(MTP)</p>
+</blockquote>
+<blockquote>
+<p>WIFI 方式连接</p>
+</blockquote>
+<ul>
+<li>确保PC和手机在同一Wifi中</li>
+<li>手机先通过USB与PC相连</li>
+<li>在PC上运行 <code>adb tcpip 端口</code>, 令手机开启端口</li>
+<li>断开手机和PC的USB连接</li>
+<li>在PC上运行 <code>adb connect 手机IP:端口</code></li>
+<li>运行scrcpy</li>
+</ul>
+<blockquote>
+<p>使用技巧</p>
+</blockquote>
+<ul>
+<li>鼠标左键: 模拟点击</li>
+<li>鼠标右键/Ctrl+b: 返回上一页</li>
+<li>Ctrl+s: 切换app</li>
+<li>手机录屏: scrcpy &ndash;record file.mp4</li>
+<li>帮助信息: scrcpy &ndash;help</li>
+<li>远程成功并关闭设备屏幕: scrcpy &ndash;turn-screen-off</li>
+</ul>
+<h3 id="目录跳转">目录跳转</h3>
+<p><strong><code>Autojump</code></strong></p>
+<blockquote>
+<p>统计cd 目录，方便目录跳转  *shrc 中要有 : <code>. /usr/share/autojump/autojump.sh</code></p>
+</blockquote>
+<ul>
+<li><code>apt install autojump</code> 设置为自动运行 <code>echo '. /usr/share/autojump/autojump.sh' &gt;&gt; ~/.bashrc</code>
+<ul>
+<li><code>j -v</code> 查看安装版本</li>
+<li><code>j --stat</code> 查看统计信息</li>
+<li><code>j --help</code></li>
+<li><code>jo code</code> 打开code文件夹</li>
+<li><code>jco c</code> 打开子目录</li>
+</ul>
+</li>
+<li><code>ls -l ~/.local/share/autojump/</code> 统计信息的目录，清除就相当于卸载重装了</li>
+</ul>
+<p><strong><code>z.lua</code></strong></p>
+<blockquote>
+<p><a href="https://github.com/skywind3000/z.lua">Github</a>   与 Autojump 类似, 性能更好</p>
+</blockquote>
+<ul>
+<li><code>pip install qrcode</code>
+<ul>
+<li><em>qr &ndash;help</em> 终端内生成二维码</li>
+</ul>
+</li>
+</ul>
+<p><code>fd</code></p>
+<p>Simple, fast and user-friendly alternative to find</p>
+<p><code>skim</code></p>
+<p>Fuzzy Finder in Rust!</p>
+<p><code>alias cds='cd $(fd &quot;.*&quot; -t d | sk)'</code> 模糊搜索跳转进目录</p>
+<h3 id="xdotool">xdotool</h3>
+<p>command-line X11 automation tool <code>可以控制指定窗口激活关闭，最大最小化，输入快捷键等</code></p>
+<blockquote>
+<p>将该脚本配置为快捷键后，实现效果：激活已有终端的窗口，或者启动终端</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nv">tmd</span><span class="o">=</span>xfce4-terminal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nv">PID</span><span class="o">=</span><span class="k">$(</span>pgrep -x <span class="nv">$tmd</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">[[</span> <span class="nv">$PID</span> -ne <span class="s2">&#34;&#34;</span> <span class="o">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="k">then</span>
+</span></span><span class="line"><span class="cl">      xdotool windowactivate <span class="sb">`</span>xdotool search --pid <span class="nv">$PID</span> <span class="p">|</span> tail -1<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">$tmd</span>
+</span></span><span class="line"><span class="cl">  <span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="rofi">rofi</h3>
+<p><a href="https://github.com/davatorium/rofi">Github rofi</a></p>
+<p>设置 <code>rofi -show window</code> 快捷键为 右Alt</p>
+<hr>
+<h2 id="远程工具">远程工具</h2>
+<p><a href="https://www.joxrays.com/linux-rdp-windows/">rdesktop and xfreerdp</a></p>
+<p>rdesktop xfreerdp</p>
+<hr>
+<h2 id="进程管理">进程管理</h2>
+<p>gnome-system-monitor<br>
+Supervisor 进程监控管理</p>
+<hr>
+<h2 id="零散工具集合">零散工具集合</h2>
+<blockquote>
+<p>通常会安装到 /usr/bin/*  目录下</p>
+</blockquote>
+<ul>
+<li>
+<p>sudo 是需要安装的</p>
+<ol>
+<li><code>alias sudo='sudo'</code> 能够在别名上使用 sudo <em>神奇</em></li>
+</ol>
+</li>
+<li>
+<p>md5sum 报文摘要算法 Message-Digest Algorithm 5 的实现</p>
+<ul>
+<li><code>printf 'Who?123' | md5sum</code></li>
+<li><code>md5sum file</code> 计算出md5值</li>
+<li><code>md5sum -c file.md5</code> file 和 file.md5 在同一目录下, 执行这个命令就是检查md5是否匹配, 确保文件的完整性和正确性</li>
+</ul>
+</li>
+<li>
+<p>sha1sum sha256sum <em>用法和 md5sum 一致</em></p>
+</li>
+<li>
+<p>last <em>查看Linux登录信息</em></p>
+<ul>
+<li>last -n 5 最近五次登录</li>
+</ul>
+</li>
+<li>
+<p>w | uptime <em>查看启动情况</em></p>
+</li>
+<li>
+<p>colrm</p>
+<ul>
+<li>ps | clorm 20 30 <code>colrm</code> <em>删除输出的20 到30 列</em></li>
+</ul>
+</li>
+<li>
+<p>figlet 字符转ascii图</p>
+</li>
+<li>
+<p>logkeys 记录键盘输入 <a href="https://github.com/kernc/logkeys">Github</a></p>
+</li>
+<li>
+<p>expect <a href="http://www.cnblogs.com/iloveyoucc/archive/2012/05/11/2496433.html">用于自动输入密码</a></p>
+</li>
+<li>
+<p><a href="https://wtfutil.com">WTF</a> | <a href="https://github.com/senorprogrammer/wtf">Github Repo</a></p>
+<ul>
+<li>丰富的功能, 一个方便的终端控制面板</li>
+</ul>
+</li>
+<li>
+<p>when-changed 监控文件变化 执行命令 pip install when-changed</p>
+</li>
+<li>
+<p>dircolors <a href="http://www.runoob.com/linux/linux-comm-dircolors.html">Linux dircolors命令</a> <code>用于设置 ls 命令输出时的色彩</code></p>
+</li>
+<li>
+<p>gtypist 用于练习打字</p>
+</li>
+<li>
+<p>watch 周期执行命令并输出</p>
+</li>
+<li>
+<p><code>uniq</code> 统计出现次数 <code>cat log.log | grep WARN | awk '{print $5}' | sort | uniq -c</code></p>
+</li>
+<li>
+<p><code>starDict</code> 终端内字典</p>
+</li>
+<li>
+<p><a href="https://github.com/upx/upx">upx</a> 压缩构建的可执行文件</p>
+</li>
+</ul>
+<p><a href="https://kbumsik.io/using-ipad-as-a-2nd-monitor-on-linux">https://kbumsik.io/using-ipad-as-a-2nd-monitor-on-linux</a>
+<a href="https://snapdensing.com/2020/04/07/ipad-as-an-extended-screen-in-linux/">https://snapdensing.com/2020/04/07/ipad-as-an-extended-screen-in-linux/</a></p>
+<h3 id="剪贴板管理">剪贴板管理</h3>
+<blockquote>
+<p><a href="https://linux.cn/article-7329-1.html">参考: 面向 Linux 的 10 款最佳剪贴板管理器</a></p>
+</blockquote>
+<ul>
+<li>
+<p>CopyQ，Manjaro 的 clipman</p>
+</li>
+<li>
+<p>xclip</p>
+<ul>
+<li><code>cat README.md | xclip -sel clip</code> 将文件复制到剪贴板</li>
+</ul>
+</li>
+<li>
+<p>xsel</p>
+<ul>
+<li><code>cat a.md | xsel -b</code> <em>将文件所有内容复制到剪贴板</em> 但是处理大文件时会失效 xclip 更有效</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/Slackadays/Clipboard">Clipboard</a><code>终端操作剪贴板复制粘贴</code></p>
+</li>
+</ul>
+<hr>
+<h2 id="检测工具">检测工具</h2>
+<h3 id="硬盘">硬盘</h3>
+<p>duf
+dust
+gdu</p>
+<p>CrystalDiskMark</p>
+<ul>
+<li><a href="https://github.com/JonMagon/KDiskMark">KDiskMark</a></li>
+</ul>
+<blockquote>
+<p>smartmontools</p>
+</blockquote>
+<ul>
+<li>检测健康状况 <code>smartctl -Hc /dev/sda9</code></li>
+</ul>
+<hr>
+<h2 id="文本处理">文本处理</h2>
+<ul>
+<li><code>wc</code> 单词 行数 统计</li>
+<li><code>ccze</code> 日志高亮</li>
+<li><code>lolcat</code> 给输出包装上彩虹颜色 有 c python ruby 版</li>
+<li>choose <em>方便的cut</em></li>
+</ul>
+<blockquote>
+<p><code>在当前目录下, 快速全文内容搜索</code></p>
+</blockquote>
+<ul>
+<li>ag <em>The Silver Searcher</em>
+<ul>
+<li>ubuntu:silversearcher-ag  alpine:the_silver_searcher</li>
+<li><a href="https://github.com/ggreer/the_silver_searcher">The Silver Searcher</a></li>
+</ul>
+</li>
+<li>rg <em>ripgrep</em></li>
+<li>glow markdown renderer</li>
+</ul>
+<hr>
+<h2 id="文件操作">文件操作</h2>
+<p><code>iconv</code></p>
+<blockquote>
+<p>可以将一种已知的字符集文件转换成另一种已知的字符集文件</p>
+</blockquote>
+<p>例如 将git仓库内所有Java文件 GBK 转 UTF8 <code>git ls-files | grep &quot;\.java&quot; | tee  | xargs -I {}  iconv -f GBK -t UTF-8 {} -o {}</code></p>
+<p><code>zssh</code></p>
+<blockquote>
+<p><a href="http://blog.csdn.net/ygm_linux/article/details/32321729">参考 zssh, rz, sz互相传输</a></p>
+</blockquote>
+<h2 id="安全工具">安全工具</h2>
+<h3 id="gpg">gpg</h3>
+<blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2013/07/gpg.html">参考博客</a></p>
+</blockquote>
+<ul>
+<li>生成的过程, 输入相关的提示信息, 最后输完密码后需要输入随机字符, 就也是按照提示, 但是1.4是正常的, 其他的直接假死,不是很理解这种操作</li>
+</ul>
+<h3 id="jumpserver">JumpServer</h3>
+<blockquote>
+<p><a href="https://github.com/jumpserver/jumpserver">Github</a></p>
+</blockquote>
+<hr>
+<h1 id="多媒体">多媒体</h1>
+<h2 id="ffmpeg">ffmpeg</h2>
+<blockquote>
+<p><a href="http://ffmpeg.org/ffmpeg.html">Official Site</a></p>
+</blockquote>
+<ul>
+<li>查看属性 <code>ffprobe -pretty target.mp4</code></li>
+</ul>
+<blockquote>
+<p>m3u8 URL 转换为mp4</p>
+</blockquote>
+<ul>
+<li>
+<p><code>ffmpeg -i http://xxx.m3u8 -c copy -bsf:a aac_adtstoasc output.mp4</code></p>
+</li>
+<li>
+<p>获取视频中的音频 <code>ffmpeg -i input.mp4 -vn -y -acodec copy output.m4a</code></p>
+</li>
+<li>
+<p>去掉视频中的音频 <code>ffmpeg -i input.mp4 -an output.mp4</code></p>
+</li>
+<li>
+<p>合并视频 <code>ffmpeg -f concat -safe 0 -i file.cfg  -c copy result.mp4</code></p>
+<ul>
+<li>file.cfg 内容为多行文件 : <code>file '/path/to/file'</code></li>
+</ul>
+</li>
+<li>
+<p>截取视频 <code>ffmpeg -ss 00:00:00 -t 00:00:30 -i input.mp4 -vcodec copy -acodec copy output.mp4</code></p>
+<ul>
+<li><code>-ss</code> 开始时间 <code>-t</code> 截取时长  <code>-q 0</code> 无损 <code>-c copy</code>表示不必重新编码</li>
+</ul>
+</li>
+</ul>
+<h2 id="图片处理">图片处理</h2>
+<ul>
+<li>byzanz 录制屏幕为gif</li>
+</ul>
+<h3 id="imagemagick">ImageMagick</h3>
+<blockquote>
+<p>ImageMagick® is a free, open-source software suite, used for editing and manipulating digital images<br>
+<a href="https://github.com/ImageMagick/ImageMagick">Github: ImageMagick</a></p>
+</blockquote>
+<ol>
+<li>display</li>
+</ol>
+<h4 id="convert">convert</h4>
+<blockquote>
+<p>convert between image formats as well as resize an image, blur, crop, despeckle, dither, draw on, flip, join, re-sample, and much more</p>
+</blockquote>
+<p><code>convert 源文件 [参数] 目标文件</code></p>
+<ul>
+<li>
+<p>格式转换： convert a.png a.jpg</p>
+</li>
+<li>
+<p>将图片转换成指定大小 这是保持比例的 <code>convert -resize 600X600 src.jpg dst.jpg</code> 中间是字母X</p>
+<ul>
+<li>如果不保持比例，就在宽高后加上感叹号</li>
+<li>可以只指定高度，那么宽度会等比例缩放 <code>convert -resize 400 src.jpg dst.jpg</code></li>
+<li>还可以按百分比缩放 <code>convert page200.png -resize 50% page100.png</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>svg to ico 两种方式</p>
+</blockquote>
+<ul>
+<li><code>magick convert -background none icon.svg -define icon:auto-resize icon.ico</code></li>
+<li><code>convert -background none icon.svg -define icon:auto-resize icon.ico</code></li>
+</ul>
+<h4 id="多图操作">多图操作</h4>
+<ul>
+<li>若干图片合并并转PDF <code>convert origin1.jpg origin2.jpg target.pdf</code></li>
+<li><a href="https://blog.csdn.net/qq_24127015/article/details/86525305">imagemagick 图片合并_convert 多图拼接-CSDN博客</a>
+<ul>
+<li>水平方向拼接,纵向则是 -append <code>magick convert +append  2024* aa.jpg</code></li>
+<li>composite 方式
+<ul>
+<li>生成空白图片 <code>magick -size 1920x1200 xc:none dest0.jpg</code></li>
+<li>按坐标放入两张图片 <code>magick composite -geometry +0+0 u-0.jpg dest0.jpg dest0.jpg</code>  <code>magick composite -geometry +1000+0 u-1.jpg dest0.jpg dest0.jpg</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>批量修改
+如果没有 -path 语句，新生成的 png 文件将会覆盖原始文件 <a href="http://www.cnblogs.com/jkmiao/p/6756929.html">参考博客</a></p>
+</blockquote>
+<ul>
+<li><code>mogrify -path newdir -resize 40X40 *.png</code> 把png图片全部转成40X40大小并放在新文件夹下</li>
+<li><code>mogrify -path newdir -format png  *.gif</code> 将所有gif转成png放在新目录下</li>
+</ul>
+<h3 id="asciinema">asciinema</h3>
+<ul>
+<li><a href="https://asciinema.org">asciinema</a> <code>终端屏幕录制和分享网</code></li>
+<li>执行 <code>asciinema</code>或 <code>asciinema rec</code> 即可开始录制</li>
+<li>要注册就运行 <code>asciinema auth</code> 进入输出的网址，填邮箱和名字即可（每次登录都要这样。或者使用邮件来确认，麻烦ing）</li>
+</ul>
+<h3 id="图片浏览器">图片浏览器</h3>
+<ol>
+<li>Nomacs 快</li>
+<li>gThumb</li>
+<li>Eye of GNOME Image Viewer 功能比上面多了一点</li>
+</ol>
+<h3 id="截图">截图</h3>
+<ul>
+<li>Flameshot 截图工具  类似于 snipaste
+<ul>
+<li>Ctrl 鼠标滚动 调整线条粗细</li>
+<li>Ctrl Alt S 截图 (注意某些交互性场景，截图会导致失去焦点从而无法截到，例如网页的下拉选项，此时可以不使用快捷键而是鼠标点托盘的图标触发截图，可绕过这个问题)</li>
+<li>Alt Q pin</li>
+</ul>
+</li>
+<li>deepin-screenshot</li>
+</ul>
+<h3 id="录屏">录屏</h3>
+<ul>
+<li><code>kazam</code> 支持选进程窗口，输出mp4</li>
+<li><code>peek</code> 顶层窗口选择录屏区域，输出 gif 有较高压缩比</li>
+</ul>
+<hr>
+<h2 id="视频">视频</h2>
+<blockquote>
+<p><a href="https://www.ubuntupit.com/top-10-best-linux-video-players-enjoy-ultimate-movie-music/">参考: Top 10 Best Linux Video Players</a></p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/iikira/BaiduPCS-Go">百度网盘命令客户端</a> <code>Go语言实现</code></li>
+<li><a href="https://github.com/soimort/you-get">you-get</a></li>
+</ul>
+<h2 id="音频">音频</h2>
+<ul>
+<li><a href="https://github.com/gmg137/netease-cloud-music-gtk">netease-cloud-music-gtk</a></li>
+<li>audacious 音频播放</li>
+<li>lollypop GNOME 环境简单应用</li>
+<li>Audacity 音频剪辑</li>
+</ul>
+<hr>
+<h2 id="pdf">PDF</h2>
+<p><code>ghostscript</code></p>
+<blockquote>
+<p><a href="https://ghostscript.com/">ghostscript.com</a>
+<a href="https://blog.csdn.net/lx_ros/article/details/79887562">参考: Ubuntu上压缩PDF文件的方法</a></p>
+</blockquote>
+<p><code>gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dBATCH -dQUIET -sOutputFile=output.pdf input.pdf</code></p>
+<hr>
+<p><code>pdftk</code></p>
+<blockquote>
+<p><a href="https://www.pdflabs.com/">pdflabs</a> | <a href="https://www.pdflabs.com/docs/pdftk-cli-examples/">Docs</a></p>
+</blockquote>
+<hr>
+<p><code>pdfunite</code></p>
+<blockquote>
+<p>Portable Document Format (PDF) page merger</p>
+</blockquote>
+<ul>
+<li>pdfunite 1.pdf 2.pdf merged.pdf</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="https://smallpdf.com">smallpdf.com</a> 在线处理</p>
+</blockquote>
+<hr>
+<h1 id="运行-windows-应用">运行 Windows 应用</h1>
+<ul>
+<li><a href="https://github.com/bottlesdevs/Bottles">Bottles</a></li>
+<li><a href="https://github.com/wine-mirror/wine">wine</a></li>
+<li><a href="https://github.com/zq1997/deepin-wine">deepin-wine</a></li>
+</ul>
+<hr>
+<h1 id="日常应用">日常应用</h1>
+<h2 id="office">Office</h2>
+<h3 id="qq">QQ</h3>
+<blockquote>
+<p><a href="https://im.qq.com/linuxqq/index.shtml">QQ Linux</a></p>
+</blockquote>
+<h3 id="wechat">wechat</h3>
+<p><a href="https://aur.archlinux.org/packages/wechat-universal-bwrap">wechat-universal-bwrap</a></p>
+<blockquote>
+<p><a href="https://linux.weixin.qq.com/">微信 Linux 测试版</a></p>
+</blockquote>
+<h3 id="wework">wework</h3>
+<ul>
+<li><a href="https://aur.archlinux.org/packages/deepin-wxwork/">企业微信</a></li>
+</ul>
+<hr>
+<h1 id="外设">外设</h1>
+<blockquote>
+<p><a href="https://github.com/debauchee/barrier">键鼠共享</a><br>
+<a href="https://github.com/jordansissel/xdotool">xdotool</a><code>模拟键盘和鼠标操作的命令行工具</code></p>
+</blockquote>
+<h2 id="鼠标">鼠标</h2>
+<ul>
+<li>solaar Logitech鼠标Options修改</li>
+</ul>
+<hr>
+<h1 id="tips">Tips</h1>
+<ul>
+<li>问题： <code>sudo echo &quot;Text I want to write&quot; &gt; /path/to/file</code> 失败</li>
+</ul>
+<blockquote>
+<p><a href="https://blogs.oracle.com/joshis/sudo-echo-does-not-work-together-in-ubuntu-another-waste-of-time-issue">参考: &quot;sudo echo&quot; does not work together in Ubuntu </a>
+<a href="https://stackoverflow.com/questions/84882/sudo-echo-something-etc-privilegedfile-doesnt-work-is-there-an-alterna">stack over flow</a></p>
+</blockquote>
+<ul>
+<li><code>sudo sh -c 'echo &quot;Text I want to write&quot; &gt;&gt; /path/to/file'</code></li>
+<li><code>echo &quot;Text I want to write&quot; | sudo tee -a /path/to/file &gt; /dev/null</code></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-04-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/effective/">Effective</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/advancedlearning/concurrency/executorandpool/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">线程池</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/collection/map/treemap/">
+            <span class="next-text nav-default">TreeMap</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

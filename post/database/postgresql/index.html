@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>PostgreSQL - Mythos</title>
+  <title>PostgreSQL - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Postgresql 概述 安装 Docker方式安装服务端 pull完整版 pull精简版 使用 Postgresql终端命令行使用 用户和角色权限 创建用户 修改权限 J" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2024-11-13" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/database/postgresql/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/database/postgresql/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="PostgreSQL" />
-<meta property="og:description" content="目录 start Postgresql 概述 安装 Docker方式安装服务端 pull完整版 pull精简版 使用 Postgresql终端命令行使用 用户和角色权限 创建用户 修改权限 J" />
+<meta property="og:description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2024-11-13" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/database/postgresql/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/database/postgresql/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-16T17:27:21+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:27:21+00:00" />
+
 <meta itemprop="name" content="PostgreSQL">
-<meta itemprop="description" content="目录 start Postgresql 概述 安装 Docker方式安装服务端 pull完整版 pull精简版 使用 Postgresql终端命令行使用 用户和角色权限 创建用户 修改权限 J">
-<meta itemprop="datePublished" content="2018-12-16T17:27:21+00:00" />
+<meta itemprop="description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2024-11-13"><meta itemprop="datePublished" content="2018-12-16T17:27:21+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:27:21+00:00" />
-<meta itemprop="wordCount" content="1024">
-
-
-
-<meta itemprop="keywords" content="PostgreSQL," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1774">
+<meta itemprop="keywords" content="PostgreSQL," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="PostgreSQL"/>
-<meta name="twitter:description" content="目录 start Postgresql 概述 安装 Docker方式安装服务端 pull完整版 pull精简版 使用 Postgresql终端命令行使用 用户和角色权限 创建用户 修改权限 J"/>
+<meta name="twitter:description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2024-11-13"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,74 +122,117 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
             </div>
-          <span class="more-meta"> 1024 words </span>
-          <span class="more-meta"> 3 mins read </span>
+          <span class="more-meta"> 约 1774 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#概述">概述</a></li>
+    <li><a href="#postgresql">Postgresql</a></li>
     <li><a href="#安装">安装</a>
       <ul>
-        <li><a href="#docker方式安装服务端">Docker方式安装服务端</a></li>
+        <li><a href="#docker方式">Docker方式</a></li>
       </ul>
     </li>
-    <li><a href="#使用">使用</a>
+    <li><a href="#管理">管理</a>
       <ul>
-        <li><a href="#postgresql终端命令行使用">Postgresql终端命令行使用</a></li>
-        <li><a href="#用户和角色权限">用户和角色权限</a></li>
-        <li><a href="#java使用">Java使用</a></li>
+        <li><a href="#终端命令行使用">终端命令行使用</a></li>
+        <li><a href="#用户和角色权限">用户和角色权限</a>
+          <ul>
+            <li><a href="#创建用户">创建用户</a></li>
+            <li><a href="#修改权限">修改权限</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#基础数据">基础数据</a></li>
+    <li><a href="#基础数据类型">基础数据类型</a></li>
+    <li><a href="#ddl">DDL</a></li>
+    <li><a href="#图数据库">图数据库</a>
+      <ul>
+        <li><a href="#agensgraph">AgensGraph</a></li>
+      </ul>
+    </li>
+    <li><a href="#应用">应用</a>
+      <ul>
+        <li><a href="#java使用">Java使用</a></li>
+        <li><a href="#导入导出">导入导出</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-16T17:27:21" title="December 16, 2018">December 16, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#postgresql">Postgresql</a>
-<ol>
-<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85">安装</a>
-<ol>
-<li><a href="#docker%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85%E6%9C%8D%E5%8A%A1%E7%AB%AF">Docker方式安装服务端</a>
-<ol>
-<li><a href="#pull%E5%AE%8C%E6%95%B4%E7%89%88">pull完整版</a></li>
-<li><a href="#pull%E7%B2%BE%E7%AE%80%E7%89%88">pull精简版</a></li>
+<li><a href="#postgresql">Postgresql</a></li>
 </ol>
 </li>
+<li>
+<ol start="2">
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#docker%E6%96%B9%E5%BC%8F">Docker方式</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E7%AE%A1%E7%90%86">管理</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8">终端命令行使用</a></li>
+<li>3.2. <a href="#%E7%94%A8%E6%88%B7%E5%92%8C%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90">用户和角色权限</a>
+<ul>
+<li>3.2.1. <a href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7">创建用户</a></li>
+<li>3.2.2. <a href="#%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90">修改权限</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">基础数据类型</a></li>
 </ol>
 </li>
-<li><a href="#%E4%BD%BF%E7%94%A8">使用</a>
-<ol>
-<li><a href="#postgresql%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8">Postgresql终端命令行使用</a></li>
-<li><a href="#%E7%94%A8%E6%88%B7%E5%92%8C%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90">用户和角色权限</a>
-<ol>
-<li><a href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7">创建用户</a></li>
-<li><a href="#%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90">修改权限</a></li>
+<li>
+<ol start="5">
+<li><a href="#ddl">DDL</a></li>
 </ol>
 </li>
-<li><a href="#java%E4%BD%BF%E7%94%A8">Java使用</a></li>
+<li>
+<ol start="6">
+<li><a href="#%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93">图数据库</a></li>
 </ol>
+<ul>
+<li>6.1. <a href="#agensgraph">AgensGraph</a></li>
+</ul>
 </li>
-<li><a href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE">基础数据</a></li>
+<li>
+<ol start="7">
+<li><a href="#%E5%BA%94%E7%94%A8">应用</a></li>
 </ol>
+<ul>
+<li>7.1. <a href="#java%E4%BD%BF%E7%94%A8">Java使用</a></li>
+<li>7.2. <a href="#%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA">导入导出</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-11-18 00:14</em>|</p>
+</ul>
+<p>💠 2024-11-13 10:24:06</p>
 <hr>
 <h1 id="postgresql">Postgresql</h1>
-<ul>
-<li><input disabled="" type="checkbox"> <a href="http://www.onexsoft.com/onesql.html">该公司对于PostgreSQL的缺点陈列是否属实</a></li>
-</ul>
-<h2 id="概述">概述</h2>
 <blockquote>
 <p><a href="http://www.cnblogs.com/fcode/articles/PostgreSQL.html">PostgreSQL</a> | <a href="https://wiki.postgresql.org/wiki/Main_Page">wiki</a></p>
 </blockquote>
@@ -210,57 +249,27 @@
 <p><a href="https://www.zhihu.com/question/20010554">PostgreSQL 与 MySQL 相比，优势何在？</a>
 <a href="https://en.wikibooks.org/wiki/Converting_MySQL_to_PostgreSQL">Converting MySQL to PostgreSQL</a></p>
 </blockquote>
-<h2 id="安装">安装</h2>
-<p>安装客户端 <code>sudo apt-get install postgresql-client</code><br>
+<h1 id="安装">安装</h1>
+<p>安装客户端 <code>sudo apt install postgresql-client</code><br>
 安装服务端 <code>sudo apt install postgresql</code></p>
-<h3 id="docker方式安装服务端">Docker方式安装服务端</h3>
+<h2 id="docker方式">Docker方式</h2>
 <blockquote>
 <p><a href="https://hub.docker.com/_/postgres/">Dockerhub 官方镜像</a></p>
 </blockquote>
-<h4 id="pull完整版">pull完整版</h4>
 <ul>
-<li>或者： <code>docker pull postgres</code>
+<li><code>docker pull postgres</code>
 <ul>
 <li>运行容器 <code>docker run --name mypostgre -i -t -p 5432:5432 postgres</code></li>
 <li>客户端连接 <code>psql -h localhost -p 5432 -U postgres</code></li>
 </ul>
 </li>
 </ul>
-<h4 id="pull精简版">pull精简版</h4>
-<ul>
-<li>下拉镜像：<code>docker pull postgres:alpine</code> | 因为个人系统客户端是9.6, 所以用<code>9.6-alpine</code>镜像</li>
-<li>构建容器：</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    docker run -d --name postgre <span class="se">\
-</span><span class="se"></span>    -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>jiushi <span class="se">\
-</span><span class="se"></span>    -v gitea-db-data:/var/lib/postgresql/data <span class="se">\
-</span><span class="se"></span>    -p 5432:5432 <span class="se">\
-</span><span class="se"></span>    postgres:9.6-alpine
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>容器中连接 进入postgresql终端 <code>docker exec -it postgre psql -U postgres</code>
-<ul>
-<li>客户端连接 <code>psql -h localhost -U postgres</code></li>
-</ul>
-</li>
-<li>连接后 输入<code>\l</code> 列出所有数据库 即可查看连接成功与否</li>
-</ul>
 <hr>
-<h2 id="使用">使用</h2>
+<h1 id="管理">管理</h1>
 <blockquote>
 <p><a href="http://postgres.cn/docs/9.6/index.html">PostgreSQL 9.6.0 手册</a></p>
 </blockquote>
-<h3 id="postgresql终端命令行使用">Postgresql终端命令行使用</h3>
+<h2 id="终端命令行使用">终端命令行使用</h2>
 <blockquote>
 <p><a href="http://www.ruanyifeng.com/blog/2013/12/getting_started_with_postgresql.html">PostgreSQL新手入门</a>
 <code>用熟悉的MySQL命令来解释</code></p>
@@ -285,8 +294,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="用户和角色权限">用户和角色权限</h3>
-<h4 id="创建用户">创建用户</h4>
+<h2 id="用户和角色权限">用户和角色权限</h2>
+<h3 id="创建用户">创建用户</h3>
 <ul>
 <li>
 <p><code>createuser -P -D -R -e playboy</code>  //创建一个用户,-P要设置密码，-R,不参创建其他用户，-D不能创建数据库</p>
@@ -304,7 +313,7 @@
 <p><a href="http://www.linuxidc.com/Linux/2013-04/83564p2.htm">修改默认登录不需要密码的配置</a></p>
 </li>
 </ul>
-<h4 id="修改权限">修改权限</h4>
+<h3 id="修改权限">修改权限</h3>
 <blockquote>
 <p><a href="http://blog.csdn.net/beiigang/article/details/8604578">参考博客</a>
 <a href="http://www.cnblogs.com/stephen-liu74/archive/2012/05/18/2302639.html">参考博客_角色</a>
@@ -338,7 +347,137 @@
 <p><code>GRANT CONNECT ON DATABASE test to father;</code> 角色赋予数据库test 连接权限和相关表的查询权限。</p>
 </li>
 </ul>
-<h3 id="java使用">Java使用</h3>
+<blockquote>
+<p>注意：如果一个库授权给了用户A，库里面新建了表C 需要再次单独授权给用户A 否则A没有C表的权限</p>
+</blockquote>
+<h1 id="基础数据类型">基础数据类型</h1>
+<blockquote>
+<p><a href="https://www.postgresql.org/docs/current/datatype.html">Chapter 8. Data Types</a><br>
+<a href="https://www.runoob.com/postgresql/postgresql-data-type.html">PostgreSQL 数据类型</a></p>
+</blockquote>
+<blockquote>
+<p>自动增长</p>
+</blockquote>
+<ul>
+<li>
+<p>相比于MySQL的 AUTO_INCREMENT 关键字标记， pg将该特性设计为数据类型SERIAL， 但是在使用上没有MySQL方便</p>
+</li>
+<li>
+<p>SMALLSERIAL 2字节  SERIAL	4字节 	BIGSERIAL 8字节</p>
+<ul>
+<li>注意这个自增序列值实际上是在系统表维护的 <code>SELECT nextval(pg_get_serial_sequence('the_table', 'the_primary_key'));</code></li>
+</ul>
+</li>
+<li>
+<p>在insert时，如果手动指定了id的值，那这个序列值不会跟着更新，下一次不带id去insert的时候就会冲突报错。</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">    </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t_user</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="n">BIGSERIAL</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">31</span><span class="p">),</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span><span class="w"> </span><span class="n">deprecated</span><span class="w"> </span><span class="nb">boolean</span><span class="w"> </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t_user</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">deprecated</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test6&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- 如果当前序列值为21 这个insert会报错，id重复
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t_user</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">deprecated</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;test5&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>id int8 GENERATED ALWAYS AS IDENTITY primary key</code> 这种字段就无法通过insert values指定id的值，会直接报错。</li>
+<li><code>id int8 GENERATED BY DEFAULT AS IDENTITY primary key</code> 等价于 BIGSERIAL primary key</li>
+</ul>
+<p>因此最好的方式是insert完，手动通过setval更新序列值到当前表的最大值。 <a href="https://hhao.wang/archives/545">PostgreSQL更新所有表序列值到当前表中最大值</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">nextval</span><span class="p">(</span><span class="n">pg_get_serial_sequence</span><span class="p">(</span><span class="s1">&#39;t_user&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;id&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">-- 自增
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">currval</span><span class="p">(</span><span class="n">pg_get_serial_sequence</span><span class="p">(</span><span class="s1">&#39;t_phone&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;id&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">-- get 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">setval</span><span class="p">(</span><span class="n">pg_get_serial_sequence</span><span class="p">(</span><span class="s1">&#39;t_phone&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;id&#39;</span><span class="p">),</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">-- set 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>日期类型转bigint <code>select   to_char(period,'yyyymmdd')::bigint  as period_int</code></li>
+</ul>
+<h1 id="ddl">DDL</h1>
+<blockquote>
+<p>注意PG的查看表，函数，视图的定义(DCL)时很复杂，没有直观的语句类似<code>show create table</code>可以用，通常使用工具来查看表定义和函数定义视图定义等等。</p>
+</blockquote>
+<ul>
+<li>元数据存储： PostgreSQL将数据库对象（表、列、索引等）的元数据存储在系统目录（如pg_catalog）中。</li>
+<li>数据类型： PostgreSQL支持多种数据类型、约束、继承等特性，这些复杂性使得直接生成一个简单的CREATE TABLE语句变得困难。
+<ul>
+<li>为了准确地反映表的定义，需要考虑各种情况，比如默认值、约束、继承关系等。</li>
+</ul>
+</li>
+<li>性能： 对于大型数据库生成 show create table 很耗费性能。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 简单查询出列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">attname</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">column_name</span><span class="p">,</span><span class="w"> </span><span class="n">format_type</span><span class="p">(</span><span class="n">atttypid</span><span class="p">,</span><span class="w"> </span><span class="n">atttypmod</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">attnotnull</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">is_nullable</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_attribute</span><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">attrelid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">oid</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_class</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">relname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;table_name&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">attnum</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="图数据库">图数据库</h1>
+<p><a href="https://developer.aliyun.com/article/328141">PostgreSQL 图式搜索(graph search)实践 </a><code>自定义函数和特定SQL模拟图有关的查询算法</code></p>
+<blockquote>
+<p>图数据库插件</p>
+</blockquote>
+<p><a href="https://github.com/edgedb/edgedb">edgedb</a><br>
+<a href="https://github.com/apache/age">apache/age</a> 基于AgensGraph衍生（PG插件） <a href="https://github.com/apache/age-viewer">apache/age-viewer</a></p>
+<h2 id="agensgraph">AgensGraph</h2>
+<p><a href="https://github.com/bitnine-oss/agensgraph">bitnine-oss/agensgraph</a><br>
+<a href="https://wiki.postgresql.org/wiki/AgensGraph">AgensGraph - PostgreSQL wiki</a></p>
+<p>从架构图上来看，比插件形式绑定更深，属于衍生数据库，因此可以复用PG的特性，例如分布式能力。</p>
+<p>启动服务 本质是pg进程 <code>docker run --name agensgraph -p 5654:5432 -e POSTGRES_PASSWORD=agensgraph -d bitnine/agensgraph:v2.13.0-debian</code></p>
+<ul>
+<li>默认用户名和pg镜像的默认值一样是 postgres</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 创建数据库
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">create</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="n">test_g1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 切换图数据库
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">SET</span><span class="w"> </span><span class="n">graph_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_g1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 设置用户默认使用的图数据库
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">postgres</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">graph_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;test_g1&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 查询
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">match</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>图形客户端: bitnine/agviewer 操作习惯基本和Neo4j自带的网页客户端一致，但是稳定性可用性差很多</p>
+<ul>
+<li><code>docker run -d --publish=5655:3001 --name=agviewer bitnine/agviewer:latest</code> 注意该客户端支持Age和Agensgraph</li>
+</ul>
+<hr>
+<h1 id="应用">应用</h1>
+<h2 id="java使用">Java使用</h2>
 <blockquote>
 <p><a href="https://github.com/pgjdbc/pgjdbc">Postgresql JDBC Driver</a></p>
 </blockquote>
@@ -349,20 +488,22 @@
 </ul>
 </li>
 </ul>
-<h2 id="基础数据">基础数据</h2>
+<h2 id="导入导出">导入导出</h2>
 <blockquote>
-<p><a href="https://blog.csdn.net/jpzhu16/article/details/52140048"> PostgreSQL中的数据类型</a></p>
+<p>导出</p>
 </blockquote>
+<p>copy 方式，单连接复制出查询语句的结果</p>
+<p><a href="/Java/AdvancedLearning/JDBC.md#%E9%95%BF%E8%BF%9E%E6%8E%A5%E6%B5%81%E5%BC%8F%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE">JDBC： 长连接流式导出数据</a></p>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-16
         
@@ -379,11 +520,11 @@
         <a class="prev" href="/post/java/advancedlearning/jdbc/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">JDBC</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/database/oracleperformances/">
             <span class="next-text nav-default">Oracle性能优化</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -401,17 +542,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -419,11 +560,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -433,16 +574,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

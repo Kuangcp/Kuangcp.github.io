@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Flink-with-batch - Mythos</title>
+  <title>Flink-with-batch - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/myblog/flink-with-batch/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/myblog/flink-with-batch/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -42,19 +42,15 @@
 <meta property="og:title" content="Flink-with-batch" />
 <meta property="og:description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/myblog/flink-with-batch/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/myblog/flink-with-batch/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-06-17T17:00:27+00:00" />
 <meta property="article:modified_time" content="2019-06-17T17:00:27+00:00" />
+
 <meta itemprop="name" content="Flink-with-batch">
-<meta itemprop="description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实">
-<meta itemprop="datePublished" content="2019-06-17T17:00:27+00:00" />
+<meta itemprop="description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实"><meta itemprop="datePublished" content="2019-06-17T17:00:27+00:00" />
 <meta itemprop="dateModified" content="2019-06-17T17:00:27+00:00" />
 <meta itemprop="wordCount" content="2311">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Flink-with-batch"/>
 <meta name="twitter:description" content="目录 start Flink 中的批处理 为何有这次分享 Flink 是什么 为何选用Flink 基础概念和原理 流处理和批处理 部署 批处理 Rest API 目录 end|2020-06-04 19:41| Flink 中的批处理 为何有这次分享 最近实"/>
 
@@ -126,35 +122,44 @@
         <div class="post-category">
             <a href="/categories/blog/"> Blog </a>
             </div>
-          <span class="more-meta"> 2311 words </span>
-          <span class="more-meta"> 5 mins read </span>
+          <span class="more-meta"> 约 2311 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#为何有这次分享">为何有这次分享</a></li>
-    <li><a href="#flink-是什么">Flink 是什么</a></li>
-    <li><a href="#为何选用flink">为何选用Flink</a></li>
-    <li><a href="#基础概念和原理">基础概念和原理</a>
+    <li><a href="#flink-中的批处理">Flink 中的批处理</a>
       <ul>
-        <li><a href="#流处理和批处理">流处理和批处理</a></li>
-        <li><a href="#部署">部署</a></li>
-      </ul>
-    </li>
-    <li><a href="#批处理">批处理</a>
-      <ul>
-        <li><a href="#rest-api">Rest API</a></li>
+        <li><a href="#为何有这次分享">为何有这次分享</a></li>
+        <li><a href="#flink-是什么">Flink 是什么</a></li>
+        <li><a href="#为何选用flink">为何选用Flink</a></li>
+        <li><a href="#基础概念和原理">基础概念和原理</a>
+          <ul>
+            <li><a href="#流处理和批处理">流处理和批处理</a></li>
+            <li><a href="#部署">部署</a></li>
+          </ul>
+        </li>
+        <li><a href="#批处理">批处理</a>
+          <ul>
+            <li><a href="#rest-api">Rest API</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-06-17T17:00:27" title="June 17, 2019">June 17, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p><strong>目录 start</strong></p>
 <ol>
@@ -252,7 +257,7 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -278,31 +283,31 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
-</span><span class="w">    </span><span class="nt">services</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">jobmanager</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${FLINK_DOCKER_IMAGE_NAME:-flink}</span><span class="w">
-</span><span class="w">        </span><span class="nt">expose</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;6123&#34;</span><span class="w">
-</span><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;8081:8081&#34;</span><span class="w">
-</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">jobmanager</span><span class="w">
-</span><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="l">JOB_MANAGER_RPC_ADDRESS=jobmanager</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="nt">taskmanager</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${FLINK_DOCKER_IMAGE_NAME:-flink}</span><span class="w">
-</span><span class="w">        </span><span class="nt">expose</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;6121&#34;</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;6122&#34;</span><span class="w">
-</span><span class="w">        </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="l">jobmanager</span><span class="w">
-</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">taskmanager</span><span class="w">
-</span><span class="w">        </span><span class="nt">links</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="s2">&#34;jobmanager:jobmanager&#34;</span><span class="w">
-</span><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="l">JOB_MANAGER_RPC_ADDRESS=jobmanager</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">jobmanager</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${FLINK_DOCKER_IMAGE_NAME:-flink}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">expose</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;6123&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;8081:8081&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">jobmanager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">JOB_MANAGER_RPC_ADDRESS=jobmanager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">taskmanager</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">${FLINK_DOCKER_IMAGE_NAME:-flink}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">expose</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;6121&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;6122&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">jobmanager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">taskmanager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">links</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;jobmanager:jobmanager&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">JOB_MANAGER_RPC_ADDRESS=jobmanager</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://www.ibm.com/developerworks/cn/opensource/os-cn-apache-flink/img001.png" alt=""></p>
 <ul>
@@ -390,11 +395,11 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-06-17
         
@@ -409,11 +414,11 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
         <a class="prev" href="/post/java/blog/websocket-demo/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Java WebSocket Demo</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/distributed/cloudnative/">
-            <span class="next-text nav-default">CloudNative.md</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-default">CloudNative</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -431,17 +436,17 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -449,11 +454,11 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -463,16 +468,21 @@ Flink提供了一套开箱即用的窗口操作, 例如翻滚窗口（没有重�
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

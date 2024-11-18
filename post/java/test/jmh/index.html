@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>JMH - Mythos</title>
+  <title>JMH - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start JMH 简易Demo 最佳实践 目录 end|2020-05-06 01:45| JMH Official Site jmh demos 参考: Java微基准测试框架JMH Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations =" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 JMH 1.1. 简易Demo 1.2. 最佳实践 💠 2024-02-22 14:23:17 JMH Official Site JMH 官方示例代码 Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations = 5) @Measurement(iterations = 10, time = 1) @Threads(2) @OutputTimeUnit(TimeUnit.MILLISECONDS) class Target{ @Benchmark public" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/test/jmh/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/test/jmh/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="JMH" />
-<meta property="og:description" content="目录 start JMH 简易Demo 最佳实践 目录 end|2020-05-06 01:45| JMH Official Site jmh demos 参考: Java微基准测试框架JMH Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations =" />
+<meta property="og:description" content="💠 JMH 1.1. 简易Demo 1.2. 最佳实践 💠 2024-02-22 14:23:17 JMH Official Site JMH 官方示例代码 Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations = 5) @Measurement(iterations = 10, time = 1) @Threads(2) @OutputTimeUnit(TimeUnit.MILLISECONDS) class Target{ @Benchmark public" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/test/jmh/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/test/jmh/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-05-06T01:44:38+00:00" />
 <meta property="article:modified_time" content="2020-05-06T01:44:38+00:00" />
+
 <meta itemprop="name" content="JMH">
-<meta itemprop="description" content="目录 start JMH 简易Demo 最佳实践 目录 end|2020-05-06 01:45| JMH Official Site jmh demos 参考: Java微基准测试框架JMH Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations =">
-<meta itemprop="datePublished" content="2020-05-06T01:44:38+00:00" />
+<meta itemprop="description" content="💠 JMH 1.1. 简易Demo 1.2. 最佳实践 💠 2024-02-22 14:23:17 JMH Official Site JMH 官方示例代码 Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations = 5) @Measurement(iterations = 10, time = 1) @Threads(2) @OutputTimeUnit(TimeUnit.MILLISECONDS) class Target{ @Benchmark public"><meta itemprop="datePublished" content="2020-05-06T01:44:38+00:00" />
 <meta itemprop="dateModified" content="2020-05-06T01:44:38+00:00" />
-<meta itemprop="wordCount" content="98">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="85">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JMH"/>
-<meta name="twitter:description" content="目录 start JMH 简易Demo 最佳实践 目录 end|2020-05-06 01:45| JMH Official Site jmh demos 参考: Java微基准测试框架JMH Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations ="/>
+<meta name="twitter:description" content="💠 JMH 1.1. 简易Demo 1.2. 最佳实践 💠 2024-02-22 14:23:17 JMH Official Site JMH 官方示例代码 Benchmark comparing serialization libraries on the JVM 简易Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 @BenchmarkMode(Mode.Throughput) @Warmup(iterations = 5) @Measurement(iterations = 10, time = 1) @Threads(2) @OutputTimeUnit(TimeUnit.MILLISECONDS) class Target{ @Benchmark public"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,52 +120,61 @@
       <div class="post-meta">
         <span class="post-time"> 2020-05-06 </span>
         
-          <span class="more-meta"> 98 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 85 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#简易demo">简易Demo</a></li>
-    <li><a href="#最佳实践">最佳实践</a></li>
+    <li><a href="#jmh">JMH</a>
+      <ul>
+        <li><a href="#简易demo">简易Demo</a></li>
+        <li><a href="#最佳实践">最佳实践</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2020-05-06T01:44:38" title="May 6, 2020">May 6, 2020</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#jmh">JMH</a>
-<ol>
-<li><a href="#%E7%AE%80%E6%98%93demo">简易Demo</a></li>
-<li><a href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">最佳实践</a></li>
+<li><a href="#jmh">JMH</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E7%AE%80%E6%98%93demo">简易Demo</a></li>
+<li>1.2. <a href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">最佳实践</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-05-06 01:45</em>|</p>
+</ul>
+<p>💠 2024-02-22 14:23:17</p>
 <hr>
 <h1 id="jmh">JMH</h1>
 <blockquote>
 <p><a href="http://openjdk.java.net/projects/code-tools/jmh/">Official Site</a></p>
 </blockquote>
 <ul>
-<li><a href="http://hg.openjdk.java.net/code-tools/jmh/file/tip/jmh-samples/src/main/java/org/openjdk/jmh/samples/">jmh demos</a></li>
+<li><a href="http://hg.openjdk.java.net/code-tools/jmh/file/tip/jmh-samples/src/main/java/org/openjdk/jmh/samples/">JMH 官方示例代码</a></li>
 </ul>
-<blockquote>
-<p><a href="https://www.xncoding.com/2018/01/07/java/jmh.html">参考: Java微基准测试框架JMH</a></p>
-</blockquote>
 <blockquote>
 <p><a href="https://github.com/eishay/jvm-serializers">Benchmark comparing serialization libraries on the JVM </a></p>
 </blockquote>
 <h2 id="简易demo">简易Demo</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -185,21 +190,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@BenchmarkMode</span><span class="o">(</span><span class="n">Mode</span><span class="o">.</span><span class="na">Throughput</span><span class="o">)</span>
-    <span class="nd">@Warmup</span><span class="o">(</span><span class="n">iterations</span> <span class="o">=</span> <span class="n">5</span><span class="o">)</span>
-    <span class="nd">@Measurement</span><span class="o">(</span><span class="n">iterations</span> <span class="o">=</span> <span class="n">10</span><span class="o">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">1</span><span class="o">)</span>
-    <span class="nd">@Threads</span><span class="o">(</span><span class="n">2</span><span class="o">)</span>
-    <span class="nd">@OutputTimeUnit</span><span class="o">(</span><span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">)</span>
-    <span class="kd">class</span> <span class="nc">Target</span><span class="o">{</span>
-        <span class="nd">@Benchmark</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">max</span><span class="o">(){</span>
-
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 运行 JMH
-</span><span class="c1"></span>    <span class="k">new</span> <span class="n">Runner</span><span class="o">(</span><span class="k">new</span> <span class="n">OptionsBuilder</span><span class="o">().</span><span class="na">include</span><span class="o">(</span><span class="n">Target</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">()).</span><span class="na">build</span><span class="o">()).</span><span class="na">run</span><span class="o">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="nd">@BenchmarkMode</span><span class="o">(</span><span class="n">Mode</span><span class="o">.</span><span class="na">Throughput</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Warmup</span><span class="o">(</span><span class="n">iterations</span> <span class="o">=</span> <span class="n">5</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Measurement</span><span class="o">(</span><span class="n">iterations</span> <span class="o">=</span> <span class="n">10</span><span class="o">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Threads</span><span class="o">(</span><span class="n">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@OutputTimeUnit</span><span class="o">(</span><span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">class</span> <span class="nc">Target</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Benchmark</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">max</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 运行 JMH
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">new</span> <span class="n">Runner</span><span class="o">(</span><span class="k">new</span> <span class="n">OptionsBuilder</span><span class="o">().</span><span class="na">include</span><span class="o">(</span><span class="n">Target</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">()).</span><span class="na">build</span><span class="o">()).</span><span class="na">run</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="最佳实践">最佳实践</h2>
 
@@ -207,11 +212,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2020-05-06
         
@@ -226,11 +231,11 @@
         <a class="prev" href="/post/hardware/bios/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">BIOS</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/skills/media/pictureformat/">
+        <a class="next" href="/post/skills/media/imageformat/">
             <span class="next-text nav-default">图像格式</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -248,17 +253,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -266,11 +271,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -280,16 +285,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

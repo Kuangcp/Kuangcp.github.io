@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ProgramThinking - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 开发思想 1.1. 抽象 1.2. 编程范式 1.3. 编程思想 1.3.1. 面向过程 1.3.2. 面向对象 1.3.2.1. OOP 1.3.3. 面向过程和面向对象的对比 1.4. DDD 领域驱动设计 1.4.1. 聚合 1.4.2. 参考实践项目 1.5. 数据的操作 1.5.1. CURD 1.5.2." /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/softwareengineering/programthinking/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="ProgramThinking" />
+<meta property="og:description" content="💠 开发思想 1.1. 抽象 1.2. 编程范式 1.3. 编程思想 1.3.1. 面向过程 1.3.2. 面向对象 1.3.2.1. OOP 1.3.3. 面向过程和面向对象的对比 1.4. DDD 领域驱动设计 1.4.1. 聚合 1.4.2. 参考实践项目 1.5. 数据的操作 1.5.1. CURD 1.5.2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/softwareengineering/programthinking/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
+<meta itemprop="name" content="ProgramThinking">
+<meta itemprop="description" content="💠 开发思想 1.1. 抽象 1.2. 编程范式 1.3. 编程思想 1.3.1. 面向过程 1.3.2. 面向对象 1.3.2.1. OOP 1.3.3. 面向过程和面向对象的对比 1.4. DDD 领域驱动设计 1.4.1. 聚合 1.4.2. 参考实践项目 1.5. 数据的操作 1.5.1. CURD 1.5.2."><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="4222">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ProgramThinking"/>
+<meta name="twitter:description" content="💠 开发思想 1.1. 抽象 1.2. 编程范式 1.3. 编程思想 1.3.1. 面向过程 1.3.2. 面向对象 1.3.2.1. OOP 1.3.3. 面向过程和面向对象的对比 1.4. DDD 领域驱动设计 1.4.1. 聚合 1.4.2. 参考实践项目 1.5. 数据的操作 1.5.1. CURD 1.5.2."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ProgramThinking</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/engineering/"> Engineering </a>
+            </div>
+          <span class="more-meta"> 约 4222 字 </span>
+          <span class="more-meta"> 预计阅读 9 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#开发思想">开发思想</a>
+      <ul>
+        <li><a href="#抽象">抽象</a></li>
+        <li><a href="#编程范式">编程范式</a></li>
+        <li><a href="#编程思想">编程思想</a>
+          <ul>
+            <li><a href="#面向过程">面向过程</a></li>
+            <li><a href="#面向对象">面向对象</a></li>
+            <li><a href="#面向过程和面向对象的对比">面向过程和面向对象的对比</a></li>
+          </ul>
+        </li>
+        <li><a href="#ddd-领域驱动设计">DDD 领域驱动设计</a>
+          <ul>
+            <li><a href="#聚合">聚合</a></li>
+            <li><a href="#参考实践项目">参考实践项目</a></li>
+          </ul>
+        </li>
+        <li><a href="#数据的操作">数据的操作</a>
+          <ul>
+            <li><a href="#curd">CURD</a></li>
+            <li><a href="#cqrs">CQRS</a></li>
+          </ul>
+        </li>
+        <li><a href="#组件模型">组件模型</a>
+          <ul>
+            <li><a href="#soa">SOA</a></li>
+            <li><a href="#msa">MSA</a></li>
+          </ul>
+        </li>
+        <li><a href="#other">Other</a>
+          <ul>
+            <li><a href="#国际化的配置">国际化的配置</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#设计软件的方法">设计软件的方法</a>
+      <ul>
+        <li><a href="#契约式设计">契约式设计</a></li>
+        <li><a href="#精益思想">精益思想</a></li>
+      </ul>
+    </li>
+    <li><a href="#编程习惯">编程习惯</a>
+      <ul>
+        <li><a href="#晓风轻的经验">晓风轻的经验</a>
+          <ul>
+            <li><a href="#接口定义">接口定义</a></li>
+            <li><a href="#日志建议">日志建议</a></li>
+            <li><a href="#异常处理">异常处理</a></li>
+            <li><a href="#工具类规范">工具类规范</a></li>
+          </ul>
+        </li>
+        <li><a href="#代码质量分析">代码质量分析</a>
+          <ul>
+            <li><a href="#checkstyle">Checkstyle</a></li>
+            <li><a href="#findbugs">FindBugs</a></li>
+            <li><a href="#阿里巴巴的代码检查">阿里巴巴的代码检查</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置文件">配置文件</a></li>
+        <li><a href="#软件版本">软件版本</a></li>
+      </ul>
+    </li>
+    <li><a href="#编程语言">编程语言</a>
+      <ul>
+        <li><a href="#类型之分">类型之分</a>
+          <ul>
+            <li><a href="#解释型和编译型">解释型和编译型</a></li>
+            <li><a href="#强类型和弱类型">强类型和弱类型</a></li>
+            <li><a href="#动态和静态类型">动态和静态类型</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#%E5%BC%80%E5%8F%91%E6%80%9D%E6%83%B3">开发思想</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E6%8A%BD%E8%B1%A1">抽象</a></li>
+<li>1.2. <a href="#%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F">编程范式</a></li>
+<li>1.3. <a href="#%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3">编程思想</a>
+<ul>
+<li>1.3.1. <a href="#%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B">面向过程</a></li>
+<li>1.3.2. <a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">面向对象</a>
+<ul>
+<li>1.3.2.1. <a href="#oop">OOP</a></li>
+</ul>
+</li>
+<li>1.3.3. <a href="#%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E5%92%8C%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AF%B9%E6%AF%94">面向过程和面向对象的对比</a></li>
+</ul>
+</li>
+<li>1.4. <a href="#ddd-%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1">DDD 领域驱动设计</a>
+<ul>
+<li>1.4.1. <a href="#%E8%81%9A%E5%90%88">聚合</a></li>
+<li>1.4.2. <a href="#%E5%8F%82%E8%80%83%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE">参考实践项目</a></li>
+</ul>
+</li>
+<li>1.5. <a href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E6%93%8D%E4%BD%9C">数据的操作</a>
+<ul>
+<li>1.5.1. <a href="#curd">CURD</a></li>
+<li>1.5.2. <a href="#cqrs">CQRS</a></li>
+</ul>
+</li>
+<li>1.6. <a href="#%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%9E%8B">组件模型</a>
+<ul>
+<li>1.6.1. <a href="#soa">SOA</a></li>
+<li>1.6.2. <a href="#msa">MSA</a></li>
+</ul>
+</li>
+<li>1.7. <a href="#other">Other</a>
+<ul>
+<li>1.7.1. <a href="#%E5%9B%BD%E9%99%85%E5%8C%96%E7%9A%84%E9%85%8D%E7%BD%AE">国际化的配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95">设计软件的方法</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#%E5%A5%91%E7%BA%A6%E5%BC%8F%E8%AE%BE%E8%AE%A1">契约式设计</a></li>
+<li>2.2. <a href="#%E7%B2%BE%E7%9B%8A%E6%80%9D%E6%83%B3">精益思想</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E7%BC%96%E7%A8%8B%E4%B9%A0%E6%83%AF">编程习惯</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#%E6%99%93%E9%A3%8E%E8%BD%BB%E7%9A%84%E7%BB%8F%E9%AA%8C">晓风轻的经验</a>
+<ul>
+<li>3.1.1. <a href="#%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89">接口定义</a></li>
+<li>3.1.2. <a href="#%E6%97%A5%E5%BF%97%E5%BB%BA%E8%AE%AE">日志建议</a></li>
+<li>3.1.3. <a href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86">异常处理</a></li>
+<li>3.1.4. <a href="#%E5%B7%A5%E5%85%B7%E7%B1%BB%E8%A7%84%E8%8C%83">工具类规范</a></li>
+</ul>
+</li>
+<li>3.2. <a href="#%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90">代码质量分析</a>
+<ul>
+<li>3.2.1. <a href="#checkstyle">Checkstyle</a></li>
+<li>3.2.2. <a href="#findbugs">FindBugs</a></li>
+<li>3.2.3. <a href="#%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%9A%84%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5">阿里巴巴的代码检查</a></li>
+</ul>
+</li>
+<li>3.3. <a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">配置文件</a></li>
+<li>3.4. <a href="#%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC">软件版本</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">编程语言</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#%E7%B1%BB%E5%9E%8B%E4%B9%8B%E5%88%86">类型之分</a>
+<ul>
+<li>4.1.1. <a href="#%E8%A7%A3%E9%87%8A%E5%9E%8B%E5%92%8C%E7%BC%96%E8%AF%91%E5%9E%8B">解释型和编译型</a></li>
+<li>4.1.2. <a href="#%E5%BC%BA%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%B1%E7%B1%BB%E5%9E%8B">强类型和弱类型</a></li>
+<li>4.1.3. <a href="#%E5%8A%A8%E6%80%81%E5%92%8C%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B">动态和静态类型</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-11-05 18:17:48</p>
+<hr>
+<h1 id="开发思想">开发思想</h1>
+<blockquote>
+<p>有关开发的理论性思想,编写,测试,部署等</p>
+</blockquote>
+<h2 id="抽象">抽象</h2>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513062&amp;idx=1&amp;sn=a3b4a2962d8e82471192d9606b0a2722&amp;scene=21#wechat_redirect">码农翻身:抽象：程序员必备的能力 </a></li>
+</ul>
+<blockquote>
+<p>稍微注意一下就会发现: 抽象层次越高，接口的语意就越模糊，适用的范围就越广，到最后就会变成数学模型或者概念。<br>
+但是抽象成数学模型和算法通常是可遇而不可求的， 这种情况下，我们需要退而求其次，试图抽象成若干个正交的概念，来降低复杂度。<br>
+你在处理x轴相关的事情时，不用考虑其他的y和z 相关的东西，因为你知道他们不会受到影响， 这样问题的复杂度就从3维一下子下降到1维！更容易把握了。<br>
+如果你说了，我的整个系统还没法抽象成正交的概念， 那只好再退一步，在局部使用接口。<br>
+其实 一组定义良好的接口一定是正交的，不然的话接口之间的依赖就会让实现非常麻烦。</p>
+<blockquote>
+<p>在著名的《设计模式》一书中，其实在反复强调一点: 发现变化并且封装变化，针对接口编程而不是实现编程。 很多人看书是只关注具体的模式，而忽略了模式的本质目的。</p>
+</blockquote>
+</blockquote>
+<p>抽象能力的高低，很大程度上反映了一个程序员的能力的高低</p>
+<ul>
+<li><a href="http://ifeve.com/%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%a7%91%e5%ad%a6%e4%b8%ad%e6%8a%bd%e8%b1%a1%e7%9a%84%e5%a5%bd%e5%a4%84%e4%b8%8e%e9%97%ae%e9%a2%98-%e4%bc%aa%e5%85%b1%e4%ba%ab%e5%ae%9e%e4%be%8b%e5%88%86%e6%9e%90/">计算机科学中抽象的好处与问题—伪共享实例分析</a><code>计算机科学中的任何问题都可以通过加上一层间接层来解决，这是很正确的，但是也正是因为一层一层的抽象和包装，导致出了问题后很难定位，你都不知道问题究竟是出现在哪一层。所以要想提高技术水平不仅要知其然（看得见最顶层的包装）也要知其所以然（看得见底层的包装），每一层如果都懂或者说了解一些，那么出了问题很大程度上都可以凭直觉定位，即使不能凭直觉也可以通过各种手段debug，只会最顶层的抽象很多时候就只能望bug兴叹了。</code></li>
+</ul>
+<hr>
+<h2 id="编程范式">编程范式</h2>
+<blockquote>
+<p><a href="/Skills/ProgrammingParadigm.md">编程范式详情</a></p>
+</blockquote>
+<hr>
+<h2 id="编程思想">编程思想</h2>
+<h3 id="面向过程">面向过程</h3>
+<blockquote>
+<p>只有数据和函数, 使用函数改变数据状态</p>
+</blockquote>
+<p>一种以过程为中心的编程思想</p>
+<h3 id="面向对象">面向对象</h3>
+<blockquote>
+<p>OO  Object Oriented</p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.jdon.com/48231">参考: 再见面向对象编程？</a></p>
+</blockquote>
+<blockquote>
+<p>思考:</p>
+<ul>
+<li>遇到需求时, 先分析需要哪些独立的实体, 然后分析用户的行为, 行为就是API</li>
+<li>实体的基本属性和行为确定好, 并且确定好各自的生命周期(一般是属性, 状态的变化)</li>
+<li>并且要注意设计时要尽量解耦, 即使需求上是和时间, 天气, 等一些外部状态影响的, 但是也应该在此之上抽象, 解耦, 方便测试和开发</li>
+</ul>
+<blockquote>
+<ul>
+<li>例如 <code>活动</code> 具有 开始时间和结束时间 的需求, 如果只用时间去设计行为的话, 测试的时候就需要去模拟那些时间, 如果引入<code>状态</code>这个属性(开启,关闭)</li>
+<li>就可以方便的调试了, 只需更改这个状态即可控制 活动 这个对象的行为, 当然, 变化的时间也是通过控制 <code>状态</code> 来控制 活动 的</li>
+</ul>
+</blockquote>
+</blockquote>
+<ul>
+<li>面向对象被广泛应用于大型项目, 但是大型项目也不应只有这一种设计思想</li>
+<li><code>编写出完成需求的代码不难, 难的是写出, 优雅, 简洁, 设计良好, 可读性, 扩展性高的代码</code></li>
+</ul>
+<h4 id="oop">OOP</h4>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Object-oriented_programming">维基 OOP</a> | <a href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1">中文版</a></p>
+</blockquote>
+<h3 id="面向过程和面向对象的对比">面向过程和面向对象的对比</h3>
+<blockquote>
+<p>示例 把大象塞进冰箱:</p>
+<blockquote>
+<p>面向过程 冰箱开门() 冰箱装进(大象) 冰箱关门()
+面向对象 冰箱.开门().装入(大象).关门()</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>面向过程
+<ul>
+<li>优点：性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、Linux/Unix等一般采用面向过程开发，性能是最重要的因素。</li>
+<li>缺点：没有面向对象易维护、易复用、易扩展</li>
+</ul>
+</li>
+<li>面向对象
+<ul>
+<li>优点：易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统更加灵活、更加易于维护</li>
+<li>缺点：性能比面向过程低</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="ddd-领域驱动设计">DDD 领域驱动设计</h2>
+<blockquote>
+<p><a href="http://www.jdon.com/ddd.html">领域驱动设计(DDD:Domain-Driven Design)</a><code>入门贴</code>
+<a href="https://github.com/gdut-yy/Domain-Driven-Design-zh">领域驱动设计：软件核心复杂性应对之道</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://ishare.iask.sina.com.cn/f/69200951.html">领域驱动设计 软件核心复杂性应对之道 Eric J. Evans 在线阅读</a>
+<a href="http://www.infoq.com/cn/minibooks/domain-driven-design-quickly">领域驱动设计精简版 </a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://kb.cnblogs.com/page/117717/">参考博客</a> | <a href="http://www.cnblogs.com/netfocus/p/3307971.html">讨论</a> | <a href="http://www.cnblogs.com/netfocus/archive/2011/10/10/2204949.html">基础</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/netfocus/archive/2012/09/08/2676985.html">参考: 危险的DDD聚合根</a> 初步感受是DDD禁不起变化, 必须要在起初就设计好一个完备的体系
+<a href="http://www.jdon.com/47313">参考: DDD应用的思考</a><code>提出了关于领域设计的困惑</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://juejin.cn/post/7304561386889019418?searchId=20241104165016B305E43F7CB9012227E2">【免费】小傅哥 DDD 开发小册如果在面试的时候，面试官问你DDD是什么，你怎么解释？是不是感觉DDD的资料也看了不少， - 掘金</a><br>
+<a href="https://juejin.cn/post/7066979682947858468">怎么说服领导，能让我用DDD架构肝项目？ DD - 掘金</a></p>
+</blockquote>
+<p>相比于MVC，简单来说目前的项目都会使用到很多组件，调度，MQ，OLAP数据库，图数据库，缓存，RPC。MVC就只能都放在C层即Service包内</p>
+<h3 id="聚合">聚合</h3>
+<p>聚合根的修改行为应该属于聚合根实体对象自己，用聚合根行为守护其内部状态的一致性是DDD设计核心，如果聚合根内部的状态直接暴露给外界（通过领域服务）任意修改，那么会导致状态变化混乱，难以调试和跟踪。</p>
+<ul>
+<li>现在书写的这个项目就和这个理念相一致, 但是总说是OOP 没有提及DDD <em>TODO</em>
+<ul>
+<li>整个系统中涉及到的实体对象, 需要持久化的属就独立出来作为一个PO对象, 然后Spring Data JPA 接管DAO操作</li>
+<li>然后在对象中建立 修改PO对象行为 的方法, 而不是以往 MVC 那样的设计, 业务全在Service里面, 对实体自身属性的基本操作也在Service里面</li>
+</ul>
+</li>
+</ul>
+<h3 id="参考实践项目">参考实践项目</h3>
+<blockquote>
+<p><a href="https://github.com/tangxuehua/enode">enode</a><code>C#实现</code><br>
+<a href="https://github.com/liangzeng/cqrs">CQRS</a><br>
+<a href="https://github.com/alibaba/COLA">alibaba/COLA</a><br>
+<a href="https://github.com/gaotingwang/ddd-demo">gaotingwang/ddd-demo: DDD落地实践</a><br>
+<a href="https://github.com/AmosWang0626/think-cola">AmosWang0626/think-cola: 本项目结合COLA（整洁面向对象分层架构）4.0 实现</a></p>
+</blockquote>
+<hr>
+<h2 id="数据的操作">数据的操作</h2>
+<h3 id="curd">CURD</h3>
+<h3 id="cqrs">CQRS</h3>
+<blockquote>
+<p><a href="http://www.cqrs.nu/">www.cqrs.nu</a><code>CQRS Guides</code><br>
+<a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing">event-sourcing</a>| <a href="https://docs.microsoft.com/zh-cn/azure/architecture/patterns/event-sourcing">中文版</a>   <code>微软关于azure的技术性文档</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://ookami86.github.io/event-sourcing-in-practice/">event-sourcing-in-practice</a>
+<a href="https://www.cnblogs.com/netfocus/category/361988.html">参考:  CQRS &amp; Event Sourcing </a><br>
+<a href="https://www.jianshu.com/p/9a3f8d514fcd">参考: 领域驱动设计的实践 – CQRS &amp; Event Sourcing</a> <code>图文并茂的讲解CQRS思想</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/kloiasoft/eventapis">eventapis</a><code>Java实现的CQRS</code>
+<a href="http://cqrsjourney.github.io/">CQRS journey</a> <code>微软团队的项目</code></p>
+</blockquote>
+<hr>
+<h2 id="组件模型">组件模型</h2>
+<h3 id="soa">SOA</h3>
+<blockquote>
+<p><a href="http://www.jdon.com/soa.html">参考: SOA面向服务架构</a></p>
+</blockquote>
+<p><em><a href="http://www.jdon.com/45857">Spring Web 应用的最大败笔</a></em></p>
+<ul>
+<li>传统意义上的SOA 内部封装的是数据表的DTO 也被称为 失血模型,贫血模型,  从而导致SOA服务内部腐烂堵塞，违背SOA自治和可用性等原则约束
+<ul>
+<li>我现在使用Java的SpringMVC进行开发的东西, MVC架构, 然后JavaBean, Dao层或者JPA的Repository, Service层, Controller层, 而且还使用了好几年了</li>
+</ul>
+<ol>
+<li>Web层负责处理用户输入，并返回正确的响应返回给用户。 web层与服务层通信。</li>
+<li>服务层作为一个事务边界。它也负责授权和包含我们的应用程序的业务逻辑。服务层管理的域模型对象，并与其他服务和存储库层进行通信。</li>
+<li>存储库/数据访问层负责与所使用的数据的存储进行通信。</li>
+</ol>
+<ul>
+<li>正如这个毕业设计的项目  <a href="https://github.com/Kuangcp/Graduate">Graduate</a>, 显然的都具有如上提到的各种缺陷,</li>
+<li>每一个 DTO 只具有属性, 而没有方法, 一个DTO就要对应一个服务, 服务之间再相互注入, 就会有很有依赖, 甚至循环依赖</li>
+</ul>
+</li>
+</ul>
+<h3 id="msa">MSA</h3>
+<blockquote>
+<p>微服务</p>
+</blockquote>
+<blockquote>
+<p>　<a href="https://blog.csdn.net/ztguang/article/details/52894794">参考: SOA 与 MSA（微服务架构）</a>
+<a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513674&amp;idx=1&amp;sn=fbc727b7c8ff6d03f5d53478b6d4e585&amp;chksm=80d67a89b7a1f39ff0c3589a4a4076e323fab18379fc8d085c133b88e4db104f87988b29d246&amp;scene=21#wechat_redirect">码农翻身:从SOA到微服务</a></p>
+</blockquote>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513873&amp;idx=1&amp;sn=2383f099fb353e59649167e723575158&amp;chksm=80d67bd2b7a1f2c4ae61704b8a2bd330764d20f0e2fafa6fdff55c99ea68272b3cff851684cc&amp;scene=21#wechat_redirect">码农翻身:我是一个函数</a> <code>详解了RPC, 也就是RMI(远程过程调用)规范的实现</code></li>
+</ul>
+<blockquote>
+<p><a href="http://www.spring4all.com/article/609">微服务 MSA</a></p>
+</blockquote>
+<h2 id="other">Other</h2>
+<h3 id="国际化的配置">国际化的配置</h3>
+<ul>
+<li>将配置文件按语言分别配置</li>
+<li>然后在加载时设定语言的配置, 然后加载对应文件夹下的配置文件</li>
+</ul>
+<hr>
+<h1 id="设计软件的方法">设计软件的方法</h1>
+<h2 id="契约式设计">契约式设计</h2>
+<blockquote>
+<p>Design by Contract  (Dbc)</p>
+</blockquote>
+<blockquote>
+<p><a href="https://baike.baidu.com/item/%E5%A5%91%E7%BA%A6%E5%BC%8F%E8%AE%BE%E8%AE%A1">百度百科解释 </a></p>
+</blockquote>
+<h2 id="精益思想">精益思想</h2>
+<blockquote>
+<p>持续集成、持续交付、持续部署</p>
+</blockquote>
+<hr>
+<h1 id="编程习惯">编程习惯</h1>
+<h2 id="晓风轻的经验">晓风轻的经验</h2>
+<ul>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/28705206">知乎专栏-程序员你为什么这么累？</a> | <a href="https://github.com/xwjie/PLMCodeTemplate">该专栏对应的源码</a> | <a href="https://xwjie.github.io/rule/">个人站点版, 更为方便</a></p>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/28708259">接口定义</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/28717374">Controller规范</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/28629319">日志建议</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29005176">异常处理规范</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29129469">参数校验和国际化规范</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29199049">工具类规范</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29390147">函数编写建议</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29191233">配置文件的定义</a></li>
+</ol>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> 详细的阅读</p>
+</li>
+</ul>
+<h3 id="接口定义">接口定义</h3>
+<ul>
+<li>先有统一的接口定义规范，然后有AOP实现。先有思想再有技术。</li>
+<li>现在知道为什么要返回统一的一个ResultBean了：
+<ul>
+<li>为了统一格式</li>
+<li>为了应用AOP</li>
+<li>为了包装异常信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="日志建议">日志建议</h3>
+<h3 id="异常处理">异常处理</h3>
+<ul>
+<li>所以，我对开发人员的要求就是，绝大部分场景，不允许捕获异常，不要乱加空判断。只有明显不需要关心的异常，如关闭资源的时候的io异常，可以捕获然后什么都不干，其他时候，不允许捕获异常，都抛出去，到controller处理。空判断大部分时候不需要，你如果写了空判断，你就必须测试为空和不为空二种场景，要么就不要写空判断。</li>
+<li>强调，有些空判断是要的，如：参数是用户输入的情况下。但是，大部分场景是不需要的（我们的IT系统里面，一半以上不需要），如参数是其它系统传过来，或者其他地方获取的传过来的，99.99%都不会为空，你判断来干嘛？就抛一个空指针到前台怎么啦？何况基本上不会出现。</li>
+<li>总结：
+<ul>
+<li>开发组长定义好异常，异常继承RuntimeException。</li>
+<li>不允许开发人员捕获异常。（异常上对开发人员就这点要求！异常都抛出到controller上用AOP处理）</li>
+<li>后台（如队列等）异常一定要有通知机制，要第一时间知道异常。</li>
+<li>少加空判断，加了空判断就要测试为空的场景！</li>
+</ul>
+</li>
+</ul>
+<h3 id="工具类规范">工具类规范</h3>
+<ol>
+<li>方法参数要抽象(尽量往上找到父类和接口), 返回值要具体</li>
+<li>隐藏实现: 不要在业务代码中直接调用三方工具, 应该自己写一个类, 然后调用三方库的方法, 方便以后修改</li>
+<li>多使用重载编写功能齐全的对外接口和方法</li>
+<li>单独存放, 单独维护,</li>
+</ol>
+<hr>
+<blockquote>
+<p>优先使用组合而不是继承, 继承破坏了封装性, 因为父类的很多细节对子类是可见的, 父类的变化可能极大的影响子类<br>
+面向接口编程, 而不是实现编程</p>
+</blockquote>
+<h2 id="代码质量分析">代码质量分析</h2>
+<ul>
+<li>测试对代码的覆盖率</li>
+<li>代码的格式是否清晰，有助于差异比较和可读性</li>
+<li>是否很可能会出现NPE</li>
+<li>是否忘记了域对象中的equals和hashCode方法</li>
+</ul>
+<h3 id="checkstyle">Checkstyle</h3>
+<h3 id="findbugs">FindBugs</h3>
+<h3 id="阿里巴巴的代码检查">阿里巴巴的代码检查</h3>
+<hr>
+<h2 id="配置文件">配置文件</h2>
+<p>千万业务代码里面不要和读取配置的代码耦合在一起。切记！</p>
+<hr>
+<ol>
+<li>优秀工程师所具备的能力：
+<ul>
+<li>将现实问题转换为计算机问题的数学能力</li>
+<li>对于语言本身的工具链的熟悉程度（最简单）</li>
+<li>计算机体系知识的掌握能力</li>
+<li>对所有经验进行形而上的能力</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="软件版本">软件版本</h2>
+<blockquote>
+<p><a href="https://semver.org/lang/zh-CN/">语义化版本 SemVer </a></p>
+</blockquote>
+<hr>
+<h1 id="编程语言">编程语言</h1>
+<h2 id="类型之分">类型之分</h2>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/19918532">弱类型、强类型、动态类型、静态类型语言的区别是什么？</a></p>
+</blockquote>
+<h3 id="解释型和编译型">解释型和编译型</h3>
+<ul>
+<li>在 80 90 年代，边界较为清晰，类C语言是编译型，Perl和Python是解释型。但Java是两者都有</li>
+<li>基于JVM来划分的边界是：该语言是否将源码编译为类文件并且执行，不产生类文件的语言会由解释器逐行执行。有些语言既有编译器又有解释器，有些是既有解释器又有产生字节码的即时编译器JIT</li>
+</ul>
+<h3 id="强类型和弱类型">强类型和弱类型</h3>
+<ul>
+<li><code>强类型</code> 偏向于不容忍隐式类型转换。
+<ul>
+<li>例如Python中int就不能直接转为string，Java同理 但是Java有(编译期)语法糖会在需要的时候隐式添加toString</li>
+</ul>
+</li>
+<li><code>弱类型</code> 偏向于容忍隐式类型转换。
+<ul>
+<li>例如C语言中 int 和 char 可以互换</li>
+</ul>
+</li>
+</ul>
+<h3 id="动态和静态类型">动态和静态类型</h3>
+<ul>
+<li>动态类型语言，变量在不同的时间可能会有不同的类型 动态类型语言是跟踪变量的值的类型信息，静态类型语言是跟踪变量的类型信息</li>
+<li>静态类型 在编译期就确定下变量的类型，因为类型错误而无法做的事情是语法错误</li>
+<li>动态类型 在运行期才能确定变量的类型，编译期不能得以确定，因为类型错误而无法做的事情是运行时错误</li>
+</ul>
+<hr>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/ecosystem/poi/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">POI</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/ecosystem/querydsl/">
+            <span class="next-text nav-default">Querydsl</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

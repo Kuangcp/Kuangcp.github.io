@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Practice - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 问题实践 1.1. IDEA调优 1.2. FD泄漏： Unable to Open Socket File 1.2.1. 查找JVMSocket泄漏 💠 2024-04-12 17:19:59 问题实践 IDEA调优 1 2 3 4 5 6 7 8 9 10 11 -server -Xms1700m # 最小堆 -Xmx1700m # 最" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/tuning/practice/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Practice" />
+<meta property="og:description" content="💠 问题实践 1.1. IDEA调优 1.2. FD泄漏： Unable to Open Socket File 1.2.1. 查找JVMSocket泄漏 💠 2024-04-12 17:19:59 问题实践 IDEA调优 1 2 3 4 5 6 7 8 9 10 11 -server -Xms1700m # 最小堆 -Xmx1700m # 最" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/tuning/practice/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-03-06T14:10:23+00:00" />
+<meta property="article:modified_time" content="2024-03-06T14:10:23+00:00" />
+
+<meta itemprop="name" content="Practice">
+<meta itemprop="description" content="💠 问题实践 1.1. IDEA调优 1.2. FD泄漏： Unable to Open Socket File 1.2.1. 查找JVMSocket泄漏 💠 2024-04-12 17:19:59 问题实践 IDEA调优 1 2 3 4 5 6 7 8 9 10 11 -server -Xms1700m # 最小堆 -Xmx1700m # 最"><meta itemprop="datePublished" content="2024-03-06T14:10:23+00:00" />
+<meta itemprop="dateModified" content="2024-03-06T14:10:23+00:00" />
+<meta itemprop="wordCount" content="736">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Practice"/>
+<meta name="twitter:description" content="💠 问题实践 1.1. IDEA调优 1.2. FD泄漏： Unable to Open Socket File 1.2.1. 查找JVMSocket泄漏 💠 2024-04-12 17:19:59 问题实践 IDEA调优 1 2 3 4 5 6 7 8 9 10 11 -server -Xms1700m # 最小堆 -Xmx1700m # 最"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Practice</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-03-06 </span>
+        
+          <span class="more-meta"> 约 736 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#问题实践">问题实践</a>
+      <ul>
+        <li><a href="#idea调优">IDEA调优</a></li>
+        <li><a href="#fd泄漏-unable-to-open-socket-file">FD泄漏： Unable to Open Socket File</a>
+          <ul>
+            <li><a href="#查找jvmsocket泄漏">查找JVMSocket泄漏</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2024-03-06T14:10:23" title="March 6, 2024">March 6, 2024</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#%E9%97%AE%E9%A2%98%E5%AE%9E%E8%B7%B5">问题实践</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#idea%E8%B0%83%E4%BC%98">IDEA调优</a></li>
+<li>1.2. <a href="#fd%E6%B3%84%E6%BC%8F-unable-to-open-socket-file">FD泄漏： Unable to Open Socket File</a>
+<ul>
+<li>1.2.1. <a href="#%E6%9F%A5%E6%89%BEjvmsocket%E6%B3%84%E6%BC%8F">查找JVMSocket泄漏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-04-12 17:19:59</p>
+<hr>
+<h1 id="问题实践">问题实践</h1>
+<h2 id="idea调优">IDEA调优</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    -server
+</span></span><span class="line"><span class="cl">    -Xms1700m  # 最小堆
+</span></span><span class="line"><span class="cl">    -Xmx1700m  # 最大堆 配成一样是为了避免扩容
+</span></span><span class="line"><span class="cl">    -XX:MetaspaceSize=350m # 只是一个阈值, 达到该阈值才进行 GC
+</span></span><span class="line"><span class="cl">    -XX:MaxMetaspaceSize=350m # 最大值
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    -Xnoclassgc 
+</span></span><span class="line"><span class="cl">    -Xverify:none # 不进行字节码校验
+</span></span><span class="line"><span class="cl">    -XX:+AggressiveOpts # 激进式优化
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    -XX:ReservedCodeCacheSize=320m # IDEA JIT 缓存
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><a href="https://www.opsian.com/blog/aggressive-opts/">参考: Java’s -XX:+AggressiveOpts: Can it slow you down?</a><br>
+<a href="https://mp.weixin.qq.com/s/jqfppqqd98DfAJHZhFbmxA?">参考: JVM参数MetaspaceSize的误解 </a></p>
+</blockquote>
+<hr>
+<h2 id="fd泄漏-unable-to-open-socket-file">FD泄漏： Unable to Open Socket File</h2>
+<blockquote>
+<p><a href="https://www.baeldung.com/linux/jmap-unable-to-open-socket-file-heap-dump">jmap Error “Unable to Open Socket File”</a></p>
+</blockquote>
+<ul>
+<li>不是同用户及用户组 uid和gid</li>
+<li>目标JVM不健康</li>
+<li>目标JVM使用了<code>-XX:+DisableAttachMechanism</code>JVM参数</li>
+<li>执行工具的JVM和目标JVM不是同一个版本（最好保持一致，如果版本相差过大，内存布局设计不一样，就会无法正常解析结果）</li>
+<li>/tmp 目录下无法创建命令使用的临时文件，或是来不及使用就被<code>systemd-tmpfiles</code>清理了 <code>/tmp/.java_pidXXX</code></li>
+</ul>
+<h3 id="查找jvmsocket泄漏">查找JVMSocket泄漏</h3>
+<ul>
+<li>
+<p><a href="https://www.wangbo.im/posts/a-production-bug-leaking-sockets-fd-reproducing-practice/">一次由于网络套接字文件描述符泄露导致线上服务事故原因的排查经历</a></p>
+</li>
+<li>
+<p><code>strace -t -T -f -p pid -e trace=network,close -o strace.out</code></p>
+<ul>
+<li>尝试找到创建socket并没有关闭socket的线程号， 然后进制转换后查看jstack找到线程持有栈关联到相关代码</li>
+</ul>
+</li>
+<li>
+<p>处理过的案例： <a href="https://github.com/apache/dolphinscheduler/blob/d21eb7b1809aa513ced920d5d08575502bde8911/dolphinscheduler-server/src/main/java/org/apache/dolphinscheduler/server/worker/processor/TaskCallbackService.java#L156">Apache DolphinScheduler V1.3.6 channel 未关闭导致socket泄漏</a></p>
+<ul>
+<li>单纯从服务器现场看只能看到worker对master建立了大量socket，而且fd的特殊性无法判断socket真实建立时间</li>
+<li>从worker和master的内存Dump入手，查看大量的socket（出问题时已4w+）会和哪些对象数量异常增多有关</li>
+<li>排查可能异常的对象（优先看Netty和Socket有关的对象），对比上下文代码（优先关注对象创建和销毁处代码），最终定位到泄漏对象为NettyRemoteChannel，以及上述泄漏点</li>
+<li>处理方式： remove前先关闭Channel</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-03-06
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/spring/flux/webflux/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">WebFlux</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/tuning/javaoom/">
+            <span class="next-text nav-default">JavaOOM</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

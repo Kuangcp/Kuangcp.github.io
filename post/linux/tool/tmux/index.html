@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Tmux - Mythos</title>
+  <title>Tmux - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2021-02-03 17:25| Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程序员高效技巧系列 基本操作 新" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Tmux 基本操作 2.1. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2024-09-20 11:52:03 Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/tool/tmux/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/tool/tmux/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Tmux" />
-<meta property="og:description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2021-02-03 17:25| Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程序员高效技巧系列 基本操作 新" />
+<meta property="og:description" content="💠 Tmux 基本操作 2.1. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2024-09-20 11:52:03 Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/tool/tmux/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/tool/tmux/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-02-28T17:43:53+00:00" />
 <meta property="article:modified_time" content="2019-02-28T17:43:53+00:00" />
+
 <meta itemprop="name" content="Tmux">
-<meta itemprop="description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2021-02-03 17:25| Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程序员高效技巧系列 基本操作 新">
-<meta itemprop="datePublished" content="2019-02-28T17:43:53+00:00" />
+<meta itemprop="description" content="💠 Tmux 基本操作 2.1. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2024-09-20 11:52:03 Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程"><meta itemprop="datePublished" content="2019-02-28T17:43:53+00:00" />
 <meta itemprop="dateModified" content="2019-02-28T17:43:53+00:00" />
-<meta itemprop="wordCount" content="344">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="714">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tmux"/>
-<meta name="twitter:description" content="目录 start Tmux 配置 个人配置 键绑定 切换 TPM插件管理 tmux-resurrect maglev copycat Tips 目录 end|2021-02-03 17:25| Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程序员高效技巧系列 基本操作 新"/>
+<meta name="twitter:description" content="💠 Tmux 基本操作 2.1. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2024-09-20 11:52:03 Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,17 +122,23 @@
         <div class="post-category">
             <a href="/categories/%E5%B7%A5%E5%85%B7/"> 工具 </a>
             </div>
-          <span class="more-meta"> 344 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 714 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
+    <li><a href="#tmux">Tmux</a></li>
+    <li><a href="#基本操作">基本操作</a>
+      <ul>
+        <li><a href="#编译安装">编译安装</a></li>
+      </ul>
+    </li>
     <li><a href="#配置">配置</a>
       <ul>
         <li><a href="#个人配置">个人配置</a></li>
@@ -151,62 +153,94 @@
         <li><a href="#copycat">copycat</a></li>
       </ul>
     </li>
+    <li><a href="#advanced">Advanced</a></li>
+    <li><a href="#tips">Tips</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-02-28T17:43:53" title="February 28, 2019">February 28, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#tmux">Tmux</a>
-<ol>
-<li><a href="#%E9%85%8D%E7%BD%AE">配置</a>
-<ol>
-<li><a href="#%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE">个人配置</a></li>
-<li><a href="#%E9%94%AE%E7%BB%91%E5%AE%9A">键绑定</a></li>
-<li><a href="#%E5%88%87%E6%8D%A2">切换</a></li>
+<li><a href="#tmux">Tmux</a></li>
 </ol>
 </li>
-<li><a href="#tpm%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86">TPM插件管理</a>
-<ol>
-<li><a href="#tmux-resurrect">tmux-resurrect</a></li>
-<li><a href="#maglev">maglev</a></li>
-<li><a href="#copycat">copycat</a></li>
+<li>
+<ol start="2">
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">基本操作</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">编译安装</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E9%85%8D%E7%BD%AE">配置</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE">个人配置</a></li>
+<li>3.2. <a href="#%E9%94%AE%E7%BB%91%E5%AE%9A">键绑定</a></li>
+<li>3.3. <a href="#%E5%88%87%E6%8D%A2">切换</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#tpm%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86">TPM插件管理</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#tmux-resurrect">tmux-resurrect</a></li>
+<li>4.2. <a href="#maglev">maglev</a></li>
+<li>4.3. <a href="#copycat">copycat</a></li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li><a href="#advanced">Advanced</a></li>
 </ol>
 </li>
-</ol>
-</li>
+<li>
+<ol start="6">
 <li><a href="#tips">Tips</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-02-03 17:25</em>|</p>
+</li>
+</ul>
+<p>💠 2024-09-20 11:52:03</p>
 <hr>
 <h1 id="tmux">Tmux</h1>
 <blockquote>
 <p><a href="https://wiki.archlinux.org/index.php/Tmux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Arch wiki: tmux</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://www.jianshu.com/p/fd3bbdba9dc9">tmux简洁教程及config关键配置</a>
-<a href="http://cenalulu.github.io/linux/professional-tmux-skills/">参考: 程序员高效技巧系列</a></p>
+<p><a href="https://www.jianshu.com/p/fd3bbdba9dc9">tmux简洁教程及config关键配置</a><br>
+<a href="http://cenalulu.github.io/linux/professional-tmux-skills/">参考: 程序员高效技巧系列</a><br>
+<a href="https://github.com/skywind3000/awesome-cheatsheets/blob/master/tools/tmux.txt">Tmux</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/dustinkirkland/byobu">Byobu</a><code>window manager and terminal multiplexer.</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/tmux-python/libtmux">libtmux</a><code>Python lib操作Tmux动作</code></p>
 </blockquote>
 <hr>
+<h1 id="基本操作">基本操作</h1>
+<ul>
+<li>新建会话 <code>tmux new -s myth</code></li>
+<li>连接会话 <code>tmux a -t test</code></li>
+<li>显示所有 <code>tmux ls</code></li>
+<li>重新加载配置文件 <code>tmux source ~/.tmux.conf</code></li>
+</ul>
 <blockquote>
-<p>基本操作</p>
+<p>快捷键</p>
 </blockquote>
 <ul>
-<li>
-<p>新建会话 <code>tmux new -s myth</code></p>
-</li>
-<li>
-<p>连接会话 <code>tmux a -t test</code></p>
-</li>
-<li>
-<p>显示所有 <code>tmux ls</code></p>
-</li>
-<li>
-<p>重新加载配置文件 <code>tmux source ~/.tmux.conf</code></p>
-</li>
-<li>
-<p>prefix</p>
+<li>prefix
 <ul>
 <li>? 帮助</li>
 <li>s 选择 session</li>
@@ -215,77 +249,127 @@
 <li>j 下 panel</li>
 <li>k 上 panel</li>
 <li>; 最近的 panel</li>
+<li>$ 重命名 session</li>
+<li>, 重命名 panel</li>
+<li>Alt+方向键 往指定方向扩展当前 panel 大小</li>
 </ul>
 </li>
+<li>Alt+方向键 跳转到对应方向的panel上</li>
 </ul>
 <hr>
-<h2 id="配置">配置</h2>
+<h2 id="编译安装">编译安装</h2>
+<blockquote>
+<p>场景： 目标机器Linux内核版本较低，或者是Debian Centos等发行版，源中没有高版本的Tmux，甚至没有Tmux，这个时候通过静态编译安装，能在影响最小的情况下使用上新版本的Tmux</p>
+</blockquote>
+<p>因为低版本Tmux不支持鼠标，导致无法使用滚轮上翻命令输出记录。</p>
+<blockquote>
+<p><a href="https://zhengzexin.com/archives/Tmux_static_compilation/">CentOS 静态编译</a><code>但是在Centos6上没成功 内核3.10 gcc 4.6.8</code></p>
+</blockquote>
+<hr>
+<h1 id="配置">配置</h1>
 <blockquote>
 <p><a href="https://github.com/gpakosz/.tmux">Oh My Tmux!</a></p>
 </blockquote>
-<h3 id="个人配置">个人配置</h3>
+<h2 id="个人配置">个人配置</h2>
 <blockquote>
-<p><a href="https://gitee.com/gin9/Configs/blob/master/Linux/tmux/tmux.conf">Tmux配置文件</a> <code>步骤：</code></p>
+<p><a href="https://gitee.com/gin9/Configs/blob/master/Linux/tmux/tmux.conf">Tmux配置文件</a></p>
 </blockquote>
+<p>步骤</p>
 <ol>
 <li><code>ln -s $(pwd)/tmux.conf ~/.tmux.conf</code></li>
 <li><code>git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm</code></li>
 <li><code>tmux source ~/.tmux.conf</code></li>
 <li><code>Ctrl A, I</code> 等待插件安装完成</li>
 </ol>
+<blockquote>
+<p><a href="https://github.com/gpakosz/.tmux">.tmux</a> tmux配置（和前文的配置效果基本一致）</p>
+</blockquote>
 <hr>
 <blockquote>
 <p>开启鼠标选择与复制</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    set -g mouse on
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    set -g mouse on
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>按住Shift即可照常使用鼠标选中文本</p>
+</div><ol>
+<li>按住Shift即可照常使用鼠标选中文本</li>
+<li>在顶部或底部的tab列表区域可用滚轮快速切换tab</li>
+</ol>
 <hr>
-<h3 id="键绑定">键绑定</h3>
+<h2 id="键绑定">键绑定</h2>
 <blockquote>
 <p>Prefix 默认是 C-b 也就是 Ctrl b</p>
 </blockquote>
-<h3 id="切换">切换</h3>
+<p><a href="https://unix.stackexchange.com/questions/283759/tmux-how-to-bind-a-key-to-launch-shell-command">tmux: how to bind a key to launch shell command?</a></p>
+<ul>
+<li><code>bind-key {key} {action}</code>
+<ul>
+<li><code>bind-key -T root {key} {action}</code> 无需prefix 即可触发key</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>action</p>
+</blockquote>
+<ul>
+<li>send-keys
+<ul>
+<li>例如 <code>bind-key -T root F9 send-keys 'cola' Enter</code> F9即可在终端运行 git-cola</li>
+</ul>
+</li>
+<li>run-shell</li>
+<li>source 和 source-file</li>
+<li>select-pane</li>
+<li>split-window</li>
+</ul>
+<h2 id="切换">切换</h2>
 <ul>
 <li>prefix w 切换 window 或者 Session</li>
 <li>Prefix () 切换 Session</li>
 </ul>
 <hr>
-<h2 id="tpm插件管理">TPM插件管理</h2>
+<h1 id="tpm插件管理">TPM插件管理</h1>
 <ul>
 <li><a href="https://github.com/tmux-plugins/tpm">Tmux Plugin Manager</a> <code>查看Readme下载安装</code></li>
 </ul>
 <blockquote>
 <p><code>git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm</code></p>
 </blockquote>
+<ul>
+<li><a href="https://github.com/tmux-plugins/list">tmux-plugins list 插件列表</a></li>
+</ul>
 <blockquote>
 <p><a href="https://liam.page/2016/09/10/tmux-plugin-resurrect/">参考: 保存和恢复 Tmux 会话 </a></p>
 </blockquote>
+<p><a href="https://github.com/whame/tmux-modal">tmux-modal</a> 快速操作切换和创建 window panel</p>
 <ul>
-<li><code>Prefix I</code> 安装新增的插件</li>
+<li><code>prefix I</code> 安装新增的插件</li>
 </ul>
-<h3 id="tmux-resurrect">tmux-resurrect</h3>
+<h2 id="tmux-resurrect">tmux-resurrect</h2>
 <blockquote>
 <p><a href="https://github.com/tmux-plugins/tmux-resurrect">tmux-resurrect</a><br>
 <a href="https://github.com/tmux-plugins/tmux-continuum">tmux-continuum</a></p>
 </blockquote>
 <p>prefix c-s 保存会话
 prefix c-r 加载历史会话</p>
-<h3 id="maglev">maglev</h3>
+<h2 id="maglev">maglev</h2>
 <blockquote>
 <p><a href="https://github.com/caiogondim/maglev">Github</a></p>
 </blockquote>
-<h3 id="copycat">copycat</h3>
+<h2 id="copycat">copycat</h2>
 <blockquote>
 <p><a href="https://github.com/tmux-plugins/tmux-copycat">Github</a></p>
 </blockquote>
-<p>使用: <code>Prefix /</code> 可用 less 一样的方式搜索</p>
+<p>使用: <code>prefix /</code> 可用 less 一样的方式搜索</p>
+<hr>
+<h1 id="advanced">Advanced</h1>
+<p><a href="https://github.com/tmux/tmux/wiki/Advanced-Use">Github wiki: Advanced use</a></p>
+<hr>
 <h1 id="tips">Tips</h1>
 <blockquote>
 <p><a href="https://superuser.com/questions/1590651/bash-append-path-command-not-found-when-open-tmux">bash: append_path: command not found when open tmux</a></p>
@@ -296,11 +380,11 @@ prefix c-r 加载历史会话</p>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-02-28
         
@@ -315,11 +399,11 @@ prefix c-r 加载历史会话</p>
         <a class="prev" href="/post/java/test/javahamcreset/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">JavaHamcreset</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/script/lua/">
             <span class="next-text nav-default">Lua</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -337,17 +421,17 @@ prefix c-r 加载历史会话</p>
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -355,11 +439,11 @@ prefix c-r 加载历史会话</p>
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -369,16 +453,21 @@ prefix c-r 加载历史会话</p>
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

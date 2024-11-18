@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>MySQL进阶 - Mythos</title>
+  <title>MySQL进阶 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start MySQL进阶 查询 锁 Innodb 事务 幻读 事务隔离级别 事务死锁 性能调优 查看状态变量 统计数据库各表存储和索引大小 存储引擎 InnoDB MyIsAM Tips SQL 片段 目录 end|2022-01-25 01:55| MySQ" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 MySQL进阶 1.1. 查询 1.1.1. SQL执行顺序 1.1.2. 性能优化场景 1.1.3. 条件操作符 1.2. 事务 1.2.1. 幻读 1.2.2. 事务隔离级别 1.2.3. 事务死锁 1.2.4. 隐含事务 1.3. 性能调优 1.3.1. Join 1.3.2. 查看状态变量 1.4." /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/database/mysqladvance/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/database/mysqladvance/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="MySQL进阶" />
-<meta property="og:description" content="目录 start MySQL进阶 查询 锁 Innodb 事务 幻读 事务隔离级别 事务死锁 性能调优 查看状态变量 统计数据库各表存储和索引大小 存储引擎 InnoDB MyIsAM Tips SQL 片段 目录 end|2022-01-25 01:55| MySQ" />
+<meta property="og:description" content="💠 MySQL进阶 1.1. 查询 1.1.1. SQL执行顺序 1.1.2. 性能优化场景 1.1.3. 条件操作符 1.2. 事务 1.2.1. 幻读 1.2.2. 事务隔离级别 1.2.3. 事务死锁 1.2.4. 隐含事务 1.3. 性能调优 1.3.1. Join 1.3.2. 查看状态变量 1.4." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/database/mysqladvance/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/database/mysqladvance/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-16T17:26:16+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:26:16+00:00" />
+
 <meta itemprop="name" content="MySQL进阶">
-<meta itemprop="description" content="目录 start MySQL进阶 查询 锁 Innodb 事务 幻读 事务隔离级别 事务死锁 性能调优 查看状态变量 统计数据库各表存储和索引大小 存储引擎 InnoDB MyIsAM Tips SQL 片段 目录 end|2022-01-25 01:55| MySQ">
-<meta itemprop="datePublished" content="2018-12-16T17:26:16+00:00" />
+<meta itemprop="description" content="💠 MySQL进阶 1.1. 查询 1.1.1. SQL执行顺序 1.1.2. 性能优化场景 1.1.3. 条件操作符 1.2. 事务 1.2.1. 幻读 1.2.2. 事务隔离级别 1.2.3. 事务死锁 1.2.4. 隐含事务 1.3. 性能调优 1.3.1. Join 1.3.2. 查看状态变量 1.4."><meta itemprop="datePublished" content="2018-12-16T17:26:16+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:26:16+00:00" />
-<meta itemprop="wordCount" content="1928">
-
-
-
-<meta itemprop="keywords" content="MySQL," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="2770">
+<meta itemprop="keywords" content="MySQL," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MySQL进阶"/>
-<meta name="twitter:description" content="目录 start MySQL进阶 查询 锁 Innodb 事务 幻读 事务隔离级别 事务死锁 性能调优 查看状态变量 统计数据库各表存储和索引大小 存储引擎 InnoDB MyIsAM Tips SQL 片段 目录 end|2022-01-25 01:55| MySQ"/>
+<meta name="twitter:description" content="💠 MySQL进阶 1.1. 查询 1.1.1. SQL执行顺序 1.1.2. 性能优化场景 1.1.3. 条件操作符 1.2. 事务 1.2.1. 幻读 1.2.2. 事务隔离级别 1.2.3. 事务死锁 1.2.4. 隐含事务 1.3. 性能调优 1.3.1. Join 1.3.2. 查看状态变量 1.4."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,108 +122,132 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
             </div>
-          <span class="more-meta"> 1928 words </span>
-          <span class="more-meta"> 4 mins read </span>
+          <span class="more-meta"> 约 2770 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#查询">查询</a></li>
-    <li><a href="#锁">锁</a>
+    <li><a href="#mysql进阶">MySQL进阶</a>
       <ul>
-        <li><a href="#innodb">Innodb</a></li>
+        <li><a href="#查询">查询</a>
+          <ul>
+            <li><a href="#sql执行顺序">SQL执行顺序</a></li>
+            <li><a href="#性能优化场景">性能优化场景</a></li>
+            <li><a href="#条件操作符">条件操作符</a></li>
+          </ul>
+        </li>
+        <li><a href="#事务">事务</a>
+          <ul>
+            <li><a href="#幻读">幻读</a></li>
+            <li><a href="#事务隔离级别">事务隔离级别</a></li>
+            <li><a href="#事务死锁">事务死锁</a></li>
+            <li><a href="#隐含事务">隐含事务</a></li>
+          </ul>
+        </li>
+        <li><a href="#性能调优">性能调优</a>
+          <ul>
+            <li><a href="#join">Join</a></li>
+            <li><a href="#查看状态变量">查看状态变量</a></li>
+          </ul>
+        </li>
+        <li><a href="#存储引擎">存储引擎</a>
+          <ul>
+            <li><a href="#innodb">InnoDB</a></li>
+            <li><a href="#myisam">MyIsAM</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#事务">事务</a>
+    <li><a href="#tips">Tips</a>
       <ul>
-        <li><a href="#幻读">幻读</a></li>
-        <li><a href="#事务隔离级别">事务隔离级别</a></li>
-        <li><a href="#事务死锁">事务死锁</a></li>
+        <li><a href="#sql-片段">SQL 片段</a></li>
       </ul>
     </li>
-    <li><a href="#性能调优">性能调优</a>
-      <ul>
-        <li><a href="#查看状态变量">查看状态变量</a></li>
-        <li><a href="#统计数据库各表存储和索引大小">统计数据库各表存储和索引大小</a></li>
-      </ul>
-    </li>
-    <li><a href="#存储引擎">存储引擎</a>
-      <ul>
-        <li><a href="#innodb-1">InnoDB</a></li>
-        <li><a href="#myisam">MyIsAM</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#sql-片段">SQL 片段</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-16T17:26:16" title="December 16, 2018">December 16, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#mysql%E8%BF%9B%E9%98%B6">MySQL进阶</a>
-<ol>
-<li><a href="#%E6%9F%A5%E8%AF%A2">查询</a></li>
-<li><a href="#%E9%94%81">锁</a>
-<ol>
-<li><a href="#innodb">Innodb</a></li>
+<li><a href="#mysql%E8%BF%9B%E9%98%B6">MySQL进阶</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E6%9F%A5%E8%AF%A2">查询</a>
+<ul>
+<li>1.1.1. <a href="#sql%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F">SQL执行顺序</a></li>
+<li>1.1.2. <a href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%9C%BA%E6%99%AF">性能优化场景</a></li>
+<li>1.1.3. <a href="#%E6%9D%A1%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%A6">条件操作符</a></li>
+</ul>
 </li>
-<li><a href="#%E4%BA%8B%E5%8A%A1">事务</a>
-<ol>
-<li><a href="#%E5%B9%BB%E8%AF%BB">幻读</a></li>
-<li><a href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB">事务隔离级别</a></li>
-<li><a href="#%E4%BA%8B%E5%8A%A1%E6%AD%BB%E9%94%81">事务死锁</a></li>
-</ol>
+<li>1.2. <a href="#%E4%BA%8B%E5%8A%A1">事务</a>
+<ul>
+<li>1.2.1. <a href="#%E5%B9%BB%E8%AF%BB">幻读</a></li>
+<li>1.2.2. <a href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB">事务隔离级别</a></li>
+<li>1.2.3. <a href="#%E4%BA%8B%E5%8A%A1%E6%AD%BB%E9%94%81">事务死锁</a></li>
+<li>1.2.4. <a href="#%E9%9A%90%E5%90%AB%E4%BA%8B%E5%8A%A1">隐含事务</a></li>
+</ul>
 </li>
-<li><a href="#%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98">性能调优</a>
-<ol>
-<li><a href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F">查看状态变量</a></li>
-<li><a href="#%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%84%E8%A1%A8%E5%AD%98%E5%82%A8%E5%92%8C%E7%B4%A2%E5%BC%95%E5%A4%A7%E5%B0%8F">统计数据库各表存储和索引大小</a></li>
-</ol>
+<li>1.3. <a href="#%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98">性能调优</a>
+<ul>
+<li>1.3.1. <a href="#join">Join</a></li>
+<li>1.3.2. <a href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F">查看状态变量</a></li>
+</ul>
 </li>
-<li><a href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E">存储引擎</a>
-<ol>
-<li><a href="#innodb">InnoDB</a></li>
-<li><a href="#myisam">MyIsAM</a></li>
-</ol>
+<li>1.4. <a href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E">存储引擎</a>
+<ul>
+<li>1.4.1. <a href="#innodb">InnoDB</a></li>
+<li>1.4.2. <a href="#myisam">MyIsAM</a></li>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-<li><a href="#tips">Tips</a>
-<ol>
-<li><a href="#sql-%E7%89%87%E6%AE%B5">SQL 片段</a></li>
+<li>
+<ol start="2">
+<li><a href="#tips">Tips</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#sql-%E7%89%87%E6%AE%B5">SQL 片段</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2022-01-25 01:55</em>|</p>
+</ul>
+<p>💠 2024-11-10 13:59:35</p>
 <hr>
 <h1 id="mysql进阶">MySQL进阶</h1>
-<ul>
-<li><a href="http://www.cnblogs.com/zhxilin/archive/2016/09/30/5923671.html">Mysql Redis UDF 复制</a></li>
-</ul>
 <blockquote>
-<p><a href="http://www.cnblogs.com/wangkangluo1/archive/2012/04/27/2472898.html">参考: shell 下执行mysql 命令</a></p>
+<p><a href="https://github.com/mysql/mysql-server">Github: MySQL Sever</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://blog.csdn.net/whoamiyang/article/details/51901888#commentBox">参考: 轻松理解MYSQL MVCC 实现机制</a></p>
+<p><a href="https://github.com/shockerli/mysql-annotated-5.7.35">Mysql 5.7.35 源码解释</a><br>
+<a href="http://www.cnblogs.com/wangkangluo1/archive/2012/04/27/2472898.html">参考: shell 下执行mysql 命令</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/Snailclimb/JavaGuide/tree/main/docs/database/mysql">JavaGuide: mysql</a><br>
+<a href="https://xiaolincoding.com/mysql/">图解MySQL介绍</a></p>
 </blockquote>
 <h2 id="查询">查询</h2>
 <blockquote>
-<p><a href="https://www.cnblogs.com/sochishun/p/7003513.html">SQL通用优化方案(where优化、索引优化、分页优化、事务优化、临时表优化)</a></p>
+<p><a href="https://www.cnblogs.com/sochishun/p/7003513.html">SQL通用优化方案(where优化、索引优化、分页优化、事务优化、临时表优化)</a><br>
+<a href="/Database/MySQLIndex.md">MySQL 索引</a></p>
 </blockquote>
+<h3 id="sql执行顺序">SQL执行顺序</h3>
 <blockquote>
-<p>SQL 执行顺序： FROM， ON， JOIN，WHERE，GROUP BY，SUM，COUNT，HAVING，SELECT，DISTINCT，ORDER BY，LIMIT<br>
-<a href="https://segmentfault.com/a/1190000024577490">SQL执行顺序（以MySQL为准）</a></p>
+<p><a href="https://segmentfault.com/a/1190000024577490">SQL执行顺序（以MySQL为准）</a></p>
 </blockquote>
+<p>FROM， ON， JOIN，WHERE，GROUP BY，SUM，COUNT，HAVING，SELECT，DISTINCT，ORDER BY，LIMIT</p>
 <ol>
 <li>FROM：先去获取from里面的表，拿到对应的数据，生成虚拟表1。</li>
 <li>ON：对虚拟表1应用ON筛选，符合条件的数据生成虚拟表2。</li>
@@ -241,6 +261,7 @@
 <li>ORDER BY：对虚拟表9中的数据进行指定列的排序，生成虚拟表10。</li>
 <li>LIMIT：取出指定行的记录，生成虚拟表11，返回给查询用户。</li>
 </ol>
+<h3 id="性能优化场景">性能优化场景</h3>
 <blockquote>
 <p>多字段模糊查询</p>
 </blockquote>
@@ -256,7 +277,6 @@
 </ul>
 </li>
 </ol>
-<hr>
 <blockquote>
 <p>分页查询性能优化 <a href="https://www.cnblogs.com/scotth/p/7995856.html">MySQL分页查询的性能优化</a></p>
 </blockquote>
@@ -265,16 +285,31 @@
 <li>子查询法</li>
 <li>只查询索引内字段</li>
 </ul>
-<hr>
 <ol>
-<li>尽量少用select *</li>
-<li>尽量少用or，同时尽量用union all 代替union</li>
+<li>尽量少用 select *, 按需查询字段降低IO成本</li>
+<li>尽量少用 or，同时尽量用 union all 代替 union</li>
 </ol>
-<h2 id="锁">锁</h2>
-<h3 id="innodb">Innodb</h3>
+<h3 id="条件操作符">条件操作符</h3>
 <blockquote>
-<p><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html">InnoDB Locking</a></p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/non-typed-operators.html">操作符</a></p>
 </blockquote>
+<blockquote>
+<p>Tips</p>
+</blockquote>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_in">in</a>
+<ul>
+<li>in的元素个数太多导致SQL长度超出  max_allowed_packet 参数值的问题</li>
+<li>类型强转</li>
+<li>in 左侧表达式为null 或 右侧集合表达式为null时 该部分运算结果为null
+<ul>
+<li><code>AND id NOT IN (null)</code> 等价于 <code>AND id IN (null)</code> 等价于 <code>AND NULL</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h2 id="事务">事务</h2>
 <ul>
 <li>当前会话隔离级别
@@ -332,11 +367,16 @@
 <td style="text-align:left">串行化（serializable）</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
-<td></td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
 <p>需要结合InnoDB引擎具体的锁分析以上隔离级别产生和解决问题的方式</p>
+<ul>
+<li><code>脏读</code> 同一事务内 读取到了其他未提交事务修改后的数据</li>
+<li><code>不可重复读</code> 同一事务内 前后多次读取，数据内容不一致</li>
+<li><code>幻读</code> 同一事务内 前后多次读取，数据总量不一致</li>
+</ul>
 <hr>
 <p>InnoDB通过加间隙锁来防止幻读</p>
 <blockquote>
@@ -362,10 +402,20 @@
 </ul>
 </li>
 </ul>
+<h3 id="隐含事务">隐含事务</h3>
+<blockquote>
+<p>以下语句执行时会创建独立事务</p>
+</blockquote>
+<ul>
+<li>DDL语句，ALTER DATABASE、ALTER EVENT、ALTER PROCEDURE、ALTER TABLE、ALTER VIEW、CREATE TABLE、DROP TABLE、RENAME TABLE、TRUNCATE TABLE等；</li>
+<li>修改MYSQL架构的语句，CREATE USER、DROP USER、GRANT、RENAME USER、REVOKE、SET PASSWORD；</li>
+<li>管理语句，ANALYZE TABLE、CACHE INDEX、CHECK TABLE、LOAD INDEX INTO CACHE、OPTIMIZE TABLE、REPAIR TABLE等</li>
+</ul>
+<p>需要注意业务逻辑事务中不能包含这些语句，否则无法保证数据一致性，比如在线编辑表单的功能。 但是PG可以实现在同一事务内。</p>
 <hr>
 <h2 id="性能调优">性能调优</h2>
 <blockquote>
-<p><a href="https://dev.mysql.com/doc/refman/5.7/en/using-explain.html">Doc: Optimizing Queries with EXPLAIN</a><code>依据 explain 输出结果调优</code></p>
+<p><a href="/Database/MySQLIndex.md">MySQL 索引 Explain等</a></p>
 </blockquote>
 <blockquote>
 <p><a href="http://www.piaoyi.org/database/MySQL-INNODB-SELECT-COUNT.html">MySQL下INNODB引擎的SELECT COUNT(*)性能优化及思考</a></p>
@@ -389,11 +439,45 @@
 <li>精简SQL大小，避免操作无需操作的字段，例如更新仅更新一个字段，但是SQL写了更新所有字段</li>
 <li>for循环执行SQL</li>
 </ol>
+<h3 id="join">Join</h3>
+<blockquote>
+<p>JOIN 的SQL写法</p>
+</blockquote>
+<ol>
+<li>LEFT JOIN 左连接,左边为驱动表,右边为被驱动表.</li>
+<li>RIGHT JOIN 右连接,右边为驱动表,左边为被驱动表.</li>
+<li>INNER JOIN 内连接, mysql会选择数据量比较小的表作为驱动表，大表作为被驱动表.</li>
+</ol>
+<p>可通过EXPLANIN查看SQL语句的执行计划,EXPLANIN分析的第一行的表即是驱动表.</p>
+<blockquote>
+<p>尽量<strong>小表驱动大表</strong> 如果反过来则需要连接20w次 <code>for(20万){    for(20条){}    }</code></p>
+</blockquote>
+<blockquote>
+<p><a href="/Database/MySQLIndex.md#explain">MySQL Explain</a> 中 Extra字段中会提到 MySQL内部使用到的Join类型</p>
+</blockquote>
+<ul>
+<li>Using join buffer (Block Nested Loop)</li>
+<li>Using join buffer (Batched Key Access)</li>
+<li>Using join buffer (hash join)</li>
+</ul>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/nested-join-optimization.html">Nested Join Optimization</a></p>
+<blockquote>
+<p>Join or</p>
+</blockquote>
+<ul>
+<li><code>select apply a left join user b on a.name = b.name or a.addr = b.addr</code>
+<ul>
+<li>改写为 <code>select apply a left join user b on a.name = b.name left join user c on a.addr = c.addr</code></li>
+<li>使用到user表字段的地方需要改写判断 b 和 c。</li>
+</ul>
+</li>
+</ul>
 <hr>
 <blockquote>
 <p><a href="https://www.v2ex.com/t/678312">我们公司不让开发使用 join 包括 left join,不让用子查询，合理吗？</a>
 <a href="https://www.v2ex.com/t/557498">业务多表 join，单条 SQL 梭哈一把好还是多次查询在代码整合好</a></p>
 </blockquote>
+<hr>
 <h3 id="查看状态变量">查看状态变量</h3>
 <blockquote>
 <p><a href="https://dev.mysql.com/doc/refman/5.7/en/show-variables.html"> SHOW VARIABLES</a></p>
@@ -406,32 +490,13 @@
 </ul>
 </li>
 </ul>
-<h3 id="统计数据库各表存储和索引大小">统计数据库各表存储和索引大小</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql">    <span class="k">select</span>  <span class="n">table_schema</span> <span class="k">as</span> <span class="s1">&#39;DB&#39;</span><span class="p">,</span>
-    <span class="k">table_name</span> <span class="k">as</span> <span class="s1">&#39;TABLE&#39;</span><span class="p">,</span>
-    <span class="n">table_rows</span> <span class="k">as</span> <span class="s1">&#39;TOTAL&#39;</span><span class="p">,</span>
-    <span class="k">truncate</span><span class="p">(</span><span class="n">data_length</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="s1">&#39;Data MiB&#39;</span><span class="p">,</span>
-    <span class="k">truncate</span><span class="p">(</span><span class="n">index_length</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="s1">&#39;Index MiB&#39;</span>
-    <span class="k">from</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span>
-    <span class="k">where</span> <span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;test-db&#39;</span>
-    <span class="k">order</span> <span class="k">by</span> <span class="n">data_length</span> <span class="k">desc</span><span class="p">,</span> <span class="n">index_length</span> <span class="k">desc</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="存储引擎">存储引擎</h2>
-<h3 id="innodb-1">InnoDB</h3>
-<p>行溢出</p>
+<hr>
+<h2 id="存储引擎">存储引擎</h2>
+<blockquote>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/storage-engines.html">Alternative Storage Engines</a></p>
+</blockquote>
+<h3 id="innodb">InnoDB</h3>
+<p><a href="/Database/MySQLInnodb.md">InnoDB</a></p>
 <h3 id="myisam">MyIsAM</h3>
 <hr>
 <h1 id="tips">Tips</h1>
@@ -445,21 +510,50 @@
 <li>事务回滚，插入语句报错，MySQL自增锁优化</li>
 </ul>
 </li>
+<li>
+<p><a href="https://www.percona.com/">Percona Doc</a> | <a href="https://hub.docker.com/_/percona">DockerHub</a></p>
+</li>
 </ul>
 <h2 id="sql-片段">SQL 片段</h2>
 <ol>
 <li>删除库下所有表 <code>select concat('drop table ',table_name,';') from information_schema.TABLES where table_schema='DATABASE_NAME';</code></li>
 </ol>
+<blockquote>
+<p>统计表和索引的存储占用</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">table_schema</span><span class="w">                         </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;DB&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">table_name</span><span class="w">                              </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;TABLE&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">table_rows</span><span class="w">                              </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;TOTAL&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">truncate</span><span class="p">(</span><span class="n">data_length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;Data MiB&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">truncate</span><span class="p">(</span><span class="n">index_length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s1">&#39;Index MiB&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">tables</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">table_schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;test-db&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">data_length</span><span class="w"> </span><span class="k">desc</span><span class="p">,</span><span class="w"> </span><span class="n">index_length</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：table_rows是预估值，和实际值相差40%-50%，实际值需要看count(*), analyze table table_name 可提高近似率，但仍偏差较大</p>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-16
         
@@ -476,11 +570,11 @@
         <a class="prev" href="/post/database/oracleperformances/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Oracle性能优化</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/database/mongodb/">
             <span class="next-text nav-default">MangoDB</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -498,17 +592,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -516,11 +610,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -530,16 +624,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

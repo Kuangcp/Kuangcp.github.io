@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Java中的序列化 - Mythos</title>
+  <title>Java中的序列化 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 序列化 serialVersionUID 主流编解码框架 MessagePack Protobuf Thrift Marshalling 目录 end|2021-06-02 23:06| 序列化 码农翻身:序列化： 一个老家伙的咸鱼翻身 对象转化为二进制流 反序列化生成对象时不会调用构造器 serialVersionUID" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Java中的序列化 1.1. Serializable 1.1.1. JDK序列化和反序列化 编解码框架 2.1. LZ4 2.2. fast-serialization 2.3. Snappy 2.4. Kryo 2.5. JSON 2.6. Protobuf 2.7. Marshalling Tips 3.1. JSON字符串反序列化时泛型丢失问题 💠 2024-10-10 20:43:07 Java" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/javaserialize/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/javaserialize/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Java中的序列化" />
-<meta property="og:description" content="目录 start 序列化 serialVersionUID 主流编解码框架 MessagePack Protobuf Thrift Marshalling 目录 end|2021-06-02 23:06| 序列化 码农翻身:序列化： 一个老家伙的咸鱼翻身 对象转化为二进制流 反序列化生成对象时不会调用构造器 serialVersionUID" />
+<meta property="og:description" content="💠 Java中的序列化 1.1. Serializable 1.1.1. JDK序列化和反序列化 编解码框架 2.1. LZ4 2.2. fast-serialization 2.3. Snappy 2.4. Kryo 2.5. JSON 2.6. Protobuf 2.7. Marshalling Tips 3.1. JSON字符串反序列化时泛型丢失问题 💠 2024-10-10 20:43:07 Java" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javaserialize/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/javaserialize/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-04-05T22:38:44+00:00" />
 <meta property="article:modified_time" content="2019-04-05T22:38:44+00:00" />
+
 <meta itemprop="name" content="Java中的序列化">
-<meta itemprop="description" content="目录 start 序列化 serialVersionUID 主流编解码框架 MessagePack Protobuf Thrift Marshalling 目录 end|2021-06-02 23:06| 序列化 码农翻身:序列化： 一个老家伙的咸鱼翻身 对象转化为二进制流 反序列化生成对象时不会调用构造器 serialVersionUID">
-<meta itemprop="datePublished" content="2019-04-05T22:38:44+00:00" />
+<meta itemprop="description" content="💠 Java中的序列化 1.1. Serializable 1.1.1. JDK序列化和反序列化 编解码框架 2.1. LZ4 2.2. fast-serialization 2.3. Snappy 2.4. Kryo 2.5. JSON 2.6. Protobuf 2.7. Marshalling Tips 3.1. JSON字符串反序列化时泛型丢失问题 💠 2024-10-10 20:43:07 Java"><meta itemprop="datePublished" content="2019-04-05T22:38:44+00:00" />
 <meta itemprop="dateModified" content="2019-04-05T22:38:44+00:00" />
-<meta itemprop="wordCount" content="635">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1117">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java中的序列化"/>
-<meta name="twitter:description" content="目录 start 序列化 serialVersionUID 主流编解码框架 MessagePack Protobuf Thrift Marshalling 目录 end|2021-06-02 23:06| 序列化 码农翻身:序列化： 一个老家伙的咸鱼翻身 对象转化为二进制流 反序列化生成对象时不会调用构造器 serialVersionUID"/>
+<meta name="twitter:description" content="💠 Java中的序列化 1.1. Serializable 1.1.1. JDK序列化和反序列化 编解码框架 2.1. LZ4 2.2. fast-serialization 2.3. Snappy 2.4. Kryo 2.5. JSON 2.6. Protobuf 2.7. Marshalling Tips 3.1. JSON字符串反序列化时泛型丢失问题 💠 2024-10-10 20:43:07 Java"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,60 +122,115 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 635 words </span>
-          <span class="more-meta"> 2 mins read </span>
+          <span class="more-meta"> 约 1117 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#serialversionuid">serialVersionUID</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#messagepack">MessagePack</a></li>
-    <li><a href="#protobuf">Protobuf</a></li>
-    <li><a href="#thrift">Thrift</a></li>
-    <li><a href="#marshalling">Marshalling</a></li>
+    <li><a href="#java中的序列化">Java中的序列化</a>
+      <ul>
+        <li><a href="#serializable">Serializable</a>
+          <ul>
+            <li><a href="#jdk序列化和反序列化">JDK序列化和反序列化</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#编解码框架">编解码框架</a>
+      <ul>
+        <li><a href="#lz4">LZ4</a></li>
+        <li><a href="#fast-serialization">fast-serialization</a></li>
+        <li><a href="#snappy">Snappy</a></li>
+        <li><a href="#kryo">Kryo</a></li>
+        <li><a href="#json">JSON</a></li>
+        <li><a href="#protobuf">Protobuf</a></li>
+        <li><a href="#marshalling">Marshalling</a></li>
+      </ul>
+    </li>
+    <li><a href="#tips">Tips</a>
+      <ul>
+        <li><a href="#json字符串反序列化时泛型丢失问题">JSON字符串反序列化时泛型丢失问题</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-04-05T22:38:44" title="April 5, 2019">April 5, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E5%BA%8F%E5%88%97%E5%8C%96">序列化</a>
-<ol>
-<li><a href="#serialversionuid">serialVersionUID</a></li>
+<li><a href="#java%E4%B8%AD%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96">Java中的序列化</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#serializable">Serializable</a>
+<ul>
+<li>1.1.1. <a href="#jdk%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96">JDK序列化和反序列化</a></li>
+</ul>
 </li>
-<li><a href="#%E4%B8%BB%E6%B5%81%E7%BC%96%E8%A7%A3%E7%A0%81%E6%A1%86%E6%9E%B6">主流编解码框架</a>
-<ol>
-<li><a href="#messagepack">MessagePack</a></li>
-<li><a href="#protobuf">Protobuf</a></li>
-<li><a href="#thrift">Thrift</a></li>
-<li><a href="#marshalling">Marshalling</a></li>
-</ol>
+</ul>
 </li>
+<li>
+<ol start="2">
+<li><a href="#%E7%BC%96%E8%A7%A3%E7%A0%81%E6%A1%86%E6%9E%B6">编解码框架</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-06-02 23:06</em>|</p>
+<ul>
+<li>2.1. <a href="#lz4">LZ4</a></li>
+<li>2.2. <a href="#fast-serialization">fast-serialization</a></li>
+<li>2.3. <a href="#snappy">Snappy</a></li>
+<li>2.4. <a href="#kryo">Kryo</a></li>
+<li>2.5. <a href="#json">JSON</a></li>
+<li>2.6. <a href="#protobuf">Protobuf</a></li>
+<li>2.7. <a href="#marshalling">Marshalling</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#tips">Tips</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#json%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%97%B6%E6%B3%9B%E5%9E%8B%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98">JSON字符串反序列化时泛型丢失问题</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-10-10 20:43:07</p>
 <hr>
-<h1 id="序列化">序列化</h1>
+<h1 id="java中的序列化">Java中的序列化</h1>
 <blockquote>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513589&amp;idx=1&amp;sn=d402d623d9121453f1e570395c7f99d7&amp;chksm=80d67a36b7a1f32054d4c779dd26e8f97a075cf4d9ed1281f16d09f1df50a29319cd37520377&amp;scene=21#wechat_redirect">码农翻身:序列化： 一个老家伙的咸鱼翻身</a> <code>对象转化为二进制流</code></p>
 </blockquote>
+<ul>
+<li>序列化： 将数据结构或对象转换成二进制串的过程</li>
+<li>反序列化：将在序列化过程中所生成的二进制串转换成数据结构或者对象的过程
+<ul>
+<li>反序列化生成对象时不会调用对应类的构造器</li>
+</ul>
+</li>
+</ul>
 <blockquote>
-<p>反序列化生成对象时不会调用构造器</p>
+<p><a href="/Skills/Serialization/Serialization.md">Note：序列化</a><code>语言无关</code><br>
+<a href="https://github.com/eishay/jvm-serializers">jvm-serializers</a><code>多种框架的基准测试</code></p>
 </blockquote>
-<h2 id="serialversionuid">serialVersionUID</h2>
 <blockquote>
-<p>简单的说就是类的版本控制, 标明类序列化时的版本, 版本一致表明这两个类定义一致<br>
-在进行反序列化时, JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。(InvalidCastException)<br>
-<a href="http://swiftlet.net/archives/1268">参考博客</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/2189625">Java 序列化10倍性能优化对比测试-腾讯云开发者社区-腾讯云</a></p>
+</blockquote>
+<p>默认序列化, 显式序列化, 拷贝不变（trivially copyable） <code>和FlatBuffers思想类似</code></p>
+<h2 id="serializable">Serializable</h2>
+<blockquote>
+<p>简单的说serialVersionUID就是类的版本控制, 标明类序列化时的版本, 版本一致表明这两个类定义一致<br>
+在进行反序列化时, JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。(InvalidCastException)</p>
 </blockquote>
 <ul>
 <li>serialVersionUID有两种显示的生成方式：
@@ -192,23 +243,107 @@
 <blockquote>
 <p>当你一个类实现了Serializable接口，如果没有定义serialVersionUID，可通过IDE进行提醒显示定义。</p>
 </blockquote>
+<h3 id="jdk序列化和反序列化">JDK序列化和反序列化</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">TargetObject</span> <span class="n">targetObject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TargetObject</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ByteArrayOutputStream</span> <span class="n">byteOutput</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ObjectOutputStream</span> <span class="n">output</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectOutputStream</span><span class="o">(</span><span class="n">byteOutput</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">targetObject</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ByteArrayInputStream</span> <span class="n">byteInput</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayInputStream</span><span class="o">(</span><span class="n">byteOutput</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ObjectInputStream</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectInputStream</span><span class="o">(</span><span class="n">byteInput</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TargetObject</span> <span class="n">result</span> <span class="o">=</span> <span class="o">(</span><span class="n">TargetObject</span><span class="o">)</span> <span class="n">input</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">assertThat</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">equalTo</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>在做有多态结构的<code>对象深拷贝</code>时，使用JDK序列化方式能简单且快速实现。但如果使用JSON序列化方式来实现，需要解决节点<strong>类型信息丢失</strong>的问题
+<ul>
+<li>例如一个多叉树上的节点是一个接口的多类型实例。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Node</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="nf">getChildes</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Data</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Dir</span> <span class="kd">implements</span> <span class="n">Node</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">childes</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Data</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">File</span> <span class="kd">implements</span> <span class="n">Node</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">childes</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
 <hr>
-<h1 id="主流编解码框架">主流编解码框架</h1>
+<h1 id="编解码框架">编解码框架</h1>
 <blockquote>
 <p>因为Java序列化的性能和存储开销都表现不好,而且不能跨语言, 所以一般不使用Java的序列化而是使用以下流行的库</p>
 </blockquote>
-<h2 id="messagepack">MessagePack</h2>
+<h2 id="lz4">LZ4</h2>
 <blockquote>
-<p><a href="https://github.com/msgpack">Github:msgpack</a> | <a href="http://hao.jobbole.com/messagepack/">参考: MessagePack：一种高效二进制序列化格式</a></p>
+<p><a href="https://github.com/lz4/lz4-java">Github</a></p>
+</blockquote>
+<h2 id="fast-serialization">fast-serialization</h2>
+<blockquote>
+<p><a href="https://github.com/RuedigerMoeller/fast-serialization">Github</a> 10倍于JDK序列化性能而且100%兼容的编码</p>
+</blockquote>
+<h2 id="snappy">Snappy</h2>
+<blockquote>
+<p><a href="https://github.com/xerial/snappy-java">Github</a></p>
+</blockquote>
+<h2 id="kryo">Kryo</h2>
+<blockquote>
+<p><a href="https://github.com/EsotericSoftware/kryo">Github</a></p>
+</blockquote>
+<p>基准测试中得分最高的框架</p>
+<h2 id="json">JSON</h2>
+<ul>
+<li><a href="https://jcp.org/en/jsr/detail?id=367">JSR 367: JSON-B</a></li>
+<li><a href="https://github.com/FasterXML/jackson">Jackson</a></li>
+<li><a href="https://github.com/google/gson">Gson</a></li>
+<li><a href="https://github.com/alibaba/fastjson">fastjson</a> <a href="https://github.com/alibaba/fastjson2">FASTJSON2</a></li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/topics/java-json">Github Topic: java-json</a></p>
 </blockquote>
 <h2 id="protobuf">Protobuf</h2>
 <blockquote>
-<p><a href="https://github.com/google/protobuf-gradle-plugin">protobuf-gradle-plugin</a></p>
+<p><a href="/Skills/Serialization/Protobuf.md">Note</a><br>
+<a href="https://protobuf.dev/getting-started/javatutorial/">Protocol Buffer Basics: Java</a></p>
 </blockquote>
-<p><code>hi.proto</code></p>
+<p><code>hi.proto</code> 快速试用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -216,39 +351,45 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-protobuf" data-lang="protobuf">    <span class="kn">package</span> <span class="nn">lm</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="kd">message</span> <span class="nc">helloworld</span><span class="p">{</span><span class="err">
-</span><span class="err"></span>        <span class="k">required</span> <span class="kt">int32</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="c1">//ID
-</span><span class="c1"></span>        <span class="k">required</span> <span class="kt">string</span> <span class="n">str</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="c1">//str
-</span><span class="c1"></span>        <span class="k">optional</span> <span class="kt">int32</span> <span class="n">opt</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span><span class="c1">//optional field
-</span><span class="c1"></span>    <span class="p">}</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-protobuf" data-lang="protobuf"><span class="line"><span class="cl">    <span class="kn">package</span> <span class="nn">lm</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="kd">message</span> <span class="nc">helloworld</span><span class="p">{</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="k">required</span> <span class="kt">int32</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="c1">//ID
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">required</span> <span class="kt">string</span> <span class="n">str</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="c1">//str
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">optional</span> <span class="kt">int32</span> <span class="n">opt</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span><span class="c1">//optional field
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>由 proto 生成 Java 文件 <code>mkdir src &amp;&amp; protoc --java_out=./src hi.proto</code></li>
+<li>由 proto 编译生成 Java 类： <code>mkdir src &amp;&amp; protoc --java_out=./src hi.proto</code></li>
 </ul>
+<p>工程内使用流程简述: 通过插件将proto文件编译到指定目录(该目录设置为source并被git忽略)下的Java类, 项目编译和运行时就可以使用这些类，注意修改了协议文件就需要手动编译一次<br>
+插件： maven-protoc-plugin  或 protobuf-gradle-plugin</p>
 <hr>
-<h2 id="thrift">Thrift</h2>
-<blockquote>
-<p><a href="https://thrift.apache.org/">官网</a>源于Facebook, 支持多种语言: C++ C# Cocoa Erlang Haskell Java Ocami Perl PHP Python Ruby Smalltalk</p>
-</blockquote>
-<ul>
-<li>它支持数据(对象)序列化和多种类型的RPC服务, Thrift适用于静态的数据交换, 需要预先确定好他的数据结构, 当数据结构发生变化时,需要重新编辑IDL文件</li>
-</ul>
 <h2 id="marshalling">Marshalling</h2>
 <blockquote>
 <p>JBOSS 内部使用的编解码框架</p>
 </blockquote>
+<hr>
+<h1 id="tips">Tips</h1>
+<h2 id="json字符串反序列化时泛型丢失问题">JSON字符串反序列化时泛型丢失问题</h2>
+<ol>
+<li>Jackson 方式 需要先配置 <code>objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</code>
+<ol>
+<li>第一种 <code>objectMapper.writeValueAsBytes</code></li>
+<li>第二种 <code>objectMapper.readValue(bytes, 0, bytes.length, Object.class)</code></li>
+</ol>
+</li>
+</ol>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-04-05
         
@@ -260,14 +401,14 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/algorithm/ds/tree/">
+        <a class="prev" href="/post/java/collection/map/hashmap/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Tree.md</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-default">Java中的HashMap</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/java/advancedlearning/jvm/">
             <span class="next-text nav-default">JVM</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -285,17 +426,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -303,11 +444,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -317,16 +458,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>HTTP - Mythos</title>
+  <title>HTTP - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start HTTP 请求方法 HTTP的状态码 HTTP 缓存 Session 和 Cookie Cookie Session HTTP各个实现版本 HTTP/0.9 HTTP/1.0 HTTP/1.1 HTTP/2 HTTP/3 HTTPS HTTPS 认证流程 HSTS CORS 跨域 目录 end|2021-06-05 18:22| HTTP HyperText Transfer Protocol 超文本传输协议 他是一种用于" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 HTTP 1.1. URI URL 1.2. 请求方法 1.2.1. CONNECT 1.2.2. GET 1.2.3. POST 1.3. 请求 Content-Type 1.3.1. Form 1.4. Response响应 1.4.1. HTTP的响应状态码 1.4.2. Header 1.5. HTTP 缓存 1.6. Session 和 Cookie 1.6.1. Cookie 1.6.2. Session 1.7. Auth 1.7.1. Basic-Auth HTTP各个实现" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/network/http/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/network/http/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="HTTP" />
-<meta property="og:description" content="目录 start HTTP 请求方法 HTTP的状态码 HTTP 缓存 Session 和 Cookie Cookie Session HTTP各个实现版本 HTTP/0.9 HTTP/1.0 HTTP/1.1 HTTP/2 HTTP/3 HTTPS HTTPS 认证流程 HSTS CORS 跨域 目录 end|2021-06-05 18:22| HTTP HyperText Transfer Protocol 超文本传输协议 他是一种用于" />
+<meta property="og:description" content="💠 HTTP 1.1. URI URL 1.2. 请求方法 1.2.1. CONNECT 1.2.2. GET 1.2.3. POST 1.3. 请求 Content-Type 1.3.1. Form 1.4. Response响应 1.4.1. HTTP的响应状态码 1.4.2. Header 1.5. HTTP 缓存 1.6. Session 和 Cookie 1.6.1. Cookie 1.6.2. Session 1.7. Auth 1.7.1. Basic-Auth HTTP各个实现" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/network/http/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/network/http/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-03-17T14:23:29+00:00" />
 <meta property="article:modified_time" content="2019-03-17T14:23:29+00:00" />
+
 <meta itemprop="name" content="HTTP">
-<meta itemprop="description" content="目录 start HTTP 请求方法 HTTP的状态码 HTTP 缓存 Session 和 Cookie Cookie Session HTTP各个实现版本 HTTP/0.9 HTTP/1.0 HTTP/1.1 HTTP/2 HTTP/3 HTTPS HTTPS 认证流程 HSTS CORS 跨域 目录 end|2021-06-05 18:22| HTTP HyperText Transfer Protocol 超文本传输协议 他是一种用于">
-<meta itemprop="datePublished" content="2019-03-17T14:23:29+00:00" />
+<meta itemprop="description" content="💠 HTTP 1.1. URI URL 1.2. 请求方法 1.2.1. CONNECT 1.2.2. GET 1.2.3. POST 1.3. 请求 Content-Type 1.3.1. Form 1.4. Response响应 1.4.1. HTTP的响应状态码 1.4.2. Header 1.5. HTTP 缓存 1.6. Session 和 Cookie 1.6.1. Cookie 1.6.2. Session 1.7. Auth 1.7.1. Basic-Auth HTTP各个实现"><meta itemprop="datePublished" content="2019-03-17T14:23:29+00:00" />
 <meta itemprop="dateModified" content="2019-03-17T14:23:29+00:00" />
-<meta itemprop="wordCount" content="4694">
-
-
-
-<meta itemprop="keywords" content="网络," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="5618">
+<meta itemprop="keywords" content="网络," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="HTTP"/>
-<meta name="twitter:description" content="目录 start HTTP 请求方法 HTTP的状态码 HTTP 缓存 Session 和 Cookie Cookie Session HTTP各个实现版本 HTTP/0.9 HTTP/1.0 HTTP/1.1 HTTP/2 HTTP/3 HTTPS HTTPS 认证流程 HSTS CORS 跨域 目录 end|2021-06-05 18:22| HTTP HyperText Transfer Protocol 超文本传输协议 他是一种用于"/>
+<meta name="twitter:description" content="💠 HTTP 1.1. URI URL 1.2. 请求方法 1.2.1. CONNECT 1.2.2. GET 1.2.3. POST 1.3. 请求 Content-Type 1.3.1. Form 1.4. Response响应 1.4.1. HTTP的响应状态码 1.4.2. Header 1.5. HTTP 缓存 1.6. Session 和 Cookie 1.6.1. Cookie 1.6.2. Session 1.7. Auth 1.7.1. Basic-Auth HTTP各个实现"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,81 +122,159 @@
         <div class="post-category">
             <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
             </div>
-          <span class="more-meta"> 4694 words </span>
-          <span class="more-meta"> 10 mins read </span>
+          <span class="more-meta"> 约 5618 字 </span>
+          <span class="more-meta"> 预计阅读 12 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#请求方法">请求方法</a></li>
-    <li><a href="#http的状态码">HTTP的状态码</a></li>
-    <li><a href="#http-缓存">HTTP 缓存</a></li>
-    <li><a href="#session-和-cookie">Session 和 Cookie</a>
+    <li><a href="#http">HTTP</a>
       <ul>
-        <li><a href="#cookie">Cookie</a></li>
-        <li><a href="#session">Session</a></li>
+        <li><a href="#uri-url">URI URL</a></li>
+        <li><a href="#请求方法">请求方法</a>
+          <ul>
+            <li><a href="#connect">CONNECT</a></li>
+            <li><a href="#get">GET</a></li>
+            <li><a href="#post">POST</a></li>
+          </ul>
+        </li>
+        <li><a href="#请求-content-type">请求 Content-Type</a>
+          <ul>
+            <li><a href="#form">Form</a></li>
+          </ul>
+        </li>
+        <li><a href="#response响应">Response响应</a>
+          <ul>
+            <li><a href="#http的响应状态码">HTTP的响应状态码</a></li>
+            <li><a href="#header">Header</a></li>
+          </ul>
+        </li>
+        <li><a href="#http-缓存">HTTP 缓存</a></li>
+        <li><a href="#session-和-cookie">Session 和 Cookie</a>
+          <ul>
+            <li><a href="#cookie">Cookie</a></li>
+            <li><a href="#session">Session</a></li>
+          </ul>
+        </li>
+        <li><a href="#auth">Auth</a>
+          <ul>
+            <li><a href="#basic-auth">Basic-Auth</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#http09">HTTP/0.9</a></li>
-    <li><a href="#http10">HTTP/1.0</a></li>
-    <li><a href="#http11">HTTP/1.1</a></li>
-    <li><a href="#http2">HTTP/2</a></li>
-    <li><a href="#http3">HTTP/3</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#https-认证流程">HTTPS 认证流程</a></li>
-    <li><a href="#hsts">HSTS</a></li>
+    <li><a href="#http各个实现版本">HTTP各个实现版本</a>
+      <ul>
+        <li><a href="#http09">HTTP/0.9</a></li>
+        <li><a href="#http10">HTTP/1.0</a></li>
+        <li><a href="#http11">HTTP/1.1</a></li>
+        <li><a href="#http2">HTTP/2</a></li>
+        <li><a href="#http3">HTTP/3</a></li>
+      </ul>
+    </li>
+    <li><a href="#https">HTTPS</a>
+      <ul>
+        <li><a href="#https-证书认证流程">HTTPS 证书认证流程</a></li>
+        <li><a href="#hsts">HSTS</a></li>
+      </ul>
+    </li>
+    <li><a href="#tips">Tips</a>
+      <ul>
+        <li><a href="#cors-跨域">CORS 跨域</a></li>
+        <li><a href="#相关工具">相关工具</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-03-17T14:23:29" title="March 17, 2019">March 17, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#http">HTTP</a>
-<ol>
-<li><a href="#%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95">请求方法</a></li>
-<li><a href="#http%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">HTTP的状态码</a></li>
-<li><a href="#http-%E7%BC%93%E5%AD%98">HTTP 缓存</a></li>
-<li><a href="#session-%E5%92%8C-cookie">Session 和 Cookie</a>
-<ol>
-<li><a href="#cookie">Cookie</a></li>
-<li><a href="#session">Session</a></li>
+<li><a href="#http">HTTP</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#uri-url">URI URL</a></li>
+<li>1.2. <a href="#%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95">请求方法</a>
+<ul>
+<li>1.2.1. <a href="#connect">CONNECT</a></li>
+<li>1.2.2. <a href="#get">GET</a></li>
+<li>1.2.3. <a href="#post">POST</a></li>
+</ul>
 </li>
-</ol>
+<li>1.3. <a href="#%E8%AF%B7%E6%B1%82-content-type">请求 Content-Type</a>
+<ul>
+<li>1.3.1. <a href="#form">Form</a></li>
+</ul>
 </li>
-<li><a href="#http%E5%90%84%E4%B8%AA%E5%AE%9E%E7%8E%B0%E7%89%88%E6%9C%AC">HTTP各个实现版本</a>
-<ol>
-<li><a href="#http09">HTTP/0.9</a></li>
-<li><a href="#http10">HTTP/1.0</a></li>
-<li><a href="#http11">HTTP/1.1</a></li>
-<li><a href="#http2">HTTP/2</a></li>
-<li><a href="#http3">HTTP/3</a></li>
-</ol>
+<li>1.4. <a href="#response%E5%93%8D%E5%BA%94">Response响应</a>
+<ul>
+<li>1.4.1. <a href="#http%E7%9A%84%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81">HTTP的响应状态码</a></li>
+<li>1.4.2. <a href="#header">Header</a></li>
+</ul>
 </li>
-<li><a href="#https">HTTPS</a>
-<ol>
-<li><a href="#https-%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B">HTTPS 认证流程</a></li>
-<li><a href="#hsts">HSTS</a></li>
-</ol>
+<li>1.5. <a href="#http-%E7%BC%93%E5%AD%98">HTTP 缓存</a></li>
+<li>1.6. <a href="#session-%E5%92%8C-cookie">Session 和 Cookie</a>
+<ul>
+<li>1.6.1. <a href="#cookie">Cookie</a></li>
+<li>1.6.2. <a href="#session">Session</a></li>
+</ul>
 </li>
-<li><a href="#cors-%E8%B7%A8%E5%9F%9F">CORS 跨域</a></li>
+<li>1.7. <a href="#auth">Auth</a>
+<ul>
+<li>1.7.1. <a href="#basic-auth">Basic-Auth</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#http%E5%90%84%E4%B8%AA%E5%AE%9E%E7%8E%B0%E7%89%88%E6%9C%AC">HTTP各个实现版本</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-06-05 18:22</em>|</p>
+<ul>
+<li>2.1. <a href="#http09">HTTP/0.9</a></li>
+<li>2.2. <a href="#http10">HTTP/1.0</a></li>
+<li>2.3. <a href="#http11">HTTP/1.1</a></li>
+<li>2.4. <a href="#http2">HTTP/2</a></li>
+<li>2.5. <a href="#http3">HTTP/3</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#https">HTTPS</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#https-%E8%AF%81%E4%B9%A6%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B">HTTPS 证书认证流程</a></li>
+<li>3.2. <a href="#hsts">HSTS</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#tips">Tips</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#cors-%E8%B7%A8%E5%9F%9F">CORS 跨域</a></li>
+<li>4.2. <a href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7">相关工具</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-10-10 10:41:00</p>
 <hr>
 <h1 id="http">HTTP</h1>
 <blockquote>
-<p>HyperText Transfer Protocol 超文本传输协议 他是一种用于分布式、协作式和超媒体信息系统的应用层协议</p>
+<p>HyperText Transfer Protocol (超文本传输协议) 他是一种用于分布式、协作式和超媒体信息系统的应用层协议</p>
 </blockquote>
 <ul>
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP">MDN HTTP教程</a></li>
@@ -212,11 +286,25 @@
 <li>其实HTTP协议主要就是用来进行客户端和服务器之间进行通信的标准协议。</li>
 <li>HTTP主要规定了客户端如何与服务器建立链接、客户端如何从服务器请求数据、服务器如何响应请求，以及最后连接如何关闭</li>
 </ul>
+<h2 id="uri-url">URI URL</h2>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/URL">维基百科</a> | <a href="https://baike.baidu.com/item/URL">百度百科</a></p>
+</blockquote>
+<ul>
+<li>统一资源定位符 特别注意URL的组成和编解码  <a href="http://www.cnblogs.com/xmphoenix/archive/2011/04/20/2022945.html">url中的特殊字符问题</a>
+<ul>
+<li>不能在URL的关键位置出现%号，作为参数的值是允许的。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-a-url-in-different-browsers">What is the maximum length of a URL in different browsers?</a> 不同浏览器实现不一样</p>
+</blockquote>
 <h2 id="请求方法">请求方法</h2>
 <ul>
 <li>HTTP/1.1协议中共定义了八种方法（有时也叫“动作”）来表明Request-URI指定的资源的不同操作方式：
 <ul>
-<li><code>OPTIONS</code> 返回服务器针对特定资源所支持的HTTP请求方法。也可以利用向Web服务器发送'*&lsquo;的请求来测试服务器的功能性。　</li>
+<li><code>OPTIONS</code> 返回服务器针对特定资源所支持的HTTP请求方法。也可以利用向Web服务器发送&rsquo;*&lsquo;的请求来测试服务器的功能性。　</li>
 <li><code>GET</code> 向特定的资源发出请求。注意：GET方法不应当被用于产生“副作用”的操作中，例如在web app.中。其中一个原因是GET可能会被网络蜘蛛等随意访问。　</li>
 <li><code>HEAD</code> 向服务器索要与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以在获取包含在响应消息头中的元信息而不传输内容。</li>
 <li><code>POST</code> 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。　</li>
@@ -231,12 +319,140 @@
 <p>方法名称是区分大小写的。当某个请求所针对的资源不支持对应的请求方法的时候，服务器应当返回状态码405（Method Not Allowed）；当服务器不认识或者不支持对应的请求方法的时候，应当返回状态码501（Not Implemented）。</p>
 </blockquote>
 <ul>
-<li><input disabled="" type="checkbox"> Header中一些主要属性的含义和使用场景</li>
+<li><input disabled="" type="checkbox"> Header中一些常用属性的含义和使用场景</li>
 </ul>
-<h2 id="http的状态码">HTTP的状态码</h2>
+<p>HTTP请求实际是就是文本协议，报文样例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">POST /pageList HTTP/1.1\r\n
+</span></span><span class="line"><span class="cl">Host: www.jd.com\r\n
+</span></span><span class="line"><span class="cl">User-Agent: xx\r\n
+</span></span><span class="line"><span class="cl">Content-Length: 121\r\n
+</span></span><span class="line"><span class="cl">\r\n
+</span></span><span class="line"><span class="cl">{&#34;pageSize&#34;:2}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="connect">CONNECT</h3>
+<p>代理服务器代理 HTTPS请求时，客户端会先发起一个 <code>CONNECT host:443 HTTP/1.1</code> 请求尝试建立连接 <a href="https://docs.mitmproxy.org/stable/concepts-howmitmproxyworks/">参考Doc: mitmproxy</a></p>
+<h3 id="get">GET</h3>
+<blockquote>
+<p><a href="https://blog.csdn.net/dream_weave/article/details/105143562">参考: GET 请求中 URL 的最大长度限制</a></p>
+</blockquote>
+<p>get 方式下的http请求会限制URL长度，会有多方面不同的限制 请求经过的三层后的短板效应：客户端 代理端 服务端</p>
+<ul>
+<li>客户端 各大浏览器会有实现上的差异 从 2083 到20000 不等</li>
+<li>代理端 Nginx Apache IIS</li>
+<li>服务端 Java的SpringMVC 等</li>
+</ul>
+<h3 id="post">POST</h3>
+<ul>
+<li>标准的HTTP使用规范是参数全部使用body来传递，但是为了实现授权等功能的通用性，某些大厂会折腾出特殊的接口格式
+<ul>
+<li><a href="https://api.com/getUserInfo?token=xxx">https://api.com/getUserInfo?token=xxx</a> body传输JSON格式的userId等参数</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="请求-content-type">请求 Content-Type</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type">MDN: Content-Type</a></p>
+<h3 id="form">Form</h3>
+<p><a href="https://gist.github.com/joyrexus/524c7e811e4abf9afe56">form-data vs -urlencoded</a><br>
+<a href="https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data">application/x-www-form-urlencoded or multipart/form-data?</a></p>
+<ul>
+<li><code>application/x-www-form-urlencoded</code> 常用于表单提交</li>
+<li><code>multipart/form-data</code> 常用于文件上传</li>
+</ul>
+<p><code>文件上传</code></p>
+<ol>
+<li>创建文件 echo &ldquo;sss&rdquo; &gt; b.docx</li>
+<li>上传文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># firefox 请求Body</span>
+</span></span><span class="line"><span class="cl">    -----------------------------234019508041567584373971060997
+</span></span><span class="line"><span class="cl">    Content-Disposition: form-data<span class="p">;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;file&#34;</span><span class="p">;</span> <span class="nv">filename</span><span class="o">=</span><span class="s2">&#34;b.docx&#34;</span>
+</span></span><span class="line"><span class="cl">    Content-Type: application/wps-office.docx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    sss
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    -----------------------------234019508041567584373971060997--
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># chrome 请求Body</span>
+</span></span><span class="line"><span class="cl">    ------WebKitFormBoundarybgjKLu2gfBqPLex4
+</span></span><span class="line"><span class="cl">    Content-Disposition: form-data<span class="p">;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;file&#34;</span><span class="p">;</span> <span class="nv">filename</span><span class="o">=</span><span class="s2">&#34;b.docx&#34;</span>
+</span></span><span class="line"><span class="cl">    Content-Type: application/wps-office.docx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ------WebKitFormBoundarybgjKLu2gfBqPLex4--
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>可以看出 Body 组成部分： 开始标记，文件元信息，结束标记</li>
+<li>Header中会声明边界标记 <code>Content-Type： multipart/form-data; boundary=-----------------------------234019508041567584373971060997</code></li>
+</ul>
+<hr>
+<h2 id="response响应">Response响应</h2>
+<h3 id="http的响应状态码">HTTP的响应状态码</h3>
 <blockquote>
 <p><a href="/FrontEnd/ResponseCode.md">HTTP 状态码 完整列表</a></p>
 </blockquote>
+<h3 id="header">Header</h3>
+<blockquote>
+<p>注意：</p>
+</blockquote>
+<ul>
+<li>Header的Key和Value统一用<code>: </code>分隔，value部分没有格式约束，可以由应用层沟通协定，多值时有用,或;分隔的</li>
+</ul>
+<blockquote>
+<p>常用Key</p>
+</blockquote>
+<ul>
+<li>Transfer-Encoding: chunked
+<ul>
+<li><code>异常</code> curl: (56) Illegal or missing hexadecimal sequence in chunked-encoding</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Transfer-Encoding">MDN: Transfer-Encoding</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Chunked_transfer_encoding#Format">wiki </a></li>
+</ul>
+</li>
+<li>Range 请求指定的字节分段数据
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range">MDN: Range</a></li>
+<li><a href="https://rhardih.io/2021/04/listing-the-contents-of-a-remote-zip-archive-without-downloading-the-entire-file/">Listing the contents of a remote ZIP archive, without downloading the entire file</a> 无需获取完整压缩包就得到文件列表以及压缩包内部分文件下载
+<ul>
+<li>通过传输部分字节解析zip包元信息再多次依据偏移量读取文件，从而获得文件列表和对应字节偏移值实现特定文件的下载</li>
+<li>大文件时会有效率的改善，小zip包以及文件数过多时都不适合。 并且要为每种压缩算法定制实现解析逻辑，而且可行的只有zip和7z</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h2 id="http-缓存">HTTP 缓存</h2>
 <hr>
@@ -288,6 +504,9 @@
 <p><a href="https://www.runoob.com/w3cnote/php-session-login.html">参考: PHP中Session 的实现</a></p>
 </li>
 </ol>
+<hr>
+<h2 id="auth">Auth</h2>
+<h3 id="basic-auth">Basic-Auth</h3>
 <hr>
 <h1 id="http各个实现版本">HTTP各个实现版本</h1>
 <p>目前HTTP协议主要的版本有3个，分别是HTTP/1.0、HTTP/1.1和HTTP/2</p>
@@ -433,15 +652,16 @@
 <blockquote>
 <p><a href="https://www.cnblogs.com/chenjinxinlove/p/10104854.html">参考: HTTP3.0(QUIC的实现机制)</a><br>
 <a href="https://www.infoq.cn/article/IgME_4ebP3d46m3tHbaT">参考: 一文看完 HTTP3 的演化历程</a><br>
-<a href="https://http3-explained.haxx.se/zh/">参考: HTTP3</a></p>
+<a href="https://http3-explained.haxx.se/zh/">参考: HTTP3</a><br>
+<a href="https://medium.com/@sandeep4.verma/http-1-to-http-2-to-http-3-647e73df67a8">HTTP/1 to HTTP/2 to HTTP/3</a></p>
 </blockquote>
-<p>HTTP/3 只是一种基于 IETF QUIC（一种基于 UDP 的多路复用和安全传输）的新 HTTP 语法。</p>
+<p>HTTP/3 是一种基于 IETF QUIC（一种基于 UDP 的多路复用和安全传输）的新 HTTP 语法。</p>
 <hr>
 <h1 id="https">HTTPS</h1>
 <blockquote>
 <p><a href="/Skills/Network/WebSecurity.md#ssl-tls">SSL &amp; TLS</a></p>
 </blockquote>
-<h2 id="https-认证流程">HTTPS 认证流程</h2>
+<h2 id="https-证书认证流程">HTTPS 证书认证流程</h2>
 <ol>
 <li>服务器生成一对密钥，私钥自己留着，公钥交给数字证书认证机构（CA）</li>
 <li>CA进行审核，并用CA自己的私钥对服务器提供的公钥进行签名生成数字证书</li>
@@ -463,25 +683,27 @@
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security">MDN HSTS</a></p>
 </blockquote>
 <hr>
-<h1 id="cors-跨域">CORS 跨域</h1>
+<h1 id="tips">Tips</h1>
+<h2 id="cors-跨域">CORS 跨域</h2>
 <blockquote>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy">浏览器的同源策略</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy">浏览器的同源策略</a><code>重点在于这个是浏览器的实现规范，众多浏览器厂商约定实现，如果是自定义的HTTP客户端，可以不按此规范实现也就不用考虑这个限制</code></p>
 </blockquote>
 <blockquote>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS">mozilla CORS</a>
 <a href="http://www.ruanyifeng.com/blog/2016/04/cors.html">阮一峰 跨域资源共享 CORS 详解</a>
 <a href="https://github.com/hstarorg/HstarDoc/blob/master/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CORS%E8%AF%A6%E8%A7%A3.md">CORS详解.md</a></p>
 </blockquote>
+<h2 id="相关工具">相关工具</h2>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-03-17
         
@@ -498,11 +720,11 @@
         <a class="prev" href="/post/skills/devops/elk/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">ELK.md</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/java/test/javacucumber/">
             <span class="next-text nav-default">JavaCucumber</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -520,17 +742,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -538,11 +760,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -552,16 +774,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

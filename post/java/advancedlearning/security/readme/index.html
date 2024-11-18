@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title> - Mythos</title>
+  <title>Java加密 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="Security Java Cryptography Architecture Standard Algorithm Name Documentation for JDK 8列出各种用途的算法 AES 分为多个模式，ACM/GCM 会校验，防止篡改密钥，CTR并发性能好，但是没校验，CBC有 字节反转攻" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="目录 start Security 伪随机数生成器 目录 end|2023-09-22 19:03| Security Java Cryptography Architecture Standard Algorithm Name Documentation for JDK 8列出各种用途的算法,以及加密模式，信息摘要算法 Provider 类 提供DSA，RSA，MD5算法 Security 类 管理" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/security/readme/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/security/readme/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,22 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="Security Java Cryptography Architecture Standard Algorithm Name Documentation for JDK 8列出各种用途的算法 AES 分为多个模式，ACM/GCM 会校验，防止篡改密钥，CTR并发性能好，但是没校验，CBC有 字节反转攻" />
+<meta property="og:title" content="Java加密" />
+<meta property="og:description" content="目录 start Security 伪随机数生成器 目录 end|2023-09-22 19:03| Security Java Cryptography Architecture Standard Algorithm Name Documentation for JDK 8列出各种用途的算法,以及加密模式，信息摘要算法 Provider 类 提供DSA，RSA，MD5算法 Security 类 管理" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/security/readme/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/security/readme/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-09-22T19:03:18+00:00" />
+<meta property="article:modified_time" content="2023-09-22T19:03:18+00:00" />
 
-<meta itemprop="name" content="">
-<meta itemprop="description" content="Security Java Cryptography Architecture Standard Algorithm Name Documentation for JDK 8列出各种用途的算法 AES 分为多个模式，ACM/GCM 会校验，防止篡改密钥，CTR并发性能好，但是没校验，CBC有 字节反转攻">
-
-<meta itemprop="wordCount" content="74">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="Security Java Cryptography Architecture Standard Algorithm Name Documentation for JDK 8列出各种用途的算法 AES 分为多个模式，ACM/GCM 会校验，防止篡改密钥，CTR并发性能好，但是没校验，CBC有 字节反转攻"/>
+<meta itemprop="name" content="Java加密">
+<meta itemprop="description" content="目录 start Security 伪随机数生成器 目录 end|2023-09-22 19:03| Security Java Cryptography Architecture Standard Algorithm Name Documentation for JDK 8列出各种用途的算法,以及加密模式，信息摘要算法 Provider 类 提供DSA，RSA，MD5算法 Security 类 管理"><meta itemprop="datePublished" content="2023-09-22T19:03:18+00:00" />
+<meta itemprop="dateModified" content="2023-09-22T19:03:18+00:00" />
+<meta itemprop="wordCount" content="335">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java加密"/>
+<meta name="twitter:description" content="目录 start Security 伪随机数生成器 目录 end|2023-09-22 19:03| Security Java Cryptography Architecture Standard Algorithm Name Documentation for JDK 8列出各种用途的算法,以及加密模式，信息摘要算法 Provider 类 提供DSA，RSA，MD5算法 Security 类 管理"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -117,41 +115,83 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">Java加密</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 0001-01-01 </span>
+        <span class="post-time"> 2023-09-22 </span>
         
-          <span class="more-meta"> 74 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 335 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#security">Security</a>
+      <ul>
+        <li><a href="#伪随机数生成器">伪随机数生成器</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2023-09-22T19:03:18" title="September 22, 2023">September 22, 2023</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <h1 id="security">Security</h1>
+      <p><strong>目录 start</strong></p>
+<ol>
+<li><a href="#security">Security</a>
+<ol>
+<li><a href="#%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8">伪随机数生成器</a></li>
+</ol>
+</li>
+</ol>
+<p><strong>目录 end</strong>|<em>2023-09-22 19:03</em>|</p>
+<hr>
+<h1 id="security">Security</h1>
 <blockquote>
-<p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/StandardNames.html">Java Cryptography Architecture Standard Algorithm Name Documentation for JDK 8</a><code>列出各种用途的算法</code></p>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/StandardNames.html">Java Cryptography Architecture Standard Algorithm Name Documentation for JDK 8</a><code>列出各种用途的算法,以及加密模式，信息摘要算法</code></p>
 </blockquote>
-<p>AES 分为多个模式，ACM/GCM 会校验，防止篡改密钥，CTR并发性能好，但是没校验，CBC有 字节反转攻击的问题</p>
+<ol>
+<li>Provider 类 提供DSA，RSA，MD5算法</li>
+<li>Security 类 管理Provider</li>
+<li>MessageDigest 类 提供了信息摘要算法：MD2 MD5 SHA-1(SHA) SHA-256 SHA-384 SHA-512.</li>
+</ol>
+<hr>
+<h2 id="伪随机数生成器">伪随机数生成器</h2>
+<p>Random</p>
+<ul>
+<li>依据设置的seed作为初始值，随机序列采用<a href="/Algorithm/Cryptography.md#%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8">线性同余法</a>生成，特点是当前值需要依赖上一个随机数值更新seed。</li>
+<li>因此Random用了一个AtomicLong来保存当前seed，在并发高的时候会出现忙等待</li>
+</ul>
+<p>ThreadLocalRandom</p>
+<ul>
+<li>不将seed作为共享内存，而是跟随线程绑定，Java7在ThreadLocal中，Java8则内置在了Thread类上</li>
+</ul>
+<p>SecureRandom</p>
+<ul>
+<li>不使用构造的seed，而是从操作系统的 /dev/random 和 /dev/urandom 特殊设备获取字节序列作为seed <code>注意如果操作系统刚启动设备内熵值不够，这个类获取随机数的话会报错</code></li>
+</ul>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
-        0001-01-01
+        2023-09-22
         
     </span>
   </p>
@@ -161,14 +201,14 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/java/advancedlearning/map/linkedhashmap/">
+        <a class="prev" href="/post/java/advancedlearning/concurrency/forkandjoin/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default"></span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-default">Fork/Join</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/java/android/readme/">
-            <span class="next-text nav-default"></span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/skills/softwareengineering/situation/">
+            <span class="next-text nav-default">场景&amp;方案</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -186,17 +226,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -204,11 +244,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -218,16 +258,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Go基础 - Mythos</title>
+  <title>Go基础 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Go Modules 配置 数据类型 string int Array Slice Map Set 基本语法 标准输入输出 时间处理 函数 参数 返回值 defer 接口 Channel 文件操作 Test JSON Debug pprof 部署 Tips 通过字符串调用指定函数 目录 end|2021-06-20 14:26| Go 官" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Go 1.1. Go Modules 1.1.1. 配置 1.1.2. go get 1.1.3. go.mod 1.1.3.1. 单个Git仓库发布多个包 1.1.4. go.work 1.1.5. 现存问题 1.1.6. 模板项目初始化 1.2. 数据类型 1.2.1. string 1.2.2. int 1.2.3. Array 1.2.4. Slice 1.2.5. Map 1.2.6. Set 1.3. 基本语法 1.3.1. 标准输入输出" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/go/gobase/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/go/gobase/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Go基础" />
-<meta property="og:description" content="目录 start Go Modules 配置 数据类型 string int Array Slice Map Set 基本语法 标准输入输出 时间处理 函数 参数 返回值 defer 接口 Channel 文件操作 Test JSON Debug pprof 部署 Tips 通过字符串调用指定函数 目录 end|2021-06-20 14:26| Go 官" />
+<meta property="og:description" content="💠 Go 1.1. Go Modules 1.1.1. 配置 1.1.2. go get 1.1.3. go.mod 1.1.3.1. 单个Git仓库发布多个包 1.1.4. go.work 1.1.5. 现存问题 1.1.6. 模板项目初始化 1.2. 数据类型 1.2.1. string 1.2.2. int 1.2.3. Array 1.2.4. Slice 1.2.5. Map 1.2.6. Set 1.3. 基本语法 1.3.1. 标准输入输出" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/go/gobase/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/go/gobase/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-14T09:25:49+00:00" />
 <meta property="article:modified_time" content="2018-12-14T09:25:49+00:00" />
+
 <meta itemprop="name" content="Go基础">
-<meta itemprop="description" content="目录 start Go Modules 配置 数据类型 string int Array Slice Map Set 基本语法 标准输入输出 时间处理 函数 参数 返回值 defer 接口 Channel 文件操作 Test JSON Debug pprof 部署 Tips 通过字符串调用指定函数 目录 end|2021-06-20 14:26| Go 官">
-<meta itemprop="datePublished" content="2018-12-14T09:25:49+00:00" />
+<meta itemprop="description" content="💠 Go 1.1. Go Modules 1.1.1. 配置 1.1.2. go get 1.1.3. go.mod 1.1.3.1. 单个Git仓库发布多个包 1.1.4. go.work 1.1.5. 现存问题 1.1.6. 模板项目初始化 1.2. 数据类型 1.2.1. string 1.2.2. int 1.2.3. Array 1.2.4. Slice 1.2.5. Map 1.2.6. Set 1.3. 基本语法 1.3.1. 标准输入输出"><meta itemprop="datePublished" content="2018-12-14T09:25:49+00:00" />
 <meta itemprop="dateModified" content="2018-12-14T09:25:49+00:00" />
-<meta itemprop="wordCount" content="1608">
-
-
-
-<meta itemprop="keywords" content="函数式编程," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="3778">
+<meta itemprop="keywords" content="函数式编程," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go基础"/>
-<meta name="twitter:description" content="目录 start Go Modules 配置 数据类型 string int Array Slice Map Set 基本语法 标准输入输出 时间处理 函数 参数 返回值 defer 接口 Channel 文件操作 Test JSON Debug pprof 部署 Tips 通过字符串调用指定函数 目录 end|2021-06-20 14:26| Go 官"/>
+<meta name="twitter:description" content="💠 Go 1.1. Go Modules 1.1.1. 配置 1.1.2. go get 1.1.3. go.mod 1.1.3.1. 单个Git仓库发布多个包 1.1.4. go.work 1.1.5. 现存问题 1.1.6. 模板项目初始化 1.2. 数据类型 1.2.1. string 1.2.2. int 1.2.3. Array 1.2.4. Slice 1.2.5. Map 1.2.6. Set 1.3. 基本语法 1.3.1. 标准输入输出"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,137 +122,215 @@
         <div class="post-category">
             <a href="/categories/go/"> Go </a>
             </div>
-          <span class="more-meta"> 1608 words </span>
-          <span class="more-meta"> 4 mins read </span>
+          <span class="more-meta"> 约 3778 字 </span>
+          <span class="more-meta"> 预计阅读 8 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#modules">Modules</a>
+    <li><a href="#go">Go</a>
       <ul>
-        <li><a href="#配置">配置</a></li>
+        <li><a href="#go-modules">Go Modules</a>
+          <ul>
+            <li><a href="#配置">配置</a></li>
+            <li><a href="#go-get">go get</a></li>
+            <li><a href="#gomod">go.mod</a></li>
+            <li><a href="#gowork">go.work</a></li>
+            <li><a href="#现存问题">现存问题</a></li>
+            <li><a href="#模板项目初始化">模板项目初始化</a></li>
+          </ul>
+        </li>
+        <li><a href="#数据类型">数据类型</a>
+          <ul>
+            <li><a href="#string">string</a></li>
+            <li><a href="#int">int</a></li>
+            <li><a href="#array">Array</a></li>
+            <li><a href="#slice">Slice</a></li>
+            <li><a href="#map">Map</a></li>
+            <li><a href="#set">Set</a></li>
+          </ul>
+        </li>
+        <li><a href="#基本语法">基本语法</a>
+          <ul>
+            <li><a href="#标准输入输出">标准输入输出</a></li>
+            <li><a href="#时间处理">时间处理</a></li>
+          </ul>
+        </li>
+        <li><a href="#泛型">泛型</a>
+          <ul>
+            <li><a href="#丑陋设计">丑陋设计</a></li>
+          </ul>
+        </li>
+        <li><a href="#函数">函数</a>
+          <ul>
+            <li><a href="#参数">参数</a></li>
+            <li><a href="#返回值">返回值</a></li>
+            <li><a href="#defer">defer</a></li>
+          </ul>
+        </li>
+        <li><a href="#接口">接口</a></li>
+        <li><a href="#channel">Channel</a></li>
+        <li><a href="#协程">协程</a></li>
+        <li><a href="#序列化">序列化</a>
+          <ul>
+            <li><a href="#json">JSON</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#go-get">go get</a></li>
-    <li><a href="#单个git仓库发布多个包">单个Git仓库发布多个包</a></li>
-    <li><a href="#数据类型">数据类型</a>
+    <li><a href="#应用">应用</a>
       <ul>
-        <li><a href="#string">string</a></li>
-        <li><a href="#int">int</a></li>
-        <li><a href="#array">Array</a></li>
-        <li><a href="#slice">Slice</a></li>
-        <li><a href="#map">Map</a></li>
-        <li><a href="#set">Set</a></li>
+        <li><a href="#文件操作">文件操作</a></li>
+        <li><a href="#http">http</a></li>
+        <li><a href="#test">Test</a></li>
+        <li><a href="#debug">Debug</a>
+          <ul>
+            <li><a href="#pprof">pprof</a></li>
+          </ul>
+        </li>
+        <li><a href="#部署">部署</a>
+          <ul>
+            <li><a href="#静态编译">静态编译</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#基本语法">基本语法</a>
+    <li><a href="#常用库">常用库</a></li>
+    <li><a href="#tips">Tips</a>
       <ul>
-        <li><a href="#标准输入输出">标准输入输出</a></li>
-        <li><a href="#时间处理">时间处理</a></li>
+        <li><a href="#通过字符串调用指定函数">通过字符串调用指定函数</a></li>
       </ul>
     </li>
-    <li><a href="#函数">函数</a>
-      <ul>
-        <li><a href="#参数">参数</a></li>
-        <li><a href="#返回值">返回值</a></li>
-        <li><a href="#defer">defer</a></li>
-      </ul>
-    </li>
-    <li><a href="#接口">接口</a></li>
-    <li><a href="#channel">Channel</a></li>
-    <li><a href="#协程">协程</a></li>
-    <li><a href="#文件操作">文件操作</a></li>
-    <li><a href="#test">Test</a></li>
-    <li><a href="#json">JSON</a></li>
-    <li><a href="#debug">Debug</a>
-      <ul>
-        <li><a href="#pprof">pprof</a></li>
-      </ul>
-    </li>
-    <li><a href="#部署">部署</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#通过字符串调用指定函数">通过字符串调用指定函数</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-14T09:25:49" title="December 14, 2018">December 14, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#go">Go</a>
-<ol>
-<li><a href="#modules">Modules</a>
-<ol>
-<li><a href="#%E9%85%8D%E7%BD%AE">配置</a></li>
+<li><a href="#go">Go</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#go-modules">Go Modules</a>
+<ul>
+<li>1.1.1. <a href="#%E9%85%8D%E7%BD%AE">配置</a></li>
+<li>1.1.2. <a href="#go-get">go get</a></li>
+<li>1.1.3. <a href="#gomod">go.mod</a>
+<ul>
+<li>1.1.3.1. <a href="#%E5%8D%95%E4%B8%AAgit%E4%BB%93%E5%BA%93%E5%8F%91%E5%B8%83%E5%A4%9A%E4%B8%AA%E5%8C%85">单个Git仓库发布多个包</a></li>
+</ul>
+</li>
+<li>1.1.4. <a href="#gowork">go.work</a></li>
+<li>1.1.5. <a href="#%E7%8E%B0%E5%AD%98%E9%97%AE%E9%A2%98">现存问题</a></li>
+<li>1.1.6. <a href="#%E6%A8%A1%E6%9D%BF%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96">模板项目初始化</a></li>
+</ul>
+</li>
+<li>1.2. <a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>
+<ul>
+<li>1.2.1. <a href="#string">string</a></li>
+<li>1.2.2. <a href="#int">int</a></li>
+<li>1.2.3. <a href="#array">Array</a></li>
+<li>1.2.4. <a href="#slice">Slice</a></li>
+<li>1.2.5. <a href="#map">Map</a></li>
+<li>1.2.6. <a href="#set">Set</a></li>
+</ul>
+</li>
+<li>1.3. <a href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95">基本语法</a>
+<ul>
+<li>1.3.1. <a href="#%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">标准输入输出</a></li>
+<li>1.3.2. <a href="#%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86">时间处理</a></li>
+</ul>
+</li>
+<li>1.4. <a href="#%E6%B3%9B%E5%9E%8B">泛型</a>
+<ul>
+<li>1.4.1. <a href="#%E4%B8%91%E9%99%8B%E8%AE%BE%E8%AE%A1">丑陋设计</a></li>
+</ul>
+</li>
+<li>1.5. <a href="#%E5%87%BD%E6%95%B0">函数</a>
+<ul>
+<li>1.5.1. <a href="#%E5%8F%82%E6%95%B0">参数</a></li>
+<li>1.5.2. <a href="#%E8%BF%94%E5%9B%9E%E5%80%BC">返回值</a></li>
+<li>1.5.3. <a href="#defer">defer</a></li>
+</ul>
+</li>
+<li>1.6. <a href="#%E6%8E%A5%E5%8F%A3">接口</a></li>
+<li>1.7. <a href="#channel">Channel</a></li>
+<li>1.8. <a href="#%E5%8D%8F%E7%A8%8B">协程</a></li>
+<li>1.9. <a href="#%E5%BA%8F%E5%88%97%E5%8C%96">序列化</a>
+<ul>
+<li>1.9.1. <a href="#json">JSON</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E5%BA%94%E7%94%A8">应用</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C">文件操作</a></li>
+<li>2.2. <a href="#http">http</a></li>
+<li>2.3. <a href="#test">Test</a></li>
+<li>2.4. <a href="#debug">Debug</a>
+<ul>
+<li>2.4.1. <a href="#pprof">pprof</a></li>
+</ul>
+</li>
+<li>2.5. <a href="#%E9%83%A8%E7%BD%B2">部署</a>
+<ul>
+<li>2.5.1. <a href="#%E9%9D%99%E6%80%81%E7%BC%96%E8%AF%91">静态编译</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%BA%93">常用库</a></li>
 </ol>
 </li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>
-<ol>
-<li><a href="#string">string</a></li>
-<li><a href="#int">int</a></li>
-<li><a href="#array">Array</a></li>
-<li><a href="#slice">Slice</a></li>
-<li><a href="#map">Map</a></li>
-<li><a href="#set">Set</a></li>
+<li>
+<ol start="4">
+<li><a href="#tips">Tips</a></li>
 </ol>
+<ul>
+<li>4.1. <a href="#%E9%80%9A%E8%BF%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%B0%83%E7%94%A8%E6%8C%87%E5%AE%9A%E5%87%BD%E6%95%B0">通过字符串调用指定函数</a></li>
+</ul>
 </li>
-<li><a href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95">基本语法</a>
-<ol>
-<li><a href="#%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">标准输入输出</a></li>
-<li><a href="#%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86">时间处理</a></li>
-</ol>
-</li>
-<li><a href="#%E5%87%BD%E6%95%B0">函数</a>
-<ol>
-<li><a href="#%E5%8F%82%E6%95%B0">参数</a></li>
-<li><a href="#%E8%BF%94%E5%9B%9E%E5%80%BC">返回值</a></li>
-<li><a href="#defer">defer</a></li>
-</ol>
-</li>
-<li><a href="#%E6%8E%A5%E5%8F%A3">接口</a></li>
-<li><a href="#channel">Channel</a></li>
-<li><a href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C">文件操作</a></li>
-<li><a href="#test">Test</a></li>
-<li><a href="#json">JSON</a></li>
-<li><a href="#debug">Debug</a>
-<ol>
-<li><a href="#pprof">pprof</a></li>
-</ol>
-</li>
-<li><a href="#%E9%83%A8%E7%BD%B2">部署</a></li>
-</ol>
-</li>
-<li><a href="#tips">Tips</a>
-<ol>
-<li><a href="#%E9%80%9A%E8%BF%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%B0%83%E7%94%A8%E6%8C%87%E5%AE%9A%E5%87%BD%E6%95%B0">通过字符串调用指定函数</a></li>
-</ol>
-</li>
-</ol>
-<p><strong>目录 end</strong>|<em>2021-06-20 14:26</em>|</p>
+</ul>
+<p>💠 2024-11-07 10:24:40</p>
 <hr>
 <h1 id="go">Go</h1>
 <blockquote>
-<p><a href="https://golang.org">官网</a> | <a href="https://golang.google.cn/">镜像官网</a> | <a href="https://github.com/golang/go">Github Repo</a> | <a href="https://godoc.org/">Go Doc</a></p>
+<p><a href="https://golang.org">官网</a> | <a href="https://golang.google.cn/">镜像官网</a> | <a href="https://github.com/golang/go">Github Repo</a> | <a href="https://godoc.org/">Go Doc</a>
+<a href="https://divan.dev/posts/visual_programming_go/">Rethinking Visual Programming with Go</a>
+<a href="https://github.com/qiniu/goplus">Goplus</a></p>
 </blockquote>
+<hr>
+<p><code>Go 项目结构规范</code></p>
+<blockquote>
+<p><a href="https://github.com/golang-standards/project-layout">project-layout</a><br>
+<a href="https://go.dev/doc/modules/layout">go-dev: layout</a><br>
+<a href="https://github.com/llitfkitfk/go-best-practice">Go 语言实战</a></p>
+</blockquote>
+<hr>
 <blockquote>
 <p><a href="https://divan.dev/posts/visual_programming_go/">Rethinking Visual Programming with Go</a></p>
 </blockquote>
+<h2 id="go-modules">Go Modules</h2>
 <blockquote>
-<p><a href="https://github.com/qiniu/goplus">Goplus</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://github.com/golang-standards/project-layout">project-layout</a><code>项目结构规范</code></p>
-</blockquote>
-<h2 id="modules">Modules</h2>
-<blockquote>
-<p>1.11 开始支持 <a href="https://github.com/golang/go/wiki/Modules">Wiki</a></p>
+<p>自 1.11 开始支持 <a href="https://github.com/golang/go/wiki/Modules">Wiki</a></p>
 </blockquote>
 <h3 id="配置">配置</h3>
 <ul>
@@ -267,18 +341,18 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">GO111MODULE</span><span class="o">=</span>on
-<span class="nb">export</span> <span class="nv">GOPROXY</span><span class="o">=</span>https://mirrors.aliyun.com/goproxy/
-<span class="nb">export</span> <span class="nv">GOSUMDB</span><span class="o">=</span>sum.golang.google.cn
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GO111MODULE</span><span class="o">=</span>on
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GOPROXY</span><span class="o">=</span>https://mirrors.aliyun.com/goproxy/
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GOSUMDB</span><span class="o">=</span>sum.golang.google.cn
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p><a href="https://github.com/golang/go/wiki/Modules">wiki Modules</a><br>
+<p><a href="https://github.com/golang/go/wiki/Modules">wiki Modules</a>
 <a href="https://github.com/wuyumin/tutorial/blob/master/zh-cn/Modules/README.md">参考: Go模块简明教程</a></p>
 </blockquote>
 <hr>
@@ -332,11 +406,11 @@
 </tr>
 <tr>
 <td style="text-align:left">go mod why</td>
-<td style="text-align:left">查找依赖</td>
+<td style="text-align:left">查找某个依赖项被引入的路径</td>
 </tr>
 </tbody>
 </table>
-<h2 id="go-get">go get</h2>
+<h3 id="go-get">go get</h3>
 <table>
 <thead>
 <tr>
@@ -366,6 +440,10 @@
 <td style="text-align:left">拉取v3版本 <code>设计最坑</code></td>
 </tr>
 <tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
 <td style="text-align:left">go get -u</td>
 <td style="text-align:left">更新 mod</td>
 </tr>
@@ -373,9 +451,25 @@
 <td style="text-align:left">go list -m -versions golang.org/x/text</td>
 <td style="text-align:left">列出可安装版本</td>
 </tr>
+<tr>
+<td style="text-align:left">go get -insecure</td>
+<td style="text-align:left">不对依赖进行verify 常用于内网的依赖</td>
+</tr>
 </tbody>
 </table>
-<h2 id="单个git仓库发布多个包">单个Git仓库发布多个包</h2>
+<h3 id="gomod">go.mod</h3>
+<blockquote>
+<p>关键字</p>
+</blockquote>
+<ul>
+<li>module	指定包的名字（路径）</li>
+<li>require	指定依赖项模块</li>
+<li>replace	替换依赖项模块</li>
+<li>exclude	忽略依赖项模块</li>
+</ul>
+<p>注意依赖项后 有 // indirect 标记的意味着是传递依赖项</p>
+<p>当有依赖包更换了路径后，可以此方式统一更换: <code>gofmt -w -r '&quot;github.com/dgrijalva/jwt-go&quot; -&gt; &quot;github.com/golang-jwt/jwt&quot;' .</code></p>
+<h4 id="单个git仓库发布多个包">单个Git仓库发布多个包</h4>
 <ul>
 <li>go mod init github.com/username/repo-name/{path}</li>
 <li>git tag -a {path}/v1.0.0</li>
@@ -383,20 +477,91 @@
 <p>例如</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    go mod init github.com/username/repo-name/pkg/app/util
-    git tag -a pkg/app/util/v1.0.0
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    go mod init github.com/username/repo-name/pkg/app/util
+</span></span><span class="line"><span class="cl">    git tag -a pkg/app/util/v1.0.0
+</span></span></code></pre></td></tr></table>
 </div>
-</div><hr>
+</div><h3 id="gowork">go.work</h3>
+<p>关键字和go.mod一致, 并追加了use关键字</p>
+<p>use指定使用的模块目录，可以使用go work use添加模块，也可以手动修改go.work工作区添加新的模块，在工作区中添加了模块路径，编译时会自动使用use中的本地代码进行编译
+replaces替换依赖仓库地址，replaces命令与go.mod指令相同，用于替换项目中依赖的仓库地址，需要注意的是，replaces和use不能同时指定相同的本地代码路径</p>
+<p>通常情况下 go.work不提交到git上, 可以让每个开发人员使用不同的构建规则.</p>
+<p>但是以下场景, 如果要实现 demo-gui模块 依赖 demo/util模块 下的 api.go, 有两种方式:</p>
+<ul>
+<li>demo/
+<ul>
+<li>util/
+<ul>
+<li>api.go</li>
+</ul>
+</li>
+<li>demo-gui/
+<ul>
+<li>main.go</li>
+<li>go.mod</li>
+<li>go.work</li>
+</ul>
+</li>
+<li>go.mod</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><code>replace 方式</code>: demo-gui 中的 go.mod 显示依赖一个假版本 然后replace到本地目录
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">require</span> <span class="nx">demo</span> <span class="nx">v1</span><span class="mf">.0.0</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">replace</span> <span class="nx">demo</span> <span class="nx">v1</span><span class="mf">.0.0</span> <span class="p">=&gt;</span> <span class="p">..</span><span class="o">/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li><code>go.work 方式</code>: 依赖父目录即可. 如果提交该文件到git, 会让依赖管理更简单 <code>看起来</code>, 但是这样就和go.work设计相违背了
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nf">use</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="nx">demo</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="现存问题">现存问题</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 待思考: 如何像Java一样管理多模块的大项目</li>
+<li><input disabled="" type="checkbox"> 当需要从Github上fork一个包并修改了内容及API后，想给自己其他项目依赖时， 就必须要修改这个包的 go.mod 里的 module 改为自己仓库的url 或者将修改内容通过pr入原仓库，否则就无法被使用
+<ul>
+<li>这里会带来一个问题，修改的内容可能是定制化的，不适合合入主仓库</li>
+</ul>
+</li>
+</ul>
+<h3 id="模板项目初始化">模板项目初始化</h3>
+<blockquote>
+<p><a href="https://pkg.go.dev/golang.org/x/tools/cmd/gonew">gonew</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/zeromicro/go-zero">go-zero</a></p>
+</blockquote>
+<hr>
 <h2 id="数据类型">数据类型</h2>
 <p><em>类型后置的设计相关文章</em></p>
 <blockquote>
-<p><a href="https://cxwangyi.wordpress.com/2011/03/14/%E8%9E%BA%E6%97%8B%E5%BD%A2%EF%BC%88cc%EF%BC%89%E5%92%8C%E9%A1%BA%E5%BA%8F%EF%BC%88go%EF%BC%89%E7%9A%84%E5%A3%B0%E6%98%8E%E8%AF%AD%E6%B3%95/">螺旋形（C/C++）和顺序（Go）的声明语法</a><br>
-<a href="https://stackoverflow.com/questions/1712274/why-do-a-lot-of-programming-languages-put-the-type-after-the-variable-name">Why do a lot of programming languages put the type <em>after</em> the variable name?</a></p>
+<p><a href="https://cxwangyi.wordpress.com/2011/03/14/%E8%9E%BA%E6%97%8B%E5%BD%A2%EF%BC%88cc%EF%BC%89%E5%92%8C%E9%A1%BA%E5%BA%8F%EF%BC%88go%EF%BC%89%E7%9A%84%E5%A3%B0%E6%98%8E%E8%AF%AD%E6%B3%95/">螺旋形（C/C++）和顺序（Go）的声明语法</a>
+<a href="https://stackoverflow.com/questions/1712274/why-do-a-lot-of-programming-languages-put-the-type-after-the-variable-name">Why do a lot of programming languages put the type after the variable name?</a></p>
 </blockquote>
 <h3 id="string">string</h3>
 <p>strings 包 提供了常用字符串API</p>
@@ -406,7 +571,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -416,28 +581,28 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go">    <span class="c1">// string到int
-</span><span class="c1"></span>    <span class="kt">int</span><span class="p">,</span><span class="nx">err</span><span class="o">:=</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="kt">string</span><span class="p">)</span>
-    <span class="c1">// string到int64
-</span><span class="c1"></span>    <span class="kt">int64</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">ParseInt</span><span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
-    <span class="c1">// int到string
-</span><span class="c1"></span>    <span class="kt">string</span><span class="o">:=</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
-    <span class="c1">// int64到string
-</span><span class="c1"></span>    <span class="kt">string</span><span class="o">:=</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">FormatInt</span><span class="p">(</span><span class="kt">int64</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">    <span class="c1">// string到int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span><span class="p">,</span><span class="nx">err</span><span class="o">:=</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="kt">string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// string到int64
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int64</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">ParseInt</span><span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// int到string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">string</span><span class="o">:=</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// int64到string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">string</span><span class="o">:=</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">FormatInt</span><span class="p">(</span><span class="kt">int64</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="array">Array</h3>
 <h3 id="slice">Slice</h3>
 <h3 id="map">Map</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go">    <span class="c1">// 判断 key 存在
-</span><span class="c1"></span>    <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">dataMap</span><span class="p">[</span><span class="s">&#34;key&#34;</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">    <span class="c1">// 判断 key 存在
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">dataMap</span><span class="p">[</span><span class="s">&#34;key&#34;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="set">Set</h3>
 <blockquote>
@@ -447,15 +612,9 @@
 <h2 id="基本语法">基本语法</h2>
 <h3 id="标准输入输出">标准输入输出</h3>
 <ul>
-<li>
-<p>输出 fmt.Print*</p>
-</li>
-<li>
-<p>输入 fmt.Scan*</p>
-</li>
-<li>
-<p>打印结构体 <code>fmt.Printf(&quot;%v\n&quot;, object)</code></p>
-</li>
+<li>输出 fmt.Print*</li>
+<li>输入 fmt.Scan*</li>
+<li>打印结构体 <code>fmt.Printf(&quot;%v\n&quot;, object)</code></li>
 </ul>
 <h3 id="时间处理">时间处理</h3>
 <blockquote>
@@ -463,20 +622,89 @@
 </blockquote>
 <p>记住这个神奇的时间 <code>2006-01-02 03:04:05</code> Go 中不是寻常的 YYYY-mm-dd 这种格式</p>
 <hr>
+<h2 id="泛型">泛型</h2>
+<blockquote>
+<p>自1.18 开始支持</p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/golang/go/issues/21498">Github: Lightweight anonymous function syntax</a> <code>讨论可简写的Lambda表达式,类似Js</code></p>
+</blockquote>
+<blockquote>
+<p>类型约束</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Integer</span> <span class="kd">interface</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="p">|</span> <span class="kt">int64</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="丑陋设计">丑陋设计</h3>
+<blockquote>
+<p><a href="https://xeiaso.net/blog/gonads-2022-04-24/">Crimes with Go Generics</a></p>
+</blockquote>
+<blockquote>
+<p>不支持成员方法泛型，只支持结构体附加泛型或函数泛型。</p>
+</blockquote>
+<ul>
+<li><a href="https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md#no-parameterized-methods">no-parameterized-methods</a> | <a href="https://github.com/golang/go/issues/49085">proposal: spec: allow type parameters in methods</a></li>
+<li>go是编译型泛型，在编译器期确定所有的类型，跟go的反射冲突，想要解决只能像C#一样运行时支持泛型，或者像java用类型擦除，这个目前来看基本不可能</li>
+<li>导致了 map reduce 的库简洁的实现比较困难. <a href="https://github.com/Kuangcp/GoBase/tree/master/pkg/ctool/stream">Github: go stream</a><code>个人实现</code></li>
+</ul>
+<blockquote>
+<p>泛型类型的值不能为nil</p>
+</blockquote>
+<ul>
+<li>导致了零值具有歧义
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nx">a</span><span class="p">[</span><span class="nx">T</span> <span class="nx">any</span><span class="p">]()</span> <span class="nx">T</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 编译报错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="kc">nil</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1">// new(T) 也编译报错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 只能通过编译器来设置零值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">var</span> <span class="nx">zero</span> <span class="nx">T</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">zero</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><a href="https://blog.csdn.net/K346K346/article/details/130148416">Golang 1.18 泛型：零值判断</a></li>
+</ul>
+</li>
+</ul>
+<hr>
 <h2 id="函数">函数</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 函数名 (参数 ) 返回值{函数体}
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">functionName</span> <span class="p">(</span><span class="nx">param</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 函数名 (参数 ) 返回值{函数体}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">functionName</span> <span class="p">(</span><span class="nx">param</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="参数">参数</h3>
 <blockquote>
@@ -505,7 +733,54 @@
 </blockquote>
 <hr>
 <h2 id="协程">协程</h2>
+<blockquote>
+<p><a href="https://go.dev/blog/waza-talk">Concurrency is not parallelism</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://learnku.com/blog/Aceld">刘丹冰Aceld 的博客 </a><br>
+<a href="https://learnku.com/articles/41728">Golang 调度器 GMP 原理与调度全分析 </a><code>《深入理解 Go 语言》</code></p>
+</blockquote>
+<p><img src="./img/gmp.drawio.svg" alt=""></p>
+<ul>
+<li>全局队列（Global Queue）：存放等待运行的 G。</li>
+<li>P 的本地队列：同全局队列类似，存放的也是等待运行的 G，存的数量有限，不超过 256 个。
+<ul>
+<li>新建 G’时，G’优先加入到 P 的本地队列，如果队列满了，则会把本地队列中一半的 G 移动到全局队列。</li>
+</ul>
+</li>
+<li>P 列表：所有的 P 都在程序启动时创建，并保存在数组中，最多有 GOMAXPROCS(可配置 例如<a href="https://github.com/uber-go/automaxprocs">automaxprocs</a>) 个。</li>
+<li>M：线程想运行任务就得获取 P，从 P 的本地队列获取 G，P 队列为空时，M 也会尝试从全局队列拿一批 G 放到 P 的本地队列，或从其他 P 的本地队列偷一半放到自己 P 的本地队列。
+<ul>
+<li>M 运行 G，G 执行之后，M 会从 P 获取下一个 G，不断重复下去。</li>
+<li>go 程序启动时，会设置 M 的最大数量，默认 10000. <code>runtime/debug 中的 SetMaxThreads</code>，设置 M 的最大数量</li>
+<li>当一个 M 阻塞了，就会创建新的 M。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><em>调度器的设计策略</em></p>
+<blockquote>
+<p>Goroutine 调度器和 OS 调度器是通过 M 结合起来的，每个 M 都代表了 1 个内核线程，OS 调度器负责把内核线程分配到 CPU 的核上执行。</p>
+</blockquote>
+<ul>
+<li><strong>复用线程</strong>：避免频繁的创建、销毁线程，而是对线程的复用。
+<ol>
+<li>work stealing 机制:​ 当本线程无可运行的 G 时，尝试从其他线程绑定的 P 偷取 G，而不是销毁线程, 类似于Java的Fork/Join的工作窃取。</li>
+<li>hand off 机制: ​ 当本线程M因为 G 进行系统调用阻塞时，线程M释放绑定的 P，把 P 转移给其他空闲的线程M执行。</li>
+</ol>
+</li>
+<li><strong>并行</strong>：GOMAXPROCS 设置 P 的数量，最多有 GOMAXPROCS 个线程分布在多个 CPU 上同时运行。GOMAXPROCS 也限制了并发的程度
+<ul>
+<li>比如 GOMAXPROCS = 核数/2，则最多利用了一半的 CPU 核进行并行。</li>
+</ul>
+</li>
+<li><strong>抢占</strong>：在 coroutine 中要等待一个协程主动让出 CPU 才执行下一个协程，在 Go 中，一个 goroutine 最多占用 CPU 10ms，防止其他 goroutine 被饿死，这就是 goroutine 不同于 coroutine 的一个地方。</li>
+<li><strong>全局 G 队列</strong>：在新的调度器中依然有全局 G 队列，但功能已经被弱化了，当 M 执行 work stealing 从其他 P 偷不到 G 时，它可以从全局 G 队列获取 G。</li>
+</ul>
+<hr>
+<blockquote>
 <p><a href="https://zhuanlan.zhihu.com/p/80037638">协程究竟比线程能省多少开销？</a></p>
+</blockquote>
 <p>线程的切换频率，基本取决于线程的数量，使用协程，需要指定每个线程的任务，同样的任务量，协程需要的线程数量应该始终高于自动分配的线程池。 因而：</p>
 <ul>
 <li>使用线程 = 线程切换开销（小）</li>
@@ -516,56 +791,20 @@
 <li>线程的指令周期 = 中断检测 + 指令执行（包括取指、转换和执行）</li>
 <li>协程的指令周期 = 中断检测 + 指令执行 + 中断检测 + 协程信号检测</li>
 </ul>
-<p>所以：性能上，io多路复用 + 线程池是完全碾压协程的；协程胜在方便程度上</p>
-<h2 id="文件操作">文件操作</h2>
-<p><strong>递归读取当前目录的文件</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&#34;fmt&#34;</span>
-    <span class="s">&#34;os&#34;</span>
-    <span class="s">&#34;path/filepath&#34;</span>
-<span class="p">)</span>
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">filepath</span><span class="p">.</span><span class="nf">Walk</span><span class="p">(</span><span class="s">&#34;./&#34;</span><span class="p">,</span> <span class="nx">walkfunc</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="kd">func</span> <span class="nf">walkfunc</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">info</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-	<span class="k">if</span><span class="p">(!</span><span class="nx">info</span><span class="p">.</span><span class="nf">IsDir</span><span class="p">()){</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
-	<span class="p">}</span>
-    <span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><hr>
+<p>所以：性能上，io多路复用 + 线程池是完全碾压协程的；协程胜在使用方便</p>
 <blockquote>
-<p><a href="github.com/rakyll/statik">statik</a> <code>将文件打包入二进制执行文件中去</code></p>
+<p>思考如何实现:可中断的调度任务，池式限流（限制最大活跃任务数）</p>
 </blockquote>
 <hr>
-<h2 id="test">Test</h2>
 <blockquote>
-<p><a href="https://godoc.org/github.com/stretchr/testify/assert">Github: assert</a></p>
+<p><a href="https://taoshu.in/go/goroutine-panic.html">Go语言的跨协程异常处理</a></p>
 </blockquote>
 <hr>
-<h2 id="json">JSON</h2>
+<h2 id="序列化">序列化</h2>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_39618369/article/details/125761089">Go json反序列化“null“结果为nil踩坑</a></p>
+</blockquote>
+<h3 id="json">JSON</h3>
 <blockquote>
 <p><code>结构体必须是大写字母开头的成员才会被处理(大写字母开头才有对外权限)</code></p>
 </blockquote>
@@ -579,7 +818,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -623,55 +862,53 @@
 </span><span class="lnt">42
 </span><span class="lnt">43
 </span><span class="lnt">44
-</span><span class="lnt">45
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go">	<span class="kd">type</span> <span class="nx">GridConfig</span> <span class="kd">struct</span> <span class="p">{</span>
-        <span class="nx">ID</span>   <span class="kt">int</span>   <span class="s">`json:&#34;id&#34;`</span>
-        <span class="nx">Row</span>  <span class="kt">int</span>   <span class="s">`json:&#34;row&#34;`</span>
-        <span class="nx">Col</span>  <span class="kt">int</span>   <span class="s">`json:&#34;col&#34;`</span>
-        <span class="nx">Data</span> <span class="p">[]</span><span class="kt">int</span> <span class="s">`json:&#34;data&#34;`</span>
-    <span class="p">}</span>
-
-<span class="c1">// 第一种
-</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><span class="nx">GenerateGrid</span><span class="p">)</span> <span class="nf">ReadConfig</span><span class="p">()</span> <span class="p">[]</span><span class="nx">GridConfig</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">datas</span> <span class="p">[]</span><span class="nx">GridConfig</span>
-	<span class="nx">fp</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">&#34;grid.json&#34;</span><span class="p">)</span>
-	<span class="nx">dec</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">NewDecoder</span><span class="p">(</span><span class="nx">fp</span><span class="p">)</span>
-	<span class="k">for</span> <span class="p">{</span>
-		<span class="nx">err</span> <span class="o">:=</span> <span class="nx">dec</span><span class="p">.</span><span class="nf">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">datas</span><span class="p">)</span>
-		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-			<span class="k">break</span>
-		<span class="p">}</span>
-		<span class="c1">//use v
-</span><span class="c1"></span>		<span class="c1">// fmt.Printf(&#34;%+v&#34;, datas)
-</span><span class="c1"></span>		<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">line</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">datas</span> <span class="p">{</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-
-    <span class="c1">// 第二种方式
-</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">datas</span> <span class="p">[]</span><span class="nx">GridConfig</span>
-	<span class="nx">raw</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadFile</span><span class="p">(</span><span class="s">&#34;./grid.json&#34;</span><span class="p">)</span>
-	<span class="c1">// fmt.Println(raw)
-</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">())</span>
-		<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="nx">err</span> <span class="p">=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">raw</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">datas</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;error:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-
-	<span class="p">}</span>
-	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">line</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">datas</span> <span class="p">{</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span>
-	<span class="p">}</span>
-
-	<span class="k">return</span> <span class="nx">datas</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">	<span class="kd">type</span> <span class="nx">GridConfig</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ID</span>   <span class="kt">int</span>   <span class="s">`json:&#34;id&#34;`</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Row</span>  <span class="kt">int</span>   <span class="s">`json:&#34;row&#34;`</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Col</span>  <span class="kt">int</span>   <span class="s">`json:&#34;col&#34;`</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Data</span> <span class="p">[]</span><span class="kt">int</span> <span class="s">`json:&#34;data&#34;`</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 第一种
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><span class="nx">GenerateGrid</span><span class="p">)</span> <span class="nf">ReadConfig</span><span class="p">()</span> <span class="p">[]</span><span class="nx">GridConfig</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">datas</span> <span class="p">[]</span><span class="nx">GridConfig</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fp</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">&#34;grid.json&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">dec</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">NewDecoder</span><span class="p">(</span><span class="nx">fp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">err</span> <span class="o">:=</span> <span class="nx">dec</span><span class="p">.</span><span class="nf">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">datas</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">break</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//use v
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// fmt.Printf(&#34;%+v&#34;, datas)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">line</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">datas</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 第二种方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">var</span> <span class="nx">datas</span> <span class="p">[]</span><span class="nx">GridConfig</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">raw</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadFile</span><span class="p">(</span><span class="s">&#34;./grid.json&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// fmt.Println(raw)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="p">=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">raw</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">datas</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;error:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">line</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">datas</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">datas</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>忽略空字段</p>
@@ -681,25 +918,130 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">Msg</span> <span class="kd">struct</span><span class="p">{</span>
- <span class="nx">Text</span>     <span class="o">*</span><span class="nx">Content</span> <span class="s">`json:&#34;text,omitempty&#34;`</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Msg</span> <span class="kd">struct</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">Text</span>     <span class="o">*</span><span class="nx">Content</span> <span class="s">`json:&#34;text,omitempty&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
+<h1 id="应用">应用</h1>
+<h2 id="文件操作">文件操作</h2>
+<p><strong>递归读取当前目录的文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;path/filepath&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">filepath</span><span class="p">.</span><span class="nf">Walk</span><span class="p">(</span><span class="s">&#34;./&#34;</span><span class="p">,</span> <span class="nx">walkfunc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">walkfunc</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">info</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(!</span><span class="nx">info</span><span class="p">.</span><span class="nf">IsDir</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="http">http</h2>
+<blockquote>
+<p><a href="https://xiaorui.cc/archives/5577">优化 golang net/http client 客户端存在的性能瓶颈</a><code>http.Client 中 Transport对于连接池使用的锁太多</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/imroc/req">req</a></p>
+</blockquote>
+<hr>
+<h2 id="test">Test</h2>
+<blockquote>
+<p><a href="https://godoc.org/github.com/stretchr/testify/assert">Github: assert</a></p>
+</blockquote>
+<hr>
 <h2 id="debug">Debug</h2>
 <h3 id="pprof">pprof</h3>
 <blockquote>
-<p><a href="https://cloud.tencent.com/developer/article/1489186">参考: 【实践】使用Go pprof做内存性能分析</a><br>
-<a href="https://www.codercto.com/a/79118.html">参考: 实战Go内存泄露</a></p>
+<p><a href="https://github.com/google/pprof/blob/main/doc/README.md">Google: pprof</a></p>
 </blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nx">_</span> <span class="s">&#34;net/http/pprof&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 访问 http://ip:8899/debug/pprof/
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;0.0.0.0:8899&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><a href="https://cloud.tencent.com/developer/article/1489186">参考: 【实践】使用Go pprof做内存性能分析</a>
+<a href="https://www.codercto.com/a/79118.html">参考: 实战Go内存泄露</a>
+<a href="https://zhuanlan.zhihu.com/p/368567370">参考: Go 程序内存泄露问题快速定位</a></p>
+</blockquote>
+<blockquote>
+<p>分析内存</p>
+</blockquote>
+<ul>
+<li>go tool pprof -alloc_space/-inuse_space http://ip:8899/debug/pprof/heap 后进入REPL 输入top查看内存占用</li>
+<li>go tool pprof -inuse_space -cum -svg http://ip:8899/debug/pprof/heap &gt; heap_inuse.svg 导出成svg图</li>
+<li>go tool pprof -http=:7778 http://localhost:8899/debug/pprof/heap</li>
+</ul>
+<blockquote>
+<p>分析CPU</p>
+</blockquote>
+<p><a href="https://www.benburwell.com/posts/flame-graphs-for-go-with-pprof/">Flame Graphs for Go With pprof</a> CPU火焰图</p>
+<p>自动方式 <strong>推荐</strong></p>
+<ul>
+<li><code>go tool pprof -raw 'http://localhost:8080/debug/pprof/profile?seconds=20'</code> 得到采样文件 *.pb.gz</li>
+<li><code>go tool pprof -http=: 采样文件</code> http可指定端口 例如 :2345</li>
+<li>访问 web 地址 菜单 View 下的 Flame Graph</li>
+</ul>
+<p>手工方式</p>
+<ul>
+<li>先 Clone <a href="https://github.com/brendangregg/FlameGraph">https://github.com/brendangregg/FlameGraph</a></li>
+<li><code>go tool pprof -raw -output=cpu.txt 'http://localhost:8080/debug/pprof/profile?seconds=20'</code></li>
+<li><code>./stackcollapse-go.pl cpu.txt | flamegraph.pl &gt; flame.svg</code></li>
+</ul>
 <hr>
 <h2 id="部署">部署</h2>
+<h3 id="静态编译">静态编译</h3>
+<blockquote>
+<p><a href="https://juejin.cn/post/7053450610386468894">Go 静态编译机制 </a></p>
+</blockquote>
+<ul>
+<li>CGO_ENABLED=0 go build</li>
+<li>go build -ldflags &lsquo;-linkmode &ldquo;external&rdquo; -extldflags &ldquo;-static&rdquo;&rsquo;</li>
+</ul>
+<hr>
 <blockquote>
 <p>打包的二进制文件在alpine中无法运行</p>
 </blockquote>
@@ -711,9 +1053,25 @@
 <p>报错： <a href="https://github.com/golang/go/issues/16012">cannot assign requested address</a>
 方案： <code>ulimit -n 10000 &amp;&amp; ./app</code></p>
 <hr>
+<h1 id="常用库">常用库</h1>
+<ul>
+<li><a href="https://github.com/golang/groupcache">groupcache</a> 分布式cache</li>
+<li><a href="https://github.com/sohaha/zlsgo">zlsgo</a><code>Web应用脚手架</code></li>
+</ul>
+<hr>
 <h1 id="tips">Tips</h1>
 <blockquote>
 <p><a href="https://github.com/zserge/lorca.git">lorca</a> <code>H5 + chromium + Golang</code>桌面端</p>
+</blockquote>
+<blockquote>
+<p>interface{} 类型判断nil</p>
+</blockquote>
+<ul>
+<li>vo == nil || (reflect.ValueOf(vo).Kind() == reflect.Ptr &amp;&amp; reflect.ValueOf(vo).IsNil())</li>
+</ul>
+<blockquote>
+<p>字符串计算差异
+<a href="https://github.com/sergi/go-diff/diffmatchpatch">diffmatchpatch</a></p>
 </blockquote>
 <h2 id="通过字符串调用指定函数">通过字符串调用指定函数</h2>
 <blockquote>
@@ -725,11 +1083,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-14
         
@@ -746,11 +1104,11 @@
         <a class="prev" href="/post/go/gorestful/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">GoRestful</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/frontend/svg/">
             <span class="next-text nav-default">SVG</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -768,17 +1126,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -786,11 +1144,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -800,16 +1158,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

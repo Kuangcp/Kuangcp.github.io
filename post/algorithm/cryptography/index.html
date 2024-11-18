@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>密码学 - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 密码学 古典密码学 2.1. 凯撒密码 2.2. 简单替换密码 2.3. 多表加密 2.4. 一次性密码本 现代密码学 3.1. 编码 3.2. 伪随机数生成器 3.3. 对称密码 3.3.1. DES 3.3.2. AES 3.3.2.1. 混合模式 3.3.2.1.1. AES-CCM 3.3.2.1.2. AES-GCM 3.3.3. 分组" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/algorithm/cryptography/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="密码学" />
+<meta property="og:description" content="💠 密码学 古典密码学 2.1. 凯撒密码 2.2. 简单替换密码 2.3. 多表加密 2.4. 一次性密码本 现代密码学 3.1. 编码 3.2. 伪随机数生成器 3.3. 对称密码 3.3.1. DES 3.3.2. AES 3.3.2.1. 混合模式 3.3.2.1.1. AES-CCM 3.3.2.1.2. AES-GCM 3.3.3. 分组" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/algorithm/cryptography/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-09-08T11:54:36+00:00" />
+<meta property="article:modified_time" content="2023-09-08T11:54:36+00:00" />
+
+<meta itemprop="name" content="密码学">
+<meta itemprop="description" content="💠 密码学 古典密码学 2.1. 凯撒密码 2.2. 简单替换密码 2.3. 多表加密 2.4. 一次性密码本 现代密码学 3.1. 编码 3.2. 伪随机数生成器 3.3. 对称密码 3.3.1. DES 3.3.2. AES 3.3.2.1. 混合模式 3.3.2.1.1. AES-CCM 3.3.2.1.2. AES-GCM 3.3.3. 分组"><meta itemprop="datePublished" content="2023-09-08T11:54:36+00:00" />
+<meta itemprop="dateModified" content="2023-09-08T11:54:36+00:00" />
+<meta itemprop="wordCount" content="5779">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="密码学"/>
+<meta name="twitter:description" content="💠 密码学 古典密码学 2.1. 凯撒密码 2.2. 简单替换密码 2.3. 多表加密 2.4. 一次性密码本 现代密码学 3.1. 编码 3.2. 伪随机数生成器 3.3. 对称密码 3.3.1. DES 3.3.2. AES 3.3.2.1. 混合模式 3.3.2.1.1. AES-CCM 3.3.2.1.2. AES-GCM 3.3.3. 分组"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">密码学</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-09-08 </span>
+        
+          <span class="more-meta"> 约 5779 字 </span>
+          <span class="more-meta"> 预计阅读 12 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#密码学">密码学</a></li>
+    <li><a href="#古典密码学">古典密码学</a>
+      <ul>
+        <li><a href="#凯撒密码">凯撒密码</a></li>
+        <li><a href="#简单替换密码">简单替换密码</a></li>
+        <li><a href="#多表加密">多表加密</a></li>
+        <li><a href="#一次性密码本">一次性密码本</a></li>
+      </ul>
+    </li>
+    <li><a href="#现代密码学">现代密码学</a>
+      <ul>
+        <li><a href="#编码">编码</a></li>
+        <li><a href="#伪随机数生成器">伪随机数生成器</a></li>
+        <li><a href="#对称密码">对称密码</a>
+          <ul>
+            <li><a href="#des">DES</a></li>
+            <li><a href="#aes">AES</a></li>
+            <li><a href="#分组密码和流密码">分组密码和流密码</a></li>
+            <li><a href="#分组密码的模式">分组密码的模式</a></li>
+          </ul>
+        </li>
+        <li><a href="#公钥密码">公钥密码</a>
+          <ul>
+            <li><a href="#rsa">RSA</a></li>
+          </ul>
+        </li>
+        <li><a href="#混合密码系统">混合密码系统</a></li>
+        <li><a href="#散列函数">散列函数</a>
+          <ul>
+            <li><a href="#md4-md5">MD4 MD5</a></li>
+            <li><a href="#sha-1">SHA-1</a></li>
+            <li><a href="#ripemd-160">RIPEMD-160</a></li>
+            <li><a href="#bcrypt">BCrypt</a></li>
+          </ul>
+        </li>
+        <li><a href="#消息认证码">消息认证码</a></li>
+        <li><a href="#数字签名">数字签名</a>
+          <ul>
+            <li><a href="#签名与验签">签名与验签</a></li>
+          </ul>
+        </li>
+        <li><a href="#证书">证书</a></li>
+        <li><a href="#密钥">密钥</a></li>
+        <li><a href="#随机数">随机数</a></li>
+      </ul>
+    </li>
+    <li><a href="#集大成者">集大成者</a>
+      <ul>
+        <li><a href="#pgp">PGP</a></li>
+        <li><a href="#ssl-tls">SSL TLS</a></li>
+      </ul>
+    </li>
+    <li><a href="#扩展">扩展</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2023-09-08T11:54:36" title="September 8, 2023">September 8, 2023</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6">古典密码学</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81">凯撒密码</a></li>
+<li>2.2. <a href="#%E7%AE%80%E5%8D%95%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81">简单替换密码</a></li>
+<li>2.3. <a href="#%E5%A4%9A%E8%A1%A8%E5%8A%A0%E5%AF%86">多表加密</a></li>
+<li>2.4. <a href="#%E4%B8%80%E6%AC%A1%E6%80%A7%E5%AF%86%E7%A0%81%E6%9C%AC">一次性密码本</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E7%8E%B0%E4%BB%A3%E5%AF%86%E7%A0%81%E5%AD%A6">现代密码学</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#%E7%BC%96%E7%A0%81">编码</a></li>
+<li>3.2. <a href="#%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8">伪随机数生成器</a></li>
+<li>3.3. <a href="#%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81">对称密码</a>
+<ul>
+<li>3.3.1. <a href="#des">DES</a></li>
+<li>3.3.2. <a href="#aes">AES</a>
+<ul>
+<li>3.3.2.1. <a href="#%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8F">混合模式</a>
+<ul>
+<li>3.3.2.1.1. <a href="#aes-ccm">AES-CCM</a></li>
+<li>3.3.2.1.2. <a href="#aes-gcm">AES-GCM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3.3.3. <a href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E5%92%8C%E6%B5%81%E5%AF%86%E7%A0%81">分组密码和流密码</a></li>
+<li>3.3.4. <a href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E7%9A%84%E6%A8%A1%E5%BC%8F">分组密码的模式</a></li>
+</ul>
+</li>
+<li>3.4. <a href="#%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81">公钥密码</a>
+<ul>
+<li>3.4.1. <a href="#rsa">RSA</a>
+<ul>
+<li>3.4.1.1. <a href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9">生成密钥对</a></li>
+<li>3.4.1.2. <a href="#%E6%A8%A1%E6%8B%9F%E5%AE%8C%E6%95%B4%E7%9A%84rsa%E8%BF%87%E7%A8%8B">模拟完整的RSA过程</a></li>
+<li>3.4.1.3. <a href="#%E5%AF%B9rsa%E7%9A%84%E6%94%BB%E5%87%BB">对RSA的攻击</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3.5. <a href="#%E6%B7%B7%E5%90%88%E5%AF%86%E7%A0%81%E7%B3%BB%E7%BB%9F">混合密码系统</a></li>
+<li>3.6. <a href="#%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0">散列函数</a>
+<ul>
+<li>3.6.1. <a href="#md4-md5">MD4 MD5</a></li>
+<li>3.6.2. <a href="#sha-1">SHA-1</a></li>
+<li>3.6.3. <a href="#ripemd-160">RIPEMD-160</a></li>
+</ul>
+</li>
+<li>3.7. <a href="#%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81">消息认证码</a></li>
+<li>3.8. <a href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D">数字签名</a>
+<ul>
+<li>3.8.1. <a href="#%E7%AD%BE%E5%90%8D%E4%B8%8E%E9%AA%8C%E7%AD%BE">签名与验签</a></li>
+</ul>
+</li>
+<li>3.9. <a href="#%E8%AF%81%E4%B9%A6">证书</a></li>
+<li>3.10. <a href="#%E5%AF%86%E9%92%A5">密钥</a></li>
+<li>3.11. <a href="#%E9%9A%8F%E6%9C%BA%E6%95%B0">随机数</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E9%9B%86%E5%A4%A7%E6%88%90%E8%80%85">集大成者</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#pgp">PGP</a></li>
+<li>4.2. <a href="#ssl-tls">SSL TLS</a></li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li><a href="#%E6%89%A9%E5%B1%95">扩展</a></li>
+</ol>
+</li>
+</ul>
+<p>💠 2023-10-10 00:42</p>
+<hr>
+<h1 id="密码学">密码学</h1>
+<blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A0%81%E5%AD%A6">wikipedia</a></p>
+</blockquote>
+<blockquote>
+<p>基础概念：</p>
+</blockquote>
+<ul>
+<li>此处的密码不等同于常见的信息系统中的用户 <strong>&ldquo;登录密码&rdquo;</strong>，严格意义上讲<code>password</code>只能称为口令，作为信息系统认证的一部分，密码是指信息的加解密等完整生态。</li>
+<li>明文(plaintext) 加密(encrypt) 得到 密文(ciphertext)，解密则是逆向过程
+<ul>
+<li>加密 解密算法合称 密码算法，密码算法中通常都需要密钥（key）</li>
+</ul>
+</li>
+<li>对称密码 和 公钥密码：保证数据的机密性
+<ul>
+<li>对称密码即加密和解密使用同一个密钥，公钥密码则是加密和解密使用不同的密钥（分为公钥和私钥）。还有混合密码系统则是结合两种方式一起使用</li>
+</ul>
+</li>
+<li>hash函数： 为了保证数据的完整性，即数据没有被篡改过。</li>
+<li>消息认证码： 保证完整性并提供认证机制，例如身份证中的校验位</li>
+<li>数字签名：保证完整性，提供认证机制，防止否认</li>
+<li>伪随机数生成器： 模拟产生随机数的算法。如果生成随机数的算法设计不好，则攻击者容易推测出密钥</li>
+<li>隐写术：将消息藏入明文，密码隐藏的是明文，隐写术隐藏的明文消息
+<ul>
+<li>计算机中的数字水印就使用了该技术设计，例如将需要嵌入的消息加密得到密文再通过隐写术藏到载体上（图片，视频，音频），达到签名，溯源的目的</li>
+</ul>
+</li>
+<li>社会工程学（social engineering）攻击: 安全系统内的短板在于人类自身。</li>
+<li>密钥加密密钥（Key Encrypting Key， KEK）</li>
+</ul>
+<p>最佳实践：</p>
+<ul>
+<li>不要使用保密的密码算法，而应该使用市面上公开的高强度的密码算法</li>
+<li>使用低强度的密码比不进行任何加密更危险</li>
+<li>任何密码总有一天都会被破解，重点在于攻击的投入产出比</li>
+<li>密码只是信息安全的一部分</li>
+<li>低强度加密算法对明文的多轮加密的安全性等同于单次加密</li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><a href="https://zh.khanacademy.org/computing/computer-science/cryptography">可汗学院： 计算机科学-密码学</a></li>
+<li>《图解密码技术》</li>
+</ul>
+<hr>
+<h1 id="古典密码学">古典密码学</h1>
+<blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A2%BC">wikipedia</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://zh.khanacademy.org/computing/computer-science/cryptography/ciphers/a/xor-and-the-one-time-pad">异或与一次性密码本</a><code>异或运算后，原始信息无法辨别了</code></p>
+</blockquote>
+<h2 id="凯撒密码">凯撒密码</h2>
+<p>凯撒密码是一种移位密码，将明文按固定偏移量将明文转换为密文。</p>
+<p>例如：明文 you 经过3个移位得到密文brx。
+缺陷：</p>
+<ul>
+<li>英文语句中每个字母的出现频率是有固定的差异，可以从密文的字母出现频率对照原始字母的频率从而推算出偏移量</li>
+<li>密钥只有26种，密钥空间极小，可以暴力计算（又称 穷举搜索）所有的密钥解密得到明文</li>
+</ul>
+<h2 id="简单替换密码">简单替换密码</h2>
+<p>将原始的26个字母，打乱后得到替换表，将明文中的字母一一对应并替换，从而将明文加密为密文</p>
+<p>改进点： 密钥空间从26种扩大到 26！种
+缺陷：</p>
+<ul>
+<li>同样可以通过字母频率分析，结合单词组（类似数独的解法），推算出替换表</li>
+<li>密文越长越容易破解（给出了更多的信息）</li>
+</ul>
+<h2 id="多表加密">多表加密</h2>
+<p>将一个单词设置为密钥，单词内的每个字符的自然序循环使用作为偏移量对明文进行加密</p>
+<p>例如：明文 how are you 密钥 yes（25，5，19） 计算得到密文：__
+缺陷：密钥一般短于明文，还是能得到偏移的规律</p>
+<h2 id="一次性密码本">一次性密码本</h2>
+<blockquote>
+<p>一次性密码本(one time pad)是一种绝对无法被破译的密码<br>
+一次性密码本由 G.S.Vernam 在1917年提出 并由 香农(C.E.Shannon) 在1949年数学方法证明，它是无条件安全的(unconditionally secure)，在理论上是无法破译的(theoretically unbreakable)。</p>
+</blockquote>
+<p>设置一个与明文长度一致的字符串作为密码本，对明文每个字母按密码本对应的字母的自然序进行移位。</p>
+<p>如果在计算机的范畴，一次性密码本则是与明文编码后二进制串等长的二进制串。而且明文二进制串通过和密码本异或运算得到密文（且和或会保留大量的明文信息特征）。</p>
+<p>例如： 明文 how are you 密钥 uwoiufpqx 计算得到密文：__</p>
+<p>一次性密码本是无法破译的： 因为即使拿到了密文，穷举了密钥，得到明文，但是会发现得到多个情况的明文，无法判断哪个明文才是这个密文真正要携带信息的明文。</p>
+<p>即使理论上是无法破译的，但是在实用性上几乎是无法使用： 密钥每次都是需要和密文一起发送给接受方，密文中的信息才能有效被传达，然后矛盾点来了，如何安全的传输与明文等长的密钥。</p>
+<p>一次性密码本和明文长度一样，是否可以压缩。答案：否，因为压缩过程是对重复序列的再编码，得到短序列，从而实现压缩，但是一次性密码本是随机的，不包含任何冗余重复序列。</p>
+<hr>
+<h1 id="现代密码学">现代密码学</h1>
+<h2 id="编码">编码</h2>
+<p>现代密码学都是建立在计算机的基础上，因此需要编码（将 文字，图像，音视频 等 转换成比特序列）。</p>
+<hr>
+<h2 id="伪随机数生成器">伪随机数生成器</h2>
+<p>计算机领域没有真随机事件，所以只能称为伪随机数，但是可用利用外部的信息熵来提高随机性。</p>
+<p>需要具备的性质：</p>
+<ul>
+<li>事实上不可能根据过去的随机数序列来预测未来的随机数序列。</li>
+</ul>
+<p>常见的编程语言中random的最简单实现都是固定序列的伪随机数生成器(如果使用此生成器计算的密钥做加密，容易被攻击者攻破)<br>
+改进版则是使用操作系统中随机数设备<code>/dev/urandom</code>（采集硬件上的信息熵，电压，温度，键盘鼠标等输入事件）来生成不固定序列</p>
+<p>伪随机数生成算法</p>
+<p>线性同余 （linear congruential generator, LCG）： <code>X[n+1] = (a·X[n] + c) mod m</code></p>
+<hr>
+<h2 id="对称密码">对称密码</h2>
+<h3 id="des">DES</h3>
+<p>Data Encryption Standard 是 1977年美国联邦信息处理标准中所采用的对称密码。</p>
+<p>DES是一种将64比特的明文加密成64位比特的密文的对称加密算法(分组密码的一种)，密钥长度为64位： 56位+错误检验的8比特（每隔7位设置一位）<br>
+使用Feistel网络作为基本结构，经过多轮分组加密得到密文（轮函数和网络结构解耦）。详细过程参考书籍《图解密码技术》</p>
+<p><code>三重DES</code>
+加密过程：明文 密钥1加密 密钥2解密 密钥3加密 得到密文。 解密过程相反： 密钥3解密 密钥2加密 密钥1解密<br>
+优点：增加了DES算法的强度（加大了密钥空间）， 缺陷： 计算量大</p>
+<blockquote>
+<p>DES 密钥空间是 2^56种， 三重DES则是 2^168种。</p>
+</blockquote>
+<hr>
+<h3 id="aes">AES</h3>
+<p>Advanced Encryption Standard。在全世界范围进行公开竞选， 有15个算法进入候选范围，最终 Rijndael 获胜成为AES</p>
+<p>同为分组加密算法，分组长度为128比特，密钥长度可选（128，192，256位），使用SPN结构进行多轮加密。 详细过程参考书籍《图解密码技术》<br>
+而且加密过程的步骤可以并行计算，性能较DES也更好。<br>
+Rijndael算法背后是严谨的数学论证：明文到密文的计算过程全部可以用数学公式来表达。</p>
+<p>例如128位密钥长度的生成方式：Random生成16位字节数组，或者任意Ascii码16位字符串（强度更弱）</p>
+<h4 id="混合模式">混合模式</h4>
+<h5 id="aes-ccm">AES-CCM</h5>
+<ul>
+<li>AES算法采用CTR/CBC模式</li>
+</ul>
+<h5 id="aes-gcm">AES-GCM</h5>
+<ul>
+<li>AES算法采用CTR模式，并带有GMAC消息认证码。能防篡改（认证码实现） <a href="https://en.wikipedia.org/wiki/Galois/Counter_Mode">wiki: GCM</a></li>
+</ul>
+<hr>
+<h3 id="分组密码和流密码">分组密码和流密码</h3>
+<p>分组密码(block cipher)是指每次只能处理固定长度数据的一类密码算法。例如 DES，AES等
+流密码(stream cipher)是对数据流连续处理的一类密码算法。</p>
+<p>分组密码处理完一个分组就结束了，因此不需要内部状态来记录维护加密的进度，反之流密码是对一串数据流进行连续处理，是有状态的。</p>
+<blockquote>
+<p>由于明文不可能总是密钥的整数倍长，因此需要对最后一个明文分组进行数据填充(padding)达到对齐</p>
+</blockquote>
+<h3 id="分组密码的模式">分组密码的模式</h3>
+<blockquote>
+<p>分组密码算法需要对分段的明文进行迭代加密，迭代的方法称为模式。</p>
+</blockquote>
+<p>《实用密码学》中指出，推荐使用CBC模式和CTR模式。</p>
+<ul>
+<li>ECB：Electronic CodeBook mode 电子密码本模式</li>
+<li>CBC：Cipher Block Chaining mode 密码分组链接模式</li>
+<li>CFB：Cipher FeekBack mode 密文反馈模式</li>
+<li>OFB：Output FeedBack mode 输出反馈模式</li>
+<li>CTR：CounTeR mode 计数器模式</li>
+</ul>
+<p>ECB模式是按序迭代，也是最容易有安全漏洞的算法，通常不被实际使用。</p>
+<ul>
+<li>因为ECB模式下，明文分组和密文分组是按序一一对应的，那理论上可以通过对密文分组的 复制，调序，剪切 等操作，从而达到篡改明文的目的。</li>
+<li>但是如果使用消息认证码，则可以发现密文被篡改</li>
+</ul>
+<p>IV： 初始化向量(initialization vector)。 <em>iv长度为固定的16字节</em></p>
+<p>CBC模式在每个明文分组加密为密文分组前，都需要拿前一个明文分组得到的密文分组对当前明文分组做异或（XOR）运算，第一个分组则依赖IV做XOR。每个分组都依赖前一个分组像一个链条。<br>
+CFB，OFB和CBC类似都需要IV，只是当前明文分组的处理方式不同。</p>
+<hr>
+<h2 id="公钥密码">公钥密码</h2>
+<blockquote>
+<p>非对称加密</p>
+</blockquote>
+<p>类比场景：</p>
+<ul>
+<li>对称加密，传统房门的锁需要同钥匙来开关门，则密钥是相同的：钥匙；</li>
+<li>公钥加密：超市中的付费购物车，需要投币开锁，推入前一个购物车后完成加锁，则密钥是不同的，加锁密钥：前一个购物车，解锁密钥：硬币。</li>
+</ul>
+<p>相较于对称密码，安全性大为加强，但是目前的公钥密码算法性能只有对称密码算法的几百分之一。</p>
+<p>EIGamal算法利用了mod N 下求离散对数的难度（但是密文长度是明文的两倍），RSA利用了质因数分解的难度，Rabin算法利用了mod N下求平方根的难度</p>
+<p>椭圆曲线密码 (Elliptic Curve Cryptosystems, ECC), 通过将椭圆曲线上特定点进行特殊的乘法运算来实现，利用了乘法运算的逆运算的困难度。
+特点是所需密钥长度比RSA短。</p>
+<h3 id="rsa">RSA</h3>
+<blockquote>
+<p><a href="/Skills/CS/BasicOperator.md#%E6%A8%A1%E8%BF%90%E7%AE%97">模运算</a><code>RSA公私钥理论基础</code></p>
+</blockquote>
+<p>RSA 可以被用于公钥密码和数字签名。
+在RSA中，明文，密钥和密文都是数字。</p>
+<p>加密： <code>密文 = 明文^E mod N</code> 元组(E,N) 是公钥
+解密： <code>明文 = 密文^D mod N</code> 元组(D,N) 是密钥</p>
+<h4 id="生成密钥对">生成密钥对</h4>
+<ol>
+<li>求 N
+<ul>
+<li>首先准备两个大质数 p 和 q : <code>N = p * q</code> <strong>p和q如果太小密码容易被破解，太大的话加解密时间会很长</strong></li>
+</ul>
+</li>
+<li>求 L (中间值)
+<ul>
+<li><code>L = lcm(p-1, q-1)</code> <strong>lcm 最小公倍数</strong></li>
+</ul>
+</li>
+<li>求 E
+<ul>
+<li><code>1 &lt; E &lt; L</code> 且 <code>gcd(E,L)=1</code> <strong>E和L互质</strong></li>
+</ul>
+</li>
+<li>求 D
+<ul>
+<li><code>1 &lt; D &lt; L</code> 且 <code>E * D mod L = 1</code></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>判断质数的方法： 费马测试和米勒·拉宾测试等。<br>
+计算gcd最快速的方法则是欧几里得算法（辗转相除法）。</p>
+</blockquote>
+<h4 id="模拟完整的rsa过程">模拟完整的RSA过程</h4>
+<p>模拟密钥生成过程以及加解密过程：</p>
+<ol>
+<li>求 N， 准备质数 p = 17 q = 19, N = 323 <strong>注意：实际使用中pq的长度在512位以上，N的长度在1024位以上</strong></li>
+<li>求 L， lcm(16,18) = 144</li>
+<li>求 E， gcd(E,L)=1 有很多数满足条件，有和L互质的合数，也有质数。假设选择5作为E</li>
+<li>求 D， 5 * D mod 144 = 1 计算出D=29时可满足</li>
+</ol>
+<p>此时得到公钥 (E,N) = (5,323) 私钥 (D,N)=(28,323)</p>
+<blockquote>
+<p>注意明文必须是小于N的数，如果大于N就会有多个解，造成解密数据不等于明文的情况</p>
+</blockquote>
+<ul>
+<li>加密：明文^E mod N = 123^5 mod 323 = 225</li>
+<li>解密：明文^D mod N = 225^29 mod 323 = 123</li>
+</ul>
+<h4 id="对rsa的攻击">对RSA的攻击</h4>
+<p>攻击者拥有的信息：密文， E， N，不知道的信息：明文， D， p, q, L</p>
+<ol>
+<li>密文求解明文： 密文=明文^E mod N , 对明文的求解是求离散对数，成本很大</li>
+<li>暴力求解D，由于pq及N位数很长，E和D长度和N差不多，暴力迭代求解D的成本很大</li>
+<li>对N进行质因数分解求解pq，从而求解D。目前未发明对大整数的质因数分解高效算法，成本很大</li>
+<li>中间人攻击 mitm attack:
+<ul>
+<li>不破解RSA加密算法本身，而是在通信过程中通过对两端的公钥替换，从而窃听两端的通信</li>
+<li>A &lt;=&gt; B 变成了 A &lt;=&gt; M &lt;=&gt; B</li>
+<li>为了防御该攻击需要使用公钥的证书来让对端确保接受到的公钥是自己端的。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="混合密码系统">混合密码系统</h2>
+<blockquote>
+<p>PGP, SSL/TLS都使用了混合密码系统。</p>
+</blockquote>
+<ol>
+<li>用对称密码加密消息</li>
+<li>通过伪随机数生成器生成对称密码中使用的会话密钥</li>
+<li>用公钥密码加密会话密钥</li>
+<li>从混合密码系统外部赋予公钥（CA）</li>
+</ol>
+<p>密钥强度：通常公钥密码的强度应该要高于对称密码，如果对称密码被破译只会泄漏本次通信内容，如果公钥密码破译，所有使用该供公钥加密的通信内容都会被破译</p>
+<hr>
+<h2 id="散列函数">散列函数</h2>
+<p>散列函数也称消息摘要函数，哈希函数, 信息指纹，常用于保障信息的完整性，但是无法保障信息的真实性。</p>
+<blockquote>
+<p>需要注意 散列函数不是加密算法，因为散列值无法解密为原文。</p>
+</blockquote>
+<p>由于此类函数的特点是 输入消息 输出散列值，具有单向性特点，也称单向散列函数。<br>
+输入的消息为二进制序列，长度可以任意长，计算输出的散列值是定长，例如SHA-1输出散列值为20byte。</p>
+<p>单向散列函数的性质：</p>
+<ul>
+<li>依据任意长度的消息计算出定长的散列值</li>
+<li>能快速计算出散列值</li>
+<li>消息不同散列值也完全不同
+<ul>
+<li>不同的消息得到了相同的散列值被称为碰撞 collision，理论上无法避免（因为散列函数的输入端信息量大于输出端），但是散列函数要保障很难被人为构造出碰撞，即强抗碰撞性</li>
+</ul>
+</li>
+<li>函数必须具备单向性。即无法通过散列值反推出原始消息的性质。</li>
+</ul>
+<blockquote>
+<p>实际应用</p>
+</blockquote>
+<ul>
+<li>监测下载的软件是否被篡改</li>
+<li>基于口令的加密（Password Based Encryption）。PBE的原理是将口令(Password)和盐(salt 通过伪随机数生成器生成的随机值)混合后计算其散列值，将这个散列值作为加密的密钥。
+<ul>
+<li>加盐是为了防止针对口令的散列字典（又称彩虹表）攻击</li>
+</ul>
+</li>
+<li>消息认证码： 将发送方和接受方之间的共享密钥和消息（明文的分片）混合计算后的散列值，可以检测并防止通信过程中的错误，篡改，伪装。在SSL/TLS中也有应用</li>
+<li>数字签名： 是现实社会中签名和盖章这样的行为在数字世界的实现。通常不会对完整消息加数字签名，而是先计算出内容的散列值，再对散列值加数字签名</li>
+<li>一次性口令： one-time password. 通常用于服务端对客户端的合法性认证。</li>
+</ul>
+<h3 id="md4-md5">MD4 MD5</h3>
+<p>MD4 是由Rivest于1990年设计，能产生128bit的散列值，之后Dobbertin提出寻找MD4散列碰撞的方法，已经不安全了。
+MD5 是由Rivest于1991年设计，能产生128bit的散列值， 但是MD5的强抗碰撞性已经被攻破，也已经不安全了。</p>
+<h3 id="sha-1">SHA-1</h3>
+<p>SHA-1 SHA-256 SHA-384 SHA-512</p>
+<p>SHA-1 是由 NIST（National Institute of Standards and Technology）设计，能产生160bit的散列值，
+1993年发布的是SHA，1995年发布的SHA-1，SHA-1处理的消息长度存在上限，但该理论值接近于264bit，实际使用时不容易遇到问题。</p>
+<h3 id="ripemd-160">RIPEMD-160</h3>
+<h3 id="bcrypt">BCrypt</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Bcrypt">Wikipedia</a></li>
+</ul>
+<hr>
+<h2 id="消息认证码">消息认证码</h2>
+<p>用于判断消息的完整性和真实性</p>
+<hr>
+<h2 id="数字签名">数字签名</h2>
+<p>散利函数和公钥密码组合而成</p>
+<h3 id="签名与验签">签名与验签</h3>
+<blockquote>
+<p>常见于外部接口的签名验证，安全防护</p>
+</blockquote>
+<p><a href="https://api.qidian.qq.com/wiki/doc/open/epko939s7aq8br19gz0i">企点： 消息加解密指引</a><code>对接企点API对消息的加解密</code></p>
+<h2 id="证书">证书</h2>
+<p>公钥和数字签名组合而成</p>
+<ol>
+<li>基本概念：
+<ol>
+<li><code>CA (Certificate Authority)</code>  证书授权中心，是数字证书发放和管理的机构</li>
+<li><code>根证书</code> 根证书是CA认证中心给自己颁发的证书,是信任链的起始点。安装根证书意味着对这个CA认证中心的信任。</li>
+<li><code>数字证书</code> 数字证书颁发过程一般为：
+<ol>
+<li>用户首先产生自己的密钥对，并将公共密钥及部分个人身份信息传送给认证中心。</li>
+<li>认证中心在核实身份后，将执行一些必要的步骤，以确信请求确实由用户发送而来。</li>
+<li>认证中心将发给用户一个数字证书，该证书内包含用户的个人信息和他的公钥信息，同时还附有认证中心的签名信息。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><a href="https://github.com/FiloSottile/mkcert">Githhub:mkcert</a><code>签发证书工具</code></li>
+</ul>
+<h2 id="密钥">密钥</h2>
+<h2 id="随机数">随机数</h2>
+<hr>
+<h1 id="集大成者">集大成者</h1>
+<h2 id="pgp">PGP</h2>
+<h2 id="ssl-tls">SSL TLS</h2>
+<blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">SSL/TLS协议运行机制的概述</a>
+<a href="https://www.cnblogs.com/songhan/archive/2012/08/01/2617970.html">SSL，TLS，HTTPS</a></p>
+</blockquote>
+<hr>
+<h1 id="扩展">扩展</h1>
+<p>电子投票
+电子货币
+盲签名 blind signature
+零知识证明 zero knowledge proof</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-09-08
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/cs/basicoperator/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">基础运算</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/tuning/javatroubleshoot/">
+            <span class="next-text nav-default">Java问题排查手册</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

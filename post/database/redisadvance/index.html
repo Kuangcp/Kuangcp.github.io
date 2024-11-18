@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Redis进阶 - Mythos</title>
+  <title>Redis进阶 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Redis底层数据结构 1.1. SDS 1.2. 链表 1.3. 字典 1.4. 跳表 1.5. 整数集合 1.6. 压缩列表 1.7. 对象 Redis常用命令 2.1. Run Configuration 2.2. 过期 2.3. 事务 2.4. 服务器 2.5. 实现原理 2.5.1. Scan 数据安全和" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/database/redisadvance/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/database/redisadvance/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Redis进阶" />
-<meta property="og:description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制" />
+<meta property="og:description" content="💠 Redis底层数据结构 1.1. SDS 1.2. 链表 1.3. 字典 1.4. 跳表 1.5. 整数集合 1.6. 压缩列表 1.7. 对象 Redis常用命令 2.1. Run Configuration 2.2. 过期 2.3. 事务 2.4. 服务器 2.5. 实现原理 2.5.1. Scan 数据安全和" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/database/redisadvance/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/database/redisadvance/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-16T17:29:06+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:29:06+00:00" />
+
 <meta itemprop="name" content="Redis进阶">
-<meta itemprop="description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制">
-<meta itemprop="datePublished" content="2018-12-16T17:29:06+00:00" />
+<meta itemprop="description" content="💠 Redis底层数据结构 1.1. SDS 1.2. 链表 1.3. 字典 1.4. 跳表 1.5. 整数集合 1.6. 压缩列表 1.7. 对象 Redis常用命令 2.1. Run Configuration 2.2. 过期 2.3. 事务 2.4. 服务器 2.5. 实现原理 2.5.1. Scan 数据安全和"><meta itemprop="datePublished" content="2018-12-16T17:29:06+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:29:06+00:00" />
-<meta itemprop="wordCount" content="6126">
-
-
-
-<meta itemprop="keywords" content="Redis," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="7667">
+<meta itemprop="keywords" content="Redis," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Redis进阶"/>
-<meta name="twitter:description" content="目录 start Redis底层数据结构 SDS 链表 字典 跳表 整数集合 压缩列表 对象 Redis常用命令 Run Configuration 过期策略 事务 服务器 实现原理 scan 数据安全和性能 持久化策略 复制"/>
+<meta name="twitter:description" content="💠 Redis底层数据结构 1.1. SDS 1.2. 链表 1.3. 字典 1.4. 跳表 1.5. 整数集合 1.6. 压缩列表 1.7. 对象 Redis常用命令 2.1. Run Configuration 2.2. 过期 2.3. 事务 2.4. 服务器 2.5. 实现原理 2.5.1. Scan 数据安全和"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,151 +122,174 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
             </div>
-          <span class="more-meta"> 6126 words </span>
-          <span class="more-meta"> 13 mins read </span>
+          <span class="more-meta"> 约 7667 字 </span>
+          <span class="more-meta"> 预计阅读 16 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#sds">SDS</a></li>
-    <li><a href="#链表">链表</a></li>
-    <li><a href="#字典">字典</a></li>
-    <li><a href="#跳表">跳表</a></li>
-    <li><a href="#整数集合">整数集合</a></li>
-    <li><a href="#压缩列表">压缩列表</a></li>
-    <li><a href="#对象">对象</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#run-configuration">Run Configuration</a></li>
-    <li><a href="#过期策略">过期策略</a></li>
-    <li><a href="#事务">事务</a></li>
-    <li><a href="#服务器">服务器</a></li>
-    <li><a href="#实现原理">实现原理</a>
+    <li><a href="#redis底层数据结构">Redis底层数据结构</a>
       <ul>
-        <li><a href="#scan">scan</a></li>
+        <li><a href="#sds">SDS</a></li>
+        <li><a href="#链表">链表</a></li>
+        <li><a href="#字典">字典</a></li>
+        <li><a href="#跳表">跳表</a></li>
+        <li><a href="#整数集合">整数集合</a></li>
+        <li><a href="#压缩列表">压缩列表</a></li>
+        <li><a href="#对象">对象</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#持久化策略">持久化策略</a></li>
-    <li><a href="#复制">复制</a></li>
-    <li><a href="#数据迁移">数据迁移</a></li>
-    <li><a href="#错误分析">错误分析</a>
+    <li><a href="#redis常用命令">Redis常用命令</a>
       <ul>
+        <li><a href="#run-configuration">Run Configuration</a></li>
+        <li><a href="#过期">过期</a></li>
+        <li><a href="#事务">事务</a></li>
+        <li><a href="#服务器">服务器</a></li>
+        <li><a href="#实现原理">实现原理</a>
+          <ul>
+            <li><a href="#scan">Scan</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#数据安全和性能">数据安全和性能</a>
+      <ul>
+        <li><a href="#latency">Latency</a></li>
         <li><a href="#big-key">big key</a></li>
         <li><a href="#hot-key">hot key</a></li>
+        <li><a href="#key-eviction">Key eviction</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#分布式锁">分布式锁</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#禁用-on-命令">禁用 O(N) 命令</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#单机">单机</a></li>
-    <li><a href="#主从">主从</a></li>
-    <li><a href="#哨兵">哨兵</a></li>
-    <li><a href="#cluster-集群">Cluster 集群</a></li>
+    <li><a href="#lua">Lua</a></li>
+    <li><a href="#tip">Tip</a>
+      <ul>
+        <li><a href="#禁用-on-命令">禁用 O(N) 命令</a></li>
+        <li><a href="#错误分析">错误分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#部署方式">部署方式</a>
+      <ul>
+        <li><a href="#单机">单机</a></li>
+        <li><a href="#主从">主从</a></li>
+        <li><a href="#哨兵">哨兵</a></li>
+        <li><a href="#cluster-集群">Cluster 集群</a></li>
+      </ul>
+    </li>
+    <li><a href="#redis-持久化">Redis 持久化</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-16T17:29:06" title="December 16, 2018">December 16, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#redis%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">Redis底层数据结构</a>
-<ol>
-<li><a href="#sds">SDS</a></li>
-<li><a href="#%E9%93%BE%E8%A1%A8">链表</a></li>
-<li><a href="#%E5%AD%97%E5%85%B8">字典</a></li>
-<li><a href="#%E8%B7%B3%E8%A1%A8">跳表</a></li>
-<li><a href="#%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88">整数集合</a></li>
-<li><a href="#%E5%8E%8B%E7%BC%A9%E5%88%97%E8%A1%A8">压缩列表</a></li>
-<li><a href="#%E5%AF%B9%E8%B1%A1">对象</a></li>
+<li><a href="#redis%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">Redis底层数据结构</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#sds">SDS</a></li>
+<li>1.2. <a href="#%E9%93%BE%E8%A1%A8">链表</a></li>
+<li>1.3. <a href="#%E5%AD%97%E5%85%B8">字典</a></li>
+<li>1.4. <a href="#%E8%B7%B3%E8%A1%A8">跳表</a></li>
+<li>1.5. <a href="#%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88">整数集合</a></li>
+<li>1.6. <a href="#%E5%8E%8B%E7%BC%A9%E5%88%97%E8%A1%A8">压缩列表</a></li>
+<li>1.7. <a href="#%E5%AF%B9%E8%B1%A1">对象</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Redis常用命令</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#run-configuration">Run Configuration</a></li>
+<li>2.2. <a href="#%E8%BF%87%E6%9C%9F">过期</a></li>
+<li>2.3. <a href="#%E4%BA%8B%E5%8A%A1">事务</a></li>
+<li>2.4. <a href="#%E6%9C%8D%E5%8A%A1%E5%99%A8">服务器</a></li>
+<li>2.5. <a href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">实现原理</a>
+<ul>
+<li>2.5.1. <a href="#scan">Scan</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%92%8C%E6%80%A7%E8%83%BD">数据安全和性能</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#latency">Latency</a></li>
+<li>3.2. <a href="#big-key">big key</a></li>
+<li>3.3. <a href="#hot-key">hot key</a></li>
+<li>3.4. <a href="#key-eviction">Key eviction</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#lua">Lua</a></li>
 </ol>
 </li>
-<li><a href="#redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Redis常用命令</a>
-<ol>
-<li><a href="#run-configuration">Run Configuration</a></li>
-<li><a href="#%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5">过期策略</a></li>
-<li><a href="#%E4%BA%8B%E5%8A%A1">事务</a></li>
-<li><a href="#%E6%9C%8D%E5%8A%A1%E5%99%A8">服务器</a></li>
-<li><a href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">实现原理</a>
-<ol>
-<li><a href="#scan">scan</a></li>
+<li>
+<ol start="5">
+<li><a href="#tip">Tip</a></li>
 </ol>
+<ul>
+<li>5.1. <a href="#%E7%A6%81%E7%94%A8-on-%E5%91%BD%E4%BB%A4">禁用 O(N) 命令</a></li>
+<li>5.2. <a href="#%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90">错误分析</a></li>
+</ul>
 </li>
+<li>
+<ol start="6">
+<li><a href="#%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F">部署方式</a></li>
 </ol>
+<ul>
+<li>6.1. <a href="#%E5%8D%95%E6%9C%BA">单机</a></li>
+<li>6.2. <a href="#%E4%B8%BB%E4%BB%8E">主从</a></li>
+<li>6.3. <a href="#%E5%93%A8%E5%85%B5">哨兵</a></li>
+<li>6.4. <a href="#cluster-%E9%9B%86%E7%BE%A4">Cluster 集群</a></li>
+</ul>
 </li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%92%8C%E6%80%A7%E8%83%BD">数据安全和性能</a>
-<ol>
-<li><a href="#%E6%8C%81%E4%B9%85%E5%8C%96%E7%AD%96%E7%95%A5">持久化策略</a></li>
-<li><a href="#%E5%A4%8D%E5%88%B6">复制</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB">数据迁移</a></li>
-<li><a href="#%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90">错误分析</a>
-<ol>
-<li><a href="#big-key">big key</a></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><a href="#%E5%BA%94%E7%94%A8">应用</a>
-<ol>
-<li><a href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81">分布式锁</a></li>
-</ol>
-</li>
-<li><a href="#tip">Tip</a>
-<ol>
-<li><a href="#%E7%A6%81%E7%94%A8-on-%E5%91%BD%E4%BB%A4">禁用 O(N) 命令</a></li>
-</ol>
-</li>
-<li><a href="#%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F">部署方式</a>
-<ol>
-<li><a href="#%E5%8D%95%E6%9C%BA">单机</a></li>
-<li><a href="#%E4%B8%BB%E4%BB%8E">主从</a></li>
-<li><a href="#%E5%93%A8%E5%85%B5">哨兵</a></li>
-<li><a href="#cluster-%E9%9B%86%E7%BE%A4">Cluster 集群</a></li>
-</ol>
-</li>
+<li>
+<ol start="7">
 <li><a href="#redis-%E6%8C%81%E4%B9%85%E5%8C%96">Redis 持久化</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-03-16 18:28</em>|</p>
+</li>
+</ul>
+<p>💠 2024-09-13 10:39:04</p>
 <hr>
 <h1 id="redis底层数据结构">Redis底层数据结构</h1>
 <h2 id="sds">SDS</h2>
 <blockquote>
-<p>简单动态字符串</p>
+<p>简单动态字符串 <a href="https://github.com/antirez/sds">sds: Simple Dynamic Strings</a></p>
 </blockquote>
 <ul>
 <li><input disabled="" type="checkbox"> Redis存储数值的方式，以下场景</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">0           00110000
-(short 0)   0011000001010011
-0L          0011000001001100
-&#34;&#34;          0010001000100010
-new byte[0] 011110000010011100100111
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0           00110000
+</span></span><span class="line"><span class="cl">(short 0)   0011000001010011
+</span></span><span class="line"><span class="cl">0L          0011000001001100
+</span></span><span class="line"><span class="cl">&#34;&#34;          0010001000100010
+</span></span><span class="line"><span class="cl">new byte[0] 011110000010011100100111
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="链表">链表</h2>
 <h2 id="字典">字典</h2>
@@ -285,7 +304,7 @@ new byte[0] 011110000010011100100111
 而 zskiplist 结构则用于保存跳跃表节点的相关信息， 比如节点的数量， 以及指向表头节点和表尾节点的指针 等等。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -304,24 +323,24 @@ new byte[0] 011110000010011100100111
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C">    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">zskiplistNode</span> 
-    <span class="p">{</span>
-        <span class="c1">// 后退指针
-</span><span class="c1"></span>        <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">backward</span><span class="p">;</span>
-        <span class="c1">// 分值
-</span><span class="c1"></span>        <span class="kt">double</span> <span class="n">score</span><span class="p">;</span>
-        <span class="c1">// 成员对象
-</span><span class="c1"></span>        <span class="n">robj</span> <span class="o">*</span><span class="n">obj</span><span class="p">;</span>
-
-        <span class="c1">// 层
-</span><span class="c1"></span>        <span class="k">struct</span> <span class="n">zskiplistLevel</span> <span class="p">{</span>
-            <span class="c1">// 前进指针
-</span><span class="c1"></span>            <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">forward</span><span class="p">;</span>
-            <span class="c1">// 跨度
-</span><span class="c1"></span>            <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">span</span><span class="p">;</span>
-        <span class="p">}</span> <span class="n">level</span><span class="p">[];</span>
-    <span class="p">}</span> <span class="n">zskiplistNode</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">zskiplistNode</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 后退指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">backward</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 分值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">double</span> <span class="n">score</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 成员对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">robj</span> <span class="o">*</span><span class="n">obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 层
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">struct</span> <span class="n">zskiplistLevel</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 前进指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">forward</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 跨度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">span</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="n">level</span><span class="p">[];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="n">zskiplistNode</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="整数集合">整数集合</h2>
 <h2 id="压缩列表">压缩列表</h2>
@@ -371,7 +390,7 @@ new byte[0] 011110000010011100100111
 </ul>
 </li>
 </ul>
-<h2 id="过期策略">过期策略</h2>
+<h2 id="过期">过期</h2>
 <ul>
 <li><code>expire key seconds</code> 设置键的过期时间</li>
 <li><code>PTTL/TTL key </code> 查看键剩余过期时间（生存时间） ms/s
@@ -426,7 +445,12 @@ new byte[0] 011110000010011100100111
 </ul>
 </li>
 <li>LASTSAVE</li>
-<li>MONITOR</li>
+<li><a href="https://redis.io/docs/latest/commands/monitor/">MONITOR</a>
+<ul>
+<li>debug命令，可以将Redis执行的每一条指令都回传并输出，可以用来做Redis流量复制，注意对性能影响很大，生产慎用。</li>
+<li><a href="http://www.kailing.pub/article/index/arcid/342.html">Redis 流量复制、流量回放、流量镜像</a></li>
+</ul>
+</li>
 <li>PSYNC</li>
 <li>SAVE</li>
 <li>SHUTDOWN</li>
@@ -436,16 +460,212 @@ new byte[0] 011110000010011100100111
 <li>TIME</li>
 </ul>
 <h2 id="实现原理">实现原理</h2>
-<h3 id="scan">scan</h3>
-<p>TODO</p>
+<h3 id="scan">Scan</h3>
+<blockquote>
+<p><a href="https://redis.io/commands/scan/">Doc: Scan</a></p>
+</blockquote>
+<p>由于 Redis 是单线程多路复用机制(Redis6引入多线程)，使用 O(n) 复杂度的命令容易阻塞进程，因此需要 scan 命令来实现分批执行 (<code>注意 scan如果模式匹配的范围比较大，同样有 keys 一样的影响</code>)</p>
 <hr>
 <h1 id="数据安全和性能">数据安全和性能</h1>
-<h2 id="持久化策略">持久化策略</h2>
-<h2 id="复制">复制</h2>
-<h2 id="数据迁移">数据迁移</h2>
+<h2 id="latency">Latency</h2>
+<p>缓存最重要的性能指标就是延迟，但是延迟会受到多项业务或功能影响。<a href="https://mp.weixin.qq.com/s?__biz=Mzg4Nzc3NjkzOA==&amp;mid=2247486198&amp;idx=1&amp;sn=e4b34ef7889bb95260e3a636662a7192&amp;chksm=cf847933f8f3f025a1b00fc965781a33024158a4275ebaf2da393c403500a86d9c04af16ce40#rd">Redis为什么变慢了？一文讲透如何排查Redis性能问题 </a></p>
 <ul>
-<li>使用主从复制来进行数据, 或者自己写Py脚本?</li>
+<li>60 秒内的最大响应延迟 <code>redis-cli -h 127.0.0.1 -p 6379 --intrinsic-latency 60</code></li>
+<li>间隔 1 秒，采样 Redis 的平均操作耗时 <code>redis-cli -h 127.0.0.1 -p 6379 --latency-history -i 1</code></li>
 </ul>
+<blockquote>
+<p>SLOWLOG</p>
+</blockquote>
+<ul>
+<li>命令执行耗时超过 5 毫秒，记录慢日志 <code>CONFIG SET slowlog-log-slower-than 5000</code></li>
+<li>只保留最近 500 条慢日志 <code>CONFIG SET slowlog-max-len 500</code></li>
+<li>查看最近5条慢日志 <code>SLOWLOG get 5</code></li>
+</ul>
+<h2 id="big-key">big key</h2>
+<p>bigkey 在很多场景下都会产生性能问题，因此业务应用尽量避免写入。</p>
+<p>例如，bigkey 在分片集群模式下，对于数据的迁移也会有性能影响，以及我后面即将讲到的数据过期、数据淘汰、透明大页，都会受到 bigkey 的影响。</p>
+<ul>
+<li>
+<p><code>redis-cli --bigkeys</code></p>
+<ul>
+<li>对线上实例进行 bigkey 扫描时，Redis 的 OPS 会突增，为了降低扫描过程中对 Redis 的影响，最好控制一下扫描的频率，指定 -i 参数即可，它表示扫描过程中每次扫描后休息的时间间隔，单位是秒</li>
+<li>扫描结果中，对于容器类型（List、Hash、Set、ZSet）的 key，只能扫描出元素最多的 key。但一个 key 的元素多，不一定表示占用内存也多，你还需要根据业务情况，进一步评估内存占用情况</li>
+</ul>
+</li>
+<li>
+<p><code>memory usage key</code> 返回字节数</p>
+</li>
+<li>
+<p><code>debug object key</code></p>
+</li>
+<li>
+<p><code>redis-memory-for-key -s localhost -p 6667 key</code></p>
+<ul>
+<li>pip install rdbtools</li>
+</ul>
+</li>
+<li>
+<p>如果Redis 是 4.0 以上版本，用 UNLINK 命令替代 DEL，此命令可以把释放 key 内存的操作，放到后台线程中去执行，从而降低对 Redis 的影响</p>
+</li>
+<li>
+<p>如果Redis 是 6.0 以上版本，可以开启 lazy-free 机制（lazyfree-lazy-user-del = yes），在执行 DEL 命令时，释放内存也会放到后台线程中执行</p>
+</li>
+</ul>
+<h2 id="hot-key">hot key</h2>
+<blockquote>
+<p><a href="https://support.huaweicloud.com/dcs_faq/dcs-faq-0805001.html">大Key/热Key分析/过期Key扫描</a></p>
+</blockquote>
+<hr>
+<h2 id="key-eviction">Key eviction</h2>
+<blockquote>
+<p><a href="https://redis.io/docs/latest/develop/reference/eviction/">Key eviction</a></p>
+</blockquote>
+<p>当Redis使用内存达到 maxmemory 时会依据<strong>驱逐策略</strong>(LRU，LFU等)删除key，回收内存。</p>
+<blockquote>
+<p>参考：<a href="https://support.huaweicloud.com/dcs_faq/dcs-faq-0427031.html">Redis实例的数据逐出策略是什么？</a></p>
+</blockquote>
+<hr>
+<h1 id="lua">Lua</h1>
+<blockquote>
+<p><a href="https://redis.io/docs/latest/develop/interact/programmability/eval-intro/">Scripting with Lua</a></p>
+</blockquote>
+<ul>
+<li>EVAL
+<ul>
+<li>eval script keyNum key* arg* ： keyNum是指key的数量 key和 arg 都是多值， 可以把eval理解为lambda函数，函数操作传入的key和变量</li>
+<li>注意第一次执行后就会将脚本缓存起来，后续可以替换为 EVALSHA 命令执行了</li>
+<li>可以看到 spring-redis 的 DefaultScriptExecutor#eval 优先会执行evalsha，由脚本内容计算出sha1</li>
+</ul>
+</li>
+<li>SCRIPT LOAD
+<ul>
+<li>注意 EVAL执行的脚本都会缓存在Redis的缓存中 通过INFO查看 used_memory_scripts_eval 和 number_of_cached_scripts， 所以动态拼接的脚本是不合理的，应该将变化都封装成参数
+<ul>
+<li>所以将脚本复用会更高效（复用缓存，降低命令长度），SCRIPT LOAD 会返回一个SHA1信息摘要 可以用sha1sum命令验证返回值</li>
+</ul>
+</li>
+<li>注意 该脚本缓存<strong>是不可靠的</strong>，Redis重启，Cluster模式,主从切换，故障恢复，SCRIPT FLUSH命令的执行，都会导致脚本缓存丢失，所以需要在EVALSHA做容错，缓存丢失后重新LOAD
+<ul>
+<li>所以通用的方案是 正常执行 EVALSHA 如果报错了就再Load一次，再执行 EVALSHA</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>EVALSHA
+<ul>
+<li>与EVAL用法一致，但是脚本参数替换为了 LOAD 返回的 sha1</li>
+</ul>
+</li>
+<li>SCRIPT FLUSH</li>
+<li>SCRIPT EXISTS SHA1 1存在 0不存在</li>
+<li>SCRIPT KILL 停止长时间运行的脚本</li>
+<li>SCRIPT DEBUG</li>
+</ul>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<ul>
+<li>Lua脚本在Redis执行时是原子性的，所以可用来做分布式锁等强一致性场景 <a href="https://redis.io/ebook/part-3-next-steps/chapter-11-scripting-redis-with-lua/11-2-rewriting-locks-and-semaphores-with-lua/11-2-1-why-locks-in-lua/">Why locks in Lua?</a></li>
+<li><a href="https://redis.io/docs/latest/develop/interact/programmability/functions-intro/">Redis functions</a> 从Redis7开始支持通过Lua扩展出自定义函数 FCALL 方式调用自定义函数</li>
+<li>当Redis是Cluster模式部署时，lua脚本操作的所有key需要保证在同一个slot中。<code>CROSSSLOT Keys in request don’t hash to the same slot</code>
+<ul>
+<li><a href="https://blog.csdn.net/minghao0508/article/details/130827658">Redis Pipeline中调用Lua脚本报错JedisMoveDataException的问题</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>限制数量的令牌桶限流机制 Java实现</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">JUDGE_SCRIPT</span> <span class="o">=</span> <span class="s">&#34;local cnt = redis.call(&#39;incr&#39;, KEYS[1]);&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34;  if (tonumber(cnt) &gt; tonumber(ARGV[1]) ) then redis.call(&#39;decr&#39;, KEYS[1]); return 0;&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34; else return 1; end&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">acquireBlock</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="kt">int</span> <span class="n">maxConcurrency</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">acquire</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">maxConcurrency</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">500</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">runCount</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Object</span> <span class="n">val</span> <span class="o">=</span> <span class="n">redisTemplate</span><span class="o">.</span><span class="na">opsForValue</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">isNull</span><span class="o">(</span><span class="n">val</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">val</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">acquire</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="kt">int</span> <span class="n">maxConcurrency</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 指定 lua 脚本，并且指定返回值类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">DefaultRedisScript</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">redisScript</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultRedisScript</span><span class="o">&lt;&gt;(</span><span class="n">JUDGE_SCRIPT</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 参数一：redisScript，参数二：key列表，参数三：arg（可多个）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Object</span> <span class="n">lockB</span> <span class="o">=</span> <span class="n">redisTemplate</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">redisScript</span><span class="o">,</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="n">key</span><span class="o">),</span> <span class="n">maxConcurrency</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">isNull</span><span class="o">(</span><span class="n">lockB</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">lockB</span><span class="o">.</span><span class="na">toString</span><span class="o">())</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Long</span> <span class="nf">release</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">redisTemplate</span><span class="o">.</span><span class="na">opsForValue</span><span class="o">().</span><span class="na">decrement</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="tip">Tip</h1>
+<h2 id="禁用-on-命令">禁用 O(N) 命令</h2>
+<p>keys flushdb flushall</p>
+<ul>
+<li>List： lindex、lset、linsert</li>
+<li>Hash： hgetall、hkeys、hvals</li>
+<li>Set： smembers、sunion、sunionstore、sinter、sinterstore、sdiff、sdiffstore</li>
+<li>Sorted Set： zrange、zrevrange、zrangebyscore、zrevrangebyscore、zremrangebyrank、zremrangebyscore</li>
+</ul>
+<p>在 redis.conf 中通过配置 rename-command 进行禁用</p>
 <h2 id="错误分析">错误分析</h2>
 <ol>
 <li><code>JedisConnectionException:  Could not get a resource from the pool</code> cause by <code>java.util.NoSuchElementException: Unable to validate object</code>
@@ -466,40 +686,6 @@ new byte[0] 011110000010011100100111
 </ul>
 </li>
 </ol>
-<h3 id="big-key">big key</h3>
-<ul>
-<li><code>redis-cli --bigkeys</code></li>
-<li><code>memory usage key</code></li>
-</ul>
-<h3 id="hot-key">hot key</h3>
-<hr>
-<h1 id="应用">应用</h1>
-<h2 id="分布式锁">分布式锁</h2>
-<blockquote>
-<p><a href="http://cndoc.github.io/redis-doc-cn/cn/commands/setnx.html">Doc: setnx</a><code>包含以此命令设计锁的一些缺陷</code><br>
-<a href="https://github.com/redisson/redisson">redisson</a></p>
-</blockquote>
-<p>单机 使用 setnx， redis分布式部署的情况下使用RedLock</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/JTsJCDuasgIJ0j95K8Ay8w">基于Redis的分布式锁到底安全吗（上）？</a><br>
-<a href="https://mp.weixin.qq.com/s/4CUe7OpM6y1kQRK8TOC_qQ?">基于Redis的分布式锁到底安全吗（下）？</a><br>
-<a href="https://zhuanlan.zhihu.com/p/161078350">参考: Redis 分布式锁进化史解读 + 缺陷分析</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://blog.csdn.net/seapeak007/article/details/99337781">参考: redis分布式锁在MySQL事务代码中使用</a><br>
-<a href="https://www.cnblogs.com/demingblog/p/9542124.html">参考: Lua脚本在redis分布式锁场景的运用</a></p>
-</blockquote>
-<hr>
-<h1 id="tip">Tip</h1>
-<h2 id="禁用-on-命令">禁用 O(N) 命令</h2>
-<p>keys flushdb flushall</p>
-<ul>
-<li>List： lindex、lset、linsert</li>
-<li>Hash： hgetall、hkeys、hvals</li>
-<li>Set： smembers、sunion、sunionstore、sinter、sinterstore、sdiff、sdiffstore</li>
-<li>Sorted Set： zrange、zrevrange、zrangebyscore、zrevrangebyscore、zremrangebyrank、zremrangebyscore</li>
-</ul>
-<p>在 redis.conf 中通过配置 rename-command 进行禁用</p>
 <hr>
 <h1 id="部署方式">部署方式</h1>
 <blockquote>
@@ -586,7 +772,7 @@ Redis Sentinel的节点数量 推荐 2n+1（n&gt;=1）的奇数个。<a href="ht
 <hr>
 <h2 id="cluster-集群">Cluster 集群</h2>
 <blockquote>
-<p><a href="https://redis.io/topics/cluster-tutorial">cluster-tutorial</a></p>
+<p><a href="https://redis.io/docs/manual/scaling/">cluster-tutorial</a> | <a href="https://gitee.com/gin9/DockerfileList/tree/master/docker-compose/redis-cluster/third-nodes">docker-compose 部署</a></p>
 </blockquote>
 <p>Redis Cluster是社区版推出的Redis分布式集群解决方案，主要解决Redis分布式方面的需求，比如，当遇到单机内存，并发和流量等瓶颈的时候，Redis Cluster能起到很好的负载均衡的目的。<br>
 Redis Cluster集群节点最小配置6个节点以上（3主3从），其中主节点提供读写操作，从节点作为备用节点，不提供请求，只作为故障转移使用。<br>
@@ -598,19 +784,19 @@ Redis Cluster采用虚拟槽分区，所有的键根据哈希函数映射到0～
 <li>无中心架构；</li>
 <li>数据按照slot存储分布在多个节点，节点间数据共享，可动态调整数据分布；</li>
 <li>可扩展性：可线性扩展到1000多个节点，节点可动态添加或删除；</li>
-<li>高可用性：部分节点不可用时，集群仍可用。通过增加Slave做standby数据副本，能够实现故障自动failover，节点之间通过gossip协议交换状态信息，用投票机制完成Slave到Master的角色提升；</li>
+<li>高可用性：部分节点不可用时，集群仍可用。通过增加Slave做standby数据副本，能够实现故障自动failover，节点之间通过<strong>gossip</strong>协议交换状态信息，用投票机制完成Slave到Master的角色提升；</li>
 <li>降低运维成本，提高系统的扩展性和可用性。</li>
 </ol>
 </li>
 <li>
 <p>缺点：</p>
 <ol>
-<li>Client实现复杂，驱动要求实现Smart Client，缓存slots mapping信息并及时更新，提高了开发难度，客户端的不成熟影响业务的稳定性。目前仅JedisCluster相对成熟，异常处理部分还不完善，比如常见的“max redirect exception”。</li>
+<li>Client实现复杂，驱动要求实现Smart Client，需缓存slots mapping信息并及时更新，提高了开发难度，客户端的不成熟影响了业务的稳定性。</li>
 <li>节点会因为某些原因发生阻塞（阻塞时间大于clutser-node-timeout），被判断下线，这种failover是没有必要的。</li>
 <li>数据通过异步复制，不保证数据的强一致性。</li>
 <li>多个业务使用同一套集群时，无法根据统计区分冷热数据，资源隔离性较差，容易出现相互影响的情况。</li>
 <li>Slave在集群中充当“冷备”，不能缓解读压力，当然可以通过SDK的合理设计来提高Slave资源的利用率。</li>
-<li>Key批量操作限制，如使用mset、mget目前只支持具有相同slot值的Key执行批量操作。对于映射为不同slot值的Key由于Keys不支持跨slot查询，所以执行mset、mget、sunion等操作支持不友好。</li>
+<li>Key批量操作限制，如使用mset、mget目前只支持具有相同slot值的Key执行批量操作。对于映射为不同slot值的Key由于Keys<strong>不支持跨slot</strong>查询，所以执行mset、mget、sunion等操作支持不友好。</li>
 <li>Key事务操作支持有限，只支持多key在同一节点上的事务操作，当多个Key分布于不同的节点上时无法使用事务功能。</li>
 <li>Key作为数据分区的最小粒度，不能将一个很大的键值对象如hash、list等映射到不同的节点。</li>
 <li>不支持多数据库空间，单机下的redis可以支持到16个数据库，集群模式下只能使用1个数据库空间，即db 0。</li>
@@ -622,24 +808,34 @@ Redis Cluster采用虚拟槽分区，所有的键根据哈希函数映射到0～
 </ol>
 </li>
 </ul>
+<blockquote>
+<p>业务使用时注意事项： 操作多key时，需要保证多个key要在一个slot内（例如Lua脚本实现的一些复杂操作）</p>
+</blockquote>
+<p>cluster 命令使用：</p>
+<ul>
+<li>查看key的slot <code>cluster keyslot key</code></li>
+<li>查看slot和Node关系 <code>cluster slots</code></li>
+</ul>
+<p>cluster info
+cluster nodes</p>
+<hr>
 <h1 id="redis-持久化">Redis 持久化</h1>
-<p>由于Redis的数据都存放在内存中，如果没有配置持久化，redis重启后数据就全丢失了，于是需要开启redis的持久化功能，将数据保存到磁盘上，当redis重启后，可以从磁盘中恢复数据。</p>
-<ul>
-<li>Redis提供两种方式进行持久化
+<p><a href="https://redis.io/docs/management/persistence/">Redis persistence</a></p>
+<p>由于Redis的数据都存放在内存中，如果没有配置持久化，redis重启后数据就全丢失了，于是需要开启redis的持久化功能，将数据保存到磁盘上，当redis重启后，可以从磁盘中恢复数据。
+Redis提供两种方式进行持久化</p>
 <ol>
-<li>RDB持久化（原理是将Reids在内存中的数据库记录定时dump到磁盘上的RDB持久化）
+<li>RDB（原理是将Reids在内存中的数据库记录定时dump到磁盘上的RDB持久化）
 <ul>
-<li>RDB持久化是指在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。</li>
+<li>RDB是指在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。</li>
 </ul>
 </li>
 <li>AOF（append only file）持久化（原理是将Reids的操作日志以追加的方式写入文件 类似于 MySQL binlog）
 <ul>
 <li>AOF持久化以日志的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，可以打开文件看到详细的操作记录。</li>
+<li></li>
 </ul>
 </li>
 </ol>
-</li>
-</ul>
 <p><img src="img/redis-store-rule.drawio.svg" alt=""></p>
 <ul>
 <li>
@@ -690,11 +886,11 @@ Redis Cluster采用虚拟槽分区，所有的键根据哈希函数映射到0～
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-16
         
@@ -711,11 +907,11 @@ Redis Cluster采用虚拟槽分区，所有的键根据哈希函数映射到0～
         <a class="prev" href="/post/database/sql/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">SQL基础</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/database/redis/">
             <span class="next-text nav-default">Redis</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -733,17 +929,17 @@ Redis Cluster采用虚拟槽分区，所有的键根据哈希函数映射到0～
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -751,11 +947,11 @@ Redis Cluster采用虚拟槽分区，所有的键根据哈希函数映射到0～
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -765,16 +961,21 @@ Redis Cluster采用虚拟槽分区，所有的键根据哈希函数映射到0～
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

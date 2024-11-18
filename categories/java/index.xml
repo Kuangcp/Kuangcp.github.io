@@ -1,622 +1,586 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on Mythos</title>
-    <link>https://blogs.kuangcp.top/categories/java/</link>
-    <description>Recent content in Java on Mythos</description>
+    <title>Java on Mythos · Java Developer</title>
+    <link>https://www.kuangcp.top/categories/java/</link>
+    <description>Recent content in Java on Mythos · Java Developer</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Mon, 04 May 2020 00:36:52 +0000</lastBuildDate><atom:link href="https://blogs.kuangcp.top/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 04 Oct 2023 11:46:08 +0000</lastBuildDate><atom:link href="https://www.kuangcp.top/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java中的日志</title>
+      <link>https://www.kuangcp.top/post/java/log/</link>
+      <pubDate>Wed, 04 Oct 2023 11:46:08 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/log/</guid>
+      <description>💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j Log4j2 Logback 5.1. 配置理解 5.1.1. 根节点 属性 5.1.2. 子节点 5.1.3. 设置上下文名称： 5.1.4. 设置变量： 5.1.5. 获取时间戳字符串： 5.1.6. 设置loger 5.1.7. 详解 Appender 5.1.7.1. 自</description>
+    </item>
+    
+    <item>
+      <title>LinkedHashMap</title>
+      <link>https://www.kuangcp.top/post/java/collection/map/linkedhashmap/</link>
+      <pubDate>Tue, 09 Aug 2022 15:30:22 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/collection/map/linkedhashmap/</guid>
+      <description>目录 start LinkedHashMap 目录 end|2022-08-09 15:46| LinkedHashMap 关键点在于 java.util.LinkedHashMap.Entry 大部分逻辑完全 继承于HashMap， 在Node上引入了两个引用，将key维护为一个双向链表，保证了遍历时key</description>
+    </item>
+    
     <item>
       <title>减少 Java 中的 if else</title>
-      <link>https://blogs.kuangcp.top/post/java/blog/reduce-if-else-for-java/</link>
+      <link>https://www.kuangcp.top/post/java/blog/reduce-if-else-for-java/</link>
       <pubDate>Mon, 04 May 2020 00:36:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/blog/reduce-if-else-for-java/</guid>
+      <guid>https://www.kuangcp.top/post/java/blog/reduce-if-else-for-java/</guid>
       <description>目录 start 减少Java中的if else 目录 end|2020-05-04 19:34| 减少Java中的if else 如何解决代码中if…else 过多的问题 表驱动 职责链模式 注解驱动 事件驱动 有限状态机 Optional</description>
     </item>
     
     <item>
       <title>Java Readme</title>
-      <link>https://blogs.kuangcp.top/post/java/javareadme/</link>
+      <link>https://www.kuangcp.top/post/java/javareadme/</link>
       <pubDate>Fri, 27 Mar 2020 15:28:15 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/javareadme/</guid>
-      <description>目录 start 计算机基础 Java JDK 相关资源 环境配置 目录 end|2020-03-27 15:28| 计算机基础 算法 计算机基础 并发相关 计算机网络 测试理论 Java Oracle JavaSE Overview | openjdk | AdoptOpenJDK mirrors Oracle: java tutorial 入门时首先通读一遍 java turtorials</description>
+      <guid>https://www.kuangcp.top/post/java/javareadme/</guid>
+      <description>💠 计算机基础 Java 2.1. JDK 相关资源 3.1. Java Programer Suggestion 环境配置 💠 2024-02-03 10:54:46 计算机基础 算法 计算机基础 并发基础 计算机网络 测试理论 Java Oracle JavaSE Overview | openjdk | AdoptOpenJDK mirrors Oracle: java tutorial 入门时首先通读一遍</description>
     </item>
     
     <item>
       <title>Java中的Debug</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javadebug/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javadebug/</link>
       <pubDate>Sun, 21 Jul 2019 18:08:40 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javadebug/</guid>
-      <description>目录 start Debug 远程调试 目录 end|2021-05-17 00:15| Debug 参考: 深入 Java 调试体系 jdb 参考: IDEA 的 debug 怎么实现？ 方案 应用方法CPU耗时或线程异常 表现： 应用启动慢，业务方法运行慢等等 思</description>
-    </item>
-    
-    <item>
-      <title>Quartz</title>
-      <link>https://blogs.kuangcp.top/post/java/quartz/</link>
-      <pubDate>Sun, 07 Jul 2019 11:57:07 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/quartz/</guid>
-      <description>目录 start Quartz学习 官方样例 Quartz中常用的一些类 有状态的Job与无状态的Job Quartz中重要的几个监听器 目录 end|2020-04-27 23:42| Quartz学习</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javadebug/</guid>
+      <description>💠 Debug 1.1. 技巧 1.2. 方案 1.2.1. 应用方法CPU耗时或线程异常 1.3. 远程调试 💠 2024-11-11 11:02:40 Debug 参考: 深入 Java 调试体系 jdb IDEA 的 debug 实现方式： JVM应用的启动命令追加 -javaagent: . 可查看JV</description>
     </item>
     
     <item>
       <title>Java WebSocket Demo</title>
-      <link>https://blogs.kuangcp.top/post/java/blog/websocket-demo/</link>
+      <link>https://www.kuangcp.top/post/java/blog/websocket-demo/</link>
       <pubDate>Sun, 07 Jul 2019 11:43:37 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/blog/websocket-demo/</guid>
-      <description>目录 start 简单 SpringBoot Websocket 示例 WebSocket服务端 Tomcat 方式 4个生命周期在注解式端点中的事件处理 服务端推送消息 Spring-WebSocket Undertow Netty 性能测试对比 客户端 Java JS 目录 end|2021-06-20 14:26| 简单 SpringBoot</description>
-    </item>
-    
-    <item>
-      <title>Java中保证同步的方式</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/sync/</link>
-      <pubDate>Tue, 04 Jun 2019 19:44:41 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/sync/</guid>
-      <description>目录 start Java中的同步 关键字 synchronized 使用wait() notify() 和 notifyAll() 使用Lock 使用读写锁实现同步数据访问 使用Condition 信号量 Semaphore 使用CountDow</description>
+      <guid>https://www.kuangcp.top/post/java/blog/websocket-demo/</guid>
+      <description>💠 Java中的Websocket 服务端 2.1. Javax 2.1.1. 事件处理 2.1.2. 服务端推送消息 2.2. SpringMVC 2.3. Netty 2.3.1. Reactor Netty 2.4. Undertow 性能测试对比 集群设计 客户端 5.1. Java 5.2. JS 💠 2024-07-12 11:40:30 Java中的W</description>
     </item>
     
     <item>
       <title>SPI</title>
-      <link>https://blogs.kuangcp.top/post/java/ecosystem/spi/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javaspi/</link>
       <pubDate>Sun, 19 May 2019 16:53:19 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/ecosystem/spi/</guid>
-      <description>目录 start Java中的SPI 项目中的实现 JDBC Lombok SLF4J Dubbo Jigsaw 目录 end|2020-04-27 23:42| Java中的SPI Service Provider Interface Offcial Tutorials 参考: Java SPI思想梳理 参考: SPI 概述 Java spi的具体约定如下：</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javaspi/</guid>
+      <description>💠 Java中的SPI 实践项目 2.1. JDBC 2.2. Lombok 2.3. SLF4J 2.4. Dubbo 2.5. Jigsaw 💠 2024-11-11 13:59:04 Java中的SPI Service Provider Interface Offcial Tutorials 参考: Java SPI思想梳理 参考: SPI 概述 Java spi的具体约定如下：</description>
     </item>
     
     <item>
       <title>Dubbo</title>
-      <link>https://blogs.kuangcp.top/post/java/ecosystem/dubbo/dubbo/</link>
+      <link>https://www.kuangcp.top/post/java/ecosystem/dubbo/dubbo/</link>
       <pubDate>Thu, 09 May 2019 16:47:23 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/ecosystem/dubbo/dubbo/</guid>
+      <guid>https://www.kuangcp.top/post/java/ecosystem/dubbo/dubbo/</guid>
       <description>目录 start Dubbo SPI Tips 目录 end|2020-10-12 14:58| Dubbo Official Doc | Github Sample RegistryService 通过查看 Type Hierarchy 可以看到所有 Dubbo 支持的注册中心 SPI META-INF 目录结构 Tips SpringBoot 整合 Dubbo 使用 XML 方式 只需在Configuration注</description>
     </item>
     
     <item>
       <title>Java中的锁</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/lock/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/concurrency/lock/</link>
       <pubDate>Mon, 22 Apr 2019 15:49:53 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/lock/</guid>
-      <description>目录 start Lock 队列同步器 目录 end|2020-04-27 23:42| Lock 1 2 3 4 5 6 7 8 Lock lock = new ReentrantLock(); // 不能放在 try中, 防止 获取锁失败, 并执行了释放锁 lock.lock(); try { } finally { lock.lock(); } 队列同步器 AbstractQueuedSynchronizer 队列同步</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/concurrency/lock/</guid>
+      <description>目录 start Lock 队列同步器 目录 end|2020-04-27 23:42| Lock 1 2 3 4 5 6 7 8 Lock lock = new ReentrantLock(); // 不能放在 try中, 防止 获取锁失败, 并执行了释放锁 lock.lock(); try { } finally { lock.lock(); }</description>
     </item>
     
     <item>
       <title>Java中的HashMap</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/map/hashmap/</link>
+      <link>https://www.kuangcp.top/post/java/collection/map/hashmap/</link>
       <pubDate>Tue, 16 Apr 2019 15:35:58 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/map/hashmap/</guid>
-      <description>目录 start HashMap 结构 构造函数 put putAll resize get remove HashMap 与 HashTable 总结 Tips 扩容死循环问题 栈溢出问题 目录 end|2020-10-28 20:53| HashMap API: HashMap 参考: Java 8系列之重新认识HashMap 参考: 死磕 java集合</description>
+      <guid>https://www.kuangcp.top/post/java/collection/map/hashmap/</guid>
+      <description>💠 HashMap 1.1. 结构 1.2. 构造函数 1.3. put 1.4. putAll 1.5. resize 1.6. get 1.7. remove 1.8. HashMap 与 HashTable 1.9. 总结 Tips 2.1. 扩容死循环问题 2.2. 栈溢出问题 💠 2024-04-07 15:54:52 HashMap API: HashMap 参考: Java 8系列之重新认识HashMap 参考:</description>
     </item>
     
     <item>
       <title>Java中的序列化</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javaserialize/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javaserialize/</link>
       <pubDate>Fri, 05 Apr 2019 22:38:44 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javaserialize/</guid>
-      <description>目录 start 序列化 serialVersionUID 主流编解码框架 MessagePack Protobuf Thrift Marshalling 目录 end|2021-06-02 23:06| 序列化 码农翻身:序列化： 一个老家伙的咸鱼翻身 对象转化为二进制流 反序列化生成对象时不会调用构造器 serialVersionUID</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javaserialize/</guid>
+      <description>💠 Java中的序列化 1.1. Serializable 1.1.1. JDK序列化和反序列化 编解码框架 2.1. LZ4 2.2. fast-serialization 2.3. Snappy 2.4. Kryo 2.5. JSON 2.6. Protobuf 2.7. Marshalling Tips 3.1. JSON字符串反序列化时泛型丢失问题 💠 2024-10-10 20:43:07 Java</description>
     </item>
     
     <item>
       <title>JVM</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/jvm/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/jvm/</link>
       <pubDate>Tue, 02 Apr 2019 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/jvm/</guid>
-      <description>目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 J</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/jvm/</guid>
+      <description>💠 JVM 1.1. JVM参数 1.2. Unified JVM Logging 1.3. JVM内存参数 1.3.1. 容器内的JVM 1.3.2. 内存参数实践 JVM 基本结构 内存区域 3.1. 运行时数据区 3.1.1. 程序计数器 3.1.2. Java虚拟机栈 3.1.3. 本地方</description>
     </item>
     
     <item>
       <title>JavaCucumber</title>
-      <link>https://blogs.kuangcp.top/post/java/test/javacucumber/</link>
+      <link>https://www.kuangcp.top/post/java/test/javacucumber/</link>
       <pubDate>Fri, 01 Mar 2019 15:38:47 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/test/javacucumber/</guid>
+      <guid>https://www.kuangcp.top/post/java/test/javacucumber/</guid>
       <description>目录 start JavaCucumber 目录 end|2020-04-27 23:42| JavaCucumber Official Tutorial</description>
     </item>
     
     <item>
       <title>JavaHamcreset</title>
-      <link>https://blogs.kuangcp.top/post/java/test/javahamcreset/</link>
+      <link>https://www.kuangcp.top/post/java/test/javahamcreset/</link>
       <pubDate>Fri, 01 Mar 2019 15:38:47 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/test/javahamcreset/</guid>
+      <guid>https://www.kuangcp.top/post/java/test/javahamcreset/</guid>
       <description>目录 start JavaHamcrest 目录 end|2020-04-27 23:42| JavaHamcrest Official Doc | Github</description>
     </item>
     
     <item>
       <title>Java中的代理</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javaproxy/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javaproxy/</link>
       <pubDate>Sun, 27 Jan 2019 21:06:14 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javaproxy/</guid>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javaproxy/</guid>
       <description>目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能</description>
     </item>
     
     <item>
       <title>Spring 事务</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/transactional/</link>
+      <link>https://www.kuangcp.top/post/java/spring/transactional/</link>
       <pubDate>Fri, 21 Dec 2018 10:54:05 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/transactional/</guid>
-      <description>目录 start Spring 事务 失效场景 可编程事务管理 目录 end|2021-04-22 21:33| Spring 事务 Doc: Transaction Management 事务 和 AOP 同时使用 顺序问题 Afterreturning 和 Transactional 失效场景 引擎不支持事务，例如 MyISAM 注解所在类没有进入IOC容</description>
-    </item>
-    
-    <item>
-      <title>SpringWebFlux</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springwebflux/</link>
-      <pubDate>Fri, 21 Dec 2018 10:53:48 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/spring/springwebflux/</guid>
-      <description>目录 start WebFlux 目录 end|2020-04-27 23:42| WebFlux 参考: 译：尝试使用Spring WebFlux</description>
+      <guid>https://www.kuangcp.top/post/java/spring/transactional/</guid>
+      <description>💠 Spring 事务 1.1. propagation 1.2. isolation 1.3. 失效场景 1.4. 异常场景 1.5. 可编程事务管理 💠 2024-01-31 11:40:19 Spring 事务 Doc: Transaction Management propagation isolation 事务 和 AOP 同时使用 顺序问题 Afterreturning 和 Transactional 失效场景 一口气说出 6种，@Trans</description>
     </item>
     
     <item>
       <title>SpringTest</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springtest/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springtest/</link>
       <pubDate>Fri, 21 Dec 2018 10:53:35 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springtest/</guid>
+      <guid>https://www.kuangcp.top/post/java/spring/springtest/</guid>
       <description>目录 start Spring Test 注解 目录 end|2020-04-27 23:42| Spring Test 参考: Getting Started with Mockito @Mock, @Spy, @Captor and @InjectMocks 参考: Mockito – Using Spies 注解 学习 @MockBean</description>
     </item>
     
     <item>
       <title>SpringSecurity</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springsecurity/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springsecurity/</link>
       <pubDate>Fri, 21 Dec 2018 10:53:23 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springsecurity/</guid>
-      <description>目录 start SpringSecurity 配置 配置静态口令使用 使用该配置即可自定义用户名密码 SpringBoot的集成Demo 创建单用户单角色的安全控制 多用户多角色的实现思路</description>
+      <guid>https://www.kuangcp.top/post/java/spring/springsecurity/</guid>
+      <description>💠 SpringSecurity 1.1. 配置 1.1.1. 配置静态口令使用 1.2. SpringBoot的集成Demo 1.2.1. 创建单用户单角色的安全控制 1.2.2. 多用户多角色的实现思路 1.2.2.1. 每个身份都使用一个登录</description>
     </item>
     
     <item>
       <title>SpringMVC</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springmvc/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springmvc/</link>
       <pubDate>Fri, 21 Dec 2018 10:53:11 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springmvc/</guid>
-      <description>目录 start SpringMVC MVC思想 原理 API 传统项目配置完整流程 配置依赖 Maven Gradle web.xml ApplicationContext.xml 全局异常处理 自定义错误页面 中文编码问题 创建Controller 使用 配置类型转换 拦</description>
-    </item>
-    
-    <item>
-      <title>SpringCloud</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springcloud/</link>
-      <pubDate>Fri, 21 Dec 2018 10:50:56 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/spring/springcloud/</guid>
-      <description>目录 start SpringCloud 集成docker 微服务 通信方式 目录 end|2020-05-17 16:13| SpringCloud SpringCloudLearning 参考: Spring Cloud 入门系列 集成docker boot in Alpine Linux SpringBoot+Docker 基于此镜像构建小于Ubuntufrolvlad</description>
+      <guid>https://www.kuangcp.top/post/java/spring/springmvc/</guid>
+      <description>💠 SpringMVC 1.1. MVC思想 1.1.1. 原理 1.2. API 传统项目配置完整流程 2.1. 配置依赖 2.1.1. Maven 2.1.2. Gradle 2.2. web.xml 2.3. ApplicationContext.xml 2.3.1. 全局异常处理 2.3.2. 自定义错误页面 2.3.3. 中文编码问题 2.4. 创建Controlle</description>
     </item>
     
     <item>
       <title>SpringBoot数据库相关</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springbootdatabase/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springbootdatabase/</link>
       <pubDate>Fri, 21 Dec 2018 10:50:38 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springbootdatabase/</guid>
-      <description>目录 start 数据库模块 Relational Database 多数据源配置 连接池 c3p0 druid HikariCP JPA Configuration Mybatis 自定义查询 HQL 原生SQL Mysql 映射关系 一对一 一对多 多对多 Restful设计 【特别注意】 Jpa数据</description>
+      <guid>https://www.kuangcp.top/post/java/spring/springbootdatabase/</guid>
+      <description>💠 数据库模块 1.1. 多数据源配置 1.2. 连接池 1.2.1. c3p0 1.2.2. druid 1.2.3. HikariCP 1.3. Relational Database 1.3.1. JPA 1.3.1.1. Configuration 1.3.1.2. Jpa数据分页 1.3.1.3. 原生SQL 1.3.1.4. Mysql 1.3.1.5. 映射关系 1.3.1.5.1. 一对一 1.3.1.5.2. 一对多 1.3.1.5.3. 多对多 1.3.2. Mybatis 1.4. Non Relational database 1.4.1.</description>
     </item>
     
     <item>
       <title>SpringBoot2 新特性</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springboot2/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springboot2/</link>
       <pubDate>Fri, 21 Dec 2018 10:49:53 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springboot2/</guid>
-      <description>目录 start SringBoot2 从1迁移到2 新特性 Web模块 Web容器 Tomcat Jetty 跨域 SpringBoot上下文事件监听 数据库模块 Relation Database 多数据源 No Relation Database 目录 end|2020-04-27 23:42| SringBoot2 官方文档 springboot gradle 从</description>
+      <guid>https://www.kuangcp.top/post/java/spring/springboot2/</guid>
+      <description>💠 SringBoot2 1.1. 从1迁移到2 1.2. 新特性 1.3. Web模块 1.3.1. Web容器 1.3.1.1. Tomcat 1.3.1.2. Jetty 1.3.2. 跨域 1.3.3. SpringBoot上下文事件监听 1.4. 数据库模块 1.4.1. Relation Database 1.4.1.1. 多数据源 1.4.2. No Relation Database 💠 2024-05-04</description>
     </item>
     
     <item>
       <title>SpringBoot</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springboot/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springboot/</link>
       <pubDate>Fri, 21 Dec 2018 10:49:39 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springboot/</guid>
-      <description>目录 start SpringBoot 思考 参考教程 系列 简易使用 使用SpringBootCLI 测试模块 Profils 多种配置文件并切换 yml方式 yml和properties结合 应用配置</description>
+      <guid>https://www.kuangcp.top/post/java/spring/springboot/</guid>
+      <description>💠 SpringBoot 1.1. 思考 1.2. 参考教程 1.3. 使用SpringBootCLI 1.4. Profils 1.4.1. 多种配置文件并切换 1.4.1.1. yml方式 1.4.1.2. yml和properties结合 1.4.2. 应用配置文件 1.5. Events</description>
     </item>
     
     <item>
       <title>Spring AOP</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springaop/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springaop/</link>
       <pubDate>Fri, 21 Dec 2018 10:49:23 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springaop/</guid>
+      <guid>https://www.kuangcp.top/post/java/spring/springaop/</guid>
       <description>目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP</description>
     </item>
     
     <item>
-      <title>Spring5</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/spring5/</link>
-      <pubDate>Fri, 21 Dec 2018 10:46:16 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/spring/spring5/</guid>
-      <description>目录 start Spring5 目录 end|2020-04-27 23:42| Spring5 Spring Framework 5 中的新特性 参考: Java 微服务框架新选择：Spring 5 打包出来的构件小,占用内存也比boot小多了</description>
-    </item>
-    
-    <item>
       <title>Spring</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/spring/</link>
+      <link>https://www.kuangcp.top/post/java/spring/spring/</link>
       <pubDate>Fri, 21 Dec 2018 10:46:01 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/spring/</guid>
-      <description>目录 start Spring 配置使用 通过构建工具 注解方式 xml文件配置 常用的注解 xml方式 xml方式和注解方式的比较 Spring技巧 获取Context上下文环境</description>
+      <guid>https://www.kuangcp.top/post/java/spring/spring/</guid>
+      <description>💠 Spring 1.1. 配置使用 1.1.1. 通过构建工具 1.1.2. 注解方式 1.1.2.1. xml文件配置 1.1.2.2. 常用的注解 1.1.3. xml方式 1.1.3.1. xml方式和注解方式的比较 1.2. Spring技巧 1.2.1. 获取Conte</description>
     </item>
     
     <item>
       <title>MIS</title>
-      <link>https://blogs.kuangcp.top/post/java/mis/</link>
+      <link>https://www.kuangcp.top/post/skills/softwareengineering/mis/</link>
       <pubDate>Thu, 20 Dec 2018 10:42:29 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/mis/</guid>
+      <guid>https://www.kuangcp.top/post/skills/softwareengineering/mis/</guid>
       <description>目录 start 完整的MIS构建经验 MVC 持久化层 数据库设计 Domain对象设计 控制层 权限控制 Session和Token的对比 统一授权 视图层 目录 end|2020-06-24 02:06| 完整的</description>
     </item>
     
     <item>
-      <title>Java 中的 Log</title>
-      <link>https://blogs.kuangcp.top/post/java/log/</link>
-      <pubDate>Thu, 20 Dec 2018 10:42:15 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/log/</guid>
-      <description>目录 start 日志系统 概念 slf4j 接口 MDC Log4j 问题 Log4j2 LogBack Gradle中使用 配置理解 根节点 属性 子节点 设置上下文名称： 设置变量： 获取时间戳字符串： 设置loger 详解</description>
-    </item>
-    
-    <item>
       <title>阿里巴巴开发手册</title>
-      <link>https://blogs.kuangcp.top/post/java/alibabajavastandard/</link>
+      <link>https://www.kuangcp.top/post/java/alibabajavastandard/</link>
       <pubDate>Thu, 20 Dec 2018 10:26:58 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/alibabajavastandard/</guid>
-      <description>目录 start 阿里巴巴Java开发手册 编程规约 命名规约 常量定义 代码格式 OOP规约 集合处理 并发处理 控制语句 注释规约 其他 异常日志 异常处理 日志规约 单元测试</description>
+      <guid>https://www.kuangcp.top/post/java/alibabajavastandard/</guid>
+      <description>💠 阿里巴巴Java开发手册 编程规约 2.1. 命名规约 2.2. 常量定义 2.3. 代码格式 2.4. OOP规约 2.5. 集合处理 2.6. 并发处理 2.7. 控制语句 2.8. 注释规约 2.9. 其他 异常日志 3.1. 异常处理</description>
     </item>
     
     <item>
       <title>Tomcat</title>
-      <link>https://blogs.kuangcp.top/post/java/tool/tomcat/</link>
+      <link>https://www.kuangcp.top/post/java/ecosystem/servlet/tomcat/</link>
       <pubDate>Thu, 20 Dec 2018 10:26:32 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/tool/tomcat/</guid>
-      <description>目录 start Tomcat 原理 目录结构 配置运行 配置解压方式的Tomcat IDE中配置运行 编码 虚拟目录 默认主页 虚拟主机 配置 GZip压缩 配置IO方式 Tomcat Native Web容器</description>
+      <guid>https://www.kuangcp.top/post/java/ecosystem/servlet/tomcat/</guid>
+      <description>💠 Tomcat 1.1. 目录结构 1.2. 配置运行 1.2.1. 配置解压方式的Tomcat 1.2.1.1. IDE中配置运行 1.2.2. 编码 1.2.3. 虚拟目录 1.2.3.1. 默认主页 1.2.3.2. 虚拟主机 1.2.3.3. 配置 GZip压缩 1.2.3.4. 配置IO方式 Tomcat</description>
     </item>
     
     <item>
       <title>Lombok</title>
-      <link>https://blogs.kuangcp.top/post/java/tool/lombok/</link>
+      <link>https://www.kuangcp.top/post/java/tool/lombok/</link>
       <pubDate>Thu, 20 Dec 2018 10:25:56 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/tool/lombok/</guid>
+      <guid>https://www.kuangcp.top/post/java/tool/lombok/</guid>
       <description>目录 start Lombok 何为Lombok 为什么要用 为什么不要用 个人见解 配置 Maven 普通Java项目 Groovy和Java项目使用Lombok Gradle 使用 注解使用 POJO</description>
     </item>
     
     <item>
       <title>Maven进阶</title>
-      <link>https://blogs.kuangcp.top/post/java/tool/mavenadvance/</link>
+      <link>https://www.kuangcp.top/post/java/tool/mavenadvance/</link>
       <pubDate>Thu, 20 Dec 2018 10:25:45 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/tool/mavenadvance/</guid>
-      <description>目录 start Maven Advance Custom Maven plugin 目录 end|2020-06-04 19:41| Maven Advance Custom Maven plugin official doc github: maven plugin 参考: custom plugin</description>
+      <guid>https://www.kuangcp.top/post/java/tool/mavenadvance/</guid>
+      <description>💠 Maven Advance 1.1. Custom Maven plugin Error 💠 2024-11-05 18:17:48 Maven Advance Custom Maven plugin official doc github: maven plugin 参考: custom plugin Error macos - java.lang.IllegalArgumentException: Malformed \uxxxx encoding while mvn install - Stack Overflow</description>
     </item>
     
     <item>
       <title>Maven</title>
-      <link>https://blogs.kuangcp.top/post/java/tool/maven/</link>
+      <link>https://www.kuangcp.top/post/java/tool/maven/</link>
       <pubDate>Thu, 20 Dec 2018 10:25:26 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/tool/maven/</guid>
-      <description>目录 start Maven 安装 Maven常用命令 从jar安装到本地库 settings.xml配置 配置镜像源 阿里云 配置本地仓库 maven配置 主配置文件详解 配置代</description>
+      <guid>https://www.kuangcp.top/post/java/tool/maven/</guid>
+      <description>💠 Maven 1.1. 安装 1.2. Maven常用命令 1.2.1. 跳过测试阶段 1.3. Profiles 1.4. 配置 1.4.1. settings.xml 1.4.2. pom.xml 构建 2.1. 构建多模块的项目 2.2. 打包部署 2.2.1. assembly 2.2.2. shade 依赖管理 3.1. 依赖类型 3.2. 依赖的范围 3.3. 依赖的</description>
     </item>
     
     <item>
       <title>Eclipse</title>
-      <link>https://blogs.kuangcp.top/post/java/tool/eclipse/</link>
+      <link>https://www.kuangcp.top/post/java/tool/eclipse/</link>
       <pubDate>Mon, 17 Dec 2018 21:30:46 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/tool/eclipse/</guid>
+      <guid>https://www.kuangcp.top/post/java/tool/eclipse/</guid>
       <description>目录 start Eclipse Mars Eclipse Che Install 目录 end|2020-06-04 19:41| Eclipse Mars 这里的Tomcat是使用了你所导入的必要执行文件，但是运行的必要配置文件在eclipse Server项目里另有一</description>
     </item>
     
     <item>
       <title>Jacoco</title>
-      <link>https://blogs.kuangcp.top/post/java/tool/jacoco/</link>
+      <link>https://www.kuangcp.top/post/java/tool/jacoco/</link>
       <pubDate>Mon, 17 Dec 2018 21:27:14 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/tool/jacoco/</guid>
+      <guid>https://www.kuangcp.top/post/java/tool/jacoco/</guid>
       <description>目录 start Jacoco 安装 Maven插件方式 Jenkins集成 目录 end|2020-06-04 19:41| Jacoco 一款Java平台的代码覆盖率工具 安装 Maven插件方式 添加插件 1 2 3 4 5 6 7 8 9 10</description>
     </item>
     
     <item>
       <title>Java相关精彩博客</title>
-      <link>https://blogs.kuangcp.top/post/blog/java/</link>
+      <link>https://www.kuangcp.top/post/blog/java/</link>
       <pubDate>Sun, 16 Dec 2018 17:32:04 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/blog/java/</guid>
-      <description>目录 start Java 社区 SE JavaFx 爬虫 Springboot BuildTool Test 精彩系列 码农翻身 架构师 Java语言讨论 目录 end|2020-06-16 10:25| Java 和Java有关的博客和网页 社区 并发编程网 Java InfoQ Java IBM Java SE 菜鸟入门：Ja</description>
+      <guid>https://www.kuangcp.top/post/blog/java/</guid>
+      <description>💠 Java 1.1. 社区 1.2. SE 1.3. 爬虫 1.4. Springboot 1.5. BuildTool 1.6. Test 1.7. 精彩系列 1.7.1. 码农翻身 1.7.2. 架构师 1.8. Java语言讨论 💠 2024-11-14 16:40:22 Java 和Java有关的博客和网页 社区 并发编程网 Java InfoQ Java IBM Java SE 菜</description>
     </item>
     
     <item>
       <title>JDBC</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/jdbc/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/jdbc/</link>
       <pubDate>Sun, 16 Dec 2018 17:28:17 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/jdbc/</guid>
-      <description>目录 start JDBC MySQL Java内置数据库Derby Tips 目录 end|2021-05-17 00:15| JDBC 码农翻身:JDBC的诞生 基础的批量操作SQL pstmt.executeBatch(); //批量执行 注册 driver 创建 connection 创建 statement 执行获取 Resultset 处理</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/jdbc/</guid>
+      <description>💠 JDBC 1.1. Statement 1.1.1. PrepareStatement 1.2. ResultSet 1.2.1. 长连接流式导出数据 1.3. SQLException 厂商驱动 2.1. MySQL 2.2. Clickhouse Tips 💠 2024-10-08 11:23:38 JDBC Java DataBase Connectivity 核心思想是定义一套接口规范，让各个数据库厂商实现这套接口，从而让应用</description>
     </item>
     
     <item>
       <title>Java异常处理</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javaexception/</link>
+      <link>https://www.kuangcp.top/post/java/basic/javaexception/</link>
       <pubDate>Thu, 13 Dec 2018 16:15:05 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javaexception/</guid>
-      <description>目录 start 异常 异常的继承关系 常见异常 异常常见问题 应该使用大块的try还是细颗粒度的try? try和for谁包住谁更好? 异常的处理 Web应用中全局</description>
+      <guid>https://www.kuangcp.top/post/java/basic/javaexception/</guid>
+      <description>💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 常见问题 1.3.1. 异常被吞 1.3.2. 异常栈被隐藏 1.3.3. 应该使用大块的try还是细颗粒度的try? 1.3.4. try和for谁包住谁更好?</description>
     </item>
     
     <item>
       <title>Java8</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/release/java8/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/release/java8/</link>
       <pubDate>Thu, 13 Dec 2018 16:05:51 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/release/java8/</guid>
-      <description>目录 start Java8 接口的变化 default方法 static方法 函数式 函数式接口 构造函数的引用 函数式接口案例 Lambda 行为参数化 Lambda基础 Lambda 实现原理 Lambda 局限</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/release/java8/</guid>
+      <description>💠 Java8 1.1. 实战库项目 接口的变化 2.1. default方法 2.2. static方法 函数式 3.1. 函数式接口 3.1.1. 构造函数的引用 3.2. 函数式接口案例 Lambda 4.1. 行为参数化 4.2. Lambd</description>
     </item>
     
     <item>
       <title>Gradle</title>
-      <link>https://blogs.kuangcp.top/post/java/tool/gradle/</link>
+      <link>https://www.kuangcp.top/post/java/tool/gradle/</link>
       <pubDate>Wed, 12 Dec 2018 21:29:59 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/tool/gradle/</guid>
-      <description>目录 start Gradle 书籍 发行版本列表 安装 Chocolate Docker安装 手动配置 Wrapper CUI使用 命令行选项 动作 build test 守护进程 配置 全局配置文件 build.gradle SourceSet 依赖管理 依赖排除以及指定依赖</description>
+      <guid>https://www.kuangcp.top/post/java/tool/gradle/</guid>
+      <description>💠 Gradle 1.1. 书籍 1.2. 发行版本列表 安装 2.1. Chocolate 2.2. 解压配置 2.3. Wrapper 2.4. CUI使用 2.4.1. 命令行选项 2.4.2. 动作 2.4.2.1. build 2.4.2.2. test 2.4.3. 守护进程 配置 3.1. 全局配置文件 3.2. build.gradle 3.2.1. SourceSet 3.2.2. 依赖管理 3.2.2.1. 依赖排除</description>
     </item>
     
     <item>
       <title>Gradle进阶</title>
-      <link>https://blogs.kuangcp.top/post/java/tool/gradleadvance/</link>
+      <link>https://www.kuangcp.top/post/java/tool/gradleadvance/</link>
       <pubDate>Tue, 11 Dec 2018 21:29:29 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/tool/gradleadvance/</guid>
+      <guid>https://www.kuangcp.top/post/java/tool/gradleadvance/</guid>
       <description>目录 start Gradle进阶知识 Gradle 使用和配置 主配置目录 Gradle 构建块 task task的依赖关系 终结器 task Groovy的POGO类管理配置文件上的版本号 task 的inp</description>
     </item>
     
     <item>
       <title>Hibernate</title>
-      <link>https://blogs.kuangcp.top/post/java/ecosystem/hibernate/</link>
+      <link>https://www.kuangcp.top/post/java/ecosystem/hibernate/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/ecosystem/hibernate/</guid>
+      <guid>https://www.kuangcp.top/post/java/ecosystem/hibernate/</guid>
       <description>目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib</description>
     </item>
     
     <item>
       <title>Java11</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/release/java11/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/release/java11/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/release/java11/</guid>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/release/java11/</guid>
       <description>目录 start Java11 安装配置 Linux 新特性 ZGC 部分API转为内部API 目录 end|2021-05-17 00:15| Java11 Official: JDK 11 Documentation | Official:api Tool reference 应该就是真正意义上的 Java9 了, 原先发布的 9 和 10 都不是 LTS, 并且很多原先属</description>
     </item>
     
     <item>
       <title>Java7</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/release/java7/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/release/java7/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/release/java7/</guid>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/release/java7/</guid>
       <description>目录 start Java7 异常处理 TWR NIO 2.0 Path 文件系统 I/O 异步 I/O 目录 end|2020-07-05 16:28| 参考: JDK各个版本比较 JDK5~JDK10 Java7 Official: Java 7 API 小特性 Switch 支持 String Java6之前case语句中的常亮只支持 byte,</description>
     </item>
     
     <item>
-      <title>Java中的IO</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javaio/</link>
+      <title>Java并发</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javaconcurrency/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javaio/</guid>
-      <description>目录 start Java中的IO IO 简史 BIO NIO AIO 字节流 字符流 应用 文件IO 读取配置文件 可执行jar读取外部配置文件 Maven项目 网络IO NIO Buffer 目录 end|2020-04-27 23:42| Java</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javaconcurrency/</guid>
+      <description>💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. AQS 3.3. 功能</description>
     </item>
     
     <item>
-      <title>Java中的注解</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javaannotation/</link>
+      <title>Java的JDK以及JRE</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/release/jdkandjre/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javaannotation/</guid>
-      <description>目录 start 注解 自定义Annotation 读取 目录 end|2021-05-17 00:15| 注解 参考博客 全面解析Java注解 | Java注解（2）-运行时框架 参考项目 AnnotationDemo 注解定义包含四个元</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/release/jdkandjre/</guid>
+      <description>💠 JDK And JRE Oracle 2.1. Oracle JDK 2.2. Oracle JRE OpenJDK 商业组织JDK 4.1. Corretto JDK源码 💠 2024-10-02 22:33:00 JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示</description>
+    </item>
+    
+    <item>
+      <title>Java的集合</title>
+      <link>https://www.kuangcp.top/post/java/collection/javacollection/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/collection/javacollection/</guid>
+      <description>💠 JDK中的集合 1.1. 集合继承和实现关系 1.2. Iterator 1.2.1. 规避 ConcurrentModificationException 1.3. Map 1.3.1. HashMap 1.3.2. TreeMap 1.4. List 1.5. Set 第三方开源集合框架 2.1. fastutil 2.2. Koloboke 2.3. Trove 💠 2024-07-13 00:44:21 JDK中的集合 Java集合必会14问</description>
+    </item>
+    
+    <item>
+      <title>Java的字节码</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javaclass/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javaclass/</guid>
+      <description>💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠</description>
+    </item>
+    
+    <item>
+      <title>Java反射原理以及使用</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javareflection/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javareflection/</guid>
+      <description>💠 反射 概念 实现原理 3.1. Inflation 基础类 4.1. AccessibleObject 4.2. Annotation 4.3. Class 4.4. Field 4.5. Method 4.6. Constructor 4.7. Modifier 使用 5.1. 获取Class对象的方式 5.2. 反射的基本使用 5.2.1. 操作构造方法 5.2.2. 操作类中方法 5.2.3. 操作类的</description>
+    </item>
+    
+    <item>
+      <title>Java泛型</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javagenerics/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javagenerics/</guid>
+      <description>💠 泛型 1.1. 简单使用 1.2. 类型擦除 1.3. 约束和局限性 1.4. 泛型类型的继承规则 1.5. 通配符类型 1.5.1. 子类 类型限定的通配符 extends 1.5.2. 基类 类型限定的通配符 super 1.5.3. 无限定通配符 1.5.4. 通配</description>
+    </item>
+    
+    <item>
+      <title>Java基础语法</title>
+      <link>https://www.kuangcp.top/post/java/basic/javabasicsyntax/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/basic/javabasicsyntax/</guid>
+      <description>💠 基础语法 1.1. 代码风格 1.2. 结构 1.2.1. 判断 1.2.2. 循环 1.3. 标准输入输出 1.4. Runtime 数据类型 2.1. 自动拆装箱 2.2. 基础数据类型 2.2.1. byte 2.2.2. char 2.2.3. boolean 2.2.4. short 2.2.5. int 2.2.6. long 2.2.7. float 2.2.8. double 2.3. 封装类型 2.3.1. String 2.3.2. Float</description>
+    </item>
+    
+    <item>
+      <title>Java快速开发框架</title>
+      <link>https://www.kuangcp.top/post/java/ecosystem/javaboot/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/ecosystem/javaboot/</guid>
+      <description>💠 关于Java的快速开发框架 1.1. Springboot 1.2. Jboot 1.3. NuzBoot 1.4. OpenLiberty 1.5. ActiveJ 💠 2024-04-22 00:47:57 关于Java的快速开发框架 Springboot 基于Spring Jboot 基于JFinal NuzBoot OpenLiberty Github ActiveJ Github</description>
+    </item>
+    
+    <item>
+      <title>Java网络编程</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javanetwork/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javanetwork/</guid>
+      <description>💠 Java网络编程 1.1. 基础 1.1.1. Socket 1.2. Tips 💠 2024-03-04 14:39:31 Java网络编程 参考: Java网络教程 java proxy 基础 获取主机网络信息 获取本地ip Getting the IP address of the current machine using Java Socket 码农翻</description>
+    </item>
+    
+    <item>
+      <title>Java线程</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javathread/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javathread/</guid>
+      <description>💠 Java线程 生命周期 2.1. 创建 2.2. 控制 2.2.1. yield 2.2.2. join 2.2.3. interrupt 2.2.4. Signal 2.3. 销毁 2.3.1. 观测异常 ThreadLocal 3.1. Hook 3.2. 优雅关机 CompletableFuture 线程池 协程 6.1. Quasar 6.2. Virtual Threads 💠 2024-09-13 10:39:04 Java线程 个人学习代码 Jav</description>
+    </item>
+    
+    <item>
+      <title>Java应用的部署</title>
+      <link>https://www.kuangcp.top/post/java/basic/javadeploy/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/basic/javadeploy/</guid>
+      <description>💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 Tips 3.1. Java在Linux上的时区问题 3.2. 容器中J</description>
+    </item>
+    
+    <item>
+      <title>Java中的IO</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/javaio/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/javaio/</guid>
+      <description>目录 start Java中的IO IO 简史 BIO NIO AIO 字节流 字符流 应用 文件IO 读取配置文件 可执行jar读取外部配置文件 Maven项目 网络IO NIO Buffer 目录 end|2023-07-24 18:06| Java</description>
     </item>
     
     <item>
       <title>Java中的测试</title>
-      <link>https://blogs.kuangcp.top/post/java/test/javatest/</link>
+      <link>https://www.kuangcp.top/post/java/test/javatest/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/test/javatest/</guid>
+      <guid>https://www.kuangcp.top/post/java/test/javatest/</guid>
       <description>目录 start Java的测试 断言 正式代码 测试代码 单元测试 测试框架 Junit Idea上Junit的使用 TestNG Mock框架 Mockito EasyMock DBUnit 基准测试 JMH 感悟 目录 end|2020-05-06 01:45| Java的测试</description>
     </item>
     
     <item>
       <title>Java中的继承与接口</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javainheritedandinterface/</link>
+      <link>https://www.kuangcp.top/post/java/basic/javainheritedandinterface/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javainheritedandinterface/</guid>
+      <guid>https://www.kuangcp.top/post/java/basic/javainheritedandinterface/</guid>
       <description>目录 start 继承和接口 继承 接口 常用接口 目录 end|2020-05-17 16:13| 继承和接口 应倾向于多使用组合而不是继承 参考: java的重载、覆盖和隐藏的区别 继承 接口 个人理解为一个接</description>
     </item>
     
     <item>
+      <title>Java中的注解</title>
+      <link>https://www.kuangcp.top/post/java/basic/javaannotation/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/java/basic/javaannotation/</guid>
+      <description>目录 start 注解 自定义Annotation 读取 目录 end|2021-05-17 00:15| 注解 参考博客 全面解析Java注解 | Java注解（2）-运行时框架 参考项目 AnnotationDemo 注解定义包含四个元</description>
+    </item>
+    
+    <item>
       <title>Java主要发行版概述</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javareleaseversion/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/release/javareleaseversion/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javareleaseversion/</guid>
-      <description>目录 start Java主要发行版本 Java5 Java6 Java7 Java8 Java9 Java10 Java11 目录 end|2020-05-31 21:44| Java主要发行版本 官网 Release Note Java语言特性系列 5-最新 Java5 泛型 枚举 装箱拆箱 静态导入 foreach Java6 JDBC4.0 JAX-WS 2.0</description>
-    </item>
-    
-    <item>
-      <title>Java反射原理以及使用</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javareflection/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javareflection/</guid>
-      <description>目录 start 反射 概念 实现原理 基础类 AccessibleObject Annotation Class Field Method Constructor Modifier 使用 获取Class对象的方式 反射的基本使用 操作构造方法 操作类中方法 操作类的成员属性 操作注解 反射的性</description>
-    </item>
-    
-    <item>
-      <title>Java基础语法</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javabasicsyntax/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javabasicsyntax/</guid>
-      <description>目录 start 基础语法 代码风格 结构 判断 循环 标准输入输出 Runtime 优雅关机 数据类型 自动拆装箱 基础数据类型 byte char boolean short int long float double 封装类型 String Float Double Integer Long Boolean Void 枚举类型 内部类 类</description>
-    </item>
-    
-    <item>
-      <title>Java并发</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javaconcurrency/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javaconcurrency/</guid>
-      <description>目录 start Java并发 JMM Java内存模型 理论知识 可能的问题 好的习惯 块结构并发 Java5之前 synchronized 正确使用锁 volatile 正确使用 现代并发JUC包 概念 CAS指令 原</description>
-    </item>
-    
-    <item>
-      <title>Java应用的部署</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javadeploy/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javadeploy/</guid>
-      <description>目录 start 部署运行 打包可执行jar 打包war Docker镜像 配置文件 Tips Java在Linux上的时区问题 目录 end|2020-04-27 23:42| 部署运行 传统的可执行jar, war 以及</description>
-    </item>
-    
-    <item>
-      <title>Java快速开发框架</title>
-      <link>https://blogs.kuangcp.top/post/java/ecosystem/javaboot/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/ecosystem/javaboot/</guid>
-      <description>目录 start 关于Java的快速开发框架 Springboot Jboot NuzBoot 目录 end|2020-04-27 23:42| 关于Java的快速开发框架 Springboot 基于Spring Jboot 基于JFinal NuzBoot</description>
-    </item>
-    
-    <item>
-      <title>Java泛型</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javagenerics/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javagenerics/</guid>
-      <description>目录 start 泛型 简单使用 类型擦除 约束和局限性 泛型类型的继承规则 通配符类型 子类 类型限定的通配符 extends 基类 类型限定的通配符 super 无限定通配符 通配符捕获 反射和泛</description>
-    </item>
-    
-    <item>
-      <title>Java的JDK以及JRE</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/release/jdkandjre/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/release/jdkandjre/</guid>
-      <description>目录 start JDK And JRE Oracle Oracle JDK Oracle JRE OpenJDK 目录 end|2020-06-29 19:16| JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示免费 License Oracle roadmap Oracle JDK 以下是Jav</description>
-    </item>
-    
-    <item>
-      <title>Java的字节码</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javaclass/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javaclass/</guid>
-      <description>目录 start 字节码以及类加载 编译优化 字节码 字节码相关框架 常量池 类加载机制 类加载器 特殊场景 Tomcat 加载和连接 方法句柄 反编译 JD Jad 热更新 分析工具 目录 end|2020-09-13 07:50| 字节码</description>
-    </item>
-    
-    <item>
-      <title>Java的集合</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javacollection/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javacollection/</guid>
-      <description>目录 start JDK中的集合 集合继承和实现关系 Iterator Map HashMap ConcurrentHashMap TreeMap List Set 第三方开源集合框架 fastutil Koloboke Trove 目录 end|2020-04-27 23:42| JDK中的集合 Java集合必会14问（精选面试题整理） 集</description>
-    </item>
-    
-    <item>
-      <title>Java线程</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javathread/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javathread/</guid>
-      <description>目录 start 线程的基础学习 基础 线程的意义 线程的生命周期 创建 控制 销毁 线程的优先级 协程 Loom Quasar 目录 end|2021-04-28 15:31| 线程的基础学习 个人相关代码 线程的多种创建方式 线程池的</description>
-    </item>
-    
-    <item>
-      <title>Java网络编程</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/javanetwork/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/javanetwork/</guid>
-      <description>目录 start Java网络编程 基础 Socket Tips 目录 end|2020-04-27 23:42| Java网络编程 参考: Java网络教程 基础 Socket 其实就是Socket 码农翻身:张大胖的socket Tips 得到U</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/release/javareleaseversion/</guid>
+      <description>💠 Java主要发行版本 1.1. Java5 1.2. Java6 1.3. Java7 1.4. Java8 LST 1.5. Java9 1.6. Java10 1.7. Java11 LTS 1.8. Java12 1.9. Java13 1.10. Java14 1.11. Java15 1.12. Java16 1.13. Java17 LTS 1.14. Java18 1.15. Java21 LTS 💠 2024-06-21 16:17:04 Java主要发行版本 官网 Release Note Java语言特性</description>
     </item>
     
     <item>
       <title>JMX</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/jmx/</link>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/jmx/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/jmx/</guid>
-      <description>目录 start JMX 概念 使用 JMX的JVM参数配置 目录 end|2020-04-27 23:42| JMX Java Management Extensions, 提供了一个可以动态修改资源的机制 Official Doc | wiki | wici zh 参考: JMX学习笔记 参考: java常见命</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/jmx/</guid>
+      <description>💠 JMX 1.1. 概念 1.2. 使用 1.2.1. 远程JMX 1.2.2. 工具 MXBean 2.1. GarbageCollectorMXBean 2.2. 自定义MXBean 💠 2024-10-08 15:07:46 JMX Java Management Extensions, 提供了一个可以动态修改资源的机制 Official Doc | wiki | wici zh 参考: JMX学习笔记</description>
     </item>
     
     <item>
       <title>Junit</title>
-      <link>https://blogs.kuangcp.top/post/java/test/junit/</link>
+      <link>https://www.kuangcp.top/post/java/test/junit/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/test/junit/</guid>
-      <description>目录 start 如何使用Junit 引入依赖 Maven项目 Gradle项目 编码规范 常用注解 Rule注解的使用 断言的使用 assertThat 参数化测试 测试套件 分类测试 Jun</description>
+      <guid>https://www.kuangcp.top/post/java/test/junit/</guid>
+      <description>💠 如何使用Junit 1.1. 引入依赖 1.1.1. Maven项目 1.2. 编码规范 1.3. 常用注解 1.3.1. Rule注解的使用 1.4. 断言的使用 1.4.1. assertThat 1.5. 参数化测试 1.6. 分类测试 1.7. 测试套件 Jun</description>
     </item>
     
     <item>
-      <title>Jvm 性能调优</title>
-      <link>https://blogs.kuangcp.top/post/java/advancedlearning/jvmperformance/</link>
+      <title>JVM 监控&amp;诊断</title>
+      <link>https://www.kuangcp.top/post/java/advancedlearning/jvmtool/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/advancedlearning/jvmperformance/</guid>
-      <description>目录 start Java的性能调优 JVM参数调优 GC调优 内存优化 堆外内存 Metaspace JDK自带工具 java 环境变量的使用 jps jstat jinfo jmap jhat jstack jcmd 终端类工具 Arthas async-profiler 图形化工具 JProfiler GCViewer jvisualvm MAT</description>
+      <guid>https://www.kuangcp.top/post/java/advancedlearning/jvmtool/</guid>
+      <description>💠 JVM 监控&amp;amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1.</description>
     </item>
     
     <item>
       <title>JVM上的多语言</title>
-      <link>https://blogs.kuangcp.top/post/java/ecosystem/multiplelanguageinjvm/</link>
+      <link>https://www.kuangcp.top/post/java/ecosystem/multiplelanguageinjvm/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/ecosystem/multiplelanguageinjvm/</guid>
+      <guid>https://www.kuangcp.top/post/java/ecosystem/multiplelanguageinjvm/</guid>
       <description>目录 start JVM上的多语言使用 重新实现的语言和原生语言 JVM上的多语言编程 Groovy Scala Clojure 为什么非要用Java语言 JVM对备选语言的支持 编译器小说 目录 end|2020-11-25 20:35|</description>
     </item>
     
     <item>
       <title>Mybatis</title>
-      <link>https://blogs.kuangcp.top/post/java/ecosystem/mybatis/</link>
+      <link>https://www.kuangcp.top/post/java/ecosystem/mybatis/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/ecosystem/mybatis/</guid>
-      <description>目录 start Mybatis 流程控制 foreach 循环语句 collection if 判断语句 choose 相当于switch语句 延迟加载 缓存 分布式缓存 Spring整合 Tips 目录 end|2020-05-17 16:13| Mybatis Official 一个灵活的数据库中间件框架</description>
+      <guid>https://www.kuangcp.top/post/java/ecosystem/mybatis/</guid>
+      <description>💠 Mybatis 1.1. 流程控制 1.1.1. foreach 循环语句 1.1.1.1. collection 1.1.2. if 判断语句 1.1.3. choose 相当于switch语句 1.2. 延迟加载 1.3. 缓存 1.3.1. 分布式缓存 1.4. Spring整合 Tips 💠 2024-03-26 21:19:24 Mybatis Official mybatis-issuesSSCCE: Short, Self Contained, Correct (Compilable), Example.</description>
     </item>
     
     <item>
       <title>TestNG</title>
-      <link>https://blogs.kuangcp.top/post/java/test/testng/</link>
+      <link>https://www.kuangcp.top/post/java/test/testng/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/test/testng/</guid>
+      <guid>https://www.kuangcp.top/post/java/test/testng/</guid>
       <description>目录 start TestNG 使用 基本注解 目录 end|2020-04-27 23:42| TestNG Official Doc 易百: TestNG教程 TestNG 入门教程 testNG官方文档 | Github:TestNG tools 使用 基本使用 Gradle使用 1 testCompile group: &amp;#39;org.testng&amp;#39;, name: &amp;#39;testng&amp;#39;, version: &amp;#39;6.14.3&amp;#39; 然后</description>
     </item>
     
     <item>
       <title>IDEA</title>
-      <link>https://blogs.kuangcp.top/post/java/tool/idea/</link>
+      <link>https://www.kuangcp.top/post/java/tool/idea/</link>
       <pubDate>Wed, 14 Nov 2018 21:29:09 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/tool/idea/</guid>
-      <description>目录 start IDEA 使用笔记 基础概念 常用技巧 Tomcat的使用 导出为可运行JAR Springboot热加载 Debug 常用配置 个人IDEA配置 IDEA快捷键 默认快</description>
+      <guid>https://www.kuangcp.top/post/java/tool/idea/</guid>
+      <description>💠 IDEA 使用笔记 1.1. 常用技巧 1.1.1. Tomcat的使用 1.1.2. 导出为可运行JAR 1.1.3. Springboot热加载 1.1.4. Debug 1.2. 常用配置 1.3. IDEA快捷键 1.3.1. 默认快捷键 1.3.2. 个人习</description>
     </item>
     
   </channel>

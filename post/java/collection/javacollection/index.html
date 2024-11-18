@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java的集合 - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 JDK中的集合 1.1. 集合继承和实现关系 1.2. Iterator 1.2.1. 规避 ConcurrentModificationException 1.3. Map 1.3.1. HashMap 1.3.2. TreeMap 1.4. List 1.5. Set 第三方开源集合框架 2.1. fastutil 2.2. Koloboke 2.3. Trove 💠 2024-07-13 00:44:21 JDK中的集合 Java集合必会14问" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/java/collection/javacollection/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java的集合" />
+<meta property="og:description" content="💠 JDK中的集合 1.1. 集合继承和实现关系 1.2. Iterator 1.2.1. 规避 ConcurrentModificationException 1.3. Map 1.3.1. HashMap 1.3.2. TreeMap 1.4. List 1.5. Set 第三方开源集合框架 2.1. fastutil 2.2. Koloboke 2.3. Trove 💠 2024-07-13 00:44:21 JDK中的集合 Java集合必会14问" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/collection/javacollection/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
+<meta itemprop="name" content="Java的集合">
+<meta itemprop="description" content="💠 JDK中的集合 1.1. 集合继承和实现关系 1.2. Iterator 1.2.1. 规避 ConcurrentModificationException 1.3. Map 1.3.1. HashMap 1.3.2. TreeMap 1.4. List 1.5. Set 第三方开源集合框架 2.1. fastutil 2.2. Koloboke 2.3. Trove 💠 2024-07-13 00:44:21 JDK中的集合 Java集合必会14问"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="617">
+<meta itemprop="keywords" content="数据结构," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java的集合"/>
+<meta name="twitter:description" content="💠 JDK中的集合 1.1. 集合继承和实现关系 1.2. Iterator 1.2.1. 规避 ConcurrentModificationException 1.3. Map 1.3.1. HashMap 1.3.2. TreeMap 1.4. List 1.5. Set 第三方开源集合框架 2.1. fastutil 2.2. Koloboke 2.3. Trove 💠 2024-07-13 00:44:21 JDK中的集合 Java集合必会14问"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java的集合</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 约 617 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#jdk中的集合">JDK中的集合</a>
+      <ul>
+        <li><a href="#集合继承和实现关系">集合继承和实现关系</a></li>
+        <li><a href="#iterator">Iterator</a>
+          <ul>
+            <li><a href="#规避-concurrentmodificationexception">规避 ConcurrentModificationException</a></li>
+          </ul>
+        </li>
+        <li><a href="#map">Map</a>
+          <ul>
+            <li><a href="#hashmap">HashMap</a></li>
+            <li><a href="#treemap">TreeMap</a></li>
+          </ul>
+        </li>
+        <li><a href="#list">List</a></li>
+        <li><a href="#set">Set</a></li>
+      </ul>
+    </li>
+    <li><a href="#第三方开源集合框架">第三方开源集合框架</a>
+      <ul>
+        <li><a href="#fastutil">fastutil</a></li>
+        <li><a href="#koloboke">Koloboke</a></li>
+        <li><a href="#trove">Trove</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#jdk%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88">JDK中的集合</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E9%9B%86%E5%90%88%E7%BB%A7%E6%89%BF%E5%92%8C%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB">集合继承和实现关系</a></li>
+<li>1.2. <a href="#iterator">Iterator</a>
+<ul>
+<li>1.2.1. <a href="#%E8%A7%84%E9%81%BF-concurrentmodificationexception">规避 ConcurrentModificationException</a></li>
+</ul>
+</li>
+<li>1.3. <a href="#map">Map</a>
+<ul>
+<li>1.3.1. <a href="#hashmap">HashMap</a></li>
+<li>1.3.2. <a href="#treemap">TreeMap</a></li>
+</ul>
+</li>
+<li>1.4. <a href="#list">List</a></li>
+<li>1.5. <a href="#set">Set</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E6%BA%90%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6">第三方开源集合框架</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#fastutil">fastutil</a></li>
+<li>2.2. <a href="#koloboke">Koloboke</a></li>
+<li>2.3. <a href="#trove">Trove</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-07-13 00:44:21</p>
+<hr>
+<h1 id="jdk中的集合">JDK中的集合</h1>
+<p><a href="https://www.cnblogs.com/wmyskxz/p/9381848.html"> Java集合必会14问（精选面试题整理）</a></p>
+<h2 id="集合继承和实现关系">集合继承和实现关系</h2>
+<ul>
+<li>
+<p>Collection 接口</p>
+<ul>
+<li>List 接口
+<ul>
+<li>ArrayList</li>
+<li>LinkedList <em>也实现了Queue接口</em> 双向链表实现</li>
+<li>Vector</li>
+</ul>
+</li>
+<li>Set 接口 <em>内容不允许重复</em>
+<ul>
+<li>SortedSet 接口 <em>单值排序接口</em>
+<ul>
+<li>TreeSet</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Queue 接口 <em>队列接口</em>
+<ul>
+<li>PiorityQueue</li>
+<li>Dueue 双端队列</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Map接口</p>
+<ul>
+<li>HashMap <em>无序, key不重复</em></li>
+<li>HashTable <em>无序, key不重复</em></li>
+<li>TreeMap <em>按key排序, key不重复</em></li>
+<li>IdentityMap <em>key可重复</em></li>
+<li>WeakHashMap <em>弱引用Map集合</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="iterator">Iterator</h2>
+<blockquote>
+<p>迭代器</p>
+</blockquote>
+<h3 id="规避-concurrentmodificationexception">规避 ConcurrentModificationException</h3>
+<ol>
+<li>使用迭代器进行删除， 或者Java8的removeIf</li>
+<li>使用没有这个特性的容器，例如： LinkedBlockingQueue
+<ol>
+<li>关联此特性的容器可以查看 java.util.ConcurrentModificationException 的JavaDoc</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="map">Map</h2>
+<blockquote>
+<p>HashMap 键能为null, HashTable则不可以, 而且HashTable是线程安全的(依靠 synchronized 关键字实现)</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.oracle.com/technetwork/cn/articles/maps1-100947-zhs.html">参考: Java Map 集合类简介 </a></p>
+</blockquote>
+<h3 id="hashmap">HashMap</h3>
+<h3 id="treemap">TreeMap</h3>
+<blockquote>
+<p><a href="https://www.ibm.com/developerworks/cn/java/j-lo-tree/index.html">参考: TreeMap 红黑树算法实现</a></p>
+</blockquote>
+<hr>
+<h2 id="list">List</h2>
+<blockquote>
+<p>interface</p>
+</blockquote>
+<p>包括的方法有:
+<img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Java/Collection/List/List.png" alt="List method"></p>
+<p>List接口有众多实现, 最常用的 ArrayList LinkedList</p>
+<hr>
+<p><a href="https://stackoverflow.com/questions/5755477/java-list-add-unsupportedoperationexception">stackoverflow: list add then unsupportedoperationexception</a></p>
+<blockquote>
+<p>有时候会使用 Arrays.asList() 或者 Collections.singletonList() 来快速生成 List<br>
+但是 这两个生成的实例都是返回 AbstractList 的实现类, 其 add remove 方法是没有实现的, 如果调用了就会抛出异常</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">E</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">UnsupportedOperationException</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>这是因为, 这个类设计就是采用的定长数组来实现List, 所以不能对其中元素进行更改 类似的还有 <code>Collections.emptyXxx()</code></p>
+</blockquote>
+<hr>
+<h2 id="set">Set</h2>
+<ul>
+<li>Set是无序的，但是StringRedisTemplate的对象操作返回的set竟然是有序的
+<ul>
+<li>因为有一个类是SortSet，顾名思义，所以是有序的，要继续多学习和使用Java原生的集合对象了</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000014391402?utm_source=channel-hottest">3分钟搞掂Set集合</a></p>
+</blockquote>
+<hr>
+<h1 id="第三方开源集合框架">第三方开源集合框架</h1>
+<h2 id="fastutil">fastutil</h2>
+<blockquote>
+<p><a href="https://github.com/vigna/fastutil">Github</a></p>
+</blockquote>
+<h2 id="koloboke">Koloboke</h2>
+<blockquote>
+<p><a href="https://github.com/leventov/Koloboke">Github</a></p>
+</blockquote>
+<h2 id="trove">Trove</h2>
+<blockquote>
+<p><a href="https://bitbucket.org/trove4j/trove/src/master/">BitBucket</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/advancedlearning/release/jdkandjre/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Java的JDK以及JRE</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/advancedlearning/javaclass/">
+            <span class="next-text nav-default">Java的字节码</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

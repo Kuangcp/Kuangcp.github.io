@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>多种配置文件格式 - Mythos</title>
+  <title>多种配置文件格式 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 配置文件格式 conf或者ini Toml HOCON Properties Java中的使用 XML YAML Java中的使用 JSON BSON Smile 目录 end|2020-07-05 14:58| 配置文件格式 conf或者ini 1 2 3 4 [main] debug=true [client] timeOut=10 Toml" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 配置文件格式 1.1. conf或者ini 1.2. Toml 1.3. HOCON 1.4. Properties 1.4.1. Java中的使用 1.5. XML 1.6. YAML 1.6.1. Java中的使用 1.7. JSON 1.7.1. BSON 1.7.2. Smile 💠 2024-11-10 13:14:39 配置文件格式 conf或者ini 1" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/cs/profile/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/cs/profile/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="多种配置文件格式" />
-<meta property="og:description" content="目录 start 配置文件格式 conf或者ini Toml HOCON Properties Java中的使用 XML YAML Java中的使用 JSON BSON Smile 目录 end|2020-07-05 14:58| 配置文件格式 conf或者ini 1 2 3 4 [main] debug=true [client] timeOut=10 Toml" />
+<meta property="og:description" content="💠 配置文件格式 1.1. conf或者ini 1.2. Toml 1.3. HOCON 1.4. Properties 1.4.1. Java中的使用 1.5. XML 1.6. YAML 1.6.1. Java中的使用 1.7. JSON 1.7.1. BSON 1.7.2. Smile 💠 2024-11-10 13:14:39 配置文件格式 conf或者ini 1" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/cs/profile/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/cs/profile/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="多种配置文件格式">
-<meta itemprop="description" content="目录 start 配置文件格式 conf或者ini Toml HOCON Properties Java中的使用 XML YAML Java中的使用 JSON BSON Smile 目录 end|2020-07-05 14:58| 配置文件格式 conf或者ini 1 2 3 4 [main] debug=true [client] timeOut=10 Toml">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 配置文件格式 1.1. conf或者ini 1.2. Toml 1.3. HOCON 1.4. Properties 1.4.1. Java中的使用 1.5. XML 1.6. YAML 1.6.1. Java中的使用 1.7. JSON 1.7.1. BSON 1.7.2. Smile 💠 2024-11-10 13:14:39 配置文件格式 conf或者ini 1"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="363">
-
-
-
-<meta itemprop="keywords" content="基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="380">
+<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="多种配置文件格式"/>
-<meta name="twitter:description" content="目录 start 配置文件格式 conf或者ini Toml HOCON Properties Java中的使用 XML YAML Java中的使用 JSON BSON Smile 目录 end|2020-07-05 14:58| 配置文件格式 conf或者ini 1 2 3 4 [main] debug=true [client] timeOut=10 Toml"/>
+<meta name="twitter:description" content="💠 配置文件格式 1.1. conf或者ini 1.2. Toml 1.3. HOCON 1.4. Properties 1.4.1. Java中的使用 1.5. XML 1.6. YAML 1.6.1. Java中的使用 1.7. JSON 1.7.1. BSON 1.7.2. Smile 💠 2024-11-10 13:14:39 配置文件格式 conf或者ini 1"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,86 +122,98 @@
         <div class="post-category">
             <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
             </div>
-          <span class="more-meta"> 363 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 380 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#conf或者ini">conf或者ini</a></li>
-    <li><a href="#toml">Toml</a></li>
-    <li><a href="#hocon">HOCON</a></li>
-    <li><a href="#properties">Properties</a>
+    <li><a href="#配置文件格式">配置文件格式</a>
       <ul>
-        <li><a href="#java中的使用">Java中的使用</a></li>
-      </ul>
-    </li>
-    <li><a href="#xml">XML</a></li>
-    <li><a href="#yaml">YAML</a>
-      <ul>
-        <li><a href="#java中的使用-1">Java中的使用</a></li>
-      </ul>
-    </li>
-    <li><a href="#json">JSON</a>
-      <ul>
-        <li><a href="#bson">BSON</a></li>
-        <li><a href="#smile">Smile</a></li>
+        <li><a href="#conf或者ini">conf或者ini</a></li>
+        <li><a href="#toml">Toml</a></li>
+        <li><a href="#hocon">HOCON</a></li>
+        <li><a href="#properties">Properties</a>
+          <ul>
+            <li><a href="#java中的使用">Java中的使用</a></li>
+          </ul>
+        </li>
+        <li><a href="#xml">XML</a></li>
+        <li><a href="#yaml">YAML</a>
+          <ul>
+            <li><a href="#java中的使用-1">Java中的使用</a></li>
+          </ul>
+        </li>
+        <li><a href="#json">JSON</a>
+          <ul>
+            <li><a href="#bson">BSON</a></li>
+            <li><a href="#smile">Smile</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F">配置文件格式</a>
-<ol>
-<li><a href="#conf%E6%88%96%E8%80%85ini">conf或者ini</a></li>
-<li><a href="#toml">Toml</a></li>
-<li><a href="#hocon">HOCON</a></li>
-<li><a href="#properties">Properties</a>
-<ol>
-<li><a href="#java%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8">Java中的使用</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F">配置文件格式</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#conf%E6%88%96%E8%80%85ini">conf或者ini</a></li>
+<li>1.2. <a href="#toml">Toml</a></li>
+<li>1.3. <a href="#hocon">HOCON</a></li>
+<li>1.4. <a href="#properties">Properties</a>
+<ul>
+<li>1.4.1. <a href="#java%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8">Java中的使用</a></li>
+</ul>
 </li>
-<li><a href="#xml">XML</a></li>
-<li><a href="#yaml">YAML</a>
-<ol>
-<li><a href="#java%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8">Java中的使用</a></li>
-</ol>
+<li>1.5. <a href="#xml">XML</a></li>
+<li>1.6. <a href="#yaml">YAML</a>
+<ul>
+<li>1.6.1. <a href="#java%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8">Java中的使用</a></li>
+</ul>
 </li>
-<li><a href="#json">JSON</a>
-<ol>
-<li><a href="#bson">BSON</a></li>
-<li><a href="#smile">Smile</a></li>
-</ol>
+<li>1.7. <a href="#json">JSON</a>
+<ul>
+<li>1.7.1. <a href="#bson">BSON</a></li>
+<li>1.7.2. <a href="#smile">Smile</a></li>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-07-05 14:58</em>|</p>
+</ul>
+<p>💠 2024-11-10 13:14:39</p>
 <hr>
 <h1 id="配置文件格式">配置文件格式</h1>
 <h2 id="conf或者ini">conf或者ini</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="k">[main]</span>
-    <span class="na">debug</span><span class="o">=</span><span class="s">true
-</span><span class="s">    [client]
-</span><span class="s">    timeOut=10</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="k">[main]</span>
+</span></span><span class="line"><span class="cl">    <span class="na">debug</span><span class="o">=</span><span class="s">true
+</span></span></span><span class="line"><span class="cl"><span class="s">    [client]
+</span></span></span><span class="line"><span class="cl"><span class="s">    timeOut=10</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="toml">Toml</h2>
@@ -215,7 +223,8 @@
 <h2 id="hocon">HOCON</h2>
 <p>Human-Optimized Config Object Notation</p>
 <blockquote>
-<p><a href="https://docs.spongepowered.org/stable/zh-CN/server/getting-started/configuration/hocon.html">Official Doc</a></p>
+<p><a href="https://github.com/lightbend/config">lightbend/config: configuration library for JVM languages using HOCON files</a><br>
+<a href="https://docs.spongepowered.org/stable/zh-CN/server/getting-started/configuration/hocon.html">Official Doc</a></p>
 </blockquote>
 <blockquote>
 <p>Nginx 的配置文件就是使用该格式</p>
@@ -226,41 +235,41 @@
 <p>通过ResourceBundle获取classPath下的属性文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">ResourceBundle</span> <span class="n">bundle</span> <span class="o">=</span> <span class="n">ResourceBundle</span><span class="o">.</span><span class="na">getBundle</span><span class="o">(</span><span class="s">&#34;test&#34;</span><span class="o">);</span>
-    <span class="n">String</span> <span class="n">city</span> <span class="o">=</span> <span class="n">bundle</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">ResourceBundle</span> <span class="n">bundle</span> <span class="o">=</span> <span class="n">ResourceBundle</span><span class="o">.</span><span class="na">getBundle</span><span class="o">(</span><span class="s">&#34;test&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">city</span> <span class="o">=</span> <span class="n">bundle</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>通过Properties对象获取配置文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Properties</span> <span class="n">pro</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
-    <span class="n">pro</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;./test.properties&#34;</span><span class="o">)));</span>
-    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">pro</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Properties</span> <span class="n">pro</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pro</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;./test.properties&#34;</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">pro</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用Properties保存配置文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Properties</span> <span class="n">pro</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
-    <span class="n">pro</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="s">&#34;java&#34;</span><span class="o">);</span>
-    <span class="n">pro</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;study&#34;</span><span class="o">,</span> <span class="s">&#34;sdf&#34;</span><span class="o">);</span>
-    <span class="n">pro</span><span class="o">.</span><span class="na">store</span><span class="o">(</span><span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;test.properties&#34;</span><span class="o">)),</span> <span class="s">&#34;one file&#34;</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Properties</span> <span class="n">pro</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pro</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="s">&#34;java&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pro</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;study&#34;</span><span class="o">,</span> <span class="s">&#34;sdf&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pro</span><span class="o">.</span><span class="na">store</span><span class="o">(</span><span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;test.properties&#34;</span><span class="o">)),</span> <span class="s">&#34;one file&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="xml">XML</h2>
@@ -303,11 +312,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-11-21
         
@@ -321,14 +330,14 @@
           <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/skills/celebrityquotes/">
+        <a class="prev" href="/post/skills/website/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">名人名言</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-default">常用网站</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/skills/appmanual/">
-            <span class="next-text nav-default">常用工具手册</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/skills/work/effectivework/">
+            <span class="next-text nav-default">高效工作</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -346,17 +355,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -364,11 +373,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -378,16 +387,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

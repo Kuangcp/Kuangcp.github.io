@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Java中的代理 - Mythos</title>
+  <title>Java中的代理 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/javaproxy/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/javaproxy/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -42,19 +42,15 @@
 <meta property="og:title" content="Java中的代理" />
 <meta property="og:description" content="目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javaproxy/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/javaproxy/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-01-27T21:06:14+00:00" />
 <meta property="article:modified_time" content="2019-01-27T21:06:14+00:00" />
+
 <meta itemprop="name" content="Java中的代理">
-<meta itemprop="description" content="目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能">
-<meta itemprop="datePublished" content="2019-01-27T21:06:14+00:00" />
+<meta itemprop="description" content="目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能"><meta itemprop="datePublished" content="2019-01-27T21:06:14+00:00" />
 <meta itemprop="dateModified" content="2019-01-27T21:06:14+00:00" />
-<meta itemprop="wordCount" content="1648">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1799">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java中的代理"/>
 <meta name="twitter:description" content="目录 start Java中的代理 静态代理 动态代理 JDK动态代理 cglib ASM 目录 end|2020-04-27 23:42| Java中的代理 参考: Java代理模式汇编 在某些情况下，一个客户不想或者不能"/>
 
@@ -126,29 +122,38 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 1648 words </span>
-          <span class="more-meta"> 4 mins read </span>
+          <span class="more-meta"> 约 1799 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#静态代理">静态代理</a></li>
-    <li><a href="#动态代理">动态代理</a>
+    <li><a href="#java中的代理">Java中的代理</a>
       <ul>
-        <li><a href="#jdk动态代理">JDK动态代理</a></li>
-        <li><a href="#cglib">cglib</a></li>
-        <li><a href="#asm">ASM</a></li>
+        <li><a href="#静态代理">静态代理</a></li>
+        <li><a href="#动态代理">动态代理</a>
+          <ul>
+            <li><a href="#jdk动态代理">JDK动态代理</a></li>
+            <li><a href="#cglib">cglib</a></li>
+            <li><a href="#asm">ASM</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-01-27T21:06:14" title="January 27, 2019">January 27, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p><strong>目录 start</strong></p>
 <ol>
@@ -185,7 +190,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -221,41 +226,41 @@
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">//  接口以及实现类 (目标接口和目标对象)
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HelloSerivice</span> <span class="o">{</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">();</span>
-    <span class="o">}</span>
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloSeriviceImpl</span> <span class="kd">implements</span> <span class="n">HelloSerivice</span><span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello world&#34;</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    
-    <span class="c1">// 代理类(同样实现目标接口), 并扩展了对应的方法
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloSeriviceProxy</span> <span class="kd">implements</span> <span class="n">HelloSerivice</span><span class="o">{</span>
-        <span class="kd">private</span> <span class="n">HelloSerivice</span> <span class="n">target</span><span class="o">;</span>
-        <span class="kd">public</span> <span class="nf">HelloSeriviceProxy</span><span class="o">(</span><span class="n">HelloSerivice</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;记录日志&#34;</span><span class="o">);</span>
-            <span class="n">target</span><span class="o">.</span><span class="na">say</span><span class="o">();</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;回收资源&#34;</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 单元测试
-</span><span class="c1"></span>    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testProxy</span><span class="o">(){</span>
-        <span class="c1">//目标对象
-</span><span class="c1"></span>        <span class="n">HelloSerivice</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HelloSeriviceImpl</span><span class="o">();</span>
-        <span class="c1">//代理对象
-</span><span class="c1"></span>        <span class="n">HelloSeriviceProxy</span> <span class="n">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HelloSeriviceProxy</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
-        <span class="n">proxy</span><span class="o">.</span><span class="na">say</span><span class="o">();</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">//  接口以及实现类 (目标接口和目标对象)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HelloSerivice</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloSeriviceImpl</span> <span class="kd">implements</span> <span class="n">HelloSerivice</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello world&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// 代理类(同样实现目标接口), 并扩展了对应的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloSeriviceProxy</span> <span class="kd">implements</span> <span class="n">HelloSerivice</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">HelloSerivice</span> <span class="n">target</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="nf">HelloSeriviceProxy</span><span class="o">(</span><span class="n">HelloSerivice</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;记录日志&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">target</span><span class="o">.</span><span class="na">say</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;回收资源&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 单元测试
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testProxy</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//目标对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">HelloSerivice</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HelloSeriviceImpl</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//代理对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">HelloSeriviceProxy</span> <span class="n">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HelloSeriviceProxy</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">proxy</span><span class="o">.</span><span class="na">say</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这就是一个简单的静态的代理模式的实现。代理模式中的所有角色（代理对象、目标对象、目标对象的接口）等都是在编译期就确定好的。</p>
 <ul>
@@ -298,6 +303,8 @@ JDK动态代理有一个限制，就是使用动态代理的对象必须实现�
 <p><a href="https://github.com/cglib/cglib">Cglib (Byte Code Generation Library)</a></p>
 <p>Cglib是针对类来实现代理的(所以无需声明接口)，他的原理是对代理的目标类生成一个子类，并覆盖其中方法实现增强，因为底层是基于创建被代理类的一个子类，所以它避免了JDK动态代理类的缺陷.<br>
 Cglib包的底层是通过使用一个小而快的字节码处理框架ASM，来转换字节码并生成新的类。不鼓励直接使用ASM，因为它需要你对JVM内部结构包括class文件的格式和指令集都很熟悉。</p>
+<p>这就不得不说到CgLib的特点：创建速度慢但执行速度快，而JDK的动态代理与其刚好相反：创建速度快但执行速度慢。
+如果在程序运行时不断地使用CgLib去创建代理的话，系统运行的性能会大打折扣，所以建议一般在系统初始化时采用CgLib来创建代理，并放入Spring的ApplicationContext中。</p>
 <h3 id="asm">ASM</h3>
 <blockquote>
 <p><a href="https://asm.ow2.io/">Official site</a> | <a href="https://github.com/llbit/ow2-asm">Github</a></p>
@@ -310,11 +317,11 @@ Cglib包的底层是通过使用一个小而快的字节码处理框架ASM，来
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-01-27
         
@@ -329,11 +336,11 @@ Cglib包的底层是通过使用一个小而快的字节码处理框架ASM，来
         <a class="prev" href="/post/skills/work/cooperation/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">开发中的团队协作</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/windows/windowswithhibernate/">
             <span class="next-text nav-default">Windows的快速启动</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -351,17 +358,17 @@ Cglib包的底层是通过使用一个小而快的字节码处理框架ASM，来
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -369,11 +376,11 @@ Cglib包的底层是通过使用一个小而快的字节码处理框架ASM，来
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -383,16 +390,21 @@ Cglib包的底层是通过使用一个小而快的字节码处理框架ASM，来
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

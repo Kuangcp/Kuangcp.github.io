@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Caffeine - Mythos</title>
+  <title>Caffeine - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Caffeine 目录 end|2020-04-27 23:42| Caffeine Github" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Caffeine 1.1. 使用 1.1.1. SpringBoot集成 1.2. 设计 1.2.1. 缓存类型 1.2.2. 驱逐策略 1.2.3. 持久化 1.2.4. 统计 💠 2024-09-20 11:10:09 Caffeine Github 本地缓存无冕之王Caffeine Cache 使用 Introduction to Caffeine Sprin" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/cache/caffeine/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/cache/caffeine/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Caffeine" />
-<meta property="og:description" content="目录 start Caffeine 目录 end|2020-04-27 23:42| Caffeine Github" />
+<meta property="og:description" content="💠 Caffeine 1.1. 使用 1.1.1. SpringBoot集成 1.2. 设计 1.2.1. 缓存类型 1.2.2. 驱逐策略 1.2.3. 持久化 1.2.4. 统计 💠 2024-09-20 11:10:09 Caffeine Github 本地缓存无冕之王Caffeine Cache 使用 Introduction to Caffeine Sprin" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/cache/caffeine/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/cache/caffeine/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-05-13T11:15:40+00:00" />
 <meta property="article:modified_time" content="2019-05-13T11:15:40+00:00" />
+
 <meta itemprop="name" content="Caffeine">
-<meta itemprop="description" content="目录 start Caffeine 目录 end|2020-04-27 23:42| Caffeine Github">
-<meta itemprop="datePublished" content="2019-05-13T11:15:40+00:00" />
+<meta itemprop="description" content="💠 Caffeine 1.1. 使用 1.1.1. SpringBoot集成 1.2. 设计 1.2.1. 缓存类型 1.2.2. 驱逐策略 1.2.3. 持久化 1.2.4. 统计 💠 2024-09-20 11:10:09 Caffeine Github 本地缓存无冕之王Caffeine Cache 使用 Introduction to Caffeine Sprin"><meta itemprop="datePublished" content="2019-05-13T11:15:40+00:00" />
 <meta itemprop="dateModified" content="2019-05-13T11:15:40+00:00" />
-<meta itemprop="wordCount" content="10">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="904">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Caffeine"/>
-<meta name="twitter:description" content="目录 start Caffeine 目录 end|2020-04-27 23:42| Caffeine Github"/>
+<meta name="twitter:description" content="💠 Caffeine 1.1. 使用 1.1.1. SpringBoot集成 1.2. 设计 1.2.1. 缓存类型 1.2.2. 驱逐策略 1.2.3. 持久化 1.2.4. 统计 💠 2024-09-20 11:10:09 Caffeine Github 本地缓存无冕之王Caffeine Cache 使用 Introduction to Caffeine Sprin"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,39 +120,216 @@
       <div class="post-meta">
         <span class="post-time"> 2019-05-13 </span>
         
-          <span class="more-meta"> 10 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 904 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#caffeine">Caffeine</a>
+      <ul>
+        <li><a href="#使用">使用</a>
+          <ul>
+            <li><a href="#springboot集成">SpringBoot集成</a></li>
+          </ul>
+        </li>
+        <li><a href="#设计">设计</a>
+          <ul>
+            <li><a href="#缓存类型">缓存类型</a></li>
+            <li><a href="#驱逐策略">驱逐策略</a></li>
+            <li><a href="#持久化">持久化</a></li>
+            <li><a href="#统计">统计</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-05-13T11:15:40" title="May 13, 2019">May 13, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
 <li><a href="#caffeine">Caffeine</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<ul>
+<li>1.1. <a href="#%E4%BD%BF%E7%94%A8">使用</a>
+<ul>
+<li>1.1.1. <a href="#springboot%E9%9B%86%E6%88%90">SpringBoot集成</a></li>
+</ul>
+</li>
+<li>1.2. <a href="#%E8%AE%BE%E8%AE%A1">设计</a>
+<ul>
+<li>1.2.1. <a href="#%E7%BC%93%E5%AD%98%E7%B1%BB%E5%9E%8B">缓存类型</a></li>
+<li>1.2.2. <a href="#%E9%A9%B1%E9%80%90%E7%AD%96%E7%95%A5">驱逐策略</a></li>
+<li>1.2.3. <a href="#%E6%8C%81%E4%B9%85%E5%8C%96">持久化</a></li>
+<li>1.2.4. <a href="#%E7%BB%9F%E8%AE%A1">统计</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-09-20 11:10:09</p>
 <hr>
 <h1 id="caffeine">Caffeine</h1>
 <blockquote>
 <p><a href="https://github.com/ben-manes/caffeine">Github</a></p>
 </blockquote>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg4Nzc3NjkzOA==&amp;mid=2247486885&amp;idx=1&amp;sn=37c7a9461402bd97822295cf51361777&amp;chksm=cf847e60f8f3f776eb3b477decfbac55dc8b7ae1cf607ef68fbee89dbe02d40a800a92fabec7#rd">本地缓存无冕之王Caffeine Cache </a></p>
+</blockquote>
+<h2 id="使用">使用</h2>
+<blockquote>
+<p><a href="https://www.baeldung.com/java-caching-caffeine">Introduction to Caffeine</a></p>
+</blockquote>
+<h3 id="springboot集成">SpringBoot集成</h3>
+<p>配置文件方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cache</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">caffeine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">cache-names</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">userCache</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">caffeine</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="l">maximumSize=1024,refreshAfterWrite=60s</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Bean方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">CacheManager</span> <span class="nf">cacheManager</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CaffeineCacheManager</span> <span class="n">cacheManager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CaffeineCacheManager</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cacheManager</span><span class="o">.</span><span class="na">setCaffeine</span><span class="o">(</span><span class="n">caffeineCacheBuilder</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">cacheManager</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Caffeine</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">caffeineCacheBuilder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Caffeine</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">initialCapacity</span><span class="o">(</span><span class="n">100</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">maximumSize</span><span class="o">(</span><span class="n">500</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">expireAfterAccess</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">recordStats</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Cache</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">flowNameCache</span> <span class="o">=</span> <span class="n">Caffeine</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">initialCapacity</span><span class="o">(</span><span class="n">100</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">maximumSize</span><span class="o">(</span><span class="n">1000</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">expireAfterAccess</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">recordStats</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="设计">设计</h2>
+<blockquote>
+<p><a href="/Skills/Cache/Cache.md#%E7%BC%93%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AE%97%E6%B3%95">基于 W-TinyLFU 缓存淘汰算法</a><br>
+<a href="https://github.com/ben-manes/caffeine/wiki/Efficiency">Caffeine Efficiency</a></p>
+</blockquote>
+<h3 id="缓存类型">缓存类型</h3>
+<ul>
+<li>Cache 单纯实现缓存 写入和读取
+<ul>
+<li>在获取缓存值时如果想要原子性实现 不存在就创建 则调用 <code>get(key, key -&gt; value)</code> 方法，并发调用时后续的线程会阻塞等待，如果不想感知此类阻塞就调用<code>getIfPresent()</code>即刻返回</li>
+<li>可以据此实现缓存过期时一个线程去加载缓存，其他线程等待值的常见场景。</li>
+</ul>
+</li>
+<li>Loading Cache
+<ul>
+<li>缓存不存在时，调用get时将会触发调用指定的Loader逻辑去加载缓存<code>类似于CDN中的回源操作</code>。并发调用get时阻塞后续线程</li>
+<li>可以据此实现多级缓存。Loader逻辑实现去DB等源去获取数据再写入缓存</li>
+</ul>
+</li>
+<li>Async Cache
+<ul>
+<li>是Cache的一个变体，其响应结果均为CompletableFuture</li>
+<li>默认情况下，缓存计算使用<code>ForkJoinPool.commonPool()</code>作为线程池，如果想要指定线程池，则可以覆盖并实现Caffeine.executor(Executor)方法。
+<ul>
+<li>如果缓存的数据是<code>纯CPU计算</code>得到的，推荐默认的FJ线程池，如果是需要通过网络IO获取的数据，<code>建议使用独立的IO线程池</code></li>
+</ul>
+</li>
+<li>并发调用 <code>get(key, k -&gt; value)</code>时，会返回 <strong>同一个CompletableFuture对象</strong></li>
+<li>由于返回结果本身不进行阻塞，可以根据业务设计自行选择阻塞等待或者非阻塞。</li>
+</ul>
+</li>
+<li>Async Loading Cache
+<ul>
+<li>Loading Cache和Async Cache的功能组合。</li>
+<li>Async Loading Cache支持以异步的方式，对缓存进行自动加载。线程池设置同上</li>
+</ul>
+</li>
+</ul>
+<h3 id="驱逐策略">驱逐策略</h3>
+<ul>
+<li>基于容量回收 <code>W-TinyLFU</code></li>
+<li>基于时间回收</li>
+<li>基于引用回收</li>
+</ul>
+<h3 id="持久化">持久化</h3>
+<h3 id="统计">统计</h3>
+<p>Caffeine内置了数据收集功能，通过Caffeine.recordStats()方法，可以打开数据收集。这样Cache.stats()方法将会返回当前缓存的一些统计指标，例如：</p>
+<ul>
+<li>hitRate：查询缓存的命中率。</li>
+<li>evictionCount：被驱逐的缓存数量。</li>
+<li>averageLoadPenalty：新值被载入的平均耗时</li>
+</ul>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-05-13
         
@@ -171,11 +344,11 @@
         <a class="prev" href="/post/skills/cache/cache/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Cache</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/java/advancedlearning/cache/guavacache/">
             <span class="next-text nav-default">GuavaCache</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -193,17 +366,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -211,11 +384,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -225,16 +398,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

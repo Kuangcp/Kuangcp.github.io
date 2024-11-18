@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Linux基础 - Mythos</title>
+  <title>Linux基础 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Linux系统 用户管理 用户 用户组 sudo 终端和登录 输入输出 环境变量 进程 信号量 孤儿进程和僵死进程 孤儿进程 僵死进程 守护进程 文件描述符 FD 线程 时间 服" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Linux系统 1.1. Boot 1.1.1. grub 1.2. 用户管理 1.2.1. 用户 1.2.2. 用户组 1.2.3. sudo 1.2.4. 终端和登录 1.3. 环境变量 1.4. 进程 1.4.1. 信号 Signal 1.4.2. 信号量 Semaphore 1.4.3. 孤儿进程和僵死进程 1.4.3.1. 孤儿进程 1.4.3.2. 僵死进程 defunct" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxbase/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/base/linuxbase/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Linux基础" />
-<meta property="og:description" content="目录 start Linux系统 用户管理 用户 用户组 sudo 终端和登录 输入输出 环境变量 进程 信号量 孤儿进程和僵死进程 孤儿进程 僵死进程 守护进程 文件描述符 FD 线程 时间 服" />
+<meta property="og:description" content="💠 Linux系统 1.1. Boot 1.1.1. grub 1.2. 用户管理 1.2.1. 用户 1.2.2. 用户组 1.2.3. sudo 1.2.4. 终端和登录 1.3. 环境变量 1.4. 进程 1.4.1. 信号 Signal 1.4.2. 信号量 Semaphore 1.4.3. 孤儿进程和僵死进程 1.4.3.1. 孤儿进程 1.4.3.2. 僵死进程 defunct" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxbase/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/base/linuxbase/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T11:11:23+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:11:23+00:00" />
+
 <meta itemprop="name" content="Linux基础">
-<meta itemprop="description" content="目录 start Linux系统 用户管理 用户 用户组 sudo 终端和登录 输入输出 环境变量 进程 信号量 孤儿进程和僵死进程 孤儿进程 僵死进程 守护进程 文件描述符 FD 线程 时间 服">
-<meta itemprop="datePublished" content="2018-12-15T11:11:23+00:00" />
+<meta itemprop="description" content="💠 Linux系统 1.1. Boot 1.1.1. grub 1.2. 用户管理 1.2.1. 用户 1.2.2. 用户组 1.2.3. sudo 1.2.4. 终端和登录 1.3. 环境变量 1.4. 进程 1.4.1. 信号 Signal 1.4.2. 信号量 Semaphore 1.4.3. 孤儿进程和僵死进程 1.4.3.1. 孤儿进程 1.4.3.2. 僵死进程 defunct"><meta itemprop="datePublished" content="2018-12-15T11:11:23+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:11:23+00:00" />
-<meta itemprop="wordCount" content="6248">
-
-
-
-<meta itemprop="keywords" content="基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="9037">
+<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux基础"/>
-<meta name="twitter:description" content="目录 start Linux系统 用户管理 用户 用户组 sudo 终端和登录 输入输出 环境变量 进程 信号量 孤儿进程和僵死进程 孤儿进程 僵死进程 守护进程 文件描述符 FD 线程 时间 服"/>
+<meta name="twitter:description" content="💠 Linux系统 1.1. Boot 1.1.1. grub 1.2. 用户管理 1.2.1. 用户 1.2.2. 用户组 1.2.3. sudo 1.2.4. 终端和登录 1.3. 环境变量 1.4. 进程 1.4.1. 信号 Signal 1.4.2. 信号量 Semaphore 1.4.3. 孤儿进程和僵死进程 1.4.3.1. 孤儿进程 1.4.3.2. 僵死进程 defunct"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,165 +122,229 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 6248 words </span>
-          <span class="more-meta"> 13 mins read </span>
+          <span class="more-meta"> 约 9037 字 </span>
+          <span class="more-meta"> 预计阅读 19 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#用户管理">用户管理</a>
+    <li><a href="#linux系统">Linux系统</a>
       <ul>
-        <li><a href="#用户">用户</a></li>
-        <li><a href="#用户组">用户组</a></li>
-        <li><a href="#sudo">sudo</a></li>
-        <li><a href="#终端和登录">终端和登录</a></li>
+        <li><a href="#boot">Boot</a>
+          <ul>
+            <li><a href="#grub">grub</a></li>
+          </ul>
+        </li>
+        <li><a href="#用户管理">用户管理</a>
+          <ul>
+            <li><a href="#用户">用户</a></li>
+            <li><a href="#用户组">用户组</a></li>
+            <li><a href="#sudo">sudo</a></li>
+            <li><a href="#终端和登录">终端和登录</a></li>
+          </ul>
+        </li>
+        <li><a href="#环境变量">环境变量</a></li>
+        <li><a href="#进程">进程</a>
+          <ul>
+            <li><a href="#信号-signal">信号 Signal</a></li>
+            <li><a href="#信号量-semaphore">信号量 Semaphore</a></li>
+            <li><a href="#孤儿进程和僵死进程">孤儿进程和僵死进程</a></li>
+            <li><a href="#守护进程">守护进程</a></li>
+            <li><a href="#文件描述符-fd">文件描述符 FD</a></li>
+            <li><a href="#线程">线程</a></li>
+          </ul>
+        </li>
+        <li><a href="#时间">时间</a></li>
+        <li><a href="#服务管理">服务管理</a>
+          <ul>
+            <li><a href="#init进程">init进程</a></li>
+            <li><a href="#systemd-方式服务管理">systemd 方式服务管理</a></li>
+            <li><a href="#service-方式管理">service 方式管理</a></li>
+            <li><a href="#update-rcd-方式管理">update-rc.d 方式管理</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#输入输出">输入输出</a></li>
-    <li><a href="#环境变量">环境变量</a></li>
-    <li><a href="#进程">进程</a>
+    <li><a href="#系统资源管理">系统资源管理</a>
       <ul>
-        <li><a href="#信号量">信号量</a></li>
-        <li><a href="#孤儿进程和僵死进程">孤儿进程和僵死进程</a></li>
-        <li><a href="#守护进程">守护进程</a></li>
-        <li><a href="#文件描述符-fd">文件描述符 FD</a></li>
-        <li><a href="#线程">线程</a></li>
+        <li><a href="#ulimit">ulimit</a></li>
+        <li><a href="#cpu">CPU</a></li>
+        <li><a href="#内存">内存</a>
+          <ul>
+            <li><a href="#overcommit">overcommit</a></li>
+            <li><a href="#oom">oom</a></li>
+            <li><a href="#虚拟内存">虚拟内存</a></li>
+            <li><a href="#交换内存">交换内存</a></li>
+            <li><a href="#清空读写缓存">清空读写缓存</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#时间">时间</a></li>
-    <li><a href="#服务管理">服务管理</a>
+    <li><a href="#终端快捷键">终端快捷键</a>
       <ul>
-        <li><a href="#init进程">init进程</a></li>
-        <li><a href="#systemd-方式服务管理">systemd 方式服务管理</a></li>
-        <li><a href="#service-方式管理">service 方式管理</a></li>
-        <li><a href="#update-rcd-方式管理">update-rc.d 方式管理</a></li>
+        <li><a href="#delete">Delete</a></li>
+        <li><a href="#convert">Convert</a></li>
+        <li><a href="#jump">Jump</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#control">Control</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#ulimit">ulimit</a></li>
-    <li><a href="#cpu">CPU</a></li>
-    <li><a href="#内存">内存</a>
+    <li><a href="#常见对比">常见对比</a>
       <ul>
-        <li><a href="#虚拟内存">虚拟内存</a></li>
-        <li><a href="#交换内存">交换内存</a></li>
+        <li><a href="#文件系统对比">文件系统对比</a></li>
+        <li><a href="#桌面环境对比">桌面环境对比</a></li>
+        <li><a href="#窗口管理器对比">窗口管理器对比</a></li>
+        <li><a href="#文件管理器对比">文件管理器对比</a></li>
+        <li><a href="#包管理">包管理</a>
+          <ul>
+            <li><a href="#appimage">AppImage</a></li>
+            <li><a href="#snap">snap</a></li>
+            <li><a href="#flatpak">flatpak</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#delete">Delete</a></li>
-    <li><a href="#convert">Convert</a></li>
-    <li><a href="#jump">Jump</a></li>
-    <li><a href="#search">Search</a></li>
-    <li><a href="#control">Control</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#文件系统对比">文件系统对比</a></li>
-    <li><a href="#桌面环境对比">桌面环境对比</a></li>
-    <li><a href="#窗口管理器对比">窗口管理器对比</a></li>
-    <li><a href="#文件管理器对比">文件管理器对比</a></li>
-    <li><a href="#包管理">包管理</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#一行执行多条命令">一行执行多条命令</a></li>
-    <li><a href="#让命令在后台运行">让命令在后台运行</a></li>
-    <li><a href="#修改主机名">修改主机名</a></li>
-    <li><a href="#文件类型默认打开方式-mime">文件类型默认打开方式 MIME</a></li>
-    <li><a href="#熵池">熵池</a></li>
+    <li><a href="#tips">Tips</a>
+      <ul>
+        <li><a href="#一行执行多条命令">一行执行多条命令</a></li>
+        <li><a href="#让命令在后台运行">让命令在后台运行</a></li>
+        <li><a href="#修改主机名">修改主机名</a></li>
+        <li><a href="#文件类型默认打开方式-mime">文件类型默认打开方式 MIME</a></li>
+        <li><a href="#熵池">熵池</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-15T11:11:23" title="December 15, 2018">December 15, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#linux%E7%B3%BB%E7%BB%9F">Linux系统</a>
-<ol>
-<li><a href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86">用户管理</a>
-<ol>
-<li><a href="#%E7%94%A8%E6%88%B7">用户</a></li>
-<li><a href="#%E7%94%A8%E6%88%B7%E7%BB%84">用户组</a></li>
-<li><a href="#sudo">sudo</a></li>
-<li><a href="#%E7%BB%88%E7%AB%AF%E5%92%8C%E7%99%BB%E5%BD%95">终端和登录</a></li>
+<li><a href="#linux%E7%B3%BB%E7%BB%9F">Linux系统</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#boot">Boot</a>
+<ul>
+<li>1.1.1. <a href="#grub">grub</a></li>
+</ul>
 </li>
-<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">输入输出</a></li>
-<li><a href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量</a></li>
-<li><a href="#%E8%BF%9B%E7%A8%8B">进程</a>
-<ol>
-<li><a href="#%E4%BF%A1%E5%8F%B7%E9%87%8F">信号量</a></li>
-<li><a href="#%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B%E5%92%8C%E5%83%B5%E6%AD%BB%E8%BF%9B%E7%A8%8B">孤儿进程和僵死进程</a>
-<ol>
-<li><a href="#%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B">孤儿进程</a></li>
-<li><a href="#%E5%83%B5%E6%AD%BB%E8%BF%9B%E7%A8%8B">僵死进程</a></li>
-</ol>
+<li>1.2. <a href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86">用户管理</a>
+<ul>
+<li>1.2.1. <a href="#%E7%94%A8%E6%88%B7">用户</a></li>
+<li>1.2.2. <a href="#%E7%94%A8%E6%88%B7%E7%BB%84">用户组</a></li>
+<li>1.2.3. <a href="#sudo">sudo</a></li>
+<li>1.2.4. <a href="#%E7%BB%88%E7%AB%AF%E5%92%8C%E7%99%BB%E5%BD%95">终端和登录</a></li>
+</ul>
 </li>
-<li><a href="#%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B">守护进程</a></li>
-<li><a href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6-fd">文件描述符 FD</a></li>
-<li><a href="#%E7%BA%BF%E7%A8%8B">线程</a></li>
-</ol>
+<li>1.3. <a href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量</a></li>
+<li>1.4. <a href="#%E8%BF%9B%E7%A8%8B">进程</a>
+<ul>
+<li>1.4.1. <a href="#%E4%BF%A1%E5%8F%B7-signal">信号 Signal</a></li>
+<li>1.4.2. <a href="#%E4%BF%A1%E5%8F%B7%E9%87%8F-semaphore">信号量 Semaphore</a></li>
+<li>1.4.3. <a href="#%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B%E5%92%8C%E5%83%B5%E6%AD%BB%E8%BF%9B%E7%A8%8B">孤儿进程和僵死进程</a>
+<ul>
+<li>1.4.3.1. <a href="#%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B">孤儿进程</a></li>
+<li>1.4.3.2. <a href="#%E5%83%B5%E6%AD%BB%E8%BF%9B%E7%A8%8B-defunct">僵死进程 defunct</a></li>
+</ul>
 </li>
-<li><a href="#%E6%97%B6%E9%97%B4">时间</a></li>
-<li><a href="#%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86">服务管理</a>
-<ol>
-<li><a href="#init%E8%BF%9B%E7%A8%8B">init进程</a></li>
-<li><a href="#systemd-%E6%96%B9%E5%BC%8F%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86">systemd 方式服务管理</a></li>
-<li><a href="#service-%E6%96%B9%E5%BC%8F%E7%AE%A1%E7%90%86">service 方式管理</a></li>
-<li><a href="#update-rcd-%E6%96%B9%E5%BC%8F%E7%AE%A1%E7%90%86">update-rc.d 方式管理</a></li>
-</ol>
+<li>1.4.4. <a href="#%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B">守护进程</a></li>
+<li>1.4.5. <a href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6-fd">文件描述符 FD</a></li>
+<li>1.4.6. <a href="#%E7%BA%BF%E7%A8%8B">线程</a></li>
+</ul>
 </li>
-</ol>
+<li>1.5. <a href="#%E6%97%B6%E9%97%B4">时间</a></li>
+<li>1.6. <a href="#%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86">服务管理</a>
+<ul>
+<li>1.6.1. <a href="#init%E8%BF%9B%E7%A8%8B">init进程</a></li>
+<li>1.6.2. <a href="#systemd-%E6%96%B9%E5%BC%8F%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86">systemd 方式服务管理</a></li>
+<li>1.6.3. <a href="#service-%E6%96%B9%E5%BC%8F%E7%AE%A1%E7%90%86">service 方式管理</a>
+<ul>
+<li>1.6.3.1. <a href="#%E8%87%AA%E5%AE%9A%E4%B9%89-service">自定义 service</a></li>
+</ul>
 </li>
-<li><a href="#%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86">系统资源管理</a>
-<ol>
-<li><a href="#ulimit">ulimit</a></li>
-<li><a href="#cpu">CPU</a></li>
-<li><a href="#%E5%86%85%E5%AD%98">内存</a>
-<ol>
-<li><a href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98">虚拟内存</a></li>
-<li><a href="#%E4%BA%A4%E6%8D%A2%E5%86%85%E5%AD%98">交换内存</a></li>
-</ol>
+<li>1.6.4. <a href="#update-rcd-%E6%96%B9%E5%BC%8F%E7%AE%A1%E7%90%86">update-rc.d 方式管理</a></li>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-<li><a href="#%E7%BB%88%E7%AB%AF%E5%BF%AB%E6%8D%B7%E9%94%AE">终端快捷键</a>
-<ol>
-<li><a href="#delete">Delete</a></li>
-<li><a href="#convert">Convert</a></li>
-<li><a href="#jump">Jump</a></li>
-<li><a href="#search">Search</a></li>
-<li><a href="#control">Control</a></li>
+<li>
+<ol start="2">
+<li><a href="#%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86">系统资源管理</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#ulimit">ulimit</a></li>
+<li>2.2. <a href="#cpu">CPU</a></li>
+<li>2.3. <a href="#%E5%86%85%E5%AD%98">内存</a>
+<ul>
+<li>2.3.1. <a href="#overcommit">overcommit</a></li>
+<li>2.3.2. <a href="#oom">oom</a></li>
+<li>2.3.3. <a href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98">虚拟内存</a></li>
+<li>2.3.4. <a href="#%E4%BA%A4%E6%8D%A2%E5%86%85%E5%AD%98">交换内存</a>
+<ul>
+<li>2.3.4.1. <a href="#%E6%B8%85%E7%A9%BA%E4%BA%A4%E6%8D%A2%E5%86%85%E5%AD%98">清空交换内存</a></li>
+</ul>
 </li>
-<li><a href="#%E5%B8%B8%E8%A7%81%E5%AF%B9%E6%AF%94">常见对比</a>
-<ol>
-<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%AF%94">文件系统对比</a></li>
-<li><a href="#%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E5%AF%B9%E6%AF%94">桌面环境对比</a></li>
-<li><a href="#%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8%E5%AF%B9%E6%AF%94">窗口管理器对比</a></li>
-<li><a href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E5%AF%B9%E6%AF%94">文件管理器对比</a></li>
-<li><a href="#%E5%8C%85%E7%AE%A1%E7%90%86">包管理</a></li>
-</ol>
+<li>2.3.5. <a href="#%E6%B8%85%E7%A9%BA%E8%AF%BB%E5%86%99%E7%BC%93%E5%AD%98">清空读写缓存</a></li>
+</ul>
 </li>
-<li><a href="#tips">Tips</a>
-<ol>
-<li><a href="#%E4%B8%80%E8%A1%8C%E6%89%A7%E8%A1%8C%E5%A4%9A%E6%9D%A1%E5%91%BD%E4%BB%A4">一行执行多条命令</a></li>
-<li><a href="#%E8%AE%A9%E5%91%BD%E4%BB%A4%E5%9C%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C">让命令在后台运行</a></li>
-<li><a href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D">修改主机名</a></li>
-<li><a href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F-mime">文件类型默认打开方式 MIME</a></li>
-<li><a href="#%E7%86%B5%E6%B1%A0">熵池</a></li>
-</ol>
+</ul>
 </li>
+<li>
+<ol start="3">
+<li><a href="#%E7%BB%88%E7%AB%AF%E5%BF%AB%E6%8D%B7%E9%94%AE">终端快捷键</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-06-11 21:58</em>|</p>
+<ul>
+<li>3.1. <a href="#delete">Delete</a></li>
+<li>3.2. <a href="#convert">Convert</a></li>
+<li>3.3. <a href="#jump">Jump</a></li>
+<li>3.4. <a href="#search">Search</a></li>
+<li>3.5. <a href="#control">Control</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E5%B8%B8%E8%A7%81%E5%AF%B9%E6%AF%94">常见对比</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%AF%94">文件系统对比</a></li>
+<li>4.2. <a href="#%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E5%AF%B9%E6%AF%94">桌面环境对比</a></li>
+<li>4.3. <a href="#%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8%E5%AF%B9%E6%AF%94">窗口管理器对比</a></li>
+<li>4.4. <a href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E5%AF%B9%E6%AF%94">文件管理器对比</a></li>
+<li>4.5. <a href="#%E5%8C%85%E7%AE%A1%E7%90%86">包管理</a>
+<ul>
+<li>4.5.1. <a href="#appimage">AppImage</a></li>
+<li>4.5.2. <a href="#snap">snap</a></li>
+<li>4.5.3. <a href="#flatpak">flatpak</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li><a href="#tips">Tips</a></li>
+</ol>
+<ul>
+<li>5.1. <a href="#%E4%B8%80%E8%A1%8C%E6%89%A7%E8%A1%8C%E5%A4%9A%E6%9D%A1%E5%91%BD%E4%BB%A4">一行执行多条命令</a></li>
+<li>5.2. <a href="#%E8%AE%A9%E5%91%BD%E4%BB%A4%E5%9C%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C">让命令在后台运行</a></li>
+<li>5.3. <a href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D">修改主机名</a></li>
+<li>5.4. <a href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E9%BB%98%E8%AE%A4%E6%89%93%E5%BC%80%E6%96%B9%E5%BC%8F-mime">文件类型默认打开方式 MIME</a></li>
+<li>5.5. <a href="#%E7%86%B5%E6%B1%A0">熵池</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-11-16 17:40:15</p>
 <hr>
 <h1 id="linux系统">Linux系统</h1>
 <ul>
@@ -295,16 +355,13 @@
 <p><a href="https://wiki.deepin.org/">Deepin wiki</a></p>
 </li>
 <li>
-<p><a href="http://www.ttlsa.com">运维生存时间</a><code>含大量运维干货</code></p>
-</li>
-<li>
-<p><a href="https://www.lulinux.com/">撸Linux</a><code>非理性言论?</code></p>
-</li>
-<li>
-<p><a href="http://man.linuxde.net/">Linux命令大全</a> <code>Linux命令教程</code></p>
-</li>
-<li>
 <p><a href="http://www.runoob.com">RUNOOB.COM</a> <code>各种技术学习 文档资源</code></p>
+</li>
+<li>
+<p><a href="https://github.com/dunwu/linux-tutorial">linux-tutorial</a></p>
+</li>
+<li>
+<p><a href="https://github.com/imthenachoman/How-To-Secure-A-Linux-Server">How-To-Secure-A-Linux-Server</a></p>
 </li>
 <li>
 <p><a href="https://linux.cn/">Linux中国开源社区</a></p>
@@ -328,35 +385,57 @@
 <blockquote>
 <p>新手的话 特别注意不要随意 root权限 直接更改配置文件，容易导致系统crash（除非你明确的知道这个更改操作的作用， 即使如此也需要先备份原文件）</p>
 </blockquote>
-<hr>
+<blockquote>
+<p><a href="https://itsfoss.com/online-linux-terminals/">在线Linux终端</a> <code>有浏览器虚拟化，以及远程主机多种类型的实现</code></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/dibingfa/flash-linux0.11-talk">闪客：品读 Linux 0.11 核心代码</a></p>
+</blockquote>
+<p><img src="/Linux/Base/img/001-linux-base-cmd.km.svg" alt=""></p>
+<h2 id="boot">Boot</h2>
+<p>安装和启动Linux</p>
+<blockquote>
+<p><a href="https://github.com/ventoy/Ventoy">Ventoy</a><code>无需烧录，复制ISO进U盘即可使用</code></p>
+</blockquote>
+<h3 id="grub">grub</h3>
+<blockquote>
+<p><a href="https://www.gnu.org/software/grub/">GNU GRUB</a> <em>GRand Unified Bootloader</em></p>
+</blockquote>
+<ul>
+<li><input disabled="" type="checkbox"> Windows 自动更新后的故障，开机需要手动指定boot分区后启动</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="nb">set</span> <span class="nv">prefix</span><span class="o">=(</span>hd0,msdos7<span class="o">)</span>/grub
+</span></span><span class="line"><span class="cl">  insmod normal 
+</span></span><span class="line"><span class="cl">  normal 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h2 id="用户管理">用户管理</h2>
 <h3 id="用户">用户</h3>
 <ul>
-<li>
-<p>添加用户 test1 <code>sudo adduser test1</code></p>
+<li>添加用户 test1 <code>sudo adduser test1</code>
 <ul>
 <li>注意 <code>useradd</code> 只新建用户不会创建对应的主目录</li>
 </ul>
 </li>
-<li>
-<p>删除用户以及对应的home目录：<code>sudo deluser username --remove-home</code></p>
-</li>
-<li>
-<p><em>切换用户</em> <code>su</code></p>
-</li>
-<li>
-<p><code>su -l username</code> 当前用户的环境下登录用户（当成一个程序一样可以退出登录）</p>
-</li>
-<li>
-<p><em>修改密码</em> <code>passwd</code></p>
+<li>删除用户以及对应的home目录：<code>sudo deluser username --remove-home</code></li>
+<li><em>切换用户</em> <code>su</code></li>
+<li><code>su -l username</code> 当前用户的环境下登录用户（当成一个程序一样可以退出登录）</li>
+<li><code>sudo su -</code> 相比于 sudo su 会加载root用户环境变量，切换到HOME工作目录<a href="https://www.geeksforgeeks.org/difference-between-su-and-su-command-in-linux/">su &amp; su -</a></li>
+<li><em>修改密码</em> <code>passwd</code>
 <ul>
 <li><code>passwd user</code></li>
 <li><code>echo &quot;root:caishi&quot; | chpasswd</code> 如果是普通用户就是 sudo chpasswd</li>
 </ul>
 </li>
-<li>
-<p><em>修改相关信息</em> <code>usermod</code></p>
-</li>
+<li><em>修改相关信息</em> <code>usermod</code></li>
 </ul>
 <table>
 <thead>
@@ -405,7 +484,7 @@
 <tr>
 <td style="text-align:center">-L</td>
 <td style="text-align:left">&ndash;lock</td>
-<td style="text-align:left">锁定用户帐号</td>
+<td style="text-align:left">锁定用户账号</td>
 </tr>
 <tr>
 <td style="text-align:center">-m</td>
@@ -425,12 +504,12 @@
 <tr>
 <td style="text-align:center">-s</td>
 <td style="text-align:left">&ndash;shell SHELL</td>
-<td style="text-align:left">该用户帐号的新登录 shell</td>
+<td style="text-align:left">该用户账号的新登录 shell</td>
 </tr>
 <tr>
 <td style="text-align:center">-U</td>
 <td style="text-align:left">&ndash;unlock</td>
-<td style="text-align:left">解锁用户帐号</td>
+<td style="text-align:left">解锁用户账号</td>
 </tr>
 </tbody>
 </table>
@@ -439,6 +518,7 @@
 </blockquote>
 <hr>
 <ul>
+<li><code>less /etc/passwd</code> 查看全部用户及其用户组</li>
 <li><code>passwd 选项 用户名</code> 更改口令(密码)
 <ul>
 <li><code>-l 锁定口令，禁用账号</code>  <code>-u 口令解锁</code> <code>-d 账号无口令</code> <code>-f 强迫用户下次登录时修改口令</code></li>
@@ -463,21 +543,18 @@
 </blockquote>
 <ul>
 <li>
-<p>修改用户至指定组 <code>sudo usermod -G 用户组 用户</code></p>
-</li>
-<li>
-<p><em>显示用户所在组</em> <code>groups</code></p>
-<ul>
-<li>缺省是当前用户, 若指定即输出指定用户的用户组</li>
-</ul>
-</li>
-<li>
 <p><em>添加用户组</em> <code>groupadd</code></p>
 <ul>
 <li>缺省参数 就是新建用户组</li>
 <li><code>-g GID</code> 指定新用户组的组标识号GID</li>
 <li><code>-o</code> 一般和g共用 表示新用户组的GID可以与系统已有用户组的GID相同。</li>
 </ul>
+</li>
+<li>
+<p><em>显示用户所在组</em> <code>groups [user]</code> 缺省是当前用户, 或输出指定用户的用户组</p>
+</li>
+<li>
+<p><em>修改用户组</em> <code>sudo usermod -G 用户组 用户</code></p>
 </li>
 <li>
 <p><em>删除用户组</em> <code>groupdel</code></p>
@@ -488,10 +565,11 @@
 <li>-g GID 为用户组指定新的组标识号。</li>
 <li>-o 与-g选项同时使用，用户组的新GID可以与系统已有用户组的GID相同。</li>
 <li>-n 新用户组 将用户组的名字改为新名字</li>
+<li>-a <code>gpasswd -a user group</code></li>
 </ul>
 </li>
 <li>
-<p>grpck 检查<code>/etc/group</code>文件是否正确</p>
+<p>grpck 检查 <code>/etc/group</code>文件是否正确</p>
 </li>
 <li>
 <p>grpconv 注：通过/etc/group和/etc/gshadow 的文件内容来同步或创建/etc/gshadow ，如果/etc/gshadow 不存在则创建;</p>
@@ -501,23 +579,44 @@
 </li>
 </ul>
 <h3 id="sudo">sudo</h3>
-<ul>
-<li>添加用户 test1 到sudo组  注意： <em>将用户加入sudo组，debian系有效 alpine无效 只能改文件</em>
+<p>添加用户 test1 到sudo组  注意： <em>将用户加入sudo组，debian系有效 alpine和arch无效 只能改文件</em><br>
+包括当用户执行sudo命令，输入正确密码，仍提示不正确，切root用户改了密码也是提示不正确，这个时候也需要检查是否在sudoers配置文件中有这个用户，虽然不知道为什么这个配置就消失了。。</p>
 <ol>
-<li>将用户 testUser 加入 sudo 组 <code>sudo gpasswd -a test1 sudo</code>  <em>或者</em> <code>usermod -G sudo test1</code></li>
-<li><em>或者</em>：使用修改文件的方式：（不推荐）
+<li>将用户加入 sudo 组 <code>sudo gpasswd -a test1 sudo</code>  <em>或</em> <code>usermod -G sudo test1</code></li>
+<li>使用修改文件的方式：（不推荐）
 <ul>
 <li><code>chmod 777 /etc/sudoers</code>  然后直接 <code>sudo visudo</code>就是调用vi来打开文件的简写</li>
-<li>添加一行 Debian: <code>test1  ALL=(ALL:ALL)ALL</code> 注意 Centos:<code>test1   ALL=(ALL)       ALL</code></li>
+<li>添加一行 Debian: <code>test1  ALL=(ALL:ALL)ALL</code> 注意 Centos:<code>test1   ALL=(ALL)       ALL</code>
+<ul>
+<li>设置sudo无需密码 <code>test1 ALL=(ALL) NOPASSWD: ALL</code></li>
+</ul>
+</li>
 <li><code>chmod 440 /etc/sudoers</code></li>
 </ul>
 </li>
 </ol>
-</li>
+<blockquote>
+<p>绝对路径执行shell报错无权限</p>
+</blockquote>
+<p>环境：  a 和 b 用户都属于用户组 b 。当前工作目录是 /home/b/app/
+现象：</p>
+<ol>
+<li>sudo -u a sh run.sh 正常执行</li>
+<li>sudo -u a sh /home/b/app/run.sh 报错无权限
+原因：</li>
+<li>/home/b/ 目录对于用户组b没有任何权限，chmod 740 b 加上组的读权限后仍报错，改成750后正常了</li>
+<li><a href="https://askubuntu.com/questions/367176/commands-dont-have-permission-when-using-absolute-path">Commands don't have permission when using absolute path</a></li>
+</ol>
+<p>方案： 逐级排查shell所有父目录对于 <code>sudo指定用户</code>是否有执行权限</p>
+<blockquote>
+<p>sudo: 没有终端存在,且未指定 askpass 程序</p>
+</blockquote>
+<ul>
+<li>设置用户为NOPASSWD</li>
 </ul>
 <h3 id="终端和登录">终端和登录</h3>
 <blockquote>
-<p><a href="https://www.cnblogs.com/xiangtingshen/p/10889195.html">参考: linux终端相关概念解释及描述</a><br>
+<p><a href="https://www.cnblogs.com/xiangtingshen/p/10889195.html">参考: linux终端相关概念解释及描述</a>
 <a href="https://blog.csdn.net/summy_j/article/details/73870353">参考: 终端基本概念&amp;终端登录过程详解</a></p>
 </blockquote>
 <ol>
@@ -537,8 +636,6 @@
 <p>通常Linux平台的终端模拟器新建tab时都是新建 pty， 但是Mac平台上则是新建tty</p>
 </blockquote>
 <hr>
-<h2 id="输入输出">输入输出</h2>
-<hr>
 <h2 id="环境变量">环境变量</h2>
 <blockquote>
 <p><a href="http://zsh.sourceforge.net/Doc/Release/Files.html#Startup_002fShutdown-Files">zsh 环境变量</a></p>
@@ -557,9 +654,11 @@
 <li>$HOME/.profile</li>
 </ol>
 <blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/47819029">千万别混淆 Bash/Zsh 的四种运行模式</a><br>
-<a href="https://blog.csdn.net/whitehack/article/details/51705889">	ssh连接远程主机执行脚本的环境变量问题</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/47819029">千万别混淆 Bash/Zsh 的四种运行模式</a>
+<a href="https://blog.csdn.net/whitehack/article/details/51705889">
+ssh连接远程主机执行脚本的环境变量问题</a></p>
 </blockquote>
+<p>alpine 里的sh和ash 默认是不登录shell 需要使用 sh -l 或者 ash -l 才会加载对应的文件</p>
 <hr>
 <h2 id="进程">进程</h2>
 <blockquote>
@@ -576,35 +675,34 @@
 </li>
 </ol>
 <blockquote>
-<p><a href="http://pubs.opengroup.org/onlinepubs/7908799/xsh/fork.html">doc: fork</a><br>
+<p><a href="http://pubs.opengroup.org/onlinepubs/7908799/xsh/fork.html">doc: fork</a>
 <a href="https://en.wikipedia.org/wiki/Fork_bomb">wiki: fork bomb</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://www.cnblogs.com/createyuan/p/3979142.html">参考: linux常见进程与内核线程</a><code>0 1 2 等内核进程</code></p>
+<p><a href="https://www.cnblogs.com/createyuan/p/3979142.html">参考: linux常见进程与内核线程</a> <code>0 1 2 等内核进程</code></p>
 </blockquote>
-<h3 id="信号量">信号量</h3>
+<h3 id="信号-signal">信号 Signal</h3>
 <p><code>进程通信的一种标准化的方式</code></p>
 <blockquote>
 <p>/bin/kill -L 可查看所有信号量</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback"> 1 HUP      2 INT      3 QUIT     4 ILL      5 TRAP     6 ABRT     7 BUS
- 8 FPE      9 KILL    10 USR1    11 SEGV    12 USR2    13 PIPE    14 ALRM
-15 TERM    16 STKFLT  17 CHLD    18 CONT    19 STOP    20 TSTP    21 TTIN
-22 TTOU    23 URG     24 XCPU    25 XFSZ    26 VTALRM  27 PROF    28 WINCH
-29 POLL    30 PWR     31 SYS
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> 1 HUP      2 INT      3 QUIT     4 ILL      5 TRAP     6 ABRT     7 BUS
+</span></span><span class="line"><span class="cl"> 8 FPE      9 KILL    10 USR1    11 SEGV    12 USR2    13 PIPE    14 ALRM
+</span></span><span class="line"><span class="cl">15 TERM    16 STKFLT  17 CHLD    18 CONT    19 STOP    20 TSTP    21 TTIN
+</span></span><span class="line"><span class="cl">22 TTOU    23 URG     24 XCPU    25 XFSZ    26 VTALRM  27 PROF    28 WINCH
+</span></span><span class="line"><span class="cl">29 POLL    30 PWR     31 SYS
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>编号为<code>1 ~ 31</code>的信号为传统UNIX支持的信号，是不可靠信号(非实时的)，编号为<code>32 ~ 63</code>的信号是后来扩充的，称做可靠信号(实时信号)。<br>
-不可靠信号和可靠信号的区别在于前者不支持排队，只是负责发送, 不负责存储和接收, 可能会造成信号丢失，而后者不会。</p>
+</div><p>编号为 <code>1 ~ 31</code>的信号为传统UNIX支持的信号，是不可靠信号(非实时的)，编号为 <code>32 ~ 63</code>的信号是后来扩充的，称做可靠信号(实时信号)。不可靠信号和可靠信号的区别在于前者不支持排队，只是负责发送, 不负责存储和接收, 可能会造成信号丢失，而后者不会。</p>
 <blockquote>
 <p><a href="https://blog.csdn.net/baobao8505/article/details/1115820">参考 Linux信号列表</a></p>
 </blockquote>
@@ -633,6 +731,30 @@
 </ul>
 </li>
 </ul>
+<h3 id="信号量-semaphore">信号量 Semaphore</h3>
+<p>Linux内核的信号量用来操作系统进程间同步访问共享资源</p>
+<p>信号量在创建时需要设置一个初始值，表示同时可以有几个任务可以访问该信号量保护的共享资源，当初始值为1时就变作互斥锁（Mutex），即同时只能有一个任务可以访问信号量保护的共享资源。</p>
+<p>PV操作由P操作原语和V操作原语组成（原语是指不可中断的过程）</p>
+<ul>
+<li>P（S）：
+<ol>
+<li>将信号量S的值减1，即S=S-1；</li>
+<li>如果S&gt;=0，则该进程继续执行；否则该进程置为等待状态，排入等待队列</li>
+</ol>
+</li>
+<li>V（S）：
+<ol>
+<li>将信号量S的值加1，即S=S+1；</li>
+<li>如果S&gt;0，则该进程继续执行；否则释放队列中第一个等待信号量的进程</li>
+</ol>
+</li>
+</ul>
+<p>PV操作的意义：我们用信号量及PV操作来实现进程的同步和互斥。PV操作属于进程的低级通信</p>
+<p>使用PV操作实现进程互斥时应该注意的是：</p>
+<pre><code>每个程序中用户实现互斥的P、V操作必须成对出现，先做P操作，进临界区，后做V操作，出临界区。若有多个分支，要认真检查其成对性
+P、V操作应分别紧靠临界区的头尾部，临界区的代码应尽可能短，不能有死循环
+互斥信号量的初值一般为1
+</code></pre>
 <h3 id="孤儿进程和僵死进程">孤儿进程和僵死进程</h3>
 <blockquote>
 <p><a href="http://www.cnblogs.com/Anker/p/3271773.html">参考: 孤儿进程与僵死进程[总结]</a></p>
@@ -644,9 +766,9 @@
 <blockquote>
 <p>注意, 也有意外, 并不总是被 init 进程收养 <a href="https://blog.csdn.net/chilumanxi/article/details/47066331">Ubuntu15.04 删除/sbin/upstart与孤儿进程收养的问题</a></p>
 </blockquote>
-<h4 id="僵死进程">僵死进程</h4>
+<h4 id="僵死进程-defunct">僵死进程 defunct</h4>
 <blockquote>
-<p>一个进程使用fork创建子进程，如果子进程退出，而父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中, 这种进程称之为僵死进程。<br>
+<p>一个进程使用fork创建子进程，如果子进程退出，而父进程并没有调用wait或waitpid获取子进程的状态信息，那么子进程的进程描述符仍然保存在系统中, 这种进程称之为僵死进程。
 因为直到父进程结束后, 该僵死子进程会成为孤儿进程且是僵死进程, 会被 init 收养, 从而被回收, 但是如果父进程一直没有结束, 僵死子进程会一直存在</p>
 </blockquote>
 <ul>
@@ -672,50 +794,88 @@
 </blockquote>
 <h3 id="文件描述符-fd">文件描述符 FD</h3>
 <blockquote>
-<p><a href="https://blog.csdn.net/mm_hh/article/details/71374474">参考: Linux下 文件描述符（fd）与 文件指针（FILE*）</a></p>
+<p><a href="https://en.wikipedia.org/wiki/File_descriptor">wikipedia: File descriptor</a><br>
+<a href="https://blog.csdn.net/mm_hh/article/details/71374474">参考: Linux下 文件描述符（fd）与 文件指针（FILE*）</a></p>
 </blockquote>
-<p>每一个进程在PCB（Process Control Block）即进程控制块中都保存着一分文件描述符表，文件描述符就是这个表的索引文件，描述符表中每个表项都有一个指向已打开文件的指针。<br>
-现在我们明确一下：已打开的文件在内核中用file结构体表示，文件描述符表中的指针指向file结构体。</p>
+<p>每一个进程在PCB（Process Control Block）即进程控制块中都保存着一分文件描述符表.<br>
+文件描述符就是这个表的索引文件，描述符表中每个表项都有一个指向已打开文件的指针。现在我们明确一下：已打开的文件在内核中用file结构体表示，文件描述符表中的指针指向file结构体。</p>
+<blockquote>
+<p>FD方式管理的范畴</p>
+</blockquote>
 <ul>
-<li>每个进程默认FD有 0 标准输入 1 标准输出 2 错误输出</li>
+<li>每个进程默认有的标准输入输出: 0标准输入 1标准输出 2错误输出</li>
+<li>持有的文件(读/写)</li>
+<li>网络连接 socket</li>
+<li>管道 pipe</li>
+</ul>
+<blockquote>
+<p>问题</p>
+</blockquote>
+<ul>
+<li>线上的Centos7.9上运行的Java8进程，12月11日启动的进程，但是1月3日突然 /proc/pid/fd/下的fd都发生了更新<code>无法查看创建时间</code>，但是/proc/pid的目录时间是对的
+<ul>
+<li>问题：为什么会发生修改，标准输入输出，以及依赖的jar的fd都发生了新创建和修改</li>
+<li>原因：proc是虚拟文件系统，属性值取决了查询或操作系统管理需要时构建出来</li>
+</ul>
+</li>
 </ul>
 <h3 id="线程">线程</h3>
 <ol>
 <li>查看创建一个线程占用内存大小 <code>ulimit -s</code></li>
 <li>查看进程下的线程 <code>ps -T pid</code></li>
-<li>查看最大线程数 <code>cat /proc/sys/kernel/threads-max</code></li>
+<li>查看最大线程数 <code>cat /proc/sys/kernel/threads-max</code> 默认值 256287</li>
 </ol>
 <hr>
 <h2 id="时间">时间</h2>
 <blockquote>
-<p><a href="http://www.cnblogs.com/chenmh/p/5485829.html">同步Linux服务器时间</a></p>
+<p><a href="https://linux.die.net/man/8/ntpdate">ntpdate manual</a></p>
 </blockquote>
 <ul>
 <li>/etc/timezone 时区, /etc/localtime 时区及时间</li>
+<li><code>/usr/sbin/ntpdate -q cn.pool.ntp.org</code> 查看差异</li>
 </ul>
-<p><strong>同步时间</strong></p>
+<blockquote>
+<p><strong>时间同步</strong></p>
+</blockquote>
 <ol>
 <li>修改时区 <code>cp -y /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></li>
-<li>同步时间 <code>/usr/sbin/ntpdate -u cn.pool.ntp.org</code> | 没有就先安装 ntpdate</li>
-<li>查看硬件时间 <code>hwclock -r</code>
+<li>同步时间 <code>/usr/sbin/ntpdate -u cn.pool.ntp.org</code> | 没有就先安装 ntpdate
 <ul>
-<li>如果不同步就需要写入时间 <code>hwclock -w</code> <em>因为系统重启是参考硬件时间的</em></li>
+<li>注意返回值 offset 为正说明本地比远程慢，负数则相反，本地比远程快</li>
+</ul>
+</li>
+<li>查看BIOS硬件时间 <code>hwclock -r</code>
+<ul>
+<li>如果不同步就需要写入时间 <code>hwclock -w</code> <em>因为系统重启后用硬件时间初始化的</em></li>
 </ul>
 </li>
 </ol>
+<blockquote>
+<p>同步时间 扩展</p>
+</blockquote>
+<ul>
+<li>
+<p>chrony 比 ntpupdate 功能更多，可定时同步时间</p>
+</li>
+<li>
+<p>服务器领域 ntpd 会更合适，因为 ntpupdate是立刻修改时钟 会带来时钟跃变的问题，但是ntpd是将误差的时间在一段时间内平缓的调整。<a href="https://blog.epurs.com/post/ntp-and-chrony/">Linux 时间同步服务 &ndash; ntp 和 chrony</a></p>
+</li>
+<li>
 <p><strong>自动同步时间</strong></p>
 <ol>
-<li>配置开机自动校验 <code>vim /etc/rc.d/rc.local</code>
+<li>配置开机自动校验 <code>vim /etc/rc.d/rc.local</code></li>
+</ol>
 <ul>
 <li><code>/usr/sbin/ntpdate -u cn.pool.ntp.org&gt; /dev/null 2&gt;&amp;1; /sbin/hwclock -w</code></li>
 </ul>
-</li>
-<li>配置定时任务 <code>crontab -e</code>
+<ol start="2">
+<li>配置定时任务 <code>crontab -e</code></li>
+</ol>
 <ul>
 <li><code>00 10 * * * root /usr/sbin/ntpdate -u cn.pool.ntp.org &gt; /dev/null 2&gt;&amp;1; /sbin/hwclock -w </code></li>
 </ul>
 </li>
-</ol>
+</ul>
 <hr>
 <h2 id="服务管理">服务管理</h2>
 <h3 id="init进程">init进程</h3>
@@ -809,6 +969,10 @@
 <li>列出所有服务的状态 <code>service --status-all</code></li>
 <li>启动/关闭服务 <code>service ssh start/stop</code></li>
 </ol>
+<h4 id="自定义-service">自定义 service</h4>
+<blockquote>
+<p><a href="https://www.baeldung.com/linux/run-java-application-as-service">参考: Run a Java Application as a Service on Linux</a></p>
+</blockquote>
 <h3 id="update-rcd-方式管理">update-rc.d 方式管理</h3>
 <ol>
 <li>移除MySQL的自启   <code>sudo update-rc.d -f mysql remove</code></li>
@@ -822,17 +986,17 @@
 <p><em>系统运行级别</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    0        系统停机状态
-    1        单用户或系统维护状态
-    2~5      多用户状态
-    6        重新启动 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    0        系统停机状态
+</span></span><span class="line"><span class="cl">    1        单用户或系统维护状态
+</span></span><span class="line"><span class="cl">    2~5      多用户状态
+</span></span><span class="line"><span class="cl">    6        重新启动 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="系统资源管理">系统资源管理</h1>
@@ -863,13 +1027,13 @@
 <p>持久化修改设置： <strong>/etc/security/limits.conf</strong> 文件中添加，注销或重启后生效</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">* soft nofile <span class="m">4096</span>
-* hard nofile <span class="m">4096</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">* soft nofile <span class="m">4096</span>
+</span></span><span class="line"><span class="cl">* hard nofile <span class="m">4096</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
@@ -878,24 +1042,164 @@
 <p><a href="https://www.scalyr.com/blog/linux-cpu-load/">linux cpu load</a></p>
 </blockquote>
 <ul>
-<li>Usage 和 Load 的区别， 使用率针对于Cpu 时间，负载针对于等待和进行中的线程</li>
-<li>使用uptime、top或者<code>cat /proc/loadavg</code>都可以看到CPU的load 1 5 15 分钟的负载。</li>
-<li>LOAD AVERAGE：一段时间内处于可运行状态和不可中断状态的进程平均数量。（可运行分为正在运行进程和正在等待CPU的进程，状态为R；不可中断则是它正在做某些工作不能被中断比如等待磁盘IO等，其状态为D），它是从另外一个角度体现CPU的使用状态。</li>
+<li>
+<p>Usage 和 Load 的区别， 使用率针对于Cpu 时间，负载针对于等待和进行中的线程</p>
+</li>
+<li>
+<p>使用uptime、top或者 <code>cat /proc/loadavg</code>都可以看到CPU的load 1 5 15 分钟的负载。</p>
+<ul>
+<li>LOAD AVERAGE：一段时间内处于可运行状态和不可中断状态的进程平均数量,它是从另外一个角度体现CPU的使用状态。
+<ul>
+<li>可运行分为正在<code>运行进程</code>和<code>正在等待CPU</code>的进程，<strong>状态为R</strong></li>
+<li>不可中断则是它正在做某些工作不能被中断比如等待磁盘IO等，<strong>其状态为D</strong></li>
+</ul>
+</li>
 </ul>
 <blockquote>
-<p>注意: 一个核负载为1表示有线程一直在等待（满载），四个核负载为4表示四个核心都是一直有线程在等待（满载）</p>
+<p>注意: 一个逻辑核且负载为1时表示有线程一直在等待或运行（满载），四个逻辑核且负载为4时表示四个核心都一直有线程在等待或运行（满载）</p>
 </blockquote>
+</li>
+<li>
+<p>lscpu 展示CPU信息</p>
+</li>
+<li>
+<p>taskset 将任务绑定在指定cpu核心上</p>
+</li>
+</ul>
+<hr>
 <h2 id="内存">内存</h2>
+<p>对于Linux来说, 有内存就去分配使用, 只有内存不够申请的大小，才会去释放 buffer或cache, 对于服务器来说, 交换内存会带来性能的明显下降 一般是不会配置的</p>
+<p>内存组成</p>
+<ul>
+<li>
+<p>空闲内存, 已使用, buffers, cached</p>
+<ul>
+<li>读 cache 写 buffer</li>
+</ul>
+</li>
+<li>
+<p>Virtual Memory   虚拟内存</p>
+</li>
+<li>
+<p>Resident Memory  持久内存</p>
+</li>
+<li>
+<p>Shared Memory    共享内存(多进程间共享)</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://www.linuxatemyram.com/">linux ate my ram</a><br>
+<a href="https://www.baeldung.com/linux/empty-buffer-cache">Empty the Buffer and Cache in Linux</a></p>
+</blockquote>
+<p>查看内存大页设置 <code>cat /sys/kernel/mm/transparent_hugepage/enabled</code><br>
+关闭内存大页 <code>echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</code></p>
+<h3 id="overcommit">overcommit</h3>
+<blockquote>
+<p><a href="https://www.baeldung.com/linux/overcommit-modes">参考: Linux Overcommit Modes</a></p>
+</blockquote>
+<ul>
+<li>
+<p>内核参数： vm.overcommit_memory</p>
+<ul>
+<li>0 允许overcommit但是算法判断是否合理，不合理会拒绝对应进程的内存申请</li>
+<li>1 允许overcommit</li>
+<li>2 禁止overcommit</li>
+</ul>
+</li>
+<li>
+<p><code>cat /proc/meminfo | grep commit</code></p>
+<ul>
+<li>CommitLimit 就是overcommit的阈值，申请的内存总数超过CommitLimit的话就算是overcommit。
+<ul>
+<li>CommitLimit = (Physical RAM * vm.overcommit_ratio / 100) + Swap</li>
+</ul>
+</li>
+<li>Committed_AS 表示所有进程已经申请的内存总大小，（注意是已经申请的，不是已经分配的），如果 Committed_AS 超过 CommitLimit 就表示发生了 overcommit
+<ul>
+<li>超出越多表示 overcommit 越严重。Committed_AS 的含义换一种说法就是，如果要绝对保证不发生OOM (out of memory) 需要多少物理内存。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="oom">oom</h3>
+<p>当操作系统认为内存不足时，会选择分数值较高的进程kill掉（用户进程，非内核进程）</p>
+<ul>
+<li>/proc/pid/oom_score 操作系统所计算值</li>
+<li>/proc/pid/oom_score_adj 可以修改的值，当前值加上oom_score后才是最终值
+<ul>
+<li>降低分值 echo -50 &gt; /proc/pid/oom_score_adj</li>
+</ul>
+</li>
+<li>/proc/pid/oom_adj 对应进程的优先级</li>
+</ul>
 <h3 id="虚拟内存">虚拟内存</h3>
 <blockquote>
-<p><a href="https://serverfault.com/questions/138427/what-does-virtual-memory-size-in-top-mean">参考: What does Virtual memory size in top mean?</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://www.logicmonitor.com/blog/the-right-way-to-monitor-virtual-memory-on-linux/">参考: The Right Way to Monitor Virtual Memory on Linux</a></p>
+<p><a href="https://serverfault.com/questions/138427/what-does-virtual-memory-size-in-top-mean">参考: What does Virtual memory size in top mean?</a><br>
+<a href="https://www.logicmonitor.com/blog/the-right-way-to-monitor-virtual-memory-on-linux/">参考: The Right Way to Monitor Virtual Memory on Linux</a></p>
 </blockquote>
 <h3 id="交换内存">交换内存</h3>
 <blockquote>
 <p>swapon, swapoff - enable/disable devices and files for paging and swapping</p>
+</blockquote>
+<blockquote>
+<p><a href="/Linux/Base/LinuxDirectoryStructure.md#%E8%AE%BE%E7%BD%AE%E4%BA%A4%E6%8D%A2%E5%86%85%E5%AD%98%E6%96%87%E4%BB%B6">交换内存文件</a></p>
+</blockquote>
+<blockquote>
+<p>交换内存分析
+VIRT = SWAP + RES or equal
+SWAP = VIRT - RES</p>
+</blockquote>
+<ul>
+<li>查看进程使用交换内存 <code>grep -i VmSwap /proc/*/status</code></li>
+<li>进程按交换内存使用大小排序<code>for file in /proc/*/status ; do awk '/VmSwap|Name/{printf $2 &quot; &quot; $3}END{ print &quot;&quot;}' $file; done | sort -k 2 -n -r | less</code></li>
+<li><code>smem</code>  Report memory usage with shared memory divided proportionally</li>
+</ul>
+<h4 id="清空交换内存">清空交换内存</h4>
+<ul>
+<li>1.关闭交换分区 <code>sudo swapoff 交换分区文件</code>
+<ul>
+<li>2.开启交换分区 <code>sudo swapon 交换分区文件</code></li>
+</ul>
+</li>
+<li><code>swapoff -a &amp;&amp; swapon -a</code>
+<ul>
+<li>前提是交换分区已在 <code>/etc/fstab</code> 中配置</li>
+</ul>
+</li>
+</ul>
+<h3 id="清空读写缓存">清空读写缓存</h3>
+<p>注意： 读 cache 写 buffer， 设计是为了提高读写效率，如果内存不足时可以考虑释放这部分内存，但是也会带来读写缓存失效重新读磁盘的性能问题，需慎重考虑。</p>
+<blockquote>
+<p><a href="https://linux.cn/article-5627-1.html">参考: 如何在 Linux 中清除缓存（Cache）？</a> <code>注意要切换到root再运行命令</code><br>
+<a href="https://www.cnblogs.com/276815076/p/5478966.html">参考: Linux 内存中的Cache，真的能被回收么？</a></p>
+</blockquote>
+<hr>
+<p>设置值 <code>sync; echo 1 &gt; /proc/sys/vm/drop_caches</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">设置值</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">仅清除 page cache</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">表示清除回收 slab 分配器中的对象（包括目录项缓存和 inode 缓存）</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">表示清除 page cache 和 slab 分配器中的缓存对象</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意sync命令是为了将内存中buffer写入磁盘，避免这部分内存被直接释放导致数据不一致</p>
 </blockquote>
 <hr>
 <h1 id="终端快捷键">终端快捷键</h1>
@@ -1137,7 +1441,8 @@
 <blockquote>
 <p><a href="https://linux.cn/article-7083-1.html">参考: 如何选择文件系统：EXT4、Btrfs 和 XFS </a></p>
 </blockquote>
-<p>目前 Linux 大多采用 ext3,往 ext4 过渡</p>
+<p>目前 Linux 大多采用 ext4, Btrfs</p>
+<p>Btrfs 的快照功能很适合 Arch 系统，滚动更新挂掉的话可以通过历史快照恢复回来</p>
 <h2 id="桌面环境对比">桌面环境对比</h2>
 <blockquote>
 <p><a href="https://wiki.archlinux.org/index.php/Desktop_environment_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Arch Doc: desktop environment</a>
@@ -1145,14 +1450,18 @@
 </blockquote>
 <ol>
 <li><strong>gnome</strong> 占用资源中等，个人对该桌面不感冒</li>
-<li><strong>xfce</strong> 占用资源少，操作类似于xp</li>
+<li><strong>xfce</strong> 占用资源少且稳定，但是UI方面可定制的点较少，目前也是个人使用了5年+的桌面管理器</li>
 <li><strong>kde</strong> 功能强大，占用资源中等
 <ul>
 <li><a href="https://wiki.archlinux.org/index.php/KDE">Arch Doc: KDE</a></li>
 <li><a href="https://www.zhihu.com/question/54147372">知乎 KDE如何配置得漂亮大气？</a></li>
 </ul>
 </li>
-<li><strong>dde</strong> deepin设计的桌面环境，小bug略多，但是美观操作方便</li>
+<li><strong>dde-wm</strong> Deepin 基于 <code>gnome mutter</code>设计的桌面环境，小bug略多，而且渲染会占用较多资源，容易卡顿，但是美观操作方便
+<ol>
+<li>后续Deepin基于kwin更换了窗口管理器 <code>dde-kwin</code>，流畅了一些，但是窗口顶部有个大的Title <a href="https://www.jianshu.com/p/f90526bbe0c9">隐藏Deppin大标题栏</a></li>
+</ol>
+</li>
 </ol>
 <ul>
 <li><a href="https://bbs.deepin.org/forum.php?mod=viewthread&amp;tid=38498">dde kde gnome</a></li>
@@ -1174,37 +1483,43 @@
 <p>有单窗口，双列，命令，简洁轻量，笨重完整 各种各样的选择</p>
 </blockquote>
 <ul>
-<li>
-<p><code>nautilus</code> Gnome默认 挺好用，但是不能自动挂载分区</p>
-</li>
-<li>
-<p><code>deepin-filemanager</code> deepin默认，较为方便，但是打开手机会卡根本打不开</p>
-</li>
-<li>
-<p><code>pcmanfm</code> 左边侧栏目录树 会同步nautilus的配置</p>
-</li>
-<li>
-<p><code>rox-filer</code> 特别小，单击打开，迅速定位文件，适合找东西用</p>
-</li>
-<li>
-<p><code>thunar</code> 解决了nautilus的缺点，内存也很省</p>
-</li>
-<li>
-<p><code>dolphin</code> 多标签页，目录树方式查看</p>
-</li>
-<li>
-<p><code>nemo</code> mint默认的，功能齐全，会同步nautilus的配置，同样有目录树而且是两边都有</p>
-</li>
-<li>
-<p><code>tuxcmd</code> Tux Commander 双列，小，直接的目录树，学习成本高点</p>
-</li>
-<li>
-<p><code>ranger</code> 命令行内文件浏览和操作</p>
-</li>
+<li><code>nautilus</code> Gnome默认 挺好用，但是不能自动挂载分区</li>
+<li><code>deepin-filemanager</code> deepin默认，较为方便，但是打开手机会卡根本打不开</li>
+<li><code>pcmanfm</code> 左边侧栏目录树 会同步nautilus的配置</li>
+<li><code>rox-filer</code> 特别小，单击打开，迅速定位文件，适合找东西用</li>
+<li><code>thunar</code> 解决了nautilus的缺点，内存也很省</li>
+<li><code>dolphin</code> 多标签页，目录树方式查看</li>
+<li><code>nemo</code> mint默认的，功能齐全，会同步nautilus的配置，同样有目录树而且是两边都有</li>
+<li><code>tuxcmd</code> Tux Commander 双列，小，直接的目录树，学习成本高点</li>
+<li><code>ranger</code> 命令行内文件浏览和操作</li>
+<li><a href="https://github.com/aleksey-hoffman/sigma-file-manager">Sigma File Manager</a></li>
 </ul>
 <h2 id="包管理">包管理</h2>
 <ul>
-<li><a href="https://snapcraft.io/">A universal app store for Linux</a> <code>snap</code> 跨Linux发行版 但是褒贬不一</li>
+<li>最通用的方式是编译安装，但是有门槛和编译环境兼容性问题</li>
+<li>其次是绑定发行版的包，常分为两类 Debian系的deb包对应apt管理，REHL系的rpm包对应yum dnf管理</li>
+<li>然后就是最近推行的 snap flatpak AppImage 等通用包，大致逻辑都是将软件包所有动态依赖项打包进去隔离，类似静态编译以支持跨发行版，当然缺点就是包的大小，但是相比于软件可用，存储也是小问题了。</li>
+</ul>
+<h3 id="appimage">AppImage</h3>
+<blockquote>
+<p><a href="https://appimage.org/">AppImage | 让 Linux 应用随处运行</a><br>
+<a href="https://doc.appimage.cn/docs/home/">AppImage中文文档</a></p>
+</blockquote>
+<p>简单来说类似于Windows平台的Exe，一个文件就是一个应用程序，通过静态链接和低版本系统打包来解决各发行版的兼容问题。</p>
+<blockquote>
+<p><a href="https://docs.appimage.org/packaging-guide/index.html">Packaging Guide — AppImage documentation</a></p>
+</blockquote>
+<h3 id="snap">snap</h3>
+<p>只能从Ubuntu公司私有运营的商店下载软件,且apt安装部分软件时会替换为snap安装，因此被抨击背离Linux文化。
+snap应用都是整个打成压缩包并且将每个软件单独挂载在只读的squashfs格式的分区下，应用启动时解压再执行</p>
+<ul>
+<li><a href="https://snapcraft.io/">A universal app store for Linux</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/2168090">如何在Ubuntu中完全移除Snap</a></li>
+<li><a href="https://v2ex.com/t/1037576">snap 已经在污染 apt</a></li>
+</ul>
+<h3 id="flatpak">flatpak</h3>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Bubblewrap">Bubble wrap</a></li>
 </ul>
 <hr>
 <h1 id="tips">Tips</h1>
@@ -1245,23 +1560,27 @@
 </ul>
 <p>运行的命令不因 用户注销，网络中断等因素而中断 <code>nohup， disown, screen, setid</code></p>
 <ul>
-<li>让进程对 hang up 信号免疫:
+<li>将进程对 hang up 信号免疫:
 <ul>
 <li>nohup, disown</li>
 </ul>
 </li>
-<li>让进程的父进程改为1号进程:
+<li>将进程的父进程改为1号进程:
 <ul>
 <li>setid 或者 <code>(command &amp;)</code></li>
 </ul>
 </li>
-<li>screen</li>
+<li>screen
+<ul>
+<li>将进程托管给screen 类似tmux</li>
+</ul>
+</li>
 </ul>
 <blockquote>
 <p>示例</p>
 </blockquote>
 <ol>
-<li>使用<code>nohup</code>就能屏蔽hup信号，标准输出会输出到当前目录下的nohup.out文件. <code>nohup 命令 &amp;</code>
+<li>使用 <code>nohup</code>就能屏蔽hup信号，标准输出会输出到当前目录下的nohup.out文件. <code>nohup 命令 &amp;</code>
 <ol>
 <li>将标准输出重定向到空设备 并将错误输出重定向到标准输出  <code>nohup 命令&gt;/dev/null 2&gt;&amp;1</code></li>
 </ol>
@@ -1279,7 +1598,7 @@
 <h2 id="修改主机名">修改主机名</h2>
 <ul>
 <li><code>sudo hostname linux</code> 重启终端即可看到修改</li>
-<li>但是重启电脑会恢复原有名字修改如下文件永久： <code>sudo gedit /etc/hostname</code> 也许需要更改<code>/etc/hosts</code></li>
+<li>但是重启电脑会恢复原有名字修改如下文件永久： <code>sudo gedit /etc/hostname</code> 也许需要更改 <code>/etc/hosts</code></li>
 <li>立即生效,也要重新登录 <code>hostname -F /etc/hostname </code></li>
 </ul>
 <hr>
@@ -1305,11 +1624,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-15
         
@@ -1326,11 +1645,11 @@
         <a class="prev" href="/post/linux/base/linuxcommand/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Linux常用命令</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/go/gorestful/">
             <span class="next-text nav-default">GoRestful</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -1348,17 +1667,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -1366,11 +1685,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -1380,16 +1699,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

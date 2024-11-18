@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Python 基础 - Mythos</title>
+  <title>Python 基础 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应用 3.1." /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/python/python/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/python/python/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Python 基础" />
-<meta property="og:description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符" />
+<meta property="og:description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应用 3.1." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/python/python/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/python/python/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-13T16:00:45+00:00" />
 <meta property="article:modified_time" content="2018-12-13T16:00:45+00:00" />
+
 <meta itemprop="name" content="Python 基础">
-<meta itemprop="description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符">
-<meta itemprop="datePublished" content="2018-12-13T16:00:45+00:00" />
+<meta itemprop="description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应用 3.1."><meta itemprop="datePublished" content="2018-12-13T16:00:45+00:00" />
 <meta itemprop="dateModified" content="2018-12-13T16:00:45+00:00" />
-<meta itemprop="wordCount" content="7529">
-
-
-
-<meta itemprop="keywords" content="基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="7326">
+<meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python 基础"/>
-<meta name="twitter:description" content="目录 start Python 简介 关于Python2与3的使用 安装配置 Docker安装 sys.path 执行 基础 代码风格 包 基础语法 基础数据类型 变量 基本执行结构 序列 列表 list 元组 tuple 字符"/>
+<meta name="twitter:description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应用 3.1."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,213 +122,194 @@
         <div class="post-category">
             <a href="/categories/python/"> Python </a>
             </div>
-          <span class="more-meta"> 7529 words </span>
-          <span class="more-meta"> 16 mins read </span>
+          <span class="more-meta"> 约 7326 字 </span>
+          <span class="more-meta"> 预计阅读 15 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#简介">简介</a>
-      <ul>
-        <li><a href="#关于python2与3的使用">关于Python2与3的使用</a></li>
-      </ul>
-    </li>
-    <li><a href="#安装配置">安装配置</a>
-      <ul>
-        <li><a href="#docker安装">Docker安装</a></li>
-        <li><a href="#syspath">sys.path</a></li>
-      </ul>
-    </li>
-    <li><a href="#执行">执行</a></li>
+    <li><a href="#python">Python</a></li>
     <li><a href="#基础">基础</a>
       <ul>
         <li><a href="#代码风格">代码风格</a></li>
-        <li><a href="#包">包</a></li>
-        <li><a href="#基础语法">基础语法</a></li>
-        <li><a href="#基础数据类型">基础数据类型</a></li>
-      </ul>
-    </li>
-    <li><a href="#变量">变量</a></li>
-    <li><a href="#基本执行结构">基本执行结构</a>
-      <ul>
-        <li><a href="#序列">序列</a></li>
+        <li><a href="#序列">序列</a>
+          <ul>
+            <li><a href="#列表-list">列表 list</a></li>
+            <li><a href="#元组-tuple">元组 tuple</a></li>
+            <li><a href="#字符串-str">字符串 str</a></li>
+            <li><a href="#字典-dict">字典 dict</a></li>
+          </ul>
+        </li>
         <li><a href="#运算符">运算符</a></li>
+        <li><a href="#函数">函数</a></li>
+        <li><a href="#包">包</a></li>
+        <li><a href="#类">类</a>
+          <ul>
+            <li><a href="#继承">继承</a></li>
+          </ul>
+        </li>
+        <li><a href="#异常">异常</a></li>
+        <li><a href="#读取命令行参数">读取命令行参数</a>
+          <ul>
+            <li><a href="#docopt">docopt</a></li>
+            <li><a href="#python-fire">Python Fire</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#模块">模块</a>
+    <li><a href="#应用">应用</a>
       <ul>
-        <li><a href="#内置模块">内置模块</a></li>
+        <li><a href="#模块">模块</a>
+          <ul>
+            <li><a href="#http">http</a></li>
+            <li><a href="#virtualenv">virtualenv</a></li>
+            <li><a href="#pip">pip</a></li>
+            <li><a href="#matplotlib">matplotlib</a></li>
+          </ul>
+        </li>
+        <li><a href="#文件操作">文件操作</a>
+          <ul>
+            <li><a href="#json">JSON</a></li>
+            <li><a href="#conf或者ini">conf或者ini</a></li>
+          </ul>
+        </li>
+        <li><a href="#日志">日志</a>
+          <ul>
+            <li><a href="#logging">logging</a></li>
+            <li><a href="#loguru">loguru</a></li>
+          </ul>
+        </li>
+        <li><a href="#测试">测试</a></li>
+        <li><a href="#数据库">数据库</a>
+          <ul>
+            <li><a href="#mysql">MySQL</a></li>
+            <li><a href="#redis">Redis</a></li>
+          </ul>
+        </li>
+        <li><a href="#部署">部署</a>
+          <ul>
+            <li><a href="#docker部署">Docker部署</a></li>
+          </ul>
+        </li>
+        <li><a href="#常见库">常见库</a>
+          <ul>
+            <li><a href="#内置库">内置库</a></li>
+            <li><a href="#时间处理">时间处理</a></li>
+            <li><a href="#三方库">三方库</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#输入输出">输入输出</a>
-      <ul>
-        <li><a href="#输入">输入</a></li>
-        <li><a href="#输出">输出</a></li>
-        <li><a href="#读取命令行参数">读取命令行参数</a></li>
-      </ul>
-    </li>
-    <li><a href="#函数">函数</a></li>
-    <li><a href="#类">类</a>
-      <ul>
-        <li><a href="#继承">继承</a></li>
-      </ul>
-    </li>
-    <li><a href="#异常">异常</a></li>
-    <li><a href="#文件操作">文件操作</a>
-      <ul>
-        <li><a href="#json">JSON</a></li>
-        <li><a href="#conf或者ini">conf或者ini</a></li>
-      </ul>
-    </li>
-    <li><a href="#测试">测试</a></li>
-    <li><a href="#数据库">数据库</a>
-      <ul>
-        <li><a href="#mysql">MySQL</a></li>
-        <li><a href="#redis">Redis</a></li>
-      </ul>
-    </li>
-    <li><a href="#部署">部署</a>
-      <ul>
-        <li><a href="#docker部署">Docker部署</a></li>
-      </ul>
-    </li>
-    <li><a href="#绘图">绘图</a>
-      <ul>
-        <li><a href="#matplotlib">matplotlib</a></li>
-      </ul>
-    </li>
-    <li><a href="#常见函数">常见函数</a></li>
-    <li><a href="#常见库">常见库</a>
-      <ul>
-        <li><a href="#内置库">内置库</a></li>
-        <li><a href="#时间处理">时间处理</a></li>
-        <li><a href="#三方库">三方库</a></li>
-      </ul>
-    </li>
-    <li><a href="#qt">QT</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-13T16:00:45" title="December 13, 2018">December 13, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#python">Python</a>
-<ol>
-<li><a href="#%E7%AE%80%E4%BB%8B">简介</a>
-<ol>
-<li><a href="#%E5%85%B3%E4%BA%8Epython2%E4%B8%8E3%E7%9A%84%E4%BD%BF%E7%94%A8">关于Python2与3的使用</a></li>
+<li><a href="#python">Python</a></li>
 </ol>
 </li>
-<li><a href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE">安装配置</a>
-<ol>
-<li><a href="#docker%E5%AE%89%E8%A3%85">Docker安装</a></li>
-<li><a href="#syspath">sys.path</a></li>
+<li>
+<ol start="2">
+<li><a href="#%E5%9F%BA%E7%A1%80">基础</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC">代码风格</a></li>
+<li>2.2. <a href="#%E5%BA%8F%E5%88%97">序列</a>
+<ul>
+<li>2.2.1. <a href="#%E5%88%97%E8%A1%A8-list">列表 list</a></li>
+<li>2.2.2. <a href="#%E5%85%83%E7%BB%84-tuple">元组 tuple</a></li>
+<li>2.2.3. <a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2-str">字符串 str</a>
+<ul>
+<li>2.2.3.1. <a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98">字符串编码问题</a></li>
+</ul>
 </li>
-<li><a href="#%E6%89%A7%E8%A1%8C">执行</a></li>
-<li><a href="#%E5%9F%BA%E7%A1%80">基础</a>
-<ol>
-<li><a href="#%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC">代码风格</a></li>
-<li><a href="#%E5%8C%85">包</a></li>
-<li><a href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95">基础语法</a></li>
-<li><a href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">基础数据类型</a></li>
-</ol>
+<li>2.2.4. <a href="#%E5%AD%97%E5%85%B8-dict">字典 dict</a></li>
+</ul>
 </li>
-<li><a href="#%E5%8F%98%E9%87%8F">变量</a></li>
-<li><a href="#%E5%9F%BA%E6%9C%AC%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%84">基本执行结构</a>
-<ol>
-<li><a href="#%E5%BA%8F%E5%88%97">序列</a>
-<ol>
-<li><a href="#%E5%88%97%E8%A1%A8-list">列表 list</a></li>
-<li><a href="#%E5%85%83%E7%BB%84-tuple">元组 tuple</a></li>
-<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2-str">字符串 str</a>
-<ol>
-<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98">字符串编码问题</a></li>
-</ol>
+<li>2.3. <a href="#%E8%BF%90%E7%AE%97%E7%AC%A6">运算符</a></li>
+<li>2.4. <a href="#%E5%87%BD%E6%95%B0">函数</a></li>
+<li>2.5. <a href="#%E5%8C%85">包</a></li>
+<li>2.6. <a href="#%E7%B1%BB">类</a>
+<ul>
+<li>2.6.1. <a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
+</ul>
 </li>
-<li><a href="#%E5%AD%97%E5%85%B8-dict">字典 dict</a></li>
-</ol>
+<li>2.7. <a href="#%E5%BC%82%E5%B8%B8">异常</a></li>
+<li>2.8. <a href="#%E8%AF%BB%E5%8F%96%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0">读取命令行参数</a>
+<ul>
+<li>2.8.1. <a href="#docopt">docopt</a></li>
+<li>2.8.2. <a href="#python-fire">Python Fire</a></li>
+</ul>
 </li>
-<li><a href="#%E8%BF%90%E7%AE%97%E7%AC%A6">运算符</a></li>
-</ol>
+</ul>
 </li>
-<li><a href="#%E6%A8%A1%E5%9D%97">模块</a>
-<ol>
-<li><a href="#%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97">内置模块</a>
-<ol>
-<li><a href="#http">http</a></li>
-<li><a href="#virtualenv">virtualenv</a></li>
-<li><a href="#pip">pip</a>
-<ol>
-<li><a href="#requirements-files">Requirements files</a></li>
-<li><a href="#%E5%8F%91%E5%B8%83%E5%8C%85%E5%88%B0-pypi">发布包到 pypi</a></li>
+<li>
+<ol start="3">
+<li><a href="#%E5%BA%94%E7%94%A8">应用</a></li>
 </ol>
+<ul>
+<li>3.1. <a href="#%E6%A8%A1%E5%9D%97">模块</a>
+<ul>
+<li>3.1.1. <a href="#http">http</a></li>
+<li>3.1.2. <a href="#virtualenv">virtualenv</a></li>
+<li>3.1.3. <a href="#pip">pip</a>
+<ul>
+<li>3.1.3.1. <a href="#requirements-files">Requirements files</a></li>
+<li>3.1.3.2. <a href="#%E5%8F%91%E5%B8%83%E5%8C%85%E5%88%B0-pypi">发布包到 pypi</a></li>
+</ul>
 </li>
-</ol>
+<li>3.1.4. <a href="#matplotlib">matplotlib</a></li>
+</ul>
 </li>
-</ol>
+<li>3.2. <a href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C">文件操作</a>
+<ul>
+<li>3.2.1. <a href="#json">JSON</a></li>
+<li>3.2.2. <a href="#conf%E6%88%96%E8%80%85ini">conf或者ini</a></li>
+</ul>
 </li>
-<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">输入输出</a>
-<ol>
-<li><a href="#%E8%BE%93%E5%85%A5">输入</a></li>
-<li><a href="#%E8%BE%93%E5%87%BA">输出</a></li>
-<li><a href="#%E8%AF%BB%E5%8F%96%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0">读取命令行参数</a>
-<ol>
-<li><a href="#docopt">docopt</a></li>
-<li><a href="#python-fire">Python Fire</a></li>
-</ol>
+<li>3.3. <a href="#%E6%97%A5%E5%BF%97">日志</a>
+<ul>
+<li>3.3.1. <a href="#logging">logging</a></li>
+<li>3.3.2. <a href="#loguru">loguru</a></li>
+</ul>
 </li>
-</ol>
+<li>3.4. <a href="#%E6%B5%8B%E8%AF%95">测试</a></li>
+<li>3.5. <a href="#%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a>
+<ul>
+<li>3.5.1. <a href="#mysql">MySQL</a></li>
+<li>3.5.2. <a href="#redis">Redis</a></li>
+</ul>
 </li>
-<li><a href="#%E5%87%BD%E6%95%B0">函数</a></li>
-<li><a href="#%E7%B1%BB">类</a>
-<ol>
-<li><a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
-</ol>
+<li>3.6. <a href="#%E9%83%A8%E7%BD%B2">部署</a>
+<ul>
+<li>3.6.1. <a href="#docker%E9%83%A8%E7%BD%B2">Docker部署</a></li>
+</ul>
 </li>
-<li><a href="#%E5%BC%82%E5%B8%B8">异常</a></li>
-<li><a href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C">文件操作</a>
-<ol>
-<li><a href="#json">JSON</a></li>
-<li><a href="#conf%E6%88%96%E8%80%85ini">conf或者ini</a></li>
-</ol>
+<li>3.7. <a href="#%E5%B8%B8%E8%A7%81%E5%BA%93">常见库</a>
+<ul>
+<li>3.7.1. <a href="#%E5%86%85%E7%BD%AE%E5%BA%93">内置库</a></li>
+<li>3.7.2. <a href="#%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86">时间处理</a></li>
+<li>3.7.3. <a href="#%E4%B8%89%E6%96%B9%E5%BA%93">三方库</a></li>
+</ul>
 </li>
-<li><a href="#%E6%B5%8B%E8%AF%95">测试</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a>
-<ol>
-<li><a href="#mysql">MySQL</a></li>
-<li><a href="#redis">Redis</a></li>
-</ol>
+</ul>
 </li>
-<li><a href="#%E9%83%A8%E7%BD%B2">部署</a>
-<ol>
-<li><a href="#docker%E9%83%A8%E7%BD%B2">Docker部署</a></li>
-</ol>
-</li>
-<li><a href="#%E7%BB%98%E5%9B%BE">绘图</a>
-<ol>
-<li><a href="#matplotlib">matplotlib</a></li>
-</ol>
-</li>
-<li><a href="#%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0">常见函数</a></li>
-<li><a href="#%E5%B8%B8%E8%A7%81%E5%BA%93">常见库</a>
-<ol>
-<li><a href="#%E5%86%85%E7%BD%AE%E5%BA%93">内置库</a></li>
-<li><a href="#%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86">时间处理</a></li>
-<li><a href="#%E4%B8%89%E6%96%B9%E5%BA%93">三方库</a></li>
-</ol>
-</li>
-<li><a href="#qt">QT</a></li>
-</ol>
-</li>
-</ol>
-<p><strong>目录 end</strong>|<em>2021-04-28 15:31</em>|</p>
+</ul>
+<p>💠 2024-10-31 19:15:14</p>
 <hr>
 <h1 id="python">Python</h1>
 <blockquote>
@@ -345,7 +322,6 @@
 </blockquote>
 <ul>
 <li><a href="http://blog.csdn.net/shangzhihaohao/article/details/7065675">Python中的多态</a></li>
-<li><a href="http://www.cnblogs.com/oleli/p/5228880.html">python输出带颜色的字体</a></li>
 </ul>
 <blockquote>
 <p><a href="https://docs.anaconda.com/anaconda/install/linux">Anaconda</a><code>一站式集成环境</code></p>
@@ -354,8 +330,10 @@
 <li><a href="https://python-gtk-3-tutorial.readthedocs.io/en/latest/introduction.html">python-gtk3</a> <code>python-gtk3的开发</code></li>
 <li><a href="http://python.usyiyi.cn/">一译</a><code>翻译了大量Python文档</code></li>
 </ul>
-<h2 id="简介">简介</h2>
-<h3 id="关于python2与3的使用">关于Python2与3的使用</h3>
+<blockquote>
+<p><a href="https://github.com/pyloong/pythonic-project-guidelines">Python 项目工程化开发指南</a></p>
+</blockquote>
+<p>关于Python2与3的变化</p>
 <blockquote>
 <p>摘自 Python核心编程 第三版 Wesley Chun著</p>
 </blockquote>
@@ -368,186 +346,24 @@
 <li>迭代无处不在</li>
 </ul>
 <blockquote>
-<p>列出所有已安装模块 pydoc pydoc3</p>
+<p>列出所有已安装模块: pydoc pydoc3</p>
 </blockquote>
-<h2 id="安装配置">安装配置</h2>
-<p><strong>Debian系安装3.6</strong></p>
+<h1 id="基础">基础</h1>
+<blockquote>
+<p>运行脚本</p>
+</blockquote>
 <ol>
-<li>sudo add-apt-repository ppa:jonathonf/python-3.6</li>
-<li>sudo apt update</li>
-<li>sudo apt install python3.6</li>
+<li>python 源文件</li>
+<li>源文件 第一行声明 <code>#!/usr/bin/python</code> 和shell脚本一样的用法, 然后 ./源文件</li>
 </ol>
-<h3 id="docker安装">Docker安装</h3>
-<blockquote>
-<p><a href="https://hub.docker.com/_/python/">docker hub</a></p>
-</blockquote>
-<h3 id="syspath">sys.path</h3>
-<blockquote>
-<p><a href="https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH">Doc: Python path</a></p>
-</blockquote>
-<ul>
-<li>sys.path 是 指定模块的搜索路径的字符串列表。<code>类似于Java的 ClassPath, Go的 GOPATH, 让解释器知道去哪找包</code>
-<ul>
-<li>查看系统的 sys.path 进入交互解释器</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">sys</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
-</ul>
-<p><strong>修改sys.path</strong></p>
-<ol>
-<li>
-<p>代码中直接添加, 执行就生效, 程序结束就失效</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1">#  假如有如下两个文件 在不同的包下</span>
-    <span class="c1"># /src/configs/config.py</span>
-    <span class="c1"># /src/common/Database.py</span>
-
-    <span class="n">parent_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="c1"># 避免重复添加</span>
-    <span class="k">if</span> <span class="n">parent_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
-    <span class="kn">import</span> <span class="nn">configs.config</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>添加 *.pth 文件</p>
-<ul>
-<li>在 <code>/usr/local/lib/</code> 目录下有多个 Python 版本,配置自己需要的版本</li>
-<li>例如在 <code>python2.7/site-packages</code> 中添加 test.pth 文件,文件内容为项目的绝对路径
-<ul>
-<li>python3.x 则是在 <code>dist-packages</code> 目录下</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>修改环境变量</p>
-<ul>
-<li>修改或添加 环境变量 PYTHONPATH 路径用分号分隔</li>
-</ul>
-</li>
-</ol>
-<h2 id="执行">执行</h2>
-<ol>
-<li>
-<p>python 源文件</p>
-</li>
-<li>
-<p>源文件 第一行声明 <code>#!/usr/bin/python</code> 和shell脚本一样的用法, 然后 ./源文件</p>
-</li>
-<li>
-<p>优化代码 <code>python -O -m py_compile test.py</code></p>
-</li>
-</ol>
-<hr>
-<h2 id="基础">基础</h2>
-<h3 id="代码风格">代码风格</h3>
-<blockquote>
-<p><a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> <code>官方建议</code></p>
-</blockquote>
-<ul>
-<li>一行只写一句</li>
-<li>表达式尽量不要省略括号，有助于理解</li>
-<li>函数的行数不要超过100行</li>
-<li>尽量使用系统函数</li>
-<li>尽量使用局部变量，不要使用全局</li>
-<li>循环，分支，最好不要超过5层</li>
-<li>尽量减少否定的条件语句</li>
-<li>对输入的数据进行合法性检查</li>
-</ul>
-<p><code>巨坑: tab和空格不能混用,如果你复制别人的代码是tab,自己敲空格,就会缩进错误!!!!, 天灭tab空格保平安, 要不是kate编辑器显示了tab字符,找半天都不知道错在哪</code></p>
-<ul>
-<li><a href="http://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/background/">Google 开源项目风格指南 (中文版)</a>
-<ul>
-<li><code>import this</code> 就会输出Zen Of Python | <a href="https://www.python.org/dev/peps/pep-0020/">官方文档</a></li>
-</ul>
-</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    优美胜于丑陋（Python 以编写优美的代码为目标）
-    明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）
-    简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）
-    复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）
-    扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）
-    间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）
-    可读性很重要（优美的代码是可读的）
-    即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）
-    
-    不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 except:pass 风格的代码）
-    
-    当存在多种可能，不要尝试去猜测
-    而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）
-    虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）
-    
-    做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）
-    
-    如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）
-    
-    命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="包">包</h3>
-<blockquote>
-<p><a href="https://docs.python.org/3/tutorial/modules.html#packages">official tutorial</a></p>
-</blockquote>
-<p>When importing the package, Python searches through the directories on <code>sys.path</code> looking for the package subdirectory.</p>
-<blockquote>
-<ol>
-<li>注意不能出现 import 循环依赖 <code>A.py import B.py</code> then <code>B.py import A.py</code></li>
-</ol>
-</blockquote>
-<h3 id="基础语法">基础语法</h3>
 <ul>
 <li>缩进来表示代码块的嵌套关系</li>
 <li>单行注释：<code>#</code> 多行注释： <code>&quot;&quot;&quot; &quot;&quot;&quot;</code></li>
 <li>空行的重要性，代码段之间有空行，Python之禅</li>
 </ul>
-<h3 id="基础数据类型">基础数据类型</h3>
+<blockquote>
+<p>基础数据类型</p>
+</blockquote>
 <ul>
 <li>
 <p>数值类型</p>
@@ -575,42 +391,36 @@
 <li>
 <p>空值 None</p>
 </li>
-</ul>
-<hr>
-<h2 id="变量">变量</h2>
+<li>
+<p>局部变量：</p>
 <ul>
-<li>局部变量：</li>
-<li>全局变量：定义在函数外的变量，也称公用变量，函数中 <code>global x</code> 声明引用全局变量x</li>
-</ul>
-<h2 id="基本执行结构">基本执行结构</h2>
-<ul>
-<li>输入输出：
-<ul>
-<li>input(&quot;&quot;) 默认当成字符串输入 数值：int() 强转一下</li>
-<li>print(&quot;&quot;)
-<ul>
-<li>输出不带换行  print('', &lsquo;&rsquo;, end='')</li>
+<li><code>_</code> 标识变量隐藏</li>
 </ul>
 </li>
-</ul>
+<li>
+<p>全局变量： 定义在函数外的变量，也称公用变量，函数中 <code>global x</code> 声明引用全局变量x</p>
 </li>
-<li>逻辑运算符
+<li>
+<p>逻辑运算符</p>
 <ul>
 <li>and or not</li>
 </ul>
 </li>
-<li>选择：
+<li>
+<p>选择：</p>
 <ul>
 <li>if elif else</li>
 </ul>
 </li>
-<li>for 循环：
+<li>
+<p>for 循环：</p>
 <ul>
 <li><code>for in </code> <code>while </code> 例如：<code>for i in range(1,10,2):</code>  范围 [1,10) 增量为2</li>
 <li>pass 语句，当某个子句没有任何操作，，用pass保持程序结构完整性 不影响下一句 不像continue</li>
 </ul>
 </li>
-<li>while 循环
+<li>
+<p>while 循环</p>
 <ul>
 <li><code>while True:`` while ‘2’ in nums:`` while num&lt;2:</code></li>
 <li><code>while 列表: </code> 直到列表为空退出循环</li>
@@ -619,21 +429,92 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
-        <span class="k">pass</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;pass&#34;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Hi&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;pass&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hi&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="序列">序列</h3>
+</div><ol>
+<li>优化代码 <code>python -O -m py_compile test.py</code></li>
+</ol>
+<h2 id="代码风格">代码风格</h2>
+<blockquote>
+<p><a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> <code>官方建议</code></p>
+</blockquote>
+<ul>
+<li>一行只写一句</li>
+<li>表达式尽量不要省略括号，有助于理解</li>
+<li>函数的行数不要超过100行</li>
+<li>尽量使用系统函数</li>
+<li>尽量使用局部变量，不要使用全局</li>
+<li>循环，分支，最好不要超过5层</li>
+<li>尽量减少否定的条件语句</li>
+<li>对输入的数据进行合法性检查</li>
+</ul>
+<p><code>巨坑: tab和空格不能混用,如果你复制别人的代码是tab,自己敲空格,就会缩进错误!!!!, 天灭tab空格保平安, 要不是kate编辑器显示了tab字符,找半天都不知道错在哪</code></p>
+<ul>
+<li><a href="http://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/background/">Google 开源项目风格指南 (中文版)</a>
+<ul>
+<li><code>import this</code> 就会输出Zen Of Python | <a href="https://www.python.org/dev/peps/pep-0020/">官方文档</a></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    优美胜于丑陋（Python 以编写优美的代码为目标）
+</span></span><span class="line"><span class="cl">    明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）
+</span></span><span class="line"><span class="cl">    简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）
+</span></span><span class="line"><span class="cl">    复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）
+</span></span><span class="line"><span class="cl">    扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）
+</span></span><span class="line"><span class="cl">    间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）
+</span></span><span class="line"><span class="cl">    可读性很重要（优美的代码是可读的）
+</span></span><span class="line"><span class="cl">    即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 except:pass 风格的代码）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    当存在多种可能，不要尝试去猜测
+</span></span><span class="line"><span class="cl">    而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）
+</span></span><span class="line"><span class="cl">    虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="序列">序列</h2>
 <blockquote>
 <p>序列通用操作（包含：字符串，列表，元组）</p>
 </blockquote>
@@ -653,7 +534,7 @@
 <li>min() max() sum() 要求元素全是数值</li>
 </ul>
 <hr>
-<h4 id="列表-list">列表 list</h4>
+<h3 id="列表-list">列表 list</h3>
 <ul>
 <li>元素可包含 字符串，浮点，整型，列表，布尔</li>
 <li>操作：
@@ -685,7 +566,7 @@
 <p>set() 函数, 返回结果则是不重复的元素集合</p>
 </blockquote>
 <hr>
-<h4 id="元组-tuple">元组 tuple</h4>
+<h3 id="元组-tuple">元组 tuple</h3>
 <ul>
 <li>元组和列表类似但是元组是创建不可更改的
 <ul>
@@ -703,7 +584,7 @@
 </li>
 </ul>
 <hr>
-<h4 id="字符串-str">字符串 str</h4>
+<h3 id="字符串-str">字符串 str</h3>
 <ul>
 <li>str() 将对象转化成字符串 （注：Python中不能像Java一样字符串和数值直接+）</li>
 <li>repr() 注意和str()的区别</li>
@@ -740,7 +621,7 @@
 <li>字符串-元组 ： tuple(&ldquo;python&rdquo;)</li>
 <li>列表或元组-字符串 join(obj) 参数是列表或元组类型，其元素只能是字符串类型</li>
 </ul>
-<h5 id="字符串编码问题">字符串编码问题</h5>
+<h4 id="字符串编码问题">字符串编码问题</h4>
 <blockquote>
 <p><a href="http://www.ituring.com.cn/article/1116"> Python3 的 bytes str 之别 </a></p>
 </blockquote>
@@ -751,31 +632,31 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1"># coding:utf-8</span>
-    <span class="n">unicode_str</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="s1">&#39;使用&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">unicode_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="c1"># coding:utf-8</span>
+</span></span><span class="line"><span class="cl">    <span class="n">unicode_str</span> <span class="o">=</span> <span class="n">unicode</span><span class="p">(</span><span class="s1">&#39;使用&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">unicode_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">codecs</span>
-    <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">codecs</span>
+</span></span><span class="line"><span class="cl">    <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>因为文件不是UTF8：<code>UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb9 in position 2: invalid start byte </code></li>
 </ul>
 <hr>
-<h4 id="字典-dict">字典 dict</h4>
+<h3 id="字典-dict">字典 dict</h3>
 <ul>
 <li>
 <p>通过用空间来换取时间，与列表相比，键的增加不影响查找插入速度，需要占用大量内存</p>
@@ -816,7 +697,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="运算符">运算符</h3>
+<h2 id="运算符">运算符</h2>
 <ul>
 <li>
 <p>算术运算符</p>
@@ -870,220 +751,6 @@
 </ul>
 </li>
 </ul>
-<hr>
-<h2 id="模块">模块</h2>
-<p>python -m module_name</p>
-<h3 id="内置模块">内置模块</h3>
-<h4 id="http">http</h4>
-<ul>
-<li>快速启动一个 HTTP Web 服务器 <code>http.server [port]</code></li>
-</ul>
-<h4 id="virtualenv">virtualenv</h4>
-<blockquote>
-<p><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000">廖雪峰 virtualenv</a></p>
-</blockquote>
-<p><strong>虽然也可以用apt安装 python-venv, 但是最好不要这样,避免后续模块升级后不必要的冲突</strong></p>
-<ul>
-<li>创建环境 <code>python3 -m venv web</code> 或者 <code>virtualenv --no-site-packages web</code> 不将系统中安装的包带入该环境</li>
-<li>启动环境 <code>source web/bin/activate</code>
-<ul>
-<li>在环境中使用的pip python 都是环境中的, 其实就是修改了系统的环境变量指向</li>
-</ul>
-</li>
-<li>停用环境 <code>deactivate</code></li>
-</ul>
-<h4 id="pip">pip</h4>
-<blockquote>
-<p><a href="https://pip.readthedocs.io/en/stable/">pip</a> | <a href="https://pip.pypa.io/en/stable/reference/pip_install/">doc</a> | <a href="https://packaging.python.org/tutorials/installing-packages/">guide</a></p>
-</blockquote>
-<ol>
-<li>
-<p>作为Python的包管理器, 包的可执行文件默认在 /usr/local/bin 目录下(全局)</p>
-<ul>
-<li>如果安装时加了该参数 &ndash;user 就是安装在 ~/.local/bin 目录下</li>
-<li>升级pip <code>python -m pip install --upgrade pip</code></li>
-</ul>
-</li>
-<li>
-<p>也可以这样使用 <code>python -m pip install xxx</code></p>
-</li>
-<li>
-<p>安装指定版本的包 <code>install name==version</code></p>
-</li>
-</ol>
-<blockquote>
-<p><a href="https://blog.csdn.net/JQ_AK47/article/details/77944444">修改Pip 管理工具默认下载源</a></p>
-</blockquote>
-<h5 id="requirements-files">Requirements files</h5>
-<blockquote>
-<p><a href="https://pip.readthedocs.io/en/1.1/requirements.html">pip官方文档 Requirements files</a></p>
-</blockquote>
-<ol>
-<li>
-<p>导出 <code>pip freeze &gt; requirements.txt</code> <em>这个命令会将当前环境安装的包全部列出来, 适合env环境下使用</em></p>
-<ul>
-<li>如果没有使用虚拟环境, 然后只想导出某项目的依赖 <a href="https://github.com/bndr/pipreqs">Github pipreqs</a></li>
-<li>安装 : <code>pip install pipreqs</code> 然后 <code>pipreqs /path/to/project</code></li>
-</ul>
-</li>
-<li>
-<p>使用 <code>pip install -r requirements.txt</code></p>
-</li>
-</ol>
-<h5 id="发布包到-pypi">发布包到 pypi</h5>
-<blockquote>
-<p><a href="https://packaging.python.org/guides/distributing-packages-using-setuptools/?highlight=pypirc#id78">Official : about package</a></p>
-</blockquote>
-<ol>
-<li>edit <code>$HOME/.pypirc</code> to save authorization  info
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [pypi]
-    username = &lt;username&gt;
-    password = &lt;password&gt;
-</code></pre></td></tr></table>
-</div>
-</div></li>
-<li>pip3 install wheel twine</li>
-<li>rm -rf dist build *.egg-info</li>
-<li>python3 setup.py bdist_wheel</li>
-<li>twine upload dist/*</li>
-</ol>
-<blockquote>
-<p><a href="https://gitee.com/gin9/baidu-trans-cli">可以参考该项目: 终端内使用百度翻译</a></p>
-</blockquote>
-<p>由于Readme 使用的是 <a href="https://rest-sphinx-memo.readthedocs.io/en/latest/ReST.html">reStructuredText</a> 语法(要求严格,所以需要借助工具)</p>
-<blockquote>
-<ol>
-<li>pip install collective.checkdocs Pygments</li>
-<li>python3 setup.py checkdocs</li>
-</ol>
-</blockquote>
-<hr>
-<h2 id="输入输出">输入输出</h2>
-<h3 id="输入">输入</h3>
-<h3 id="输出">输出</h3>
-<ul>
-<li>python3 <code>print('Hi')</code>
-<ul>
-<li>格式化输出 <code>print(&quot;%10s - %-10s&quot;%(name, addr))</code></li>
-<li>print会默认追加换行符, 取消需要参数 <code>end=''</code></li>
-</ul>
-</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
-    <span class="n">start</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0;32m&#39;</span>
-    <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m&#39;</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%-26s</span><span class="s2"> </span><span class="si">%-20s</span><span class="s2">&#34;</span><span class="o">%</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="s2">&#34;-h&#34;</span><span class="o">+</span><span class="n">end</span><span class="p">,</span> <span class="s2">&#34;帮助&#34;</span><span class="p">))</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>python2 <code>print 'Hi'</code></li>
-</ul>
-<h3 id="读取命令行参数">读取命令行参数</h3>
-<blockquote>
-<p><a href="http://www.sharejs.com/codes/python/6121">参考博客</a></p>
-</blockquote>
-<p><code>只有输入参数，没有选项</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">sys</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;脚本名：&#34;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;参数&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>python tree.py hi op </code> 顺序是python，第一个参数是文件，之后才是别的参数
-结果&raquo; <code>脚本名 tree.py 参数1 hi 参数2 op</code></p>
-<p><code>有选项</code>
-<code>getopt.getopt(args, options[, long_options])</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">getopt</span>
-    <span class="n">opts</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">getopt</span><span class="o">.</span><span class="n">getopt</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&#34;hi⭕&#34;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">op</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
-    
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li><code>sys.argv[1:]</code>为要处理的参数列表，<code>sys.argv[0]</code>为脚本名，所以用<code>sys.argv[1:]</code>过滤掉脚本名。</li>
-<li><code>&quot;hi⭕&quot;</code>: 当一个选项只是表示开关状态时，即后面不带附加参数时，在分析串中写入选项字符。当选项后面是带一个附加参数时，在分析串中写入选项字符同时后面加一个&quot;:&ldquo;号。
-<ul>
-<li>所以&quot;hi⭕&quot;就表示&quot;h&quot;是一个开关选项(单单的-h)；&ldquo;i:&ldquo;和&quot;o:&ldquo;则表示后面应该带一个参数。</li>
-</ul>
-</li>
-<li>调用getopt函数。函数返回两个列表：<code>opts和args</code>。opts为分析出的格式信息。args为不属于格式信息的剩余的命令行参数。
-<ul>
-<li>opts是一个两元组的列表。每个元素为：(选项串,附加参数)。如果没有附加参数则为空串''。</li>
-<li>getopt函数的第三个参数[, long_options]为可选的长选项参数，上面例子中的都为短选项(如-i -o)</li>
-</ul>
-</li>
-<li>长选项格式举例:
-<ul>
-<li><code>--version</code></li>
-<li><code>--file=error.txt</code></li>
-</ul>
-</li>
-<li>让一个脚本同时支持短选项和长选项 <code>getopt.getopt(sys.argv[1:], &quot;hi⭕&quot;, [&quot;version&quot;, &quot;file=&quot;]) </code></li>
-</ul>
-<h4 id="docopt">docopt</h4>
-<blockquote>
-<p><a href="https://github.com/docopt/docopt">Github地址</a> | 在脚本头部添加文档来实现读取参数的便捷
-会读取输入返回字典对象,可以很方便的读取输入的参数,但是需要书写大量文档, 适合参数比较多的时候,一眼过去简洁明了</p>
-</blockquote>
-<h4 id="python-fire">Python Fire</h4>
-<blockquote>
-<p><a href="https://github.com/google/python-fire">Github地址</a>快速的简洁的生成CLI
-不过要自己书写帮助文档输出,小量参数的话,开发十分的便利 可以和类一起,也可以和方法一起</p>
-</blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">fire</span>
-    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;-h&#39;</span><span class="p">:</span>
-            <span class="n">show_help</span><span class="p">()</span>
-        
-    <span class="n">fire</span><span class="o">.</span><span class="n">Fire</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
-    <span class="c1"># 使用时 py filename.py -h  </span>
-</code></pre></td></tr></table>
-</div>
-</div><hr>
 <h2 id="函数">函数</h2>
 <ul>
 <li>
@@ -1136,7 +803,25 @@
 <blockquote>
 <p><a href="https://segmentfault.com/a/1190000007256392">参考: Magic Method</a> <code>__xxx__ 方法</code></p>
 </blockquote>
+<blockquote>
+<p>内置函数</p>
+</blockquote>
+<ul>
+<li><code>id()</code> 查看内存地址</li>
+<li><code>help(方法名)</code> 展示方法的说明文档</li>
+<li><code>dir(对象)</code> 展示对象的方法API</li>
+</ul>
 <hr>
+<h2 id="包">包</h2>
+<blockquote>
+<p><a href="https://docs.python.org/3/tutorial/modules.html#packages">official tutorial</a></p>
+</blockquote>
+<p>When importing the package, Python searches through the directories on <code>sys.path</code> looking for the package subdirectory.</p>
+<blockquote>
+<ol>
+<li>注意不能出现 import 循环依赖 <code>A.py import B.py</code> then <code>B.py import A.py</code></li>
+</ol>
+</blockquote>
 <h2 id="类">类</h2>
 <p><code>Python 不存在多态，存在鸭子类型</code> <a href="http://blog.csdn.net/shangzhihaohao/article/details/7065675">博客介绍</a> | <a href="https://www.jianshu.com/p/650485b78d11">python中的多态与鸭子类型</a></p>
 <ul>
@@ -1158,19 +843,19 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">class</span> <span class="nc">People</span><span class="p">:</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;md&#39;</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
-    <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gh&#39;</span> <span class="c1"># 声明了实例属性覆盖了类属性</span>
-    <span class="k">del</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="c1"># 删除实例属性，恢复类属性引用</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">People</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;md&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gh&#39;</span> <span class="c1"># 声明了实例属性覆盖了类属性</span>
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span> <span class="c1"># 删除实例属性，恢复类属性引用</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -1191,7 +876,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1205,19 +890,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-        <span class="c1"># 对象方法， 将对象作为参数self传进去</span>
-        <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>
-        <span class="c1"># 静态方法</span>
-        <span class="nd">@staticmethod</span>
-        <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;static method&#39;</span><span class="p">)</span>
-        <span class="c1"># 类方法，将类作为参数cls传进去</span>
-        <span class="nd">@classmethod</span>
-        <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;class method&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 对象方法， 将对象作为参数self传进去</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 静态方法</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@staticmethod</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;static method&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 类方法，将类作为参数cls传进去</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@classmethod</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;class method&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -1264,7 +949,7 @@
 <h2 id="异常">异常</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1274,23 +959,27 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">try</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;0 不能做除数&#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;成功&#34;</span><span class="p">)</span>
-    <span class="k">finally</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;finally&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;0 不能做除数&#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;成功&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;finally&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
 <p>基本语法 <code>try except else finally</code></p>
 <ul>
-<li>else是无异常执行</li>
-<li>有异常就执行 except， except 超类Exception，也可以多个except （和Java一致）</li>
-<li>最终执行finally 和 Java的结构是一致的</li>
+<li>else 是无异常时执行</li>
+<li>有异常就会执行 except， 可以多个except （和Java一致）
+<ul>
+<li><code>except Exception as e:</code> 捕获所有异常</li>
+</ul>
+</li>
+<li>最终执行 finally 和 Java的结构是一致的</li>
 </ul>
 <table>
 <thead>
@@ -1394,6 +1083,211 @@
 </tbody>
 </table>
 <hr>
+<h2 id="读取命令行参数">读取命令行参数</h2>
+<blockquote>
+<p><a href="http://www.sharejs.com/codes/python/6121">参考博客</a></p>
+</blockquote>
+<p><code>只有输入参数，没有选项</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;脚本名：&#34;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;参数&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>python tree.py hi op </code> 顺序是python，第一个参数是文件，之后才是别的参数
+结果&raquo; <code>脚本名 tree.py 参数1 hi 参数2 op</code></p>
+<p><code>有选项</code>
+<code>getopt.getopt(args, options[, long_options])</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">getopt</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opts</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">getopt</span><span class="o">.</span><span class="n">getopt</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&#34;hi⭕&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">op</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>sys.argv[1:]</code>为要处理的参数列表，<code>sys.argv[0]</code>为脚本名，所以用<code>sys.argv[1:]</code>过滤掉脚本名。</li>
+<li><code>&quot;hi⭕&quot;</code>: 当一个选项只是表示开关状态时，即后面不带附加参数时，在分析串中写入选项字符。当选项后面是带一个附加参数时，在分析串中写入选项字符同时后面加一个&quot;:&ldquo;号。
+<ul>
+<li>所以&quot;hi⭕&quot;就表示&quot;h&quot;是一个开关选项(单单的-h)；&ldquo;i:&ldquo;和&quot;o:&ldquo;则表示后面应该带一个参数。</li>
+</ul>
+</li>
+<li>调用getopt函数。函数返回两个列表：<code>opts和args</code>。opts为分析出的格式信息。args为不属于格式信息的剩余的命令行参数。
+<ul>
+<li>opts是一个两元组的列表。每个元素为：(选项串,附加参数)。如果没有附加参数则为空串&rsquo;&rsquo;。</li>
+<li>getopt函数的第三个参数[, long_options]为可选的长选项参数，上面例子中的都为短选项(如-i -o)</li>
+</ul>
+</li>
+<li>长选项格式举例:
+<ul>
+<li><code>--version</code></li>
+<li><code>--file=error.txt</code></li>
+</ul>
+</li>
+<li>让一个脚本同时支持短选项和长选项 <code>getopt.getopt(sys.argv[1:], &quot;hi⭕&quot;, [&quot;version&quot;, &quot;file=&quot;]) </code></li>
+</ul>
+<h3 id="docopt">docopt</h3>
+<blockquote>
+<p><a href="https://github.com/docopt/docopt">Github地址</a> | 在脚本头部添加文档来实现读取参数的便捷
+会读取输入返回字典对象,可以很方便的读取输入的参数,但是需要书写大量文档, 适合参数比较多的时候,一眼过去简洁明了</p>
+</blockquote>
+<h3 id="python-fire">Python Fire</h3>
+<blockquote>
+<p><a href="https://github.com/google/python-fire">Github地址</a>快速的简洁的生成CLI
+不过要自己书写帮助文档输出,小量参数的话,开发十分的便利 可以和类一起,也可以和方法一起</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">fire</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s1">&#39;-h&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">show_help</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="n">fire</span><span class="o">.</span><span class="n">Fire</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 使用时 py filename.py -h  </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="应用">应用</h1>
+<h2 id="模块">模块</h2>
+<p>python -m module_name</p>
+<h3 id="http">http</h3>
+<ul>
+<li>快速启动一个 HTTP Web 服务器 <code>http.server [port]</code></li>
+</ul>
+<h3 id="virtualenv">virtualenv</h3>
+<blockquote>
+<p><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000">廖雪峰 virtualenv</a></p>
+</blockquote>
+<p><strong>虽然也可以用apt安装 python-venv, 但是最好不要这样,避免后续模块升级后不必要的冲突</strong></p>
+<ul>
+<li>创建环境 <code>python3 -m venv web</code> 或者 <code>virtualenv --no-site-packages web</code> 不将系统中安装的包带入该环境</li>
+<li>启动环境 <code>source web/bin/activate</code>
+<ul>
+<li>在环境中使用的pip python 都是环境中的, 其实就是修改了系统的环境变量指向</li>
+</ul>
+</li>
+<li>停用环境 <code>deactivate</code></li>
+</ul>
+<h3 id="pip">pip</h3>
+<blockquote>
+<p><a href="https://pip.readthedocs.io/en/stable/">pip</a> | <a href="https://pip.pypa.io/en/stable/reference/pip_install/">doc</a> | <a href="https://packaging.python.org/tutorials/installing-packages/">guide</a></p>
+</blockquote>
+<ol>
+<li>作为Python的包管理器, 包的可执行文件默认在 /usr/local/bin 目录下(全局)
+<ul>
+<li>如果安装时加了该参数 &ndash;user 就是安装在 ~/.local/bin 目录下</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>install</p>
+</blockquote>
+<ul>
+<li><code>pip install name</code> 安装最新版本</li>
+<li><code>pip install name==version</code> 安装指定版本</li>
+<li>镜像源 豆瓣 <code>-i https://pypi.doubanio.com/simple/</code> 清华 <code>-i https://pypi.tuna.tsinghua.edu.cn/simple</code>
+<ul>
+<li><a href="https://blog.csdn.net/JQ_AK47/article/details/77944444">修改Pip 管理工具默认下载源</a></li>
+</ul>
+</li>
+<li>代理 <code>--proxy 192.168.1.24:1234</code></li>
+<li>强行使用HTTP <code>-i http://pypi.doubanio.com/simple/ --trusted-host pypi.doubanio.com</code> pip版本高于20.3后默认使用HTTPS</li>
+<li>安装tar.gz:  pip install xxxx.tar.gz</li>
+</ul>
+<blockquote>
+<p>注意：自PEP668开始限制默认安装为全局依赖，否则会报错 externally-managed-environment</p>
+</blockquote>
+<ul>
+<li>可以设置默认全局 python3 -m pip config set global.break-system-packages true</li>
+<li>或者单次安装到全局 &ndash;break-system-packages</li>
+</ul>
+<blockquote>
+<p>3.10 后 pip 作为子模块</p>
+</blockquote>
+<ul>
+<li>安装 <code>python -m ensurepip --upgrade</code></li>
+<li>使用 <code>python -m pip install pkgName</code></li>
+<li>升级 <code>python -m pip install --upgrade pip</code></li>
+</ul>
+<h4 id="requirements-files">Requirements files</h4>
+<blockquote>
+<p><a href="https://pip.readthedocs.io/en/1.1/requirements.html">pip官方文档 Requirements files</a></p>
+</blockquote>
+<ol>
+<li>
+<p>导出 <code>pip freeze &gt; requirements.txt</code> <em>这个命令会将当前环境安装的包全部列出来, 适合env环境下使用</em></p>
+<ul>
+<li>如果没有使用虚拟环境, 然后只想导出某项目的依赖 <a href="https://github.com/bndr/pipreqs">Github pipreqs</a></li>
+<li>安装 : <code>pip install pipreqs</code> 然后 <code>pipreqs /path/to/project</code></li>
+</ul>
+</li>
+<li>
+<p>使用 <code>pip install -r requirements.txt</code></p>
+</li>
+</ol>
+<h4 id="发布包到-pypi">发布包到 pypi</h4>
+<blockquote>
+<p><a href="https://packaging.python.org/guides/distributing-packages-using-setuptools/?highlight=pypirc#id78">Official : about package</a></p>
+</blockquote>
+<ol>
+<li>edit <code>$HOME/.pypirc</code> to save authorization  info
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    [pypi]
+</span></span><span class="line"><span class="cl">    username = &lt;username&gt;
+</span></span><span class="line"><span class="cl">    password = &lt;password&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>pip3 install wheel twine</li>
+<li>rm -rf dist build *.egg-info</li>
+<li>python3 setup.py bdist_wheel</li>
+<li>twine upload dist/*</li>
+</ol>
+<blockquote>
+<p><a href="https://gitee.com/gin9/baidu-trans-cli">可以参考该项目: 终端内使用百度翻译</a></p>
+</blockquote>
+<p>由于Readme 使用的是 <a href="https://rest-sphinx-memo.readthedocs.io/en/latest/ReST.html">reStructuredText</a> 语法(要求严格,所以需要借助工具)</p>
+<blockquote>
+<ol>
+<li>pip install collective.checkdocs Pygments</li>
+<li>python3 setup.py checkdocs</li>
+</ol>
+</blockquote>
+<h3 id="matplotlib">matplotlib</h3>
+<hr>
 <h2 id="文件操作">文件操作</h2>
 <ul>
 <li>
@@ -1406,13 +1300,13 @@
 <p><code>使用with来操作 好处是Python自动关闭文件</code> 类似于Java的TWR</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span> 
-        <span class="n">lines</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">lines</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -1436,11 +1330,11 @@
 <li>
 <p><code>os.path模块</code></p>
 <ul>
-<li>abspath('') 获取绝对路径</li>
-<li>exists('') 是否存在</li>
-<li>isdir('') 是否是一个目录</li>
-<li>isfile('')  是否是文件</li>
-<li>islink('') 是否是软链接硬链接文件</li>
+<li>abspath(&rsquo;&rsquo;) 获取绝对路径</li>
+<li>exists(&rsquo;&rsquo;) 是否存在</li>
+<li>isdir(&rsquo;&rsquo;) 是否是一个目录</li>
+<li>isfile(&rsquo;&rsquo;)  是否是文件</li>
+<li>islink(&rsquo;&rsquo;) 是否是软链接硬链接文件</li>
 <li>getsize() 获取文件尺寸</li>
 </ul>
 </li>
@@ -1448,21 +1342,21 @@
 <p>shutil模块</p>
 <ul>
 <li>dir() 复制单个文件</li>
-<li>shultil.copytree(r'',r'') 复制目录树</li>
+<li>shultil.copytree(r&rsquo;&rsquo;,r&rsquo;&rsquo;) 复制目录树</li>
 </ul>
 </li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="c1"># 读取大文件</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s2">&#34;test.txt&#34;</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="c1"># 读取大文件</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s2">&#34;test.txt&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <p><code>b 表示字节流（二进制文件） 不加表示字符流（文本文件）</code></p>
@@ -1567,7 +1461,7 @@
 <h3 id="json">JSON</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1585,23 +1479,23 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">json</span>
-    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;result.json&#39;</span>
-    
-    <span class="k">def</span> <span class="nf">write_json</span><span class="p">():</span>
-        <span class="k">global</span> <span class="n">file_name</span>
-        <span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="s1">&#39;23&#39;</span><span class="p">}</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">o</span><span class="p">:</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">person</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">read_json</span><span class="p">():</span>
-        <span class="k">global</span> <span class="n">file_name</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
-            <span class="n">datas</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span> <span class="p">:</span>
-                <span class="c1"># 引用的时候就当做是字典</span>
-                <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">datas</span><span class="p">[</span><span class="n">data</span><span class="p">])</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;result.json&#39;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">write_json</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">global</span> <span class="n">file_name</span>
+</span></span><span class="line"><span class="cl">        <span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="s1">&#39;23&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">o</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">person</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">read_json</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">global</span> <span class="n">file_name</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">datas</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 引用的时候就当做是字典</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">datas</span><span class="p">[</span><span class="n">data</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="conf或者ini">conf或者ini</h3>
 <blockquote>
@@ -1609,7 +1503,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1623,38 +1517,99 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">os</span>
-    <span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
-
-    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">mainConf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;/main.conf&#39;</span>
-    <span class="n">cf</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
-    <span class="n">cf</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">mainConf</span><span class="p">)</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">,</span> <span class="s1">&#39;host&#39;</span><span class="p">)</span>
-
-    <span class="c1"># 写 但是要有write节点</span>
-    <span class="n">cf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">)</span>
-    <span class="n">cf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">mainConf</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mainConf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;/main.conf&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cf</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cf</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">mainConf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">host</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">,</span> <span class="s1">&#39;host&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 写 但是要有write节点</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;12&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">mainConf</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>对应的conf</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [redis]
-    host=127.0.0.1
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    [redis]
+</span></span><span class="line"><span class="cl">    host=127.0.0.1
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
+<h2 id="日志">日志</h2>
+<h3 id="logging">logging</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="c1"># 标准输出</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LOG_FORMAT</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">%(asctime)s</span><span class="s2">.</span><span class="si">%(msecs)03d</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DATE_FORMAT</span> <span class="o">=</span> <span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">LOG_FORMAT</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="n">DATE_FORMAT</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 文件和标准输出</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LOG_FORMAT</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">%(asctime)s</span><span class="s2">.</span><span class="si">%(msecs)03d</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DATE_FORMAT</span> <span class="o">=</span> <span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;run.log&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">LOG_FORMAT</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="n">DATE_FORMAT</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stdout_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rowFmt</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="n">LOG_FORMAT</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="n">DATE_FORMAT</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stdout_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">rowFmt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stdout_handler</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Pycharm 跳转 类似Java IDEA的 (xxx.java:100) 特定格式 logback配置 \\(%F:%line\\)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LOG_FORMAT</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">%(asctime)s</span><span class="s2">.</span><span class="si">%(msecs)03d</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2"> File </span><span class="se">\&#34;</span><span class="si">%(filename)s</span><span class="se">\&#34;</span><span class="s2">, line </span><span class="si">%(lineno)s</span><span class="s2"> </span><span class="si">%(funcName)s</span><span class="s2">  </span><span class="si">%(message)s</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">LOG_FORMAT</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">%(asctime)s</span><span class="s2">.</span><span class="si">%(msecs)03d</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(filename)s</span><span class="s2">:</span><span class="si">%(lineno)s</span><span class="s2"> </span><span class="si">%(funcName)s</span><span class="s2">  </span><span class="si">%(message)s</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><a href="https://www.cnblogs.com/yyds/p/6901864.html">Python之日志处理（logging模块） - 云游道士 - 博客园</a></p>
+</blockquote>
+<h3 id="loguru">loguru</h3>
+<blockquote>
+<p><a href="https://www.loggly.com/blog/effective-logging-in-threaded-or-multiprocessing-python-applications/">Effective Logging in Threaded or Multiprocessing Python Applications </a></p>
+</blockquote>
+<p>但是 FastApi 里的 BackgroundTasks 是跨线程的，但是同样支持log， 需要找找怎么实现的</p>
+<ul>
+<li>实际上是因为他是协程，不是线程</li>
+</ul>
+<hr>
 <h2 id="测试">测试</h2>
 <ul>
-<li>文件名test开头就当做是测试类，不会直接运行</li>
+<li>文件名test_开头, 需要 unittest.main() 方式运行</li>
 <li>类继承 unittest.TestCase, 所有test_开头的方法都将自动运行</li>
 <li>断言 self.assertEqual assertNotEquals assertIn(item, list)</li>
-<li>直接运行 unittest.main()</li>
 <li>输出结果: <code>. 测试通过</code> <code>E 测试运行错误</code> <code>F 测试断言不通过</code></li>
 </ul>
 <hr>
@@ -1683,12 +1638,11 @@
 <h2 id="部署">部署</h2>
 <h3 id="docker部署">Docker部署</h3>
 <blockquote>
-<p><a href="https://hub.docker.com/_/python/">参考官方文档</a>
-Create a Dockerfile in your Python app project</p>
+<p><a href="https://hub.docker.com/_/python/">参考官方文档</a></p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1696,18 +1650,17 @@ Create a Dockerfile in your Python app project</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile">    FROM python:3<span class="err">
-</span><span class="err"></span>    WORKDIR /usr/src/app<span class="err">
-</span><span class="err"></span>    COPY requirements.txt ./<span class="err">
-</span><span class="err"></span>    RUN pip install --no-cache-dir -r requirements.txt<span class="err">
-</span><span class="err"></span>    COPY . .<span class="err">
-</span><span class="err"></span>    CMD <span class="o">[</span> <span class="s2">&#34;python&#34;</span>, <span class="s2">&#34;./your-daemon-or-script.py&#34;</span> <span class="o">]</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl">    FROM python:3<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    WORKDIR /usr/src/app<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY requirements.txt ./<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN pip install --no-cache-dir -r requirements.txt<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY . .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    CMD <span class="o">[</span> <span class="s2">&#34;python&#34;</span>, <span class="s2">&#34;./your-daemon-or-script.py&#34;</span> <span class="o">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><em>or (if you need to use Python 2)</em></p>
-<div class="highlight"><div class="chroma">
+</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1715,13 +1668,13 @@ Create a Dockerfile in your Python app project</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile">    FROM python:2<span class="err">
-</span><span class="err"></span>    WORKDIR /usr/src/app<span class="err">
-</span><span class="err"></span>    COPY requirements.txt ./<span class="err">
-</span><span class="err"></span>    RUN pip install --no-cache-dir -r requirements.txt<span class="err">
-</span><span class="err"></span>    COPY . .<span class="err">
-</span><span class="err"></span>    CMD <span class="o">[</span> <span class="s2">&#34;python&#34;</span>, <span class="s2">&#34;./your-daemon-or-script.py&#34;</span> <span class="o">]</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl">    FROM python:2<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    WORKDIR /usr/src/app<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY requirements.txt ./<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    RUN pip install --no-cache-dir -r requirements.txt<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    COPY . .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    CMD <span class="o">[</span> <span class="s2">&#34;python&#34;</span>, <span class="s2">&#34;./your-daemon-or-script.py&#34;</span> <span class="o">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>You can then build and run the Docker image:
@@ -1730,29 +1683,6 @@ Create a Dockerfile in your Python app project</p>
 <li>$ docker run -it &ndash;rm &ndash;name my-running-app my-python-app</li>
 </ul>
 </li>
-</ul>
-<hr>
-<h2 id="绘图">绘图</h2>
-<h3 id="matplotlib">matplotlib</h3>
-<p><code>python 3.5 安装</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    sudo apt install python3-matplotlib 
-    sudo apt install python3.5-dev python3.5-tk tk-dev
-    sudo apt install libfreetype6-dev g++
-</code></pre></td></tr></table>
-</div>
-</div><hr>
-<h2 id="常见函数">常见函数</h2>
-<ul>
-<li><code>id()</code> 查看内存地址</li>
-<li><code>help(方法名)</code> 展示方法的说明文档</li>
-<li><code>dir(对象)</code> 展示对象的方法API</li>
 </ul>
 <hr>
 <h2 id="常见库">常见库</h2>
@@ -1799,37 +1729,16 @@ Create a Dockerfile in your Python app project</p>
 <li><code>python-docx</code> <a href="https://python-docx.readthedocs.io/en/latest/">文档</a></li>
 <li><code>chef</code> <a href="https://docs.chef.io/resource_python.html">文档</a> <code>Use the python resource to execute scripts using the Python interpreter</code></li>
 </ul>
-<hr>
-<h2 id="qt">QT</h2>
-<ul>
-<li>在Terminal中输入:sudo apt-get install qt4-dev-tools qt4-doc qt4-qtconfig qt4-demos qt4-designer</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    qt4-dev-tools 中包括了Qt Assistant,Qt Linguist,Qt Creator
-    qt4-doc 这个是帮助文档
-    qt4-qtconfig Qt的配置工具,这个装好默认好
-    qt4-demos 官方的一些Demo
-    qt4-designer 可视化窗体设置工具
-</code></pre></td></tr></table>
-</div>
-</div>
+
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-13
         
@@ -1846,11 +1755,11 @@ Create a Dockerfile in your Python app project</p>
         <a class="prev" href="/post/python/pythongame/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">PythonGame</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/python/pythonconcurrency/">
             <span class="next-text nav-default">Python Concurrency</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -1868,17 +1777,17 @@ Create a Dockerfile in your Python app project</p>
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -1886,11 +1795,11 @@ Create a Dockerfile in your Python app project</p>
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -1900,16 +1809,21 @@ Create a Dockerfile in your Python app project</p>
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

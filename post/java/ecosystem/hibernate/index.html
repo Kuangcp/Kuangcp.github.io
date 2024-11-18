@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Hibernate - Mythos</title>
+  <title>Hibernate - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/ecosystem/hibernate/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/ecosystem/hibernate/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -42,19 +42,15 @@
 <meta property="og:title" content="Hibernate" />
 <meta property="og:description" content="目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/ecosystem/hibernate/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/ecosystem/hibernate/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Hibernate">
-<meta itemprop="description" content="目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="wordCount" content="4987">
-
-
-
-<meta itemprop="keywords" content="ORM," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="ORM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hibernate"/>
 <meta name="twitter:description" content="目录 start Hibernate Hibernate基础配置 JDBC和Hibernate比较 配置流程 Hibernate必需JAR 编写数据库表对应框架持久层的对象 hib"/>
 
@@ -126,64 +122,77 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 4987 words </span>
-          <span class="more-meta"> 10 mins read </span>
+          <span class="more-meta"> 约 4987 字 </span>
+          <span class="more-meta"> 预计阅读 10 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#jdbc和hibernate比较">JDBC和Hibernate比较</a>
+    <li><a href="#hibernate">Hibernate</a></li>
+    <li><a href="#hibernate基础配置">Hibernate基础配置</a>
       <ul>
-        <li><a href="#配置流程">配置流程</a></li>
+        <li><a href="#jdbc和hibernate比较">JDBC和Hibernate比较</a>
+          <ul>
+            <li><a href="#配置流程">配置流程</a></li>
+          </ul>
+        </li>
+        <li><a href="#hibernate必需jar">Hibernate必需JAR</a></li>
+        <li><a href="#编写数据库表对应框架持久层的对象">编写数据库表对应框架持久层的对象</a></li>
+        <li><a href="#hibernatecfgxml文件">hibernate.cfg.xml文件</a></li>
+        <li><a href="#sessionfactory和session比较">SessionFactory和Session比较</a></li>
+        <li><a href="#oid的作用">OID的作用：</a></li>
+        <li><a href="#id生成策略">id生成策略</a></li>
+        <li><a href="#非普通类型">非普通类型</a></li>
       </ul>
     </li>
-    <li><a href="#hibernate必需jar">Hibernate必需JAR</a></li>
-    <li><a href="#编写数据库表对应框架持久层的对象">编写数据库表对应框架持久层的对象</a></li>
-    <li><a href="#hibernatecfgxml文件">hibernate.cfg.xml文件</a></li>
-    <li><a href="#sessionfactory和session比较">SessionFactory和Session比较</a></li>
-    <li><a href="#oid的作用">OID的作用：</a></li>
-    <li><a href="#id生成策略">id生成策略</a></li>
-    <li><a href="#非普通类型">非普通类型</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#一对多的配置">一对多的配置</a>
+    <li><a href="#hibernate实体关联配置">Hibernate实体关联配置</a>
       <ul>
-        <li><a href="#注意">注意</a></li>
+        <li><a href="#一对多的配置">一对多的配置</a>
+          <ul>
+            <li><a href="#注意">注意</a></li>
+          </ul>
+        </li>
+        <li><a href="#多对多的配置">多对多的配置</a>
+          <ul>
+            <li><a href="#学生方配置">学生方配置</a></li>
+            <li><a href="#课程方配置">课程方配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#一对一的配置">一对一的配置</a></li>
+        <li><a href="#使用多对一的技巧">使用多对一的技巧</a>
+          <ul>
+            <li><a href="#添加记录">添加记录</a></li>
+            <li><a href="#删除记录">删除记录</a></li>
+          </ul>
+        </li>
+        <li><a href="#继承关系的配置">继承关系的配置</a></li>
       </ul>
     </li>
-    <li><a href="#多对多的配置">多对多的配置</a>
+    <li><a href="#hibernate对象的状态">Hibernate对象的状态</a>
       <ul>
-        <li><a href="#学生方配置">学生方配置</a></li>
-        <li><a href="#课程方配置">课程方配置</a></li>
+        <li><a href="#session的方法">Session的方法</a></li>
+        <li><a href="#特别注意">特别注意</a></li>
       </ul>
     </li>
-    <li><a href="#一对一的配置">一对一的配置</a></li>
-    <li><a href="#使用多对一的技巧">使用多对一的技巧</a>
+    <li><a href="#常见hibernate异常">常见Hibernate异常</a>
       <ul>
-        <li><a href="#添加记录">添加记录</a></li>
-        <li><a href="#删除记录">删除记录</a></li>
+        <li><a href="#could-not-find-a-getter">could not find a getter</a></li>
       </ul>
     </li>
-    <li><a href="#继承关系的配置">继承关系的配置</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#session的方法">Session的方法</a></li>
-    <li><a href="#特别注意">特别注意</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#could-not-find-a-getter">could not find a getter</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p><strong>目录 start</strong></p>
 <ol>
@@ -342,7 +351,7 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -352,15 +361,15 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;generator</span> <span class="na">class=</span><span class="s">&#34;hilo&#34;</span> <span class="nt">&gt;</span>
-    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&#34;table&#34;</span><span class="nt">&gt;</span>stu_hilo<span class="nt">&lt;/param&gt;</span>
-    <span class="c">&lt;!-- 放高值的表名 最好是一个对象对应于一个高低值的表避免了并发--&gt;</span>
-    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&#34;cloumn&#34;</span><span class="nt">&gt;</span>next_hi<span class="nt">&lt;/param&gt;</span>
-    <span class="c">&lt;!-- 高的值放在表的哪个字段 --&gt;</span>
-    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&#34;max_lo&#34;</span><span class="nt">&gt;</span>100<span class="nt">&lt;/ param&gt;</span>
-    <span class="c">&lt;!-- 每个轮回值的上限是多少 虚拟机启动频繁就设小一些，避免编码的浪费--&gt;</span>
-    <span class="nt">&lt;/generator&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;generator</span> <span class="na">class=</span><span class="s">&#34;hilo&#34;</span> <span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&#34;table&#34;</span><span class="nt">&gt;</span>stu_hilo<span class="nt">&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 放高值的表名 最好是一个对象对应于一个高低值的表避免了并发--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&#34;cloumn&#34;</span><span class="nt">&gt;</span>next_hi<span class="nt">&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 高的值放在表的哪个字段 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&#34;max_lo&#34;</span><span class="nt">&gt;</span>100<span class="nt">&lt;/ param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 每个轮回值的上限是多少 虚拟机启动频繁就设小一些，避免编码的浪费--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/generator&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="非普通类型">非普通类型</h2>
 <ul>
@@ -368,36 +377,36 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;Nos&#34;</span> <span class="na">table=</span><span class="s">&#34;表&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;外码&#34;</span><span class="nt">&gt;&lt;/key&gt;</span><span class="c">&lt;!-- 外码 是必须的 --&gt;</span>
-        <span class="nt">&lt;element</span> <span class="na">column=</span><span class="s">&#34;号码&#34;</span> <span class="na">type=</span><span class="s">&#34;string&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/set&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;Nos&#34;</span> <span class="na">table=</span><span class="s">&#34;表&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;外码&#34;</span><span class="nt">&gt;&lt;/key&gt;</span><span class="c">&lt;!-- 外码 是必须的 --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;element</span> <span class="na">column=</span><span class="s">&#34;号码&#34;</span> <span class="na">type=</span><span class="s">&#34;string&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/set&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>List集合:</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;list&gt;</span>
-        <span class="nt">&lt;key&gt;&lt;/key&gt;</span>
-        <span class="nt">&lt;index&gt;&lt;/index&gt;</span>
-        <span class="nt">&lt;element&gt;&lt;/element&gt;</span>
-    <span class="nt">&lt;/list&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;list&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;index&gt;&lt;/index&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;element&gt;&lt;/element&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/list&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>查询列 属性：
@@ -411,17 +420,17 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;&#34;</span> <span class="err">[</span><span class="na">cascade=</span><span class="s">&#34;&#34;</span><span class="err">]</span><span class="nt">&gt;</span> 
-        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;这是外键&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
-        <span class="nt">&lt;one-to-many</span> <span class="na">class=</span><span class="s">&#34;多方的类&#34;</span><span class="nt">&gt;&lt;/one-to-many&gt;</span>
-    <span class="nt">&lt;/set&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;&#34;</span> <span class="err">[</span><span class="na">cascade=</span><span class="s">&#34;&#34;</span><span class="err">]</span><span class="nt">&gt;</span> 
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;这是外键&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;one-to-many</span> <span class="na">class=</span><span class="s">&#34;多方的类&#34;</span><span class="nt">&gt;&lt;/one-to-many&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/set&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>多方：
@@ -436,17 +445,17 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;类中属性名（集合）&#34;</span> <span class="na">inverse=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;key&gt;&lt; column</span> <span class="na">name=</span><span class="s">&#34;数据库列名&#34;</span><span class="nt">/&gt;&lt;/key&gt;</span>
-        <span class="nt">&lt;one-to-many</span> <span class="na">class=</span><span class="s">&#34;多方类路径&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/set&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;类中属性名（集合）&#34;</span> <span class="na">inverse=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key&gt;&lt; column</span> <span class="na">name=</span><span class="s">&#34;数据库列名&#34;</span><span class="nt">/&gt;&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;one-to-many</span> <span class="na">class=</span><span class="s">&#34;多方类路径&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/set&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>
@@ -482,32 +491,32 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 <h3 id="学生方配置">学生方配置</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;students&#34;</span> <span class="na">table=</span><span class="s">&#34;student_course&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;cid&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
-        <span class="nt">&lt;many-to-many</span> <span class="na">class=</span><span class="s">&#34;Student&#34;</span> <span class="na">column=</span><span class="s">&#34;stu_id&#34;</span><span class="nt">&gt;&lt;/many-to-many&gt;</span>
-    <span class="nt">&lt;/set&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;students&#34;</span> <span class="na">table=</span><span class="s">&#34;student_course&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;cid&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;many-to-many</span> <span class="na">class=</span><span class="s">&#34;Student&#34;</span> <span class="na">column=</span><span class="s">&#34;stu_id&#34;</span><span class="nt">&gt;&lt;/many-to-many&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/set&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="课程方配置">课程方配置</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;courses&#34;</span> <span class="na">table=</span><span class="s">&#34;student_course&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;stu_id&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
-        <span class="nt">&lt;many-to-many</span> <span class="na">class=</span><span class="s">&#34;Course&#34;</span> <span class="na">column=</span><span class="s">&#34;cid&#34;</span><span class="nt">&gt;&lt;/many-to-many&gt;</span>
-    <span class="nt">&lt;/set&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;set</span> <span class="na">name=</span><span class="s">&#34;courses&#34;</span> <span class="na">table=</span><span class="s">&#34;student_course&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;stu_id&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;many-to-many</span> <span class="na">class=</span><span class="s">&#34;Course&#34;</span> <span class="na">column=</span><span class="s">&#34;cid&#34;</span><span class="nt">&gt;&lt;/many-to-many&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/set&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="一对一的配置">一对一的配置</h2>
@@ -553,7 +562,7 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -569,21 +578,21 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="c">&lt;!-- 将子类插入到父类的配置文件 需要使用key来关联的--&gt;</span>
-        <span class="nt">&lt;joined-subclass</span> <span class="na">name=</span><span class="s">&#34;cn.hibernate.extend.Student&#34;</span> <span class="na">table=</span><span class="s">&#34;extend_student&#34;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;id&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
-            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sru_id&#34;</span> <span class="na">type=</span><span class="s">&#34;long&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
-        <span class="nt">&lt;/joined-subclass&gt;</span>
-    <span class="c">&lt;!--
-</span><span class="c">        union是相当于将父类的所有属性复制到子类里，是共享父类的OID，
-</span><span class="c">        所以父类的OID是不能和子类的OID重复的
-</span><span class="c">        不然 查询的时候就会报错,
-</span><span class="c">        所以就需要改父类的主键生成策略是高低值（或者是手动set），可以手动配置高低值的表的生成
-</span><span class="c">    --&gt;</span>
-        <span class="nt">&lt;union-subclass</span> <span class="na">name=</span><span class="s">&#34;cn.hibernate.extend.Student&#34;</span> <span class="na">table=</span><span class="s">&#34;union_student&#34;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sru_id&#34;</span> <span class="na">type=</span><span class="s">&#34;long&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
-        <span class="nt">&lt;/union-subclass&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="c">&lt;!-- 将子类插入到父类的配置文件 需要使用key来关联的--&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;joined-subclass</span> <span class="na">name=</span><span class="s">&#34;cn.hibernate.extend.Student&#34;</span> <span class="na">table=</span><span class="s">&#34;extend_student&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;key</span> <span class="na">column=</span><span class="s">&#34;id&#34;</span><span class="nt">&gt;&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sru_id&#34;</span> <span class="na">type=</span><span class="s">&#34;long&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/joined-subclass&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--
+</span></span></span><span class="line"><span class="cl"><span class="c">        union是相当于将父类的所有属性复制到子类里，是共享父类的OID，
+</span></span></span><span class="line"><span class="cl"><span class="c">        所以父类的OID是不能和子类的OID重复的
+</span></span></span><span class="line"><span class="cl"><span class="c">        不然 查询的时候就会报错,
+</span></span></span><span class="line"><span class="cl"><span class="c">        所以就需要改父类的主键生成策略是高低值（或者是手动set），可以手动配置高低值的表的生成
+</span></span></span><span class="line"><span class="cl"><span class="c">    --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;union-subclass</span> <span class="na">name=</span><span class="s">&#34;cn.hibernate.extend.Student&#34;</span> <span class="na">table=</span><span class="s">&#34;union_student&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;sru_id&#34;</span> <span class="na">type=</span><span class="s">&#34;long&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/union-subclass&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="hibernate对象的状态">Hibernate对象的状态</h1>
@@ -666,11 +675,11 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-11-21
         
@@ -687,11 +696,11 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
         <a class="prev" href="/post/skills/test/hamcrest/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Hamcrest</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/frontend/html5/">
             <span class="next-text nav-default">HTML5</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -709,17 +718,17 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -727,11 +736,11 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -741,16 +750,21 @@ sessionFactory实例化，高位就会加一，生成算法是：hi*(max lo +1)+
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

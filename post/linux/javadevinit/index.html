@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Java初始化环境搭建 - Mythos</title>
+  <title>Java初始化环境搭建 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 配置Deepin的Java开发环境 新增用户 安装Docker 在Linux上配置Java环境 配置JDK 解压配置 sdkman方式 配置MySQ" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 配置Deepin的Java开发环境 1.1. 新增用户 1.2. 安装Docker 在Linux上配置Java环境 2.1. 配置JDK 2.1.1. 解压配置 2.2. 配置MySQL 2.3. 配置R" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/javadevinit/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/javadevinit/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Java初始化环境搭建" />
-<meta property="og:description" content="目录 start 配置Deepin的Java开发环境 新增用户 安装Docker 在Linux上配置Java环境 配置JDK 解压配置 sdkman方式 配置MySQ" />
+<meta property="og:description" content="💠 配置Deepin的Java开发环境 1.1. 新增用户 1.2. 安装Docker 在Linux上配置Java环境 2.1. 配置JDK 2.1.1. 解压配置 2.2. 配置MySQL 2.3. 配置R" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/javadevinit/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/javadevinit/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T12:01:26+00:00" />
 <meta property="article:modified_time" content="2018-12-15T12:01:26+00:00" />
+
 <meta itemprop="name" content="Java初始化环境搭建">
-<meta itemprop="description" content="目录 start 配置Deepin的Java开发环境 新增用户 安装Docker 在Linux上配置Java环境 配置JDK 解压配置 sdkman方式 配置MySQ">
-<meta itemprop="datePublished" content="2018-12-15T12:01:26+00:00" />
+<meta itemprop="description" content="💠 配置Deepin的Java开发环境 1.1. 新增用户 1.2. 安装Docker 在Linux上配置Java环境 2.1. 配置JDK 2.1.1. 解压配置 2.2. 配置MySQL 2.3. 配置R"><meta itemprop="datePublished" content="2018-12-15T12:01:26+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T12:01:26+00:00" />
-<meta itemprop="wordCount" content="801">
-
-
-
-<meta itemprop="keywords" content="工具使用经验," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="692">
+<meta itemprop="keywords" content="工具使用经验," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java初始化环境搭建"/>
-<meta name="twitter:description" content="目录 start 配置Deepin的Java开发环境 新增用户 安装Docker 在Linux上配置Java环境 配置JDK 解压配置 sdkman方式 配置MySQ"/>
+<meta name="twitter:description" content="💠 配置Deepin的Java开发环境 1.1. 新增用户 1.2. 安装Docker 在Linux上配置Java环境 2.1. 配置JDK 2.1.1. 解压配置 2.2. 配置MySQL 2.3. 配置R"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,59 +120,73 @@
       <div class="post-meta">
         <span class="post-time"> 2018-12-15 </span>
         
-          <span class="more-meta"> 801 words </span>
-          <span class="more-meta"> 2 mins read </span>
+          <span class="more-meta"> 约 692 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#新增用户">新增用户</a></li>
-    <li><a href="#安装docker">安装Docker</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#配置jdk">配置JDK</a>
+    <li><a href="#配置deepin的java开发环境">配置Deepin的Java开发环境</a>
       <ul>
-        <li><a href="#解压配置">解压配置</a></li>
-        <li><a href="#sdkman方式">sdkman方式</a></li>
+        <li><a href="#新增用户">新增用户</a></li>
+        <li><a href="#安装docker">安装Docker</a></li>
       </ul>
     </li>
-    <li><a href="#配置mysql">配置MySQL</a></li>
-    <li><a href="#配置redis">配置Redis</a></li>
-    <li><a href="#问题以及解决方案">问题以及解决方案</a></li>
+    <li><a href="#在linux上配置java环境">在Linux上配置Java环境</a>
+      <ul>
+        <li><a href="#配置jdk">配置JDK</a>
+          <ul>
+            <li><a href="#解压配置">解压配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置mysql">配置MySQL</a></li>
+        <li><a href="#配置redis">配置Redis</a></li>
+        <li><a href="#问题以及解决方案">问题以及解决方案</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-15T12:01:26" title="December 15, 2018">December 15, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E9%85%8D%E7%BD%AEdeepin%E7%9A%84java%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83">配置Deepin的Java开发环境</a>
-<ol>
-<li><a href="#%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7">新增用户</a></li>
-<li><a href="#%E5%AE%89%E8%A3%85docker">安装Docker</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEdeepin%E7%9A%84java%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83">配置Deepin的Java开发环境</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7">新增用户</a></li>
+<li>1.2. <a href="#%E5%AE%89%E8%A3%85docker">安装Docker</a></li>
+</ul>
 </li>
-<li><a href="#%E5%9C%A8linux%E4%B8%8A%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83">在Linux上配置Java环境</a>
-<ol>
-<li><a href="#%E9%85%8D%E7%BD%AEjdk">配置JDK</a>
-<ol>
-<li><a href="#%E8%A7%A3%E5%8E%8B%E9%85%8D%E7%BD%AE">解压配置</a></li>
-<li><a href="#sdkman%E6%96%B9%E5%BC%8F">sdkman方式</a></li>
+<li>
+<ol start="2">
+<li><a href="#%E5%9C%A8linux%E4%B8%8A%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83">在Linux上配置Java环境</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#%E9%85%8D%E7%BD%AEjdk">配置JDK</a>
+<ul>
+<li>2.1.1. <a href="#%E8%A7%A3%E5%8E%8B%E9%85%8D%E7%BD%AE">解压配置</a></li>
+</ul>
 </li>
-<li><a href="#%E9%85%8D%E7%BD%AEmysql">配置MySQL</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AEredis">配置Redis</a></li>
-<li><a href="#%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">问题以及解决方案</a></li>
-</ol>
+<li>2.2. <a href="#%E9%85%8D%E7%BD%AEmysql">配置MySQL</a></li>
+<li>2.3. <a href="#%E9%85%8D%E7%BD%AEredis">配置Redis</a></li>
+<li>2.4. <a href="#%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">问题以及解决方案</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2021-02-03 17:25</em>|</p>
+</ul>
+<p>💠 2024-01-22 09:40:06</p>
 <hr>
 <h1 id="配置deepin的java开发环境">配置Deepin的Java开发环境</h1>
 <p>修改Hostname需要重启, 设置默认java需要重启, docker添加用户组需要重启</p>
@@ -189,6 +199,9 @@
 <p><a href="/Linux/Container/Docker.md#%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD">详细文档</a></p>
 </blockquote>
 <h1 id="在linux上配置java环境">在Linux上配置Java环境</h1>
+<blockquote>
+<p><a href="/Skills/AppManual.md#sdkman">SDK Man 方式安装</a></p>
+</blockquote>
 <h2 id="配置jdk">配置JDK</h2>
 <h3 id="解压配置">解压配置</h3>
 <ul>
@@ -197,17 +210,17 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span> 绝对路径例如： /home/kcp/Application/sdk/jdk1.8.0_131
-    <span class="nb">export</span> <span class="nv">JRE_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/jre
-    <span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/lib:<span class="si">${</span><span class="nv">JRE_HOME</span><span class="si">}</span>/lib
-    <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/bin:<span class="nv">$PATH</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span> 绝对路径例如： /home/kcp/Application/sdk/jdk1.8.0_131
+</span></span><span class="line"><span class="cl">    <span class="nb">export</span> <span class="nv">JRE_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/jre
+</span></span><span class="line"><span class="cl">    <span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/lib:<span class="si">${</span><span class="nv">JRE_HOME</span><span class="si">}</span>/lib
+</span></span><span class="line"><span class="cl">    <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/bin:<span class="nv">$PATH</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>让修改立即生效<code>source /etc/profile</code> 或者修改 <code>.bashrc</code> 文件, 就会在当前用户的终端生效</p>
@@ -218,13 +231,13 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    sudo update-alternatives --install /usr/bin/java java <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/java <span class="m">300</span>
-    sudo update-alternatives --install /usr/bin/javac javac <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/javac <span class="m">300</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    sudo update-alternatives --install /usr/bin/java java <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/java <span class="m">300</span>
+</span></span><span class="line"><span class="cl">    sudo update-alternatives --install /usr/bin/javac javac <span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/javac <span class="m">300</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>或者不执行命令, 直接修改链接文件即可完成同样的目的</li>
@@ -234,14 +247,6 @@
 <blockquote>
 <p>root 用户下 <code>which java</code> 然后 <code>ls -l 显示的路径</code> 一直往下找, 找到 <code>/etc/alternatives/java</code> 和 <code>/etc/alternatives/javac</code> 重建这两个软链接.</p>
 </blockquote>
-</blockquote>
-<h3 id="sdkman方式">sdkman方式</h3>
-<blockquote>
-<p>jdk不推荐使用sdkman安装，这里的jdk是开源版估计，会少javafx等一些闭源包 Oracle版本才是完整的
-但是最近SDKMAN出了一个oracle的版本貌似是完整的，因为有个同意协议的过程 <code>sdk install java 8u144-oracle</code></p>
-</blockquote>
-<blockquote>
-<p><a href="/Skills/AppManual.md#sdkman">sdkman</a></p>
 </blockquote>
 <hr>
 <h2 id="配置mysql">配置MySQL</h2>
@@ -283,11 +288,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-15
         
@@ -304,11 +309,11 @@
         <a class="prev" href="/post/linux/tool/ime/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">输入法</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/linux/debian/ubuntu/">
             <span class="next-text nav-default">Ubuntu</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -326,17 +331,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -344,11 +349,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -358,16 +363,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JavaPGO - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Java 中的 PGO 1.1. HotSpot 💠 2024-04-30 23:06:06 Java 中的 PGO Note: PGO base HotSpot 虚拟机默认会在运行期启用PGO。 GraalVM 企业版本的NativeImage中才能应用PGO技术 社区版不支持 Profile-Guided Optimizations Optimize" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/tuning/javapgo/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="JavaPGO" />
+<meta property="og:description" content="💠 Java 中的 PGO 1.1. HotSpot 💠 2024-04-30 23:06:06 Java 中的 PGO Note: PGO base HotSpot 虚拟机默认会在运行期启用PGO。 GraalVM 企业版本的NativeImage中才能应用PGO技术 社区版不支持 Profile-Guided Optimizations Optimize" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/tuning/javapgo/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-04-30T22:26:23+00:00" />
+<meta property="article:modified_time" content="2024-04-30T22:26:23+00:00" />
+
+<meta itemprop="name" content="JavaPGO">
+<meta itemprop="description" content="💠 Java 中的 PGO 1.1. HotSpot 💠 2024-04-30 23:06:06 Java 中的 PGO Note: PGO base HotSpot 虚拟机默认会在运行期启用PGO。 GraalVM 企业版本的NativeImage中才能应用PGO技术 社区版不支持 Profile-Guided Optimizations Optimize"><meta itemprop="datePublished" content="2024-04-30T22:26:23+00:00" />
+<meta itemprop="dateModified" content="2024-04-30T22:26:23+00:00" />
+<meta itemprop="wordCount" content="956">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaPGO"/>
+<meta name="twitter:description" content="💠 Java 中的 PGO 1.1. HotSpot 💠 2024-04-30 23:06:06 Java 中的 PGO Note: PGO base HotSpot 虚拟机默认会在运行期启用PGO。 GraalVM 企业版本的NativeImage中才能应用PGO技术 社区版不支持 Profile-Guided Optimizations Optimize"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">JavaPGO</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-04-30 </span>
+        
+          <span class="more-meta"> 约 956 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#java-中的-pgo">Java 中的 PGO</a>
+      <ul>
+        <li><a href="#hotspot">HotSpot</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2024-04-30T22:26:23" title="April 30, 2024">April 30, 2024</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#java-%E4%B8%AD%E7%9A%84-pgo">Java 中的 PGO</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#hotspot">HotSpot</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-04-30 23:06:06</p>
+<hr>
+<h1 id="java-中的-pgo">Java 中的 PGO</h1>
+<blockquote>
+<p><a href="/Skills/Councurrency/PGO.md">Note: PGO base</a></p>
+</blockquote>
+<ul>
+<li>HotSpot 虚拟机默认会在运行期启用PGO。</li>
+<li>GraalVM 企业版本的NativeImage中才能应用PGO技术 <code>社区版不支持</code>
+<ul>
+<li><a href="https://www.graalvm.org/22.0/reference-manual/native-image/PGO/">Profile-Guided Optimizations </a></li>
+<li><a href="https://www.graalvm.org/latest/reference-manual/native-image/guides/optimize-native-executable-with-pgo/">Optimize a Native Executable with Profile-Guided Optimizations</a><code>样例</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://www.51cto.com/article/783879.html">在Java应用程序中释放峰值性能：配置文件引导优化(PGO)概述</a> <a href="https://dzone.com/articles/unleash-peak-performance-in-java-applications-over">原文</a></p>
+</blockquote>
+<h2 id="hotspot">HotSpot</h2>
+<ul>
+<li>方法内联</li>
+<li>循环展开</li>
+<li>内存访问模式优化  将内存访问模式与硬件功能相结合来显著提高缓存性能</li>
+</ul>
+<p>虽然已经支持在运行期实时收集信息做PGO，但是预先PGO可以省去这个预热过程，但是也有弊端业务变化频繁也就意味着代码变更频繁profile是否准确是否带来负优化是比较难衡量的。<br>
+大型应用启动后做预热的话，可以避免出现应用刚启动时大量的接口或操作的延迟相较于长期运行时高出很多的问题。</p>
+<blockquote>
+<p>采集Profiling</p>
+</blockquote>
+<ul>
+<li>VisualVM</li>
+<li>YourKit</li>
+<li>Java Flight Recorder</li>
+<li>Async Profiler</li>
+</ul>
+<blockquote>
+<p>预热/训练</p>
+</blockquote>
+<p>通过进行全面的训练运行，可以捕获应用程序可能显示广泛的运行时行为。</p>
+<ul>
+<li>模拟代表常见用户操作的用户交互和工作流。</li>
+<li>模拟高负载条件的压力测试。</li>
+<li>探索性测试以覆盖不同的代码路径。</li>
+<li>负载测试以评估可扩展性。</li>
+</ul>
+<blockquote>
+<p>Profile文件</p>
+</blockquote>
+<p>Profiling工具从训练运行中收集数据，并将其存储在配置文件数据库或日志文件中， 配置文件数据可能包括如下指标：</p>
+<ul>
+<li>方法调用计数</li>
+<li>内存分配和垃圾收集统计</li>
+<li>线程活动和同步详细信息</li>
+<li>异常发生和处理</li>
+<li>CPU和内存使用情况</li>
+</ul>
+<blockquote>
+<p>JIT使用</p>
+</blockquote>
+<p>HotSpot JVM是使用最广泛的Java运行时环境，它通过“分层编译”机制支持PGO， <code>-XX:+UseProfiledCode</code> 和<code>-XX:ProfiledCodeGenerate</code>控制HotSpot中的PGO。</p>
+<blockquote>
+<p>分析与调优</p>
+</blockquote>
+<ul>
+<li>识别性能瓶颈：分析性能分析数据以识别性能瓶颈，例如频繁调用的方法、热代码路径或内存密集型操作。</li>
+<li>优化决策：基于分析数据，做出关于代码优化的明智决策。常见的优化包括方法内联、循环展开、内存访问模式改进和线程同步增强。</li>
+<li>优化技术：使用适当的技术和编码实践实现所选的优化。</li>
+<li>基准测试：在进行优化后，对应用程序进行基准测试，以衡量性能改进。使用分析工具来验证优化是否对分析期间确定的瓶颈产生了积极影响。</li>
+</ul>
+<blockquote>
+<p>定期重新分析和优化</p>
+</blockquote>
+<ul>
+<li>性能优化是一个持续的过程。随着应用程序的技术设计和业务需求的变化，定期重新分析和优化对于保持峰值性能至关重要。在应用程序生命周期的不同阶段继续收集配置文件数据，并相应地调整优化。</li>
+<li>一个思路便是每次需求升级时，考虑技术和业务变化的影响面，重新生成Profile文件。</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-04-30
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/search/elasticsearchadvance/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ElasticsearchAdvance</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/skills/ecology/pgo/">
+            <span class="next-text nav-default">PGO</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Elasticsearch - Mythos</title>
+  <title>Elasticsearch - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install | Docker Guide to Elasticsearch in Java docker run -d --name es7 --net es-network -p 9200:9200 -p 9300:9300 -e &amp;quot;discovery.type=single-node&amp;quot; -e ES_JAVA_OPTS=&amp;quot;-Xms2560m -Xmx2560m&amp;quot; elasticsearch:7.14.2 GUI 浏览器插件： Elasticvue Index" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Elasticsearch Install 2.1. 单节点 2.2. 集群 2.3. 客户端 2.3.1. Java Index Mapping DSL 分词器 向量搜索 💠 2024-11-11 11:02:40 Elasticsearch Official Guide 参考: Elasticsearch 快速开始 使用场景： 七个生产案例告诉你BATJ为何选择ElasticS" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/search/elasticsearch/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/search/elasticsearch/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Elasticsearch" />
-<meta property="og:description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install | Docker Guide to Elasticsearch in Java docker run -d --name es7 --net es-network -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e ES_JAVA_OPTS=&quot;-Xms2560m -Xmx2560m&quot; elasticsearch:7.14.2 GUI 浏览器插件： Elasticvue Index" />
+<meta property="og:description" content="💠 Elasticsearch Install 2.1. 单节点 2.2. 集群 2.3. 客户端 2.3.1. Java Index Mapping DSL 分词器 向量搜索 💠 2024-11-11 11:02:40 Elasticsearch Official Guide 参考: Elasticsearch 快速开始 使用场景： 七个生产案例告诉你BATJ为何选择ElasticS" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/search/elasticsearch/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/search/elasticsearch/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-05-10T18:10:21+00:00" />
 <meta property="article:modified_time" content="2019-05-10T18:10:21+00:00" />
+
 <meta itemprop="name" content="Elasticsearch">
-<meta itemprop="description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install | Docker Guide to Elasticsearch in Java docker run -d --name es7 --net es-network -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e ES_JAVA_OPTS=&quot;-Xms2560m -Xmx2560m&quot; elasticsearch:7.14.2 GUI 浏览器插件： Elasticvue Index">
-<meta itemprop="datePublished" content="2019-05-10T18:10:21+00:00" />
+<meta itemprop="description" content="💠 Elasticsearch Install 2.1. 单节点 2.2. 集群 2.3. 客户端 2.3.1. Java Index Mapping DSL 分词器 向量搜索 💠 2024-11-11 11:02:40 Elasticsearch Official Guide 参考: Elasticsearch 快速开始 使用场景： 七个生产案例告诉你BATJ为何选择ElasticS"><meta itemprop="datePublished" content="2019-05-10T18:10:21+00:00" />
 <meta itemprop="dateModified" content="2019-05-10T18:10:21+00:00" />
-<meta itemprop="wordCount" content="56">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="797">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Elasticsearch"/>
-<meta name="twitter:description" content="目录 start Elasticsearch Install Java 目录 end|2020-06-24 02:06| Elasticsearch Official Guide 参考: Elasticsearch 快速开始 Install install | Docker Guide to Elasticsearch in Java docker run -d --name es7 --net es-network -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e ES_JAVA_OPTS=&quot;-Xms2560m -Xmx2560m&quot; elasticsearch:7.14.2 GUI 浏览器插件： Elasticvue Index"/>
+<meta name="twitter:description" content="💠 Elasticsearch Install 2.1. 单节点 2.2. 集群 2.3. 客户端 2.3.1. Java Index Mapping DSL 分词器 向量搜索 💠 2024-11-11 11:02:40 Elasticsearch Official Guide 参考: Elasticsearch 快速开始 使用场景： 七个生产案例告诉你BATJ为何选择ElasticS"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,63 +122,225 @@
         <div class="post-category">
             <a href="/categories/elk/"> ELK </a>
             </div>
-          <span class="more-meta"> 56 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 797 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
+    <li><a href="#elasticsearch">Elasticsearch</a></li>
     <li><a href="#install">Install</a>
       <ul>
-        <li><a href="#gui">GUI</a></li>
+        <li><a href="#单节点">单节点</a></li>
+        <li><a href="#集群">集群</a></li>
+        <li><a href="#客户端">客户端</a>
+          <ul>
+            <li><a href="#java">Java</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
     <li><a href="#index">Index</a></li>
+    <li><a href="#mapping">Mapping</a></li>
+    <li><a href="#dsl">DSL</a></li>
+    <li><a href="#分词器">分词器</a></li>
+    <li><a href="#向量搜索">向量搜索</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-05-10T18:10:21" title="May 10, 2019">May 10, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#elasticsearch">Elasticsearch</a>
-<ol>
-<li><a href="#install">Install</a></li>
-<li><a href="#java">Java</a></li>
+<li><a href="#elasticsearch">Elasticsearch</a></li>
 </ol>
 </li>
+<li>
+<ol start="2">
+<li><a href="#install">Install</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-06-24 02:06</em>|</p>
+<ul>
+<li>2.1. <a href="#%E5%8D%95%E8%8A%82%E7%82%B9">单节点</a></li>
+<li>2.2. <a href="#%E9%9B%86%E7%BE%A4">集群</a></li>
+<li>2.3. <a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF">客户端</a>
+<ul>
+<li>2.3.1. <a href="#java">Java</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#index">Index</a></li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li><a href="#mapping">Mapping</a></li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li><a href="#dsl">DSL</a></li>
+</ol>
+</li>
+<li>
+<ol start="6">
+<li><a href="#%E5%88%86%E8%AF%8D%E5%99%A8">分词器</a></li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li><a href="#%E5%90%91%E9%87%8F%E6%90%9C%E7%B4%A2">向量搜索</a></li>
+</ol>
+</li>
+</ul>
+<p>💠 2024-11-11 11:02:40</p>
 <hr>
 <h1 id="elasticsearch">Elasticsearch</h1>
 <blockquote>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html">Official Guide</a><br>
 <a href="https://www.cnblogs.com/cjsblog/p/9439331.html">参考: Elasticsearch 快速开始</a></p>
 </blockquote>
-<h2 id="install">Install</h2>
+<p>使用场景：</p>
 <blockquote>
-<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html">install</a> | <a href="https://hub.docker.com/_/elasticsearch/">Docker</a><br>
-<a href="https://www.baeldung.com/elasticsearch-java">Guide to Elasticsearch in Java</a></p>
+<p><a href="https://segmentfault.com/a/1190000022799288">七个生产案例告诉你BATJ为何选择ElasticSearch！应用场景和优势！</a><br>
+<a href="https://time.geekbang.org/column/article/108196">Elasticsearch技术方案选型的10个注意点</a><br>
+<a href="https://github.com/liuhuanyong/MusicLyricChatbot">liuhuanyong/MusicLyricChatbot</a></p>
 </blockquote>
-<p><code>docker run -d --name es7 --net es-network -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e ES_JAVA_OPTS=&quot;-Xms2560m -Xmx2560m&quot;   elasticsearch:7.14.2</code></p>
-<h3 id="gui">GUI</h3>
-<p>浏览器插件： Elasticvue</p>
-<h2 id="index">Index</h2>
+<p>中文教程：</p>
+<blockquote>
+<p><a href="https://github.com/BookaiCode/JavaRecord?tab=readme-ov-file#lock-elasticsearch">一起学Elasticsearch系列</a><br>
+<a href="https://pdai.tech/md/db/nosql-es/elasticsearch.html">ElasticSearch知识体系详解</a></p>
+</blockquote>
+<hr>
+<h1 id="install">Install</h1>
+<blockquote>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html">Installing Elasticsearch</a><br>
+<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/commands.html">Command line tools</a></p>
+</blockquote>
+<hr>
+<h2 id="单节点">单节点</h2>
+<blockquote>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/run-elasticsearch-locally.html">Run Elasticsearch locally</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># es8</span>
+</span></span><span class="line"><span class="cl">    docker network create elastic
+</span></span><span class="line"><span class="cl">    <span class="c1"># 可追加内存设置 -e ES_JAVA_OPTS=&#34;-Xms2560m -Xmx2560m&#34; 避免启动占用大量内存 32G内存占用了17G 用visualvm查看实际内存占用才700M</span>
+</span></span><span class="line"><span class="cl">    docker run --name es8 --net elastic -p 9200:9200 -p 9300:9300 -e <span class="s2">&#34;discovery.type=single-node&#34;</span> -t docker.elastic.co/elasticsearch/elasticsearch:8.13.2
+</span></span><span class="line"><span class="cl">    <span class="c1"># kibana</span>
+</span></span><span class="line"><span class="cl">    docker run --name kibana --net elastic -p 5601:5601 docker.elastic.co/kibana/kibana:8.13.2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># ES启动完成后会有如下输出 elastic的初始密码以及Kibana的Token</span>
+</span></span><span class="line"><span class="cl">    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━                                                                            
+</span></span><span class="line"><span class="cl">    ✅ Elasticsearch security features have been automatically configured!                                                                                                                                               
+</span></span><span class="line"><span class="cl">    ✅ Authentication is enabled and cluster connections are encrypted.    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>重新生成token bin/elasticsearch-create-enrollment-token &ndash;scope kibana</li>
+<li>重置初始用户的密码 bin/elasticsearch-reset-password -u elastic</li>
+</ul>
+<blockquote>
+<p><a href="http://qinghua.github.io/elastic-search/">参考: 用容器快速上手Elasticsearch</a></p>
+</blockquote>
+<h2 id="集群">集群</h2>
+<blockquote>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-compose-file">docker compose install cluster</a></p>
+</blockquote>
+<h2 id="客户端">客户端</h2>
+<ul>
+<li>Kibana 官方支持</li>
+<li>Elasticvue 浏览器插件</li>
+</ul>
+<h3 id="java">Java</h3>
+<blockquote>
+<p><a href="https://www.baeldung.com/elasticsearch-java">Guide to Elasticsearch in Java</a><code>使用elasticsearch包访问ES</code><br>
+<a href="https://github.com/cloudgyb/es-spring-boot">Spring Boot整合Elasticsearch</a><code>使用 SpringData</code></p>
+</blockquote>
+<h1 id="index">Index</h1>
+<ul>
+<li>
+<p><code>PUT /{indexName}?pretty</code> 创建索引</p>
+</li>
+<li>
+<p><code>DELETE /{indexName}?pretty</code> 删除索引 <code>异步,不可撤销,不可逆</code></p>
+</li>
+<li>
+<p><code>GET /{indexName}/_search</code> 搜索</p>
+</li>
+<li>
+<p><code>GET /{indexName}/_doc/doc_id</code> 查询指定文档id</p>
+</li>
+<li>
+<p><code>GET /{indexName}/_doc/doc_id</code> 新增或覆盖文档</p>
+</li>
+<li>
+<p><code>POST /{indexName}/_update/doc_id</code> 新增或更新文档</p>
+</li>
+<li>
+<p><code>GET _cat/indices?v</code> 获取所有索引信息</p>
+</li>
+</ul>
+<hr>
+<h1 id="mapping">Mapping</h1>
+<blockquote>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html">Mapping</a></p>
+</blockquote>
+<hr>
+<h1 id="dsl">DSL</h1>
+<blockquote>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">Query DSL</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/eql.html">EQL</a><code>Event Query Language</code></p>
+</blockquote>
+<hr>
+<h1 id="分词器">分词器</h1>
+<hr>
+<h1 id="向量搜索">向量搜索</h1>
+<p>版本 8.5+</p>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-05-10
         
@@ -194,14 +352,14 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/java/advancedlearning/cache/memcache/">
+        <a class="prev" href="/post/database/memcached/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Memcache</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/skills/devops/percona/">
-            <span class="next-text nav-default">Percona</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/java/ecosystem/dubbo/multicaseregistry/">
+            <span class="next-text nav-default">MulticaseRegistry</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -219,17 +377,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -237,11 +395,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -251,16 +409,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

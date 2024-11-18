@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>并发 - Mythos</title>
+  <title>并发 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 并发 同步 异步 线程和进程 协程 锁 死锁 并发编程 C100K 目录 end|2020-11-16 12:11| 并发 并发编程的理论基础 无关语言 同步 码农翻身:那些烦人的同步和互斥问题 这种对共享变量，" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 并发 1.1. 同步 1.2. 异步 1.3. 线程和进程 1.4. 协程 1.5. 锁 1.5.1. 死锁 并发实践 2.1. C100K 💠 2024-09-06 11:36:43 并发 并发编程的理论基础 无关语言 高并发的哲学原理 同步 码农翻身:那些烦人的同步和" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/councurrency/concurrency/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/councurrency/concurrency/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="并发" />
-<meta property="og:description" content="目录 start 并发 同步 异步 线程和进程 协程 锁 死锁 并发编程 C100K 目录 end|2020-11-16 12:11| 并发 并发编程的理论基础 无关语言 同步 码农翻身:那些烦人的同步和互斥问题 这种对共享变量，" />
+<meta property="og:description" content="💠 并发 1.1. 同步 1.2. 异步 1.3. 线程和进程 1.4. 协程 1.5. 锁 1.5.1. 死锁 并发实践 2.1. C100K 💠 2024-09-06 11:36:43 并发 并发编程的理论基础 无关语言 高并发的哲学原理 同步 码农翻身:那些烦人的同步和" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/councurrency/concurrency/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/councurrency/concurrency/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-01-16T00:00:04+00:00" />
 <meta property="article:modified_time" content="2019-01-16T00:00:04+00:00" />
+
 <meta itemprop="name" content="并发">
-<meta itemprop="description" content="目录 start 并发 同步 异步 线程和进程 协程 锁 死锁 并发编程 C100K 目录 end|2020-11-16 12:11| 并发 并发编程的理论基础 无关语言 同步 码农翻身:那些烦人的同步和互斥问题 这种对共享变量，">
-<meta itemprop="datePublished" content="2019-01-16T00:00:04+00:00" />
+<meta itemprop="description" content="💠 并发 1.1. 同步 1.2. 异步 1.3. 线程和进程 1.4. 协程 1.5. 锁 1.5.1. 死锁 并发实践 2.1. C100K 💠 2024-09-06 11:36:43 并发 并发编程的理论基础 无关语言 高并发的哲学原理 同步 码农翻身:那些烦人的同步和"><meta itemprop="datePublished" content="2019-01-16T00:00:04+00:00" />
 <meta itemprop="dateModified" content="2019-01-16T00:00:04+00:00" />
-<meta itemprop="wordCount" content="1309">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1328">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="并发"/>
-<meta name="twitter:description" content="目录 start 并发 同步 异步 线程和进程 协程 锁 死锁 并发编程 C100K 目录 end|2020-11-16 12:11| 并发 并发编程的理论基础 无关语言 同步 码农翻身:那些烦人的同步和互斥问题 这种对共享变量，"/>
+<meta name="twitter:description" content="💠 并发 1.1. 同步 1.2. 异步 1.3. 线程和进程 1.4. 协程 1.5. 锁 1.5.1. 死锁 并发实践 2.1. C100K 💠 2024-09-06 11:36:43 并发 并发编程的理论基础 无关语言 高并发的哲学原理 同步 码农翻身:那些烦人的同步和"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,61 +120,80 @@
       <div class="post-meta">
         <span class="post-time"> 2019-01-16 </span>
         
-          <span class="more-meta"> 1309 words </span>
-          <span class="more-meta"> 3 mins read </span>
+          <span class="more-meta"> 约 1328 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#同步">同步</a></li>
-    <li><a href="#异步">异步</a></li>
-    <li><a href="#线程和进程">线程和进程</a></li>
-    <li><a href="#协程">协程</a></li>
-    <li><a href="#锁">锁</a>
+    <li><a href="#并发">并发</a>
       <ul>
-        <li><a href="#死锁">死锁</a></li>
+        <li><a href="#同步">同步</a></li>
+        <li><a href="#异步">异步</a></li>
+        <li><a href="#线程和进程">线程和进程</a></li>
+        <li><a href="#协程">协程</a></li>
+        <li><a href="#锁">锁</a>
+          <ul>
+            <li><a href="#死锁">死锁</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#c100k">C100K</a></li>
+    <li><a href="#并发实践">并发实践</a>
+      <ul>
+        <li><a href="#c100k">C100K</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-01-16T00:00:04" title="January 16, 2019">January 16, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E5%B9%B6%E5%8F%91">并发</a>
-<ol>
-<li><a href="#%E5%90%8C%E6%AD%A5">同步</a></li>
-<li><a href="#%E5%BC%82%E6%AD%A5">异步</a></li>
-<li><a href="#%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B">线程和进程</a></li>
-<li><a href="#%E5%8D%8F%E7%A8%8B">协程</a></li>
-<li><a href="#%E9%94%81">锁</a>
-<ol>
-<li><a href="#%E6%AD%BB%E9%94%81">死锁</a></li>
+<li><a href="#%E5%B9%B6%E5%8F%91">并发</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E5%90%8C%E6%AD%A5">同步</a></li>
+<li>1.2. <a href="#%E5%BC%82%E6%AD%A5">异步</a></li>
+<li>1.3. <a href="#%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B">线程和进程</a></li>
+<li>1.4. <a href="#%E5%8D%8F%E7%A8%8B">协程</a></li>
+<li>1.5. <a href="#%E9%94%81">锁</a>
+<ul>
+<li>1.5.1. <a href="#%E6%AD%BB%E9%94%81">死锁</a></li>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-<li><a href="#%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B">并发编程</a>
-<ol>
-<li><a href="#c100k">C100K</a></li>
+<li>
+<ol start="2">
+<li><a href="#%E5%B9%B6%E5%8F%91%E5%AE%9E%E8%B7%B5">并发实践</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#c100k">C100K</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-11-16 12:11</em>|</p>
+</ul>
+<p>💠 2024-09-06 11:36:43</p>
 <hr>
 <h1 id="并发">并发</h1>
 <blockquote>
 <p>并发编程的理论基础 无关语言</p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/johnlui/PPHC">高并发的哲学原理</a></p>
 </blockquote>
 <h2 id="同步">同步</h2>
 <blockquote>
@@ -196,6 +211,8 @@
 </ul>
 <hr>
 <h2 id="异步">异步</h2>
+<p>Future
+promise async 与 await</p>
 <hr>
 <h2 id="线程和进程">线程和进程</h2>
 <hr>
@@ -208,7 +225,16 @@
 <p><a href="http://www.cnblogs.com/zingp/p/5911537.html">协程以及Python实现</a></p>
 </li>
 <li>
-<p><input disabled="" type="checkbox"> 学习参考 Kotlin Go Java(库) 的协程实现</p>
+<p><a href="/Go/GoBase.md#%E5%8D%8F%E7%A8%8B">Go 实现</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Kotlin/kotlinx.coroutines">Kotlin 实现</a></p>
+</li>
+<li>
+<p><a href="/Python/PythonConcurrency.md#%E5%8D%8F%E7%A8%8B-asyncio">Python 实现</a></p>
+</li>
+<li>
+<p><a href="/Java/AdvancedLearning/JavaThread.md#%E5%8D%8F%E7%A8%8B">Java 实现</a></p>
 </li>
 </ul>
 <hr>
@@ -223,29 +249,29 @@
 <ol>
 <li>资源互斥
 <ul>
-<li>指线程对已经获取到的资源进行排它性使用，即该资源同时只由一个线程占用。如果此时还有其他线程请求获取该资源，则请求者只能等待，直至占有资源的线程释放该资源。</li>
-</ul>
-</li>
-<li>持有资源与请求新资源
-<ul>
-<li>指一个线程已经持有了至少一个资源，但又提出了新的资源请求，而新资源已被其他线程占有，所以当前线程会被阻塞，但阻塞的同时并不释放自己已经获取的资源。</li>
+<li><code>资源</code>指线程对已经获取到的资源进行排它性使用，即该资源同时只由一个线程占用。如果此时还有其他线程请求获取该资源，则请求者只能等待，直至占有资源的线程释放该资源。</li>
 </ul>
 </li>
 <li>不可剥夺
 <ul>
-<li>指线程获取到的资源在自己使用完之前不能被其他线程抢占，只有在自己使用完毕后才由自己释放该资源。</li>
+<li><code>资源</code>指线程获取到的资源在自己使用完之前不能被其他线程抢占，只有在自己使用完毕后才由自己释放该资源。</li>
+</ul>
+</li>
+<li>持有资源与请求新资源
+<ul>
+<li><code>线程</code>指一个线程已经持有了至少一个资源，但又提出了新的资源请求，而新资源已被其他线程占有，所以当前线程会被阻塞，但阻塞的同时并不释放自己已经获取的资源。</li>
 </ul>
 </li>
 <li>环路等待
 <ul>
-<li>指在发生死锁时，必然存在一个线程—资源的环形链，即线程集合{T0,T1, T2, …, Tn}中的T0正在等待一个T1占用的资源，T1正在等待T2占用的资源，……Tn正在等待已被T0占用的资源。</li>
+<li><code>线程</code>指在发生死锁时，必然存在一个线程—资源的环形链，即线程集合{T0,T1, T2, …, Tn}中的T0正在等待一个T1占用的资源，T1正在等待T2占用的资源，……Tn正在等待已被T0占用的资源。</li>
 </ul>
 </li>
 </ol>
 </li>
 </ol>
 <hr>
-<h1 id="并发编程">并发编程</h1>
+<h1 id="并发实践">并发实践</h1>
 <blockquote>
 <p>在抽象角度考虑并发</p>
 </blockquote>
@@ -273,11 +299,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-01-16
         
@@ -292,11 +318,11 @@
         <a class="prev" href="/post/windows/windowswithhibernate/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Windows的快速启动</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/myblog/12306/">
             <span class="next-text nav-default">12306</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -314,17 +340,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -332,11 +358,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -346,16 +372,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

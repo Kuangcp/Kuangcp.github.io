@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Shell学习 - Mythos</title>
+  <title>Shell学习 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 学习Shell shell类别 执行方式 输入输出 输入 输出 变量 变量作用域 嵌套 数据类型 整型 字符串 数组 结构 传递参数 判断 if case 循环 函数 文件处理 配置文" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 学习Shell 1.1. shell类别 1.2. 执行方式 基础结构 2.1. 输入输出 2.1.1. 输入 2.1.2. 输出 2.2. 变量 2.2.1. 变量作用域 2.2.2. 嵌套 2.3. 数据类型 2.3.1. 整型 2.3.2. 字符串 2.3.3. 数组 2.4. 结构 2.4.1. 传递参" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/script/shelllearn/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/script/shelllearn/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Shell学习" />
-<meta property="og:description" content="目录 start 学习Shell shell类别 执行方式 输入输出 输入 输出 变量 变量作用域 嵌套 数据类型 整型 字符串 数组 结构 传递参数 判断 if case 循环 函数 文件处理 配置文" />
+<meta property="og:description" content="💠 学习Shell 1.1. shell类别 1.2. 执行方式 基础结构 2.1. 输入输出 2.1.1. 输入 2.1.2. 输出 2.2. 变量 2.2.1. 变量作用域 2.2.2. 嵌套 2.3. 数据类型 2.3.1. 整型 2.3.2. 字符串 2.3.3. 数组 2.4. 结构 2.4.1. 传递参" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/script/shelllearn/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/script/shelllearn/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T12:10:46+00:00" />
 <meta property="article:modified_time" content="2018-12-15T12:10:46+00:00" />
+
 <meta itemprop="name" content="Shell学习">
-<meta itemprop="description" content="目录 start 学习Shell shell类别 执行方式 输入输出 输入 输出 变量 变量作用域 嵌套 数据类型 整型 字符串 数组 结构 传递参数 判断 if case 循环 函数 文件处理 配置文">
-<meta itemprop="datePublished" content="2018-12-15T12:10:46+00:00" />
+<meta itemprop="description" content="💠 学习Shell 1.1. shell类别 1.2. 执行方式 基础结构 2.1. 输入输出 2.1.1. 输入 2.1.2. 输出 2.2. 变量 2.2.1. 变量作用域 2.2.2. 嵌套 2.3. 数据类型 2.3.1. 整型 2.3.2. 字符串 2.3.3. 数组 2.4. 结构 2.4.1. 传递参"><meta itemprop="datePublished" content="2018-12-15T12:10:46+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T12:10:46+00:00" />
-<meta itemprop="wordCount" content="2651">
-
-
-
-<meta itemprop="keywords" content="Shell," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="3337">
+<meta itemprop="keywords" content="Shell," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Shell学习"/>
-<meta name="twitter:description" content="目录 start 学习Shell shell类别 执行方式 输入输出 输入 输出 变量 变量作用域 嵌套 数据类型 整型 字符串 数组 结构 传递参数 判断 if case 循环 函数 文件处理 配置文"/>
+<meta name="twitter:description" content="💠 学习Shell 1.1. shell类别 1.2. 执行方式 基础结构 2.1. 输入输出 2.1.1. 输入 2.1.2. 输出 2.2. 变量 2.2.1. 变量作用域 2.2.2. 嵌套 2.3. 数据类型 2.3.1. 整型 2.3.2. 字符串 2.3.3. 数组 2.4. 结构 2.4.1. 传递参"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,150 +122,182 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 2651 words </span>
-          <span class="more-meta"> 6 mins read </span>
+          <span class="more-meta"> 约 3337 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#shell类别">shell类别</a></li>
-    <li><a href="#执行方式">执行方式</a></li>
-    <li><a href="#输入输出">输入输出</a>
+    <li><a href="#学习shell">学习Shell</a>
       <ul>
-        <li><a href="#输入">输入</a></li>
-        <li><a href="#输出">输出</a></li>
+        <li><a href="#shell类别">shell类别</a></li>
+        <li><a href="#执行方式">执行方式</a></li>
       </ul>
     </li>
-    <li><a href="#变量">变量</a>
+    <li><a href="#基础结构">基础结构</a>
       <ul>
-        <li><a href="#变量作用域">变量作用域</a></li>
-        <li><a href="#嵌套">嵌套</a></li>
+        <li><a href="#输入输出">输入输出</a>
+          <ul>
+            <li><a href="#输入">输入</a></li>
+            <li><a href="#输出">输出</a></li>
+          </ul>
+        </li>
+        <li><a href="#变量">变量</a>
+          <ul>
+            <li><a href="#变量作用域">变量作用域</a></li>
+            <li><a href="#嵌套">嵌套</a></li>
+          </ul>
+        </li>
+        <li><a href="#数据类型">数据类型</a>
+          <ul>
+            <li><a href="#整型">整型</a></li>
+            <li><a href="#字符串">字符串</a></li>
+            <li><a href="#数组">数组</a></li>
+          </ul>
+        </li>
+        <li><a href="#结构">结构</a>
+          <ul>
+            <li><a href="#传递参数">传递参数</a></li>
+            <li><a href="#判断">判断</a></li>
+            <li><a href="#循环">循环</a></li>
+          </ul>
+        </li>
+        <li><a href="#函数">函数</a></li>
+        <li><a href="#多线程">多线程</a></li>
+        <li><a href="#定时执行">定时执行</a>
+          <ul>
+            <li><a href="#watch">watch</a></li>
+            <li><a href="#sleep">sleep</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#数据类型">数据类型</a>
+    <li><a href="#集成">集成</a>
       <ul>
-        <li><a href="#整型">整型</a></li>
-        <li><a href="#字符串">字符串</a></li>
-        <li><a href="#数组">数组</a></li>
+        <li><a href="#文件处理">文件处理</a>
+          <ul>
+            <li><a href="#配置文件">配置文件</a></li>
+            <li><a href="#shyaml">shyaml</a></li>
+          </ul>
+        </li>
+        <li><a href="#脚本的参数自动补全">脚本的参数自动补全</a>
+          <ul>
+            <li><a href="#bash">Bash</a></li>
+            <li><a href="#zsh">Zsh</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#结构">结构</a>
+    <li><a href="#tips">Tips</a>
       <ul>
-        <li><a href="#传递参数">传递参数</a></li>
-        <li><a href="#判断">判断</a></li>
-        <li><a href="#循环">循环</a></li>
+        <li><a href="#常用代码片段">常用代码片段</a></li>
       </ul>
     </li>
-    <li><a href="#函数">函数</a></li>
-    <li><a href="#文件处理">文件处理</a>
-      <ul>
-        <li><a href="#配置文件">配置文件</a></li>
-      </ul>
-    </li>
-    <li><a href="#多线程">多线程</a></li>
-    <li><a href="#脚本的参数自动补全">脚本的参数自动补全</a>
-      <ul>
-        <li><a href="#bash">Bash</a></li>
-        <li><a href="#zsh">Zsh</a></li>
-      </ul>
-    </li>
-    <li><a href="#常用模块">常用模块</a>
-      <ul>
-        <li><a href="#时间">时间</a></li>
-      </ul>
-    </li>
-    <li><a href="#工具">工具</a>
-      <ul>
-        <li><a href="#shyaml">shyaml</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#常用代码片段">常用代码片段</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-15T12:10:46" title="December 15, 2018">December 15, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E5%AD%A6%E4%B9%A0shell">学习Shell</a>
-<ol>
-<li><a href="#shell%E7%B1%BB%E5%88%AB">shell类别</a></li>
-<li><a href="#%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F">执行方式</a></li>
-<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">输入输出</a>
-<ol>
-<li><a href="#%E8%BE%93%E5%85%A5">输入</a></li>
-<li><a href="#%E8%BE%93%E5%87%BA">输出</a></li>
+<li><a href="#%E5%AD%A6%E4%B9%A0shell">学习Shell</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#shell%E7%B1%BB%E5%88%AB">shell类别</a></li>
+<li>1.2. <a href="#%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F">执行方式</a></li>
+</ul>
 </li>
-<li><a href="#%E5%8F%98%E9%87%8F">变量</a>
-<ol>
-<li><a href="#%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F">变量作用域</a></li>
-<li><a href="#%E5%B5%8C%E5%A5%97">嵌套</a></li>
+<li>
+<ol start="2">
+<li><a href="#%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84">基础结构</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">输入输出</a>
+<ul>
+<li>2.1.1. <a href="#%E8%BE%93%E5%85%A5">输入</a></li>
+<li>2.1.2. <a href="#%E8%BE%93%E5%87%BA">输出</a></li>
+</ul>
 </li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>
-<ol>
-<li><a href="#%E6%95%B4%E5%9E%8B">整型</a></li>
-<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a></li>
-<li><a href="#%E6%95%B0%E7%BB%84">数组</a></li>
-</ol>
+<li>2.2. <a href="#%E5%8F%98%E9%87%8F">变量</a>
+<ul>
+<li>2.2.1. <a href="#%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F">变量作用域</a></li>
+<li>2.2.2. <a href="#%E5%B5%8C%E5%A5%97">嵌套</a></li>
+</ul>
 </li>
-<li><a href="#%E7%BB%93%E6%9E%84">结构</a>
-<ol>
-<li><a href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0">传递参数</a></li>
-<li><a href="#%E5%88%A4%E6%96%AD">判断</a>
-<ol>
-<li><a href="#if">if</a></li>
-<li><a href="#case">case</a></li>
-</ol>
+<li>2.3. <a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>
+<ul>
+<li>2.3.1. <a href="#%E6%95%B4%E5%9E%8B">整型</a></li>
+<li>2.3.2. <a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a></li>
+<li>2.3.3. <a href="#%E6%95%B0%E7%BB%84">数组</a></li>
+</ul>
 </li>
-<li><a href="#%E5%BE%AA%E7%8E%AF">循环</a></li>
-</ol>
+<li>2.4. <a href="#%E7%BB%93%E6%9E%84">结构</a>
+<ul>
+<li>2.4.1. <a href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0">传递参数</a></li>
+<li>2.4.2. <a href="#%E5%88%A4%E6%96%AD">判断</a>
+<ul>
+<li>2.4.2.1. <a href="#if">if</a></li>
+<li>2.4.2.2. <a href="#case">case</a></li>
+</ul>
 </li>
-<li><a href="#%E5%87%BD%E6%95%B0">函数</a></li>
-<li><a href="#%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86">文件处理</a>
-<ol>
-<li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">配置文件</a>
-<ol>
-<li><a href="#ini%E5%92%8Cconf">ini和conf</a></li>
-</ol>
+<li>2.4.3. <a href="#%E5%BE%AA%E7%8E%AF">循环</a></li>
+</ul>
 </li>
-</ol>
+<li>2.5. <a href="#%E5%87%BD%E6%95%B0">函数</a></li>
+<li>2.6. <a href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B">多线程</a></li>
+<li>2.7. <a href="#%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C">定时执行</a>
+<ul>
+<li>2.7.1. <a href="#watch">watch</a></li>
+<li>2.7.2. <a href="#sleep">sleep</a></li>
+</ul>
 </li>
-<li><a href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B">多线程</a></li>
-<li><a href="#%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8F%82%E6%95%B0%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8">脚本的参数自动补全</a>
-<ol>
-<li><a href="#bash">Bash</a></li>
-<li><a href="#zsh">Zsh</a></li>
-</ol>
+</ul>
 </li>
-<li><a href="#%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97">常用模块</a>
-<ol>
-<li><a href="#%E6%97%B6%E9%97%B4">时间</a></li>
+<li>
+<ol start="3">
+<li><a href="#%E9%9B%86%E6%88%90">集成</a></li>
 </ol>
+<ul>
+<li>3.1. <a href="#%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86">文件处理</a>
+<ul>
+<li>3.1.1. <a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">配置文件</a>
+<ul>
+<li>3.1.1.1. <a href="#ini%E5%92%8Cconf">ini和conf</a></li>
+</ul>
 </li>
-<li><a href="#%E5%B7%A5%E5%85%B7">工具</a>
-<ol>
-<li><a href="#shyaml">shyaml</a></li>
-</ol>
+<li>3.1.2. <a href="#shyaml">shyaml</a></li>
+</ul>
 </li>
-</ol>
+<li>3.2. <a href="#%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8F%82%E6%95%B0%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8">脚本的参数自动补全</a>
+<ul>
+<li>3.2.1. <a href="#bash">Bash</a></li>
+<li>3.2.2. <a href="#zsh">Zsh</a></li>
+</ul>
 </li>
-<li><a href="#tips">Tips</a>
-<ol>
-<li><a href="#%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5">常用代码片段</a></li>
-</ol>
+</ul>
 </li>
+<li>
+<ol start="4">
+<li><a href="#tips">Tips</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-11-05 16:05</em>|</p>
+<ul>
+<li>4.1. <a href="#%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5">常用代码片段</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-11-14 23:33:08</p>
 <hr>
 <h1 id="学习shell">学习Shell</h1>
 <blockquote>
@@ -282,25 +310,30 @@
 <blockquote>
 <p><a href="https://blog.mythsman.com/post/5d2ab67ff678ba2eb3bd346f/">参考: 编写 Bash Shell 脚本的最佳实践</a></p>
 </blockquote>
+<hr>
 <blockquote>
-<p><a href="https://github.com/koalaman/shellcheck">shellcheck</a><code>Shell语法检测</code></p>
+<p><a href="https://github.com/koalaman/shellcheck">shellcheck</a><code>Shell语法检测</code><br>
+<a href="https://github.com/YiNNx/cmd-wrapped">cmd-wrapped</a><code>统计命令执行历史</code></p>
 </blockquote>
 <h2 id="shell类别">shell类别</h2>
 <blockquote>
-<p>切换shell <code>chsh -s /bin/bash</code></p>
+<p>切换默认shell <code>chsh -s /bin/zsh</code></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/happycxz/p/7840077.html">参考: 常见shell类型</a></p>
 </blockquote>
 <ul>
 <li>sh
 <ul>
-<li>大多Linux都支持的shell类别</li>
+<li>几乎所有Linux都支持的shell类别</li>
 </ul>
 </li>
-<li>bash</li>
-<li>zsh
+<li>bash
 <ul>
-<li>高扩展性 <a href="https://segmentfault.com/a/1190000004695131">配置oh my zsh</a></li>
+<li>主流发行版都支持的shell</li>
 </ul>
 </li>
+<li><a href="/Script/Zsh.md">Zsh</a></li>
 <li>dash
 <ul>
 <li>它主要是为了执行脚本而出现，而不是交互，它速度更快，但功能相比bash要少很多，语法严格遵守POSIX标准</li>
@@ -309,14 +342,11 @@
 </li>
 <li>fish
 <ul>
-<li>交互式的, 补全功能比较好</li>
+<li>交互式的,补全功能比较好,适合不懂太多的新手会提示大部分命令接下来的参数以及历史，不适合已经做了大量默认配置的用户（这个时候的交互式提示反而影响操作）。</li>
+<li>Garuda发行版的默认Shell</li>
 </ul>
 </li>
 </ul>
-<blockquote>
-<p><a href="http://www.cnblogs.com/happycxz/p/7840077.html">参考: 常见shell类型</a><br>
-<a href="https://github.com/goreliu/zshguide">Github: zsh guide</a></p>
-</blockquote>
 <hr>
 <h2 id="执行方式">执行方式</h2>
 <ul>
@@ -329,8 +359,12 @@
 <li>只要该文件具有执行权限就可以直接运行了 <code>./a.sh</code> 或者绝对路径</li>
 </ul>
 </li>
+<li>
+<p><a href="https://github.com/Nukesor/pueue">pueue</a><code>shell后台执行队列</code></p>
+</li>
 </ul>
 <hr>
+<h1 id="基础结构">基础结构</h1>
 <h2 id="输入输出">输入输出</h2>
 <h3 id="输入">输入</h3>
 <ul>
@@ -339,34 +373,34 @@
 <p>处理管道的输入也是使用 read</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="k">while</span> <span class="nb">read</span> line<span class="p">;</span> <span class="k">do</span>
-  <span class="nb">echo</span> <span class="nv">$line</span>
-<span class="k">done</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="k">while</span> <span class="nb">read</span> line<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="nv">$line</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>select</code></li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">  <span class="nb">echo</span> <span class="s2">&#34;What is your favourite OS?&#34;</span>
-  <span class="k">select</span> var in <span class="s2">&#34;Linux&#34;</span> <span class="s2">&#34;Gnu Hurd&#34;</span> <span class="s2">&#34;Free BSD&#34;</span> <span class="s2">&#34;Other&#34;</span><span class="p">;</span> <span class="k">do</span>
-    break<span class="p">;</span>
-  <span class="k">done</span>
-  <span class="nb">echo</span> <span class="s2">&#34;You have selected </span><span class="nv">$var</span><span class="s2">&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;What is your favourite OS?&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">select</span> var in <span class="s2">&#34;Linux&#34;</span> <span class="s2">&#34;Gnu Hurd&#34;</span> <span class="s2">&#34;Free BSD&#34;</span> <span class="s2">&#34;Other&#34;</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    break<span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">done</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;You have selected </span><span class="nv">$var</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="输出">输出</h3>
 <p>echo  printf</p>
@@ -408,31 +442,42 @@
 </ol>
 <hr>
 <h2 id="变量">变量</h2>
+<ul>
+<li>获取命令输出作为变量
+<ul>
+<li><code>$(ls)</code></li>
+<li><code>`ls`</code></li>
+</ul>
+</li>
+</ul>
 <h3 id="变量作用域">变量作用域</h3>
 <blockquote>
-<p>比Python的作用域更加恶心</p>
+<p>比Python的作用域更加宽泛和不可控，引用一个变量时需要注意值的来源。</p>
 </blockquote>
 <h3 id="嵌套">嵌套</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">  <span class="c1"># 实现了读取 A_host变量的值</span>
-  <span class="nv">perfix</span><span class="o">=</span><span class="s1">&#39;A_&#39;</span>
-  <span class="nv">name</span><span class="o">=</span><span class="si">${</span><span class="nv">perfix</span><span class="si">}</span>host
-  <span class="nv">host</span><span class="o">=</span><span class="si">${</span><span class="p">!name</span><span class="si">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># 实现了读取 A_host变量的值</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">perfix</span><span class="o">=</span><span class="s1">&#39;A_&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">name</span><span class="o">=</span><span class="si">${</span><span class="nv">perfix</span><span class="si">}</span>host
+</span></span><span class="line"><span class="cl">    <span class="nv">host</span><span class="o">=</span><span class="si">${</span><span class="p">!name</span><span class="si">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p><a href="http://www.bitscn.com/os/linux/201505/506409.html">shell将变量当命令执行问题</a></p>
 </blockquote>
 <ol>
-<li><code>${command}</code></li>
-<li><code>echo ${command}|awk '{run=$0;system(run)}'</code> 最好</li>
+<li><code>${command}</code> 执行 command变量 内容
+<ul>
+<li><code>echo ${command} |awk '{run=$0;system(run)}'</code> 推荐方式</li>
+</ul>
+</li>
 </ol>
 <hr>
 <h2 id="数据类型">数据类型</h2>
@@ -472,19 +517,19 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">  <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> -gt <span class="m">0</span> <span class="o">]</span> 2&gt;/dev/null <span class="p">;</span><span class="k">then</span> 
-    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2"> is number.&#34;</span> 
-  <span class="k">else</span> 
-    <span class="nb">echo</span> <span class="s1">&#39;no.&#39;</span> 
-  <span class="k">fi</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> -gt <span class="m">0</span> <span class="o">]</span> 2&gt;/dev/null <span class="p">;</span><span class="k">then</span> 
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2"> is number.&#34;</span> 
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> 
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s1">&#39;no.&#39;</span> 
+</span></span><span class="line"><span class="cl">  <span class="k">fi</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="字符串">字符串</h3>
@@ -526,8 +571,13 @@
 </tbody>
 </table>
 <ol>
-<li>${varible:start:end} 定长截取</li>
-<li>ls -al | cut -d &ldquo;.&rdquo; -f 2 取常规文件后缀名</li>
+<li><code>${varible:start:end}</code> 定长截取</li>
+</ol>
+<ul>
+<li><code>${varible:4}</code> 第四个字符到结束</li>
+</ul>
+<ol>
+<li><code>ls -al | cut -d &quot;.&quot; -f 2</code> 取常规文件后缀名</li>
 </ol>
 <hr>
 <p><strong><code>获取命令的输出</code></strong></p>
@@ -551,7 +601,7 @@
 <p><code>字符串的包含问题</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -564,18 +614,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">  <span class="nv">isGithub</span><span class="o">=</span><span class="sb">`</span>expr match <span class="s2">&#34;</span><span class="nv">$line</span><span class="s2">&#34;</span> <span class="s2">&#34;.*&#34;</span><span class="nv">$2</span><span class="sb">`</span>
-  <span class="c1"># 简单的就是使用grep</span>
-  <span class="nv">isGithub</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$line</span> <span class="p">|</span> grep <span class="s2">&#34;github&#34;</span> <span class="sb">`</span>
-  <span class="c1"># return 0 is $1 is substring of $2, otherwise 1</span>
-  strIsSubstring<span class="o">(){</span>
-      <span class="nb">local</span> <span class="nv">x</span><span class="o">=</span><span class="m">1</span>
-      <span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span> in
-          *<span class="nv">$1</span>*<span class="o">)</span> <span class="nv">x</span><span class="o">=</span>0<span class="p">;;</span>
-      <span class="k">esac</span>
-      <span class="nb">echo</span> <span class="nv">$x</span>
-  <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="nv">isGithub</span><span class="o">=</span><span class="sb">`</span>expr match <span class="s2">&#34;</span><span class="nv">$line</span><span class="s2">&#34;</span> <span class="s2">&#34;.*&#34;</span><span class="nv">$2</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># 简单的就是使用grep</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">isGithub</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$line</span> <span class="p">|</span> grep <span class="s2">&#34;github&#34;</span> <span class="sb">`</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># return 0 is $1 is substring of $2, otherwise 1</span>
+</span></span><span class="line"><span class="cl">  strIsSubstring<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">local</span> <span class="nv">x</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span> in
+</span></span><span class="line"><span class="cl">          *<span class="nv">$1</span>*<span class="o">)</span> <span class="nv">x</span><span class="o">=</span>0<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">esac</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">echo</span> <span class="nv">$x</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>求长</em> <code>${#var}</code></p>
 <p><em>字符串拆分成数组</em></p>
@@ -591,6 +641,9 @@
 </ol>
 <hr>
 <h3 id="数组">数组</h3>
+<blockquote>
+<p><a href="http://blog.csdn.net/superbfly/article/details/52453334">shell处理时间格式</a></p>
+</blockquote>
 <hr>
 <h2 id="结构">结构</h2>
 <h3 id="传递参数">传递参数</h3>
@@ -640,7 +693,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -667,48 +720,54 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">  <span class="c1"># 1. 简单的方式</span>
-  <span class="k">case</span> <span class="nv">$1</span> in 
-    -h <span class="p">|</span> h<span class="o">)</span>
-      <span class="nb">echo</span> <span class="s2">&#34;help&#34;</span>
-    <span class="p">;;</span>
-    *<span class="o">)</span>
-      <span class="nb">echo</span> <span class="s2">&#34;default&#34;</span>
-    <span class="p">;;</span>
-  <span class="k">esac</span>
-
-  <span class="c1"># 2. 规范化的参数</span>
-  <span class="k">while</span> <span class="nb">getopts</span> <span class="s2">&#34;hup:&#34;</span> opt<span class="p">;</span> <span class="k">do</span>
-    <span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$opt</span><span class="s2">&#34;</span> in
-      h<span class="o">)</span>
-        usage
-        <span class="nb">exit</span> <span class="m">0</span>
-        <span class="p">;;</span>
-      u<span class="o">)</span>
-        <span class="nv">UPCASE</span><span class="o">=</span><span class="nb">true</span>
-        <span class="p">;;</span>
-      d<span class="o">)</span>
-        <span class="nv">DATE</span><span class="o">=</span><span class="nv">$OPTARG</span>
-        <span class="p">;;</span>
-    <span class="k">esac</span>
-  <span class="k">done</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="c1"># 1. 简单的方式</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nv">$1</span> in 
+</span></span><span class="line"><span class="cl">    -h <span class="p">|</span> h<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">echo</span> <span class="s2">&#34;help&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    *<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">echo</span> <span class="s2">&#34;default&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">esac</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># 2. 规范化的参数</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="nb">getopts</span> <span class="s2">&#34;hup:&#34;</span> opt<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$opt</span><span class="s2">&#34;</span> in
+</span></span><span class="line"><span class="cl">      h<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        usage
+</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">      u<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">UPCASE</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">      d<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">DATE</span><span class="o">=</span><span class="nv">$OPTARG</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">esac</span>
+</span></span><span class="line"><span class="cl">  <span class="k">done</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="判断">判断</h3>
 <h4 id="if">if</h4>
 <ul>
 <li><a href="http://www.cnblogs.com/276815076/archive/2011/10/30/2229286.html">参考博客</a></li>
 </ul>
+<p>注意方括号格式时，内部要留一个空格，否则会报 语法错误</p>
 <p><em>判断文件</em></p>
 <ul>
 <li>
-<p>文件 <code>if [ -f path ]</code></p>
+<p>文件存在 <code>if [ -e path ]</code></p>
+<ul>
+<li>-r 可读</li>
+<li>-f 存在，而且是普通文件</li>
+<li>-s 存在且文件大小大于0字节</li>
+</ul>
 </li>
 <li>
-<p>链接 <code>if [ -L path ]</code></p>
+<p>链接存在 <code>if [ -L path ]</code></p>
 </li>
 <li>
-<p>目录 <code>if [ -d path ]</code></p>
+<p>目录存在 <code>if [ -d path ]</code></p>
 </li>
 <li>
 <p>整数比较</p>
@@ -723,11 +782,29 @@
 <li><code>&gt;= </code>大于等于(需要双括号),如:((&quot;$a&quot; &gt;= &ldquo;$b&rdquo;))</li>
 </ul>
 </li>
+<li>
+<p>字符串比较</p>
+<ul>
+<li><code>if [ &quot;$root&quot;x = 'x' ]</code> 判断是否为空
+<ul>
+<li><code>if test -z &quot;$repo_path&quot;;</code></li>
+</ul>
+</li>
+<li><code>if [ $(echo $str | grep -e '$str1') ]</code> 判断包含</li>
+<li><code>if [[ $a == z* ]]</code> 模式匹配，但是不是严格正则表达式格式</li>
+</ul>
+</li>
+<li>
+<p>判断数组包含 <code>if [[ &quot;${ary[@]}&quot; =~ &quot;$a&quot; ]]</code></p>
+<ul>
+<li>其中 ary=(1 2 3); a=2;</li>
+</ul>
+</li>
 </ul>
 <h4 id="case">case</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -737,24 +814,26 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">  <span class="k">case</span> <span class="nv">$content</span> in 
-    -h<span class="p">|</span>h<span class="o">)</span>
-      <span class="nb">echo</span> <span class="s2">&#34;help&#34;</span>
-    <span class="p">;;</span>
-    *<span class="o">)</span>
-      <span class="nb">echo</span> <span class="s2">&#34;前面全部不匹配才会执行&#34;</span>
-    <span class="p">;;</span>
-  <span class="k">esac</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="k">case</span> <span class="nv">$content</span> in 
+</span></span><span class="line"><span class="cl">    -h<span class="p">|</span>h<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">echo</span> <span class="s2">&#34;help&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    *<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">echo</span> <span class="s2">&#34;前面全部不匹配才会执行&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">esac</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="循环">循环</h3>
 <ul>
 <li><a href="http://www.cnblogs.com/fhefh/archive/2011/04/15/2017233.html">参考博客</a></li>
 </ul>
-<p><code>for</code></p>
+<blockquote>
+<p>for</p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -763,35 +842,55 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">  <span class="k">for</span> i in <span class="k">$(</span>seq <span class="m">1</span> 5<span class="k">)</span><span class="p">;</span> <span class="k">do</span>
-    <span class="nb">echo</span> <span class="nv">$i</span>
-  <span class="k">done</span>
-
-  <span class="k">for</span> <span class="o">((</span> <span class="nv">a</span><span class="o">=</span>0<span class="p">;</span> a&lt;10<span class="p">;</span> a++<span class="o">))</span> <span class="k">do</span>
-    <span class="nb">echo</span> <span class="nv">$a</span><span class="p">;</span>
-  <span class="k">done</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="k">for</span> i in <span class="k">$(</span>seq <span class="m">1</span> 5<span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="nv">$i</span>
+</span></span><span class="line"><span class="cl">  <span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="o">((</span> <span class="nv">a</span><span class="o">=</span>0<span class="p">;</span> a&lt;10<span class="p">;</span> a++<span class="o">))</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="nv">$a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">done</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>while</code></p>
+</div><blockquote>
+<p>while</p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nv">i</span><span class="o">=</span><span class="m">1</span>
-    <span class="k">while</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span> -le <span class="m">10</span> <span class="o">]</span><span class="p">;</span><span class="k">do</span>
-        <span class="nb">echo</span> <span class="nv">$i</span>
-        <span class="nv">i</span><span class="o">=</span><span class="k">$((</span><span class="nv">$i</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>
-    <span class="k">done</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="nv">i</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span> -le <span class="m">10</span> <span class="o">]</span><span class="p">;</span><span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="nv">$i</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">i</span><span class="o">=</span><span class="k">$((</span><span class="nv">$i</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><ol>
+</div><blockquote>
+<p>逐行遍历命令的输出</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="k">while</span> <span class="nb">read</span> -r proc<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">#do work</span>
+</span></span><span class="line"><span class="cl">  <span class="k">done</span> <span class="o">&lt;&lt;&lt;</span> <span class="s2">&#34;</span><span class="k">$(</span>ps -ewo pid,cmd,etime <span class="p">|</span> grep python <span class="p">|</span> grep -v grep <span class="p">|</span> grep -v sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Tips</p>
+</blockquote>
+<ol>
 <li>break continue: break能跳出多层循环，只需带上数字 <code>break num</code>，也可以理解为无参的break默认带了1参数</li>
-<li>done 后面可以接重定向，将循环的输出转到文件而不是终端</li>
+<li>done 后面可以重定向，将循环的输出转到文件而不是终端: <code>for do done &gt; loop.log</code></li>
 </ol>
 <hr>
 <h2 id="函数">函数</h2>
@@ -814,7 +913,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -828,28 +927,94 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    simple<span class="o">(){</span>
-        <span class="nb">echo</span> <span class="s2">&#34;simple&#34;</span>
-    <span class="o">}</span>
-
-    zero<span class="o">(){</span>
-        <span class="k">return</span> <span class="m">0</span>
-    <span class="o">}</span>
-    <span class="c1"># 函数退出状态码（0-255）</span>
-    <span class="nb">echo</span> <span class="s2">&#34;return &#34;</span><span class="nv">$?</span>
-    
-    <span class="c1"># 使用输出返回值</span>
-    <span class="nv">result</span><span class="o">=</span><span class="k">$(</span>simple<span class="k">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    simple<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;simple&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    zero<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 函数退出状态码（0-255）</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;return &#34;</span><span class="nv">$?</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 使用输出返回值</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">result</span><span class="o">=</span><span class="k">$(</span>simple<span class="k">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>引用 shell 文件 <code>source shell文件相对路径</code> source可以简写为 <code>.</code></li>
 </ul>
+<h2 id="多线程">多线程</h2>
+<blockquote>
+<p><a href="https://www.cnblogs.com/signjing/p/7074778.html">参考: shell如何实现多线程</a></p>
+</blockquote>
 <hr>
-<h2 id="文件处理">文件处理</h2>
+<h2 id="定时执行">定时执行</h2>
+<h3 id="watch">watch</h3>
+<blockquote>
+<p>execute a program periodically, showing output fullscreen</p>
+</blockquote>
+<ul>
+<li>-d 高亮差异数据</li>
+</ul>
+<p>watch 等待命令对应进程执行完成后才进入计时到下一个周期执行，可以利用这个特性来执行异步shell</p>
+<blockquote>
+<p>demo.sh</p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="k">for</span> i in <span class="k">$(</span>seq <span class="m">1</span> 100<span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  doSomething <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>watch demo.sh 达到的效果为：等到sh中的100个子进程执行结束后，主进程退出，才会等2s再执行一次demo.sh</p>
+<h3 id="sleep">sleep</h3>
+<hr>
+<h1 id="集成">集成</h1>
+<h2 id="文件处理">文件处理</h2>
+<blockquote>
+<p>读取当前目录文件</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">    <span class="k">for</span> file in ./*
+</span></span><span class="line"><span class="cl">    <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">test</span> -f <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2"> 是文件&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">test</span> -d <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$file</span><span class="s2"> 是目录&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>读取文件行</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -860,16 +1025,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">    <span class="c1"># 1</span>
-    <span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -r -u3 line<span class="p">;</span> <span class="k">do</span>
-        <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$line</span><span class="s2">&#34;</span>
-    <span class="k">done</span> 3&lt; <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span>
-
-    <span class="c1"># 2</span>
-    cat a.log <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> line<span class="p">;</span> <span class="k">do</span>
-        <span class="nb">echo</span> <span class="s2">&#34;line: &#34;</span><span class="nv">$line</span><span class="p">;</span>
-    <span class="k">done</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">    <span class="c1"># 1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -r -u3 line<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$line</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span> 3&lt; <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 2</span>
+</span></span><span class="line"><span class="cl">    cat a.log <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> line<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;line: &#34;</span><span class="nv">$line</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>当前目录创建临时文件，并输出创建的文件名 <code>mktmp data.XXXXXX</code></li>
@@ -880,25 +1045,40 @@
 </ul>
 <ol>
 <li>输出到终端并写入文件 <code>echo &quot;test&quot; | tee a.log</code></li>
+<li>基于模板快速创建多份配置文件
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="nv">REPLICA</span><span class="o">=</span><span class="m">01</span> <span class="nv">SHARD</span><span class="o">=</span><span class="m">01</span> envsubst &lt; config.xml &gt; clickhouse01/config.xml
+</span></span><span class="line"><span class="cl">    <span class="nv">REPLICA</span><span class="o">=</span><span class="m">02</span> <span class="nv">SHARD</span><span class="o">=</span><span class="m">01</span> envsubst &lt; config.xml &gt; clickhouse02/config.xml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>config.xml 中使用<code>${}</code>做占位符 例如： <code>&lt;interserver_http_host&gt;clickhouse${REPLICA}&lt;/interserver_http_host&gt;</code></li>
+</ul>
+</li>
 </ol>
 <h3 id="配置文件">配置文件</h3>
 <h4 id="ini和conf">ini和conf</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">  [block]
-  name=myth
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  [block]
+</span></span><span class="line"><span class="cl">  name=myth
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>如果没有 <code>[block]</code> 这样的声明就可以当sh用, 直接 source file 就加载了配置内容</li>
 </ul>
-<h2 id="多线程">多线程</h2>
+<h3 id="shyaml">shyaml</h3>
 <blockquote>
-<p><a href="https://www.cnblogs.com/signjing/p/7074778.html">参考: shell如何实现多线程</a></p>
+<p><a href="https://linuxtoy.org/archives/shyaml.html">参考</a></p>
 </blockquote>
 <hr>
 <h2 id="脚本的参数自动补全">脚本的参数自动补全</h2>
@@ -915,45 +1095,40 @@
 <li><code>#compdef redis-cli rec</code> 这第一行很重要, 定义了是对哪个命令或脚本的自动补全</li>
 </ol>
 <hr>
-<h2 id="常用模块">常用模块</h2>
-<h3 id="时间">时间</h3>
-<blockquote>
-<p><a href="http://blog.csdn.net/superbfly/article/details/52453334">shell处理时间格式</a></p>
-</blockquote>
-<hr>
-<h2 id="工具">工具</h2>
-<blockquote>
-<p><a href="/Skills/Soft_Manual.md#%E7%BB%88%E7%AB%AF%E5%B7%A5%E5%85%B7">更多工具</a></p>
-</blockquote>
-<h3 id="shyaml">shyaml</h3>
-<blockquote>
-<p><a href="https://linuxtoy.org/archives/shyaml.html">参考</a></p>
-</blockquote>
-<hr>
 <h1 id="tips">Tips</h1>
+<blockquote>
+<p><a href="https://github.com/sharkdp/hyperfine">hyperfine</a>命令压测工具</p>
+</blockquote>
+<ul>
+<li>set -x 开启调试 每条实际执行的命令都会输出到控制台
+<ul>
+<li>set +x 关闭调试</li>
+</ul>
+</li>
+</ul>
 <h2 id="常用代码片段">常用代码片段</h2>
 <ol>
-<li>获取命名或函数标准输出 <strong>`</strong> 反引号包裹命令 或者 <strong>$()</strong></li>
+<li>获取命名或函数标准输出: 反引号 <strong>`cmd`</strong>  或者 <strong>$(cmd)</strong></li>
 <li>检查当前用户为Root用户
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>id -u<span class="k">)</span> !<span class="o">=</span> <span class="s2">&#34;0&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-        <span class="nb">printf</span> <span class="nv">$red</span><span class="s2">&#34;Please use root to run this script\n&#34;</span><span class="nv">$end</span>
-        <span class="nb">exit</span> <span class="m">1</span>
-    <span class="k">fi</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>id -u<span class="k">)</span> !<span class="o">=</span> <span class="s2">&#34;0&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">printf</span> <span class="nv">$red</span><span class="s2">&#34;Please use root to run this script\n&#34;</span><span class="nv">$end</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>kill 脚本进程
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -961,23 +1136,23 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nv">id</span><span class="o">=</span><span class="sb">`</span>ps -ef <span class="p">|</span> grep <span class="s2">&#34;WithRedis.py&#34;</span> <span class="p">|</span> grep -v <span class="s2">&#34;grep&#34;</span> <span class="p">|</span> grep -v <span class="s2">&#34;\-d&#34;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">id</span><span class="si">}</span><span class="s2">1&#34;</span> <span class="o">=</span> <span class="s2">&#34;1&#34;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
-        <span class="nb">printf</span> <span class="nv">$red</span><span class="s2">&#34;not exist background running script\n&#34;</span><span class="nv">$end</span>
-    <span class="k">else</span>
-        <span class="nb">kill</span> -9 <span class="nv">$id</span>
-    <span class="k">fi</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="nv">id</span><span class="o">=</span><span class="sb">`</span>ps -ef <span class="p">|</span> grep <span class="s2">&#34;WithRedis.py&#34;</span> <span class="p">|</span> grep -v <span class="s2">&#34;grep&#34;</span> <span class="p">|</span> grep -v <span class="s2">&#34;\-d&#34;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">id</span><span class="si">}</span><span class="s2">1&#34;</span> <span class="o">=</span> <span class="s2">&#34;1&#34;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">printf</span> <span class="nv">$red</span><span class="s2">&#34;not exist background running script\n&#34;</span><span class="nv">$end</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">kill</span> -9 <span class="nv">$id</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>得到脚本绝对路径; 如果只是执行 pwd 只是得到执行脚本时的当前绝对路径而已
+<li>得到脚本绝对路径; <code>如果脚本内执行 pwd 只会得到执行脚本时会话的绝对路径，而不是脚本的路径</code>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nv">basepath</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="se">\`</span>dirname <span class="nv">$0</span><span class="se">\`</span><span class="p">;</span> <span class="nb">pwd</span><span class="k">)</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="nv">basepath</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="se">\`</span>dirname <span class="nv">$0</span><span class="se">\`</span><span class="p">;</span> <span class="nb">pwd</span><span class="k">)</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
@@ -986,11 +1161,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-15
         
@@ -1007,11 +1182,11 @@
         <a class="prev" href="/post/skills/application/editor/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">编辑器</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/script/bash/">
             <span class="next-text nav-default">Bash</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -1029,17 +1204,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -1047,11 +1222,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -1061,16 +1236,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

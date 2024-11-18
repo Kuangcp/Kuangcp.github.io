@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JVM 监控&amp;诊断 - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 JVM 监控&amp;amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1." /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/jvmtool/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="JVM 监控&amp;诊断" />
+<meta property="og:description" content="💠 JVM 监控&amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/jvmtool/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
+<meta itemprop="name" content="JVM 监控&amp;诊断">
+<meta itemprop="description" content="💠 JVM 监控&amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1."><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="3116">
+<meta itemprop="keywords" content="JVM," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JVM 监控&amp;诊断"/>
+<meta name="twitter:description" content="💠 JVM 监控&amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">JVM 监控&amp;诊断</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 约 3116 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#jvm-监控诊断">JVM 监控&amp;诊断</a></li>
+    <li><a href="#jvmti">JVMTI</a></li>
+    <li><a href="#jdk自带工具">JDK自带工具</a>
+      <ul>
+        <li><a href="#java">java</a>
+          <ul>
+            <li><a href="#环境变量的使用">环境变量的使用</a></li>
+          </ul>
+        </li>
+        <li><a href="#jps">jps</a></li>
+        <li><a href="#jstat">jstat</a></li>
+        <li><a href="#jinfo">jinfo</a></li>
+        <li><a href="#jmap">jmap</a></li>
+        <li><a href="#jhat">jhat</a>
+          <ul>
+            <li><a href="#oql">OQL</a></li>
+            <li><a href="#hprof">HPROF</a></li>
+          </ul>
+        </li>
+        <li><a href="#jstack">jstack</a>
+          <ul>
+            <li><a href="#实现原理">实现原理</a></li>
+          </ul>
+        </li>
+        <li><a href="#jcmd">jcmd</a></li>
+        <li><a href="#jhsdb">jhsdb</a></li>
+      </ul>
+    </li>
+    <li><a href="#终端类工具">终端类工具</a>
+      <ul>
+        <li><a href="#arthas">Arthas</a></li>
+        <li><a href="#async-profiler">async-profiler</a></li>
+      </ul>
+    </li>
+    <li><a href="#jvm-sandbox">jvm-sandbox</a></li>
+    <li><a href="#图形化工具">图形化工具</a>
+      <ul>
+        <li><a href="#jprofiler">JProfiler</a></li>
+        <li><a href="#yourkit">YourKit</a></li>
+        <li><a href="#visualvm">Visualvm</a></li>
+        <li><a href="#mat">MAT</a></li>
+        <li><a href="#jmc">JMC</a></li>
+        <li><a href="#ibm-heap-analyzer">IBM Heap Analyzer</a></li>
+        <li><a href="#intellij-idea">IntelliJ IDEA</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#jvm-%E7%9B%91%E6%8E%A7&amp;%E8%AF%8A%E6%96%AD">JVM 监控&amp;诊断</a></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><a href="#jvmti">JVMTI</a></li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><a href="#jdk%E8%87%AA%E5%B8%A6%E5%B7%A5%E5%85%B7">JDK自带工具</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#java">java</a>
+<ul>
+<li>3.1.1. <a href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8">环境变量的使用</a></li>
+</ul>
+</li>
+<li>3.2. <a href="#jps">jps</a></li>
+<li>3.3. <a href="#jstat">jstat</a></li>
+<li>3.4. <a href="#jinfo">jinfo</a></li>
+<li>3.5. <a href="#jmap">jmap</a></li>
+<li>3.6. <a href="#jhat">jhat</a>
+<ul>
+<li>3.6.1. <a href="#oql">OQL</a></li>
+<li>3.6.2. <a href="#hprof">HPROF</a></li>
+</ul>
+</li>
+<li>3.7. <a href="#jstack">jstack</a>
+<ul>
+<li>3.7.1. <a href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">实现原理</a></li>
+</ul>
+</li>
+<li>3.8. <a href="#jcmd">jcmd</a></li>
+<li>3.9. <a href="#jhsdb">jhsdb</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E7%BB%88%E7%AB%AF%E7%B1%BB%E5%B7%A5%E5%85%B7">终端类工具</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#arthas">Arthas</a></li>
+<li>4.2. <a href="#async-profiler">async-profiler</a></li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li><a href="#jvm-sandbox">jvm-sandbox</a></li>
+</ol>
+</li>
+<li>
+<ol start="6">
+<li><a href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B7%A5%E5%85%B7">图形化工具</a></li>
+</ol>
+<ul>
+<li>6.1. <a href="#jprofiler">JProfiler</a></li>
+<li>6.2. <a href="#yourkit">YourKit</a></li>
+<li>6.3. <a href="#visualvm">Visualvm</a></li>
+<li>6.4. <a href="#mat">MAT</a></li>
+<li>6.5. <a href="#jmc">JMC</a></li>
+<li>6.6. <a href="#ibm-heap-analyzer">IBM Heap Analyzer</a></li>
+<li>6.7. <a href="#intellij-idea">IntelliJ IDEA</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-11-14 16:40:22</p>
+<hr>
+<h1 id="jvm-监控诊断">JVM 监控&amp;诊断</h1>
+<p>命令行终端</p>
+<ul>
+<li>标准终端类：jps、jinfo、jstat、jstack、jmap</li>
+<li>功能整合类：jcmd、vjtools、arthas、greys</li>
+</ul>
+<p>可视化界面</p>
+<ul>
+<li>简易：JConsole、JVisualvm、HA、GCHisto、GCViewer</li>
+<li>进阶：MAT、JProfiler</li>
+</ul>
+<p>命令行推荐 arthas ，可视化界面推荐 JProfiler<br>
+此外还有一些在线的平台 <a href="https://gceasy.io/">gceasy</a>、heaphero、fastthread 。</p>
+<blockquote>
+<p><a href="https://github.com/aragozin/jvm-tools">jvm-tools</a></p>
+</blockquote>
+<h1 id="jvmti">JVMTI</h1>
+<p><code>JVM Tool Interface</code></p>
+<h1 id="jdk自带工具">JDK自带工具</h1>
+<blockquote>
+<p>都是jdk的bin目录下的工具，注意使用时要和目标JVM同一个JDK版本，以及同一个用户。</p>
+</blockquote>
+<h2 id="java">java</h2>
+<blockquote>
+<p>使用方式：</p>
+</blockquote>
+<ul>
+<li>执行类： <code>java [-options] class [args...]</code></li>
+<li>执行包： <code>java [-options] -jar jarfile [args...]</code> 或 <code>java -jar [-options] jarfile [args...]</code></li>
+</ul>
+<blockquote>
+<p><strong>注意</strong> 这些Java options都<em>不会</em>生效。
+<code>java -jar jarfile [-options] [args...]</code><br>
+<code>java -jar jarfile [args...] [-options]</code></p>
+</blockquote>
+<h3 id="环境变量的使用">环境变量的使用</h3>
+<blockquote>
+<p><a href="https://coderanch.com/t/178539/certification/java-command-line-option-good">What is the java -D command-line option good for? </a></p>
+</blockquote>
+<ul>
+<li>传入 <code>java -Dkey=true -jar xxx.jar</code>
+<ul>
+<li>-D 参数 要在 -jar <strong>之前</strong></li>
+</ul>
+</li>
+<li>获取 <code>System.getProperty(&quot;key&quot;, &quot;defaultvalue&quot;);</code></li>
+</ul>
+<h2 id="jps">jps</h2>
+<blockquote>
+<p>主要用来输出JVM中运行的进程状态信息</p>
+</blockquote>
+<ul>
+<li>option:
+<ul>
+<li>-q 忽略输出的类名、Jar名以及传递给main方法的参数，只输出pid。</li>
+<li>-m 输出传递给main方法的参数，如果是内嵌的JVM则输出为null。</li>
+<li>-l 输出应用程序主类的完整包名，或者是应用程序JAR文件的完整路径。</li>
+<li>-v 输出传给JVM的参数。</li>
+<li>-V 输出通过标记的文件传递给JVM的参数（.hotspotrc文件，或者是通过参数-XX:Flags=指定的文件）</li>
+</ul>
+</li>
+</ul>
+<h2 id="jstat">jstat</h2>
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/jstat.html">Oracle Doc： jstat</a></p>
+</blockquote>
+<ul>
+<li>option:
+<ul>
+<li>-class 类加载情况</li>
+<li>-compiler 编译统计</li>
+<li>-printcompilation JVM编译方法统计</li>
+<li>查看内存相关指标
+<ul>
+<li><code>-gcutil</code> 总gc统计情况</li>
+<li><code>-gc</code> gc统计情况</li>
+<li><code>-gccapacity</code> 堆内存空间</li>
+<li><code>-gcnew</code> 和 <code>-gcnewcapacity</code> 新生代gc和内存统计</li>
+<li><code>-gcold</code> 和 <code>-gcoldcapacity</code> 老年代gc和内存统计</li>
+<li><code>-gcpermcapacity</code> JDK7 永久代</li>
+<li><code>-gcmetacapacity</code> JDK8 元空间</li>
+</ul>
+</li>
+<li>-t 在第一列输出时间戳<code>(s)</code>。该时间戳从jvm启动后开始计时</li>
+<li>-h3 每隔N行输出一次列表头</li>
+<li>$PID 进程号</li>
+<li>interval 输出间隔时间，单位毫秒</li>
+<li>count 输出次数</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://blog.csdn.net/achuo/article/details/107793361">CSDN: jstat</a></p>
+</blockquote>
+<blockquote>
+<p>Demo:</p>
+</blockquote>
+<ul>
+<li><code>jstat -gcutil -t -h5 7919 1000 50</code></li>
+</ul>
+<h2 id="jinfo">jinfo</h2>
+<blockquote>
+<p>观察运行中的 java 进程的运行环境参数：参数包括 Java System 属性和 JVM 命令行参数</p>
+</blockquote>
+<blockquote>
+<p>Demo:</p>
+</blockquote>
+<ul>
+<li>jinfo 14352</li>
+<li>jinfo -sysprops 14352</li>
+<li>查看JVM参数 <code>jinfo -flags 14352</code>
+<ul>
+<li>jinfo -flag MaxPermSize 14352</li>
+</ul>
+</li>
+</ul>
+<h2 id="jmap">jmap</h2>
+<blockquote>
+<p>用来查看堆内存使用状况</p>
+</blockquote>
+<blockquote>
+<p>Demo:</p>
+</blockquote>
+<ul>
+<li><code>jmap -histo $PID</code> 展示实例和占用内存情况
+<ul>
+<li><code>jmap -histo:live $PID</code> 展示存活实例情况 <strong>注意会触发FullGC</strong></li>
+</ul>
+</li>
+<li><code>jmap -heap $PID</code> 展示Java堆的各内存区域大小及占用情况</li>
+<li><code>jmap -dump:live,format=b,file=heapLive.hprof $PID</code> dump下存活对象  <strong>注意会触发FullGC</strong>
+<ul>
+<li><code>jmap -dump:format=b,file=heapLive.hprof $PID</code> dump所有对象</li>
+<li>失败时 可以尝试 -F 参数，强制dump，但此时的dump文件不一定是完整可打开的。</li>
+<li>提示attach失败时 可修改 <code>echo 0 &gt; /proc/sys/kernel/yama/ptrace_scope</code>  jmap依赖ptrace实现，此选项放开ptrace仅支持父进程执行的限制</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="jhat">jhat</h2>
+<blockquote>
+<p>Java Head Analyse Tool <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/tooldescr012.html">Oracle: jhat</a></p>
+</blockquote>
+<p>用于分析 jmap 转储出来的堆文件, 分析完后启动一个WebServer， 浏览器打开 127.0.0.1:7000 查看</p>
+<blockquote>
+<p>参数</p>
+</blockquote>
+<ul>
+<li>-J-mx2g 设置最大内存2g</li>
+<li>-J-d64 64位模式</li>
+<li>-port 端口</li>
+</ul>
+<blockquote>
+<p>使用</p>
+</blockquote>
+<ul>
+<li>网页
+<ul>
+<li>首页 所有类，点击可查看类的实例列表</li>
+<li>底部 Other Queries 包含： histo，OQL查询，类实例 查看功能</li>
+</ul>
+</li>
+<li>比较多个dump <code>jhat -baseline snapshot_1.hprof snapshot_2.hprof</code> 1，2文件是先后dump产生的
+<ul>
+<li>在底部的类实例<code>Show instance counts</code> 中能看到多了一列 例如 <code>instances (111060 new) of class</code></li>
+</ul>
+</li>
+<li><a href="http://localhost:7000/oql/">OQL查询</a>
+<ul>
+<li><a href="http://localhost:7000/oqlhelp/">OQL使用手册</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="oql">OQL</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">&lt;</span><span class="n">JavaScript</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">select</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="p">[</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">[</span><span class="n">instanceof</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="n">name</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">identifier</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="p">[</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="o">&lt;</span><span class="n">JavaScript</span><span class="w"> </span><span class="nb">boolean</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">filter</span><span class="o">&gt;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="hprof">HPROF</h3>
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/samples/hprof.html">HPROF: A Heap/CPU Profiling Tool</a><br>
+<a href="https://github.com/bostrt/heapdumpstamp">heapdumpstamp</a><code>获取hprof创建时间戳</code></p>
+</blockquote>
+<hr>
+<h2 id="jstack">jstack</h2>
+<blockquote>
+<p>jstack [option] pid  主要用来查看某个Java进程内的线程堆栈信息</p>
+</blockquote>
+<ul>
+<li>Option:
+<ul>
+<li>-F: 强制产生一个线程dump
+<ul>
+<li><code>注意</code>此方式得到的dump<strong>缺失很多信息</strong>， 只有线程栈和操作系统线程id，没有线程名，线程cid，锁等信息</li>
+<li>而且相对于没有-F的方式，实现原理完全不一样，见下文链接</li>
+</ul>
+</li>
+<li>-m: 打印java和native frames</li>
+<li>-l: 打印关于锁的附加信息</li>
+<li>-J-d64: 64位模式</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>找出占用CPU最高的线程: <a href="https://github.com/Kuangcp/Script/blob/master/shell/assistant/java-tool.sh">封装的Shell active_cpu_thread</a></p>
+</blockquote>
+<ol>
+<li><code>jps 或者 ps aux | grep xxx</code> 得到对应Java进程id</li>
+<li><code>top -Hp 进程id</code> 查看 time 占用最长 或者 CPU占用最高 的线程id</li>
+<li><code>printf %x 线程id</code> 得到 16进制线程id</li>
+<li><code>jstack 进程id | grep -A 20 16进制线程id</code> 查看该线程的栈,进而分析到代码</li>
+</ol>
+<blockquote>
+<p><a href="https://www.baeldung.com/java-analyze-thread-dumps">How to Analyze Java Thread Dumps</a><code>分析工具和思路</code><br>
+<a href="https://stackoverflow.com/questions/76476637/openjdk11-jstack-output-explanation">OpenJDK11 jstack output explanation</a><br>
+<a href="https://dzone.com/articles/how-analyze-java-thread-dumps">How to Analyze Java Thread Dumps</a></p>
+</blockquote>
+<p>扩展：通过短时间内多次获取stack分析出 活锁，死循环，死锁等问题点，但是通常这类问题只能通过修复并重启解决</p>
+<h3 id="实现原理">实现原理</h3>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/36224094">Jstack 源码分析</a></li>
+</ul>
+<p><a href="https://stackoverflow.com/questions/26140182/running-jmap-getting-unable-to-open-socket-file">jmap -F and jstack -F</a><code>jmap和jstack 默认及加-F选项背后实现机制及优缺点</code></p>
+<ul>
+<li><a href="http://openjdk.java.net/groups/hotspot/docs/Serviceability.html#battach">Dynamic Attach Mechanism</a></li>
+<li><a href="http://openjdk.java.net/groups/hotspot/docs/Serviceability.html#bsa">HotSpot Serviceability Agent</a></li>
+</ul>
+<hr>
+<h2 id="jcmd">jcmd</h2>
+<blockquote>
+<p>jcmd [pid | main-class] command&hellip; | PerfCounter.print | -f filename  <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/man/jcmd.html">Oracle jcmd doc</a></p>
+</blockquote>
+<ul>
+<li>jcmd 列出所有可操作的JVM进程</li>
+<li>-f filename 执行文件内的命令</li>
+</ul>
+<p><em>command</em></p>
+<ul>
+<li>
+<p>Compiler</p>
+<ul>
+<li>Compiler.codecache</li>
+<li>Compiler.queue</li>
+</ul>
+</li>
+<li>
+<p>GC GC信息，触发GC，堆信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GC.run</td>
+<td style="text-align:left">触发一次Full GC</td>
+</tr>
+<tr>
+<td style="text-align:left">GC.heap_info</td>
+<td style="text-align:left">查看堆使用统计</td>
+</tr>
+<tr>
+<td style="text-align:left">GC.class_histogram -all</td>
+<td style="text-align:left">类实例统计</td>
+</tr>
+<tr>
+<td style="text-align:left">GC.heap_dump -all filename</td>
+<td style="text-align:left">创建所有对象的dump</td>
+</tr>
+<tr>
+<td style="text-align:left">GC.finalizer_info</td>
+<td style="text-align:left">finalization 队列信息</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>参数 <code>-all</code> 全部对象，如果去除该参数，将<strong>触发Full GC</strong>来找到所有存活对象</li>
+</ul>
+</li>
+<li>
+<p>JFR</p>
+<ul>
+<li>JFR.start 会输出提示信息</li>
+<li>JFR.stop name=1 filename=now.jfr （<code>name</code>参数从start执行后的提示信息中获取）</li>
+</ul>
+</li>
+<li>
+<p>JVMTI</p>
+</li>
+<li>
+<p>ManagementAgent</p>
+</li>
+<li>
+<p>System</p>
+</li>
+<li>
+<p>Thread</p>
+</li>
+<li>
+<p>VM</p>
+<ul>
+<li>VM.command_line</li>
+<li>VM.version</li>
+<li>VM.uptime [-date]</li>
+<li>VM.system_properties</li>
+</ul>
+</li>
+<li>
+<p>Memory</p>
+<ul>
+<li>VM.native_memory</li>
+</ul>
+</li>
+</ul>
+<h2 id="jhsdb">jhsdb</h2>
+<blockquote>
+<p><a href="https://dzone.com/articles/jhsdb-a-new-tool-for-jdk-9">jdk9 jhsdb</a> | <a href="https://docs.oracle.com/javase/9/tools/jhsdb.htm">Oracle jhsdb</a></p>
+</blockquote>
+<p>JDK9之前通过是Jar方式启动 HSDB CLHSDB。部分功能有被jmap等命令封装 例如 <code>jmap -heap</code></p>
+<ul>
+<li><code>java -cp .:sa-jdi.jar sun.jvm.hotspot.CLHSDB</code> HSDB需要和目标JVM同一个版本
+<ul>
+<li>help 查看帮助</li>
+<li>jseval 执行javascript</li>
+<li>attach：连接到目标进程戒core</li>
+<li>universe：查看Java heap的情况</li>
+<li>inspect：查看某个地址对应的数据结构的内容</li>
+<li>scanoops：扫描某个地址段的Java对象</li>
+</ul>
+</li>
+</ul>
+<p>jstack jmap jinfo jsnap 等命令功能的迁移和加强</p>
+<blockquote>
+<p>例如</p>
+</blockquote>
+<ul>
+<li><code>jmap -heap pid</code> =&gt; <code>jhsdb jmap --heap --pid pid</code></li>
+</ul>
+<hr>
+<h1 id="终端类工具">终端类工具</h1>
+<h2 id="arthas">Arthas</h2>
+<blockquote>
+<p><a href="https://github.com/alibaba/arthas">Github: Arthas</a><code>阿里巴巴</code></p>
+</blockquote>
+<h2 id="async-profiler">async-profiler</h2>
+<blockquote>
+<p><a href="https://github.com/jvm-profiling-tools/async-profiler">async-profiler</a><code>CPU和内存采样 渲染火焰图</code></p>
+</blockquote>
+<h1 id="jvm-sandbox">jvm-sandbox</h1>
+<blockquote>
+<p><a href="https://github.com/alibaba/jvm-sandbox">jvm-sandbox</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.infoq.cn/article/TSY4lGjvSfwEuXEBW*Gp">JVM SandBox 的技术原理与应用分析</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p><a href="https://github.com/vipshop/vjtools">vjtools</a><code>唯品会</code><br>
+<a href="https://github.com/dingjs/javaagent">github.com/dingjs/javaagent</a></p>
+</blockquote>
+<hr>
+<h1 id="图形化工具">图形化工具</h1>
+<blockquote>
+<p><a href="http://www.fasterj.com/tools/heapdumpanalysers.shtml">Heap Dump Analysers</a><br>
+<a href="https://sematext.com/guides/java-monitoring/">Java Monitoring Tools</a><code>Profile APM log 等多个解决思路</code></p>
+</blockquote>
+<h2 id="jprofiler">JProfiler</h2>
+<blockquote>
+<p><a href="https://www.ej-technologies.com/products/jprofiler/overview.html">Official Site</a><code>收费</code></p>
+</blockquote>
+<p><a href="https://huminxi.netlify.app/2022/06/24/oom%20%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/#more">OOM 踩坑日记</a></p>
+<h2 id="yourkit">YourKit</h2>
+<p><a href="https://www.yourkit.com/java/profiler">YourKit Java Profiler</a><code>收费</code></p>
+<h2 id="visualvm">Visualvm</h2>
+<blockquote>
+<p><a href="https://github.com/oracle/visualvm">Github:visualvm</a><br>
+<a href="https://www.oracle.com/technetwork/java/visualgc-136680.html">visualgc plugin</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.csdn.net/lc0817/article/details/67014499">参考: java内存泄漏的定位与分析</a>
+<a href="https://www.ibm.com/developerworks/cn/java/j-lo-visualvm/index.html">使用 VisualVM 进行性能分析及调优</a><br>
+<a href="http://www.cnblogs.com/belen/p/5573501.html">参考: JVisualVM简介与内存泄漏实战分析</a></p>
+</blockquote>
+<ul>
+<li><code>Local</code></li>
+<li><code>Remote</code>
+<ul>
+<li>通常使用两种方式连接远程JVM: JMX jstatd</li>
+<li><strong><code>jmx</code></strong>
+<ul>
+<li><a href="/Java/AdvancedLearning/JMX.md">JMX</a></li>
+</ul>
+</li>
+<li><strong><code>jstatd</code></strong>
+<ol>
+<li>vim jstatd.all.policy
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zed" data-lang="zed"><span class="line"><span class="cl"><span class="w">    </span><span class="n">grant</span><span class="w"> </span><span class="n">codebase</span><span class="w"> </span><span class="err">&#34;</span><span class="n">file</span><span class="o">:</span><span class="err">$</span><span class="p">{</span><span class="n">java</span><span class="p">.</span><span class="n">home</span><span class="p">}</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="nn">lib/</span><span class="n">tools</span><span class="p">.</span><span class="n">jar</span><span class="err">&#34;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">permission</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="n">security</span><span class="p">.</span><span class="n">AllPermission</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">};</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>jstatd -J-Djava.security.policy=jstatd.all.policy  -p 12028 -J-Djava.rmi.server.logCalls=true</li>
+<li>open jvisualvm create a remote with jstatd by above port 12028</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>提高效率的使用场景</p>
+</blockquote>
+<ol>
+<li>可以使用 Profiler 下的JDBC，操作业务流程，获取所有执行的SQL，用来做索引优化，或排查问题
+<ul>
+<li><strong>注意可能不准确</strong>，需要对监控到的SQL有质疑的想法
+<ul>
+<li>真实案例： 监控到对MySQL执行的某条SQL为 <code>xxx in ('NULL', 2, 4)</code>. 应用写法不规范未过滤集合中的null值就拼接进了条件</li>
+<li>实际上MySQL驱动执行的SQL是 <code>xxx in (NULL, 2, 4)</code> 这会导致此子句永远是false，详见 <a href="/Database/MySQLAdvance.md#%E6%9D%A1%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%A6">MySQL 条件操作符</a></li>
+<li>Clone Visualvm的代码后 通过GUI找功能实现，发现可疑方法 org.graalvm.visualvm.lib.jfluid.results.jdbc.SQLStatement#getFullSql</li>
+<li>通过arthas watch该方法的返回后，确认是这个方法的问题，</li>
+<li>结论为：基于 PreparedStatement 得到执行SQL的实现方式和MySQL驱动的不一样。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="mat">MAT</h2>
+<blockquote>
+<p>Memory Analyzer tool(MAT) | <a href="http://www.eclipse.org/mat/">Official Site</a> | <a href="https://eclipse.dev/mat/downloads.php">download</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.cnblogs.com/lipeineng/p/5824799.html">参考: JAVA Shallow heap &amp; Retained heap</a><br>
+<a href="https://www.cnblogs.com/javaadu/p/11161380.html">参考:  利用MAT分析JVM内存问题，从入门到精通</a><br>
+<a href="https://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.mat.ui.help%2Freference%2Foqlsyntax.html"> Official Doc: OQL Syntax</a></p>
+</blockquote>
+<p>注意: 有这样的一种场景, 从数据库获取大量的数据创建为对象, 导致瞬间的OOM 这时候即使使用 jmap 去 dump 了快照, 也看不到占用大量内存的对象, 因为MAT默认展示的是GC可达对象，需要在菜单选择看不可达对象</p>
+<p>分析思路：</p>
+<ul>
+<li>对象: histogram, Top ,</li>
+<li>线程:</li>
+<li>类加载器： histogram -&gt; basic -&gt; merge classloader</li>
+<li>不可达对象：</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="https://baofeidyz.com/feasible-method-for-mat-to-analyze-super-large-heap-snapshots-with-small-memory">mat用小内存解析超大堆快照的可行方法</a></p>
+</blockquote>
+<p>利用安装目录下的 ParseHeapDump.sh 命令行解析 dump的 hprof文件
+全部解析： ParseHeapDump.sh ~/Downloads/java_pidxxx.hprof org.eclipse.mat.api:suspects org.eclipse.mat.api:overview org.eclipse.mat.api:top_components</p>
+<ul>
+<li>ParseHeapDump.sh ~/Downloads/java_pidxxx.hprof org.eclipse.mat.api:suspects</li>
+<li>ParseHeapDump.sh ~/Downloads/java_pidxxx.hprof org.eclipse.mat.api:overview</li>
+<li>ParseHeapDump.sh ~/Downloads/java_pidxxx.hprof org.eclipse.mat.api:top_components</li>
+</ul>
+<p>并且可以发现结果文件为html，可以挂载到nginx等web服务器共享结果</p>
+<hr>
+<blockquote>
+<p>比较多个dump文件</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/zhuxingchong/article/details/110449138">MAT比较多个heap dump文件</a></p>
+<hr>
+<h2 id="jmc">JMC</h2>
+<blockquote>
+<p><a href="https://docs.oracle.com/en/java/java-components/jdk-mission-control/">Java Mission Control</a></p>
+</blockquote>
+<ol>
+<li>通过JMX连接目标JVM 实时监控应用指标</li>
+<li>通过对运行中的JVM进行飞行记录<code>Flight Recorder</code>, 分析指定时间内代码的可优化点，指标值变化情况</li>
+</ol>
+<p>指标值包括：JVM的 内存，CPU，GC，线程，类加载，网络和文件IO； 宿主机的CPU、内存等指标，联合做参考</p>
+<blockquote>
+<p><a href="/Java/AdvancedLearning/JMX.md#JVM%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE">目标JVM开启远程访问JMX</a> <code>注意JDK6后就默认开启了进程访问JMX</code><br>
+<a href="https://www.oracle.com/java/technologies/javase/jmc9-release-notes.html">JMC 9</a><code>自身需要JDK17以上运行，可以监控JDK 7u40及往后的版本</code></p>
+</blockquote>
+<blockquote>
+<p>实践场景</p>
+</blockquote>
+<ul>
+<li>JFR分析某个业务场景的性能问题
+<ul>
+<li>启动应用，启动JMC，JMC连接到业务JVM后，开启一段时间的JFR，然后直接操作业务逻辑，JFR结束后可以看到</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="ibm-heap-analyzer">IBM Heap Analyzer</h2>
+<blockquote>
+<p><a href="https://www.ibm.com/developerworks/community/alphaworks/tech/heapanalyzer">Official Site</a></p>
+</blockquote>
+<hr>
+<h2 id="intellij-idea">IntelliJ IDEA</h2>
+<p><a href="https://www.jetbrains.com/help/idea/read-the-memory-snapshot.html">Analyze the memory snapshot</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/jvm/">JVM</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/test/junit/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Junit</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/ecosystem/multiplelanguageinjvm/">
+            <span class="next-text nav-default">JVM上的多语言</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

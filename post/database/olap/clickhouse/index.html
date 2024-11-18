@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Clickhouse - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Clickhouse 1.1. 安装 1.2. 数据类型 1.2.1. bitmap 1.2.2. Decimal 1.3. 聚合函数 数据库引擎 表引擎 3.1. MergeTree 引擎家族 3.2. 分布式表引擎 Distributed 表 4.1. 分区表 客户端 5.1. Java Explain Tips 💠 2024-10-17 20:31:57 Clickhouse Official Site What is ClickHouse? 关联开源项目： Sentry" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/database/olap/clickhouse/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Clickhouse" />
+<meta property="og:description" content="💠 Clickhouse 1.1. 安装 1.2. 数据类型 1.2.1. bitmap 1.2.2. Decimal 1.3. 聚合函数 数据库引擎 表引擎 3.1. MergeTree 引擎家族 3.2. 分布式表引擎 Distributed 表 4.1. 分区表 客户端 5.1. Java Explain Tips 💠 2024-10-17 20:31:57 Clickhouse Official Site What is ClickHouse? 关联开源项目： Sentry" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/database/olap/clickhouse/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-31T09:58:36+00:00" />
+<meta property="article:modified_time" content="2023-03-31T09:58:36+00:00" />
+
+<meta itemprop="name" content="Clickhouse">
+<meta itemprop="description" content="💠 Clickhouse 1.1. 安装 1.2. 数据类型 1.2.1. bitmap 1.2.2. Decimal 1.3. 聚合函数 数据库引擎 表引擎 3.1. MergeTree 引擎家族 3.2. 分布式表引擎 Distributed 表 4.1. 分区表 客户端 5.1. Java Explain Tips 💠 2024-10-17 20:31:57 Clickhouse Official Site What is ClickHouse? 关联开源项目： Sentry"><meta itemprop="datePublished" content="2023-03-31T09:58:36+00:00" />
+<meta itemprop="dateModified" content="2023-03-31T09:58:36+00:00" />
+<meta itemprop="wordCount" content="2561">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Clickhouse"/>
+<meta name="twitter:description" content="💠 Clickhouse 1.1. 安装 1.2. 数据类型 1.2.1. bitmap 1.2.2. Decimal 1.3. 聚合函数 数据库引擎 表引擎 3.1. MergeTree 引擎家族 3.2. 分布式表引擎 Distributed 表 4.1. 分区表 客户端 5.1. Java Explain Tips 💠 2024-10-17 20:31:57 Clickhouse Official Site What is ClickHouse? 关联开源项目： Sentry"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Clickhouse</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-03-31 </span>
+        
+          <span class="more-meta"> 约 2561 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#clickhouse">Clickhouse</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#数据类型">数据类型</a>
+          <ul>
+            <li><a href="#bitmap">bitmap</a></li>
+            <li><a href="#decimal">Decimal</a></li>
+          </ul>
+        </li>
+        <li><a href="#聚合函数">聚合函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据库引擎">数据库引擎</a></li>
+    <li><a href="#表引擎">表引擎</a>
+      <ul>
+        <li><a href="#mergetree-引擎家族">MergeTree 引擎家族</a></li>
+        <li><a href="#分布式表引擎-distributed">分布式表引擎 Distributed</a></li>
+      </ul>
+    </li>
+    <li><a href="#表">表</a>
+      <ul>
+        <li><a href="#分区表">分区表</a></li>
+      </ul>
+    </li>
+    <li><a href="#客户端">客户端</a>
+      <ul>
+        <li><a href="#java">Java</a></li>
+      </ul>
+    </li>
+    <li><a href="#explain">Explain</a></li>
+    <li><a href="#tips">Tips</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2023-03-31T09:58:36" title="March 31, 2023">March 31, 2023</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#clickhouse">Clickhouse</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li>1.2. <a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>
+<ul>
+<li>1.2.1. <a href="#bitmap">bitmap</a></li>
+<li>1.2.2. <a href="#decimal">Decimal</a></li>
+</ul>
+</li>
+<li>1.3. <a href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0">聚合函数</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%95%E6%93%8E">数据库引擎</a></li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E8%A1%A8%E5%BC%95%E6%93%8E">表引擎</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#mergetree-%E5%BC%95%E6%93%8E%E5%AE%B6%E6%97%8F">MergeTree 引擎家族</a></li>
+<li>3.2. <a href="#%E5%88%86%E5%B8%83%E5%BC%8F%E8%A1%A8%E5%BC%95%E6%93%8E-distributed">分布式表引擎 Distributed</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E8%A1%A8">表</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#%E5%88%86%E5%8C%BA%E8%A1%A8">分区表</a></li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF">客户端</a></li>
+</ol>
+<ul>
+<li>5.1. <a href="#java">Java</a></li>
+</ul>
+</li>
+<li>
+<ol start="6">
+<li><a href="#explain">Explain</a></li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li><a href="#tips">Tips</a></li>
+</ol>
+</li>
+</ul>
+<p>💠 2024-10-17 20:31:57</p>
+<hr>
+<h1 id="clickhouse">Clickhouse</h1>
+<blockquote>
+<p><a href="https://clickhouse.com">Official Site</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://medium.com/doublecloud-insights/what-is-clickhouse-a-comprehensive-guide-for-getting-started-5aae9afd38b0">What is ClickHouse? </a></p>
+</blockquote>
+<ul>
+<li>关联开源项目： Sentry <a href="https://github.com/clickvisual/clickvisual">clickvisual</a></li>
+</ul>
+<hr>
+<h2 id="安装">安装</h2>
+<blockquote>
+<p><a href="https://github.com/ClickHouse/examples/blob/main/docker-compose-recipes/README.md">Docker compose 安装</a><br>
+<a href="https://github.com/tetafro/clickhouse-cluster">Clickhouse cluster built with docker-compose.</a></p>
+</blockquote>
+<blockquote>
+<p>例如以下配置为 两个分片，每个分片两个副本</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;yandex&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;clickhouse_remote_servers&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;default_cluster&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;shard&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;internal_replication&gt;</span>false<span class="nt">&lt;/internal_replication&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;replica&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;host&gt;</span>10.0.3.27<span class="nt">&lt;/host&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;port&gt;</span>9000<span class="nt">&lt;/port&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;/replica&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;replica&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;host&gt;</span>10.0.3.41<span class="nt">&lt;/host&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;port&gt;</span>9000<span class="nt">&lt;/port&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;/replica&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/shard&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;shard&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;internal_replication&gt;</span>true<span class="nt">&lt;/internal_replication&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;replica&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;host&gt;</span>10.0.3.46<span class="nt">&lt;/host&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;port&gt;</span>9000<span class="nt">&lt;/port&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;/replica&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;replica&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;host&gt;</span>10.0.3.26<span class="nt">&lt;/host&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;port&gt;</span>9000<span class="nt">&lt;/port&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;/replica&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/shard&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/default_cluster&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/clickhouse_remote_servers&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;zookeeper-servers&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;node&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;host&gt;</span>10.0.3.12<span class="nt">&lt;/host&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;port&gt;</span>2181<span class="nt">&lt;/port&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/node&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;node&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;host&gt;</span>10.0.3.3<span class="nt">&lt;/host&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;port&gt;</span>2181<span class="nt">&lt;/port&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/node&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;node&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;host&gt;</span>10.0.3.23<span class="nt">&lt;/host&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;port&gt;</span>2181<span class="nt">&lt;/port&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/node&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/zookeeper-servers&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/yandex&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="数据类型">数据类型</h2>
+<blockquote>
+<p><a href="https://clickhouse.com/docs/en/sql-reference/data-types">ClickHouse Data Types</a></p>
+</blockquote>
+<p>注意Ck中建表时字段类型默认是非Null的，和常见的业务数据库MySQL等相反，支持Null数据需要显式指定，例如： Nullable(Int)</p>
+<h3 id="bitmap">bitmap</h3>
+<blockquote>
+<p>并没有这个类型定义，只是在使用时由数据存储方式存在，类似于Redis的bitmap。</p>
+</blockquote>
+<p>位图对象有两种构造方法。一个是由聚合函数groupBitmapState构造的，另一个是由Array Object构造的。同时还可以将位图对象转化为数组对象<code>bitmapToArray()</code>。</p>
+<p><a href="https://github.com/RoaringBitmap/CRoaring">Roaring bitmaps</a><br>
+<a href="https://zhuanlan.zhihu.com/p/480345952">BitMap及其在ClickHouse中的应用</a><code>CK针对数据的分布情况做了一些优化</code></p>
+<h3 id="decimal">Decimal</h3>
+<blockquote>
+<p><a href="https://clickhouse.com/docs/en/sql-reference/data-types/decimal">Data TypesDecimal</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">min</th>
+<th style="text-align:left">max</th>
+<th style="text-align:left">type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">Decimal32</td>
+</tr>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left">18</td>
+<td style="text-align:left">Decimal64</td>
+</tr>
+<tr>
+<td style="text-align:left">19</td>
+<td style="text-align:left">38</td>
+<td style="text-align:left">Decimal128</td>
+</tr>
+<tr>
+<td style="text-align:left">39</td>
+<td style="text-align:left">76</td>
+<td style="text-align:left">Decimal256</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Tips</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/ClickHouse/ClickHouse/issues/30542">cast as decimal is very slow</a> <code>Decimal128 256 相较于 64和32 有较大的性能差距，可以用其中SQL做测试</code>
+<ul>
+<li><code>SELECT sum(CAST(number + 1., 'Decimal(17, 1)'))　FROM numbers(100000000);</code> 自建的CK集群内看到128耗时是64的三倍 <strong>实际情况实际分析，仅供参考</strong></li>
+<li>因为从Decimal128类型开始CK都要模拟计算来提高精度，CPU成本更大</li>
+<li>CK22.3.5.5版本上 <code>ROUND(cast(AVG(ifNull(sale_amount, 0)) AS Decimal(76,38)), 4)</code> Round会不起作用，计算结果仍是很长的小数位</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><code>SELECT sumWithOverflow(CAST(number + 1., 'Decimal(3, 1)')) as res , toTypeName(res)　FROM numbers(1000000);</code></p>
+</blockquote>
+<ul>
+<li>在做sum计算时，表的源字段大小不够时会自动增长类型， 但是如果使用 sumWithOverflow 就不会扩大类型，因此计算结果也是错误的</li>
+</ul>
+<hr>
+<h2 id="聚合函数">聚合函数</h2>
+<blockquote>
+<p><a href="https://clickhouse.com/docs/en/sql-reference/aggregate-functions/reference">List of Aggregate Functions</a></p>
+</blockquote>
+<ul>
+<li>注意avg函数固定返回Float64类型，需要按数据要求做类型转换处理规避后续计算的精度损失问题</li>
+</ul>
+<hr>
+<h1 id="数据库引擎">数据库引擎</h1>
+<ul>
+<li>Atomic</li>
+<li>MySQL 关联远程库表</li>
+<li>MaterializedMySQL 原生实现MySQL引擎 支持从MySQL全量及增量实时同步</li>
+<li>Lazy</li>
+<li>PostgreSQL 关联远程库表</li>
+<li>MaterializedPostgreSQL 原生实现PG引擎</li>
+<li>Replicated</li>
+<li>SQLite</li>
+</ul>
+<h1 id="表引擎">表引擎</h1>
+<blockquote>
+<p><a href="https://clickhouse.com/docs/en/engines/table-engines">doc: Table Engines</a></p>
+</blockquote>
+<p>分为：MT家族，外部表（集成）引擎，日志引擎，特殊引擎（Distributed，File,URL,Memory等等）</p>
+<h2 id="mergetree-引擎家族">MergeTree 引擎家族</h2>
+<ul>
+<li>MergeTree</li>
+<li>ReplacingMergeTree</li>
+<li>SummingMergeTree</li>
+<li>AggregatingMergeTree</li>
+<li>CollapsingMergeTree</li>
+<li>VersionedCollapsingMergeTree</li>
+<li>GraphiteMergeTree</li>
+</ul>
+<h2 id="分布式表引擎-distributed">分布式表引擎 Distributed</h2>
+<blockquote>
+<p><a href="https://clickhouse.com/docs/en/engines/table-engines/special/distributed">doc: distributed</a></p>
+</blockquote>
+<p>这种类型的表不会存储数据，可以当作关联表的一层代理，实现并行查询和数据写入的分发.</p>
+<p>查询Distributed表引擎的过程是： 先查接收请求节点本地的表（和当前节点同分片下的Replication副本节点<strong>不会接收到查询的请求</strong>），对剩余全部分片发送请求（分片中的一个随机副本），然后再聚合各个分片返回的数据，最后返回最终结果。<br>
+注意可通过设置不同的cluster来实现是否采用副本节点，如果是未设置副本的节点，每个分片不会有副本冗余。</p>
+<p><img src="./img/001-dis-send-query.webp" alt="">
+<img src="./img/002-dis-merge-result.webp" alt=""></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- 查看复制表数量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="k">database</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">cnt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">,</span><span class="k">sum</span><span class="p">(</span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">engine</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;ReplicatedMergeTree&#39;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">end</span><span class="p">)</span><span class="w"> </span><span class="n">cnt_rmt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">clusterAllReplicas</span><span class="p">(</span><span class="s1">&#39;default_cluster&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;system.tables&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">desc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- 查看复制表明细
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">,</span><span class="n">engine</span><span class="p">,</span><span class="w"> </span><span class="n">hostname</span><span class="p">(),</span><span class="w"> </span><span class="n">metadata_modification_time</span><span class="p">,</span><span class="w"> </span><span class="n">total_rows</span><span class="p">,</span><span class="w"> </span><span class="n">total_bytes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">clusterAllReplicas</span><span class="p">(</span><span class="s1">&#39;default_cluster&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;system.tables&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;db&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">engine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ReplicatedMergeTree&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<blockquote>
+<p><a href="https://cloud.tencent.com/developer/article/1748216">ClickHouse案例：查询结果不一致</a><br>
+注意 在设置有副本的集群里，分布式表都需要关联副本表 Replicated MergeTree 作为数据表，如果使用普通的MT表引擎，会导致查询和写入都会遇到奇怪的问题。</p>
+</blockquote>
+<ul>
+<li>写入： 会有部分节点上没有数据，但是全部节点的数据总量是对的</li>
+<li>查询： 一条SQL每次查询的结果都不一样（各个分片内随机选择副本再合并查询结果而导致的）</li>
+</ul>
+<hr>
+<h1 id="表">表</h1>
+<blockquote>
+<p><a href="https://clickhouse.com/docs/en/sql-reference/statements/create/table">doc: create table</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- 复制表结构，可以快速建立 相同表结构，但是不同引擎和存储方案 的表。 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="c1">-- 例如大量数据的导入场景，直接通过JDBC写入分布式分区复制表 对CK的压力（ZK同步的压力） 会比 JDBC先写入分布式分区表 再ck内部insert转移到分布式分区复制表 的方案小，且稳定
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">[</span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">db</span><span class="p">.]</span><span class="k">table_name</span><span class="w"> </span><span class="n">CLONE</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">[</span><span class="n">db2</span><span class="p">.]</span><span class="n">name2</span><span class="w"> </span><span class="p">[</span><span class="n">ENGINE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">engine</span><span class="p">]</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="分区表">分区表</h2>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/75439190/what-is-the-actual-use-of-partitions-in-clickhouse">What is the actual use of partitions in clickhouse?</a><code>数据有明显的分区特征（例如时间序列数据），按分区做TTL，查询时通常不会跨多个分区，分区数在100以内（分区很多时会明显影响读写的性能）</code></p>
+</blockquote>
+<hr>
+<h1 id="客户端">客户端</h1>
+<blockquote>
+<p><a href="https://github.com/getsentry/snuba">snuba</a><code>Sentry开发， CK的一个查询层</code></p>
+</blockquote>
+<h2 id="java">Java</h2>
+<blockquote>
+<p><a href="https://clickhouse.com/docs/en/integrations/jdbc/jdbc-with-clickhouse">Connecting ClickHouse to external data sources with JDBC</a><br>
+JDBC的驱动实现是通过HTTP协议和Clickhouse通信 <a href="https://github.com/ClickHouse/clickhouse-java">Github: clickhouse-java</a><code>com.clickhouse.client.internal.apache.hc.client5.http.impl.io.DefaultManagedHttpClientConnection</code></p>
+</blockquote>
+<p>低版本驱动没有实现负载均衡，需要在数据节点前加一层 <a href="https://github.com/ContentSquare/chproxy">chproxy</a>, 但是实际上也可以自己实现负载均衡算法(例如：依据某个时间窗口内所有节点的负载，连接等情况来选择合适的节点)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">        <span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;socket_keepalive&#34;</span><span class="o">,</span> <span class="s">&#34;true&#34;</span><span class="o">);</span> <span class="c1">//socket_timeout时间由系统设置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;auto_discovery&#34;</span><span class="o">,</span> <span class="s">&#34;true&#34;</span><span class="o">);</span> <span class="c1">// 节点自动发现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;load_balancing_policy&#34;</span><span class="o">,</span> <span class="s">&#34;roundRobin&#34;</span><span class="o">);</span> <span class="c1">// 负载均衡
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;health_check_interval&#34;</span><span class="o">,</span> <span class="s">&#34;1000&#34;</span><span class="o">);</span> <span class="c1">// 健康检查间隔(以毫秒为单位)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;health_check_query&#34;</span><span class="o">,</span> <span class="s">&#34;select 1&#34;</span><span class="o">);</span> <span class="c1">// 健康检查语句
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;node_check_interval&#34;</span><span class="o">,</span> <span class="s">&#34;1000&#34;</span><span class="o">);</span> <span class="c1">// 节点检查间隔(以毫秒为单位)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;failover&#34;</span><span class="o">,</span> <span class="s">&#34;2&#34;</span><span class="o">);</span> <span class="c1">// 发生故障转移最大次数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;retry&#34;</span><span class="o">,</span> <span class="s">&#34;2&#34;</span><span class="o">);</span> <span class="c1">// 故障重试最大次数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 客户端负载均衡的方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&#34;jdbc:clickhouse://h1:p1,h2:p2,h3:p3,h4:p4/default?socket_timeout=6000000&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ClickHouseDataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClickHouseDataSource</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">properties</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>实践：</p>
+</blockquote>
+<ul>
+<li>
+<p>出现 <code>The target server failed to respond code: 1002</code> 报错</p>
+<ul>
+<li><a href="https://github.com/ClickHouse/clickhouse-java/pull/760">Validate stale connection to fix the bug: failed to respond</a><code>增加活跃连接校验逻辑，降低客户端获取到关闭连接的概率</code></li>
+<li><a href="https://github.com/ClickHouse/clickhouse-java/issues/1444">BatchUpdateException during inserts with jdbc driver</a> <code>驱动作者认为： 关键点在于边界值，如果客户端设置的和服务端一样或者更大，就会出现客户端认为连接未超时可复用，但是服务端认为超时于是就关闭了连接</code></li>
+<li>JDBC URL优化 socketTimeout参数 （ck0.6.0默认是30s）, <strong>应明显小于服务端</strong>的 tcp_keep_alive_timeout （ms）值， <code>select * from system.settings where name like '%keep%';</code></li>
+<li>JDBC 驱动版本低， 从0.2.4 升级到0.6.0后问题出现概率小很多 因为 <a href="https://github.com/ClickHouse/clickhouse-java/issues/452">host failed to respond</a> 0.2.5 主动获取了服务端设置值</li>
+<li>注意socketTimeout参数同样作用于查询时间，如果SQL执行时间大于该值会报错 read timeout <a href="https://github.com/ClickHouse/clickhouse-java/issues/159">http read timeout 30</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/ClickHouse/ClickHouse/blob/master/src/Common/ErrorCodes.cpp">驱动内错误码定义</a></p>
+<ul>
+<li>注意CK驱动从0.3左右开始，ClickHouseException不继承SQLException</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="explain">Explain</h1>
+<blockquote>
+<p><a href="https://clickhouse.com/docs/en/sql-reference/statements/explain">Clickhouse: Explain</a><br>
+<a href="https://medium.com/datadenys/using-explain-to-analyze-and-improve-clickhouse-queries-performance-23dbcdf55a97">Using Explain to analyze and improve Clickhouse queries performance</a></p>
+</blockquote>
+<p>相比于MySQL的Explain，CK设计Explain能查看更多维度的指标</p>
+<p>JSON格式查看 <code>EXPLAIN json = 1, indexes = 1 SQL</code></p>
+<ul>
+<li>关注最内层的Indexes结构里的 <strong>Initial Parts</strong> 全部块 <strong>Selected Parts</strong> 读取的块 <strong>Initial Granules</strong> 全部粒度 <strong>Selected Granules</strong> 读取的粒度。</li>
+<li>读取的指标越小越好，因此表要基于使用情况设计好分区利于查询效率</li>
+</ul>
+<hr>
+<h1 id="tips">Tips</h1>
+<ul>
+<li>
+<p>合理使用排序键让数据均匀分片，避免数据倾斜导致集群计算时出现短板效应</p>
+</li>
+<li>
+<p>数据大量查询导入导出时</p>
+<ul>
+<li><a href="https://cloud.tencent.com/developer/article/1979184">ClickHouse SQL基本语法和导入导出实战</a></li>
+<li>导出时需要注意传统的 limit offset 会导致结果集 重复和丢失，追加 order by 子句可以降低发生概率，但是排序字段不唯一的话还是会有可能出现重复或丢失的问题。</li>
+</ul>
+</li>
+<li>
+<p>多表关联 如果能确认范围过滤的数据只会从一个表返回可以避免join来过滤, 转用in, 避免分布式的做数据复制，导致资源消耗放大</p>
+</li>
+<li>
+<p>Global 优化 join 和in 避免读放大</p>
+</li>
+</ul>
+<blockquote>
+<p>BUG</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/ClickHouse/ClickHouse/releases/tag/v22.3.5.5-lts">22.3.5.5</a>版本上 使用 UNION ALL 连接 A 和 B两段SQL时，CK偶现出现B段SQL没有正确的groupby聚合（有些数据没有聚合），导致整体执行结果条目数变多，非期望数据</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-03-31
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/network/security/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">网络安全</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/skills/test/benchmark/">
+            <span class="next-text nav-default">基准测试</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

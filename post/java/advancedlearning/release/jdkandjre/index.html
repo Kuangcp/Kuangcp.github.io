@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Java的JDK以及JRE - Mythos</title>
+  <title>Java的JDK以及JRE - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start JDK And JRE Oracle Oracle JDK Oracle JRE OpenJDK 目录 end|2020-06-29 19:16| JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示免费 License Oracle roadmap Oracle JDK 以下是Jav" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 JDK And JRE Oracle 2.1. Oracle JDK 2.2. Oracle JRE OpenJDK 商业组织JDK 4.1. Corretto JDK源码 💠 2024-10-02 22:33:00 JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/release/jdkandjre/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/release/jdkandjre/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Java的JDK以及JRE" />
-<meta property="og:description" content="目录 start JDK And JRE Oracle Oracle JDK Oracle JRE OpenJDK 目录 end|2020-06-29 19:16| JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示免费 License Oracle roadmap Oracle JDK 以下是Jav" />
+<meta property="og:description" content="💠 JDK And JRE Oracle 2.1. Oracle JDK 2.2. Oracle JRE OpenJDK 商业组织JDK 4.1. Corretto JDK源码 💠 2024-10-02 22:33:00 JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/release/jdkandjre/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/release/jdkandjre/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Java的JDK以及JRE">
-<meta itemprop="description" content="目录 start JDK And JRE Oracle Oracle JDK Oracle JRE OpenJDK 目录 end|2020-06-29 19:16| JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示免费 License Oracle roadmap Oracle JDK 以下是Jav">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 JDK And JRE Oracle 2.1. Oracle JDK 2.2. Oracle JRE OpenJDK 商业组织JDK 4.1. Corretto JDK源码 💠 2024-10-02 22:33:00 JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="262">
-
-
-
-<meta itemprop="keywords" content="JVM," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="363">
+<meta itemprop="keywords" content="JVM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java的JDK以及JRE"/>
-<meta name="twitter:description" content="目录 start JDK And JRE Oracle Oracle JDK Oracle JRE OpenJDK 目录 end|2020-06-29 19:16| JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示免费 License Oracle roadmap Oracle JDK 以下是Jav"/>
+<meta name="twitter:description" content="💠 JDK And JRE Oracle 2.1. Oracle JDK 2.2. Oracle JRE OpenJDK 商业组织JDK 4.1. Corretto JDK源码 💠 2024-10-02 22:33:00 JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,39 +122,86 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 262 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 363 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#oracle-jdk">Oracle JDK</a></li>
-    <li><a href="#oracle-jre">Oracle JRE</a></li>
+    <li><a href="#jdk-and-jre">JDK And JRE</a></li>
+    <li><a href="#oracle">Oracle</a>
+      <ul>
+        <li><a href="#oracle-jdk">Oracle JDK</a></li>
+        <li><a href="#oracle-jre">Oracle JRE</a></li>
+      </ul>
+    </li>
+    <li><a href="#openjdk">OpenJDK</a></li>
+    <li><a href="#商业组织jdk">商业组织JDK</a>
+      <ul>
+        <li><a href="#corretto">Corretto</a></li>
+      </ul>
+    </li>
+    <li><a href="#jdk源码">JDK源码</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
 <li><a href="#jdk-and-jre">JDK And JRE</a></li>
-<li><a href="#oracle">Oracle</a>
-<ol>
-<li><a href="#oracle-jdk">Oracle JDK</a></li>
-<li><a href="#oracle-jre">Oracle JRE</a></li>
 </ol>
 </li>
+<li>
+<ol start="2">
+<li><a href="#oracle">Oracle</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#oracle-jdk">Oracle JDK</a></li>
+<li>2.2. <a href="#oracle-jre">Oracle JRE</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
 <li><a href="#openjdk">OpenJDK</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-06-29 19:16</em>|</p>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E5%95%86%E4%B8%9A%E7%BB%84%E7%BB%87jdk">商业组织JDK</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#corretto">Corretto</a></li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li><a href="#jdk%E6%BA%90%E7%A0%81">JDK源码</a></li>
+</ol>
+</li>
+</ul>
+<p>💠 2024-10-02 22:33:00</p>
 <hr>
 <h1 id="jdk-and-jre">JDK And JRE</h1>
 <p>但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示免费 <a href="https://www.oracle.com/technetwork/java/javase/terms/license/javase-license.html">License</a></p>
+<ul>
+<li><a href="https://www.injdk.cn/">www.injdk.cn</a><code>镜像站</code></li>
+</ul>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/25372706/answer/30589125">Java 有哪些不好的设计？</a></p>
+</blockquote>
 <h1 id="oracle">Oracle</h1>
 <blockquote>
 <p><a href="https://www.oracle.com/java/technologies/java-se-support-roadmap.html">roadmap</a></p>
@@ -169,7 +212,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -184,27 +227,27 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ├── bin/
-    ├── COPYRIGHT
-    ├── include/
-    ├── javafx-src.zip
-    ├── jre/
-    ├── lib/
-    ├── LICENSE
-    ├── man/
-    ├── README.html
-    ├── release
-    ├── src.zip
-    ├── THIRDPARTYLICENSEREADME-JAVAFX.txt
-    └── THIRDPARTYLICENSEREADME.txt
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    ├── bin/
+</span></span><span class="line"><span class="cl">    ├── COPYRIGHT
+</span></span><span class="line"><span class="cl">    ├── include/
+</span></span><span class="line"><span class="cl">    ├── javafx-src.zip
+</span></span><span class="line"><span class="cl">    ├── jre/
+</span></span><span class="line"><span class="cl">    ├── lib/
+</span></span><span class="line"><span class="cl">    ├── LICENSE
+</span></span><span class="line"><span class="cl">    ├── man/
+</span></span><span class="line"><span class="cl">    ├── README.html
+</span></span><span class="line"><span class="cl">    ├── release
+</span></span><span class="line"><span class="cl">    ├── src.zip
+</span></span><span class="line"><span class="cl">    ├── THIRDPARTYLICENSEREADME-JAVAFX.txt
+</span></span><span class="line"><span class="cl">    └── THIRDPARTYLICENSEREADME.txt
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>以下是Java11的目录结构</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -214,15 +257,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ├── bin
-    ├── conf
-    ├── include
-    ├── jmods
-    ├── legal
-    ├── lib
-    ├── README.html
-    └── release
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    ├── bin
+</span></span><span class="line"><span class="cl">    ├── conf
+</span></span><span class="line"><span class="cl">    ├── include
+</span></span><span class="line"><span class="cl">    ├── jmods
+</span></span><span class="line"><span class="cl">    ├── legal
+</span></span><span class="line"><span class="cl">    ├── lib
+</span></span><span class="line"><span class="cl">    ├── README.html
+</span></span><span class="line"><span class="cl">    └── release
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>bin目录下常用工具 <a href="/Java/AdvancedLearning/JavaPerformance.md">Useage: Java 性能分析</a>:
@@ -244,18 +287,37 @@
 <p><a href="http://openjdk.java.net/">Official Site</a> |  <a href="http://hg.openjdk.java.net/jdk">OpenJDK Source</a> | <a href="https://github.com/openjdk/jdk">Github:source</a></p>
 </blockquote>
 <blockquote>
-<p><a href="http://jdk.java.net/11/">Open JDK 11: Download</a></p>
+<p><a href="http://jdk.java.net/11/">Open JDK 11: Download</a>
+<a href="https://bugs.openjdk.org/projects/JDK/issues">Issues</a></p>
+</blockquote>
+<h1 id="商业组织jdk">商业组织JDK</h1>
+<h2 id="corretto">Corretto</h2>
+<p><a href="https://aws.amazon.com/corretto/">aws corretto</a></p>
+<hr>
+<ul>
+<li>阿里 Dragonwell</li>
+<li>华为 毕昇 JDK</li>
+<li>腾讯 Kona</li>
+<li>美团 MJDK
+<ul>
+<li><a href="https://tech.meituan.com/2023/08/31/meituan-mjdk-mzlib.html">MJDK 如何实现压缩速率的 5 倍提升？</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="jdk源码">JDK源码</h1>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU4ODI1MjA3NQ==&amp;mid=2247485421&amp;idx=1&amp;sn=c4543020e3d347267dbd8491ee48d2d5&amp;chksm=fdded129caa9583fefb160e091d741e40fa24da4f3f14aa46bd4fc9b0d77dee9b98583a6c68b&amp;mpshare=1&amp;scene=1&amp;srcid=0411IUXF6tTOYRaj5I6ebZj8&amp;sharer_sharetime=1586571385813&amp;sharer_shareid=246c4b52c1cb45eaa580c985c95107f3#rd"> 不瞒你说，我最近跟Java源码杠上了 </a></p>
 </blockquote>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-11-21
         
@@ -269,14 +331,14 @@
           <a href="/tags/jvm/">JVM</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/java/advancedlearning/javagenerics/">
+        <a class="prev" href="/post/java/advancedlearning/javaconcurrency/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Java泛型</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-default">Java并发</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/java/advancedlearning/javaclass/">
-            <span class="next-text nav-default">Java的字节码</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/java/collection/javacollection/">
+            <span class="next-text nav-default">Java的集合</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -294,17 +356,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -312,11 +374,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -326,16 +388,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

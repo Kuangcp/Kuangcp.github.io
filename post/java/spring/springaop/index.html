@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Spring AOP - Mythos</title>
+  <title>Spring AOP - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/spring/springaop/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/spring/springaop/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -42,19 +42,15 @@
 <meta property="og:title" content="Spring AOP" />
 <meta property="og:description" content="目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/spring/springaop/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/spring/springaop/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-21T10:49:23+00:00" />
 <meta property="article:modified_time" content="2018-12-21T10:49:23+00:00" />
+
 <meta itemprop="name" content="Spring AOP">
-<meta itemprop="description" content="目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP">
-<meta itemprop="datePublished" content="2018-12-21T10:49:23+00:00" />
+<meta itemprop="description" content="目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP"><meta itemprop="datePublished" content="2018-12-21T10:49:23+00:00" />
 <meta itemprop="dateModified" content="2018-12-21T10:49:23+00:00" />
 <meta itemprop="wordCount" content="2275">
-
-
-
-<meta itemprop="keywords" content="AOP,Spring," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="AOP,Spring," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Spring AOP"/>
 <meta name="twitter:description" content="目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP"/>
 
@@ -126,31 +122,40 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 2275 words </span>
-          <span class="more-meta"> 5 mins read </span>
+          <span class="more-meta"> 约 2275 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#动态代理">动态代理</a></li>
-    <li><a href="#基本概念">基本概念</a></li>
-    <li><a href="#基本配置">基本配置</a></li>
-    <li><a href="#注意">注意</a>
+    <li><a href="#aop">AOP</a>
       <ul>
-        <li><a href="#1-spring-aop还是完全用aspectj">1 Spring AOP还是完全用AspectJ？</a></li>
-        <li><a href="#2-spring-aop中使用aspectj还是xml">2 Spring AOP中使用@AspectJ还是XML？</a></li>
-        <li><a href="#3-混合切面类型">3 混合切面类型</a></li>
+        <li><a href="#动态代理">动态代理</a></li>
+        <li><a href="#基本概念">基本概念</a></li>
+        <li><a href="#基本配置">基本配置</a></li>
+        <li><a href="#注意">注意</a>
+          <ul>
+            <li><a href="#1-spring-aop还是完全用aspectj">1 Spring AOP还是完全用AspectJ？</a></li>
+            <li><a href="#2-spring-aop中使用aspectj还是xml">2 Spring AOP中使用@AspectJ还是XML？</a></li>
+            <li><a href="#3-混合切面类型">3 混合切面类型</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-21T10:49:23" title="December 21, 2018">December 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p><strong>目录 start</strong></p>
 <ol>
@@ -233,7 +238,7 @@
 <p><code>XML文件头</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -246,25 +251,25 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
-    <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-    <span class="na">xmlns:context=</span><span class="s">&#34;http://www.springframework.org/schema/context&#34;</span>
-    <span class="na">xmlns:aop=</span><span class="s">&#34;http://www.springframework.org/schema/aop&#34;</span>
-    <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
-</span><span class="s">        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-</span><span class="s">        http://www.springframework.org/schema/context
-</span><span class="s">        http://www.springframework.org/schema/context/spring-context-3.0.xsd
-</span><span class="s">        http://www.springframework.org/schema/aop
-</span><span class="s">        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd&#34;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/beans&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">xmlns:context=</span><span class="s">&#34;http://www.springframework.org/schema/context&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">xmlns:aop=</span><span class="s">&#34;http://www.springframework.org/schema/aop&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
+</span></span></span><span class="line"><span class="cl"><span class="s">        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+</span></span></span><span class="line"><span class="cl"><span class="s">        http://www.springframework.org/schema/context
+</span></span></span><span class="line"><span class="cl"><span class="s">        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+</span></span></span><span class="line"><span class="cl"><span class="s">        http://www.springframework.org/schema/aop
+</span></span></span><span class="line"><span class="cl"><span class="s">        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/beans&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>方法级别的添加代理，Servlet中的过滤器也类似（但是那个是类级别的）</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -282,23 +287,23 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 基本类 提供切点 --&gt;</span>
-<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;student&#34;</span> <span class="na">class=</span><span class="s">&#34;cn.spring.aop.Student&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
-<span class="c">&lt;!-- 增强部分 --&gt;</span>
-<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;adder&#34;</span> <span class="na">class=</span><span class="s">&#34;cn.spring.aop.NewDeal&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
-<span class="c">&lt;!-- 使用aop的自动提示也要配置上面的头文件声明 --&gt;</span>
-<span class="nt">&lt;aop:config&gt;</span>
-    <span class="c">&lt;!--aspect表示切面 ref 标明增强方法的类来源 --&gt;</span>
-    <span class="nt">&lt;aop:aspect</span> <span class="na">id=</span><span class="s">&#34;myAop&#34;</span> <span class="na">ref=</span><span class="s">&#34;adder&#34;</span><span class="nt">&gt;</span>
-        <span class="c">&lt;!-- execution 是表达式（正则一样的功能）匹配的是具体的切点 --&gt;</span>
-        <span class="nt">&lt;aop:pointcut</span> <span class="na">expression=</span><span class="s">&#34;execution(* cn.spring.aop.Student.run(..))&#34;</span> <span class="na">id=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
-        <span class="c">&lt;!-- 织入 的过程 将增强和切入点结合 --&gt;</span>
-        <span class="nt">&lt;aop:before</span> <span class="na">method=</span><span class="s">&#34;add&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;aop:after</span> <span class="na">method=</span><span class="s">&#34;af&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;aop:around</span> <span class="na">method=</span><span class="s">&#34;around&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/aop:aspect&gt;</span>
-<span class="nt">&lt;/aop:config&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- 基本类 提供切点 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;student&#34;</span> <span class="na">class=</span><span class="s">&#34;cn.spring.aop.Student&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 增强部分 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;adder&#34;</span> <span class="na">class=</span><span class="s">&#34;cn.spring.aop.NewDeal&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 使用aop的自动提示也要配置上面的头文件声明 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;aop:config&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--aspect表示切面 ref 标明增强方法的类来源 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;aop:aspect</span> <span class="na">id=</span><span class="s">&#34;myAop&#34;</span> <span class="na">ref=</span><span class="s">&#34;adder&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- execution 是表达式（正则一样的功能）匹配的是具体的切点 --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;aop:pointcut</span> <span class="na">expression=</span><span class="s">&#34;execution(* cn.spring.aop.Student.run(..))&#34;</span> <span class="na">id=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 织入 的过程 将增强和切入点结合 --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;aop:before</span> <span class="na">method=</span><span class="s">&#34;add&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;aop:after</span> <span class="na">method=</span><span class="s">&#34;af&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;aop:around</span> <span class="na">method=</span><span class="s">&#34;around&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;needAdd&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/aop:aspect&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/aop:config&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="注意">注意</h2>
 <ul>
@@ -344,7 +349,7 @@ XML风格有两个缺点。第一是它不能完全将需求实现的地方封�
 明。 例如，在@AspectJ风格中我们可以编写如下的内容：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -352,24 +357,24 @@ XML风格有两个缺点。第一是它不能完全将需求实现的地方封�
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">   <span class="nd">@Pointcut</span><span class="o">(</span><span class="n">execution</span><span class="o">(*</span> <span class="n">get</span><span class="o">*()))</span> 
-   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">propertyAccess</span><span class="o">()</span> <span class="o">{}</span> 
-   <span class="nd">@Pointcut</span><span class="o">(</span><span class="n">execution</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">xyz</span><span class="o">.</span><span class="na">Account</span><span class="o">+</span> <span class="o">*(..))</span> 
-   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">operationReturningAnAccount</span><span class="o">()</span> <span class="o">{}</span> 
-   <span class="nd">@Pointcut</span><span class="o">(</span><span class="n">propertyAccess</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">operationReturningAnAccount</span><span class="o">())</span> 
-   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accountPropertyAccess</span><span class="o">()</span> <span class="o">{}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">   <span class="nd">@Pointcut</span><span class="o">(</span><span class="n">execution</span><span class="o">(*</span> <span class="n">get</span><span class="o">*()))</span> 
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">propertyAccess</span><span class="o">()</span> <span class="o">{}</span> 
+</span></span><span class="line"><span class="cl">   <span class="nd">@Pointcut</span><span class="o">(</span><span class="n">execution</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">xyz</span><span class="o">.</span><span class="na">Account</span><span class="o">+</span> <span class="o">*(..))</span> 
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">operationReturningAnAccount</span><span class="o">()</span> <span class="o">{}</span> 
+</span></span><span class="line"><span class="cl">   <span class="nd">@Pointcut</span><span class="o">(</span><span class="n">propertyAccess</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">operationReturningAnAccount</span><span class="o">())</span> 
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accountPropertyAccess</span><span class="o">()</span> <span class="o">{}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在XML风格中能声明开头的两个连接点：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">  <span class="nt">&lt;aop:pointcut</span> <span class="na">id=</span><span class="s">&#34;propertyAccess&#34;</span> <span class="na">expression=</span><span class="s">&#34;execution(* get*())&#34;</span><span class="nt">/&gt;</span> 
-  <span class="nt">&lt;aop:pointcut</span> <span class="na">id=</span><span class="s">&#34;operationReturningAnAccount&#34;</span>  <span class="na">expression=</span><span class="s">&#34;execution(org.xyz.Account+ *(..))&#34;</span><span class="nt">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">  <span class="nt">&lt;aop:pointcut</span> <span class="na">id=</span><span class="s">&#34;propertyAccess&#34;</span> <span class="na">expression=</span><span class="s">&#34;execution(* get*())&#34;</span><span class="nt">/&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;aop:pointcut</span> <span class="na">id=</span><span class="s">&#34;operationReturningAnAccount&#34;</span>  <span class="na">expression=</span><span class="s">&#34;execution(org.xyz.Account+ *(..))&#34;</span><span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>但是不能通过组合这些来定义accountPropertyAccess连接点</p>
 <ul>
@@ -385,11 +390,11 @@ XML风格有两个缺点。第一是它不能完全将需求实现的地方封�
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-21
         
@@ -407,11 +412,11 @@ XML风格有两个缺点。第一是它不能完全将需求实现的地方封�
         <a class="prev" href="/post/java/spring/springboot/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">SpringBoot</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/java/spring/spring5/">
-            <span class="next-text nav-default">Spring5</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/java/spring/spring/">
+            <span class="next-text nav-default">Spring</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -429,17 +434,17 @@ XML风格有两个缺点。第一是它不能完全将需求实现的地方封�
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -447,11 +452,11 @@ XML风格有两个缺点。第一是它不能完全将需求实现的地方封�
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -461,16 +466,21 @@ XML风格有两个缺点。第一是它不能完全将需求实现的地方封�
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

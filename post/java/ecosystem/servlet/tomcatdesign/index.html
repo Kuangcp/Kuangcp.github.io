@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>TomcatDesign - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Tomcat Design 1.1. 架构设计 1.2. 线程池 1.3. 连接器 1.3.1. NioEndpoint 💠 2024-06-02 17:50:57 Tomcat Design Github Tomcat Compiling Tomcat Source Code By Maven | 9.0.48 Source Repo ♥Tomcat源码详解知识体系详解♥ 深入拆解Tomcat 宏观架构 线程池" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/java/ecosystem/servlet/tomcatdesign/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="TomcatDesign" />
+<meta property="og:description" content="💠 Tomcat Design 1.1. 架构设计 1.2. 线程池 1.3. 连接器 1.3.1. NioEndpoint 💠 2024-06-02 17:50:57 Tomcat Design Github Tomcat Compiling Tomcat Source Code By Maven | 9.0.48 Source Repo ♥Tomcat源码详解知识体系详解♥ 深入拆解Tomcat 宏观架构 线程池" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/ecosystem/servlet/tomcatdesign/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-05-14T17:22:24+00:00" />
+<meta property="article:modified_time" content="2024-05-14T17:22:24+00:00" />
+
+<meta itemprop="name" content="TomcatDesign">
+<meta itemprop="description" content="💠 Tomcat Design 1.1. 架构设计 1.2. 线程池 1.3. 连接器 1.3.1. NioEndpoint 💠 2024-06-02 17:50:57 Tomcat Design Github Tomcat Compiling Tomcat Source Code By Maven | 9.0.48 Source Repo ♥Tomcat源码详解知识体系详解♥ 深入拆解Tomcat 宏观架构 线程池"><meta itemprop="datePublished" content="2024-05-14T17:22:24+00:00" />
+<meta itemprop="dateModified" content="2024-05-14T17:22:24+00:00" />
+<meta itemprop="wordCount" content="966">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TomcatDesign"/>
+<meta name="twitter:description" content="💠 Tomcat Design 1.1. 架构设计 1.2. 线程池 1.3. 连接器 1.3.1. NioEndpoint 💠 2024-06-02 17:50:57 Tomcat Design Github Tomcat Compiling Tomcat Source Code By Maven | 9.0.48 Source Repo ♥Tomcat源码详解知识体系详解♥ 深入拆解Tomcat 宏观架构 线程池"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">TomcatDesign</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-05-14 </span>
+        
+          <span class="more-meta"> 约 966 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tomcat-design">Tomcat Design</a>
+      <ul>
+        <li><a href="#宏观架构">宏观架构</a></li>
+        <li><a href="#线程池">线程池</a></li>
+        <li><a href="#连接器">连接器</a>
+          <ul>
+            <li><a href="#nioendpoint">NioEndpoint</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2024-05-14T17:22:24" title="May 14, 2024">May 14, 2024</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#tomcat-design">Tomcat Design</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1">架构设计</a></li>
+<li>1.2. <a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0">线程池</a></li>
+<li>1.3. <a href="#%E8%BF%9E%E6%8E%A5%E5%99%A8">连接器</a>
+<ul>
+<li>1.3.1. <a href="#nioendpoint">NioEndpoint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-06-02 17:50:57</p>
+<hr>
+<h1 id="tomcat-design">Tomcat Design</h1>
+<blockquote>
+<p><a href="https://github.com/apache/tomcat">Github Tomcat</a><br>
+<a href="https://programmer.group/tomcat-source-analysis-i-compiling-tomcat-source-code.html">Compiling Tomcat Source Code By Maven</a> | <a href="https://gitee.com/gin9/tomcat9-source">9.0.48 Source Repo</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://pdai.tech/md/framework/tomcat/tomcat-overview.html">♥Tomcat源码详解知识体系详解♥</a><br>
+<a href="https://time.geekbang.org/column/intro/100027701?tab=catalog">深入拆解Tomcat</a></p>
+</blockquote>
+<h2 id="宏观架构">宏观架构</h2>
+<h2 id="线程池">线程池</h2>
+<blockquote>
+<p><a href="https://tomcat.apache.org/tomcat-9.0-doc/config/executor.html">Doc: Tomcat Executor</a></p>
+</blockquote>
+<blockquote>
+<p>StandardThreadExecutor</p>
+</blockquote>
+<p>Tomcat没有直接使用ThreadPoolExecutor而是扩展了 <code>threads.ThreadPoolExecutor</code>，一是可以隔离依赖，二是做定制化调整(核心改动为队列和提交任务，适配Tomcat生命周期管理)。</p>
+<ol>
+<li>
+<p>执行逻辑调整 <code>StandardThreadExecutor#execute(java.lang.Runnable)</code> 当提交的任务触发拒绝策略时,尝试一次重新入队列。可能这段时间就有任务被消费了，可以提高一些服务可用性。</p>
+</li>
+<li>
+<p>队列自定义为 TaskQueue <code>public class TaskQueue extends LinkedBlockingQueue&lt;Runnable&gt;</code> 默认无界</p>
+</li>
+</ol>
+<p>Tomcat在EndPoint中通过acceptCount和maxConnections两个参数作用后，Tomcat默认的无界任务队列通常不会造成过多任务积压导致OOM。</p>
+<p>其中maxConnections为Tomcat在任意时刻接收和处理的最大连接数，当Tomcat接收的连接数达到maxConnections时，Acceptor不会读取accept队列<code>对应于TCP连接中的全连接accept队列</code>中的连接；<br>
+这时accept队列中的线程会一直阻塞着，直到Tomcat接收的连接数小于maxConnections（maxConnections默认为10000，如果设置为-1，则连接数不受限制）。<br>
+acceptCount为accept队列的长度，当accept队列中连接的个数达到acceptCount时，即队列满，此时进来的请求一律被拒绝，默认值是100（基于Tomcat 8.5.43版本）。</p>
+<ol start="3">
+<li>生命周期管理 LifecycleMBeanBase</li>
+</ol>
+<p>任务结束时，上下文关闭时，停止所有线程，设置线程池参数，清理依赖资源。</p>
+<hr>
+<blockquote>
+<p>StandardVirtualThreadExecutor 需Java 21，Tomcat9.0.76可用，最早可追溯到2022年随Loom项目开始筹备</p>
+</blockquote>
+<p>内部实现为 VirtualThreadExecutor，并依据JreCompat做不同JDK版本的实现适配，最终通过 VirtualThreadBuilder 创建虚拟线程。</p>
+<h2 id="连接器">连接器</h2>
+<h3 id="nioendpoint">NioEndpoint</h3>
+<p>NioEndpoint 要完成三件事情：接收连接、检测 I/O 事件以及处理请求，那么最核心的就是把这三件事情分开，用不同规模的线程数去处理.
+比如用专门的线程组去跑 Acceptor，并且 Acceptor 的个数可以配置；
+用专门的线程组去跑 Poller，Poller 的个数也可以配置；
+最后具体任务的执行也由专门的线程池Executor来处理，也可以配置线程池的大小。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-05-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/bigdata/dataanalysis/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">DataAnalysis</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/bigdata/dataquality/">
+            <span class="next-text nav-default">DataQuality</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Alpine基础 - Mythos</title>
+  <title>Alpine基础 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Alpine BusyBox ls ps 目录 end|2021-02-03 17:25| Alpine Official Site 精简的linux 适合用于Docker 基础镜像 优点是镜像很小 但是缺点是工具集和相关库实现和Ubuntu等主流发行版" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Alpine 1.1. BusyBox 💠 2024-09-06 11:36:43 Alpine Official Site 从K8S及应用层兼容考虑，都不推荐Alpine做基础镜像！ 是否适合用作Docker基础镜像 Alpine Linux，一个只有 5M 的 Docker 镜" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/alpine/alpinebase/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/alpine/alpinebase/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Alpine基础" />
-<meta property="og:description" content="目录 start Alpine BusyBox ls ps 目录 end|2021-02-03 17:25| Alpine Official Site 精简的linux 适合用于Docker 基础镜像 优点是镜像很小 但是缺点是工具集和相关库实现和Ubuntu等主流发行版" />
+<meta property="og:description" content="💠 Alpine 1.1. BusyBox 💠 2024-09-06 11:36:43 Alpine Official Site 从K8S及应用层兼容考虑，都不推荐Alpine做基础镜像！ 是否适合用作Docker基础镜像 Alpine Linux，一个只有 5M 的 Docker 镜" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/alpine/alpinebase/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/alpine/alpinebase/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Alpine基础">
-<meta itemprop="description" content="目录 start Alpine BusyBox ls ps 目录 end|2021-02-03 17:25| Alpine Official Site 精简的linux 适合用于Docker 基础镜像 优点是镜像很小 但是缺点是工具集和相关库实现和Ubuntu等主流发行版">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 Alpine 1.1. BusyBox 💠 2024-09-06 11:36:43 Alpine Official Site 从K8S及应用层兼容考虑，都不推荐Alpine做基础镜像！ 是否适合用作Docker基础镜像 Alpine Linux，一个只有 5M 的 Docker 镜"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="204">
-
-
-
-<meta itemprop="keywords" content="Alpine,基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="276">
+<meta itemprop="keywords" content="Alpine,基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Alpine基础"/>
-<meta name="twitter:description" content="目录 start Alpine BusyBox ls ps 目录 end|2021-02-03 17:25| Alpine Official Site 精简的linux 适合用于Docker 基础镜像 优点是镜像很小 但是缺点是工具集和相关库实现和Ubuntu等主流发行版"/>
+<meta name="twitter:description" content="💠 Alpine 1.1. BusyBox 💠 2024-09-06 11:36:43 Alpine Official Site 从K8S及应用层兼容考虑，都不推荐Alpine做基础镜像！ 是否适合用作Docker基础镜像 Alpine Linux，一个只有 5M 的 Docker 镜"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,70 +122,81 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 204 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 276 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#busybox">BusyBox</a>
+    <li><a href="#alpine">Alpine</a>
       <ul>
-        <li><a href="#ls">ls</a></li>
-        <li><a href="#ps">ps</a></li>
+        <li><a href="#busybox">BusyBox</a></li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#alpine">Alpine</a>
-<ol>
-<li><a href="#busybox">BusyBox</a>
-<ol>
-<li><a href="#ls">ls</a></li>
-<li><a href="#ps">ps</a></li>
+<li><a href="#alpine">Alpine</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#busybox">BusyBox</a></li>
+</ul>
 </li>
-</ol>
-</li>
-</ol>
-<p><strong>目录 end</strong>|<em>2021-02-03 17:25</em>|</p>
+</ul>
+<p>💠 2024-09-06 11:36:43</p>
 <hr>
 <h1 id="alpine">Alpine</h1>
 <blockquote>
 <p><a href="https://www.alpinelinux.org/">Official Site</a></p>
 </blockquote>
 <blockquote>
-<p>精简的linux 适合用于Docker 基础镜像</p>
+<p>从K8S及应用层兼容考虑，都不推荐Alpine做基础镜像！<br>
+<a href="https://cloud.tencent.com/developer/article/1632733">是否适合用作Docker基础镜像</a><br>
+<a href="https://www.infoq.cn/article/2016/01/Alpine-Linux-5M-Docker">Alpine Linux，一个只有 5M 的 Docker 镜像</a></p>
 </blockquote>
-<p>优点是镜像很小 但是缺点是工具集和相关库实现和Ubuntu等主流发行版不一致，可能导致应用出现不一致情况，终端内的工具集也是不统一的<br>
-即使从优点来说 由于镜像底层的文件系统是多层，所以多次分发镜像时，镜像大小也没有了优势</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/65181012/does-alpine-have-known-dns-issue-within-kubernetes">Does Alpine have known DNS issue within Kubernetes?</a></li>
+<li>优点是镜像很小 但是缺点是工具集和相关底层库实现和Ubuntu等主流发行版不一致，可能导致应用出现不一致情况，终端内的工具集也是不统一的
+<ul>
+<li>alpine 使用的musl 主流使用的glibc</li>
+<li>即使从优点来说 由于镜像底层的文件系统是多层，所以多次分发镜像时，基础镜像小也就没有了优势</li>
+</ul>
+</li>
+</ul>
 <h2 id="busybox">BusyBox</h2>
 <blockquote>
-<p>里面各种工具的实现能满足大部分需求, 但是有些参数和原始的工具有些差异</p>
+<p>里面各种工具命令能满足大部分需求, 但是命令参数，实现的功能都和原始的工具有差异，有裁剪</p>
 </blockquote>
-<h3 id="ls">ls</h3>
-<p>真正的 ls 属于<code>coreutils</code>包</p>
-<h3 id="ps">ps</h3>
-<p>真正的 ps 属于 <code>procps</code> 包</p>
+<ul>
+<li>真正的 ls 属于<code>coreutils</code>包</li>
+<li>真正的 ps 属于 <code>procps</code> 包</li>
+</ul>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-11-21
         
@@ -207,11 +214,11 @@
         <a class="prev" href="/post/java/ecosystem/activiti/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Activiti</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/java/ecosystem/blade/">
-            <span class="next-text nav-default">Blade</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/functional/clojure/">
+            <span class="next-text nav-default">Clojure</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -229,17 +236,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -247,11 +254,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -261,16 +268,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

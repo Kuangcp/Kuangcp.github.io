@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Linux常用命令 - Mythos</title>
+  <title>Linux常用命令 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 系统常用基础命令 系统内置命令 Shell内建命令 输入输出 重定向 管道 xargs time date grep script 定时任务 crontab Systemd 目录 end|2021-02-23 20:53| 系统常用基础命令 Linux 命令大全 The Art of Command Line 高效" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 系统常用基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-07-26 19:05:14 系统常用基础命令 Linux 命" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxcommand/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/base/linuxcommand/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Linux常用命令" />
-<meta property="og:description" content="目录 start 系统常用基础命令 系统内置命令 Shell内建命令 输入输出 重定向 管道 xargs time date grep script 定时任务 crontab Systemd 目录 end|2021-02-23 20:53| 系统常用基础命令 Linux 命令大全 The Art of Command Line 高效" />
+<meta property="og:description" content="💠 系统常用基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-07-26 19:05:14 系统常用基础命令 Linux 命" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxcommand/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/base/linuxcommand/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T11:11:55+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:11:55+00:00" />
+
 <meta itemprop="name" content="Linux常用命令">
-<meta itemprop="description" content="目录 start 系统常用基础命令 系统内置命令 Shell内建命令 输入输出 重定向 管道 xargs time date grep script 定时任务 crontab Systemd 目录 end|2021-02-23 20:53| 系统常用基础命令 Linux 命令大全 The Art of Command Line 高效">
-<meta itemprop="datePublished" content="2018-12-15T11:11:55+00:00" />
+<meta itemprop="description" content="💠 系统常用基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-07-26 19:05:14 系统常用基础命令 Linux 命"><meta itemprop="datePublished" content="2018-12-15T11:11:55+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:11:55+00:00" />
-<meta itemprop="wordCount" content="879">
-
-
-
-<meta itemprop="keywords" content="工具," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1005">
+<meta itemprop="keywords" content="工具," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux常用命令"/>
-<meta name="twitter:description" content="目录 start 系统常用基础命令 系统内置命令 Shell内建命令 输入输出 重定向 管道 xargs time date grep script 定时任务 crontab Systemd 目录 end|2021-02-23 20:53| 系统常用基础命令 Linux 命令大全 The Art of Command Line 高效"/>
+<meta name="twitter:description" content="💠 系统常用基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-07-26 19:05:14 系统常用基础命令 Linux 命"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,80 +122,92 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 879 words </span>
-          <span class="more-meta"> 2 mins read </span>
+          <span class="more-meta"> 约 1005 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#系统内置命令">系统内置命令</a>
+    <li><a href="#系统常用基础命令">系统常用基础命令</a>
       <ul>
-        <li><a href="#shell内建命令">Shell内建命令</a></li>
-      </ul>
-    </li>
-    <li><a href="#输入输出">输入输出</a>
-      <ul>
-        <li><a href="#重定向">重定向</a></li>
-      </ul>
-    </li>
-    <li><a href="#管道">管道</a>
-      <ul>
-        <li><a href="#xargs">xargs</a></li>
-      </ul>
-    </li>
-    <li><a href="#time">time</a></li>
-    <li><a href="#date">date</a></li>
-    <li><a href="#grep">grep</a></li>
-    <li><a href="#script">script</a></li>
-    <li><a href="#定时任务">定时任务</a>
-      <ul>
-        <li><a href="#crontab">crontab</a></li>
-        <li><a href="#systemd">Systemd</a></li>
+        <li><a href="#系统内置命令">系统内置命令</a>
+          <ul>
+            <li><a href="#shell内建命令">Shell内建命令</a></li>
+          </ul>
+        </li>
+        <li><a href="#输入输出">输入输出</a>
+          <ul>
+            <li><a href="#重定向">重定向</a></li>
+          </ul>
+        </li>
+        <li><a href="#管道">管道</a>
+          <ul>
+            <li><a href="#xargs">xargs</a></li>
+          </ul>
+        </li>
+        <li><a href="#time">time</a></li>
+        <li><a href="#date">date</a></li>
+        <li><a href="#grep">grep</a></li>
+        <li><a href="#script">script</a></li>
+        <li><a href="#定时任务">定时任务</a>
+          <ul>
+            <li><a href="#crontab">crontab</a></li>
+            <li><a href="#systemd">Systemd</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-15T11:11:55" title="December 15, 2018">December 15, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4">系统常用基础命令</a>
-<ol>
-<li><a href="#%E7%B3%BB%E7%BB%9F%E5%86%85%E7%BD%AE%E5%91%BD%E4%BB%A4">系统内置命令</a>
-<ol>
-<li><a href="#shell%E5%86%85%E5%BB%BA%E5%91%BD%E4%BB%A4">Shell内建命令</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4">系统常用基础命令</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E7%B3%BB%E7%BB%9F%E5%86%85%E7%BD%AE%E5%91%BD%E4%BB%A4">系统内置命令</a>
+<ul>
+<li>1.1.1. <a href="#shell%E5%86%85%E5%BB%BA%E5%91%BD%E4%BB%A4">Shell内建命令</a></li>
+</ul>
 </li>
-<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">输入输出</a>
-<ol>
-<li><a href="#%E9%87%8D%E5%AE%9A%E5%90%91">重定向</a></li>
-</ol>
+<li>1.2. <a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">输入输出</a>
+<ul>
+<li>1.2.1. <a href="#%E9%87%8D%E5%AE%9A%E5%90%91">重定向</a></li>
+</ul>
 </li>
-<li><a href="#%E7%AE%A1%E9%81%93">管道</a>
-<ol>
-<li><a href="#xargs">xargs</a></li>
-</ol>
+<li>1.3. <a href="#%E7%AE%A1%E9%81%93">管道</a>
+<ul>
+<li>1.3.1. <a href="#xargs">xargs</a></li>
+</ul>
 </li>
-<li><a href="#time">time</a></li>
-<li><a href="#date">date</a></li>
-<li><a href="#grep">grep</a></li>
-<li><a href="#script">script</a></li>
-<li><a href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1">定时任务</a>
-<ol>
-<li><a href="#crontab">crontab</a></li>
-<li><a href="#systemd">Systemd</a></li>
-</ol>
+<li>1.4. <a href="#time">time</a></li>
+<li>1.5. <a href="#date">date</a></li>
+<li>1.6. <a href="#grep">grep</a></li>
+<li>1.7. <a href="#script">script</a></li>
+<li>1.8. <a href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1">定时任务</a>
+<ul>
+<li>1.8.1. <a href="#crontab">crontab</a></li>
+<li>1.8.2. <a href="#systemd">Systemd</a></li>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2021-02-23 20:53</em>|</p>
+</ul>
+<p>💠 2024-07-26 19:05:14</p>
 <hr>
 <h1 id="系统常用基础命令">系统常用基础命令</h1>
 <blockquote>
@@ -284,34 +292,42 @@
 <li>获取前一天日期 <code>date --date='1 day ago' -R</code></li>
 <li>将秒时间戳转换为日期 <code>date --date='@1524738626'</code></li>
 <li>设置日期或时间 <code>date -s '2020-12-01'</code> 或 <code>date -s '23:00:20'</code></li>
+<li>日期计算 <code>date -d &quot;+10 days&quot;</code></li>
 </ul>
 <h2 id="grep">grep</h2>
 <blockquote>
-<p>g (globally) search for a re (regular expression ) and p (print ) the results.</p>
+<p><code>g</code> (globally) search for a <code>re</code> (regular expression ) and <code>p</code> (print ) the results.</p>
 </blockquote>
 <blockquote>
 <p>egrep <a href="http://man.linuxde.net/grep">相关网页</a> 与 grep -E 等价</p>
 </blockquote>
 <ul>
 <li>
-<p>正则 <code>grep -E &quot;[1-9]+&quot;</code> 注意 <code>[]</code> 是里面单个字符 <code>()</code>是里面所有字符一起 用于匹配</p>
+<p><a href="/Skills/RegularExpression.md">正则表达式</a></p>
+<ul>
+<li>标准正则  <code>grep -E &quot;[1-9]+&quot;</code> 注意 <code>[]</code> 是里面单个字符 <code>()</code>是里面所有字符一起 用于匹配</li>
+<li>Perl正则 <code>grep -P ''</code></li>
+</ul>
 </li>
 <li>
-<p>-o 一行内多次匹配</p>
+<p>-o 只输出匹配值 <code>一行内多个匹配时多行输出</code></p>
 <ul>
-<li>统计所有 <code>main</code> 数量 <code>grep -o main test.log | wc -l</code></li>
+<li>统计所有main字符数量 <code>grep -o main test.log | wc -l</code></li>
 </ul>
 </li>
 <li>
 <p>-i 忽略大小写</p>
 </li>
-<li>
-<p>匹配中文</p>
-<ol>
-<li><code>-P '[\p{Han}]'</code></li>
-</ol>
-</li>
 </ul>
+<blockquote>
+<p>eg：</p>
+</blockquote>
+<ul>
+<li>匹配中文 <code>-P '[\p{Han}]'</code></li>
+<li>截取字符 <code>ping jd.com | grep -oP '(?&lt;=time=).*(?=ms)'</code> 提取出ms值。</li>
+<li>两个文件的差异行 <code>grep -vwf 文件1 文件2</code></li>
+</ul>
+<hr>
 <h2 id="script">script</h2>
 <blockquote>
 <p>make typescript of terminal session</p>
@@ -320,16 +336,17 @@
 <hr>
 <h2 id="定时任务">定时任务</h2>
 <h3 id="crontab">crontab</h3>
+<p><code>minute hour day-of-month month-of-year day-of-week commands  </code></p>
 <blockquote>
-<p><a href="http://www.cnblogs.com/taosim/articles/2007056.html">参考博客 shell定时任务crontab</a>
-<code>minute hour day-of-month month-of-year day-of-week commands  </code></p>
+<p><a href="https://segmentfault.com/a/1190000020850932">为什么crontab不执行</a></p>
 </blockquote>
-<blockquote>
-<p>cron 脚本中的操作命令 最好都使用绝对路径, 必须注意环境变量问题</p>
-</blockquote>
+<ul>
+<li>cron 脚本中的操作命令 都使用绝对路径, 必须注意环境变量问题</li>
+<li>以及每行配置都需要以换行符结尾</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -342,20 +359,23 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="nv">SHELL</span><span class="o">=</span>/bin/sh
-    <span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-    <span class="c1"># Example of job definition:</span>
-    <span class="c1"># .---------------- minute (0 - 59)</span>
-    <span class="c1"># |  .------------- hour (0 - 23)</span>
-    <span class="c1"># |  |  .---------- day of month (1 - 31)</span>
-    <span class="c1"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span>
-    <span class="c1"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span>
-    <span class="c1"># |  |  |  |  |</span>
-    <span class="c1"># *  *  *  *  * user-name command to be executed</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="nv">SHELL</span><span class="o">=</span>/bin/sh
+</span></span><span class="line"><span class="cl">    <span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Example of job definition:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># .---------------- minute (0 - 59)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># |  .------------- hour (0 - 23)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># |  |  .---------- day of month (1 - 31)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># |  |  |  |  |</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># *  *  *  *  * user-name command to be executed</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
+<li>编辑配置文件 <code>crontab -e</code></li>
+<li>时间配置格式
+<ul>
 <li>
 <ul>
 <li>表示所有值；</li>
@@ -369,6 +389,14 @@
 </li>
 <li>, 表示附加一个可能值；</li>
 <li>/ 符号前表示开始时间，符号后表示每次递增的值；</li>
+</ul>
+</li>
+<li>例如：
+<ul>
+<li>每分钟执行二进制命令</li>
+<li>每分钟执行脚本</li>
+</ul>
+</li>
 </ul>
 <blockquote>
 <p>注意</p>
@@ -385,11 +413,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-15
         
@@ -406,11 +434,11 @@
         <a class="prev" href="/post/linux/base/linuxcompressfile/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Linux平台上压缩和解压工具</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/linux/base/linuxbase/">
             <span class="next-text nav-default">Linux基础</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -428,17 +456,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -446,11 +474,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -460,16 +488,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

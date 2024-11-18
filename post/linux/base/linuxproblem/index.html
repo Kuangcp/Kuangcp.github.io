@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Linux遇到问题总结 - Mythos</title>
+  <title>Linux桌面发行版遇到的问题 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 遇到的常见问题 软件问题 命令找不到 终端响铃 输入法 fcitx Flash tracker-extract 高CPU内存占用 驱动问题 显卡 Nvidia Manjaro 的NVIDIA驱动问题 Deepin 的NVIDIA驱动问题 配置" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Linux桌面发行版遇到的问题 1.1. 软件问题 1.1.1. 命令找不到 1.1.2. 终端响铃 1.1.3. 输入法 1.1.3.1. fcitx 1.1.4. Flash 1.1.5. tracker-extract 高CPU内存占用 1.2. 驱动问题 1.2.1. 显卡 1.2.1.1. Nvidia 1.2.1.2. Manjaro 的NVIDIA驱" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/base/linuxproblem/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/base/linuxproblem/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,24 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Linux遇到问题总结" />
-<meta property="og:description" content="目录 start 遇到的常见问题 软件问题 命令找不到 终端响铃 输入法 fcitx Flash tracker-extract 高CPU内存占用 驱动问题 显卡 Nvidia Manjaro 的NVIDIA驱动问题 Deepin 的NVIDIA驱动问题 配置" />
+<meta property="og:title" content="Linux桌面发行版遇到的问题" />
+<meta property="og:description" content="💠 Linux桌面发行版遇到的问题 1.1. 软件问题 1.1.1. 命令找不到 1.1.2. 终端响铃 1.1.3. 输入法 1.1.3.1. fcitx 1.1.4. Flash 1.1.5. tracker-extract 高CPU内存占用 1.2. 驱动问题 1.2.1. 显卡 1.2.1.1. Nvidia 1.2.1.2. Manjaro 的NVIDIA驱" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/base/linuxproblem/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/base/linuxproblem/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T11:16:42+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:16:42+00:00" />
-<meta itemprop="name" content="Linux遇到问题总结">
-<meta itemprop="description" content="目录 start 遇到的常见问题 软件问题 命令找不到 终端响铃 输入法 fcitx Flash tracker-extract 高CPU内存占用 驱动问题 显卡 Nvidia Manjaro 的NVIDIA驱动问题 Deepin 的NVIDIA驱动问题 配置">
-<meta itemprop="datePublished" content="2018-12-15T11:16:42+00:00" />
+
+<meta itemprop="name" content="Linux桌面发行版遇到的问题">
+<meta itemprop="description" content="💠 Linux桌面发行版遇到的问题 1.1. 软件问题 1.1.1. 命令找不到 1.1.2. 终端响铃 1.1.3. 输入法 1.1.3.1. fcitx 1.1.4. Flash 1.1.5. tracker-extract 高CPU内存占用 1.2. 驱动问题 1.2.1. 显卡 1.2.1.1. Nvidia 1.2.1.2. Manjaro 的NVIDIA驱"><meta itemprop="datePublished" content="2018-12-15T11:16:42+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:16:42+00:00" />
-<meta itemprop="wordCount" content="1096">
-
-
-
-<meta itemprop="keywords" content="工具使用经验," />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Linux遇到问题总结"/>
-<meta name="twitter:description" content="目录 start 遇到的常见问题 软件问题 命令找不到 终端响铃 输入法 fcitx Flash tracker-extract 高CPU内存占用 驱动问题 显卡 Nvidia Manjaro 的NVIDIA驱动问题 Deepin 的NVIDIA驱动问题 配置"/>
+<meta itemprop="wordCount" content="2425">
+<meta itemprop="keywords" content="工具使用经验," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux桌面发行版遇到的问题"/>
+<meta name="twitter:description" content="💠 Linux桌面发行版遇到的问题 1.1. 软件问题 1.1.1. 命令找不到 1.1.2. 终端响铃 1.1.3. 输入法 1.1.3.1. fcitx 1.1.4. Flash 1.1.5. tracker-extract 高CPU内存占用 1.2. 驱动问题 1.2.1. 显卡 1.2.1.1. Nvidia 1.2.1.2. Manjaro 的NVIDIA驱"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -119,99 +115,125 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Linux遇到问题总结</h1>
+      <h1 class="post-title">Linux桌面发行版遇到的问题</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2018-12-15 </span>
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 1096 words </span>
-          <span class="more-meta"> 3 mins read </span>
+          <span class="more-meta"> 约 2425 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#软件问题">软件问题</a>
+    <li><a href="#linux桌面发行版遇到的问题">Linux桌面发行版遇到的问题</a>
       <ul>
-        <li><a href="#命令找不到">命令找不到</a></li>
-        <li><a href="#终端响铃">终端响铃</a></li>
-        <li><a href="#输入法">输入法</a></li>
-        <li><a href="#flash">Flash</a></li>
-        <li><a href="#tracker-extract-高cpu内存占用">tracker-extract 高CPU内存占用</a></li>
-      </ul>
-    </li>
-    <li><a href="#驱动问题">驱动问题</a>
-      <ul>
-        <li><a href="#显卡">显卡</a></li>
-      </ul>
-    </li>
-    <li><a href="#配置问题">配置问题</a>
-      <ul>
-        <li><a href="#ubuntu与windows10时间相差8小时的解决">Ubuntu与Windows10时间相差8小时的解决</a></li>
-        <li><a href="#终端开启慢">终端开启慢</a></li>
-      </ul>
-    </li>
-    <li><a href="#数据问题">数据问题</a>
-      <ul>
-        <li><a href="#突然断电">突然断电</a></li>
+        <li><a href="#软件问题">软件问题</a>
+          <ul>
+            <li><a href="#命令找不到">命令找不到</a></li>
+            <li><a href="#终端响铃">终端响铃</a></li>
+            <li><a href="#输入法">输入法</a></li>
+            <li><a href="#flash">Flash</a></li>
+            <li><a href="#tracker-extract-高cpu内存占用">tracker-extract 高CPU内存占用</a></li>
+          </ul>
+        </li>
+        <li><a href="#驱动问题">驱动问题</a>
+          <ul>
+            <li><a href="#显卡">显卡</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置问题">配置问题</a>
+          <ul>
+            <li><a href="#ubuntu与windows10时间相差8小时的解决">Ubuntu与Windows10时间相差8小时的解决</a></li>
+            <li><a href="#终端开启慢">终端开启慢</a></li>
+          </ul>
+        </li>
+        <li><a href="#数据问题">数据问题</a>
+          <ul>
+            <li><a href="#突然断电">突然断电</a></li>
+          </ul>
+        </li>
+        <li><a href="#启动问题">启动问题</a>
+          <ul>
+            <li><a href="#cant-resume-from-suspend">can&rsquo;t resume from suspend</a></li>
+            <li><a href="#i386-pc-not-found">i386-pc not found</a></li>
+          </ul>
+        </li>
+        <li><a href="#崩溃">崩溃</a></li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-15T11:16:42" title="December 15, 2018">December 15, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E9%81%87%E5%88%B0%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">遇到的常见问题</a>
-<ol>
-<li><a href="#%E8%BD%AF%E4%BB%B6%E9%97%AE%E9%A2%98">软件问题</a>
-<ol>
-<li><a href="#%E5%91%BD%E4%BB%A4%E6%89%BE%E4%B8%8D%E5%88%B0">命令找不到</a></li>
-<li><a href="#%E7%BB%88%E7%AB%AF%E5%93%8D%E9%93%83">终端响铃</a></li>
-<li><a href="#%E8%BE%93%E5%85%A5%E6%B3%95">输入法</a>
-<ol>
-<li><a href="#fcitx">fcitx</a></li>
+<li><a href="#linux%E6%A1%8C%E9%9D%A2%E5%8F%91%E8%A1%8C%E7%89%88%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98">Linux桌面发行版遇到的问题</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E8%BD%AF%E4%BB%B6%E9%97%AE%E9%A2%98">软件问题</a>
+<ul>
+<li>1.1.1. <a href="#%E5%91%BD%E4%BB%A4%E6%89%BE%E4%B8%8D%E5%88%B0">命令找不到</a></li>
+<li>1.1.2. <a href="#%E7%BB%88%E7%AB%AF%E5%93%8D%E9%93%83">终端响铃</a></li>
+<li>1.1.3. <a href="#%E8%BE%93%E5%85%A5%E6%B3%95">输入法</a>
+<ul>
+<li>1.1.3.1. <a href="#fcitx">fcitx</a></li>
+</ul>
 </li>
-<li><a href="#flash">Flash</a></li>
-<li><a href="#tracker-extract-%E9%AB%98cpu%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8">tracker-extract 高CPU内存占用</a></li>
-</ol>
+<li>1.1.4. <a href="#flash">Flash</a></li>
+<li>1.1.5. <a href="#tracker-extract-%E9%AB%98cpu%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8">tracker-extract 高CPU内存占用</a></li>
+</ul>
 </li>
-<li><a href="#%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98">驱动问题</a>
-<ol>
-<li><a href="#%E6%98%BE%E5%8D%A1">显卡</a>
-<ol>
-<li><a href="#nvidia">Nvidia</a></li>
-<li><a href="#manjaro-%E7%9A%84nvidia%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98">Manjaro 的NVIDIA驱动问题</a></li>
-<li><a href="#deepin-%E7%9A%84nvidia%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98">Deepin 的NVIDIA驱动问题</a></li>
-</ol>
+<li>1.2. <a href="#%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98">驱动问题</a>
+<ul>
+<li>1.2.1. <a href="#%E6%98%BE%E5%8D%A1">显卡</a>
+<ul>
+<li>1.2.1.1. <a href="#nvidia">Nvidia</a></li>
+<li>1.2.1.2. <a href="#manjaro-%E7%9A%84nvidia%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98">Manjaro 的NVIDIA驱动问题</a></li>
+<li>1.2.1.3. <a href="#deepin-%E7%9A%84nvidia%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98">Deepin 的NVIDIA驱动问题</a></li>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-<li><a href="#%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98">配置问题</a>
-<ol>
-<li><a href="#ubuntu%E4%B8%8Ewindows10%E6%97%B6%E9%97%B4%E7%9B%B8%E5%B7%AE8%E5%B0%8F%E6%97%B6%E7%9A%84%E8%A7%A3%E5%86%B3">Ubuntu与Windows10时间相差8小时的解决</a></li>
-<li><a href="#%E7%BB%88%E7%AB%AF%E5%BC%80%E5%90%AF%E6%85%A2">终端开启慢</a></li>
-</ol>
+<li>1.3. <a href="#%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98">配置问题</a>
+<ul>
+<li>1.3.1. <a href="#ubuntu%E4%B8%8Ewindows10%E6%97%B6%E9%97%B4%E7%9B%B8%E5%B7%AE8%E5%B0%8F%E6%97%B6%E7%9A%84%E8%A7%A3%E5%86%B3">Ubuntu与Windows10时间相差8小时的解决</a></li>
+<li>1.3.2. <a href="#%E7%BB%88%E7%AB%AF%E5%BC%80%E5%90%AF%E6%85%A2">终端开启慢</a></li>
+</ul>
 </li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E9%97%AE%E9%A2%98">数据问题</a>
-<ol>
-<li><a href="#%E7%AA%81%E7%84%B6%E6%96%AD%E7%94%B5">突然断电</a></li>
-</ol>
+<li>1.4. <a href="#%E6%95%B0%E6%8D%AE%E9%97%AE%E9%A2%98">数据问题</a>
+<ul>
+<li>1.4.1. <a href="#%E7%AA%81%E7%84%B6%E6%96%AD%E7%94%B5">突然断电</a></li>
+</ul>
 </li>
-</ol>
+<li>1.5. <a href="#%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98">启动问题</a>
+<ul>
+<li>1.5.1. <a href="#can't-resume-from-suspend">can&rsquo;t resume from suspend</a></li>
+<li>1.5.2. <a href="#i386-pc-not-found">i386-pc not found</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2021-02-03 17:25</em>|</p>
+<li>1.6. <a href="#%E5%B4%A9%E6%BA%83">崩溃</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-10-15 09:56:12</p>
 <hr>
-<h1 id="遇到的常见问题">遇到的常见问题</h1>
+<h1 id="linux桌面发行版遇到的问题">Linux桌面发行版遇到的问题</h1>
 <h2 id="软件问题">软件问题</h2>
 <h3 id="命令找不到">命令找不到</h3>
 <ul>
@@ -293,6 +315,7 @@
 <li>查看显卡列表  <code>lspci -vnn | grep '\''[030[02]\]'</code></li>
 <li>测试显卡 FPS <code>glxgears</code></li>
 </ul>
+<p>休眠后的唤起 vscode vivaldi chrome 均出现假死半分钟后才恢复的情况，禁用硬件加速可避免</p>
 <h4 id="nvidia">Nvidia</h4>
 <blockquote>
 <p><a href="https://wiki.archlinux.org/index.php/NVIDIA_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E5.AE.89.E8.A3.85">NVIDIA</a></p>
@@ -301,10 +324,16 @@
 <blockquote>
 <p><a href="https://wiki.archlinux.org/index.php/Bumblebee_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Bumblebee </a></p>
 </blockquote>
-<p>大多数笔记本都是 Intel集显和 Nvidia 或者 AMD 双显卡, 双显卡的管理就成了问题(指的是Linux下)</p>
+<p>大多数笔记本都是 Intel集显和 Nvidia/AMD 组成双显卡, 双显卡的管理就成了问题(指的是Linux下)</p>
 <blockquote>
 <p><a href="https://www.cnblogs.com/congbo/archive/2012/09/12/2682105.html">参考: 使用 Bumblebee 控制 NVIDIA 双显卡</a></p>
 </blockquote>
+<blockquote>
+<p><a href="https://medium.com/@TheNiemand/serious-issue-with-nvidia-drivers-compatibility-problems-with-linux-kernel-6-10-9cdb0791d204">Serious Issue with NVIDIA Drivers: Compatibility Problems with Linux Kernel 6.10 | by Niemand | Aug, 2024 | Medium</a><code>升级Manjaro到24.1后没注意到升级了内核和驱动，然后lightdm以及X都崩溃了</code></p>
+</blockquote>
+<ul>
+<li>依据启动的内核，将驱动从 linux510 升级到 linux610-nvidia 550.120-6 问题就解决了，没有那么多奇奇怪怪的问题了（/boot分区加载失败，X启动失败找不到屏幕（nvidia内核模块加载失败），某个分区加载失败无法识别 ext4 文件系统）</li>
+</ul>
 <hr>
 <h4 id="manjaro-的nvidia驱动问题">Manjaro 的NVIDIA驱动问题</h4>
 <blockquote>
@@ -343,7 +372,13 @@
 <h2 id="数据问题">数据问题</h2>
 <h3 id="突然断电">突然断电</h3>
 <blockquote>
-<p>开机报错信息: fsck exited with status code 4</p>
+<p>由于Linux延迟写的特性，如果遇到操作系统突然断电，会导致文件损坏或缺失，从而引发各种诡异问题</p>
+</blockquote>
+<hr>
+<blockquote>
+<ol>
+<li>开机报错信息: fsck exited with status code 4</li>
+</ol>
 </blockquote>
 <ol>
 <li>根据报错提示的分区, 进行修复, 由于我的Linux是ext3文件系统 ext4 则是 <code>fsck.ext4</code></li>
@@ -352,31 +387,221 @@
 </ol>
 <hr>
 <blockquote>
-<p>导致了 Git 仓库都损坏了 <code>fatal: loose object</code></p>
+<ol start="2">
+<li>导致了 Git 仓库都损坏了 <code>fatal: loose object</code></li>
+</ol>
 </blockquote>
 <p>ZSH: corrupt history file</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">mv .zsh_history .zsh_history_bad
-strings .zsh_history_bad &gt; .zsh_history
-<span class="nb">fc</span> -R .zsh_history
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mv .zsh_history .zsh_history_bad
+</span></span><span class="line"><span class="cl">strings .zsh_history_bad &gt; .zsh_history
+</span></span><span class="line"><span class="cl"><span class="nb">fc</span> -R .zsh_history
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<blockquote>
+<ol start="3">
+<li>导致了终端输出中文乱码 Unicode乱码，但是应用内(firefox vscode)中文输入正常，且粘贴板复制中文内容</li>
+</ol>
+</blockquote>
+<h2 id="启动问题">启动问题</h2>
+<h3 id="cant-resume-from-suspend">can&rsquo;t resume from suspend</h3>
+<h3 id="i386-pc-not-found">i386-pc not found</h3>
+<ul>
+<li>/boot/grub/i386-pc BIOS 安装的引导</li>
+<li>/boot/grub/x86_64-efi EFI安装的引导</li>
+</ul>
+<p><code>/boot/grub/i386-pc/normal.mod</code> not found.</p>
+<p><a href="https://gist.github.com/AndersonIncorp/3acb1d657cb5eba285f4fb31f323d1c3?permalink_comment_id=3310958">gist</a></p>
+<hr>
+<h2 id="崩溃">崩溃</h2>
+<blockquote>
+<p>高内存占用，桌面管理器失去响应  journalctl -b -2 &ndash;since &ldquo;2024-01-18&rdquo; <code>重启过两次</code></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    Jan 18 09:23:21 lightdm[2507179]: gkr-pam: unable to locate daemon control file
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:21 lightdm[2507179]: gkr-pam: stashed password to try later in open session
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:21 systemd[1]: Stopping Session c147 of User lightdm...
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:21 lightdm[2507112]: pam_unix(lightdm-greeter:session): session closed for user lightdm
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:21 systemd[1]: session-c147.scope: Deactivated successfully.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:21 systemd[1]: Stopped Session c147 of User lightdm.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:21 systemd[1]: session-c147.scope: Consumed 7.307s CPU time.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:21 systemd-logind[660]: Removed session c147.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[1]: Stopping User Manager for UID 966...
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Activating special unit Exit the Session...
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Stopped target Main User Target.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Stopping Accessibility services bus...
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 gvfsd[2507153]: A connection to the bus can&#39;t be made
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Stopping D-Bus User Message Bus...
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Stopping Virtual filesystem service...
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Stopped Accessibility services bus.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Stopped Virtual filesystem service.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Stopped target Basic System.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Stopped target Paths.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Stopped target Sockets.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Stopped target Timers.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed D-Bus User Message Bus Socket.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed GnuPG network certificate management daemon.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed GCR ssh-agent wrapper.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed GNOME Keyring daemon.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed GnuPG cryptographic agent and passphrase cache (access for web browsers).
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed GnuPG cryptographic agent and passphrase cache (restricted).
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed GnuPG cryptographic agent (ssh-agent emulation).
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed GnuPG cryptographic agent and passphrase cache.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed p11-kit server.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed PipeWire Multimedia System Sockets.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Closed Sound System.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Removed slice User Application Slice.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Reached target Shutdown.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Finished Exit the Session.
+</span></span><span class="line"><span class="cl">    Jan 18 09:23:31 systemd[2507120]: Reached target Exit the Session.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><a href="https://www.reddit.com/r/archlinux/comments/16jimr2/system_hangs_on_no_input_after_reached_system/">System hangs on no input after &ldquo;Reached system target shutdown&rdquo;</a><code>相近问题</code></li>
+</ul>
+<hr>
+<blockquote>
+<p>崩溃，切换TTY5登录后终端疯狂输出日志无响应</p>
+</blockquote>
+<p>Used+Cached高内存， <code>journalctl -b -1</code>查日志</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    Jan 29 11:28:49 zk-pc systemd[1]: Started Getty on tty5.
+</span></span><span class="line"><span class="cl">    Jan 29 11:28:53 zk-pc dbus-daemon[668]: [system] Activating via systemd: service name=&#39;org.freedesktop.home1&#39; unit=&#39;dbus-org.freedesktop.home1.service&#39; requested by &#39;:1.3512&#39; (uid=0 pid=3819&gt;
+</span></span><span class="line"><span class="cl">    Jan 29 11:28:54 zk-pc dbus-daemon[668]: [system] Activation via systemd failed for unit &#39;dbus-org.freedesktop.home1.service&#39;: Unit dbus-org.freedesktop.home1.service not found.
+</span></span><span class="line"><span class="cl">    Jan 29 11:28:57 zk-pc login[3819083]: pam_unix(login:session): session opened for user zk(uid=1000) by zk(uid=0)
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:01 zk-pc systemd-logind[671]: New session 279 of user zk.
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:01 zk-pc systemd[1]: Started Session 279 of User zk.
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:03 zk-pc login[3819083]: LOGIN ON tty5 BY zk
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:05 zk-pc kernel: general protection fault, probably for non-canonical address 0xff00000000000010: 0000 [#1] PREEMPT SMP NOPTI
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:06 zk-pc kernel: CPU: 8 PID: 3807890 Comm: Storage Diagnos Not tainted 5.15.139-1-MANJARO #1 096934fa2aab193b2a40cf54023e5b05e5276eb2
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:07 zk-pc systemd-journald[375]: Missed 364 kernel messages
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:07 zk-pc kernel: ---[ end trace 56f99a5ae8056f6e ]---
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:08 zk-pc systemd-journald[375]: Missed 910 kernel messages
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:08 zk-pc kernel: RSP: 002b:00007f6803a98590 EFLAGS: 00010217
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:10 zk-pc systemd-journald[375]: Missed 1440 kernel messages
+</span></span><span class="line"><span class="cl">    Jan 29 11:29:10 zk-pc kernel: RSP: 0000:ffff9ee142597c30 EFLAGS: 00010246
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    Mar 19 14:46:19 zk-pc sudo[2511882]: pam_unix(sudo:session): session opened for user root(uid=0) by zk(uid=1000)
+</span></span><span class="line"><span class="cl">    Mar 19 14:46:19 zk-pc sudo[2511882]: pam_unix(sudo:session): session closed for user root
+</span></span><span class="line"><span class="cl">    Mar 19 14:46:25 zk-pc dbus-daemon[584]: [system] Activating via systemd: service name=&#39;org.freedesktop.home1&#39; unit=&#39;dbus-org.freedesktop.home1.service&#39; requested by &#39;:1.2243&#39; (uid=0 pid=2512&gt;
+</span></span><span class="line"><span class="cl">    Mar 19 14:46:25 zk-pc dbus-daemon[584]: [system] Activation via systemd failed for unit &#39;dbus-org.freedesktop.home1.service&#39;: Unit dbus-org.freedesktop.home1.service not found.
+</span></span><span class="line"><span class="cl">    Mar 19 14:46:25 zk-pc sudo[2512066]:       zk : TTY=pts/47 ; PWD=/home/zk/Work/tg-assets-backend ; USER=root ; COMMAND=/bin/lsof -p 2453453
+</span></span><span class="line"><span class="cl">    Mar 19 14:46:25 zk-pc sudo[2512066]: pam_unix(sudo:session): session opened for user root(uid=0) by zk(uid=1000)
+</span></span><span class="line"><span class="cl">    Mar 19 14:46:25 zk-pc sudo[2512066]: pam_unix(sudo:session): session closed for user root
+</span></span><span class="line"><span class="cl">    Mar 19 14:48:49 zk-pc rtkit-daemon[1023]: Supervising 7 threads of 6 processes of 1 users.
+</span></span><span class="line"><span class="cl">    Mar 19 14:48:49 zk-pc rtkit-daemon[1023]: Supervising 7 threads of 6 processes of 1 users.
+</span></span><span class="line"><span class="cl">    Mar 19 14:49:33 zk-pc rtkit-daemon[1023]: Supervising 7 threads of 6 processes of 1 users.
+</span></span><span class="line"><span class="cl">    Mar 19 14:49:33 zk-pc rtkit-daemon[1023]: Supervising 7 threads of 6 processes of 1 users.
+</span></span><span class="line"><span class="cl">    Mar 19 14:49:33 zk-pc rtkit-daemon[1023]: Supervising 7 threads of 6 processes of 1 users.
+</span></span><span class="line"><span class="cl">    Mar 19 14:49:33 zk-pc rtkit-daemon[1023]: Supervising 7 threads of 6 processes of 1 users.
+</span></span><span class="line"><span class="cl">    Mar 19 14:49:33 zk-pc rtkit-daemon[1023]: Supervising 7 threads of 6 processes of 1 users.
+</span></span><span class="line"><span class="cl">    Mar 19 14:49:33 zk-pc rtkit-daemon[1023]: Supervising 7 threads of 6 processes of 1 users.
+</span></span><span class="line"><span class="cl">    Mar 19 14:51:35 zk-pc systemd-journald[375]: Under memory pressure, flushing caches.
+</span></span><span class="line"><span class="cl">    Mar 19 14:51:45 zk-pc systemd-journald[375]: Under memory pressure, flushing caches.
+</span></span><span class="line"><span class="cl">    Mar 19 14:51:46 zk-pc sshd[2517295]: ssh_dispatch_run_fatal: Connection from 192.168.131.11 port 9778: Broken pipe [preauth]
+</span></span><span class="line"><span class="cl">    Mar 19 14:53:45 zk-pc sshd[2517303]: fatal: Timeout before authentication for 192.168.131.11 port 9791
+</span></span><span class="line"><span class="cl">    Mar 19 14:53:51 zk-pc rtkit-daemon[1023]: Supervising 7 threads of 6 processes of 1 users.
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-15
         
@@ -393,11 +618,11 @@ strings .zsh_history_bad &gt; .zsh_history
         <a class="prev" href="/post/linux/base/linuxstreameditor/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Linux流编辑器</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/linux/base/linuxperformance/">
             <span class="next-text nav-default">Linux性能分析</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -415,17 +640,17 @@ strings .zsh_history_bad &gt; .zsh_history
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -433,11 +658,11 @@ strings .zsh_history_bad &gt; .zsh_history
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -447,16 +672,21 @@ strings .zsh_history_bad &gt; .zsh_history
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

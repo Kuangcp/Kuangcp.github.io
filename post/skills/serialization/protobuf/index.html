@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Protobuf - Mythos</title>
+  <title>Protobuf - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Protobuf proto文件定义 Linux上安装Protobuf 实现原理 目录 end|2020-12-14 19:57| Protobuf Google开源的序列化框架 全称 Google Protocol Buffers | Github : Protobuf 他将数据结构以 proto 后" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Protobuf 1.1. proto文件定义 1.2. 数据类型 1.2.1. Protobuf3 1.3. Linux上安装Protobuf 1.4. Java中的使用 1.5. 实现原理 💠 2024-04-21 16:35:07 Protobuf Google开源的序列化框架 全称" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/serialization/protobuf/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/serialization/protobuf/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Protobuf" />
-<meta property="og:description" content="目录 start Protobuf proto文件定义 Linux上安装Protobuf 实现原理 目录 end|2020-12-14 19:57| Protobuf Google开源的序列化框架 全称 Google Protocol Buffers | Github : Protobuf 他将数据结构以 proto 后" />
+<meta property="og:description" content="💠 Protobuf 1.1. proto文件定义 1.2. 数据类型 1.2.1. Protobuf3 1.3. Linux上安装Protobuf 1.4. Java中的使用 1.5. 实现原理 💠 2024-04-21 16:35:07 Protobuf Google开源的序列化框架 全称" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/serialization/protobuf/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/serialization/protobuf/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-04-20T13:27:20+00:00" />
 <meta property="article:modified_time" content="2019-04-20T13:27:20+00:00" />
+
 <meta itemprop="name" content="Protobuf">
-<meta itemprop="description" content="目录 start Protobuf proto文件定义 Linux上安装Protobuf 实现原理 目录 end|2020-12-14 19:57| Protobuf Google开源的序列化框架 全称 Google Protocol Buffers | Github : Protobuf 他将数据结构以 proto 后">
-<meta itemprop="datePublished" content="2019-04-20T13:27:20+00:00" />
+<meta itemprop="description" content="💠 Protobuf 1.1. proto文件定义 1.2. 数据类型 1.2.1. Protobuf3 1.3. Linux上安装Protobuf 1.4. Java中的使用 1.5. 实现原理 💠 2024-04-21 16:35:07 Protobuf Google开源的序列化框架 全称"><meta itemprop="datePublished" content="2019-04-20T13:27:20+00:00" />
 <meta itemprop="dateModified" content="2019-04-20T13:27:20+00:00" />
-<meta itemprop="wordCount" content="2218">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="2269">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Protobuf"/>
-<meta name="twitter:description" content="目录 start Protobuf proto文件定义 Linux上安装Protobuf 实现原理 目录 end|2020-12-14 19:57| Protobuf Google开源的序列化框架 全称 Google Protocol Buffers | Github : Protobuf 他将数据结构以 proto 后"/>
+<meta name="twitter:description" content="💠 Protobuf 1.1. proto文件定义 1.2. 数据类型 1.2.1. Protobuf3 1.3. Linux上安装Protobuf 1.4. Java中的使用 1.5. 实现原理 💠 2024-04-21 16:35:07 Protobuf Google开源的序列化框架 全称"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,54 +120,73 @@
       <div class="post-meta">
         <span class="post-time"> 2019-04-20 </span>
         
-          <span class="more-meta"> 2218 words </span>
-          <span class="more-meta"> 5 mins read </span>
+          <span class="more-meta"> 约 2269 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#proto文件定义">proto文件定义</a>
+    <li><a href="#protobuf">Protobuf</a>
       <ul>
-        <li><a href="#protobuf3">Protobuf3</a></li>
+        <li><a href="#proto文件定义">proto文件定义</a></li>
+        <li><a href="#数据类型">数据类型</a>
+          <ul>
+            <li><a href="#protobuf3">Protobuf3</a></li>
+          </ul>
+        </li>
+        <li><a href="#linux上安装protobuf">Linux上安装Protobuf</a></li>
+        <li><a href="#java中的使用">Java中的使用</a></li>
+        <li><a href="#实现原理">实现原理</a></li>
       </ul>
     </li>
-    <li><a href="#linux上安装protobuf">Linux上安装Protobuf</a></li>
-    <li><a href="#java中的使用">Java中的使用</a></li>
-    <li><a href="#实现原理">实现原理</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-04-20T13:27:20" title="April 20, 2019">April 20, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#protobuf">Protobuf</a>
-<ol>
-<li><a href="#proto%E6%96%87%E4%BB%B6%E5%AE%9A%E4%B9%89">proto文件定义</a></li>
-<li><a href="#linux%E4%B8%8A%E5%AE%89%E8%A3%85protobuf">Linux上安装Protobuf</a></li>
-<li><a href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">实现原理</a></li>
+<li><a href="#protobuf">Protobuf</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#proto%E6%96%87%E4%BB%B6%E5%AE%9A%E4%B9%89">proto文件定义</a></li>
+<li>1.2. <a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>
+<ul>
+<li>1.2.1. <a href="#protobuf3">Protobuf3</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-12-14 19:57</em>|</p>
+<li>1.3. <a href="#linux%E4%B8%8A%E5%AE%89%E8%A3%85protobuf">Linux上安装Protobuf</a></li>
+<li>1.4. <a href="#java%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8">Java中的使用</a></li>
+<li>1.5. <a href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">实现原理</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-04-21 16:35:07</p>
 <hr>
 <h1 id="protobuf">Protobuf</h1>
 <blockquote>
-<p>Google开源的序列化框架 全称 <code>Google Protocol Buffers</code> | <a href="https://github.com/google/protobuf">Github : Protobuf</a></p>
+<p>Google开源的序列化框架 全称 <code>Google Protocol Buffers</code> | <a href="https://github.com/google/protobuf">Github : Protobuf</a> | <a href="https://en.wikipedia.org/wiki/Protocol_Buffers">wikipedia</a></p>
 </blockquote>
 <ul>
-<li>他将数据结构以 proto 后缀的文件进行描述, 通过代码生成工具, 可以生成对应数据结构的 POJO 对象和 Protobuf 相关的方法和属性
+<li>将数据结构用<code>*.proto</code>文件进行描述, 通过代码生成工具, 生成对应数据结构的 POJO 对象和 Protobuf 用到的方法和属性
 <ul>
 <li>特点:
 <ul>
 <li>结构化数据存储格式,类似于 XML JSON等</li>
 <li>高效的编解码性能</li>
-<li>语言无关, 平台无关, 扩展性好</li>
+<li>独立的IDL，语言无关, 平台无关, 扩展性好</li>
 <li>官方支持 Java C++ Python Objective-C C# JavaScript Ruby</li>
 </ul>
 </li>
@@ -201,7 +216,7 @@
 <h2 id="proto文件定义">proto文件定义</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -209,13 +224,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-protobuf" data-lang="protobuf">    <span class="c1">// 用户数据信息
-</span><span class="c1"></span>    <span class="kd">message</span> <span class="nc">Article</span> <span class="p">{</span><span class="err">
-</span><span class="err"></span>        <span class="k">required</span> <span class="kt">int32</span> <span class="n">articleId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>         <span class="c1">// 文章id
-</span><span class="c1"></span>        <span class="k">optional</span> <span class="kt">string</span> <span class="n">articleExcerpt</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>    <span class="c1">// 文章摘要
-</span><span class="c1"></span>        <span class="k">repeated</span> <span class="kt">string</span> <span class="n">articlePicture</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>   <span class="c1">// 文章附图
-</span><span class="c1"></span>    <span class="p">}</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-protobuf" data-lang="protobuf"><span class="line"><span class="cl">    <span class="c1">// 用户数据信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">message</span> <span class="nc">Article</span> <span class="p">{</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="k">required</span> <span class="kt">int32</span> <span class="n">articleId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>         <span class="c1">// 文章id
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">optional</span> <span class="kt">string</span> <span class="n">articleExcerpt</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>    <span class="c1">// 文章摘要
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">repeated</span> <span class="kt">string</span> <span class="n">articlePicture</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>   <span class="c1">// 文章附图
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>上面定义了一个消息, 消息具有三个属性, 且行末的注释 经 protoc 编译后都会变成Javadoc注释</p>
@@ -234,14 +249,18 @@
 </ul>
 </li>
 </ol>
+<h2 id="数据类型">数据类型</h2>
 <p><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Learn/java/protobuf/protobuf-type.jpeg" alt="数据类型对应表"></p>
+<blockquote>
+<p><a href="https://github.com/protocolbuffers/protobuf/issues/4406">Issue: Protobuf 不支持Java的BigDecimal</a></p>
+</blockquote>
 <p><em>复杂类型</em></p>
 <blockquote>
 <p>定义了enum枚举类型，嵌套的消息。甚至对原有的消息进行了扩展，也可以对字段设置默认值。添加注释等</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -283,47 +302,47 @@
 </span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-protobuf" data-lang="protobuf">    <span class="kn">package</span> <span class="s">&#34;com.github.kuangcp&#34;</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="c1">// 导入另一个proto定义 
-</span><span class="c1"></span>    <span class="k">import</span> <span class="s">&#34;article.proto&#34;</span><span class="p">;</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span>    <span class="kd">message</span> <span class="nc">Article</span> <span class="p">{</span><span class="err">
-</span><span class="err"></span>    <span class="k">required</span> <span class="kt">int32</span> <span class="n">article_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="k">optional</span> <span class="kt">string</span> <span class="n">article_excerpt</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="k">repeated</span> <span class="kt">string</span> <span class="n">article_picture</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="k">optional</span> <span class="kt">int32</span>  <span class="n">article_pagecount</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">[</span><span class="k">default</span> <span class="o">=</span> <span class="mi">0</span><span class="p">];</span><span class="err">
-</span><span class="err"></span>    <span class="err">
-</span><span class="err"></span>    <span class="kd">enum</span> <span class="n">ArticleType</span> <span class="p">{</span><span class="err">
-</span><span class="err"></span>        <span class="n">NOVEL</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>        <span class="n">PROSE</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>        <span class="n">PAPER</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>        <span class="n">POETRY</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="p">}</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span>    <span class="k">optional</span> <span class="n">ArticleType</span> <span class="n">article_type</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">[</span><span class="k">default</span> <span class="o">=</span> <span class="n">NOVEL</span><span class="p">];</span><span class="err">
-</span><span class="err"></span>    <span class="kd">message</span> <span class="nc">Author</span> <span class="p">{</span><span class="err">
-</span><span class="err"></span>        <span class="k">required</span> <span class="kt">string</span> <span class="n">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//作者的名字
-</span><span class="c1"></span>        <span class="k">optional</span> <span class="kt">string</span> <span class="n">phone</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="p">}</span><span class="err">
-</span><span class="err"></span>    <span class="err">
-</span><span class="err"></span>    <span class="k">optional</span> <span class="n">Author</span> <span class="n">author</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="k">repeated</span> <span class="kt">int32</span> <span class="n">article_numberofwords</span> <span class="o">=</span> <span class="mi">7</span> <span class="p">[</span><span class="k">packed</span><span class="o">=</span><span class="kc">true</span><span class="p">];</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span>    <span class="n">reserved</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span> <span class="k">to</span> <span class="mi">15</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="k">extensions</span> <span class="mi">100</span> <span class="k">to</span> <span class="mi">1000</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="p">}</span><span class="err">
-</span><span class="err"></span>    <span class="kd">extend</span> <span class="nc">Article</span> <span class="p">{</span><span class="err">
-</span><span class="err"></span>        <span class="k">optional</span> <span class="kt">int32</span> <span class="n">followers_count</span> <span class="o">=</span> <span class="mi">101</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>        <span class="k">optional</span> <span class="kt">int32</span> <span class="n">likes_count</span><span class="o">=</span> <span class="mi">102</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>    <span class="p">}</span><span class="err">
-</span><span class="err"></span>    <span class="kd">message</span> <span class="nc">Other</span> <span class="p">{</span><span class="err">
-</span><span class="err"></span>        <span class="k">optional</span> <span class="kt">string</span> <span class="n">other_info</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>        <span class="k">oneof</span> <span class="n">test_oneof</span> <span class="p">{</span><span class="err">
-</span><span class="err"></span>            <span class="kt">string</span> <span class="n">code1</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>            <span class="kt">string</span> <span class="n">code2</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span><span class="err">
-</span><span class="err"></span>        <span class="p">}</span><span class="err">
-</span><span class="err"></span>    <span class="p">}</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-protobuf" data-lang="protobuf"><span class="line"><span class="cl">    <span class="kn">package</span> <span class="s">&#34;com.github.kuangcp&#34;</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="c1">// 导入另一个proto定义 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">import</span> <span class="s">&#34;article.proto&#34;</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="kd">message</span> <span class="nc">Article</span> <span class="p">{</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">required</span> <span class="kt">int32</span> <span class="n">article_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">optional</span> <span class="kt">string</span> <span class="n">article_excerpt</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">repeated</span> <span class="kt">string</span> <span class="n">article_picture</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">optional</span> <span class="kt">int32</span>  <span class="n">article_pagecount</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">[</span><span class="k">default</span> <span class="o">=</span> <span class="mi">0</span><span class="p">];</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="kd">enum</span> <span class="n">ArticleType</span> <span class="p">{</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="n">NOVEL</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="n">PROSE</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="n">PAPER</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="n">POETRY</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="p">}</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">optional</span> <span class="n">ArticleType</span> <span class="n">article_type</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">[</span><span class="k">default</span> <span class="o">=</span> <span class="n">NOVEL</span><span class="p">];</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="kd">message</span> <span class="nc">Author</span> <span class="p">{</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="k">required</span> <span class="kt">string</span> <span class="n">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//作者的名字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">optional</span> <span class="kt">string</span> <span class="n">phone</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="p">}</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">optional</span> <span class="n">Author</span> <span class="n">author</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">repeated</span> <span class="kt">int32</span> <span class="n">article_numberofwords</span> <span class="o">=</span> <span class="mi">7</span> <span class="p">[</span><span class="k">packed</span><span class="o">=</span><span class="kc">true</span><span class="p">];</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="n">reserved</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span> <span class="k">to</span> <span class="mi">15</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">extensions</span> <span class="mi">100</span> <span class="k">to</span> <span class="mi">1000</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="p">}</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="kd">extend</span> <span class="nc">Article</span> <span class="p">{</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="k">optional</span> <span class="kt">int32</span> <span class="n">followers_count</span> <span class="o">=</span> <span class="mi">101</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="k">optional</span> <span class="kt">int32</span> <span class="n">likes_count</span><span class="o">=</span> <span class="mi">102</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="p">}</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="kd">message</span> <span class="nc">Other</span> <span class="p">{</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="k">optional</span> <span class="kt">string</span> <span class="n">other_info</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="k">oneof</span> <span class="n">test_oneof</span> <span class="p">{</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            <span class="kt">string</span> <span class="n">code1</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            <span class="kt">string</span> <span class="n">code2</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="p">}</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="p">}</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>此外reserved关键字主要用于保留相关编号标签，主要是防止在更新proto文件删除了某些字段，而未来的使用者定义新的字段时重新使用了该编号标签。这会引起一些问题在获取老版本的消息时，譬如数据冲突，隐藏的一些bug等。所以一定要用reserved标记这些编号标签以保证不会被使用</p>
@@ -384,6 +403,9 @@
 </blockquote>
 <hr>
 <h2 id="java中的使用">Java中的使用</h2>
+<blockquote>
+<p><a href="/Java/AdvancedLearning/JavaSerialize.md#protobuf">Java Protobuf</a></p>
+</blockquote>
 <hr>
 <h2 id="实现原理">实现原理</h2>
 <blockquote>
@@ -396,11 +418,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-04-20
         
@@ -415,11 +437,11 @@
         <a class="prev" href="/post/java/advancedlearning/concurrency/lock/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Java中的锁</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/skills/cs/io/">
-            <span class="next-text nav-default">计算机中的IO</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/skills/cs/generics/">
+            <span class="next-text nav-default">泛型设计</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -437,17 +459,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -455,11 +477,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -469,16 +491,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

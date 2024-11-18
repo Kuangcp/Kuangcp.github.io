@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Nginx - Mythos</title>
+  <title>Nginx - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Nginx Nginx的安装 命令安装 编译安装 Docker安装 命令参数 可视化管理工具 内置变量 配置使用 本地静态文件Web服务器 反向代理多个服务 配置h" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Nginx 1.1. Nginx的安装 1.1.1. 命令安装 1.1.2. 编译安装 1.1.3. Docker安装 1.2. 命令参数 可视化管理工具 内置变量 配置使用 4.1. 静态资源Web服务器 4.2. 反向代理多个服务" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/tool/nginx/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/tool/nginx/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Nginx" />
-<meta property="og:description" content="目录 start Nginx Nginx的安装 命令安装 编译安装 Docker安装 命令参数 可视化管理工具 内置变量 配置使用 本地静态文件Web服务器 反向代理多个服务 配置h" />
+<meta property="og:description" content="💠 Nginx 1.1. Nginx的安装 1.1.1. 命令安装 1.1.2. 编译安装 1.1.3. Docker安装 1.2. 命令参数 可视化管理工具 内置变量 配置使用 4.1. 静态资源Web服务器 4.2. 反向代理多个服务" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/tool/nginx/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/tool/nginx/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T12:05:09+00:00" />
 <meta property="article:modified_time" content="2018-12-15T12:05:09+00:00" />
+
 <meta itemprop="name" content="Nginx">
-<meta itemprop="description" content="目录 start Nginx Nginx的安装 命令安装 编译安装 Docker安装 命令参数 可视化管理工具 内置变量 配置使用 本地静态文件Web服务器 反向代理多个服务 配置h">
-<meta itemprop="datePublished" content="2018-12-15T12:05:09+00:00" />
+<meta itemprop="description" content="💠 Nginx 1.1. Nginx的安装 1.1.1. 命令安装 1.1.2. 编译安装 1.1.3. Docker安装 1.2. 命令参数 可视化管理工具 内置变量 配置使用 4.1. 静态资源Web服务器 4.2. 反向代理多个服务"><meta itemprop="datePublished" content="2018-12-15T12:05:09+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T12:05:09+00:00" />
-<meta itemprop="wordCount" content="2989">
-
-
-
-<meta itemprop="keywords" content="Nginx," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="3096">
+<meta itemprop="keywords" content="Nginx," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nginx"/>
-<meta name="twitter:description" content="目录 start Nginx Nginx的安装 命令安装 编译安装 Docker安装 命令参数 可视化管理工具 内置变量 配置使用 本地静态文件Web服务器 反向代理多个服务 配置h"/>
+<meta name="twitter:description" content="💠 Nginx 1.1. Nginx的安装 1.1.1. 命令安装 1.1.2. 编译安装 1.1.3. Docker安装 1.2. 命令参数 可视化管理工具 内置变量 配置使用 4.1. 静态资源Web服务器 4.2. 反向代理多个服务"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,124 +122,172 @@
         <div class="post-category">
             <a href="/categories/%E5%B7%A5%E5%85%B7/"> 工具 </a>
             </div>
-          <span class="more-meta"> 2989 words </span>
-          <span class="more-meta"> 6 mins read </span>
+          <span class="more-meta"> 约 3096 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#nginx的安装">Nginx的安装</a>
+    <li><a href="#nginx">Nginx</a>
       <ul>
-        <li><a href="#命令安装">命令安装</a></li>
-        <li><a href="#编译安装">编译安装</a></li>
-        <li><a href="#docker安装">Docker安装</a></li>
+        <li><a href="#nginx的安装">Nginx的安装</a>
+          <ul>
+            <li><a href="#命令安装">命令安装</a></li>
+            <li><a href="#编译安装">编译安装</a></li>
+            <li><a href="#docker安装">Docker安装</a></li>
+          </ul>
+        </li>
+        <li><a href="#命令参数">命令参数</a></li>
       </ul>
     </li>
-    <li><a href="#命令参数">命令参数</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#本地静态文件web服务器">本地静态文件Web服务器</a></li>
-    <li><a href="#反向代理多个服务">反向代理多个服务</a></li>
-    <li><a href="#配置https">配置https</a>
+    <li><a href="#可视化管理工具">可视化管理工具</a></li>
+    <li><a href="#内置变量">内置变量</a></li>
+    <li><a href="#配置使用">配置使用</a>
       <ul>
-        <li><a href="#自签发证书">自签发证书</a></li>
-        <li><a href="#通过-certbot-配置-https">通过 certbot 配置 HTTPS</a></li>
+        <li><a href="#静态资源web服务器">静态资源Web服务器</a></li>
+        <li><a href="#反向代理多个服务">反向代理多个服务</a>
+          <ul>
+            <li><a href="#静态资源反代理后端">静态资源+反代理后端</a></li>
+            <li><a href="#前后端分离时避免跨域">前后端分离时避免跨域</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置https">配置https</a>
+          <ul>
+            <li><a href="#自签发证书">自签发证书</a></li>
+            <li><a href="#通过-certbot-配置-https">通过 certbot 配置 HTTPS</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置websocket反向代理">配置Websocket反向代理</a></li>
+        <li><a href="#转发代理">转发代理</a></li>
+        <li><a href="#防盗链">防盗链</a></li>
+        <li><a href="#gzip">gzip</a></li>
+        <li><a href="#负载均衡">负载均衡</a>
+          <ul>
+            <li><a href="#负载均衡策略">负载均衡策略</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#配置websocket反向代理">配置Websocket反向代理</a></li>
-    <li><a href="#转发代理">转发代理</a></li>
-    <li><a href="#防盗链">防盗链</a></li>
-    <li><a href="#gzip">gzip</a></li>
-    <li><a href="#负载均衡">负载均衡</a>
+    <li><a href="#nginx-plus">Nginx Plus</a></li>
+    <li><a href="#keepalived">Keepalived</a></li>
+    <li><a href="#同类应用">同类应用</a>
       <ul>
-        <li><a href="#负载均衡策略">负载均衡策略</a></li>
+        <li><a href="#caddy">Caddy</a></li>
+        <li><a href="#squid">Squid</a></li>
+        <li><a href="#varnish">Varnish</a></li>
+        <li><a href="#haproxy">HAProxy</a></li>
+        <li><a href="#nuster">nuster</a></li>
       </ul>
     </li>
-    <li><a href="#前后端分离时避免跨域">前后端分离时避免跨域</a>
-      <ul>
-        <li><a href="#静态服务器反代理后台接口">静态服务器反代理后台接口</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#caddy">Caddy</a></li>
-    <li><a href="#squid">Squid</a></li>
-    <li><a href="#varnish">Varnish</a></li>
-    <li><a href="#haproxy">HAProxy</a></li>
-    <li><a href="#nuster">nuster</a></li>
+    <li><a href="#tips">Tips</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-15T12:05:09" title="December 15, 2018">December 15, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#nginx">Nginx</a>
-<ol>
-<li><a href="#nginx%E7%9A%84%E5%AE%89%E8%A3%85">Nginx的安装</a>
-<ol>
-<li><a href="#%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85">命令安装</a></li>
-<li><a href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">编译安装</a></li>
-<li><a href="#docker%E5%AE%89%E8%A3%85">Docker安装</a></li>
+<li><a href="#nginx">Nginx</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#nginx%E7%9A%84%E5%AE%89%E8%A3%85">Nginx的安装</a>
+<ul>
+<li>1.1.1. <a href="#%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85">命令安装</a></li>
+<li>1.1.2. <a href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">编译安装</a></li>
+<li>1.1.3. <a href="#docker%E5%AE%89%E8%A3%85">Docker安装</a></li>
+</ul>
 </li>
-<li><a href="#%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0">命令参数</a></li>
-</ol>
+<li>1.2. <a href="#%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0">命令参数</a></li>
+</ul>
 </li>
+<li>
+<ol start="2">
 <li><a href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7">可视化管理工具</a></li>
+</ol>
+</li>
+<li>
+<ol start="3">
 <li><a href="#%E5%86%85%E7%BD%AE%E5%8F%98%E9%87%8F">内置变量</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8">配置使用</a>
-<ol>
-<li><a href="#%E6%9C%AC%E5%9C%B0%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6web%E6%9C%8D%E5%8A%A1%E5%99%A8">本地静态文件Web服务器</a></li>
-<li><a href="#%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%A4%9A%E4%B8%AA%E6%9C%8D%E5%8A%A1">反向代理多个服务</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AEhttps">配置https</a>
-<ol>
-<li><a href="#%E8%87%AA%E7%AD%BE%E5%8F%91%E8%AF%81%E4%B9%A6">自签发证书</a></li>
-<li><a href="#%E9%80%9A%E8%BF%87-certbot-%E9%85%8D%E7%BD%AE-https">通过 certbot 配置 HTTPS</a></li>
 </ol>
 </li>
-<li><a href="#%E9%85%8D%E7%BD%AEwebsocket%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86">配置Websocket反向代理</a></li>
-<li><a href="#%E8%BD%AC%E5%8F%91%E4%BB%A3%E7%90%86">转发代理</a></li>
-<li><a href="#%E9%98%B2%E7%9B%97%E9%93%BE">防盗链</a></li>
-<li><a href="#gzip">gzip</a></li>
-<li><a href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1">负载均衡</a>
-<ol>
-<li><a href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5">负载均衡策略</a></li>
+<li>
+<ol start="4">
+<li><a href="#%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8">配置使用</a></li>
 </ol>
+<ul>
+<li>4.1. <a href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90web%E6%9C%8D%E5%8A%A1%E5%99%A8">静态资源Web服务器</a></li>
+<li>4.2. <a href="#%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%A4%9A%E4%B8%AA%E6%9C%8D%E5%8A%A1">反向代理多个服务</a>
+<ul>
+<li>4.2.1. <a href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90+%E5%8F%8D%E4%BB%A3%E7%90%86%E5%90%8E%E7%AB%AF">静态资源+反代理后端</a></li>
+<li>4.2.2. <a href="#%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E6%97%B6%E9%81%BF%E5%85%8D%E8%B7%A8%E5%9F%9F">前后端分离时避免跨域</a></li>
+</ul>
 </li>
-<li><a href="#%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E6%97%B6%E9%81%BF%E5%85%8D%E8%B7%A8%E5%9F%9F">前后端分离时避免跨域</a>
-<ol>
-<li><a href="#%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8D%E4%BB%A3%E7%90%86%E5%90%8E%E5%8F%B0%E6%8E%A5%E5%8F%A3">静态服务器反代理后台接口</a></li>
-</ol>
+<li>4.3. <a href="#%E9%85%8D%E7%BD%AEhttps">配置https</a>
+<ul>
+<li>4.3.1. <a href="#%E8%87%AA%E7%AD%BE%E5%8F%91%E8%AF%81%E4%B9%A6">自签发证书</a></li>
+<li>4.3.2. <a href="#%E9%80%9A%E8%BF%87-certbot-%E9%85%8D%E7%BD%AE-https">通过 certbot 配置 HTTPS</a></li>
+</ul>
 </li>
-</ol>
+<li>4.4. <a href="#%E9%85%8D%E7%BD%AEwebsocket%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86">配置Websocket反向代理</a></li>
+<li>4.5. <a href="#%E8%BD%AC%E5%8F%91%E4%BB%A3%E7%90%86">转发代理</a></li>
+<li>4.6. <a href="#%E9%98%B2%E7%9B%97%E9%93%BE">防盗链</a></li>
+<li>4.7. <a href="#gzip">gzip</a></li>
+<li>4.8. <a href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1">负载均衡</a>
+<ul>
+<li>4.8.1. <a href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5">负载均衡策略</a></li>
+</ul>
 </li>
+</ul>
+</li>
+<li>
+<ol start="5">
 <li><a href="#nginx-plus">Nginx Plus</a></li>
-<li><a href="#keepalived">Keepalived</a></li>
-<li><a href="#%E5%90%8C%E7%B1%BB%E5%BA%94%E7%94%A8">同类应用</a>
-<ol>
-<li><a href="#caddy">Caddy</a></li>
-<li><a href="#squid">Squid</a></li>
-<li><a href="#varnish">Varnish</a></li>
-<li><a href="#haproxy">HAProxy</a></li>
-<li><a href="#nuster">nuster</a></li>
 </ol>
 </li>
+<li>
+<ol start="6">
+<li><a href="#keepalived">Keepalived</a></li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li><a href="#%E5%90%8C%E7%B1%BB%E5%BA%94%E7%94%A8">同类应用</a></li>
+</ol>
+<ul>
+<li>7.1. <a href="#caddy">Caddy</a></li>
+<li>7.2. <a href="#squid">Squid</a></li>
+<li>7.3. <a href="#varnish">Varnish</a></li>
+<li>7.4. <a href="#haproxy">HAProxy</a></li>
+<li>7.5. <a href="#nuster">nuster</a></li>
+</ul>
+</li>
+<li>
+<ol start="8">
 <li><a href="#tips">Tips</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-11-22 22:56</em>|</p>
+</li>
+</ul>
+<p>💠 2024-09-20 17:30:23</p>
 <hr>
 <h1 id="nginx">Nginx</h1>
 <blockquote>
 <p><a href="https://www.nginx.com/">Official Site</a> | <a href="https://docs.nginx.com">Official Doc</a><br>
 <a href="http://tengine.taobao.org/">Tengine</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/dunwu/nginx-tutorial">nginx-tutorial</a></p>
 </blockquote>
 <h2 id="nginx的安装">Nginx的安装</h2>
 <h3 id="命令安装">命令安装</h3>
@@ -273,7 +317,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -283,15 +327,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    ./configure --sbin-path<span class="o">=</span>/usr/local/nginx/nginx <span class="se">\
-</span><span class="se"></span>    --conf-path<span class="o">=</span>/usr/local/nginx/nginx.conf <span class="se">\
-</span><span class="se"></span>    --pid-path<span class="o">=</span>/usr/local/nginx/nginx.pid <span class="se">\
-</span><span class="se"></span>    --with-http_stub_status_module <span class="se">\
-</span><span class="se"></span>    --with-http_ssl_module <span class="se">\
-</span><span class="se"></span>    --with-pcre<span class="o">=</span>/home/kuang/pcre-8.20 <span class="se">\
-</span><span class="se"></span>    --with-openssl<span class="o">=</span>/home/kuang/openssl <span class="se">\
-</span><span class="se"></span>    --with-zlib<span class="o">=</span>/home/kuang/zlib-1.2.11
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    ./configure --sbin-path<span class="o">=</span>/usr/local/nginx/nginx <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --conf-path<span class="o">=</span>/usr/local/nginx/nginx.conf <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --pid-path<span class="o">=</span>/usr/local/nginx/nginx.pid <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --with-http_stub_status_module <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --with-http_ssl_module <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --with-pcre<span class="o">=</span>/home/kuang/pcre-8.20 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --with-openssl<span class="o">=</span>/home/kuang/openssl <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --with-zlib<span class="o">=</span>/home/kuang/zlib-1.2.11
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="docker安装">Docker安装</h3>
 <blockquote>
@@ -312,7 +356,9 @@
 <hr>
 <h1 id="可视化管理工具">可视化管理工具</h1>
 <blockquote>
-<p><a href="https://github.com/cym1102/nginxWebUI">nginxWebUI</a></p>
+<p><a href="https://github.com/cym1102/nginxWebUI">nginxWebUI</a><br>
+<a href="https://github.com/NginxProxyManager/nginx-proxy-manager">nginx-proxy-manager </a><br>
+<a href="https://github.com/0xJacky/nginx-ui">0xJacky/nginx-ui: Yet another WebUI for Nginx</a><code>go+js</code></p>
 </blockquote>
 <hr>
 <h1 id="内置变量">内置变量</h1>
@@ -344,14 +390,18 @@
 </li>
 <li>错误页面重定向 <code>error_page   404  /404.html;</code> 也可以填完整URL</li>
 </ul>
+<blockquote>
+<p><a href="https://blog.dianduidian.com/post/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%BD%93%E5%90%8E%E7%AB%AF%E4%B8%BAhttps%E6%97%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%E5%92%8C%E5%8E%9F%E7%90%86/">Nginx反向代理，当后端为Https时的一些细节和原理</a></p>
+</blockquote>
+<p>nginx提供Http服务，但是反向代理了HTTPS地址时 需要注意证书的一致性问题</p>
 <hr>
-<h2 id="本地静态文件web服务器">本地静态文件Web服务器</h2>
+<h2 id="静态资源web服务器">静态资源Web服务器</h2>
 <blockquote>
 <p><a href="http://blog.yuansc.com/2015/04/29/nginx%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/">参考 nginx配置静态文件服务器 </a></p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -364,18 +414,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="na">server {</span>
-    <span class="na">client_max_body_size 4G;</span>
-    <span class="na">listen  80; </span>
-    <span class="c1"># server_name static.me; # 如果需要使用域名 则需要在hosts文件配置</span>
-    <span class="na">root /home/mini/Sync;</span>
-    <span class="na">location / {</span>
-        <span class="na">autoindex on; # 显示索引</span>
-        <span class="na">autoindex_exact_size on; # 显示大小</span>
-	      <span class="na">autoindex_localtime on;  # 显示时间</span>
-    <span class="na">}</span>
-  <span class="na">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">  <span class="na">server {</span>
+</span></span><span class="line"><span class="cl">    <span class="na">client_max_body_size 4G;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">listen  80; </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># server_name static.me; # 如果需要使用域名 则需要在hosts文件配置</span>
+</span></span><span class="line"><span class="cl">    <span class="na">root /home/mini/Sync;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">location / {</span>
+</span></span><span class="line"><span class="cl">        <span class="na">autoindex on; # 显示索引</span>
+</span></span><span class="line"><span class="cl">        <span class="na">autoindex_exact_size on; # 显示大小</span>
+</span></span><span class="line"><span class="cl">	      <span class="na">autoindex_localtime on;  # 显示时间</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span><span class="line"><span class="cl">  <span class="na">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>若出现403错误, 将 /etc/nginx/nginx.conf 中第一行的 <code>user nginx;</code> 改成可访问静态文件目录的用户即可</li>
@@ -383,7 +433,7 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -391,13 +441,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="na">location /code/ {</span>
-        <span class="c1"># All files in it</span>
-        <span class="na">location ~* {</span>
-            <span class="na">add_header Content-Type text/plain;</span>
-        <span class="na">}</span>
-    <span class="na">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="na">location /code/ {</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># All files in it</span>
+</span></span><span class="line"><span class="cl">        <span class="na">location ~* {</span>
+</span></span><span class="line"><span class="cl">            <span class="na">add_header Content-Type text/plain;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">}</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果有编码问题可配置成 <code>add_header Content-Type 'text/plain;charset=UTF-8';</code>
 <code>location ~* /.*\.(py|md|sql)${}</code></p>
@@ -408,7 +458,7 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -436,42 +486,42 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="na">upstream one {</span>
-    <span class="na">server 127.0.0.1:9991;</span>
-  <span class="na">}</span>
-  <span class="na">upstream two {</span>
-    <span class="na">server 127.0.0.1:7898;</span>
-  <span class="na">}</span>
-
-  <span class="na">server {</span>
-    <span class="na">listen 80;</span>
-    <span class="na">server_name 1.1.1.1;</span>
-
-    <span class="na">location / {</span>
-      <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
-      <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
-      <span class="na">proxy_set_header Host $http_host;</span>
-      <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
-
-      <span class="na">proxy_pass http://one;</span>
-      <span class="na">proxy_redirect off;</span>
-    <span class="na">}</span>
-    
-    <span class="na">location /myth{</span>
-      <span class="na">proxy_pass http://two;</span>
-      <span class="na">proxy_redirect off;</span>
-    <span class="na">}</span>
-  <span class="na">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">  <span class="na">upstream one {</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server 127.0.0.1:9991;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">}</span>
+</span></span><span class="line"><span class="cl">  <span class="na">upstream two {</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server 127.0.0.1:7898;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="na">server {</span>
+</span></span><span class="line"><span class="cl">    <span class="na">listen 80;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server_name 1.1.1.1;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="na">location / {</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header Host $http_host;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_pass http://one;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_redirect off;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="na">location /myth{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_pass http://two;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_redirect off;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span><span class="line"><span class="cl">  <span class="na">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="配置https">配置https</h2>
+</div><h3 id="静态资源反代理后端">静态资源+反代理后端</h3>
 <blockquote>
-<p><a href="http://www.cnblogs.com/tintin1926/archive/2012/07/12/2587311.html">nginx搭建https服务</a> | <a href="http://letus.club/2016/04/08/nginx-http2-letsencrypt/">nginx http/2</a></p>
+<p><a href="https://segmentfault.com/a/1190000012859206">Nginx反向代理解决跨域问题</a> | <a href="https://www.jianshu.com/p/05415981e5e5">nginx简易使用教程,使用nginx解决跨域问题</a></p>
 </blockquote>
-<h3 id="自签发证书">自签发证书</h3>
+<p><em>配置统一出口</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -485,28 +535,70 @@
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">  <span class="c1">############ 证书颁发机构</span>
-  <span class="c1"># CA机构私钥</span>
-  openssl genrsa -out ca.key <span class="m">2048</span>
-  <span class="c1"># CA证书</span>
-  openssl req -x509 -new -key ca.key -out ca.crt
-  <span class="c1">############ 服务端</span>
-  <span class="c1"># 生成服务端私钥</span>
-  openssl genrsa -out server.key <span class="m">2048</span>
-  <span class="c1"># 生成服务端证书请求文件</span>
-  openssl req -new -key server.key -out server.csr
-  <span class="c1"># 使用CA证书生成服务端证书  关于sha256，默认使用的是sha1，在新版本的chrome中会被认为是不安全的，因为使用了过时的加密算法。</span>
-  openssl x509 -req -sha256 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -days <span class="m">3650</span> -out server.crt    
-  <span class="c1"># 打包服务端的资料为pkcs12格式(非必要，只是换一种格式存储上一步生成的证书) 生成过程中，需要创建访问密码，请记录下来。</span>
-  openssl pkcs12 -export -in server.crt -inkey server.key -out server.pkcs12
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="na">server {</span>
+</span></span><span class="line"><span class="cl">        <span class="na">client_max_body_size 4G;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">listen  80;  # listen for ipv4; this line is default and implied</span>
+</span></span><span class="line"><span class="cl">        <span class="na">server_name static.me;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="na">location / {</span>
+</span></span><span class="line"><span class="cl">            <span class="na">root /data/static;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># proxy_pass http://127.0.0.1:8889/; 如果静态资源在别的端口上，这样配置也可以</span>
+</span></span><span class="line"><span class="cl">        <span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="na">location /api/ {</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">proxy_pass http://127.0.0.1:8889/; # 去除请求的 api 路径，并访问后端</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># proxy_pass http://127.0.0.1:8889; 这种方式不会去除 /api/</span>
+</span></span><span class="line"><span class="cl">        <span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="na">location /api/a-service {</span>
+</span></span><span class="line"><span class="cl">          <span class="na">proxy_pass http://127.0.0.1:8889/a-service; # 移除 /api/ 路径，保留a-service （api路径下多个服务时使用此类型配置）</span>
+</span></span><span class="line"><span class="cl">        <span class="na">}</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>配置HTTPS</code></p>
+</div><ol>
+<li>将静态文件交由Nginx进行处理， 后台的服务统一用一个前缀和前台进行区分， 然后将服务端的真实host和ip或者域名配置进来</li>
+<li>这样在于前端看来就是访问 static.me/api 而已， 实际上访问的是 127.0.0.1:8889/api</li>
+</ol>
+<blockquote>
+<p>注意，原先使用nginx反向代理tomcat，尝试配置后端为一个本地dns解析的域名。然后发现这是无法生效的，所以应该使用真实IP或公网域名</p>
+</blockquote>
+<h3 id="前后端分离时避免跨域">前后端分离时避免跨域</h3>
+<p>在需要被跨域访问的服务端，添加如下配置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="na">add_header Access-Control-Allow-Origin *;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">add_header Access-Control-Allow-Headers X-Requested-With;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">add_header Access-Control-Allow-Methods GET,POST,OPTIONS; </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="配置https">配置https</h2>
+<blockquote>
+<p><a href="http://www.cnblogs.com/tintin1926/archive/2012/07/12/2587311.html">nginx搭建https服务</a> | <a href="http://letus.club/2016/04/08/nginx-http2-letsencrypt/">nginx http/2</a></p>
+</blockquote>
+<h3 id="自签发证书">自签发证书</h3>
+<ul>
+<li><a href="/Linux/Base/LinuxNetwork.md#%E8%87%AA%E7%AD%BE%E5%8F%91%E8%AF%81%E4%B9%A6">Linux: 自签发证书</a></li>
+</ul>
+<p><code>配置HTTPS</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -532,31 +624,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="na">upstream one {</span>
-        <span class="na">server 127.0.0.1:8888;</span>
-    <span class="na">}</span>
-    <span class="na">server {</span>
-        <span class="na">listen 443;</span>
-        <span class="na">server_name web.me;</span>
-
-        <span class="c1"># 主要就是添加了这一块</span>
-        <span class="na">ssl on;</span>
-        <span class="na">ssl_certificate  /data/https/server.crt;</span>
-        <span class="na">ssl_certificate_key  /data/https/server.key;</span>
-        
-        <span class="c1"># http 转向 https</span>
-        <span class="na">return 302  https://$host$request_uri;</span>
-
-        <span class="na">location / {</span>
-            <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
-            <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
-            <span class="na">proxy_set_header Host $http_host;</span>
-            <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
-            <span class="na">proxy_pass https://one;</span>
-            <span class="na">proxy_redirect off;</span>
-        <span class="na">}</span>
-    <span class="na">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="na">upstream one {</span>
+</span></span><span class="line"><span class="cl">        <span class="na">server 127.0.0.1:8888;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server {</span>
+</span></span><span class="line"><span class="cl">        <span class="na">listen 443;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">server_name web.me;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 主要就是添加了这一块</span>
+</span></span><span class="line"><span class="cl">        <span class="na">ssl on;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">ssl_certificate  /data/https/server.crt;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">ssl_certificate_key  /data/https/server.key;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># http 转向 https</span>
+</span></span><span class="line"><span class="cl">        <span class="na">return 302  https://$host$request_uri;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="na">location / {</span>
+</span></span><span class="line"><span class="cl">            <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">proxy_set_header Host $http_host;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">proxy_pass https://one;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">proxy_redirect off;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">}</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="通过-certbot-配置-https">通过 certbot 配置 HTTPS</h3>
 <blockquote>
@@ -565,22 +657,22 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">  wget https://dl.eff.org/certbot-auto
-  chmod a+x certbot-auto
-  ./certbot-auto <span class="c1">#进行安装 但是过程中会有一些设置，</span>
-  ./certbot-auto certonly --email xxx@xxx --nginx -d xxx.domain <span class="c1"># 生成 xxx.domain 证书</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  wget https://dl.eff.org/certbot-auto
+</span></span><span class="line"><span class="cl">  chmod a+x certbot-auto
+</span></span><span class="line"><span class="cl">  ./certbot-auto <span class="c1">#进行安装 但是过程中会有一些设置，</span>
+</span></span><span class="line"><span class="cl">  ./certbot-auto certonly --email xxx@xxx --nginx -d xxx.domain <span class="c1"># 生成 xxx.domain 证书</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><em>SSL 接收到一个超出最大准许长度的记录 要在端口后加上SSL nginx</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -602,32 +694,32 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="na">upstream one {</span>
-    <span class="na">server 127.0.0.1:8080;</span>
-  <span class="na">}</span>
-
-  <span class="na">server{</span>
-    <span class="na">listen 443 ssl;</span>
-    <span class="na">server_name xxx.domain</span>
-    <span class="na">access_log /data/log/https.log;</span>
-    
-    <span class="c1"># ssl配置</span>
-    <span class="na">ssl on;</span>
-    <span class="na">ssl_certificate  /etc/letsencrypt/live/xxx.domain/fullchain.pem;</span>
-    <span class="na">ssl_certificate_key  /etc/letsencrypt/live/xxx.domain/privkey.pem;</span>
-    <span class="na">ssl_trusted_certificate /etc/letsencrypt/live/xxx.domain/chain.pem;</span>
-    <span class="na">ssl_dhparam /etc/nginx/ssl/dhparam.pem;</span>
-
-    <span class="na">location / {</span>
-        <span class="na">proxy_pass https://one;</span>
-    <span class="na">}</span>
-  <span class="na">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">  <span class="na">upstream one {</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server 127.0.0.1:8080;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="na">server{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">listen 443 ssl;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server_name xxx.domain</span>
+</span></span><span class="line"><span class="cl">    <span class="na">access_log /data/log/https.log;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># ssl配置</span>
+</span></span><span class="line"><span class="cl">    <span class="na">ssl on;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">ssl_certificate  /etc/letsencrypt/live/xxx.domain/fullchain.pem;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">ssl_certificate_key  /etc/letsencrypt/live/xxx.domain/privkey.pem;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">ssl_trusted_certificate /etc/letsencrypt/live/xxx.domain/chain.pem;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">ssl_dhparam /etc/nginx/ssl/dhparam.pem;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="na">location / {</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_pass https://one;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span><span class="line"><span class="cl">  <span class="na">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="配置websocket反向代理">配置Websocket反向代理</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -658,36 +750,123 @@
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="c1"># 配置连接的配置信息</span>
-  <span class="na">map $http_upgrade $connection_upgrade{</span>
-    <span class="na">default upgrade;</span>
-    <span class="na">&#39;&#39;  close;</span>
-  <span class="na">}</span>
-  <span class="na">upstream back_end {</span>
-    <span class="na">server 127.0.0.1:8888;</span>
-  <span class="na">}</span>
-  <span class="na">server {</span>
-    <span class="na">listen 80;</span>
-    <span class="na">server_name 127.0.0.1;</span>
-    <span class="na">location / {</span>
-      <span class="c1"># 设置转发真实ip</span>
-      <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
-      <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
-      <span class="na">proxy_set_header Host $host;</span>
-      <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
-
-      <span class="c1"># 设置接收到的请求类型</span>
-      <span class="na">proxy_set_header Upgrade $http_upgrade;</span>
-      <span class="na">proxy_set_header Connection $connection_upgrade;</span>
-
-      <span class="na">proxy_pass http://back_end;</span>
-      <span class="c1"># 默认是 1.0 不支持 keepAlive</span>
-      <span class="na">proxy_http_version 1.1; </span>
-      <span class="na">proxy_redirect off;</span>
-      <span class="na">proxy_read_timeout 300s;</span>
-    <span class="na">}</span>
-  <span class="na">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">  <span class="c1"># 配置连接的配置信息</span>
+</span></span><span class="line"><span class="cl">  <span class="na">map $http_upgrade $connection_upgrade{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">default upgrade;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">&#39;&#39;  close;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">}</span>
+</span></span><span class="line"><span class="cl">  <span class="na">upstream back_end {</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server 127.0.0.1:8888;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">}</span>
+</span></span><span class="line"><span class="cl">  <span class="na">server {</span>
+</span></span><span class="line"><span class="cl">    <span class="na">listen 80;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server_name 127.0.0.1;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">location / {</span>
+</span></span><span class="line"><span class="cl">      <span class="c1"># 设置转发真实ip</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header Host $host;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1"># 设置接收到的请求类型</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header Upgrade $http_upgrade;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header Connection $connection_upgrade;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_pass http://back_end;</span>
+</span></span><span class="line"><span class="cl">      <span class="c1"># 默认是 1.0 不支持 keepAlive</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_http_version 1.1; </span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_redirect off;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_read_timeout 300s;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span><span class="line"><span class="cl">  <span class="na">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>绕过Grafana，免密登录，需要预先生成key</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">map $http_upgrade $connection_upgrade{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">default upgrade;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">&#39;&#39;  close;</span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># http://grafana-user.test/d/spring_boot_21/shang-shu-tai-jian-kong-mian-ban?orgId=1</span>
+</span></span><span class="line"><span class="cl"><span class="na">server {</span>
+</span></span><span class="line"><span class="cl">    <span class="na">listen 80;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server_name  grafana-user.test;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="na">location / {</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_pass http://192.168.1.1:9091/;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_redirect off;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header Host $host;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header Connection &#34;&#34;;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header Authorization &#34;Bearer xxxxx&#34;;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># add_header X-Frame-Options SAMEORIGIN;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_hide_header X-Frame-Options;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span><span class="line"><span class="cl">    <span class="na">location /api/live/ws {</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header Host $host;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header Authorization &#34;Bearer cccc&#34;;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header Upgrade $http_upgrade;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_set_header Connection $connection_upgrade;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_http_version 1.1; </span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_redirect off;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_read_timeout 300s;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="na">proxy_pass http://192.168.1.1:9091;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="转发代理">转发代理</h2>
 <blockquote>
@@ -695,7 +874,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -708,18 +887,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">  <span class="na">server {</span>
-    <span class="na">server_name aaa.com;</span>
-    <span class="na">listen 80;</span>
-    <span class="na">location / {</span>
-      <span class="na">proxy_pass http://aaa.com;</span>
-      <span class="na">proxy_set_header Host $host:$server_port;</span>
-      <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
-      <span class="na">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span>
-      <span class="na">proxy_set_header X-Forwarded-Proto $scheme;</span>
-    <span class="na">}</span>
-  <span class="na">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">  <span class="na">server {</span>
+</span></span><span class="line"><span class="cl">    <span class="na">server_name aaa.com;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">listen 80;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">location / {</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_pass http://aaa.com;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header Host $host:$server_port;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header X-Real-IP $remote_addr;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">proxy_set_header X-Forwarded-Proto $scheme;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span><span class="line"><span class="cl">  <span class="na">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="防盗链">防盗链</h2>
 <h2 id="gzip">gzip</h2>
@@ -728,19 +907,19 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">  gzip  on;
-  gzip_comp_level 4;
-  gzip_buffers 4 16k;
-  gzip_http_version 1.1;
-  gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  gzip  on;
+</span></span><span class="line"><span class="cl">  gzip_comp_level 4; # 缺省值
+</span></span><span class="line"><span class="cl">  gzip_buffers 4 16k;
+</span></span><span class="line"><span class="cl">  gzip_http_version 1.1; # 缺省值
+</span></span><span class="line"><span class="cl">  gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="负载均衡">负载均衡</h2>
 <blockquote>
@@ -767,7 +946,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -776,14 +955,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="c1">#动态服务器组</span>
-    <span class="na">upstream dynamic_server {</span>
-        <span class="na">server localhost:8080 weight</span><span class="o">=</span><span class="s">2;
-</span><span class="s">        server localhost:8081;
-</span><span class="s">        server localhost:8082 backup;
-</span><span class="s">        server localhost:8083 max_fails=3 fail_timeout=20s;
-</span><span class="s">    }</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="c1">#动态服务器组</span>
+</span></span><span class="line"><span class="cl">    <span class="na">upstream dynamic_server {</span>
+</span></span><span class="line"><span class="cl">        <span class="na">server localhost:8080 weight</span><span class="o">=</span><span class="s">2;
+</span></span></span><span class="line"><span class="cl"><span class="s">        server localhost:8081;
+</span></span></span><span class="line"><span class="cl"><span class="s">        server localhost:8082 backup;
+</span></span></span><span class="line"><span class="cl"><span class="s">        server localhost:8083 max_fails=3 fail_timeout=20s;
+</span></span></span><span class="line"><span class="cl"><span class="s">    }</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>Least Connections(least_conn):
@@ -815,70 +994,6 @@
 </ul>
 </li>
 </ol>
-<h2 id="前后端分离时避免跨域">前后端分离时避免跨域</h2>
-<p>在需要被跨域访问的服务端，添加如下配置</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="na">add_header Access-Control-Allow-Origin *;</span>
-    <span class="na">add_header Access-Control-Allow-Headers X-Requested-With;</span>
-    <span class="na">add_header Access-Control-Allow-Methods GET,POST,OPTIONS; </span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="静态服务器反代理后台接口">静态服务器反代理后台接口</h3>
-<blockquote>
-<p><a href="https://segmentfault.com/a/1190000012859206">Nginx反向代理解决跨域问题</a> | <a href="https://www.jianshu.com/p/05415981e5e5">nginx简易使用教程,使用nginx解决跨域问题</a></p>
-</blockquote>
-<p><em>配置统一出口</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-ini" data-lang="ini">    <span class="na">server {</span>
-        <span class="na">client_max_body_size 4G;</span>
-        <span class="na">listen  80;  # listen for ipv4; this line is default and implied</span>
-        <span class="na">server_name static.me;</span>
-        
-        <span class="na">location / {</span>
-            <span class="na">root /data/static;</span>
-            <span class="c1"># proxy_pass http://127.0.0.1:8889/; 如果静态资源在别的端口上，这样配置也可以</span>
-        <span class="na">}</span>
-
-        <span class="na">location /api/ {</span>
-            <span class="c1"># add_header &#39;Access-Control-Allow-Origin&#39; &#39;*&#39;;</span>
-            <span class="na">proxy_pass http://127.0.0.1:8889/; # 去除 api 路径，并访问后端</span>
-            <span class="c1"># proxy_pass http://127.0.0.1:8889; 这种方式不会去除 /api/</span>
-        <span class="na">}</span>
-    <span class="na">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><ol>
-<li>将静态文件交由Nginx进行处理， 后台的服务统一用一个前缀和前台进行区分， 然后将服务端的真实host和ip或者域名配置进来</li>
-<li>这样在于前端看来就是访问 static.me/api 而已， 实际上访问的是 127.0.0.1:8889/api</li>
-</ol>
-<blockquote>
-<p>注意，原先使用nginx反向代理tomcat，尝试配置后端为一个本地dns解析的域名。然后发现这是无法生效的，所以应该使用真实IP或公网域名</p>
-</blockquote>
 <hr>
 <h1 id="nginx-plus">Nginx Plus</h1>
 <blockquote>
@@ -926,16 +1041,21 @@
 </li>
 <li>request_time 比实际时间长 <a href="http://shibing.github.io/2016/11/18/nginx%E7%9A%84%E5%BB%B6%E8%BF%9F%E5%85%B3%E9%97%AD-lingering-close/">Nginx的延迟关闭</a><code>lingering_timeout</code></li>
 </ul>
+<hr>
+<p>access 日志中 upstream 408状态码 本身返回的502 实际上upstream没收到请求</p>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/70856800/random-http-408-on-post-requests-and-no-body-is-transferred">Random HTTP 408 on POST requests and no body is transferred</a></p>
+</blockquote>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-15
         
@@ -952,11 +1072,11 @@
         <a class="prev" href="/post/linux/tool/vim/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Vim</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/linux/tool/ime/">
             <span class="next-text nav-default">输入法</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -974,17 +1094,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -992,11 +1112,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -1006,16 +1126,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

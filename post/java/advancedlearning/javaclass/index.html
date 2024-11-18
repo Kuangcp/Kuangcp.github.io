@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Java的字节码 - Mythos</title>
+  <title>Java的字节码 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 字节码以及类加载 编译优化 字节码 字节码相关框架 常量池 类加载机制 类加载器 特殊场景 Tomcat 加载和连接 方法句柄 反编译 JD Jad 热更新 分析工具 目录 end|2020-09-13 07:50| 字节码" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/javaclass/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/javaclass/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Java的字节码" />
-<meta property="og:description" content="目录 start 字节码以及类加载 编译优化 字节码 字节码相关框架 常量池 类加载机制 类加载器 特殊场景 Tomcat 加载和连接 方法句柄 反编译 JD Jad 热更新 分析工具 目录 end|2020-09-13 07:50| 字节码" />
+<meta property="og:description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/javaclass/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/javaclass/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Java的字节码">
-<meta itemprop="description" content="目录 start 字节码以及类加载 编译优化 字节码 字节码相关框架 常量池 类加载机制 类加载器 特殊场景 Tomcat 加载和连接 方法句柄 反编译 JD Jad 热更新 分析工具 目录 end|2020-09-13 07:50| 字节码">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="2079">
-
-
-
-<meta itemprop="keywords" content="字节码," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="2484">
+<meta itemprop="keywords" content="字节码," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java的字节码"/>
-<meta name="twitter:description" content="目录 start 字节码以及类加载 编译优化 字节码 字节码相关框架 常量池 类加载机制 类加载器 特殊场景 Tomcat 加载和连接 方法句柄 反编译 JD Jad 热更新 分析工具 目录 end|2020-09-13 07:50| 字节码"/>
+<meta name="twitter:description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,89 +122,171 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 2079 words </span>
-          <span class="more-meta"> 5 mins read </span>
+          <span class="more-meta"> 约 2484 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#字节码相关框架">字节码相关框架</a></li>
-    <li><a href="#常量池">常量池</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#类加载器">类加载器</a>
+    <li><a href="#字节码以及类加载">字节码以及类加载</a></li>
+    <li><a href="#编译优化">编译优化</a>
       <ul>
-        <li><a href="#特殊场景">特殊场景</a></li>
+        <li><a href="#jit-即时编译">JIT 即时编译</a></li>
       </ul>
     </li>
-    <li><a href="#加载和连接">加载和连接</a></li>
-    <li><a href="#方法句柄">方法句柄</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#jd">JD</a></li>
-    <li><a href="#jad">Jad</a></li>
+    <li><a href="#字节码">字节码</a>
+      <ul>
+        <li><a href="#字节码相关框架">字节码相关框架</a></li>
+        <li><a href="#常量池">常量池</a></li>
+      </ul>
+    </li>
+    <li><a href="#类加载机制">类加载机制</a>
+      <ul>
+        <li><a href="#类加载器">类加载器</a>
+          <ul>
+            <li><a href="#特殊场景">特殊场景</a></li>
+          </ul>
+        </li>
+        <li><a href="#加载和连接">加载和连接</a></li>
+        <li><a href="#方法句柄">方法句柄</a></li>
+      </ul>
+    </li>
+    <li><a href="#agent">Agent</a></li>
+    <li><a href="#反编译">反编译</a></li>
+    <li><a href="#热部署">热部署</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
 <li><a href="#%E5%AD%97%E8%8A%82%E7%A0%81%E4%BB%A5%E5%8F%8A%E7%B1%BB%E5%8A%A0%E8%BD%BD">字节码以及类加载</a></li>
+</ol>
+</li>
+<li>
+<ol start="2">
 <li><a href="#%E7%BC%96%E8%AF%91%E4%BC%98%E5%8C%96">编译优化</a></li>
-<li><a href="#%E5%AD%97%E8%8A%82%E7%A0%81">字节码</a>
-<ol>
-<li><a href="#%E5%AD%97%E8%8A%82%E7%A0%81%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6">字节码相关框架</a></li>
-<li><a href="#%E5%B8%B8%E9%87%8F%E6%B1%A0">常量池</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#jit-%E5%8D%B3%E6%97%B6%E7%BC%96%E8%AF%91">JIT 即时编译</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E5%AD%97%E8%8A%82%E7%A0%81">字节码</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#%E5%AD%97%E8%8A%82%E7%A0%81%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6">字节码相关框架</a></li>
+<li>3.2. <a href="#%E5%B8%B8%E9%87%8F%E6%B1%A0">常量池</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6">类加载机制</a></li>
+</ol>
+<ul>
+<li>4.1. <a href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8">类加载器</a>
+<ul>
+<li>4.1.1. <a href="#%E7%89%B9%E6%AE%8A%E5%9C%BA%E6%99%AF">特殊场景</a>
+<ul>
+<li>4.1.1.1. <a href="#tomcat">Tomcat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>4.2. <a href="#%E5%8A%A0%E8%BD%BD%E5%92%8C%E8%BF%9E%E6%8E%A5">加载和连接</a></li>
+<li>4.3. <a href="#%E6%96%B9%E6%B3%95%E5%8F%A5%E6%9F%84">方法句柄</a></li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li><a href="#agent">Agent</a></li>
 </ol>
 </li>
-<li><a href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6">类加载机制</a>
-<ol>
-<li><a href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8">类加载器</a>
-<ol>
-<li><a href="#%E7%89%B9%E6%AE%8A%E5%9C%BA%E6%99%AF">特殊场景</a>
-<ol>
-<li><a href="#tomcat">Tomcat</a></li>
+<li>
+<ol start="6">
+<li><a href="#%E5%8F%8D%E7%BC%96%E8%AF%91">反编译</a></li>
 </ol>
 </li>
+<li>
+<ol start="7">
+<li><a href="#%E7%83%AD%E9%83%A8%E7%BD%B2">热部署</a></li>
 </ol>
 </li>
-<li><a href="#%E5%8A%A0%E8%BD%BD%E5%92%8C%E8%BF%9E%E6%8E%A5">加载和连接</a></li>
-<li><a href="#%E6%96%B9%E6%B3%95%E5%8F%A5%E6%9F%84">方法句柄</a></li>
-</ol>
-</li>
-<li><a href="#%E5%8F%8D%E7%BC%96%E8%AF%91">反编译</a>
-<ol>
-<li><a href="#jd">JD</a></li>
-<li><a href="#jad">Jad</a></li>
-</ol>
-</li>
-<li><a href="#%E7%83%AD%E6%9B%B4%E6%96%B0">热更新</a></li>
-<li><a href="#%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7">分析工具</a></li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-09-13 07:50</em>|</p>
+</ul>
+<p>💠 2024-06-13 11:01:29</p>
 <hr>
 <h1 id="字节码以及类加载">字节码以及类加载</h1>
 <blockquote>
 <p><a href="https://github.com/Kuangcp/JavaBase/tree/master/class">个人相关代码</a></p>
 </blockquote>
+<hr>
+<blockquote>
+<p>书籍</p>
+</blockquote>
+<ul>
+<li>深入理解Java虚拟机 周志明</li>
+<li>Java 虚拟机字节码 从入门到实战 吴就业</li>
+</ul>
 <h1 id="编译优化">编译优化</h1>
 <blockquote>
 <p>由源文件 *.java 编译成 *.class 文件这个过程中做的调优</p>
 </blockquote>
 <p>类中定义的常量 如果是字面值, 其他引用这个常量的地方编译后会被替换成字面值, 该常量属性的 get 方法也是直接返回字面值<br>
 字面值就是无需运算的值, 而不是表达式 例如 <code>final int num = 2;</code> 反例 <code>final int num = 3&gt;2?1:2;</code></p>
+<h2 id="jit-即时编译">JIT 即时编译</h2>
+<p>目前有三种：C1 C2 Graal</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">JVM参数</th>
+<th style="text-align:left">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">C1</td>
+<td style="text-align:left">-client</td>
+<td style="text-align:left">编译耗时短</td>
+</tr>
+<tr>
+<td style="text-align:left">C2</td>
+<td style="text-align:left">-server</td>
+<td style="text-align:left">编译耗时长执行效率好<code>需要收集运行期profile信息来辅助编译也就是PGO</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Graal</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意 自JDK8起默认开启分层编译<code>C1 C2混用</code> -client -server参数<strong>无效</strong></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.graalvm.org/latest/reference-manual/java/compiler/">Graal Compiler</a><br>
+<a href="https://www.baeldung.com/graal-java-jit-compiler">Deep Dive Into the New Java JIT Compiler – Graal</a></p>
+</blockquote>
 <hr>
 <h1 id="字节码">字节码</h1>
 <blockquote>
-<p><a href="https://www.cnblogs.com/beautiful-code/p/6425376.html">参考: 学会阅读Java字节码</a></p>
+<p><a href="https://www.cnblogs.com/beautiful-code/p/6425376.html">参考: 学会阅读Java字节码</a>
+<a href="https://tech.meituan.com/2019/09/05/java-bytecode-enhancement.html">参考: 字节码增强技术探索</a></p>
 </blockquote>
 <p>字节码是程序的中间表达形式，源码和机器码之间的产物 字节码是由源文件执行javac产生的</p>
 <p>某些高级语言特性（语法糖）在字节码中会进行简化，例如循环结构，会转换成为分支指令</p>
@@ -267,13 +345,14 @@ javassist</p>
 <p><a href="https://www.cnblogs.com/wmyskxz/p/13575224.html#_label4">参考:  一文带你深扒ClassLoader内核，揭开它的神秘面纱！ </a><code>深入源码，举例清晰</code></p>
 </blockquote>
 <blockquote>
-<p>双亲委派模型(<code>java.lang.ClassLoader#loadClass(java.lang.String, boolean)</code>) 其工作原理的是，如果一个类加载器收到了类加载请求(只讨论首次加载，已经加载过的会走缓存提前返回)<br>
-它并不会自己先去加载，而是委托给父类的加载器去执行，如果父类加载器还存在其父类加载器，则进一步向上委托，依次递归，请求最终将到达顶层的启动类加载器<br>
-如果父类加载器可以完成类加载任务，就成功返回，倘若父类加载器无法完成此加载任务，子加载器才会尝试自己去加载，这就是双亲委派模式</p>
+<p>双亲委派模型(<code>parents delegation model</code>） 实现代码：<code>java.lang.ClassLoader#loadClass(java.lang.String, boolean)</code>
+其工作原理是，如果一个类加载器收到了类加载请求(只讨论首次加载，已经加载过的会走缓存), 它并不会自己先去加载，而是委托给父类的加载器去执行<br>
+如果父类加载器还存在其父类加载器，则进一步向上委托，依次递归，请求最终将到达顶层的启动类加载器<br>
+如果父类加载器可以完成类加载任务，就成功返回，倘若父类加载器无法完成此加载任务，子加载器才会尝试自己去加载</p>
 </blockquote>
 <ul>
-<li>Java平台经典类加载器：
-<ul>
+<li>Java平台经典类加载器层级：
+<ol>
 <li><code>BootStrap ClassLoader</code>  根（引导）加载器：通常在VM启动后不久就实例化，最顶层的加载类，主要加载 核心类库 并且不做验证工作
 <ul>
 <li>加载目录 <code>%JRE_HOME%\lib</code> 下的rt.jar、resources.jar、charsets.jar 和 class 文件</li>
@@ -286,7 +365,7 @@ javassist</p>
 </li>
 <li><code>Application ClassLoader</code>  应用或系统类加载器：应用最广泛的类加载器，负责加载应用类(当前应用的 classpath 的所有类)</li>
 <li><code>自定义ClassLoader</code> 自定义类载器</li>
-</ul>
+</ol>
 </li>
 </ul>
 <blockquote>
@@ -353,19 +432,65 @@ javassist</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Java7Developer/p118.jpg" alt="图"></p>
 <hr>
-<h1 id="反编译">反编译</h1>
-<h2 id="jd">JD</h2>
+<h1 id="agent">Agent</h1>
 <blockquote>
-<p><a href="http://java-decompiler.github.io/">JD</a></p>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">JDK: Interface Instrumentation</a></p>
 </blockquote>
-<h2 id="jad">Jad</h2>
 <blockquote>
-<p><a href="https://varaneckas.com/jad/">https://varaneckas.com/jad/</a></p>
+<p><a href="https://www.baeldung.com/java-instrumentation">Guide to Java Instrumentation</a><br>
+<a href="https://juejin.cn/post/7086026013498408973"> Java Agent 探针技术</a></p>
+</blockquote>
+<p>Java Agent 主要有以下功能</p>
+<ul>
+<li>Java Agent 在加载 Java 字节码之前拦截并对字节码进行修改;</li>
+<li>Java Agent 在 Jvm 运行期间修改已经加载的字节码;</li>
+</ul>
+<p>Java Agent 的应用场景</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">能力</th>
+<th style="text-align:left">案例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">IDE的调试功能</td>
+<td style="text-align:left">Eclipse、IntelliJ IDEA ；</td>
+</tr>
+<tr>
+<td style="text-align:left">热部署功能</td>
+<td style="text-align:left">JRebel、XRebel、spring-loaded；</td>
+</tr>
+<tr>
+<td style="text-align:left">各种线上诊断工具</td>
+<td style="text-align:left">Btrace、Greys， Arthas；</td>
+</tr>
+<tr>
+<td style="text-align:left">各种性能分析工具</td>
+<td style="text-align:left">Visual VM、JConsole 等；</td>
+</tr>
+<tr>
+<td style="text-align:left">全链路性能检测工具</td>
+<td style="text-align:left">Skywalking、Pinpoint等；</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><a href="https://github.com/yxkong/agent">agent</a><code>线程池监控</code></p>
 </blockquote>
 <hr>
-<h1 id="热更新">热更新</h1>
+<h1 id="反编译">反编译</h1>
 <blockquote>
-<p>通过替换 class 实现不停机热更新, 但是还有有局限性, 类结构, 方法签名不能有改变</p>
+<p><a href="http://java-decompiler.github.io/">JD</a><br>
+<a href="https://varaneckas.com/jad/">https://varaneckas.com/jad/</a><br>
+<a href="https://www.codeproject.com/Articles/35915/Java-Class-Viewer">Java-Class-Viewer</a><br>
+<a href="https://github.com/zxh0/classpy">classpy</a></p>
+</blockquote>
+<hr>
+<h1 id="热部署">热部署</h1>
+<blockquote>
+<p>通过替换 class 实现不停机热更新</p>
 </blockquote>
 <blockquote>
 <p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto-hotswapping.html">Spring hot swapping</a></p>
@@ -381,23 +506,22 @@ javassist</p>
 <a href="https://blog.csdn.net/javierhui111/article/details/3830833">java组件中的热插拔（osgi)</a>
 <a href="https://www.cnblogs.com/cm4j/p/hot_deploy.html">agentmain 方式 </a></p>
 <p>相关项目:</p>
-<p><a href="https://github.com/youxijishu/game-hot-update">game-hot-update</a> <a href="https://www.cnblogs.com/wgslucky/p/9127681.html">https://www.cnblogs.com/wgslucky/p/9127681.html</a>
+<p><a href="https://github.com/youxijishu/game-hot-update">game-hot-update</a> | <a href="https://www.cnblogs.com/wgslucky/p/9127681.html">游戏服务器之Java热更新</a>
 <a href="https://github.com/chaopeng/groovy-hotswap-demo">groovy hotswap demo</a></p>
-<hr>
-<h1 id="分析工具">分析工具</h1>
 <blockquote>
-<p><a href="https://github.com/dingjs/javaagent">github.com/dingjs/javaagent</a></p>
+<p><a href="https://tech.meituan.com/2022/03/17/java-hotswap-sonic.html">Java系列 | 远程热部署在美团的落地实践</a><code>未开源</code></p>
 </blockquote>
+<hr>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-11-21
         
@@ -411,14 +535,14 @@ javassist</p>
           <a href="/tags/%E5%AD%97%E8%8A%82%E7%A0%81/">字节码</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/java/advancedlearning/release/jdkandjre/">
+        <a class="prev" href="/post/java/collection/javacollection/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Java的JDK以及JRE</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-default">Java的集合</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/java/advancedlearning/javacollection/">
-            <span class="next-text nav-default">Java的集合</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/java/advancedlearning/javareflection/">
+            <span class="next-text nav-default">Java反射原理以及使用</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -436,17 +560,17 @@ javassist</p>
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -454,11 +578,11 @@ javassist</p>
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -468,16 +592,21 @@ javassist</p>
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

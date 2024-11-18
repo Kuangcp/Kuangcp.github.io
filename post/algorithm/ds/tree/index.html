@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Tree.md - Mythos</title>
+  <title>Tree - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 树 二叉树 二叉查找树 AVL树 B-Tree B&#43;Tree 红黑树 目录 end|2020-11-16 12:11| 树 二叉树 二叉查找树 AVL树 平衡二叉查找树 最早提出的数据结构, 应用不甚广泛, Windows对" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 树 1.1. 二叉树 1.2. 二叉搜索树 1.3. AVL树 1.4. 红黑树 1.5. 多叉树 1.6. BTree 1.7. B&#43;Tree 💠 2024-01-24 18:24:52 树 一文搞懂二叉搜索树、B树、B&#43;树、AVL树、红黑树 树是一种特殊的无环连通图" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/algorithm/ds/tree/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/algorithm/ds/tree/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,24 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Tree.md" />
-<meta property="og:description" content="目录 start 树 二叉树 二叉查找树 AVL树 B-Tree B&#43;Tree 红黑树 目录 end|2020-11-16 12:11| 树 二叉树 二叉查找树 AVL树 平衡二叉查找树 最早提出的数据结构, 应用不甚广泛, Windows对" />
+<meta property="og:title" content="Tree" />
+<meta property="og:description" content="💠 树 1.1. 二叉树 1.2. 二叉搜索树 1.3. AVL树 1.4. 红黑树 1.5. 多叉树 1.6. BTree 1.7. B&#43;Tree 💠 2024-01-24 18:24:52 树 一文搞懂二叉搜索树、B树、B&#43;树、AVL树、红黑树 树是一种特殊的无环连通图" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/algorithm/ds/tree/" />
-<meta property="article:published_time" content="2019-04-16T15:35:58+00:00" />
-<meta property="article:modified_time" content="2019-04-16T15:35:58+00:00" />
-<meta itemprop="name" content="Tree.md">
-<meta itemprop="description" content="目录 start 树 二叉树 二叉查找树 AVL树 B-Tree B&#43;Tree 红黑树 目录 end|2020-11-16 12:11| 树 二叉树 二叉查找树 AVL树 平衡二叉查找树 最早提出的数据结构, 应用不甚广泛, Windows对">
-<meta itemprop="datePublished" content="2019-04-16T15:35:58+00:00" />
-<meta itemprop="dateModified" content="2019-04-16T15:35:58+00:00" />
-<meta itemprop="wordCount" content="335">
+<meta property="og:url" content="https://www.kuangcp.top/post/algorithm/ds/tree/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-10-03T20:23:41+00:00" />
+<meta property="article:modified_time" content="2023-10-03T20:23:41+00:00" />
 
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tree.md"/>
-<meta name="twitter:description" content="目录 start 树 二叉树 二叉查找树 AVL树 B-Tree B&#43;Tree 红黑树 目录 end|2020-11-16 12:11| 树 二叉树 二叉查找树 AVL树 平衡二叉查找树 最早提出的数据结构, 应用不甚广泛, Windows对"/>
+<meta itemprop="name" content="Tree">
+<meta itemprop="description" content="💠 树 1.1. 二叉树 1.2. 二叉搜索树 1.3. AVL树 1.4. 红黑树 1.5. 多叉树 1.6. BTree 1.7. B&#43;Tree 💠 2024-01-24 18:24:52 树 一文搞懂二叉搜索树、B树、B&#43;树、AVL树、红黑树 树是一种特殊的无环连通图"><meta itemprop="datePublished" content="2023-10-03T20:23:41+00:00" />
+<meta itemprop="dateModified" content="2023-10-03T20:23:41+00:00" />
+<meta itemprop="wordCount" content="626">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tree"/>
+<meta name="twitter:description" content="💠 树 1.1. 二叉树 1.2. 二叉搜索树 1.3. AVL树 1.4. 红黑树 1.5. 多叉树 1.6. BTree 1.7. B&#43;Tree 💠 2024-01-24 18:24:52 树 一文搞懂二叉搜索树、B树、B&#43;树、AVL树、红黑树 树是一种特殊的无环连通图"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -119,64 +115,93 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Tree.md</h1>
+      <h1 class="post-title">Tree</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-04-16 </span>
+        <span class="post-time"> 2023-10-03 </span>
         
-          <span class="more-meta"> 335 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 626 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#二叉树">二叉树</a></li>
-    <li><a href="#二叉查找树">二叉查找树</a></li>
-    <li><a href="#avl树">AVL树</a></li>
-    <li><a href="#b-tree">B-Tree</a></li>
-    <li><a href="#btree">B+Tree</a></li>
-    <li><a href="#红黑树">红黑树</a></li>
+    <li><a href="#树">树</a>
+      <ul>
+        <li><a href="#二叉树">二叉树</a></li>
+        <li><a href="#二叉搜索树">二叉搜索树</a></li>
+        <li><a href="#avl树">AVL树</a></li>
+        <li><a href="#红黑树">红黑树</a></li>
+        <li><a href="#多叉树">多叉树</a></li>
+        <li><a href="#btree">BTree</a></li>
+        <li><a href="#btree-1">B+Tree</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2023-10-03T20:23:41" title="October 3, 2023">October 3, 2023</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E6%A0%91">树</a>
-<ol>
-<li><a href="#%E4%BA%8C%E5%8F%89%E6%A0%91">二叉树</a></li>
-<li><a href="#%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91">二叉查找树</a></li>
-<li><a href="#avl%E6%A0%91">AVL树</a></li>
-<li><a href="#b-tree">B-Tree</a></li>
-<li><a href="#b+tree">B+Tree</a></li>
-<li><a href="#%E7%BA%A2%E9%BB%91%E6%A0%91">红黑树</a></li>
+<li><a href="#%E6%A0%91">树</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E4%BA%8C%E5%8F%89%E6%A0%91">二叉树</a></li>
+<li>1.2. <a href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91">二叉搜索树</a></li>
+<li>1.3. <a href="#avl%E6%A0%91">AVL树</a></li>
+<li>1.4. <a href="#%E7%BA%A2%E9%BB%91%E6%A0%91">红黑树</a></li>
+<li>1.5. <a href="#%E5%A4%9A%E5%8F%89%E6%A0%91">多叉树</a></li>
+<li>1.6. <a href="#btree">BTree</a></li>
+<li>1.7. <a href="#b+tree">B+Tree</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-11-16 12:11</em>|</p>
+</ul>
+<p>💠 2024-01-24 18:24:52</p>
+<hr>
 <hr>
 <h1 id="树">树</h1>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/258078863">一文搞懂二叉搜索树、B树、B+树、AVL树、红黑树</a></li>
+</ul>
+<p>树是一种特殊的无环连通图</p>
 <h2 id="二叉树">二叉树</h2>
-<h2 id="二叉查找树">二叉查找树</h2>
+<h2 id="二叉搜索树">二叉搜索树</h2>
+<p>AVL,红黑树都是基于二叉搜索树做了不同的限制而来</p>
+<p>特点</p>
+<ul>
+<li>任意节点左子树不为空,则左子树的值均小于根节点的值.</li>
+<li>任意节点右子树不为空,则右子树的值均大于于根节点的值.</li>
+<li>任意节点的左右子树也分别是二叉查找树.</li>
+<li>没有键值相等的节点.</li>
+</ul>
+<p>在查找数据时, 最优情况是 O(logn) 最坏是O(n) 即树退化成了链表</p>
 <h2 id="avl树">AVL树</h2>
 <blockquote>
-<p>平衡二叉查找树</p>
+<p>平衡二叉搜索树</p>
 </blockquote>
-<p>最早提出的数据结构, 应用不甚广泛, Windows对进程地址空间的管理有使用到 AVL 树</p>
-<h2 id="b-tree">B-Tree</h2>
-<p>用在磁盘文件数据索引和数据库索引等</p>
-<h2 id="btree">B+Tree</h2>
+<p>最早提出的平衡树, 应用不甚广泛, Windows对进程地址空间的管理有使用到 AVL 树</p>
+<p>特点：</p>
+<ul>
+<li>二叉搜索树的前提增加平衡性条件约束：任意节点的左子树和右子树的高度差小于2</li>
+</ul>
 <h2 id="红黑树">红黑树</h2>
 <blockquote>
 <p>对称二叉 B 树</p>
 </blockquote>
-<p>广泛使用在各种语言的基本容器中, Java 的 TreeSet TreeMap  HashMap, C++ 的 map set</p>
+<p>平衡二叉树, 广泛使用在各种语言的基本容器中, Java 的 TreeSet TreeMap  HashMap, C++ 的 map set</p>
 <p>红黑树具有以下5种性质：</p>
 <ol>
 <li>节点是红色或黑色。</li>
@@ -187,18 +212,33 @@
 </ol>
 <p>红黑树的时间复杂度为O(log n)，与树的高度成正比。
 红黑树每次的插入、删除操作都需要做平衡，平衡时有可能会改变根节点的位置，颜色转换，左旋，右旋等。</p>
+<h2 id="多叉树">多叉树</h2>
+<p>每个节点下可以有多个子节点, 实际上二叉树是多叉树的特例(子节点只有两个)</p>
+<ul>
+<li>多叉树转二叉树： 左节点是孩子节点 右节点是兄弟节点</li>
+</ul>
+<h2 id="btree">BTree</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/B-tree">B Tree</a></li>
+</ul>
+<img src='img/b_tree_index.excalidraw.svg' height=600>
+<p>用在磁盘文件索引和数据库索引等</p>
+<h2 id="btree-1">B+Tree</h2>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/B%2B_tree">B+ tree</a></p>
+</blockquote>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
-        2019-04-16
+        2023-10-03
         
     </span>
   </p>
@@ -208,14 +248,14 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/java/advancedlearning/map/hashmap/">
+        <a class="prev" href="/post/java/basic/stringconcat/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Java中的HashMap</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-default">StringConcat</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/java/advancedlearning/javaserialize/">
-            <span class="next-text nav-default">Java中的序列化</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/java/ecosystem/scheduler/quartz/">
+            <span class="next-text nav-default">Quartz</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -233,17 +273,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -251,11 +291,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -265,16 +305,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Neo4j - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Neo4j 1.1. 安装 1.1.1. K8s 1.2. 驱动 使用 2.1. 查询 修改 2.2. 数据导入 2.2.1. Load CSV 2.3. 结构 2.4. Schema 2.4.1. 索引 2.4.2. 约束 2.4.3. 统计信息 2.5. Pattern 应用 💠 2024-11-15 11:14:25 Neo4j Neo4j Graph Database &amp;amp; Analytics | Graph Database Management System Neo4j 图数据库中文社区，致" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/database/neo4j/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Neo4j" />
+<meta property="og:description" content="💠 Neo4j 1.1. 安装 1.1.1. K8s 1.2. 驱动 使用 2.1. 查询 修改 2.2. 数据导入 2.2.1. Load CSV 2.3. 结构 2.4. Schema 2.4.1. 索引 2.4.2. 约束 2.4.3. 统计信息 2.5. Pattern 应用 💠 2024-11-15 11:14:25 Neo4j Neo4j Graph Database &amp; Analytics | Graph Database Management System Neo4j 图数据库中文社区，致" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/database/neo4j/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-10-13T17:59:27+00:00" />
+<meta property="article:modified_time" content="2024-10-13T17:59:27+00:00" />
+
+<meta itemprop="name" content="Neo4j">
+<meta itemprop="description" content="💠 Neo4j 1.1. 安装 1.1.1. K8s 1.2. 驱动 使用 2.1. 查询 修改 2.2. 数据导入 2.2.1. Load CSV 2.3. 结构 2.4. Schema 2.4.1. 索引 2.4.2. 约束 2.4.3. 统计信息 2.5. Pattern 应用 💠 2024-11-15 11:14:25 Neo4j Neo4j Graph Database &amp; Analytics | Graph Database Management System Neo4j 图数据库中文社区，致"><meta itemprop="datePublished" content="2024-10-13T17:59:27+00:00" />
+<meta itemprop="dateModified" content="2024-10-13T17:59:27+00:00" />
+<meta itemprop="wordCount" content="2357">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Neo4j"/>
+<meta name="twitter:description" content="💠 Neo4j 1.1. 安装 1.1.1. K8s 1.2. 驱动 使用 2.1. 查询 修改 2.2. 数据导入 2.2.1. Load CSV 2.3. 结构 2.4. Schema 2.4.1. 索引 2.4.2. 约束 2.4.3. 统计信息 2.5. Pattern 应用 💠 2024-11-15 11:14:25 Neo4j Neo4j Graph Database &amp; Analytics | Graph Database Management System Neo4j 图数据库中文社区，致"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Neo4j</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-10-13 </span>
+        
+          <span class="more-meta"> 约 2357 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#neo4j">Neo4j</a>
+      <ul>
+        <li><a href="#安装">安装</a>
+          <ul>
+            <li><a href="#k8s">K8s</a></li>
+          </ul>
+        </li>
+        <li><a href="#驱动">驱动</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#查询-修改">查询 修改</a></li>
+        <li><a href="#数据导入">数据导入</a>
+          <ul>
+            <li><a href="#load-csv">Load CSV</a></li>
+          </ul>
+        </li>
+        <li><a href="#结构">结构</a></li>
+        <li><a href="#schema">Schema</a>
+          <ul>
+            <li><a href="#索引">索引</a></li>
+            <li><a href="#约束">约束</a></li>
+            <li><a href="#统计信息">统计信息</a></li>
+          </ul>
+        </li>
+        <li><a href="#pattern">Pattern</a></li>
+      </ul>
+    </li>
+    <li><a href="#应用">应用</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#neo4j">Neo4j</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E5%AE%89%E8%A3%85">安装</a>
+<ul>
+<li>1.1.1. <a href="#k8s">K8s</a></li>
+</ul>
+</li>
+<li>1.2. <a href="#%E9%A9%B1%E5%8A%A8">驱动</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#%E6%9F%A5%E8%AF%A2-%E4%BF%AE%E6%94%B9">查询 修改</a></li>
+<li>2.2. <a href="#%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5">数据导入</a>
+<ul>
+<li>2.2.1. <a href="#load-csv">Load CSV</a></li>
+</ul>
+</li>
+<li>2.3. <a href="#%E7%BB%93%E6%9E%84">结构</a></li>
+<li>2.4. <a href="#schema">Schema</a>
+<ul>
+<li>2.4.1. <a href="#%E7%B4%A2%E5%BC%95">索引</a></li>
+<li>2.4.2. <a href="#%E7%BA%A6%E6%9D%9F">约束</a></li>
+<li>2.4.3. <a href="#%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF">统计信息</a></li>
+</ul>
+</li>
+<li>2.5. <a href="#pattern">Pattern</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E5%BA%94%E7%94%A8">应用</a></li>
+</ol>
+</li>
+</ul>
+<p>💠 2024-11-15 11:14:25</p>
+<hr>
+<h1 id="neo4j">Neo4j</h1>
+<blockquote>
+<p><a href="https://neo4j.com/">Neo4j Graph Database &amp; Analytics | Graph Database Management System</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://neo4j.com.cn/">Neo4j 图数据库中文社区，致力于 Neo4j 的技术研究。</a></p>
+</blockquote>
+<h2 id="安装">安装</h2>
+<ul>
+<li><code>docker run  -p 7474:7474 -p 7687:7687 neo4j:5.24</code>
+<ul>
+<li>docker run &ndash;name neo4 -d -p 7474:7474 -p 7687:7687 &ndash;env NEO4J_AUTH=neo4j/jiushineo neo4j:5.24</li>
+</ul>
+</li>
+<li>或者 进入容器修改密码 <code>neo4j-admin dbms set-initial-password pwdtest123</code> 然后重启 注意只在第一次启动时有效，后续修改密码是 ALTER USER neo4j SET PASSWORD ;</li>
+<li>打开Web客户端 <a href="http://localhost:7474/browser/">localhost:7474</a> 选择 bolt协议，填入连接地址端口为7687， 用户名 neo4j</li>
+<li>登录后 Favorites 菜单下的 Sample Scripts 可以快速了解常用查询语句</li>
+</ul>
+<blockquote>
+<p><a href="https://neo4j.com/deployment-center/">Neo4j Deployment Center - Graph Database &amp; Analytics</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<ul>
+<li>
+<p>社区版本不支持命令 create database 只能使用默认的 neo4j <a href="https://github.com/neo4j/neo4j/issues/12920">Multiple database in community edition · Issue #12920 · neo4j/neo4j</a></p>
+<ul>
+<li><a href="https://github.com/dozerdb">DozerDB</a><code>衍生插件 支持多库</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"> docker run -p 7479:7474 -p 7692:7687 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        --env <span class="nv">NEO4J_AUTH</span><span class="o">=</span>neo4j/jiushineo <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        --env <span class="nv">NEO4J_PLUGINS</span><span class="o">=</span><span class="s1">&#39;[&#34;apoc&#34;]&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        --env <span class="nv">NEO4J_apoc_export_file_enabled</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        --env <span class="nv">NEO4J_apoc_import_file_enabled</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        --env <span class="nv">NEO4J_dbms_security_procedures_unrestricted</span><span class="o">=</span><span class="s1">&#39;*&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        graphstack/dozerdb:5.24.2.1-alpha.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Docker方式启动适合调试，正式使用不推荐，数据备份迁移不方便 (也可以停止容器后docker cp复制出 data 目录，替换到新的空实例再启动)</p>
+</li>
+</ul>
+<h3 id="k8s">K8s</h3>
+<blockquote>
+<p><a href="https://neo4j.com/docs/operations-manual/current/kubernetes/">Kubernetes - Operations Manual</a><br>
+<a href="https://github.com/bchhabra2490/kubernetes">bchhabra2490/kubernetes</a></p>
+</blockquote>
+<h2 id="驱动">驱动</h2>
+<p>注意协议区分为 bolt(6787) neo4j(6787) http(7474) 等, 使用的端口不一样</p>
+<hr>
+<p><em>Python</em></p>
+<blockquote>
+<p><a href="https://neo4j.com/docs/api/python-driver/current/">Neo4j Python Driver 5.25 — Neo4j Python Driver 5.25</a></p>
+</blockquote>
+<hr>
+<p><em>Java</em></p>
+<blockquote>
+<p><a href="https://neo4j.com/docs/getting-started/languages-guides/java/java-intro/">Using Neo4j from Java - Getting Started</a><br>
+<a href="https://www.reddit.com/r/Neo4j/comments/15ggn1l/neo4j_java_drive_compatibility/">Neo4j Java Drive Compatibility : r/Neo4j</a></p>
+</blockquote>
+<p>Java8使用的话，坑会比较多，注意5.x需要Java17（4.x以及3.x才兼容Java8）。官网推荐 5.x 及 样例 <a href="https://github.com/neo4j-examples/movies-java-bolt">neo4j-examples/movies-java-bolt </a></p>
+<p><a href="https://spring.io/projects/spring-data-neo4j">Spring Data Neo4j</a> 不同boot版本的配置和使用方式差别较大(yml配置名变更)，需要仔细翻阅相应版本的文档。</p>
+<blockquote>
+<p>Java8 简单使用</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>org.neo4j.driver<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>neo4j-java-driver<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>4.2.9<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 驱动配置类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@Component</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Neo4jDriver</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Driver</span> <span class="n">driver</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Neo4jConfig</span> <span class="n">neo4jConfig</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@PostConstruct</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Config</span> <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">withConnectionTimeout</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">withMaxConnectionLifetime</span><span class="o">(</span><span class="n">30</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">withMaxConnectionPoolSize</span><span class="o">(</span><span class="n">10</span><span class="o">).</span><span class="na">withConnectionAcquisitionTimeout</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">driver</span> <span class="o">=</span> <span class="n">GraphDatabase</span><span class="o">.</span><span class="na">driver</span><span class="o">(</span><span class="n">neo4jConfig</span><span class="o">.</span><span class="na">getUrl</span><span class="o">(),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">AuthTokens</span><span class="o">.</span><span class="na">basic</span><span class="o">(</span><span class="n">neo4jConfig</span><span class="o">.</span><span class="na">getUsername</span><span class="o">(),</span> <span class="n">neo4jConfig</span><span class="o">.</span><span class="na">getPassword</span><span class="o">()),</span> <span class="n">config</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;Init Neo4j {}&#34;</span><span class="o">,</span> <span class="n">neo4jConfig</span><span class="o">.</span><span class="na">getUrl</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 手动查询和解析
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">DiseaseNode</span><span class="o">&gt;</span> <span class="nf">queryDisease</span><span class="o">(</span><span class="n">String</span> <span class="n">query</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">(</span><span class="n">Session</span> <span class="n">session</span> <span class="o">=</span> <span class="n">neo4jDriver</span><span class="o">.</span><span class="na">getDriver</span><span class="o">().</span><span class="na">session</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">List</span><span class="o">&lt;</span><span class="n">DiseaseNode</span><span class="o">&gt;</span> <span class="n">nodes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Result</span> <span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="k">new</span> <span class="n">Query</span><span class="o">(</span><span class="n">query</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">List</span><span class="o">&lt;</span><span class="n">Record</span><span class="o">&gt;</span> <span class="n">collect</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">distinct</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;result={}&#34;</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">collect</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">v</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">InternalRecord</span> <span class="n">ir</span> <span class="o">=</span> <span class="o">(</span><span class="n">InternalRecord</span><span class="o">)</span> <span class="n">v</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Value</span> <span class="n">tmpNode</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Value</span> <span class="n">id</span> <span class="o">=</span> <span class="n">tmpNode</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Value</span> <span class="n">name</span> <span class="o">=</span> <span class="n">tmpNode</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">DiseaseNode</span> <span class="n">node</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DiseaseNode</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">node</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">id</span><span class="o">.</span><span class="na">asString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                <span class="n">node</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">asString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">node</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}).</span><span class="na">forEach</span><span class="o">(</span><span class="n">nodes</span><span class="o">::</span><span class="n">add</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;Neo4j: {}ms Size: {}&#34;</span><span class="o">,</span> <span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">start</span><span class="o">),</span> <span class="n">nodes</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">nodes</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">emptyList</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="使用">使用</h1>
+<blockquote>
+<p><a href="https://juejin.cn/post/7146016720388358181">快速入门 Neo4J教程</a><br>
+<a href="https://www.eula.club/blogs/Neo4j%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8ACypher%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80.html">Neo4j图数据库及Cypher语法基础 | Quantum Bit</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.cnblogs.com/ljhdo/tag/Neo4j/">Neo4j - 悦光阴 - 博客园</a><br>
+<a href="https://www.cnblogs.com/ljhdo/p/5178225.html">Neo4j 第二篇：图形数据库 - 悦光阴 - 博客园</a><br>
+<a href="http://www.yishuifengxiao.com/2022/11/27/neo4j%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B0/">neo4j基础使用案例笔记 - 易水风萧</a></p>
+</blockquote>
+<p>访问7474端口打开网页客户端</p>
+<ul>
+<li>节点类型和边可以修改默认展示的字段和颜色，通过点击详情中的色块弹出设置页</li>
+<li>执行窗口可通过 Ctrl + 上下方向键 切换历史执行的语句</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/neo4j-examples/movies-java-bolt">neo4j-examples/movies-java-bolt</a></p>
+</blockquote>
+<h2 id="查询-修改">查询 修改</h2>
+<blockquote>
+<p><a href="/Database/Graph.md#cypher">Cypher</a><code>专有语言，类似于SQL，用于执行查询和修改，删除等</code></p>
+</blockquote>
+<h2 id="数据导入">数据导入</h2>
+<h3 id="load-csv">Load CSV</h3>
+<p>可以注意到文件的写法是协议，所以支持HTTP协议的文件，如果是本地文件则是file://。<br>
+默认导入路径在 neo4j.conf 中配置,默认为 Neo4j根路径(/var/lib/neo4j)的import目录, 文件名最好为英文</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">    <span class="c1">// 导入节点 csv内为两列 id 和 name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LOAD</span> <span class="n">CSV</span> <span class="n">WITH</span> <span class="n">HEADERS</span> <span class="n">FROM</span> <span class="err">&#39;</span><span class="nl">file</span><span class="p">:</span><span class="c1">///event.csv&#39; AS row
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">CREATE</span> <span class="p">(</span><span class="o">:</span><span class="err">`事件`</span> <span class="p">{</span><span class="nl">id</span><span class="p">:</span> <span class="n">row</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="nl">name</span><span class="p">:</span> <span class="n">row</span><span class="p">.</span><span class="n">name</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 导入关系 csv内为两列 id_from id_to
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LOAD</span> <span class="n">CSV</span> <span class="n">WITH</span> <span class="n">HEADERS</span> <span class="n">FROM</span> <span class="s">&#34;file:///Relationships.csv&#34;</span> <span class="n">AS</span> <span class="n">row</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//look up the two nodes we want to connect up
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">(</span><span class="nl">p1</span><span class="p">:</span><span class="n">Person</span> <span class="p">{</span><span class="nl">id</span><span class="p">:</span><span class="n">row</span><span class="p">.</span><span class="n">id_from</span><span class="p">}),</span> <span class="p">(</span><span class="nl">p2</span><span class="p">:</span><span class="n">Person</span> <span class="p">{</span><span class="nl">id</span><span class="p">:</span><span class="n">row</span><span class="p">.</span><span class="n">id_to</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//now create a relationship between them
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">CREATE</span> <span class="p">(</span><span class="n">p1</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">:</span><span class="n">KNOWS</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">(</span><span class="n">p2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// TODO 考虑 节点类型和id以及关系类型都是可变的情况 是否引用csv的列来动态化，否则需要切分csv
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="结构">结构</h2>
+<p>使用Neo4j创建的图（Graph）基于属性图模型，在该模型中</p>
+<ul>
+<li>每个实体都有ID（Identity）唯一标识，每个节点由标签（Lable）分组，每个关系都有一个唯一的关系类型。</li>
+<li>标签用于对节点进行分组，相当于节点的类型。一个节点可以拥有零或多个标签，因此，一个节点可以属于多个分组。</li>
+<li>关系也有类型（type），用于对关系做分类，<strong>一个关系只能有一个分类</strong>，两个节点间要多个分类时则建多个关系。</li>
+<li>属性是一个键值对（Key/Value），用于为节点或关系提供扩展的信息。一般情况下，每个节点都会加name属性，存储节点的业务名称。
+<ul>
+<li>节点和关系的默认属性有 identity，elementId 均唯一。关系存储方式为 Start节点 End节点 和类型type</li>
+</ul>
+</li>
+</ul>
+<h2 id="schema">Schema</h2>
+<p>Neo4j的模式（Schema）通常是指索引、约束和统计，通过创建模式，Neo4j能够获得查询性能的提升和建模的便利；Neo4j数据库的模式可选的，也可以是无模式的。</p>
+<h3 id="索引">索引</h3>
+<blockquote>
+<p><a href="https://neo4j.com/docs/cypher-manual/current/indexes/">Indexes - Cypher Manual</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    CREATE INDEX ON :Person(firstname)
+</span></span><span class="line"><span class="cl">    CREATE INDEX ON :Person(firstname, surname)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="约束">约束</h3>
+<blockquote>
+<p><a href="https://neo4j.com/docs/cypher-manual/current/constraints/">Constraints - Cypher Manual</a></p>
+</blockquote>
+<h3 id="统计信息">统计信息</h3>
+<p>当使用Cypher查询图形数据库时，Cypher脚本被编译成一个执行计划，执行该执行计划获得查询结果。为了生成一个性能优化的执行计划，Neo4j需要收集统计信息以对查询进行优化。当统计信息变化到一定的赋值时，Neo4j需要重新生成执行计划，以保证Cypher查询是性能优化的</p>
+<h2 id="pattern">Pattern</h2>
+<p>模式（Pattern）和模式匹配（Match）是Cypher的核心，使用模式来描述所需数据的形状，该模式使用属性图的结构来描述，通常使用小括号()表示节点，&ndash;&gt;表示关系，-[]-&gt;表示关系和关系的类型，箭头表示关系的方向。</p>
+<p>节点模式 (Variable:Lable1:Lable2{Key1:Value1,Key2,Value2})</p>
+<ul>
+<li>节点可以有多个标签用于匹配，{}内则是匹配节点的属性值</li>
+</ul>
+<p>关系模式  在属性图中，节点之间存在关系，关系通过[]表示，节点之间的关系通过箭头()-[]-&gt;()表示</p>
+<ul>
+<li>关联节点模式: 节点之间通过关系联系在一下，由于关系具有方向性，因此，&ndash;&gt;表示存在有向的关系，&ndash;表示存在关联，不指定关系的方向
+<ul>
+<li><code>(a)-[r]-&gt;(b)</code> ：该模式用于描述节点a和b之间存在有向的关系r，</li>
+<li><code>(a)--&gt;(b)</code>：该模式用于描述a和b之间存在有向关系；</li>
+</ul>
+</li>
+<li>变长路径的模式: 从一个节点，通过直接关系，连接到另外一个节点，这个过程叫遍历，经过的节点和关系的组合叫做路径（Path），路径是由节点和关系的有序组合
+<ul>
+<li><code>(a)--&gt;(b)</code>：是步长为1的路径，节点a和b之间有关系直接关联；</li>
+<li><code>(a)--&gt;()--&gt;(b)</code>：是步长为2的路径，从节点a，经过两个关系和一个节点，到达节点b；</li>
+<li>Cypher语言支持变长路径的模式，变长路径的表示方式是：<code>[*N..M]</code>，N和M表示路径长度的最小值和最大值</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="应用">应用</h1>
+<blockquote>
+<p><a href="https://github.com/hokaso/hocassian-people-neo4j">hokaso/hocassian-people-neo4j: NoSQL可视化人脉图谱项目</a><br>
+<a href="https://github.com/NTDXYG/Neo4j">NTDXYG/Neo4j: 基于电影知识图谱和微信小程序的智能问答系统</a><br>
+<a href="https://github.com/lonngxiang/Knowledge-map-of-family-tree">lonngxiang/Knowledge-map-of-family-tree （姓氏家族家谱知识图谱）</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/insightbuilder/python_de_learners_data/tree/main/code_script_notebooks/projects/exploringNeo4j">python_de_learners_data/code_script_notebooks/projects/exploringNeo4j</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/rahulnyk/graph_maker">rahulnyk/graph_maker</a><br>
+<a href="https://github.com/felahong/neo4j-kenan-relationship-map/tree/master">felahong/neo4j-kenan-relationship-map: 图数据库 - 我用Neo4j 实现了柯南和怪盗基德周边动态关系图谱</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-10-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/ai/knowledgegraph/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">KnowledgeGraph</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/skills/application/offices/">
+            <span class="next-text nav-default">Offices</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

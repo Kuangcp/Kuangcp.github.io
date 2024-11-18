@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java问题排查手册 - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-14 16:40:22 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/tuning/javatroubleshoot/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java问题排查手册" />
+<meta property="og:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-14 16:40:22 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/tuning/javatroubleshoot/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-08-25T15:51:12+00:00" />
+<meta property="article:modified_time" content="2023-08-25T15:51:12+00:00" />
+
+<meta itemprop="name" content="Java问题排查手册">
+<meta itemprop="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-14 16:40:22 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"><meta itemprop="datePublished" content="2023-08-25T15:51:12+00:00" />
+<meta itemprop="dateModified" content="2023-08-25T15:51:12+00:00" />
+<meta itemprop="wordCount" content="2209">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java问题排查手册"/>
+<meta name="twitter:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-14 16:40:22 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java问题排查手册</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-08-25 </span>
+        
+          <span class="more-meta"> 约 2209 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#troubleshoot">Troubleshoot</a>
+      <ul>
+        <li><a href="#gc">GC</a>
+          <ul>
+            <li><a href="#主要关注指标">主要关注指标</a></li>
+          </ul>
+        </li>
+        <li><a href="#memory">Memory</a></li>
+        <li><a href="#cpu">CPU</a>
+          <ul>
+            <li><a href="#线程">线程</a></li>
+          </ul>
+        </li>
+        <li><a href="#classloader">ClassLoader</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2023-08-25T15:51:12" title="August 25, 2023">August 25, 2023</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#troubleshoot">Troubleshoot</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#gc">GC</a>
+<ul>
+<li>1.1.1. <a href="#%E4%B8%BB%E8%A6%81%E5%85%B3%E6%B3%A8%E6%8C%87%E6%A0%87">主要关注指标</a></li>
+</ul>
+</li>
+<li>1.2. <a href="#memory">Memory</a></li>
+<li>1.3. <a href="#cpu">CPU</a>
+<ul>
+<li>1.3.1. <a href="#%E7%BA%BF%E7%A8%8B">线程</a></li>
+</ul>
+</li>
+<li>1.4. <a href="#classloader">ClassLoader</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-11-14 16:40:22</p>
+<hr>
+<h1 id="troubleshoot">Troubleshoot</h1>
+<p>当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总</p>
+<blockquote>
+<p>Troubleshooting: <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/">Oracle: Java8</a> | <a href="https://docs.oracle.com/en/java/javase/11/troubleshoot/general-java-troubleshooting.html">Oracle: Java11</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.cnblogs.com/three-fighter/p/14644152.html">【JVM进阶之路】十：JVM调优总结 - 三分恶 - 博客园</a><br>
+<a href="https://juejin.cn/post/6844903816379236360">目前最全的Java服务问题排查套路</a><br>
+<a href="https://www.bilibili.com/video/BV1vc411U78U/?buvid=XXF1096F78012CCE01D64B283450438CC6206">完蛋，我被故障包围了</a><code>采用各种工具分析和排查</code></p>
+</blockquote>
+<hr>
+<p><img src="./img/mind.drawio.svg" alt=""></p>
+<p><code>不可用故障处理</code> <strong>重要且紧急</strong></p>
+<blockquote>
+<p>基础设施层：寻求方式快速搭建新的一层（例如K8S的命名空间下全部服务重建），立马切换解析或网关流量<br>
+JVM层：记录好后续排查分析故障现场的必要信息后（dump，日志，linux系统日志），立马重启，释放本该释放的资源或中断已经异常的流程</p>
+</blockquote>
+<p>排查思路：</p>
+<ul>
+<li><code>Delta</code> 正式环境可复现问题，测试或灰度无法出现，且不能轻易重启正式环境，通过对生产的JVM做各类指标的记录，对比某个业务操作前后或故障前后的指标差异分析出问题的触发点
+<ul>
+<li>限制：不能做太影响性能的指标记录和分析</li>
+</ul>
+</li>
+<li><code>Debug</code> 在测试或灰度环境上可复现问题，可直接Debug接入调试代码，或本地采用高耗能的方式debug分析<code>抓包，strace，CPU火焰图，等方式</code>
+<ul>
+<li>限制：<strong>可复现</strong>，通常能有这个条件已经能直接通过debug代码就能解决问题了</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><code>性能调优</code></p>
+<blockquote>
+<p><a href="/Linux/Base/LinuxPerformance.md">Linux 性能分析</a><br>
+<a href="/Linux/Base/LinuxNetwork.md">Linux 网络</a><br>
+<a href="/Java/AdvancedLearning/JvmTool.md">JVM 分析工具</a></p>
+</blockquote>
+<h2 id="gc">GC</h2>
+<blockquote>
+<p><a href="/Java/AdvancedLearning/JvmGC.md">Java GC</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://tech.meituan.com/2020/11/12/java-9-cms-gc.html">Java中9种常见的CMS GC问题分析与解决</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://heapdump.cn/article/1924890">大量类加载器创建导致诡异FullGC</a>
+<a href="https://club.perfma.com/article/233480">参考: 译：谁是 JDK8 中最快的 GC</a><br>
+<a href="https://my.oschina.net/u/4030990/blog/3149182">《沙盘模拟系列》JVM如何调优</a><br>
+<a href="https://blog.ysboke.cn/archives/242.html">深入浅出GC问题排查</a>
+<a href="https://dzone.com/articles/cms-deprecated-next-steps">参考: CMS Deprecated. Next Steps?</a></p>
+</blockquote>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/toc.html">Oracle JDK8 GC调优指南</a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/gctuning/introduction-garbage-collection-tuning.html">Oracle JDK11 GC调优指南</a></li>
+</ul>
+<p><code>工具</code></p>
+<blockquote>
+<p><a href="https://gceasy.io">gceasy.io</a><br>
+<a href="https://github.com/chewiebug/GCViewer">GCViewer</a></p>
+</blockquote>
+<p><code>实践</code></p>
+<blockquote>
+<p><a href="https://tech.meituan.com/2017/12/29/jvm-optimize.html">从实际案例聊聊Java应用的GC优化</a><code>观察监控指标调整JVM参数： 年轻代 晋升阈值等</code><br>
+根本原则是每一次GC都回收尽可能多的对象，降低GC次数减少无用的扫描和暂停开销</p>
+</blockquote>
+<h3 id="主要关注指标">主要关注指标</h3>
+<blockquote>
+<p><a href="https://blog.gceasy.io/2016/10/01/garbage-collection-kpi/">garbage-collection-kpi</a><br>
+<a href="https://www.h2kinfosys.com/blog/what-are-throughput-performance-latency-performance-and-memory-footprint-in-java-programming/">What are Throughput Performance, Latency Performance, and Memory Footprint in Java Programming? </a></p>
+</blockquote>
+<blockquote>
+<p>三者不可兼得，通常兼顾两者舍弃另一方</p>
+</blockquote>
+<ul>
+<li><code>延迟（Latency）</code>： 也可以理解为最大停顿时间，即垃圾收集过程中单次 STW 的最长时间，越短越好，一定程度上可以接受频次的增多，是 GC 技术的主要发展方向。</li>
+<li><code>吞吐量（Throughput）</code>： 应用系统的生命周期内，由于 GC 线程会占用 Mutator 当前可用的 CPU 时钟周期，吞吐量即为 Mutator 有效花费的时间占系统总运行时间的百分比
+<ul>
+<li>例如应用系统运行了 100 min，GC 累计耗时 1 min，则系统吞吐量为 99%，通常目标是<strong>超过95%</strong>。</li>
+<li>吞吐量优先的垃圾收集器会倾向于接受<code>单次耗时较长</code>的停顿，<code>累计停顿耗时短</code>的GC策略。</li>
+</ul>
+</li>
+<li><code>内存占用（Footprint）</code>： 取决于不同的GC算法和内存设置，通常来说 Parallel CMS会消耗更多，Serial会消耗更少</li>
+</ul>
+<p>延迟</p>
+<ul>
+<li>响应时间目标是平均目标吗？是否以百分位数表示，例如第50、90、95 或 99 个百分位数的响应时间？ <code>常见为使用后者</code></li>
+<li>响应时间目标是否是一个永远不应该被超越的绝对最小值？ 是否有可能超过响应时间目标？ 如果可以的话，可以添加多少？ 又可以超过多长时间呢？ <code>完全取决于业务，不过在产品学上400ms是肉眼感知的最慢阈值</code></li>
+<li>如何评估响应时间？ 在哪里进行响应时间测量？ <code>APM类系统实现监控和告警</code></li>
+</ul>
+<p>吞吐量</p>
+<ul>
+<li>Java 编程性能目标是否被视为峰值性能目标？ 或者吞吐量目标是应用程序必须始终满足的性能目标吗？<code>主要取决于业务（目前横向扩展成本很低，此项的考虑优先级通常会更低）</code></li>
+<li>应用程序预期处理的最高负载是多少？例如，预计有多少并发或活动用户、并发或活动事务？<code>业务预估，建立在完善的监控和稳定业务基础上</code></li>
+<li>如果应用程序的负载超过预计负载，吞吐量是否会下降到性能目标以下？
+<ul>
+<li>如果可以的话，它能低于绩效目标多久？或者，应用程序应在其最大容量或负载增加的情况下继续运行多长时间？<code>极限值的边界问题</code></li>
+</ul>
+</li>
+<li>应用程序在不同负载级别下是否有可以消耗的最大 CPU 量，或者是否有预期的 CPU 量？如果 CPU 使用有上限，超出该限制还可以使用多少 CPU，允许使用多长时间？</li>
+<li>如何评估应用程序的吞吐量？ 吞吐量的计算在哪里进行？ <code>APM系统</code></li>
+</ul>
+<p>内存占用</p>
+<ul>
+<li>应用程序中预期使用的内存量是否仅包含 Java 堆大小？或者这个总和是否也考虑了 JVM 或应用程序消耗的本机 RAM？
+<ul>
+<li>使用的 RAM 量如何计算？ 该统计信息是否会考虑操作系统报告的 JVM 进程驻留内存大小？Java堆上当前数据的数量是否也包括在内？<code>RAM量严格来说包含 堆，堆外，元空间，二进制库</code></li>
+</ul>
+</li>
+<li>有没有可能永远不会超过预期的内存消耗？如果有的话，可能会超过预期的内存消耗多少？ 又可以超过多长时间呢？<code>取决于宿主机，通常不建议超限制运行，不利于容器调度</code></li>
+<li>何时评估内存使用情况？ 是否会测量应用程序的空闲时间？当程序运行在稳定状态时？ 负载何时达到峰值？ <code>APM</code></li>
+</ul>
+<hr>
+<h2 id="memory">Memory</h2>
+<ul>
+<li>
+<p><a href="http://blog.csdn.net/zheng0518/article/details/48182437">Blog:java优化占用内存的方法(一)</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/column/details/14851.html">GC 性能优化 专栏</a></p>
+</li>
+<li>
+<p><a href="http://www.importnew.com/22336.html">Java调优经验谈</a></p>
+</li>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/p/158712025">Memory Footprint of A Java Process</a></p>
+</li>
+</ul>
+<blockquote>
+<p><a href="/Java/AdvancedLearning/Tuning/JavaOOM.md">Java OOM 排查手册</a></p>
+</blockquote>
+<hr>
+<h2 id="cpu">CPU</h2>
+<blockquote>
+<p>问题：优化一个业务方法延迟，找出CPU成本高的点</p>
+</blockquote>
+<ul>
+<li>Arthas trace 指定的方法
+<ul>
+<li><code>偶现或者高并发时才出现怎么办</code> 考虑使用脚本将捕获的调用信息存入日志，在手动解析产生的大量日志统计分析</li>
+</ul>
+</li>
+<li>JMC，JProfiler，Visualvm 等工具捕获CPU火焰图</li>
+<li>APM类监控系统。例如：CAT</li>
+</ul>
+<h3 id="线程">线程</h3>
+<blockquote>
+<p><a href="https://jstack.review">jstack.review Analyze java thread dumps</a></p>
+</blockquote>
+<hr>
+<h2 id="classloader">ClassLoader</h2>
+<p><strong>加载错误的类</strong></p>
+<p>由于开源项目的 groupId  artifactId 可能发生变化<code>asm netty commons-io 等</code>，且类结构和设计也有调整，容易引发隐式的类加载错误</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/kcp606/article/details/92245936?spm=1001.2014.3001.5502">【踩坑】 Maven中依赖的隐式冲突 可能导致的 NoClassDefFoundError NoSuchMethodException 等问题</a>
+<a href="https://mp.weixin.qq.com/s?__biz=MzAwMjk5NTY3Mw==&amp;mid=2247483950&amp;idx=1&amp;sn=47c6c1fed54b134f46f6dedafd34db0c&amp;chksm=9ac0a698adb72f8e769bcfbff5a4fb0450f181bb754a2ad615dc17002f14d7ec039c0e24a1d7&amp;token=395785991&amp;lang=zh_CN#rd">使用easyexcel时遇到Could not initialize class cglib.beans.BeanMap怎么解决 </a></p>
+</blockquote>
+<blockquote>
+<p>思路</p>
+</blockquote>
+<ul>
+<li><code>Maven Helper</code> IDE 插件检查依赖冲突</li>
+<li><code>lsof -p PID | grep jar</code> 项目启动后查看加载到进程的jar</li>
+<li><code>-verbose:class</code> 输出运行期加载的class信息</li>
+</ul>
+<hr>
+<p><strong>类加载阻塞业务线程</strong></p>
+<p>由于类加载是JVM层面同步执行，如果业务行为中会高频用到类加载器的话会大大降低吞吐量，例如 <a href="https://segmentfault.com/a/1190000041500544">druid连接池引起的线程blocked</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-08-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/algorithm/cryptography/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">密码学</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/skills/network/security/">
+            <span class="next-text nav-default">网络安全</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

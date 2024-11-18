@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>正则表达式 - Mythos</title>
+  <title>正则表达式 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 正则表达式学习 基本字符 特殊字符 变量 零宽断言 先行断言 后发断言 负向零宽断言 编程语言 Python Shell Tips 目录 end|2020-06-24 16:51| 正则表达式学习 Regular Expression Language - Quick Reference shell regex 正则匹配的本" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 正则表达式 1.1. 基本字符 1.2. 特殊字符 1.3. 分组捕获 1.4. 变量 1.5. 零宽断言 正则表达式引擎 2.1. NFA匹配模式 2.2. 性能陷阱 语言实现 3.1. Java 3.2. Python 3.3. Shell Tips 💠 2024-09-20 11:10:09 正则表达式 Regular Expression" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/regularexpression/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/regularexpression/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="正则表达式" />
-<meta property="og:description" content="目录 start 正则表达式学习 基本字符 特殊字符 变量 零宽断言 先行断言 后发断言 负向零宽断言 编程语言 Python Shell Tips 目录 end|2020-06-24 16:51| 正则表达式学习 Regular Expression Language - Quick Reference shell regex 正则匹配的本" />
+<meta property="og:description" content="💠 正则表达式 1.1. 基本字符 1.2. 特殊字符 1.3. 分组捕获 1.4. 变量 1.5. 零宽断言 正则表达式引擎 2.1. NFA匹配模式 2.2. 性能陷阱 语言实现 3.1. Java 3.2. Python 3.3. Shell Tips 💠 2024-09-20 11:10:09 正则表达式 Regular Expression" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/regularexpression/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/regularexpression/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="正则表达式">
-<meta itemprop="description" content="目录 start 正则表达式学习 基本字符 特殊字符 变量 零宽断言 先行断言 后发断言 负向零宽断言 编程语言 Python Shell Tips 目录 end|2020-06-24 16:51| 正则表达式学习 Regular Expression Language - Quick Reference shell regex 正则匹配的本">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 正则表达式 1.1. 基本字符 1.2. 特殊字符 1.3. 分组捕获 1.4. 变量 1.5. 零宽断言 正则表达式引擎 2.1. NFA匹配模式 2.2. 性能陷阱 语言实现 3.1. Java 3.2. Python 3.3. Shell Tips 💠 2024-09-20 11:10:09 正则表达式 Regular Expression"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="948">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="2298">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="正则表达式"/>
-<meta name="twitter:description" content="目录 start 正则表达式学习 基本字符 特殊字符 变量 零宽断言 先行断言 后发断言 负向零宽断言 编程语言 Python Shell Tips 目录 end|2020-06-24 16:51| 正则表达式学习 Regular Expression Language - Quick Reference shell regex 正则匹配的本"/>
+<meta name="twitter:description" content="💠 正则表达式 1.1. 基本字符 1.2. 特殊字符 1.3. 分组捕获 1.4. 变量 1.5. 零宽断言 正则表达式引擎 2.1. NFA匹配模式 2.2. 性能陷阱 语言实现 3.1. Java 3.2. Python 3.3. Shell Tips 💠 2024-09-20 11:10:09 正则表达式 Regular Expression"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,72 +122,99 @@
         <div class="post-category">
             <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"> 基础知识 </a>
             </div>
-          <span class="more-meta"> 948 words </span>
-          <span class="more-meta"> 2 mins read </span>
+          <span class="more-meta"> 约 2298 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#基本字符">基本字符</a></li>
-    <li><a href="#特殊字符">特殊字符</a></li>
-    <li><a href="#变量">变量</a></li>
-    <li><a href="#零宽断言">零宽断言</a>
+    <li><a href="#正则表达式">正则表达式</a>
       <ul>
-        <li><a href="#先行断言">先行断言</a></li>
-        <li><a href="#后发断言">后发断言</a></li>
-        <li><a href="#负向零宽断言">负向零宽断言</a></li>
+        <li><a href="#基本字符">基本字符</a></li>
+        <li><a href="#特殊字符">特殊字符</a></li>
+        <li><a href="#分组捕获">分组捕获</a></li>
+        <li><a href="#变量">变量</a></li>
+        <li><a href="#零宽断言">零宽断言</a></li>
       </ul>
     </li>
-    <li><a href="#编程语言">编程语言</a>
+    <li><a href="#正则表达式引擎">正则表达式引擎</a>
       <ul>
+        <li><a href="#nfa匹配模式">NFA匹配模式</a></li>
+        <li><a href="#性能陷阱">性能陷阱</a></li>
+      </ul>
+    </li>
+    <li><a href="#语言实现">语言实现</a>
+      <ul>
+        <li><a href="#java">Java</a></li>
         <li><a href="#python">Python</a></li>
         <li><a href="#shell">Shell</a></li>
       </ul>
     </li>
+    <li><a href="#tips">Tips</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0">正则表达式学习</a>
-<ol>
-<li><a href="#%E5%9F%BA%E6%9C%AC%E5%AD%97%E7%AC%A6">基本字符</a></li>
-<li><a href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6">特殊字符</a></li>
-<li><a href="#%E5%8F%98%E9%87%8F">变量</a></li>
-<li><a href="#%E9%9B%B6%E5%AE%BD%E6%96%AD%E8%A8%80">零宽断言</a>
-<ol>
-<li><a href="#%E5%85%88%E8%A1%8C%E6%96%AD%E8%A8%80">先行断言</a></li>
-<li><a href="#%E5%90%8E%E5%8F%91%E6%96%AD%E8%A8%80">后发断言</a></li>
-<li><a href="#%E8%B4%9F%E5%90%91%E9%9B%B6%E5%AE%BD%E6%96%AD%E8%A8%80">负向零宽断言</a></li>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正则表达式</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E5%9F%BA%E6%9C%AC%E5%AD%97%E7%AC%A6">基本字符</a></li>
+<li>1.2. <a href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6">特殊字符</a></li>
+<li>1.3. <a href="#%E5%88%86%E7%BB%84%E6%8D%95%E8%8E%B7">分组捕获</a></li>
+<li>1.4. <a href="#%E5%8F%98%E9%87%8F">变量</a></li>
+<li>1.5. <a href="#%E9%9B%B6%E5%AE%BD%E6%96%AD%E8%A8%80">零宽断言</a></li>
+</ul>
 </li>
-<li><a href="#%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">编程语言</a>
-<ol>
-<li><a href="#python">Python</a></li>
-<li><a href="#shell">Shell</a></li>
+<li>
+<ol start="2">
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BC%95%E6%93%8E">正则表达式引擎</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#nfa%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%BC%8F">NFA匹配模式</a></li>
+<li>2.2. <a href="#%E6%80%A7%E8%83%BD%E9%99%B7%E9%98%B1">性能陷阱</a></li>
+</ul>
 </li>
+<li>
+<ol start="3">
+<li><a href="#%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0">语言实现</a></li>
 </ol>
+<ul>
+<li>3.1. <a href="#java">Java</a></li>
+<li>3.2. <a href="#python">Python</a></li>
+<li>3.3. <a href="#shell">Shell</a></li>
+</ul>
 </li>
+<li>
+<ol start="4">
 <li><a href="#tips">Tips</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-06-24 16:51</em>|</p>
+</li>
+</ul>
+<p>💠 2024-09-20 11:10:09</p>
 <hr>
-<h1 id="正则表达式学习">正则表达式学习</h1>
+<h1 id="正则表达式">正则表达式</h1>
 <blockquote>
 <p><a href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">Regular Expression Language - Quick Reference</a></p>
 </blockquote>
 <blockquote>
-<p><a href="http://man.linuxde.net/docs/shell_regex.html">shell regex</a></p>
+<p><a href="https://github.com/pemistahl/grex">Grex</a><br>
+<a href="https://github.com/Bowen7/regex-vis">Regex-Vis</a></p>
 </blockquote>
-<p>正则匹配的本质是<a href="https://baike.baidu.com/item/%E8%87%AA%E5%8A%A8%E6%9C%BA">自动机</a></p>
 <h2 id="基本字符">基本字符</h2>
 <table>
 <thead>
@@ -247,19 +270,19 @@
 </tr>
 <tr>
 <td style="text-align:left"><code>.</code></td>
-<td style="text-align:left">匹配除换行符 <code>\n</code>之外的任何 单个字符。</td>
+<td style="text-align:left">匹配除换行符 <code>\r</code> <code>\n</code> 之外的任何 单个字符。</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>\</code></td>
-<td style="text-align:left">将下一个字符标记为或转义字符、或原义字符、或向后引用、或八进制转义符。'\n' 匹配换行符。</td>
+<td style="text-align:left">将下一个字符标记为或转义字符、或原义字符、或向后引用、或八进制转义符。&rsquo;\n&rsquo; 匹配换行符。</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>|</code></td>
-<td style="text-align:left">指明两项之间的一个选择。</td>
+<td style="text-align:left">`</td>
+<td style="text-align:left">`</td>
 </tr>
 </tbody>
 </table>
-<p><code>以上字符 要想表示原字符都需转义</code></p>
+<p><code>以上字符需要匹配字面值时都需转义</code></p>
 <hr>
 <h2 id="特殊字符">特殊字符</h2>
 <table>
@@ -272,7 +295,7 @@
 <tbody>
 <tr>
 <td style="text-align:left"><code>\d</code></td>
-<td style="text-align:left">匹配任何十进制数字 与<code>[0-9]</code>相同 <code>\D</code>与之相反</td>
+<td style="text-align:left">匹配任何十进制数字 与 <code>[0-9]</code> 相同 <code>\D</code>与之相反</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>\w</code></td>
@@ -305,12 +328,76 @@
 正则表达式的组件可以是单个的字符、字符集合、字符范围、字符间的选择或者所有这些组件的任意组合。</p>
 </blockquote>
 <hr>
-<h2 id="变量">变量</h2>
+<blockquote>
+<p>Pattern</p>
+</blockquote>
+<ul>
+<li>(?i) 开启忽略大小写 (?-i) 关闭忽略大小写
+<ul>
+<li>但是i只处理 ASCII 字符，如果需要处理Unicode字符需要加上u或U 例如 <code>(?iu)</code>, <code>(?iU)</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">i - Ignore case
+</span></span><span class="line"><span class="cl">m - Treat a newline as a character matched by .
+</span></span><span class="line"><span class="cl">x - Ignore whitespace and comments in the pattern
+</span></span><span class="line"><span class="cl">o -&gt; Perform #{} interpolation only once
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="分组捕获">分组捕获</h2>
+<blockquote>
+<p><a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference#grouping-constructs">Grouping Constructs</a></p>
+</blockquote>
+<p>正则中的()都是一个分组捕获，库通常使用下标来定位匹配到的分组</p>
+<p>同时可以使用命名分组  Named groups。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Pattern</span> <span class="n">idxGroup</span> <span class="o">=</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">&#34;(\\d{4})-(\\d{2})&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Matcher</span> <span class="n">matcher</span> <span class="o">=</span> <span class="n">idxGroup</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="s">&#34;2012-12&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">matcher</span><span class="o">.</span><span class="na">matches</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">assertThat</span><span class="o">(</span><span class="n">matcher</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">1</span><span class="o">),</span> <span class="n">equalTo</span><span class="o">(</span><span class="s">&#34;2012&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">assertThat</span><span class="o">(</span><span class="n">matcher</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">2</span><span class="o">),</span> <span class="n">equalTo</span><span class="o">(</span><span class="s">&#34;12&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Pattern</span> <span class="n">nameGroup</span> <span class="o">=</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">&#34;(?&lt;year&gt;\\d{4})-(?&lt;month&gt;\\d{2})&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">matcher</span> <span class="o">=</span> <span class="n">nameGroup</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="s">&#34;2012-12&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">matcher</span><span class="o">.</span><span class="na">matches</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">assertThat</span><span class="o">(</span><span class="n">matcher</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="s">&#34;year&#34;</span><span class="o">),</span> <span class="n">equalTo</span><span class="o">(</span><span class="s">&#34;2012&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">assertThat</span><span class="o">(</span><span class="n">matcher</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="s">&#34;month&#34;</span><span class="o">),</span> <span class="n">equalTo</span><span class="o">(</span><span class="s">&#34;12&#34;</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="变量">变量</h2>
 <p>常用于正则替换</p>
 <ol>
 <li><code>(\w*)_(\w*)_(\w*)</code> =&gt; <code>\l$1\u$2\u$3</code>
 <ul>
 <li>user_name_flag =&gt; userNameFlag</li>
+</ul>
+</li>
+<li><code>(.*)/\d+\.\d+\.\d+\.\d+(.*)</code> =&gt; <code>$1/1.1.1.1/$2</code>
+<ul>
+<li>http://1.2.3.4/path/url =&gt; http://1.1.1.1/path/url</li>
 </ul>
 </li>
 </ol>
@@ -320,23 +407,88 @@
 这个位置应该满足一定的条件(即断言)，因此它们也被称为零宽断言</p>
 </blockquote>
 <blockquote>
-<p><a href="https://www.cnblogs.com/shangdawei/p/4673117.html">参考: 零宽断言</a></p>
+<p><a href="https://www.cnblogs.com/shangdawei/p/4673117.html">参考: 零宽断言</a>
+<a href="https://www.runoob.com/w3cnote/reg-lookahead-lookbehind.html">正则表达式的先行断言(lookahead)和后行断言(lookbehind)</a></p>
 </blockquote>
-<h3 id="先行断言">先行断言</h3>
-<p>(?=exp)也叫零宽度正预测先行断言</p>
-<h3 id="后发断言">后发断言</h3>
-<p>(?&lt;=exp)也叫零宽度正回顾后发断言</p>
-<h3 id="负向零宽断言">负向零宽断言</h3>
+<ul>
+<li><code>(?=exp)</code>  零宽正向先行断言(zero-width positive lookahead assertion)</li>
+<li><code>(?!exp)</code>  零宽负向先行断言(zero-width negative lookahead assertion)</li>
+<li><code>(?&lt;=exp)</code> 零宽正向后行断言(zero-width positive lookbehind assertion)</li>
+<li><code>(?&lt;!exp)</code> 零宽负向后行断言(zero-width negative lookbehind assertion)</li>
+</ul>
+<blockquote>
+<p>eg：</p>
+</blockquote>
+<ul>
+<li><code>(?&lt;=a).*(?=b)</code> 提取ab字符之间的值</li>
+</ul>
 <hr>
-<h2 id="编程语言">编程语言</h2>
-<h3 id="python">Python</h3>
+<h1 id="正则表达式引擎">正则表达式引擎</h1>
+<p>正则表达式是一个用正则符号写出的公式，程序对这个公式进行语法分析，建立一个语法分析树，再根据这个分析树结合正则表达式的引擎生成执行程序（这个执行程序我们把它称作状态机，也叫状态自动机），用于字符匹配。</p>
+<p>而这里的正则表达式引擎就是一套核心算法，用于建立状态机。</p>
+<p>目前实现正则表达式引擎的方式有两种：DFA <a href="https://en.wikipedia.org/wiki/Deterministic_finite_automaton">确定有限状态自动机</a> 和 NFA <a href="https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton">非确定有限状态自动机</a>。</p>
+<p>对比来看，构造 DFA 自动机的代价远大于 NFA 自动机，但 DFA 自动机的执行效率高于 NFA 自动机。</p>
+<p>假设一个字符串的长度是 n，如果用 DFA 自动机作为正则表达式引擎，则匹配的时间复杂度为 O(n)；如果用 NFA 自动机作为正则表达式引擎，由于 NFA 自动机在匹配过程中存在大量的分支和回溯，假设 NFA 的状态数为 s，则该匹配算法的时间复杂度为 O(ns)。</p>
+<p>NFA 自动机的优势是支持更多功能。例如：捕获group、环视、占有优先量词等高级功能。这些都是基于子表达式独立进行匹配，因此在编程语言里，正则表达式库<strong>都是基于 NFA 实现的</strong>。</p>
+<h2 id="nfa匹配模式">NFA匹配模式</h2>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/26006653/what-are-possessive-quantifiers-in-java-regular-expression-used-for">what are possessive quantifiers in Java regular expression used for?</a></p>
+</blockquote>
+<p><strong>贪婪模式（Greedy）</strong></p>
+<p>如果单独使用 +、？、*或{min,max}等量词，正则表达式会匹配尽可能多的内容。</p>
+<p>例如 文本 abbc 模式 <code>ab{1,3}c</code>， NFA会先读取最大匹配范围3，匹配失败后回溯到2匹配成功，如果文本是 abbbc 就不会回溯直接匹配成功了
+当有多个匹配组时，性能下降会更明显 例如 <code>^([A-Za-z0-9]+)([A-Z0-9][A-Z0-9])(.*)</code> 可以看到有三个匹配分组第一个可能将匹配失败的字符给到第二个第三个组匹配，分支数会大量膨胀</p>
+<p><strong>懒惰模式（Reluctant）</strong></p>
+<p>尽可能少地重复匹配字符，如果匹配成功，它会继续匹配剩余的字符串。</p>
+<p>例如 文本 abbc 模式 <code>ab{1,3}?c</code>, NFA自动机会先读取最小匹配范围1再继续匹配，<em>避免了回溯问题</em>。
+当多匹配组时 改进前文中表达式 <code>^([A-Za-z0-9]+?)([A-Z0-9][A-Z0-9])(.*)</code> 降低了分支数。</p>
+<p><strong>独占模式（Possessive）</strong></p>
+<p>和贪婪模式一样，独占模式一样会最大限度地匹配更多内容；不同的是，在独占模式下，匹配失败就会结束匹配，不会发生回溯问题。多组匹配时一个组的匹配失败的字符不会给到另一个组</p>
+<p>例如 文本 abbc，模式为<code>ab{1,3}+c</code>。</p>
+<ul>
+<li>JavaScript中匹配会报错 <strong>Invalid regular expression Nothing to repeat</strong>。</li>
+<li>Java中能匹配成功，但没有发生所谓的独占模式引发匹配失败的场景, 奇怪？</li>
+<li>Golang中会报错 <strong>invalid nested repetition operator</strong>
+当多匹配组时 例如 <code>^([A-Z]++)([H-Zw])(.*)</code></li>
+</ul>
+<blockquote>
+<p>注意：JavaScript，Python和Go 的标准库<em>不支持</em>独占模式</p>
+</blockquote>
+<h2 id="性能陷阱">性能陷阱</h2>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000039941785">如何优化正则表达式性能？</a></p>
+</blockquote>
+<ol>
+<li>少用贪婪模式</li>
+<li>减少分支选择带来的组合情况笛卡尔积</li>
+<li>减少捕获<code>()</code>嵌套</li>
+<li></li>
+</ol>
+<h1 id="语言实现">语言实现</h1>
+<h2 id="java">Java</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Pattern</span> <span class="n">pt</span> <span class="o">=</span> <span class="n">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">&#34;\\d+&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pt</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="s">&#34;12,3&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：</p>
+<ul>
+<li>因为compile很耗CPU资源，所以Pattern对象需要尽可能复用，最好成为静态属性（它是不可变实例，是并发安全的）</li>
+</ul>
+<h2 id="python">Python</h2>
 <ul>
 <li><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/python/re.jpg" alt="re.jpg"></li>
 </ul>
-<h3 id="shell">Shell</h3>
+<h2 id="shell">Shell</h2>
 <ul>
 <li><a href="http://man.linuxde.net/docs/shell_regex.html">Shell正则表达式</a></li>
 </ul>
+<hr>
 <h1 id="tips">Tips</h1>
 <ul>
 <li>连续重复字符的匹配 <code>(.)\1+</code> <a href="http://www.aijquery.cn/Html/jqueryjiqiao/181.html">正则表达式匹配重复的字符串</a></li>
@@ -346,11 +498,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-11-21
         
@@ -362,14 +514,14 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/algorithm/algorithm/">
+        <a class="prev" href="/post/distributed/rpc/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">数据结构和算法</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-default">远程调用</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/distributed/mq/mq/">
-            <span class="next-text nav-default">消息队列</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/java/tool/idea/">
+            <span class="next-text nav-default">IDEA</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -387,17 +539,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -405,11 +557,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -419,16 +571,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

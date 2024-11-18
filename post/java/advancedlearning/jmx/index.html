@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>JMX - Mythos</title>
+  <title>JMX - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start JMX 概念 使用 JMX的JVM参数配置 目录 end|2020-04-27 23:42| JMX Java Management Extensions, 提供了一个可以动态修改资源的机制 Official Doc | wiki | wici zh 参考: JMX学习笔记 参考: java常见命" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 JMX 1.1. 概念 1.2. 使用 1.2.1. 远程JMX 1.2.2. 工具 MXBean 2.1. GarbageCollectorMXBean 2.2. 自定义MXBean 💠 2024-10-08 15:07:46 JMX Java Management Extensions, 提供了一个可以动态修改资源的机制 Official Doc | wiki | wici zh 参考: JMX学习笔记" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/jmx/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/jmx/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="JMX" />
-<meta property="og:description" content="目录 start JMX 概念 使用 JMX的JVM参数配置 目录 end|2020-04-27 23:42| JMX Java Management Extensions, 提供了一个可以动态修改资源的机制 Official Doc | wiki | wici zh 参考: JMX学习笔记 参考: java常见命" />
+<meta property="og:description" content="💠 JMX 1.1. 概念 1.2. 使用 1.2.1. 远程JMX 1.2.2. 工具 MXBean 2.1. GarbageCollectorMXBean 2.2. 自定义MXBean 💠 2024-10-08 15:07:46 JMX Java Management Extensions, 提供了一个可以动态修改资源的机制 Official Doc | wiki | wici zh 参考: JMX学习笔记" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/jmx/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/jmx/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="JMX">
-<meta itemprop="description" content="目录 start JMX 概念 使用 JMX的JVM参数配置 目录 end|2020-04-27 23:42| JMX Java Management Extensions, 提供了一个可以动态修改资源的机制 Official Doc | wiki | wici zh 参考: JMX学习笔记 参考: java常见命">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 JMX 1.1. 概念 1.2. 使用 1.2.1. 远程JMX 1.2.2. 工具 MXBean 2.1. GarbageCollectorMXBean 2.2. 自定义MXBean 💠 2024-10-08 15:07:46 JMX Java Management Extensions, 提供了一个可以动态修改资源的机制 Official Doc | wiki | wici zh 参考: JMX学习笔记"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="387">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="605">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JMX"/>
-<meta name="twitter:description" content="目录 start JMX 概念 使用 JMX的JVM参数配置 目录 end|2020-04-27 23:42| JMX Java Management Extensions, 提供了一个可以动态修改资源的机制 Official Doc | wiki | wici zh 参考: JMX学习笔记 参考: java常见命"/>
+<meta name="twitter:description" content="💠 JMX 1.1. 概念 1.2. 使用 1.2.1. 远程JMX 1.2.2. 工具 MXBean 2.1. GarbageCollectorMXBean 2.2. 自定义MXBean 💠 2024-10-08 15:07:46 JMX Java Management Extensions, 提供了一个可以动态修改资源的机制 Official Doc | wiki | wici zh 参考: JMX学习笔记"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,42 +122,71 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 387 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 605 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#概念">概念</a></li>
-    <li><a href="#使用">使用</a>
+    <li><a href="#jmx">JMX</a>
       <ul>
-        <li><a href="#jmx的jvm参数配置">JMX的JVM参数配置</a></li>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#使用">使用</a>
+          <ul>
+            <li><a href="#远程jmx">远程JMX</a></li>
+            <li><a href="#工具">工具</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#mxbean">MXBean</a>
+      <ul>
+        <li><a href="#garbagecollectormxbean">GarbageCollectorMXBean</a></li>
+        <li><a href="#自定义mxbean">自定义MXBean</a></li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#jmx">JMX</a>
-<ol>
-<li><a href="#%E6%A6%82%E5%BF%B5">概念</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8">使用</a>
-<ol>
-<li><a href="#jmx%E7%9A%84jvm%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE">JMX的JVM参数配置</a></li>
+<li><a href="#jmx">JMX</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E6%A6%82%E5%BF%B5">概念</a></li>
+<li>1.2. <a href="#%E4%BD%BF%E7%94%A8">使用</a>
+<ul>
+<li>1.2.1. <a href="#%E8%BF%9C%E7%A8%8Bjmx">远程JMX</a></li>
+<li>1.2.2. <a href="#%E5%B7%A5%E5%85%B7">工具</a></li>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
+<li>
+<ol start="2">
+<li><a href="#mxbean">MXBean</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<ul>
+<li>2.1. <a href="#garbagecollectormxbean">GarbageCollectorMXBean</a></li>
+<li>2.2. <a href="#%E8%87%AA%E5%AE%9A%E4%B9%89mxbean">自定义MXBean</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-10-08 15:07:46</p>
 <hr>
 <h1 id="jmx">JMX</h1>
 <blockquote>
@@ -202,7 +227,11 @@
 </table>
 <p>简而言之　MBean就是存放了一堆属性的对象, 通过JMX技术, 可以远程动态修改这些MBean的状态</p>
 <h2 id="使用">使用</h2>
-<h3 id="jmx的jvm参数配置">JMX的JVM参数配置</h3>
+<blockquote>
+<p><a href="https://www.baeldung.com/java-jmxterm-external-debugging">JMXTerm</a></p>
+</blockquote>
+<h3 id="远程jmx">远程JMX</h3>
+<p>JVM启动时追加参数启用，也可以对已存在的JVM进程启用 <code>jcmd $pid ManagementAgent.start [options]</code> <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/man/jcmd.html">jcmd help</a></p>
 <table>
 <thead>
 <tr>
@@ -238,22 +267,93 @@
 <td style="text-align:left">对访问用户的权限授权的文件的路径，默认路径 <code>JRE_HOME/lib/management/jmxremote.access</code></td>
 </tr>
 <tr>
-<td style="text-align:left">-Dcom.sun.management.jmxremote. password.file</td>
+<td style="text-align:left">-Dcom.sun.management.jmxremote.password.file</td>
 <td style="text-align:left">路径</td>
 <td style="text-align:left">设置访问用户的用户名和密码，默认路径 <code>JRE_HOME/lib/management/jmxremote.password</code></td>
 </tr>
 </tbody>
 </table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="na">-Dcom.sun.management.jmxremote.port</span><span class="o">=</span><span class="s">4433
+</span></span></span><span class="line"><span class="cl"><span class="s">    -Djava.rmi.server.hostname=192.168.9.155
+</span></span></span><span class="line"><span class="cl"><span class="s">    -Dcom.sun.management.jmxremote.ssl=false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 1. 不配置账户</span>
+</span></span><span class="line"><span class="cl">    <span class="na">-Dcom.sun.management.jmxremote.authenticate</span><span class="o">=</span><span class="s">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 2. 配置账户</span>
+</span></span><span class="line"><span class="cl">    <span class="na">-Dcom.sun.management.jmxremote.authenticate</span><span class="o">=</span><span class="s">true
+</span></span></span><span class="line"><span class="cl"><span class="s">    -Dcom.sun.management.jmxremote.password.file=jmxremote.password
+</span></span></span><span class="line"><span class="cl"><span class="s">    -Dcom.sun.management.jmxremote.access.file=jmxremote.access</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>jmxremote.password</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">username1 pwd1
+</span></span><span class="line"><span class="cl">username2 pwd2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>jmxremote.access</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">username1 readonly
+</span></span><span class="line"><span class="cl">username2 readwrite
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="工具">工具</h3>
+<p><a href="https://github.com/prometheus/jmx_exporter">Prometheus JMX Exporter</a></p>
+<hr>
+<h1 id="mxbean">MXBean</h1>
+<p>通过查看 <code>java.lang.management.PlatformManagedObject</code> 的子类可以快速预览所有的MXBean</p>
+<ul>
+<li>OperatingSystemMXBean 操作系统信息 获取最大和free内存，但是无法获取available内存，简单做法是直接读取 <code>/proc/meminfo</code></li>
+</ul>
+<h2 id="garbagecollectormxbean">GarbageCollectorMXBean</h2>
+<blockquote>
+<p><a href="http://www.fasterj.com/articles/gcnotifs.shtml">Garbage Collection JMX Notifications</a></p>
+</blockquote>
+<p>通过监听 GarbageCollectorMXBean，应用可感知JVM GC动作。</p>
+<h2 id="自定义mxbean">自定义MXBean</h2>
+<blockquote>
+<p><a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1282385687609378">集成JMX</a></p>
+</blockquote>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-11-21
         
@@ -268,11 +368,11 @@
         <a class="prev" href="/post/skills/devops/jenkins/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Jenkins</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/java/ecosystem/jpa/">
             <span class="next-text nav-default">JPA</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -290,17 +390,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -308,11 +408,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -322,16 +422,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

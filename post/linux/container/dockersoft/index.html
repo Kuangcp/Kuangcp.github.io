@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Docker的应用 - Mythos</title>
+  <title>Docker的应用 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Docker容器化应用 个人镜像 Linux发行版 Ubuntu-ssh Alpine-ssh Centos-ssh 编程语言开发环境 Java Jib Node Go 数据库 PostgreSQL Oracle MySQL MongoDB Redis 持续集成 flow.ci Jenkins Protobuf git服务器 简易git-da" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Docker应用 1.1. 个人镜像 1.2. Linux发行版 1.2.1. Ubuntu-ssh 1.2.2. Alpine-ssh 1.2.3. Centos-ssh 1.3. Java 1.3.1. Local 1.3.2. Jib 1.4. NodeJs 1.5. 中间件 1.6. 数据库 1.6.1. PostgreSQL 1.6.2. Oracle 1.6.3. MySQL 1.6.4. MongoDB 1.6.5. Redis 1.7. 持续集成 1.7.1. flow.ci 1.7.2. Jenkins 1.8. git服务" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/container/dockersoft/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/container/dockersoft/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Docker的应用" />
-<meta property="og:description" content="目录 start Docker容器化应用 个人镜像 Linux发行版 Ubuntu-ssh Alpine-ssh Centos-ssh 编程语言开发环境 Java Jib Node Go 数据库 PostgreSQL Oracle MySQL MongoDB Redis 持续集成 flow.ci Jenkins Protobuf git服务器 简易git-da" />
+<meta property="og:description" content="💠 Docker应用 1.1. 个人镜像 1.2. Linux发行版 1.2.1. Ubuntu-ssh 1.2.2. Alpine-ssh 1.2.3. Centos-ssh 1.3. Java 1.3.1. Local 1.3.2. Jib 1.4. NodeJs 1.5. 中间件 1.6. 数据库 1.6.1. PostgreSQL 1.6.2. Oracle 1.6.3. MySQL 1.6.4. MongoDB 1.6.5. Redis 1.7. 持续集成 1.7.1. flow.ci 1.7.2. Jenkins 1.8. git服务" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/container/dockersoft/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/container/dockersoft/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T11:27:31+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:27:31+00:00" />
+
 <meta itemprop="name" content="Docker的应用">
-<meta itemprop="description" content="目录 start Docker容器化应用 个人镜像 Linux发行版 Ubuntu-ssh Alpine-ssh Centos-ssh 编程语言开发环境 Java Jib Node Go 数据库 PostgreSQL Oracle MySQL MongoDB Redis 持续集成 flow.ci Jenkins Protobuf git服务器 简易git-da">
-<meta itemprop="datePublished" content="2018-12-15T11:27:31+00:00" />
+<meta itemprop="description" content="💠 Docker应用 1.1. 个人镜像 1.2. Linux发行版 1.2.1. Ubuntu-ssh 1.2.2. Alpine-ssh 1.2.3. Centos-ssh 1.3. Java 1.3.1. Local 1.3.2. Jib 1.4. NodeJs 1.5. 中间件 1.6. 数据库 1.6.1. PostgreSQL 1.6.2. Oracle 1.6.3. MySQL 1.6.4. MongoDB 1.6.5. Redis 1.7. 持续集成 1.7.1. flow.ci 1.7.2. Jenkins 1.8. git服务"><meta itemprop="datePublished" content="2018-12-15T11:27:31+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:27:31+00:00" />
-<meta itemprop="wordCount" content="1571">
-
-
-
-<meta itemprop="keywords" content="工具使用经验," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1630">
+<meta itemprop="keywords" content="工具使用经验," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker的应用"/>
-<meta name="twitter:description" content="目录 start Docker容器化应用 个人镜像 Linux发行版 Ubuntu-ssh Alpine-ssh Centos-ssh 编程语言开发环境 Java Jib Node Go 数据库 PostgreSQL Oracle MySQL MongoDB Redis 持续集成 flow.ci Jenkins Protobuf git服务器 简易git-da"/>
+<meta name="twitter:description" content="💠 Docker应用 1.1. 个人镜像 1.2. Linux发行版 1.2.1. Ubuntu-ssh 1.2.2. Alpine-ssh 1.2.3. Centos-ssh 1.3. Java 1.3.1. Local 1.3.2. Jib 1.4. NodeJs 1.5. 中间件 1.6. 数据库 1.6.1. PostgreSQL 1.6.2. Oracle 1.6.3. MySQL 1.6.4. MongoDB 1.6.5. Redis 1.7. 持续集成 1.7.1. flow.ci 1.7.2. Jenkins 1.8. git服务"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,127 +122,147 @@
         <div class="post-category">
             <a href="/categories/docker/"> Docker </a>
             </div>
-          <span class="more-meta"> 1571 words </span>
-          <span class="more-meta"> 4 mins read </span>
+          <span class="more-meta"> 约 1630 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#个人镜像">个人镜像</a></li>
-    <li><a href="#linux发行版">Linux发行版</a>
+    <li><a href="#docker应用">Docker应用</a>
       <ul>
-        <li><a href="#ubuntu-ssh">Ubuntu-ssh</a></li>
-        <li><a href="#alpine-ssh">Alpine-ssh</a></li>
-        <li><a href="#centos-ssh">Centos-ssh</a></li>
+        <li><a href="#个人镜像">个人镜像</a></li>
+        <li><a href="#linux发行版">Linux发行版</a>
+          <ul>
+            <li><a href="#ubuntu-ssh">Ubuntu-ssh</a></li>
+            <li><a href="#alpine-ssh">Alpine-ssh</a></li>
+            <li><a href="#centos-ssh">Centos-ssh</a></li>
+          </ul>
+        </li>
+        <li><a href="#java">Java</a>
+          <ul>
+            <li><a href="#local">Local</a></li>
+            <li><a href="#jib">Jib</a></li>
+          </ul>
+        </li>
+        <li><a href="#nodejs">NodeJs</a></li>
+        <li><a href="#中间件">中间件</a></li>
+        <li><a href="#数据库">数据库</a>
+          <ul>
+            <li><a href="#postgresql">PostgreSQL</a></li>
+            <li><a href="#oracle">Oracle</a></li>
+            <li><a href="#mysql">MySQL</a></li>
+            <li><a href="#mongodb">MongoDB</a></li>
+            <li><a href="#redis">Redis</a></li>
+          </ul>
+        </li>
+        <li><a href="#持续集成">持续集成</a>
+          <ul>
+            <li><a href="#flowci">flow.ci</a></li>
+            <li><a href="#jenkins">Jenkins</a></li>
+          </ul>
+        </li>
+        <li><a href="#git服务器">git服务器</a>
+          <ul>
+            <li><a href="#简易git-daemon">简易git-daemon</a></li>
+            <li><a href="#gogs">Gogs</a></li>
+            <li><a href="#gitea">Gitea</a></li>
+          </ul>
+        </li>
+        <li><a href="#在线ide">在线IDE</a></li>
       </ul>
     </li>
-    <li><a href="#编程语言开发环境">编程语言开发环境</a>
+    <li><a href="#图形化应用">图形化应用</a></li>
+    <li><a href="#工具">工具</a>
       <ul>
-        <li><a href="#java">Java</a></li>
-        <li><a href="#node">Node</a></li>
-        <li><a href="#go">Go</a></li>
+        <li><a href="#nextcloud">nextcloud</a></li>
+        <li><a href="#protobuf">Protobuf</a></li>
       </ul>
     </li>
-    <li><a href="#数据库">数据库</a>
-      <ul>
-        <li><a href="#postgresql">PostgreSQL</a></li>
-        <li><a href="#oracle">Oracle</a></li>
-        <li><a href="#mysql">MySQL</a></li>
-        <li><a href="#mongodb">MongoDB</a></li>
-        <li><a href="#redis">Redis</a></li>
-      </ul>
-    </li>
-    <li><a href="#持续集成">持续集成</a>
-      <ul>
-        <li><a href="#flowci">flow.ci</a></li>
-        <li><a href="#jenkins">Jenkins</a></li>
-      </ul>
-    </li>
-    <li><a href="#protobuf">Protobuf</a></li>
-    <li><a href="#git服务器">git服务器</a>
-      <ul>
-        <li><a href="#简易git-daemon">简易git-daemon</a></li>
-        <li><a href="#gogs">Gogs</a></li>
-        <li><a href="#gitea">Gitea</a></li>
-      </ul>
-    </li>
-    <li><a href="#博客">博客</a></li>
-    <li><a href="#在线ide">在线IDE</a></li>
-    <li><a href="#图形化管理工具">图形化管理工具</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#nextcloud">nextcloud</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-15T11:27:31" title="December 15, 2018">December 15, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#docker%E5%AE%B9%E5%99%A8%E5%8C%96%E5%BA%94%E7%94%A8">Docker容器化应用</a>
-<ol>
-<li><a href="#%E4%B8%AA%E4%BA%BA%E9%95%9C%E5%83%8F">个人镜像</a></li>
-<li><a href="#linux%E5%8F%91%E8%A1%8C%E7%89%88">Linux发行版</a>
-<ol>
-<li><a href="#ubuntu-ssh">Ubuntu-ssh</a></li>
-<li><a href="#alpine-ssh">Alpine-ssh</a></li>
-<li><a href="#centos-ssh">Centos-ssh</a></li>
+<li><a href="#docker%E5%BA%94%E7%94%A8">Docker应用</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E4%B8%AA%E4%BA%BA%E9%95%9C%E5%83%8F">个人镜像</a></li>
+<li>1.2. <a href="#linux%E5%8F%91%E8%A1%8C%E7%89%88">Linux发行版</a>
+<ul>
+<li>1.2.1. <a href="#ubuntu-ssh">Ubuntu-ssh</a></li>
+<li>1.2.2. <a href="#alpine-ssh">Alpine-ssh</a></li>
+<li>1.2.3. <a href="#centos-ssh">Centos-ssh</a></li>
+</ul>
+</li>
+<li>1.3. <a href="#java">Java</a>
+<ul>
+<li>1.3.1. <a href="#local">Local</a></li>
+<li>1.3.2. <a href="#jib">Jib</a></li>
+</ul>
+</li>
+<li>1.4. <a href="#nodejs">NodeJs</a></li>
+<li>1.5. <a href="#%E4%B8%AD%E9%97%B4%E4%BB%B6">中间件</a></li>
+<li>1.6. <a href="#%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a>
+<ul>
+<li>1.6.1. <a href="#postgresql">PostgreSQL</a></li>
+<li>1.6.2. <a href="#oracle">Oracle</a></li>
+<li>1.6.3. <a href="#mysql">MySQL</a></li>
+<li>1.6.4. <a href="#mongodb">MongoDB</a></li>
+<li>1.6.5. <a href="#redis">Redis</a></li>
+</ul>
+</li>
+<li>1.7. <a href="#%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90">持续集成</a>
+<ul>
+<li>1.7.1. <a href="#flowci">flow.ci</a></li>
+<li>1.7.2. <a href="#jenkins">Jenkins</a></li>
+</ul>
+</li>
+<li>1.8. <a href="#git%E6%9C%8D%E5%8A%A1%E5%99%A8">git服务器</a>
+<ul>
+<li>1.8.1. <a href="#%E7%AE%80%E6%98%93git-daemon">简易git-daemon</a></li>
+<li>1.8.2. <a href="#gogs">Gogs</a></li>
+<li>1.8.3. <a href="#gitea">Gitea</a>
+<ul>
+<li>1.8.3.1. <a href="#%E9%85%8D%E7%BD%AE">配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>1.9. <a href="#%E5%9C%A8%E7%BA%BFide">在线IDE</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%BA%94%E7%94%A8">图形化应用</a></li>
 </ol>
 </li>
-<li><a href="#%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83">编程语言开发环境</a>
-<ol>
-<li><a href="#java">Java</a>
-<ol>
-<li><a href="#jib">Jib</a></li>
+<li>
+<ol start="3">
+<li><a href="#%E5%B7%A5%E5%85%B7">工具</a></li>
 </ol>
+<ul>
+<li>3.1. <a href="#nextcloud">nextcloud</a></li>
+<li>3.2. <a href="#protobuf">Protobuf</a></li>
+</ul>
 </li>
-<li><a href="#node">Node</a></li>
-<li><a href="#go">Go</a></li>
-</ol>
-</li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a>
-<ol>
-<li><a href="#postgresql">PostgreSQL</a></li>
-<li><a href="#oracle">Oracle</a></li>
-<li><a href="#mysql">MySQL</a></li>
-<li><a href="#mongodb">MongoDB</a></li>
-<li><a href="#redis">Redis</a></li>
-</ol>
-</li>
-<li><a href="#%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90">持续集成</a>
-<ol>
-<li><a href="#flowci">flow.ci</a></li>
-<li><a href="#jenkins">Jenkins</a></li>
-</ol>
-</li>
-<li><a href="#protobuf">Protobuf</a></li>
-<li><a href="#git%E6%9C%8D%E5%8A%A1%E5%99%A8">git服务器</a>
-<ol>
-<li><a href="#%E7%AE%80%E6%98%93git-daemon">简易git-daemon</a></li>
-<li><a href="#gogs">Gogs</a></li>
-<li><a href="#gitea">Gitea</a>
-<ol>
-<li><a href="#%E9%85%8D%E7%BD%AE">配置</a></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><a href="#%E5%8D%9A%E5%AE%A2">博客</a></li>
-<li><a href="#%E5%9C%A8%E7%BA%BFide">在线IDE</a></li>
-<li><a href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7">图形化管理工具</a></li>
-</ol>
-</li>
-<li><a href="#%E8%BF%90%E8%A1%8C%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%BA%94%E7%94%A8">运行图形化应用</a></li>
-</ol>
-<p><strong>目录 end</strong>|<em>2021-02-03 17:25</em>|</p>
+</ul>
+<p>💠 2024-04-15 11:04:31</p>
 <hr>
-<h1 id="docker容器化应用">Docker容器化应用</h1>
+<h1 id="docker应用">Docker应用</h1>
 <blockquote>
 <p><a href="https://docs.docker.com/samples/">https://docs.docker.com/samples/</a><br>
 <a href="https://hub.docker.com/explore/">Docker Hub: explore</a></p>
@@ -302,7 +318,7 @@
 <hr>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -315,27 +331,31 @@
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile">    FROM ubuntu<span class="err">
-</span><span class="err"></span>    MAINTAINER kuangcp myth.kuang@gmail.com<span class="err">
-</span><span class="err"></span>    ENTRYPOINT <span class="nb">echo</span> <span class="s2">&#34;Welcome login server by ssh&#34;</span><span class="err">
-</span><span class="err"></span>    ENV DEBIAN_FRONTEND noninteractive<span class="err">
-</span><span class="err">
-</span><span class="err"></span>    ADD id_rsa.pub /root/.ssh/authorized_keys<span class="err">
-</span><span class="err">
-</span><span class="err"></span>    RUN apt-get update<span class="p">;</span> <span class="se">\
-</span><span class="se"></span>        apt-get install -y apt-utils debconf-utils iputils-ping wget curl mc htop ssh<span class="p">;</span> <span class="se">\ </span><span class="err">
-</span><span class="err"></span>        chmod <span class="m">700</span> /root/.ssh<span class="p">;</span> <span class="se">\
-</span><span class="se"></span>        chmod <span class="m">600</span> /root/.ssh/authorized_keys<span class="p">;</span> <span class="se">\
-</span><span class="se"></span>        service ssh start<span class="p">;</span> <span class="se">\ </span><span class="err">
-</span><span class="err"></span>    EXPOSE <span class="m">22</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> ubuntu</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> DEBIAN_FRONTEND noninteractive<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> id_rsa.pub /root/.ssh/authorized_keys<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get update<span class="p">;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    apt-get install -y apt-utils debconf-utils iputils-ping wget curl htop ssh tini<span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> chmod <span class="m">700</span> /root/.ssh<span class="p">;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    chmod <span class="m">600</span> /root/.ssh/authorized_keys<span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;/usr/bin/tini&#34;</span><span class="p">,</span> <span class="s2">&#34;--&#34;</span><span class="p">]</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 22</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
-<li><code>docker build . -t myth:ssh</code></li>
-<li><code>docker run -d -t --name myth -p 8989:22 myth:ssh</code></li>
-<li><code>docker start myth</code></li>
+<li><code>mkdir tmp &amp;&amp; cd tmp &amp;&amp; cp ~/.ssh/id_rsa.pub .</code> 复制公钥</li>
+<li><code>docker build . -t myth:ssh</code> 构建镜像</li>
+<li><code>docker run -i -t  --name myth -p 30001:22 myth:ssh /bin/bash</code></li>
+<li><code>docker start myth</code>
+每次启动容器需要手动执行 service ssh start</li>
 </ol>
 <h3 id="alpine-ssh">Alpine-ssh</h3>
 <ul>
@@ -350,8 +370,7 @@
 <li><a href="https://github.com/jingniao/centos-ssh">centos-ssh</a></li>
 </ul>
 <hr>
-<h2 id="编程语言开发环境">编程语言开发环境</h2>
-<h3 id="java">Java</h3>
+<h2 id="java">Java</h2>
 <ul>
 <li>
 <p><a href="https://hub.docker.com/_/java/">Official: Java</a> <code>Oracle</code> | <a href="https://hub.docker.com/_/openjdk/">Official: OpenJDK</a><code>从7开始</code></p>
@@ -371,37 +390,84 @@
 </li>
 </ul>
 <blockquote>
-<p><a href="http://www.techug.com/post/java-and-docker-memory-limits.html">参考: Java和Docker限制的那些事儿</a><code>描述了一个天坑</code></p>
-</blockquote>
-<blockquote>
 <p><code>Tips</code></p>
 </blockquote>
 <ol>
-<li>docker run 时加上 <code>--cap-add=SYS_PTRACE</code> 解决 jmap -heap 1 时报错： Can&rsquo;t attach to the process: ptrace</li>
+<li>
+<p>docker run 时加上 <code>--cap-add=SYS_PTRACE</code> 解决 jmap -heap 1 时报错： Can&rsquo;t attach to the process: ptrace</p>
+</li>
+<li>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&amp;mid=2650121506&amp;idx=1&amp;sn=39e3ba8c5d9698bbfb8acfc6b7e772bf&amp;chksm=f36bb803c41c3115371b69cbd1e626fcaf5a85c7034f96fe495cfbf6dc1630a42dfdd6e342da&amp;mpshare=1&amp;scene=1&amp;srcid=06219wgtCPJNvZP66ccQXRCj#rd">参考: 使用Docker 实现微服务并搭建博客，一文全掌握。 </a></p>
+</li>
 </ol>
-<h4 id="jib">Jib</h4>
+<h3 id="local">Local</h3>
+<blockquote>
+<p>env.sh</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">JAVA_HOME</span><span class="o">=</span>/path/to
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">JRE_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/jre
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/lib:<span class="si">${</span><span class="nv">JRE_HOME</span><span class="si">}</span>/lib
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/bin:<span class="nv">$PATH</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> myth:ssh</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> *.tgz jdk.tgz<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> env.sh<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt install vim unzip <span class="p">;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    cat env.sh &gt;&gt; /root/.bashrc<span class="p">;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 22</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;/usr/bin/tini&#34;</span><span class="p">,</span> <span class="s2">&#34;--&#34;</span><span class="p">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="jib">Jib</h3>
 <blockquote>
 <p><a href="https://my.oschina.net/u/3666671/blog/1845065">参考: GOOGLE JIB</a> | <a href="https://github.com/GoogleContainerTools/jib">Github:jib</a></p>
 </blockquote>
-<h3 id="node">Node</h3>
+<h2 id="nodejs">NodeJs</h2>
 <ul>
 <li><a href="https://hub.docker.com/_/node/">Official</a></li>
 <li><a href="https://nodejs.org/en/docs/guides/nodejs-docker-webapp/">Dockerizing a Node.js web app</a></li>
 </ul>
-<h3 id="go">Go</h3>
+<hr>
+<h2 id="中间件">中间件</h2>
 <ul>
-<li><a href="https://hub.docker.com/_/golang/">Official</a></li>
+<li><a href="https://nacos.io/en-us/docs/quick-start-docker.html">Nacos</a></li>
 </ul>
 <hr>
 <h2 id="数据库">数据库</h2>
 <h3 id="postgresql">PostgreSQL</h3>
 <ul>
-<li><a href="/Database/Postgresql.md">Docker 安装 PostgreSQL</a></li>
+<li><a href="/Database/PostgreSQL.md">Docker 安装 PostgreSQL</a></li>
 </ul>
 <h3 id="oracle">Oracle</h3>
-<ul>
-<li><a href="https://hub.docker.com/r/wnameless/oracle-xe-11g/">社区文档</a><code>简单粗暴</code></li>
-</ul>
+<blockquote>
+<p><a href="https://github.com/oracle/docker-images">oracle/docker-images: Official source of container configurations, images, and examples for Oracle products and projects</a></p>
+</blockquote>
 <h3 id="mysql">MySQL</h3>
 <ul>
 <li>
@@ -450,6 +516,9 @@
 </ul>
 </li>
 </ol>
+<ul>
+<li><code>数据迁移(RDB方式)</code> 复制rdb文件到容器内 /data/dump.rdb ， kill -9 redis进程，启动 redis</li>
+</ul>
 <hr>
 <h2 id="持续集成">持续集成</h2>
 <blockquote>
@@ -465,17 +534,6 @@
 <p><a href="/Skills/DevOps/Jenkins.md#docker">详情</a></p>
 </blockquote>
 <hr>
-<h2 id="protobuf">Protobuf</h2>
-<ol>
-<li>创建一个Ubuntu/alpine 容器运行起来</li>
-<li>下载 <a href="https://github.com/google/protobuf/releases">https://github.com/google/protobuf/releases</a></li>
-<li>安装 g++ make</li>
-<li>编译安装下载的源码 进入目录 <code>./configure --prefix=/usr &amp;&amp; make &amp;&amp; make check &amp;&amp; make install</code></li>
-</ol>
-<blockquote>
-<p>直接下载二进制最简单&hellip;</p>
-</blockquote>
-<hr>
 <h2 id="git服务器">git服务器</h2>
 <h3 id="简易git-daemon">简易git-daemon</h3>
 <blockquote>
@@ -483,7 +541,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -494,16 +552,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    <span class="c1"># 创建一个挂载了本地文件夹的git仓库，并关联到nginx，目录结构和上文一致</span>
-    docker run --name git-repos -it -v /home/kuang/Repository/:/root/Repository/ --link mynginx:mynginx alpine
-    <span class="c1"># 进入容器</span>
-    docker <span class="nb">exec</span> -it git-repos ash
-    <span class="c1"># 安装git</span>
-    apk update
-    apk add git git-daemon
-    <span class="c1">#　启动服务</span>
-    git daemon --export-all --base-path<span class="o">=</span><span class="s2">&#34;/root/Repository&#34;</span> --port<span class="o">=</span><span class="m">55443</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># 创建一个挂载了本地文件夹的git仓库，并关联到nginx，目录结构和上文一致</span>
+</span></span><span class="line"><span class="cl">    docker run --name git-repos -it -v /home/kuang/Repository/:/root/Repository/ --link mynginx:mynginx alpine
+</span></span><span class="line"><span class="cl">    <span class="c1"># 进入容器</span>
+</span></span><span class="line"><span class="cl">    docker <span class="nb">exec</span> -it git-repos ash
+</span></span><span class="line"><span class="cl">    <span class="c1"># 安装git</span>
+</span></span><span class="line"><span class="cl">    apk update
+</span></span><span class="line"><span class="cl">    apk add git git-daemon
+</span></span><span class="line"><span class="cl">    <span class="c1">#　启动服务</span>
+</span></span><span class="line"><span class="cl">    git daemon --export-all --base-path<span class="o">=</span><span class="s2">&#34;/root/Repository&#34;</span> --port<span class="o">=</span><span class="m">55443</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>通过 daemon 能下拉提交代码, nginx 能在线浏览文件</p>
@@ -526,26 +584,21 @@
 <code>~/.ssh/config</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    Host git.kuangcp.com
-    HostName 111.111.111.111
-    User git
-    Port 6002
-    IdentityFile /home/kcp/.ssh/id_rsa
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    Host git.kuangcp.com
+</span></span><span class="line"><span class="cl">    HostName 111.111.111.111
+</span></span><span class="line"><span class="cl">    User git
+</span></span><span class="line"><span class="cl">    Port 6002
+</span></span><span class="line"><span class="cl">    IdentityFile /home/kcp/.ssh/id_rsa
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后就能正常使用了</p>
-<hr>
-<h2 id="博客">博客</h2>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&amp;mid=2650121506&amp;idx=1&amp;sn=39e3ba8c5d9698bbfb8acfc6b7e772bf&amp;chksm=f36bb803c41c3115371b69cbd1e626fcaf5a85c7034f96fe495cfbf6dc1630a42dfdd6e342da&amp;mpshare=1&amp;scene=1&amp;srcid=06219wgtCPJNvZP66ccQXRCj#rd">参考: 使用Docker 实现微服务并搭建博客，一文全掌握。 </a></p>
-</blockquote>
 <hr>
 <h2 id="在线ide">在线IDE</h2>
 <ul>
@@ -560,16 +613,11 @@
 </li>
 </ul>
 <hr>
-<h2 id="图形化管理工具">图形化管理工具</h2>
-<ul>
-<li>DockerUI</li>
-<li><a href="https://github.com/portainer/portainer">Portainer</a></li>
-</ul>
-<h1 id="运行图形化应用">运行图形化应用</h1>
+<h1 id="图形化应用">图形化应用</h1>
 <blockquote>
-<p><a href="https://github.com/search?p=4&amp;q=docker+desktop&amp;type=Repositories&amp;utf8=%E2%9C%93">Github Topic</a>
-<a href="https://www.tuicool.com/articles/ayIzI3">Running GUI apps with Docker</a>
-<a href="https://www.cnblogs.com/larva-zhh/p/10531824.html">https://www.cnblogs.com/larva-zhh/p/10531824.html</a></p>
+<p><a href="https://github.com/search?p=4&amp;q=docker+desktop&amp;type=Repositories&amp;utf8=%E2%9C%93">Github Topic</a><br>
+<a href="https://www.tuicool.com/articles/ayIzI3">Running GUI apps with Docker</a><br>
+<a href="https://www.cnblogs.com/larva-zhh/p/10531824.html">在Docker for Windows中运行GUI程序 </a></p>
 </blockquote>
 <hr>
 <h1 id="工具">工具</h1>
@@ -578,16 +626,23 @@
 <p><a href="https://nextcloud.com/install/">nextcloud</a></p>
 </blockquote>
 <p><code>docker run -d --name nextcloud -p 8008:80 -v /data/nextcloud:/var/www/html nextcloud</code></p>
+<h2 id="protobuf">Protobuf</h2>
+<ol>
+<li>创建一个Ubuntu/alpine 容器运行起来</li>
+<li>下载 <a href="https://github.com/google/protobuf/releases">Github Release</a></li>
+<li>安装 g++ make</li>
+<li>编译安装下载的源码 进入目录 <code>./configure --prefix=/usr &amp;&amp; make &amp;&amp; make check &amp;&amp; make install</code></li>
+</ol>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-15
         
@@ -604,11 +659,11 @@
         <a class="prev" href="/post/linux/container/kubernetes/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Kubernetes</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/linux/container/dockerfiles/">
             <span class="next-text nav-default">DockerFile</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -626,17 +681,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -644,11 +699,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -658,16 +713,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

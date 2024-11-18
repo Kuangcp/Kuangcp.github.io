@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Graph - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-11-14 14:23:28 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/database/graph/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Graph" />
+<meta property="og:description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-11-14 14:23:28 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/database/graph/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-10-13T18:28:55+00:00" />
+<meta property="article:modified_time" content="2024-10-13T18:28:55+00:00" />
+
+<meta itemprop="name" content="Graph">
+<meta itemprop="description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-11-14 14:23:28 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、"><meta itemprop="datePublished" content="2024-10-13T18:28:55+00:00" />
+<meta itemprop="dateModified" content="2024-10-13T18:28:55+00:00" />
+<meta itemprop="wordCount" content="889">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Graph"/>
+<meta name="twitter:description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-11-14 14:23:28 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Graph</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-10-13 </span>
+        
+          <span class="more-meta"> 约 889 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#图数据库">图数据库</a></li>
+    <li><a href="#概念">概念</a></li>
+    <li><a href="#ql-查询语言">QL 查询语言</a>
+      <ul>
+        <li><a href="#cypher">Cypher</a></li>
+        <li><a href="#gremlin">Gremlin</a></li>
+        <li><a href="#sparql">SPARQL</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93">图数据库</a></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E6%A6%82%E5%BF%B5">概念</a></li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><a href="#ql-%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80">QL 查询语言</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#cypher">Cypher</a></li>
+<li>3.2. <a href="#gremlin">Gremlin</a></li>
+<li>3.3. <a href="#sparql">SPARQL</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-11-14 14:23:28</p>
+<hr>
+<h1 id="图数据库">图数据库</h1>
+<p>Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、Dgraph、TigerGraph、Memgraph、NebulaGraph、SurrealDB、Cayley</p>
+<blockquote>
+<p><a href="https://db-engines.com/en/ranking/graph+dbms">DB-Engines Ranking - popularity ranking of graph DBMS</a></p>
+</blockquote>
+<p><a href="https://github.com/memgraph/memgraph">memgraph</a>C++ 内存，Cypher查询，兼容Neo4j<br>
+<a href="https://github.com/vesoft-inc/nebula">vesoft-inc/nebula</a>C++ 分布式，nGQL查询语言，兼容部分Cypher语法<br>
+<a href="https://github.com/surrealdb/surrealdb">surrealdb/surrealdb</a>Rust 分布式， 类SQL/GraphQL查询 <code>偏业务应用</code><br>
+<a href="https://github.com/dgraph-io/dgraph">dgraph-io/dgraph</a>Go 分布式，GraphQL查询 <code>偏业务应用</code><br>
+<a href="https://github.com/orientechnologies/orientdb">orientechnologies/orientdb</a><code>多模数据库（图，文档，全文索引）</code></p>
+<p><a href="https://github.com/cayleygraph/cayley">cayleygraph/cayley</a><code>Google开源</code></p>
+<blockquote>
+<p>作为存储，支撑<a href="/Ai/KnowledgeGraph.md">知识图谱</a></p>
+</blockquote>
+<h1 id="概念">概念</h1>
+<p>一个属性图是有向图，由顶点（Vertex），边（Edge），标签（Lable），关系类型（Relationship Type）和属性（Property）组成。</p>
+<p>在属性图形中，节点和关系是最重要的实体，顶点也称作节点（Node），边也称作关系（Relationship）。
+所有的节点是独立存在的，但是可以为节点设置标签，那么拥有相同标签的节点属于一个分组，也就是一个集合。关系通过关系类型来分组，类型相同的关系属于同一个集合。
+节点可以有0个、1个或多个标签，但是关系必须设置关系类型，并且只能设置一个关系类型。</p>
+<p>关系是有向的，关系的两端是起始节点和结束节点，通过有向的箭头来标识方向，节点之间的双向关系通过两个方向相反的关系来标识。</p>
+<p>图算法操作库</p>
+<blockquote>
+<p><a href="https://github.com/jgrapht/jgrapht">jgrapht/jgrapht: Master repository for the JGraphT project</a></p>
+</blockquote>
+<hr>
+<h1 id="ql-查询语言">QL 查询语言</h1>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/13824962/neo4j-cypher-vs-gremlin-query-language">Neo4j - Cypher vs Gremlin query language - Stack Overflow</a><br>
+<a href="https://github.com/opencypher/cypher-for-gremlin">opencypher/cypher-for-gremlin</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://cloud.tencent.com/developer/article/1594313">一文了解各大图数据库查询语言（Gremlin vs Cypher vs nGQL）| 操作入门篇-腾讯云开发者社区-腾讯云</a></p>
+</blockquote>
+<h2 id="cypher">Cypher</h2>
+<blockquote>
+<p><a href="http://opencypher.org/">openCypher · openCypher</a> | <a href="https://en.wikipedia.org/wiki/Cypher_(query_language)">Cypher (query language) - Wikipedia</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://neo4j.com/docs/cypher-cheat-sheet/5/aura-dbe/">Cypher Cheat Sheet</a><code>使用手册</code><br>
+<a href="https://github.com/albertoventurini/graphdb-intellij-plugin">Graph Database</a></p>
+</blockquote>
+<p>Neo4j、RedisGraph、AgensGraph(PG+插件)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">    <span class="n">MATCH</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">RETURN</span> <span class="n">n</span> <span class="n">limit</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//  删除所有关系
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">()</span><span class="o">-</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">()</span> <span class="n">delete</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 查询 疾病 关联的 所有病征
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">(</span><span class="nl">d</span><span class="p">:</span><span class="err">疾病</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">:</span><span class="err">疾病的症状</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">(</span><span class="nl">s</span><span class="p">:</span><span class="err">疾病症状</span><span class="p">)</span> <span class="n">WHERE</span> <span class="n">d</span><span class="p">.</span><span class="err">名称</span> <span class="o">=</span> <span class="err">&#39;血栓形成&#39;</span> <span class="n">RETURN</span> <span class="n">s</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="gremlin">Gremlin</h2>
+<blockquote>
+<p><a href="https://tinkerpop-gremlin.cn/#traversal">Gremlin中文文档</a></p>
+</blockquote>
+<p>Janus Graph、InfiniteGraph、Cosmos DB、Amazon Neptune</p>
+<h2 id="sparql">SPARQL</h2>
+<blockquote>
+<p><a href="https://www.w3.org/TR/rdf-sparql-query/">SPARQL Query Language for RDF</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-10-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/database/olap/doris/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Doris</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/ai/knowledgegraph/">
+            <span class="next-text nav-default">KnowledgeGraph</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

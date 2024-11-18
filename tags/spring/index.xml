@@ -1,91 +1,64 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Spring on Mythos</title>
-    <link>https://blogs.kuangcp.top/tags/spring/</link>
-    <description>Recent content in Spring on Mythos</description>
+    <title>Spring on Mythos · Java Developer</title>
+    <link>https://www.kuangcp.top/tags/spring/</link>
+    <description>Recent content in Spring on Mythos · Java Developer</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 26 Aug 2020 18:30:37 +0000</lastBuildDate><atom:link href="https://blogs.kuangcp.top/tags/spring/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>SpringSession</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/why/springsession/</link>
-      <pubDate>Wed, 26 Aug 2020 18:30:37 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/spring/why/springsession/</guid>
-      <description>目录 start Spring-Session Websocket Websocket 共享 目录 end|2020-08-26 18:31| Spring-Session TODO 查看源码实现 Websocket websocket session 可实现 websocket session 原始的 http session 超时等管理功能，无法实现 websocket 共享 Websocket 共享 nginx 分发 redis 共享 如何实现 WebsocketSession 无法序列化，所以</description>
-    </item>
-    
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 21 Dec 2018 10:54:05 +0000</lastBuildDate><atom:link href="https://www.kuangcp.top/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Spring 事务</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/transactional/</link>
+      <link>https://www.kuangcp.top/post/java/spring/transactional/</link>
       <pubDate>Fri, 21 Dec 2018 10:54:05 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/transactional/</guid>
-      <description>目录 start Spring 事务 失效场景 可编程事务管理 目录 end|2021-04-22 21:33| Spring 事务 Doc: Transaction Management 事务 和 AOP 同时使用 顺序问题 Afterreturning 和 Transactional 失效场景 引擎不支持事务，例如 MyISAM 注解所在类没有进入IOC容</description>
-    </item>
-    
-    <item>
-      <title>SpringWebFlux</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springwebflux/</link>
-      <pubDate>Fri, 21 Dec 2018 10:53:48 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/spring/springwebflux/</guid>
-      <description>目录 start WebFlux 目录 end|2020-04-27 23:42| WebFlux 参考: 译：尝试使用Spring WebFlux</description>
+      <guid>https://www.kuangcp.top/post/java/spring/transactional/</guid>
+      <description>💠 Spring 事务 1.1. propagation 1.2. isolation 1.3. 失效场景 1.4. 异常场景 1.5. 可编程事务管理 💠 2024-01-31 11:40:19 Spring 事务 Doc: Transaction Management propagation isolation 事务 和 AOP 同时使用 顺序问题 Afterreturning 和 Transactional 失效场景 一口气说出 6种，@Trans</description>
     </item>
     
     <item>
       <title>SpringTest</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springtest/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springtest/</link>
       <pubDate>Fri, 21 Dec 2018 10:53:35 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springtest/</guid>
+      <guid>https://www.kuangcp.top/post/java/spring/springtest/</guid>
       <description>目录 start Spring Test 注解 目录 end|2020-04-27 23:42| Spring Test 参考: Getting Started with Mockito @Mock, @Spy, @Captor and @InjectMocks 参考: Mockito – Using Spies 注解 学习 @MockBean</description>
     </item>
     
     <item>
       <title>SpringSecurity</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springsecurity/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springsecurity/</link>
       <pubDate>Fri, 21 Dec 2018 10:53:23 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springsecurity/</guid>
-      <description>目录 start SpringSecurity 配置 配置静态口令使用 使用该配置即可自定义用户名密码 SpringBoot的集成Demo 创建单用户单角色的安全控制 多用户多角色的实现思路</description>
+      <guid>https://www.kuangcp.top/post/java/spring/springsecurity/</guid>
+      <description>💠 SpringSecurity 1.1. 配置 1.1.1. 配置静态口令使用 1.2. SpringBoot的集成Demo 1.2.1. 创建单用户单角色的安全控制 1.2.2. 多用户多角色的实现思路 1.2.2.1. 每个身份都使用一个登录</description>
     </item>
     
     <item>
       <title>SpringMVC</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springmvc/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springmvc/</link>
       <pubDate>Fri, 21 Dec 2018 10:53:11 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springmvc/</guid>
-      <description>目录 start SpringMVC MVC思想 原理 API 传统项目配置完整流程 配置依赖 Maven Gradle web.xml ApplicationContext.xml 全局异常处理 自定义错误页面 中文编码问题 创建Controller 使用 配置类型转换 拦</description>
+      <guid>https://www.kuangcp.top/post/java/spring/springmvc/</guid>
+      <description>💠 SpringMVC 1.1. MVC思想 1.1.1. 原理 1.2. API 传统项目配置完整流程 2.1. 配置依赖 2.1.1. Maven 2.1.2. Gradle 2.2. web.xml 2.3. ApplicationContext.xml 2.3.1. 全局异常处理 2.3.2. 自定义错误页面 2.3.3. 中文编码问题 2.4. 创建Controlle</description>
     </item>
     
     <item>
       <title>Spring AOP</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/springaop/</link>
+      <link>https://www.kuangcp.top/post/java/spring/springaop/</link>
       <pubDate>Fri, 21 Dec 2018 10:49:23 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/springaop/</guid>
+      <guid>https://www.kuangcp.top/post/java/spring/springaop/</guid>
       <description>目录 start AOP 动态代理 基本概念 基本配置 注意 1 Spring AOP还是完全用AspectJ？ 2 Spring AOP中使用@AspectJ还是XML？ 3 混合切面类型 目录 end|2020-08-26 18:31| AOP</description>
     </item>
     
     <item>
-      <title>Spring5</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/spring5/</link>
-      <pubDate>Fri, 21 Dec 2018 10:46:16 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/java/spring/spring5/</guid>
-      <description>目录 start Spring5 目录 end|2020-04-27 23:42| Spring5 Spring Framework 5 中的新特性 参考: Java 微服务框架新选择：Spring 5 打包出来的构件小,占用内存也比boot小多了</description>
-    </item>
-    
-    <item>
       <title>Spring</title>
-      <link>https://blogs.kuangcp.top/post/java/spring/spring/</link>
+      <link>https://www.kuangcp.top/post/java/spring/spring/</link>
       <pubDate>Fri, 21 Dec 2018 10:46:01 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/java/spring/spring/</guid>
-      <description>目录 start Spring 配置使用 通过构建工具 注解方式 xml文件配置 常用的注解 xml方式 xml方式和注解方式的比较 Spring技巧 获取Context上下文环境</description>
+      <guid>https://www.kuangcp.top/post/java/spring/spring/</guid>
+      <description>💠 Spring 1.1. 配置使用 1.1.1. 通过构建工具 1.1.2. 注解方式 1.1.2.1. xml文件配置 1.1.2.2. 常用的注解 1.1.3. xml方式 1.1.3.1. xml方式和注解方式的比较 1.2. Spring技巧 1.2.1. 获取Conte</description>
     </item>
     
   </channel>

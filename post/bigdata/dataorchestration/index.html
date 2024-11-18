@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>DataOrchestration - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 数据协作 1.1. DolphinScheduler 1.2. Argo 1.3. Airflow 其他 2.1. Azkaban 2.2. nifi 💠 2024-10-21 15:37:17 数据协作 What is Data Orchestration &amp;amp; Why It’s Essential for Analysis DolphinScheduler Github Youtube DolphinScheduler 是国内易观数据公司在2018年开源，2019年进入Apac" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/bigdata/dataorchestration/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="DataOrchestration" />
+<meta property="og:description" content="💠 数据协作 1.1. DolphinScheduler 1.2. Argo 1.3. Airflow 其他 2.1. Azkaban 2.2. nifi 💠 2024-10-21 15:37:17 数据协作 What is Data Orchestration &amp; Why It’s Essential for Analysis DolphinScheduler Github Youtube DolphinScheduler 是国内易观数据公司在2018年开源，2019年进入Apac" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/bigdata/dataorchestration/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-04-17T15:18:45+00:00" />
+<meta property="article:modified_time" content="2024-04-17T15:18:45+00:00" />
+
+<meta itemprop="name" content="DataOrchestration">
+<meta itemprop="description" content="💠 数据协作 1.1. DolphinScheduler 1.2. Argo 1.3. Airflow 其他 2.1. Azkaban 2.2. nifi 💠 2024-10-21 15:37:17 数据协作 What is Data Orchestration &amp; Why It’s Essential for Analysis DolphinScheduler Github Youtube DolphinScheduler 是国内易观数据公司在2018年开源，2019年进入Apac"><meta itemprop="datePublished" content="2024-04-17T15:18:45+00:00" />
+<meta itemprop="dateModified" content="2024-04-17T15:18:45+00:00" />
+<meta itemprop="wordCount" content="271">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DataOrchestration"/>
+<meta name="twitter:description" content="💠 数据协作 1.1. DolphinScheduler 1.2. Argo 1.3. Airflow 其他 2.1. Azkaban 2.2. nifi 💠 2024-10-21 15:37:17 数据协作 What is Data Orchestration &amp; Why It’s Essential for Analysis DolphinScheduler Github Youtube DolphinScheduler 是国内易观数据公司在2018年开源，2019年进入Apac"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">DataOrchestration</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-04-17 </span>
+        
+          <span class="more-meta"> 约 271 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#数据协作">数据协作</a>
+      <ul>
+        <li><a href="#dolphinscheduler">DolphinScheduler</a></li>
+        <li><a href="#argo">Argo</a></li>
+        <li><a href="#airflow">Airflow</a></li>
+      </ul>
+    </li>
+    <li><a href="#其他">其他</a>
+      <ul>
+        <li><a href="#azkaban">Azkaban</a></li>
+        <li><a href="#nifi">nifi</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2024-04-17T15:18:45" title="April 17, 2024">April 17, 2024</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%8D%8F%E4%BD%9C">数据协作</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#dolphinscheduler">DolphinScheduler</a></li>
+<li>1.2. <a href="#argo">Argo</a></li>
+<li>1.3. <a href="#airflow">Airflow</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E5%85%B6%E4%BB%96">其他</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#azkaban">Azkaban</a></li>
+<li>2.2. <a href="#nifi">nifi</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-10-21 15:37:17</p>
+<hr>
+<h1 id="数据协作">数据协作</h1>
+<blockquote>
+<p><a href="https://segment.com/resources/data-strategy/what-is-data-orchestration/">What is Data Orchestration &amp; Why It’s Essential for Analysis</a></p>
+</blockquote>
+<h2 id="dolphinscheduler">DolphinScheduler</h2>
+<blockquote>
+<p><a href="https://github.com/apache/dolphinscheduler">Github</a><br>
+<a href="https://www.youtube.com/@apachedolphinscheduler">Youtube</a></p>
+</blockquote>
+<p>DolphinScheduler 是国内易观数据公司在2018年开源，2019年进入Apache项目的分布式调度工具,</p>
+<p>思考：Job实例的执行交由K8S，避免Worker出现资源瓶颈，甚至去掉Worker只保留master，实例执行全部用K8S</p>
+<blockquote>
+<p><a href="https://dolphinscheduler.apache.org/zh-cn/docs/3.2.2/%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D_menu/%E4%BB%BB%E5%8A%A1%E7%B1%BB%E5%9E%8B_menu">DolphinScheduler | 任务类型</a></p>
+</blockquote>
+<ul>
+<li>conditions 可以 conditions 通过对上游节点执行成功/失败， 走向下游不同流程，例如全局参数来控制全量或增量执行不同的SQL</li>
+</ul>
+<h2 id="argo">Argo</h2>
+<blockquote>
+<p><a href="https://github.com/argoproj/argo-workflows">Github</a></p>
+</blockquote>
+<p>云原生工作流引擎</p>
+<h2 id="airflow">Airflow</h2>
+<blockquote>
+<p><a href="https://github.com/apache/airflow">Github</a></p>
+</blockquote>
+<p>强代码实现的工作流引擎</p>
+<hr>
+<h1 id="其他">其他</h1>
+<h2 id="azkaban">Azkaban</h2>
+<blockquote>
+<p><a href="https://github.com/azkaban/azkaban">Github</a></p>
+</blockquote>
+<p>主要用于管理Hadoop工作流程</p>
+<h2 id="nifi">nifi</h2>
+<blockquote>
+<p><a href="https://github.com/apache/nifi">Github</a></p>
+</blockquote>
+<p>处理和分发数据, 组件也只针对数据处理，功能比较单一</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-04-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/ecology/gateway/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Gateway</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/bigdata/dataintegration/">
+            <span class="next-text nav-default">DataIntegration</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

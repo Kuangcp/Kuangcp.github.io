@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Mythos</title>
+  <title>Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,19 +16,19 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="Hugo theme even example site." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="Mythos · Java Developer Blog" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/" />
-  <link href="https://blogs.kuangcp.top/index.xml" rel="alternate" type="application/rss+xml" title="Mythos" />
-  <link href="https://blogs.kuangcp.top/index.xml" rel="feed" type="application/rss+xml" title="Mythos" />
+<link rel="canonical" href="https://www.kuangcp.top/" />
+  <link href="https://www.kuangcp.top/index.xml" rel="alternate" type="application/rss+xml" title="Mythos · Java Developer" />
+  <link href="https://www.kuangcp.top/index.xml" rel="feed" type="application/rss+xml" title="Mythos · Java Developer" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -41,16 +41,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Mythos" />
-<meta property="og:description" content="Hugo theme even example site." />
+<meta property="og:title" content="Mythos · Java Developer" />
+<meta property="og:description" content="Mythos · Java Developer Blog" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://blogs.kuangcp.top/" />
-<meta property="og:updated_time" content="2021-05-27T21:36:58+00:00" />
-<meta itemprop="name" content="Mythos">
-<meta itemprop="description" content="Hugo theme even example site.">
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Mythos"/>
-<meta name="twitter:description" content="Hugo theme even example site."/>
+<meta property="og:url" content="https://www.kuangcp.top/" />
+
+<meta itemprop="name" content="Mythos · Java Developer">
+<meta itemprop="description" content="Mythos · Java Developer Blog"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mythos · Java Developer"/>
+<meta name="twitter:description" content="Mythos · Java Developer Blog"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -113,207 +112,111 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/java/advancedlearning/javainheritedandinterface/">Java中的继承与接口</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/java/advancedlearning/concurrency/lock/">Java中的锁</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2018-11-21 </span>
+      <span class="post-time"> 2019-04-22 </span>
       <div class="post-category">
           <a href="/categories/java/"> Java </a>
           </div>
-        <span class="more-meta"> 670 words </span>
-        <span class="more-meta"> 2 mins read </span>
+        <span class="more-meta"> 约 60 字 </span>
+        <span class="more-meta"> 预计阅读 1 分钟 </span>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      目录 start 继承和接口 继承 接口 常用接口 目录 end|2020-05-17 16:13| 继承和接口 应倾向于多使用组合而不是继承 参考: java的重载、覆盖和隐藏的区别 继承 接口 个人理解为一个接
+      目录 start Lock 队列同步器 目录 end|2020-04-27 23:42| Lock 1 2 3 4 5 6 7 8 Lock lock = new ReentrantLock(); // 不能放在 try中, 防止 获取锁失败, 并执行了释放锁 lock.lock(); try { } finally { lock.lock(); }
     </div>
     <div class="read-more">
-      <a href="/post/java/advancedlearning/javainheritedandinterface/" class="read-more-link">Read more...</a>
+      <a href="/post/java/advancedlearning/concurrency/lock/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/java/advancedlearning/javareleaseversion/">Java主要发行版概述</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/skills/serialization/protobuf/">Protobuf</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2018-11-21 </span>
-      <div class="post-category">
-          <a href="/categories/java/"> Java </a>
-          </div>
-        <span class="more-meta"> 284 words </span>
-        <span class="more-meta"> 1 min read </span>
+      <span class="post-time"> 2019-04-20 </span>
+      
+        <span class="more-meta"> 约 2269 字 </span>
+        <span class="more-meta"> 预计阅读 5 分钟 </span>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      目录 start Java主要发行版本 Java5 Java6 Java7 Java8 Java9 Java10 Java11 目录 end|2020-05-31 21:44| Java主要发行版本 官网 Release Note Java语言特性系列 5-最新 Java5 泛型 枚举 装箱拆箱 静态导入 foreach Java6 JDBC4.0 JAX-WS 2.0
+      💠 Protobuf 1.1. proto文件定义 1.2. 数据类型 1.2.1. Protobuf3 1.3. Linux上安装Protobuf 1.4. Java中的使用 1.5. 实现原理 💠 2024-04-21 16:35:07 Protobuf Google开源的序列化框架 全称
     </div>
     <div class="read-more">
-      <a href="/post/java/advancedlearning/javareleaseversion/" class="read-more-link">Read more...</a>
+      <a href="/post/skills/serialization/protobuf/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/java/advancedlearning/javareflection/">Java反射原理以及使用</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/skills/cs/generics/">泛型设计</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2018-11-21 </span>
+      <span class="post-time"> 2019-04-20 </span>
       <div class="post-category">
-          <a href="/categories/java/"> Java </a>
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
           </div>
-        <span class="more-meta"> 2747 words </span>
-        <span class="more-meta"> 6 mins read </span>
+        <span class="more-meta"> 约 156 字 </span>
+        <span class="more-meta"> 预计阅读 1 分钟 </span>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      目录 start 反射 概念 实现原理 基础类 AccessibleObject Annotation Class Field Method Constructor Modifier 使用 获取Class对象的方式 反射的基本使用 操作构造方法 操作类中方法 操作类的成员属性 操作注解 反射的性
+      💠 Generics 1.1. 协变 逆变 元编程 💠 2024-05-17 19:49:18 Generics 泛型和元编程的模型：Java, Go, Rust, Swift, D等 generics 协变 逆变 协变(covariant)和逆变(contravariant)
     </div>
     <div class="read-more">
-      <a href="/post/java/advancedlearning/javareflection/" class="read-more-link">Read more...</a>
+      <a href="/post/skills/cs/generics/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/java/advancedlearning/javabasicsyntax/">Java基础语法</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/skills/cs/io/">计算机中的IO</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2018-11-21 </span>
+      <span class="post-time"> 2019-04-20 </span>
       <div class="post-category">
-          <a href="/categories/java/"> Java </a>
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
           </div>
-        <span class="more-meta"> 6026 words </span>
-        <span class="more-meta"> 13 mins read </span>
+        <span class="more-meta"> 约 5491 字 </span>
+        <span class="more-meta"> 预计阅读 11 分钟 </span>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      目录 start 基础语法 代码风格 结构 判断 循环 标准输入输出 Runtime 优雅关机 数据类型 自动拆装箱 基础数据类型 byte char boolean short int long float double 封装类型 String Float Double Integer Long Boolean Void 枚举类型 内部类 类
+      💠 计算机中的IO 1.1. IO模型 1.1.1. Blocking IO 1.1.2. Nonblocking IO 1.1.3. IO multiplexing 1.1.4. Signal driven IO 1.1.5. Asynchronous IO 1.1.6. 经典比喻 1.2. 阻塞和非阻塞 1.3. 同步和异步 1.4. 同异步和阻塞 多路复用 2.1. 多路复用模型 2.1.1. Reactor 2.1.2. Proactor 2.1.3.
     </div>
     <div class="read-more">
-      <a href="/post/java/advancedlearning/javabasicsyntax/" class="read-more-link">Read more...</a>
+      <a href="/post/skills/cs/io/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/java/advancedlearning/javaconcurrency/">Java并发</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/java/advancedlearning/concurrency/executorandpool/">线程池</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2018-11-21 </span>
-      <div class="post-category">
-          <a href="/categories/java/"> Java </a>
-          </div>
-        <span class="more-meta"> 8540 words </span>
-        <span class="more-meta"> 18 mins read </span>
+      <span class="post-time"> 2019-04-19 </span>
+      
+        <span class="more-meta"> 约 3842 字 </span>
+        <span class="more-meta"> 预计阅读 8 分钟 </span>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      目录 start Java并发 JMM Java内存模型 理论知识 可能的问题 好的习惯 块结构并发 Java5之前 synchronized 正确使用锁 volatile 正确使用 现代并发JUC包 概念 CAS指令 原
+      💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-09-13 10:39:04 线程池 Java线程池实现原理及
     </div>
     <div class="read-more">
-      <a href="/post/java/advancedlearning/javaconcurrency/" class="read-more-link">Read more...</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/java/advancedlearning/javadeploy/">Java应用的部署</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-11-21 </span>
-      <div class="post-category">
-          <a href="/categories/java/"> Java </a>
-          </div>
-        <span class="more-meta"> 1451 words </span>
-        <span class="more-meta"> 3 mins read </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      目录 start 部署运行 打包可执行jar 打包war Docker镜像 配置文件 Tips Java在Linux上的时区问题 目录 end|2020-04-27 23:42| 部署运行 传统的可执行jar, war 以及
-    </div>
-    <div class="read-more">
-      <a href="/post/java/advancedlearning/javadeploy/" class="read-more-link">Read more...</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/java/ecosystem/javaboot/">Java快速开发框架</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-11-21 </span>
-      <div class="post-category">
-          <a href="/categories/java/"> Java </a>
-          </div>
-        <span class="more-meta"> 55 words </span>
-        <span class="more-meta"> 1 min read </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      目录 start 关于Java的快速开发框架 Springboot Jboot NuzBoot 目录 end|2020-04-27 23:42| 关于Java的快速开发框架 Springboot 基于Spring Jboot 基于JFinal NuzBoot
-    </div>
-    <div class="read-more">
-      <a href="/post/java/ecosystem/javaboot/" class="read-more-link">Read more...</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/java/advancedlearning/javagenerics/">Java泛型</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-11-21 </span>
-      <div class="post-category">
-          <a href="/categories/java/"> Java </a>
-          </div>
-        <span class="more-meta"> 5220 words </span>
-        <span class="more-meta"> 11 mins read </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      目录 start 泛型 简单使用 类型擦除 约束和局限性 泛型类型的继承规则 通配符类型 子类 类型限定的通配符 extends 基类 类型限定的通配符 super 无限定通配符 通配符捕获 反射和泛
-    </div>
-    <div class="read-more">
-      <a href="/post/java/advancedlearning/javagenerics/" class="read-more-link">Read more...</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/java/advancedlearning/release/jdkandjre/">Java的JDK以及JRE</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-11-21 </span>
-      <div class="post-category">
-          <a href="/categories/java/"> Java </a>
-          </div>
-        <span class="more-meta"> 262 words </span>
-        <span class="more-meta"> 1 min read </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      目录 start JDK And JRE Oracle Oracle JDK Oracle JRE OpenJDK 目录 end|2020-06-29 19:16| JDK And JRE 但是11发布后, Oracle修改了使用协议, JDK商用需付费, 仅个人开发演示免费 License Oracle roadmap Oracle JDK 以下是Jav
-    </div>
-    <div class="read-more">
-      <a href="/post/java/advancedlearning/release/jdkandjre/" class="read-more-link">Read more...</a>
+      <a href="/post/java/advancedlearning/concurrency/executorandpool/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -323,10 +226,10 @@
   <nav class="pagination">
     <a class="prev" href="/page/24/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text">Prev</span>
+        <span class="prev-text">上一页</span>
       </a>
     <a class="next" href="/page/26/">
-        <span class="next-text">Next</span>
+        <span class="next-text">下一页</span>
         <i class="iconfont icon-right"></i>
       </a>
   </nav>
@@ -338,17 +241,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -356,11 +259,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -370,16 +273,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

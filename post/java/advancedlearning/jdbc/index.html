@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>JDBC - Mythos</title>
+  <title>JDBC - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start JDBC MySQL Java内置数据库Derby Tips 目录 end|2021-05-17 00:15| JDBC 码农翻身:JDBC的诞生 基础的批量操作SQL pstmt.executeBatch(); //批量执行 注册 driver 创建 connection 创建 statement 执行获取 Resultset 处理" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 JDBC 1.1. Statement 1.1.1. PrepareStatement 1.2. ResultSet 1.2.1. 长连接流式导出数据 1.3. SQLException 厂商驱动 2.1. MySQL 2.2. Clickhouse Tips 💠 2024-10-08 11:23:38 JDBC Java DataBase Connectivity 核心思想是定义一套接口规范，让各个数据库厂商实现这套接口，从而让应用" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/jdbc/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/jdbc/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="JDBC" />
-<meta property="og:description" content="目录 start JDBC MySQL Java内置数据库Derby Tips 目录 end|2021-05-17 00:15| JDBC 码农翻身:JDBC的诞生 基础的批量操作SQL pstmt.executeBatch(); //批量执行 注册 driver 创建 connection 创建 statement 执行获取 Resultset 处理" />
+<meta property="og:description" content="💠 JDBC 1.1. Statement 1.1.1. PrepareStatement 1.2. ResultSet 1.2.1. 长连接流式导出数据 1.3. SQLException 厂商驱动 2.1. MySQL 2.2. Clickhouse Tips 💠 2024-10-08 11:23:38 JDBC Java DataBase Connectivity 核心思想是定义一套接口规范，让各个数据库厂商实现这套接口，从而让应用" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/jdbc/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/jdbc/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-16T17:28:17+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:28:17+00:00" />
+
 <meta itemprop="name" content="JDBC">
-<meta itemprop="description" content="目录 start JDBC MySQL Java内置数据库Derby Tips 目录 end|2021-05-17 00:15| JDBC 码农翻身:JDBC的诞生 基础的批量操作SQL pstmt.executeBatch(); //批量执行 注册 driver 创建 connection 创建 statement 执行获取 Resultset 处理">
-<meta itemprop="datePublished" content="2018-12-16T17:28:17+00:00" />
+<meta itemprop="description" content="💠 JDBC 1.1. Statement 1.1.1. PrepareStatement 1.2. ResultSet 1.2.1. 长连接流式导出数据 1.3. SQLException 厂商驱动 2.1. MySQL 2.2. Clickhouse Tips 💠 2024-10-08 11:23:38 JDBC Java DataBase Connectivity 核心思想是定义一套接口规范，让各个数据库厂商实现这套接口，从而让应用"><meta itemprop="datePublished" content="2018-12-16T17:28:17+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:28:17+00:00" />
-<meta itemprop="wordCount" content="230">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1250">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JDBC"/>
-<meta name="twitter:description" content="目录 start JDBC MySQL Java内置数据库Derby Tips 目录 end|2021-05-17 00:15| JDBC 码农翻身:JDBC的诞生 基础的批量操作SQL pstmt.executeBatch(); //批量执行 注册 driver 创建 connection 创建 statement 执行获取 Resultset 处理"/>
+<meta name="twitter:description" content="💠 JDBC 1.1. Statement 1.1.1. PrepareStatement 1.2. ResultSet 1.2.1. 长连接流式导出数据 1.3. SQLException 厂商驱动 2.1. MySQL 2.2. Clickhouse Tips 💠 2024-10-08 11:23:38 JDBC Java DataBase Connectivity 核心思想是定义一套接口规范，让各个数据库厂商实现这套接口，从而让应用"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,89 +122,323 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 230 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 1250 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#mysql">MySQL</a></li>
-    <li><a href="#java内置数据库derby">Java内置数据库Derby</a></li>
+    <li><a href="#jdbc">JDBC</a>
+      <ul>
+        <li><a href="#statement">Statement</a>
+          <ul>
+            <li><a href="#preparestatement">PrepareStatement</a></li>
+          </ul>
+        </li>
+        <li><a href="#resultset">ResultSet</a>
+          <ul>
+            <li><a href="#长连接流式导出数据">长连接流式导出数据</a></li>
+          </ul>
+        </li>
+        <li><a href="#sqlexception">SQLException</a></li>
+      </ul>
+    </li>
+    <li><a href="#厂商驱动">厂商驱动</a>
+      <ul>
+        <li><a href="#mysql">MySQL</a></li>
+        <li><a href="#clickhouse">Clickhouse</a></li>
+      </ul>
+    </li>
+    <li><a href="#tips">Tips</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-16T17:28:17" title="December 16, 2018">December 16, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#jdbc">JDBC</a>
-<ol>
-<li><a href="#mysql">MySQL</a></li>
-<li><a href="#java%E5%86%85%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93derby">Java内置数据库Derby</a></li>
+<li><a href="#jdbc">JDBC</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#statement">Statement</a>
+<ul>
+<li>1.1.1. <a href="#preparestatement">PrepareStatement</a></li>
+</ul>
 </li>
+<li>1.2. <a href="#resultset">ResultSet</a>
+<ul>
+<li>1.2.1. <a href="#%E9%95%BF%E8%BF%9E%E6%8E%A5%E6%B5%81%E5%BC%8F%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE">长连接流式导出数据</a></li>
+</ul>
+</li>
+<li>1.3. <a href="#sqlexception">SQLException</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E5%8E%82%E5%95%86%E9%A9%B1%E5%8A%A8">厂商驱动</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#mysql">MySQL</a></li>
+<li>2.2. <a href="#clickhouse">Clickhouse</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
 <li><a href="#tips">Tips</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-05-17 00:15</em>|</p>
+</li>
+</ul>
+<p>💠 2024-10-08 11:23:38</p>
 <hr>
 <h1 id="jdbc">JDBC</h1>
+<p>Java DataBase Connectivity</p>
+<p>核心思想是定义一套接口规范，让各个数据库厂商实现这套接口，从而让应用方调用数据库的能力时可以不关心底层数据库</p>
+<ul>
+<li>设计是美好的，但是现实是丑陋的，或者说无法对多类型的数据库做完全的抽象一致，基础功能确实能一致化，其他功能还是要特殊化处理
+<ul>
+<li>举例： 获取某个表的元信息<code>表引擎，表索引，字段名，字段类型</code> MySQL和PostgreSQL实现完全不一致，pg实现成本很大，有些功能无法实现</li>
+</ul>
+</li>
+</ul>
 <blockquote>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513438&amp;idx=1&amp;sn=2967d595bb7d4ffdd2dacd3ab7501bbd&amp;chksm=80d6799db7a1f08b27dc97650434fb2fc0e2570628945db99d9300a99e52828fd05c42fdb441&amp;scene=21#wechat_redirect">码农翻身:JDBC的诞生</a></p>
 </blockquote>
+<blockquote>
+<p>基础流程</p>
+</blockquote>
 <ul>
-<li>
-<p>基础的批量操作SQL <code> pstmt.executeBatch(); //批量执行</code></p>
-</li>
-<li>
-<p>注册 driver</p>
-</li>
-<li>
-<p>创建 connection</p>
-</li>
-<li>
-<p>创建 statement</p>
-</li>
-<li>
-<p>执行获取 Resultset</p>
-</li>
-<li>
-<p>处理返回结果 resultst</p>
+<li>注册 driver</li>
+<li>建立 connection</li>
+<li>创建 statement</li>
+<li>执行获取 ResultSet</li>
+<li>解析返回的 ResultSet</li>
+</ul>
+<blockquote>
+<p>Tips</p>
+</blockquote>
+<ul>
+<li>基础的批量操作SQL <code> pstmt.executeBatch(); //批量执行</code></li>
+<li><a href="http://db.apache.org/derby/derby_comm.html">在Java11中被移除了的 Derby</a></li>
+</ul>
+<h2 id="statement">Statement</h2>
+<p>主要分为 Statement 和 PrepareStatement, 在使用层面主要的区别为前者直接执行原始SQL,存在SQL注入风险, 后者是编译模板。</p>
+<h3 id="preparestatement">PrepareStatement</h3>
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html">Oracle: Using Prepared Statements</a></p>
+</blockquote>
+<p>依赖于具体数据库，常见的 <a href="https://dev.mysql.com/doc/refman/8.3/en/sql-prepared-statements.html">MySQL</a> <a href="https://jdbc.postgresql.org/documentation/server-prepare/">PostgreSQL</a>都有SQL编译功能</p>
+<blockquote>
+<p>权衡</p>
+</blockquote>
+<ul>
+<li><a href="https://www.cnblogs.com/wangzhen3798/p/12206811.html">PrepareStatement的功与过</a><code>最多的问题是 因为SQL只编译解析一次，执行计划的重用导致会忽略实际传入的参数对执行计划的影响</code></li>
+<li><a href="https://groups.google.com/g/mybatis-user/c/Wubq26QCWYo?pli=1">MyBatis select query slow</a><code>应该是一样的问题编译SQL在不同执行时，执行计划变更导致的慢</code>
+<ul>
+<li><a href="https://dba.stackexchange.com/questions/231109/query-is-slow-with-jdbc-parameters-fast-with-concatenated-sql">Query is slow with JDBC parameters, fast with concatenated SQL</a> <code>MSSQL</code></li>
+</ul>
 </li>
 </ul>
-<p>Statement 和 PrepareStatement 的区别， 掌握PrepareStatement的主要用法(推荐使用)</p>
-<h2 id="mysql">MySQL</h2>
 <blockquote>
-<p>与MySQL的互操作</p>
+<p>客户端参数调整</p>
 </blockquote>
+<ul>
+<li><a href="https://github.com/alibaba/druid/blob/master/druid-spring-boot-starter/README_EN.md">Druid</a><code>pool-prepared-statements</code> 连接池层面的缓存</li>
+</ul>
+<hr>
+<h2 id="resultset">ResultSet</h2>
+<blockquote>
+<p>仅为JDBC接口，具体行为细节来自实际数据库厂商提供的驱动</p>
+</blockquote>
+<h3 id="长连接流式导出数据">长连接流式导出数据</h3>
+<p>常见的分页导出的缺点有 分页越来越慢和不稳定排序导致页之间数据重复或丢失，用长连接流方式可以规避</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 阻塞模式 查数据和业务逻辑交替执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">fetchBatchWithDataResource</span><span class="o">(</span><span class="n">DataSource</span> <span class="n">ds</span><span class="o">,</span> <span class="n">String</span> <span class="n">sql</span><span class="o">,</span> <span class="n">String</span> <span class="n">where</span><span class="o">,</span> <span class="kt">int</span> <span class="n">fetchSize</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                            <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;&gt;</span> <span class="n">handle</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Statement</span> <span class="n">stmt</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">connection</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">String</span> <span class="n">query</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isNotBlank</span><span class="o">(</span><span class="n">where</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">query</span> <span class="o">=</span> <span class="n">sql</span> <span class="o">+</span> <span class="s">&#34; WHERE &#34;</span> <span class="o">+</span> <span class="n">where</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">query</span> <span class="o">=</span> <span class="n">sql</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;stream export: query={}&#34;</span><span class="o">,</span> <span class="n">query</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">stmt</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">createStatement</span><span class="o">(</span><span class="n">ResultSet</span><span class="o">.</span><span class="na">TYPE_FORWARD_ONLY</span><span class="o">,</span> <span class="n">ResultSet</span><span class="o">.</span><span class="na">CONCUR_READ_ONLY</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stmt</span><span class="o">.</span><span class="na">setQueryTimeout</span><span class="o">(</span><span class="n">3600</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stmt</span><span class="o">.</span><span class="na">setFetchSize</span><span class="o">(</span><span class="n">fetchSize</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">rs</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span><span class="n">query</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">List</span><span class="o">&lt;</span><span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ResultSetMetaData</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="na">getMetaData</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">columnCount</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="na">getColumnCount</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">row</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">columnCount</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">row</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">meta</span><span class="o">.</span><span class="na">getColumnName</span><span class="o">(</span><span class="n">i</span><span class="o">),</span> <span class="n">rs</span><span class="o">.</span><span class="na">getObject</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">data</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">row</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">fetchSize</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">handle</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">counter</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">data</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(!</span><span class="n">data</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">handle</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">counter</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;stream export: count={} dataSize={} &#34;</span><span class="o">,</span> <span class="n">counter</span><span class="o">,</span> <span class="o">(</span><span class="n">counter</span> <span class="o">-</span> <span class="n">1</span><span class="o">)</span> <span class="o">*</span> <span class="n">fetchSize</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">close</span><span class="o">(</span><span class="n">connection</span><span class="o">,</span> <span class="n">stmt</span><span class="o">,</span> <span class="n">rs</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>Statement 设置了 fetchSize 或者 TYPE_FORWARD_ONLY 模式后，都会采用游标的方式获取全部的数据</p>
+</li>
+<li>
+<p>参数 handle 是解析ResultSet 去生成 CSV Excel 等业务逻辑方法引用</p>
+</li>
+<li>
+<p>优化版本 生产者-消费者模式，降低阻塞时间，从而降低大量任务的整体耗时，但是CPU毛刺会增多且明显</p>
+<ul>
+<li>生产者：查询，消费者：业务逻辑，队列：QueueChannel</li>
+<li><a href="https://github.com/Kuangcp/JavaBase/blob/master/concurrency/src/test/java/com/github/kuangcp/queue/use/blocking/ReaderWriterTest.java">样例代码</a></li>
+</ul>
+</li>
+<li>
+<p>Clickhouse可以直接使用, 不需要额外的配置</p>
+</li>
+<li>
+<p>PostgreSQL 调整：</p>
+<ul>
+<li>executeQuery前 <strong>关闭 autoCommit</strong>，finally 开启，才会fetch指定的数据量,否则会拉取全部的数据到JVM。<a href="https://jdbc.postgresql.org/documentation/head/connect.html#connection-parameters">pg jdbc doc</a></li>
+</ul>
+</li>
+<li>
+<p>MySQL 调整：</p>
+<ul>
+<li>url配置需要添加 useCursorFetch=true 或者 关闭 autoCommit</li>
+</ul>
+</li>
+</ul>
+<h2 id="sqlexception">SQLException</h2>
+<p>大部分数据库厂商都会由此派生出自定义的异常，CK除外，因此支持JDBC通用数据库的平台需要做特殊处理。</p>
+<hr>
+<h1 id="厂商驱动">厂商驱动</h1>
+<h2 id="mysql">MySQL</h2>
 <ul>
 <li><a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-type-conversions.html">Java数据类型和MySQL数据类型对应</a><code>简单来说就是基本数据类型加上String是有对应的MySQL基本数据类型</code></li>
 </ul>
-<h2 id="java内置数据库derby">Java内置数据库Derby</h2>
+<h2 id="clickhouse">Clickhouse</h2>
 <blockquote>
-<p>在Java11中被移除了
-<a href="http://db.apache.org/derby/derby_comm.html">Derby</a></p>
+<p><a href="/Database/OLAP/Clickhouse.md#java">clickhouse-java</a></p>
 </blockquote>
-<p>TODO 数据库连接池 设计 ThreadLocal</p>
 <hr>
 <h1 id="tips">Tips</h1>
 <blockquote>
 <p><a href="https://blog.arstercz.com/mysql-connector-java-%e6%8f%92%e5%85%a5-utf8mb4-%e5%ad%97%e7%ac%a6%e5%a4%b1%e8%b4%a5%e9%97%ae%e9%a2%98%e5%a4%84%e7%90%86%e5%88%86%e6%9e%90/">mysql-connector-java 插入 utf8mb4 字符失败问题处理分析</a></p>
 </blockquote>
+<blockquote>
+<p>批量插入性能优化</p>
+</blockquote>
+<ul>
+<li>关闭事务，或者手动管理事务 循环插入前开启，插入完一批再提交</li>
+<li>多条 <code>insert values()</code> 改为一条 <code>insert values (),()</code></li>
+</ul>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-16
         
@@ -223,11 +453,11 @@
         <a class="prev" href="/post/database/postgresqladvance/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">PostgreSQL进阶</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/database/postgresql/">
             <span class="next-text nav-default">PostgreSQL</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -245,17 +475,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -263,11 +493,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -277,16 +507,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

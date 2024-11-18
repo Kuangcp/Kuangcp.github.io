@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JettyDesign - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Jetty Design 1.1. 宏观架构 1.2. 线程模型 💠 2024-06-15 11:05:37 Jetty Design Github: Jetty 宏观架构 线程模型 从抽象来看三者关系如下 但是由 ExecutionStrategy接口的实现来提供三者在" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/java/ecosystem/servlet/jettydesign/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="JettyDesign" />
+<meta property="og:description" content="💠 Jetty Design 1.1. 宏观架构 1.2. 线程模型 💠 2024-06-15 11:05:37 Jetty Design Github: Jetty 宏观架构 线程模型 从抽象来看三者关系如下 但是由 ExecutionStrategy接口的实现来提供三者在" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/ecosystem/servlet/jettydesign/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-06-15T11:01:15+00:00" />
+<meta property="article:modified_time" content="2024-06-15T11:01:15+00:00" />
+
+<meta itemprop="name" content="JettyDesign">
+<meta itemprop="description" content="💠 Jetty Design 1.1. 宏观架构 1.2. 线程模型 💠 2024-06-15 11:05:37 Jetty Design Github: Jetty 宏观架构 线程模型 从抽象来看三者关系如下 但是由 ExecutionStrategy接口的实现来提供三者在"><meta itemprop="datePublished" content="2024-06-15T11:01:15+00:00" />
+<meta itemprop="dateModified" content="2024-06-15T11:01:15+00:00" />
+<meta itemprop="wordCount" content="500">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JettyDesign"/>
+<meta name="twitter:description" content="💠 Jetty Design 1.1. 宏观架构 1.2. 线程模型 💠 2024-06-15 11:05:37 Jetty Design Github: Jetty 宏观架构 线程模型 从抽象来看三者关系如下 但是由 ExecutionStrategy接口的实现来提供三者在"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">JettyDesign</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-06-15 </span>
+        
+          <span class="more-meta"> 约 500 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#jetty-design">Jetty Design</a>
+      <ul>
+        <li><a href="#宏观架构">宏观架构</a></li>
+        <li><a href="#线程模型">线程模型</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2024-06-15T11:01:15" title="June 15, 2024">June 15, 2024</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#jetty-design">Jetty Design</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E5%AE%8F%E8%A7%82%E6%9E%B6%E6%9E%84">宏观架构</a></li>
+<li>1.2. <a href="#%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B">线程模型</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-06-15 11:05:37</p>
+<hr>
+<h1 id="jetty-design">Jetty Design</h1>
+<blockquote>
+<p><a href="https://github.com/jetty/jetty.project">Github: Jetty</a></p>
+</blockquote>
+<h2 id="宏观架构">宏观架构</h2>
+<h2 id="线程模型">线程模型</h2>
+<p>从抽象来看三者关系如下</p>
+<p><img src="/Java/Ecosystem/Servlet/img/001-jetty-selector.drawio.svg" alt=""></p>
+<p>但是由 ExecutionStrategy接口的实现来提供三者在运行时的多种组合方式 <a href="https://github.com/jetty/jetty.project/tree/jetty-12.0.x/jetty-core/jetty-util/src/main/java/org/eclipse/jetty/util/thread/strategy">strategy源码</a></p>
+<blockquote>
+<p>ProduceConsume</p>
+</blockquote>
+<p>一个线程顺序读请求和执行业务，即所有IO数据处理Connector和Handler 用的是一个线程（线程池里只有一个线程），实际上缺点很明显吞吐量不高</p>
+<blockquote>
+<p>ProduceExecuteConsume</p>
+</blockquote>
+<p>一个线程顺序读，线程池执行业务，类似于单Reactor多线程模型。</p>
+<blockquote>
+<p>ExecuteProduceConsume</p>
+</blockquote>
+<p>相较于传统的<a href="/Skills/CS/IO.md#Reactor">NIO Reactor</a>多Reactor多线程模型，主要的区别是 Connector和Handler在一个事件触发后是在同一个线程执行。<br>
+好处是IO接收的数据无需传递和线程上下文切换，充分利用CPU缓存，弊端是如果业务逻辑Handler阻塞或CPU计算消耗很长时间就会快速耗尽线程池线程，然后导致Connetcor没有线程资源执行，从而引发请求积压和拒绝。</p>
+<hr>
+<p>Jetty实际运行时采用的是 EatWhatYouKill 策略， 线程池线程充足时采用ExecuteProduceConsume和低线程资源时采用ProduceExecuteConsume，为了避免低线程资源情况时的请求拒绝问题，将请求积压起来等线程池平稳的消费执行完。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-06-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/ecosystem/netty/nettydesign/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">NettyDesign</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/ecosystem/servlet/jetty/">
+            <span class="next-text nav-default">Jetty</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

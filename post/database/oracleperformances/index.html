@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Oracle性能优化 - Mythos</title>
+  <title>Oracle性能优化 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="目录 start 1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/database/oracleperformances/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/database/oracleperformances/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -42,19 +42,15 @@
 <meta property="og:title" content="Oracle性能优化" />
 <meta property="og:description" content="目录 start 1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/database/oracleperformances/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/database/oracleperformances/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-16T17:26:53+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:26:53+00:00" />
+
 <meta itemprop="name" content="Oracle性能优化">
-<meta itemprop="description" content="目录 start 1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务">
-<meta itemprop="datePublished" content="2018-12-16T17:26:53+00:00" />
+<meta itemprop="description" content="目录 start 1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务"><meta itemprop="datePublished" content="2018-12-16T17:26:53+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:26:53+00:00" />
 <meta itemprop="wordCount" content="2462">
-
-
-
-<meta itemprop="keywords" content="Oracle," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Oracle," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Oracle性能优化"/>
 <meta name="twitter:description" content="目录 start 1.Oracle的体系结构 因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书 内存讲解 Oracle服务"/>
 
@@ -126,77 +122,90 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
             </div>
-          <span class="more-meta"> 2462 words </span>
-          <span class="more-meta"> 5 mins read </span>
+          <span class="more-meta"> 约 2462 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#因为太详细但是没有一个给出各个模块之间的关系显得特别凌乱所以还要参考大二下的书">因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书</a></li>
-    <li><a href="#内存讲解">内存讲解</a></li>
-    <li><a href="#oracle服务器---实例进程">Oracle服务器  = 实例+进程</a></li>
-    <li><a href="#oracle实例">Oracle实例</a></li>
-    <li><a href="#数据库的文件">数据库的文件：</a></li>
-    <li><a href="#与实例的连接">与实例的连接</a></li>
-    <li><a href="#连接方式">连接方式</a></li>
-    <li><a href="#一个服务器进程就拥有单独的不共享的pga-程序全局区">一个服务器进程就拥有单独的不共享的PGA 程序全局区</a></li>
-    <li><a href="#共享池">共享池</a>
+    <li><a href="#1oracle的体系结构">1.Oracle的体系结构</a>
       <ul>
-        <li><a href="#数据库高速缓冲区">数据库高速缓冲区</a></li>
-        <li><a href="#内存缓冲区顾问">内存缓冲区顾问</a></li>
-        <li><a href="#重做日志缓冲区">重做日志缓冲区</a></li>
-        <li><a href="#大池和java池">大池和Java池</a></li>
-        <li><a href="#内存缓冲区">内存缓冲区</a></li>
+        <li><a href="#因为太详细但是没有一个给出各个模块之间的关系显得特别凌乱所以还要参考大二下的书">因为太详细，但是没有一个给出各个模块之间的关系，显得特别凌乱，所以还要参考大二下的书</a></li>
+        <li><a href="#内存讲解">内存讲解</a></li>
+        <li><a href="#oracle服务器---实例进程">Oracle服务器  = 实例+进程</a></li>
+        <li><a href="#oracle实例">Oracle实例</a></li>
+        <li><a href="#数据库的文件">数据库的文件：</a></li>
+        <li><a href="#与实例的连接">与实例的连接</a></li>
+        <li><a href="#连接方式">连接方式</a></li>
+        <li><a href="#一个服务器进程就拥有单独的不共享的pga-程序全局区">一个服务器进程就拥有单独的不共享的PGA 程序全局区</a></li>
+        <li><a href="#共享池">共享池</a>
+          <ul>
+            <li><a href="#数据库高速缓冲区">数据库高速缓冲区</a></li>
+            <li><a href="#内存缓冲区顾问">内存缓冲区顾问</a></li>
+            <li><a href="#重做日志缓冲区">重做日志缓冲区</a></li>
+            <li><a href="#大池和java池">大池和Java池</a></li>
+            <li><a href="#内存缓冲区">内存缓冲区</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#初始化参数文件">初始化参数文件</a>
+    <li><a href="#2">2.</a></li>
+    <li><a href="#3oracle实例的管理">3.Oracle实例的管理</a>
       <ul>
-        <li></li>
-        <li><a href="#静态参数文件-文本文件">静态参数文件 （文本文件）</a></li>
-        <li><a href="#动态参数文件-二进制文件">动态参数文件 （二进制文件）</a></li>
+        <li><a href="#初始化参数文件">初始化参数文件</a>
+          <ul>
+            <li></li>
+            <li><a href="#静态参数文件-文本文件">静态参数文件 （文本文件）</a></li>
+            <li><a href="#动态参数文件-二进制文件">动态参数文件 （二进制文件）</a></li>
+          </ul>
+        </li>
+        <li><a href="#36-启动数据库">3.6 启动数据库</a></li>
+        <li><a href="#37-将数据库设为限制模式杀死普通用户利于维护">3.7 将数据库设为限制模式（杀死普通用户，利于维护）</a></li>
+        <li><a href="#39-关闭数据库的四种方式">3.9 关闭数据库的四种方式：</a></li>
       </ul>
     </li>
-    <li><a href="#36-启动数据库">3.6 启动数据库</a></li>
-    <li><a href="#37-将数据库设为限制模式杀死普通用户利于维护">3.7 将数据库设为限制模式（杀死普通用户，利于维护）</a></li>
-    <li><a href="#39-关闭数据库的四种方式">3.9 关闭数据库的四种方式：</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#数据字典简介">数据字典简介</a></li>
-    <li><a href="#数据字典中存放的信息">数据字典中存放的信息</a></li>
-    <li><a href="#数据字典部分使用">数据字典部分使用</a></li>
-    <li><a href="#动态视图v开头">动态视图(v$开头)</a></li>
-    <li><a href="#移动控制文件的示例">移动控制文件的示例</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#52-重做日志组">5.2 重做日志组</a></li>
-    <li><a href="#55-获取重做日志的信息">5.5 获取重做日志的信息</a></li>
-    <li><a href="#511-重做日志应用示例">5.11 重做日志应用示例</a>
+    <li><a href="#4-数据字典和控制文件">4 数据字典和控制文件</a>
       <ul>
-        <li></li>
+        <li><a href="#数据字典简介">数据字典简介</a></li>
+        <li><a href="#数据字典中存放的信息">数据字典中存放的信息</a></li>
+        <li><a href="#数据字典部分使用">数据字典部分使用</a></li>
+        <li><a href="#动态视图v开头">动态视图(v$开头)</a></li>
+        <li><a href="#移动控制文件的示例">移动控制文件的示例</a></li>
       </ul>
     </li>
-    <li><a href="#6表空间和数据文件的管理">6.表空间和数据文件的管理</a>
+    <li><a href="#5重做日志文件">5.重做日志文件</a>
       <ul>
-        <li><a href="#65-创建本地管理的表空间">6.5 创建本地管理的表空间</a></li>
-        <li><a href="#68-默认临时表空间">6.8 默认临时表空间</a></li>
-        <li><a href="#69-设置表空间脱机">6.9 设置表空间脱机</a></li>
-        <li><a href="#610-设置只读表空间">6.10 设置只读表空间</a></li>
+        <li><a href="#52-重做日志组">5.2 重做日志组</a></li>
+        <li><a href="#55-获取重做日志的信息">5.5 获取重做日志的信息</a></li>
+        <li><a href="#511-重做日志应用示例">5.11 重做日志应用示例</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#6表空间和数据文件的管理">6.表空间和数据文件的管理</a>
+          <ul>
+            <li><a href="#65-创建本地管理的表空间">6.5 创建本地管理的表空间</a></li>
+            <li><a href="#68-默认临时表空间">6.8 默认临时表空间</a></li>
+            <li><a href="#69-设置表空间脱机">6.9 设置表空间脱机</a></li>
+            <li><a href="#610-设置只读表空间">6.10 设置只读表空间</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-16T17:26:53" title="December 16, 2018">December 16, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p><strong>目录 start</strong></p>
 <ol>
@@ -303,7 +312,7 @@
 <h2 id="与实例的连接">与实例的连接</h2>
 <ul>
 <li>输入用户名和密码，就是一个用户进程，通过用户进程连接服务器进程，再连接到Oracle数据库上</li>
-<li>一个用户可以同时拥有多个会话（用一套帐号登录多次）</li>
+<li>一个用户可以同时拥有多个会话（用一套账号登录多次）</li>
 </ul>
 <h2 id="连接方式">连接方式</h2>
 <ul>
@@ -433,14 +442,14 @@ alter system kill session 杀死用户进程</p>
 <h3 id="65-创建本地管理的表空间">6.5 创建本地管理的表空间</h3>
 <ul>
 <li>create tablespace 名字</li>
-<li>datafile '' size 50m,'' size 30m</li>
+<li>datafile &rsquo;&rsquo; size 50m,&rsquo;&rsquo; size 30m</li>
 <li>extent management local</li>
 <li>uniform size 1m;</li>
 </ul>
 <h4 id="查询">查询</h4>
 <ul>
 <li>select tablespace_name,block_size,extent_management,segment_space_management from dba_tablespaces</li>
-<li>where tablespace_name like &lsquo;myth%';</li>
+<li>where tablespace_name like &lsquo;myth%&rsquo;;</li>
 </ul>
 <h3 id="68-默认临时表空间">6.8 默认临时表空间</h3>
 <ul>
@@ -481,17 +490,17 @@ alter system kill session 杀死用户进程</p>
 <ul>
 <li>自动扩展
 <ul>
-<li>alter database datafile '&rsquo; autoextent on next 1m;</li>
+<li>alter database datafile &rsquo;&rsquo; autoextent on next 1m;</li>
 </ul>
 </li>
 <li>手动重置数据文件大小
 <ul>
-<li>alter database datafile '' resize 100m;</li>
+<li>alter database datafile &rsquo;&rsquo; resize 100m;</li>
 </ul>
 </li>
 <li>添加数据文件
 <ul>
-<li>alter tablespace myth add datafile '' size 80m;</li>
+<li>alter tablespace myth add datafile &rsquo;&rsquo; size 80m;</li>
 </ul>
 </li>
 </ul>
@@ -499,7 +508,7 @@ alter system kill session 杀死用户进程</p>
 <h5 id="方法一">方法一：</h5>
 <p>该语句适用于没有活动的还原数据或者是临时段的非系统表空间中的数据文件，使用语句中表空间必须是脱机且目标数据文件必须存在</p>
 <ul>
-<li>alter tablespace 表空间名 rename datafile &lsquo;'[,''] to &lsquo;'[,'']
+<li>alter tablespace 表空间名 rename datafile &lsquo;&rsquo;[,&rsquo;&rsquo;] to &lsquo;&rsquo;[,&rsquo;&rsquo;]
 <ul>
 <li>1.使用数据字典查询所需信息</li>
 <li>2.将表空间置为脱机</li>
@@ -514,7 +523,7 @@ alter system kill session 杀死用户进程</p>
 <h5 id="方法二">方法二：</h5>
 <p>该语句适用于系统表空间和不能置为脱机的表空间的数据文件，要求使用该语句时数据库处于mount状态</p>
 <ul>
-<li>alter database 数据库名 rename file &lsquo;'[,''] to &lsquo;'[,'']
+<li>alter database 数据库名 rename file &lsquo;&rsquo;[,&rsquo;&rsquo;] to &lsquo;&rsquo;[,&rsquo;&rsquo;]
 <ul>
 <li>1.使用数据字典查询信息</li>
 <li>2.关闭数据库</li>
@@ -527,11 +536,11 @@ alter system kill session 杀死用户进程</p>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-16
         
@@ -548,11 +557,11 @@ alter system kill session 杀死用户进程</p>
         <a class="prev" href="/post/database/postgresql/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">PostgreSQL</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/database/mysqladvance/">
             <span class="next-text nav-default">MySQL进阶</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -570,17 +579,17 @@ alter system kill session 杀死用户进程</p>
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -588,11 +597,11 @@ alter system kill session 杀死用户进程</p>
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -602,16 +611,21 @@ alter system kill session 杀死用户进程</p>
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

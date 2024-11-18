@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Cache - Mythos</title>
+  <title>Cache - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 缓存 目录 end|2021-05-27 21:59| 缓存" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 缓存 1.1. 缓存淘汰算法 应用场景 2.1. 客户端 2.2. 服务端 2.3. 数据库 2.4. 分布式缓存 2.4.1. Ehcache 2.4.2. Redis cluster 场景 3.1. Hot Key 3.2. BigKey 3.3. 缓存雪崩 Cache Avalanche 3.4. 缓存穿透 Cache Penetration 3.5. 缓存击穿/崩溃 Cache Breakdown 3.6. 缓" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/cache/cache/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/cache/cache/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Cache" />
-<meta property="og:description" content="目录 start 缓存 目录 end|2021-05-27 21:59| 缓存" />
+<meta property="og:description" content="💠 缓存 1.1. 缓存淘汰算法 应用场景 2.1. 客户端 2.2. 服务端 2.3. 数据库 2.4. 分布式缓存 2.4.1. Ehcache 2.4.2. Redis cluster 场景 3.1. Hot Key 3.2. BigKey 3.3. 缓存雪崩 Cache Avalanche 3.4. 缓存穿透 Cache Penetration 3.5. 缓存击穿/崩溃 Cache Breakdown 3.6. 缓" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/cache/cache/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/cache/cache/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-05-13T11:15:40+00:00" />
 <meta property="article:modified_time" content="2019-05-13T11:15:40+00:00" />
+
 <meta itemprop="name" content="Cache">
-<meta itemprop="description" content="目录 start 缓存 目录 end|2021-05-27 21:59| 缓存">
-<meta itemprop="datePublished" content="2019-05-13T11:15:40+00:00" />
+<meta itemprop="description" content="💠 缓存 1.1. 缓存淘汰算法 应用场景 2.1. 客户端 2.2. 服务端 2.3. 数据库 2.4. 分布式缓存 2.4.1. Ehcache 2.4.2. Redis cluster 场景 3.1. Hot Key 3.2. BigKey 3.3. 缓存雪崩 Cache Avalanche 3.4. 缓存穿透 Cache Penetration 3.5. 缓存击穿/崩溃 Cache Breakdown 3.6. 缓"><meta itemprop="datePublished" content="2019-05-13T11:15:40+00:00" />
 <meta itemprop="dateModified" content="2019-05-13T11:15:40+00:00" />
-<meta itemprop="wordCount" content="11">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1454">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cache"/>
-<meta name="twitter:description" content="目录 start 缓存 目录 end|2021-05-27 21:59| 缓存"/>
+<meta name="twitter:description" content="💠 缓存 1.1. 缓存淘汰算法 应用场景 2.1. 客户端 2.2. 服务端 2.3. 数据库 2.4. 分布式缓存 2.4.1. Ehcache 2.4.2. Redis cluster 场景 3.1. Hot Key 3.2. BigKey 3.3. 缓存雪崩 Cache Avalanche 3.4. 缓存穿透 Cache Penetration 3.5. 缓存击穿/崩溃 Cache Breakdown 3.6. 缓"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,36 +120,253 @@
       <div class="post-meta">
         <span class="post-time"> 2019-05-13 </span>
         
-          <span class="more-meta"> 11 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 1454 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#缓存">缓存</a>
+      <ul>
+        <li><a href="#缓存淘汰算法">缓存淘汰算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#应用场景">应用场景</a>
+      <ul>
+        <li><a href="#客户端">客户端</a></li>
+        <li><a href="#服务端">服务端</a></li>
+        <li><a href="#数据库">数据库</a></li>
+        <li><a href="#分布式缓存">分布式缓存</a>
+          <ul>
+            <li><a href="#ehcache">Ehcache</a></li>
+            <li><a href="#redis-cluster">Redis cluster</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#场景">场景</a>
+      <ul>
+        <li><a href="#hot-key">Hot Key</a></li>
+        <li><a href="#bigkey">BigKey</a></li>
+        <li><a href="#缓存雪崩-cache-avalanche">缓存雪崩 Cache Avalanche</a></li>
+        <li><a href="#缓存穿透-cache-penetration">缓存穿透 Cache Penetration</a></li>
+        <li><a href="#缓存击穿崩溃-cache-breakdown">缓存击穿/崩溃 Cache Breakdown</a></li>
+        <li><a href="#缓存一致性">缓存一致性</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-05-13T11:15:40" title="May 13, 2019">May 13, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
 <li><a href="#%E7%BC%93%E5%AD%98">缓存</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-05-27 21:59</em>|</p>
+<ul>
+<li>1.1. <a href="#%E7%BC%93%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AE%97%E6%B3%95">缓存淘汰算法</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">应用场景</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF">客户端</a></li>
+<li>2.2. <a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF">服务端</a></li>
+<li>2.3. <a href="#%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a></li>
+<li>2.4. <a href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98">分布式缓存</a>
+<ul>
+<li>2.4.1. <a href="#ehcache">Ehcache</a></li>
+<li>2.4.2. <a href="#redis-cluster">Redis cluster</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E5%9C%BA%E6%99%AF">场景</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#hot-key">Hot Key</a></li>
+<li>3.2. <a href="#bigkey">BigKey</a></li>
+<li>3.3. <a href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9-cache-avalanche">缓存雪崩 Cache Avalanche</a></li>
+<li>3.4. <a href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F-cache-penetration">缓存穿透 Cache Penetration</a></li>
+<li>3.5. <a href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E5%B4%A9%E6%BA%83-cache-breakdown">缓存击穿/崩溃 Cache Breakdown</a></li>
+<li>3.6. <a href="#%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7">缓存一致性</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-09-06 11:36:43</p>
 <hr>
 <h1 id="缓存">缓存</h1>
+<blockquote>
+<p>用时效和空间换时间</p>
+</blockquote>
+<blockquote>
+<p>从Web应用系统的流程上可分为 客户端 服务端 数据库</p>
+</blockquote>
+<h2 id="缓存淘汰算法">缓存淘汰算法</h2>
+<ul>
+<li>
+<p>FIFO <code>First In First Out</code> 先进先出</p>
+<ul>
+<li>优点：实现简单</li>
+<li>缺点：未考虑数据访问频率和时间，和实际场景不贴和。</li>
+</ul>
+</li>
+<li>
+<p>LRU <code>Least Recently Used</code> 最近最久未使用</p>
+<ul>
+<li>实现方式：维护一个所有数据的链表，新数据插入到链表的头部，如果缓存满了，就会从链表尾部开始移除数据。</li>
+<li>优点：LRU考虑了最近的数据访问模式，对于局部性原理的表现优秀，简单实用</li>
+<li>缺点：不能体现数据的访问频率，如果数据最近被访问过，即使访问频度低也不会被淘汰。
+<ul>
+<li>如果一个数据在一分钟的前59秒被频繁访问，而在最后一秒无任何访问，但是有一批冷门数据在最后一秒进入缓存，那么热点数据可能会被淘汰掉。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>SLRU <code>Segmented LRU</code> 分段LRU</p>
+<ul>
+<li>实现方式：类似于内存分代，将缓存分为淘汰段，保护段，两个段都是LRU实现。
+<ul>
+<li>数据访问第一次被放入淘汰段，访问第二次才会升级到保护段</li>
+<li>保护段的数据要淘汰时，数据复制到淘汰段。淘汰段的数据要淘汰时就会被直接删除。</li>
+</ul>
+</li>
+<li>优点：抵御冷门数据引起热门数据被淘汰</li>
+<li>缺点：两段的容量设计需要更参考业务场景做调优</li>
+</ul>
+</li>
+<li>
+<p>LFU <code>Least Frequently Used</code> 最近最少频率使用</p>
+<ul>
+<li>实现方式：对每个在缓存中的数据进行计数，记录其被访问的次数</li>
+<li>优点：LFU能够较好地处理长期访问稳定、频率较高的情况，因为这样可以确保频繁访问的数据不容易被淘汰。</li>
+<li>缺点：对于一些暂时高频访问但之后不再访问的数据，LFU无法有效处理。因为这些数据的访问次数已经非常高，不容易被淘汰，可能造成缓存空间的浪费。
+<ul>
+<li>并且LFU需要维护所有对象的访问计数，这可能会消耗比较多的存储空间和计算资源。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>W-TinyLFU <code> Window Tiny Least Frequently Used</code> <a href="http://arxiv.org/pdf/1512.00727v2">论文 TinyLFU: A Highly Efficient Cache Admission Policy</a></p>
+<ul>
+<li>实现方式： <a href="https://juejin.cn/post/7144327955353698334">W-TinyLFU缓存淘汰策略 </a></li>
+<li>优点：
+<ul>
+<li>平衡了最近性和频率：与 LRU 相比，不仅考虑了使用频率，还计算了缓存的热门程度。与 LFU 相比，不会让以前非常热门但现在很少使用的数据长时间占用缓存。</li>
+<li>额外内存占用小： TinyLFU 使用一个固定大小的计数滤波器来跟踪访问频率，这使得其内存占用远低于传统的 LFU 策略。</li>
+<li>适应性强：可以更好地适应工作负载的变化，因为它对频率的计数有一个时间窗口</li>
+<li>避免缓存污染：由于它维护了一个 admission window，它可以避免一次性的、大规模的请求可能带来的缓存污染。</li>
+</ul>
+</li>
+<li>缺点：
+<ul>
+<li>需要维护额外的频率信息，SLRU等，增加了一些开销。</li>
+<li>不如 LRU 算法实现简单。对于不同的使用场景，需要调整参数以获得最佳性能。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="应用场景">应用场景</h1>
+<h2 id="客户端">客户端</h2>
+<blockquote>
+<p>浏览器</p>
+</blockquote>
+<ul>
+<li>静态资源缓存，Cookie，各种 *Storage， IndexDB</li>
+</ul>
+<blockquote>
+<p>PC端原生</p>
+</blockquote>
+<ul>
+<li>配置文件，SQLite，LevelDB</li>
+</ul>
+<h2 id="服务端">服务端</h2>
+<ul>
+<li>
+<p>应用内存: Java的 GuavaCache Caffeine</p>
+</li>
+<li>
+<p><a href="/Database/Redis.md">Redis</a></p>
+</li>
+<li>
+<p><a href="/Database/Memcache.md">Memcache</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="数据库">数据库</h2>
+<p>会话缓存</p>
+<p>MySQL Buffer Pool</p>
+<hr>
+<h2 id="分布式缓存">分布式缓存</h2>
+<blockquote>
+<p>使用分布式共识算法构建出一个集群，将读写压力摊分到集群内节点上。</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/talent-plan/tinykv">tinykv</a> 构建分布式 Key-Value 数据库的教程</li>
+</ul>
+<h3 id="ehcache">Ehcache</h3>
+<h3 id="redis-cluster">Redis cluster</h3>
+<p>一致性Hash实现数据在分区上的均匀分布</p>
+<hr>
+<h1 id="场景">场景</h1>
+<h2 id="hot-key">Hot Key</h2>
+<p>海量用户请求同一个key，引发整个链路的 网卡 带宽 CPU 出现瓶颈</p>
+<ul>
+<li>统计出hot key 将这批key分散在集群内多个节点上</li>
+<li>多级缓存，将流量的请求链路缩短</li>
+</ul>
+<h2 id="bigkey">BigKey</h2>
+<p>Value的内存占用很大，读写，加载容易超时的key</p>
+<ul>
+<li>拆分Key</li>
+</ul>
+<h2 id="缓存雪崩-cache-avalanche">缓存雪崩 Cache Avalanche</h2>
+<p>缓存层大量缓存过期，或者整个缓存层崩溃， 导致大量流量直接访问上游资源层</p>
+<h2 id="缓存穿透-cache-penetration">缓存穿透 Cache Penetration</h2>
+<p>缓存层和上游资源层都没有当前查询的数据</p>
+<h2 id="缓存击穿崩溃-cache-breakdown">缓存击穿/崩溃 Cache Breakdown</h2>
+<p>缓存层部分数据过期了，并且突增大量流量直接访问上游资源层，去查询这部分过期的数据</p>
+<h2 id="缓存一致性">缓存一致性</h2>
+<blockquote>
+<p><a href="http://kaito-kidd.com/2021/09/08/how-to-keep-cache-and-consistency-of-db/">缓存和数据库一致性问题，看这篇就够了 </a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://juejin.cn/post/7152670651302543397">参考: 关于缓存可靠性、关乎数据一致性 </a></p>
+</blockquote>
+<ul>
+<li>数据库更新 缓存更新</li>
+<li>数据库更新 缓存删除</li>
+</ul>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-05-13
         
@@ -165,14 +378,14 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/java/ecosystem/spi/">
+        <a class="prev" href="/post/java/advancedlearning/javaspi/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">SPI</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/java/advancedlearning/cache/caffeine/">
             <span class="next-text nav-default">Caffeine</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -190,17 +403,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -208,11 +421,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -222,16 +435,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

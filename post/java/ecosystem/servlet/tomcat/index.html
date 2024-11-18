@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Tomcat - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Tomcat 1.1. 目录结构 1.2. 配置运行 1.2.1. 配置解压方式的Tomcat 1.2.1.1. IDE中配置运行 1.2.2. 编码 1.2.3. 虚拟目录 1.2.3.1. 默认主页 1.2.3.2. 虚拟主机 1.2.3.3. 配置 GZip压缩 1.2.3.4. 配置IO方式 Tomcat" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/java/ecosystem/servlet/tomcat/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Tomcat" />
+<meta property="og:description" content="💠 Tomcat 1.1. 目录结构 1.2. 配置运行 1.2.1. 配置解压方式的Tomcat 1.2.1.1. IDE中配置运行 1.2.2. 编码 1.2.3. 虚拟目录 1.2.3.1. 默认主页 1.2.3.2. 虚拟主机 1.2.3.3. 配置 GZip压缩 1.2.3.4. 配置IO方式 Tomcat" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/ecosystem/servlet/tomcat/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-12-20T10:26:32+00:00" />
+<meta property="article:modified_time" content="2018-12-20T10:26:32+00:00" />
+
+<meta itemprop="name" content="Tomcat">
+<meta itemprop="description" content="💠 Tomcat 1.1. 目录结构 1.2. 配置运行 1.2.1. 配置解压方式的Tomcat 1.2.1.1. IDE中配置运行 1.2.2. 编码 1.2.3. 虚拟目录 1.2.3.1. 默认主页 1.2.3.2. 虚拟主机 1.2.3.3. 配置 GZip压缩 1.2.3.4. 配置IO方式 Tomcat"><meta itemprop="datePublished" content="2018-12-20T10:26:32+00:00" />
+<meta itemprop="dateModified" content="2018-12-20T10:26:32+00:00" />
+<meta itemprop="wordCount" content="1675">
+<meta itemprop="keywords" content="Tomcat," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tomcat"/>
+<meta name="twitter:description" content="💠 Tomcat 1.1. 目录结构 1.2. 配置运行 1.2.1. 配置解压方式的Tomcat 1.2.1.1. IDE中配置运行 1.2.2. 编码 1.2.3. 虚拟目录 1.2.3.1. 默认主页 1.2.3.2. 虚拟主机 1.2.3.3. 配置 GZip压缩 1.2.3.4. 配置IO方式 Tomcat"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Tomcat</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-20 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> Java </a>
+            </div>
+          <span class="more-meta"> 约 1675 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tomcat">Tomcat</a>
+      <ul>
+        <li><a href="#目录结构">目录结构</a></li>
+        <li><a href="#配置运行">配置运行</a>
+          <ul>
+            <li><a href="#配置解压方式的tomcat">配置解压方式的Tomcat</a></li>
+            <li><a href="#编码">编码</a></li>
+            <li><a href="#虚拟目录">虚拟目录</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#tomcat-native">Tomcat Native</a></li>
+    <li><a href="#tips">Tips</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-20T10:26:32" title="December 20, 2018">December 20, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#tomcat">Tomcat</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">目录结构</a></li>
+<li>1.2. <a href="#%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C">配置运行</a>
+<ul>
+<li>1.2.1. <a href="#%E9%85%8D%E7%BD%AE%E8%A7%A3%E5%8E%8B%E6%96%B9%E5%BC%8F%E7%9A%84tomcat">配置解压方式的Tomcat</a>
+<ul>
+<li>1.2.1.1. <a href="#ide%E4%B8%AD%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C">IDE中配置运行</a></li>
+</ul>
+</li>
+<li>1.2.2. <a href="#%E7%BC%96%E7%A0%81">编码</a></li>
+<li>1.2.3. <a href="#%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95">虚拟目录</a>
+<ul>
+<li>1.2.3.1. <a href="#%E9%BB%98%E8%AE%A4%E4%B8%BB%E9%A1%B5">默认主页</a></li>
+<li>1.2.3.2. <a href="#%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA">虚拟主机</a></li>
+<li>1.2.3.3. <a href="#%E9%85%8D%E7%BD%AE-gzip%E5%8E%8B%E7%BC%A9">配置 GZip压缩</a></li>
+<li>1.2.3.4. <a href="#%E9%85%8D%E7%BD%AEio%E6%96%B9%E5%BC%8F">配置IO方式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#tomcat-native">Tomcat Native</a></li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><a href="#tips">Tips</a></li>
+</ol>
+</li>
+</ul>
+<p>💠 2024-06-12 10:01:44</p>
+<hr>
+<h1 id="tomcat">Tomcat</h1>
+<blockquote>
+<p><a href="http://tomcat.apache.org/">官方网站</a></p>
+</blockquote>
+<ul>
+<li>官网上大致有：
+<ul>
+<li>Tomcat <code>7 8 8.5 9</code> 大版本</li>
+<li>Tomcat Native <code>优化Tomcat性能，提升数倍</code></li>
+<li>Apache Standard Taglib <code>JSTL的实现</code></li>
+<li>Tomcat Connectors <code>用于连接IIS Apache</code> <a href="http://tomcat.apache.org/connectors-doc/index.html">官方文档</a></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/35557373?group_id=967469270317457408">一款功能强大的Tomcat管理监控工具</a><br>
+<a href="https://github.com/psi-probe/psi-probe">psi-probe</a><code>Tomcat监控管理工具</code></p>
+</blockquote>
+<hr>
+<h2 id="目录结构">目录结构</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">├── bin 二进制文件, Shell脚本 
+</span></span><span class="line"><span class="cl">├── conf 配置
+</span></span><span class="line"><span class="cl">├── lib jar包
+</span></span><span class="line"><span class="cl">├── logs 日志
+</span></span><span class="line"><span class="cl">├── temp 缓存
+</span></span><span class="line"><span class="cl">├── webapps 应用, war发布的目录
+</span></span><span class="line"><span class="cl">└── work 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看Tomcat版本 <code>sh bin/version.sh</code></p>
+<h2 id="配置运行">配置运行</h2>
+<blockquote>
+<p>个人配置好的</p>
+</blockquote>
+<ul>
+<li>精简版, 适合放在服务器 <a href="http://cloud.kuangcp.top/tomcat-clean-8.5.31.zip">tomcat-clean-8.5.31</a> | <a href="http://cloud.kuangcp.top/tomcat-clean-9.0.8.zip">tomcat-clean-9.0.8</a></li>
+<li>个人配置版,适合个人使用 <a href="http://cloud.kuangcp.top/tomcat-admin-9.0.8.zip">tomcat-admin-9.0.8</a> | <a href="http://cloud.kuangcp.top/tomcat-admin-8.5.31.zip">tomcat-admin-8.5.31</a></li>
+</ul>
+<h3 id="配置解压方式的tomcat">配置解压方式的Tomcat</h3>
+<p><code>Windows 平台</code></p>
+<ol>
+<li>在setclasspath中把前几行关于JAVA_HOME，JRE_HOME的路径改成自己的</li>
+<li>系统中添加catalina_home环境变量</li>
+<li>运行tomcatw.exe配置里面所有的路径( JDK JRE )</li>
+<li>双击tomcat.exe启动Tomcat</li>
+</ol>
+<p><code>Linux 平台</code></p>
+<ul>
+<li>下载解压，然后 bin 目录下执行 <code>chmod +x *.sh</code></li>
+</ul>
+<hr>
+<blockquote>
+<p>配置管理账户</p>
+</blockquote>
+<p><code>配置管理账号 tomcat-users.xml 中的 tomcat-users 节点</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager&#34;</span><span class="nt">/&gt;</span>　  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-gui&#34;</span><span class="nt">/&gt;</span>　  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;admin&#34;</span><span class="nt">/&gt;</span>　  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;admin-gui&#34;</span><span class="nt">/&gt;</span>　  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;role</span> <span class="na">rolename=</span><span class="s">&#34;manager-script&#34;</span><span class="nt">/&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;user</span> <span class="na">username=</span><span class="s">&#34;tomcat&#34;</span> <span class="na">password=</span><span class="s">&#34;tomcat&#34;</span> <span class="na">roles=</span><span class="s">&#34;admin-gui,admin,manager-gui,manager,manager-script&#34;</span><span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>其中admin-gui是为了能访问manger的界面，manager-secret是为了可以上传war文件</li>
+</ul>
+<hr>
+<p><code>配置本机外可访问管理页面</code></p>
+<p>/conf/Catalina/localhost/ 下添加 manager.xml 文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;Context</span> <span class="na">privileged=</span><span class="s">&#34;true&#34;</span> <span class="na">antiResourceLocking=</span><span class="s">&#34;false&#34;</span>   
+</span></span><span class="line"><span class="cl">         <span class="na">docBase=</span><span class="s">&#34;${catalina.home}/webapps/manager&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">             <span class="nt">&lt;Valve</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.valves.RemoteAddrValve&#34;</span> <span class="na">allow=</span><span class="s">&#34;^.*$&#34;</span> <span class="nt">/&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/Context&gt;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="ide中配置运行">IDE中配置运行</h4>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI3MTEwODc5Ng==&amp;mid=401107149&amp;idx=1&amp;sn=908bd8ba76b38417570056795626c163&amp;scene=21#wechat_redirect">你一定不知道IDE里的Tomcat是怎么工作的！ </a></p>
+</blockquote>
+<ul>
+<li>虽然IDE也是引用到解压的Tomcat路径, 但是只是使用了可执行文件, 配置文件和一系列中间文件都是和原Tomcat隔离的, 这样也保证了原Tomcat能单独运行不受影响</li>
+</ul>
+<h3 id="编码">编码</h3>
+<ul>
+<li>编辑conf/下的server.xml，配置Connector项 <code>URIEncoding=&quot;UTF-8&quot;</code></li>
+<li>浏览器表单utf-8     xml utf-8  乱码 服务器   浏览器  乱码  使用response.setContentType(&ldquo;text/html; charset=utf-8&rdquo;);。</li>
+<li>无效方法response.setChaoactorEncoding; xml文件里面有乱码，saxreader会生成document错误。</li>
+<li>浏览器表单get方式：需要重新编码获得字符串    浏览器表单post方式 request.setCharactorEncoding(utf-8);</li>
+<li>自己建立的工程里面的web.xml继承了conf/web.xml.只需要重写自己的web.xml相关的配置的参数就可以覆盖其功能</li>
+</ul>
+<h3 id="虚拟目录">虚拟目录</h3>
+<p><code>指定webapp目录外的可访问的文件</code></p>
+<ol>
+<li>
+<p>方法1：conf/server.xml</p>
+<ul>
+<li>当中找到host标签里 添加一行 <code>&lt;Context path=&quot;/hello&quot; docBase=&quot;c:/mydsadf&quot;/&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>方法2：conf/catalina/localhost/myxml.xml</p>
+<ul>
+<li>context中添加 <code>&lt;Context  docBase=&quot;c:/mydsadf&quot;/&gt;</code></li>
+<li>访问方式 <code>http://localhsot:8080/myxml/</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="默认主页">默认主页</h4>
+<p><code>web.xml</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;welcome-file-list&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;welcome-file&gt;</span>index.html<span class="nt">&lt;/welcome-file&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/welcome-file-list&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="虚拟主机">虚拟主机</h4>
+<p><code>server.xml</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;host</span> <span class="na">name=</span><span class="s">&#34;www.baidu.com&#34;</span> <span class="na">appBase=</span><span class="s">&#34;c:/webA&#34;</span> 
+</span></span><span class="line"><span class="cl">    <span class="na">unpackWARs=</span><span class="s">&#34;true&#34;</span> <span class="na">autoDeploy=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Valve</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.valves.AccessLogValve&#34;</span> <span class="na">directory=</span><span class="s">&#34;logs&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="na">prefix=</span><span class="s">&#34;localhost_access_log.&#34;</span> <span class="na">suffix=</span><span class="s">&#34;.txt&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="na">pattern=</span><span class="s">&#34;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt; Context</span> <span class="na">path=</span><span class="s">&#34;/&#34;</span> <span class="na">docBase=</span><span class="s">&#34;d:/webA&#34;</span> <span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>File f=new File(&quot;/information.xml&quot;);</code>这个写法是错的，空指针异常</li>
+<li><code>request.getParameter</code>返回字符串，如果表单里面是空的，就返回长度为零的字符串。</li>
+</ul>
+<h4 id="配置-gzip压缩">配置 GZip压缩</h4>
+<blockquote>
+<p><a href="http://www.imooc.com/article/15304">tomcat nginx开启Gzip原博客</a></p>
+</blockquote>
+<ul>
+<li>修改配置文件：/conf/server.xml
+<code>原文件</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&#34;8080&#34;</span> <span class="na">protocol=</span><span class="s">&#34;HTTP/1.1&#34;</span> <span class="na">connectionTimeout=</span><span class="s">&#34;20000&#34;</span> <span class="na">redirectPort=</span><span class="s">&#34;8443&#34;</span> <span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>修改成</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&#34;8080&#34;</span> <span class="na">protocol=</span><span class="s">&#34;HTTP/1.1&#34;</span> <span class="na">connectionTimeout=</span><span class="s">&#34;20000&#34;</span> <span class="na">redirectPort=</span><span class="s">&#34;8443&#34;</span> <span class="na">compression=</span><span class="s">&#34;on&#34;</span> <span class="na">compressionMinSize=</span><span class="s">&#34;2048&#34;</span> <span class="na">noCompressionUserAgents=</span><span class="s">&#34;gozilla,traviata&#34;</span> <span class="na">compressableMimeType=</span><span class="s">&#34;text/html,text/xml,text/javascript,application/x-javascript,application/javascript,text/css,text/plain&#34;</span><span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="配置io方式">配置IO方式</h4>
+<blockquote>
+<p>默认http1.1是nio, 还有aio ajp bio</p>
+</blockquote>
+<hr>
+<h1 id="tomcat-native">Tomcat Native</h1>
+<blockquote>
+<p><a href="http://tomcat.apache.org/native-doc/">官方文档</a> | <a href="https://blog.csdn.net/shangruo/article/details/52776212">参考: tomcat安装与配置native,apr</a></p>
+</blockquote>
+<hr>
+<h1 id="tips">Tips</h1>
+<ul>
+<li>servletContextLisner 和Spring环境的加载顺序要注意</li>
+<li><a href="https://www.jianshu.com/p/576d356dc163">Tomcat启动卡住,因为random</a></li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="https://www.jqhtml.com/43116.html">Tomcat 启动报错SEVERE: Unable to process Jar entry</a></p>
+</blockquote>
+<ul>
+<li>表现
+<ul>
+<li>启动Tomcat 大量的 Unable to process Jar entry</li>
+<li>最后 Tomcat OOM</li>
+</ul>
+</li>
+<li>排查过程
+<ul>
+<li>首先判断为Maven缓存导致的问题, 下载下来的jar是有问题的, 但是通过比较 md5 发现文件是一致的</li>
+<li>然后搜索相关信息, javassist jar包依赖冲突, 也不是</li>
+</ul>
+</li>
+<li>技术原因分析
+<ul>
+<li>在这次遇到的问题是 spring-boot-autoconfigure 2.0.1.RELEASE 依赖不能和 Tomcat 7.0.55 兼容, 导致了 Unable to process Jar entry EOFException 报错</li>
+<li>但是这个报错不影响应用 深层次原因是 这个 autoconfigure 会尝试将项目所有依赖都加载扫描一次</li>
+<li>如果物理机或者容器内存不够, 就会直接down掉, 但是! 内存够的话 就不影响后续的启动, 除非应用确实需要使用SpringBoot框架的 2.0.1 版本</li>
+</ul>
+</li>
+<li>人为原因
+<ul>
+<li>没有做好依赖管理, 导致了 SpringBoot 被错误的引入</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-12-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/tomcat/">Tomcat</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java/alibabajavastandard/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">阿里巴巴开发手册</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java/tool/lombok/">
+            <span class="next-text nav-default">Lombok</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>计算机中的IO - Mythos</title>
+  <title>计算机中的IO - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 计算机中的IO 1.1. IO模型 1.1.1. Blocking IO 1.1.2. Nonblocking IO 1.1.3. IO multiplexing 1.1.4. Signal driven IO 1.1.5. Asynchronous IO 1.1.6. 经典比喻 1.2. 阻塞和非阻塞 1.3. 同步和异步 1.4. 同异步和阻塞 多路复用 2.1. 多路复用模型 2.1.1. Reactor 2.1.2. Proactor 2.1.3." /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/cs/io/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/cs/io/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="计算机中的IO" />
-<meta property="og:description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路" />
+<meta property="og:description" content="💠 计算机中的IO 1.1. IO模型 1.1.1. Blocking IO 1.1.2. Nonblocking IO 1.1.3. IO multiplexing 1.1.4. Signal driven IO 1.1.5. Asynchronous IO 1.1.6. 经典比喻 1.2. 阻塞和非阻塞 1.3. 同步和异步 1.4. 同异步和阻塞 多路复用 2.1. 多路复用模型 2.1.1. Reactor 2.1.2. Proactor 2.1.3." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/cs/io/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/cs/io/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-04-20T12:16:10+00:00" />
 <meta property="article:modified_time" content="2019-04-20T12:16:10+00:00" />
+
 <meta itemprop="name" content="计算机中的IO">
-<meta itemprop="description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路">
-<meta itemprop="datePublished" content="2019-04-20T12:16:10+00:00" />
+<meta itemprop="description" content="💠 计算机中的IO 1.1. IO模型 1.1.1. Blocking IO 1.1.2. Nonblocking IO 1.1.3. IO multiplexing 1.1.4. Signal driven IO 1.1.5. Asynchronous IO 1.1.6. 经典比喻 1.2. 阻塞和非阻塞 1.3. 同步和异步 1.4. 同异步和阻塞 多路复用 2.1. 多路复用模型 2.1.1. Reactor 2.1.2. Proactor 2.1.3."><meta itemprop="datePublished" content="2019-04-20T12:16:10+00:00" />
 <meta itemprop="dateModified" content="2019-04-20T12:16:10+00:00" />
-<meta itemprop="wordCount" content="5095">
-
-
-
-<meta itemprop="keywords" content="IO," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="5491">
+<meta itemprop="keywords" content="IO," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="计算机中的IO"/>
-<meta name="twitter:description" content="目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路"/>
+<meta name="twitter:description" content="💠 计算机中的IO 1.1. IO模型 1.1.1. Blocking IO 1.1.2. Nonblocking IO 1.1.3. IO multiplexing 1.1.4. Signal driven IO 1.1.5. Asynchronous IO 1.1.6. 经典比喻 1.2. 阻塞和非阻塞 1.3. 同步和异步 1.4. 同异步和阻塞 多路复用 2.1. 多路复用模型 2.1.1. Reactor 2.1.2. Proactor 2.1.3."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,97 +122,120 @@
         <div class="post-category">
             <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
             </div>
-          <span class="more-meta"> 5095 words </span>
-          <span class="more-meta"> 11 mins read </span>
+          <span class="more-meta"> 约 5491 字 </span>
+          <span class="more-meta"> 预计阅读 11 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#io模型">IO模型</a>
+    <li><a href="#计算机中的io">计算机中的IO</a>
       <ul>
-        <li><a href="#基础概念">基础概念</a></li>
-        <li><a href="#blocking-io">Blocking IO</a></li>
-        <li><a href="#nonblocking-io">Nonblocking IO</a></li>
-        <li><a href="#io-multiplexing">IO multiplexing</a></li>
-        <li><a href="#signal-driven-io">Signal driven IO</a></li>
-        <li><a href="#asynchronous-io">Asynchronous IO</a></li>
-        <li><a href="#经典比喻">经典比喻</a></li>
+        <li><a href="#io模型">IO模型</a>
+          <ul>
+            <li><a href="#blocking-io">Blocking IO</a></li>
+            <li><a href="#nonblocking-io">Nonblocking IO</a></li>
+            <li><a href="#io-multiplexing">IO multiplexing</a></li>
+            <li><a href="#signal-driven-io">Signal driven IO</a></li>
+            <li><a href="#asynchronous-io">Asynchronous IO</a></li>
+            <li><a href="#经典比喻">经典比喻</a></li>
+          </ul>
+        </li>
+        <li><a href="#阻塞和非阻塞">阻塞和非阻塞</a></li>
+        <li><a href="#同步和异步">同步和异步</a></li>
+        <li><a href="#同异步和阻塞">同异步和阻塞</a></li>
       </ul>
     </li>
-    <li><a href="#阻塞和非阻塞">阻塞和非阻塞</a></li>
-    <li><a href="#同步和异步">同步和异步</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#多路复用模型">多路复用模型</a>
+    <li><a href="#多路复用">多路复用</a>
       <ul>
-        <li><a href="#忙轮询">忙轮询</a></li>
-        <li><a href="#无差别轮询">无差别轮询</a></li>
-        <li><a href="#最小轮询">最小轮询</a></li>
-      </ul>
-    </li>
-    <li><a href="#io多路复用函数">IO多路复用函数</a>
-      <ul>
-        <li><a href="#select">select</a></li>
-        <li><a href="#poll">poll</a></li>
-        <li><a href="#epoll">epoll</a></li>
+        <li><a href="#多路复用模型">多路复用模型</a>
+          <ul>
+            <li><a href="#reactor">Reactor</a></li>
+            <li><a href="#proactor">Proactor</a></li>
+            <li><a href="#忙轮询">忙轮询</a></li>
+            <li><a href="#无差别轮询">无差别轮询</a></li>
+            <li><a href="#最小轮询">最小轮询</a></li>
+          </ul>
+        </li>
+        <li><a href="#io多路复用函数">IO多路复用函数</a>
+          <ul>
+            <li><a href="#select">select</a></li>
+            <li><a href="#poll">poll</a></li>
+            <li><a href="#epoll">epoll</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-04-20T12:16:10" title="April 20, 2019">April 20, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84io">计算机中的IO</a>
-<ol>
-<li><a href="#io%E6%A8%A1%E5%9E%8B">IO模型</a>
-<ol>
-<li><a href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5">基础概念</a></li>
-<li><a href="#blocking-io">Blocking IO</a></li>
-<li><a href="#nonblocking-io">Nonblocking IO</a></li>
-<li><a href="#io-multiplexing">IO multiplexing</a></li>
-<li><a href="#signal-driven-io">Signal driven IO</a></li>
-<li><a href="#asynchronous-io">Asynchronous IO</a></li>
-<li><a href="#%E7%BB%8F%E5%85%B8%E6%AF%94%E5%96%BB">经典比喻</a></li>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84io">计算机中的IO</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#io%E6%A8%A1%E5%9E%8B">IO模型</a>
+<ul>
+<li>1.1.1. <a href="#blocking-io">Blocking IO</a></li>
+<li>1.1.2. <a href="#nonblocking-io">Nonblocking IO</a></li>
+<li>1.1.3. <a href="#io-multiplexing">IO multiplexing</a></li>
+<li>1.1.4. <a href="#signal-driven-io">Signal driven IO</a></li>
+<li>1.1.5. <a href="#asynchronous-io">Asynchronous IO</a></li>
+<li>1.1.6. <a href="#%E7%BB%8F%E5%85%B8%E6%AF%94%E5%96%BB">经典比喻</a></li>
+</ul>
 </li>
-<li><a href="#%E9%98%BB%E5%A1%9E%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E">阻塞和非阻塞</a></li>
-<li><a href="#%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5">同步和异步</a></li>
-</ol>
+<li>1.2. <a href="#%E9%98%BB%E5%A1%9E%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E">阻塞和非阻塞</a></li>
+<li>1.3. <a href="#%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5">同步和异步</a></li>
+<li>1.4. <a href="#%E5%90%8C%E5%BC%82%E6%AD%A5%E5%92%8C%E9%98%BB%E5%A1%9E">同异步和阻塞</a></li>
+</ul>
 </li>
-<li><a href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8">多路复用</a>
-<ol>
-<li><a href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B">多路复用模型</a>
-<ol>
-<li><a href="#%E5%BF%99%E8%BD%AE%E8%AF%A2">忙轮询</a></li>
-<li><a href="#%E6%97%A0%E5%B7%AE%E5%88%AB%E8%BD%AE%E8%AF%A2">无差别轮询</a></li>
-<li><a href="#%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%AF%A2">最小轮询</a></li>
+<li>
+<ol start="2">
+<li><a href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8">多路复用</a></li>
 </ol>
+<ul>
+<li>2.1. <a href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8B">多路复用模型</a>
+<ul>
+<li>2.1.1. <a href="#reactor">Reactor</a></li>
+<li>2.1.2. <a href="#proactor">Proactor</a></li>
+<li>2.1.3. <a href="#%E5%BF%99%E8%BD%AE%E8%AF%A2">忙轮询</a></li>
+<li>2.1.4. <a href="#%E6%97%A0%E5%B7%AE%E5%88%AB%E8%BD%AE%E8%AF%A2">无差别轮询</a></li>
+<li>2.1.5. <a href="#%E6%9C%80%E5%B0%8F%E8%BD%AE%E8%AF%A2">最小轮询</a></li>
+</ul>
 </li>
-<li><a href="#io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E5%87%BD%E6%95%B0">IO多路复用函数</a>
-<ol>
-<li><a href="#select">select</a></li>
-<li><a href="#poll">poll</a></li>
-<li><a href="#epoll">epoll</a></li>
-</ol>
+<li>2.2. <a href="#io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E5%87%BD%E6%95%B0">IO多路复用函数</a>
+<ul>
+<li>2.2.1. <a href="#select">select</a></li>
+<li>2.2.2. <a href="#poll">poll</a></li>
+<li>2.2.3. <a href="#epoll">epoll</a></li>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2021-03-17 18:06</em>|</p>
+</ul>
+<p>💠 2024-06-16 16:40:46</p>
 <hr>
 <h1 id="计算机中的io">计算机中的IO</h1>
 <blockquote>
 <p><a href="https://blog.csdn.net/historyasamirror/article/details/5778378">参考: IO - 同步，异步，阻塞，非阻塞 </a></p>
 </blockquote>
 <p>IO在计算机中指 Input/Output，也就是输入和输出。由于程序和运行时数据是在内存中驻留，由CPU这个超快的计算核心来执行，涉及到数据交换的地方，通常是磁盘、网络等，就需要IO接口。</p>
+<blockquote>
+<p><a href="/Linux/Base/LinuxFile.md#io">Linux IO</a></p>
+</blockquote>
 <h2 id="io模型">IO模型</h2>
 <ul>
 <li>Blocking IO</li>
@@ -228,19 +247,6 @@
 <blockquote>
 <p><a href="https://www.ibm.com/developerworks/cn/linux/l-async/">参考: 使用异步 I/O 大大提高应用程序的性能</a></p>
 </blockquote>
-<h3 id="基础概念">基础概念</h3>
-<p>对于一个network IO (这里我们以read举例)，它会涉及到两个系统对象:</p>
-<ul>
-<li>调用这个 IO 的 用户线程 (process/thread)</li>
-<li>系统内核(kernel)</li>
-</ul>
-<p>当一个 read 操作发生时，它会经历两个阶段：</p>
-<ol>
-<li><code>等待数据准备</code> (Waiting for the data to be ready)</li>
-<li><code>将数据从内核缓存中拷贝到用户缓存(用户进程)中</code> (Copying the data from the kernel to the process)</li>
-</ol>
-<p>记住这两点很重要，因为这些IO Model的区别就是在两个阶段上各有不同的情况。</p>
-<p>同步和异步的概念描述的是用户线程与内核的交互方式 阻塞和非阻塞的概念描述的是用户线程调用内核IO操作的方式</p>
 <h3 id="blocking-io">Blocking IO</h3>
 <blockquote>
 <p>Blocking IO的特点就是在IO执行的两个阶段都被 block了</p>
@@ -268,11 +274,12 @@ select/epoll的优势<code>不在于单个连接能处理得更快，而在于�
 </blockquote>
 <p>用户进程发起read操作之后，立刻就可以开始去做其它的事。而另一方面，从kernel的角度，当它受到一个asynchronous read之后，首先它会立刻返回，所以不会对用户进程产生任何block。<br>
 然后kernel会等待数据准备完成，然后将数据拷贝到用户内存，当这一切都完成之后，kernel会给用户进程发送一个signal，告诉它read操作完成了。</p>
+<p>AIO适用于 IO操作量大，读写过程长的场景，但是缺点是应用系统处理异步API麻烦。</p>
 <h3 id="经典比喻">经典比喻</h3>
 <p>有 A，B，C，D 四个人在钓鱼 (BIO, NIO, IO multiplexing, AIO) :</p>
 <ul>
 <li>A 用的是最老式的鱼竿（只有线和竿），所以得一直守着，等到鱼上钩了再拉杆；</li>
-<li>B 用的鱼竿有浮漂，B就能和旁边的MM聊天，隔会再看看有没有鱼上钩，有的话就迅速拉杆；</li>
+<li>B 用的鱼竿有浮漂，B就能旁边泡茶，隔会再看看有没有鱼上钩，有的话就迅速拉杆；</li>
 <li>C 用的鱼竿和B差不多，但他想了一个好办法，<code>就是同时放好几根鱼竿</code>，然后守在旁边，一旦提示鱼上钩了，它就将对应的鱼竿拉起来； 这样一个人就能处理好多个鱼竿</li>
 <li>D 是个有钱人，干脆雇了一个人帮他钓鱼，一旦那个人把鱼钓上来了，就给D发个短信。</li>
 </ul>
@@ -285,25 +292,51 @@ select/epoll的优势<code>不在于单个连接能处理得更快，而在于�
 而 non-blocking IO 在 kernel 还未准备好数据的情况下会立刻返回, 该操作就是非阻塞的</p>
 <h2 id="同步和异步">同步和异步</h2>
 <p>同步和异步关注的是消息通信机制 (synchronous communication/ asynchronous communication)</p>
-<p>所谓同步，就是在发出一个<em>调用</em>时，在没有得到结果之前，该<em>调用</em>就不返回。但是一旦调用返回，就得到返回值了。 换句话说，就是由<em>调用者</em>主动等待这个<em>调用</em>的结果。</p>
+<p>所谓同步，就是在发出一个<em>调用</em>时，在没有得到结果之前，该<em>调用</em>就不返回。但是一旦调用返回，就得到返回值了。 换句话说，就是由<em>调用者</em>主动等待这个<em>调用</em>的结果。
+异步则是调用者调用就返回了，等操作系统来完成IO行为，并通知调用者（由于应用场景多变，这种方式下会受限于操作系统的调度不可控，所以一直没有得到广泛应用）。</p>
 <p>在说明synchronous IO和asynchronous IO的区别之前，需要先给出两者的定义。Stevens给出的定义（其实是POSIX的定义）是这样子的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    A synchronous I/O operation causes the requesting process to be blocked until that I/O operation completes;
-    An asynchronous I/O operation does not cause the requesting process to be blocked;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    A synchronous I/O operation causes the requesting process to be blocked until that I/O operation completes;
+</span></span><span class="line"><span class="cl">    An asynchronous I/O operation does not cause the requesting process to be blocked;
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>两者的区别就在于 synchronous IO 做 <code>IO operation</code> 的时候会将process阻塞。<br>
+</div><p>两者的区别就在于 synchronous IO 做 <code>IO operation</code> 的时候会将应用的 process 阻塞。<br>
 按照这个定义，之前所述的 blocking IO，non-blocking IO，IO multiplexing <code>都属于 synchronous IO</code>。<br>
 <code>在处理 IO 的时候，阻塞和非阻塞都是同步 IO</code>，只有使用特定API才是异步 IO： Linux aio, Windows IOCP</p>
 <p>有人可能会说，non-blocking IO 并没有被 block， 这是因为在第一阶段, 数据没有准备好就直接返回这里没有阻塞, 等数据准备好了就要执行第二阶段 数据复制 的操作, 这个操作是会阻塞对应的进程<br>
-而 asynchronous IO 则不一样，当进程发起 IO 操作之后，就直接返回，直到 kernel 发送一个信号，告诉进程说IO完成 <code>也就是数据复制完成后才通知</code><br>
+而 asynchronous IO 则不一样，当进程发起 IO 操作之后，就直接返回，直到 kernel 发送一个信号，通知应用进程说IO完成 <code>也就是数据复制完成后才通知</code><br>
 在这整个过程中，进程完全没有被block。</p>
 <hr>
+<h2 id="同异步和阻塞">同异步和阻塞</h2>
+<blockquote>
+<p><a href="https://oxnz.github.io/2016/10/13/linux-aio/">Linux AIO</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">阻塞</th>
+<th style="text-align:left">非阻塞</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">同步</td>
+<td style="text-align:left">read/write</td>
+<td style="text-align:left">read/write<br/> (O_NONBLOCK)</td>
+</tr>
+<tr>
+<td style="text-align:left">异步</td>
+<td style="text-align:left">I/O multiplexing <br/>(select/poll/epoll)</td>
+<td style="text-align:left">AIO</td>
+</tr>
+</tbody>
+</table>
 <p>阻塞，非阻塞：进程/线程要访问的数据是否就绪，进程/线程是否需要等待；<br>
 同步，异步：访问数据的方式，同步需要主动读写数据，在读写数据的过程中还是会阻塞；异步只需要I/O操作完成的通知，并不主动读写数据，由操作系统内核完成数据的读写。</p>
 <blockquote>
@@ -333,6 +366,26 @@ select/epoll的优势<code>不在于单个连接能处理得更快，而在于�
 <blockquote>
 <p><a href="https://www.artima.com/articles/io_design_patternsP.html">Comparing Two High-Performance I/O Design Patterns</a></p>
 </blockquote>
+<blockquote>
+<p><a href="https://www.xiaolincoding.com/os/8_network_system/reactor.html">高性能网络模式：Reactor 和 Proactor</a></p>
+</blockquote>
+<p>Reactor 可以理解为「来了事件操作系统通知应用进程，让应用进程来处理」，而 Proactor 可以理解为「来了事件操作系统来处理，处理完再通知应用进程」。
+因此，真正的大杀器还是 Proactor，它是采用异步 I/O 实现的异步网络模型，感知的是已完成的读写事件，而不需要像 Reactor 感知到事件后，还需要调用 read 来从内核中获取数据。
+不过，无论是 Reactor，还是 Proactor，都是一种基于「事件分发」的网络编程模式，区别在于 Reactor 模式是基于「待完成」的 I/O 事件，而 Proactor 模式则是基于「已完成」的 I/O 事件。</p>
+<h3 id="reactor">Reactor</h3>
+<ul>
+<li>Redis：单 Reactor 单进程</li>
+<li>Netty &amp; Memcache: 主从多Reactor 多线程</li>
+<li>Nginx： 主从Reactor 多进程 <em>进程职责做了调整</em></li>
+</ul>
+<blockquote>
+<p><a href="https://blog.csdn.net/qq_36389060/article/details/124232377">【Netty】模型篇一：Netty 线程模型架构 &amp; 工作原理 解读</a><code>包含了Reactor多种模式的图</code></p>
+</blockquote>
+<p><img src="/Skills/CS/img/001-reactor-multiple.drawio.svg" alt=""></p>
+<blockquote>
+<p><a href="http://velep.com/archives/1137.html">TCP Server处理多Client请求的方法—非阻塞accept与select</a><code>可以看到系统调用层面也是先调用select发现新连接后调用accept和read write</code> <a href="https://github.com/Kuangcp/LearnC/blob/master/network/tcp/nio-tcp.c">Github: Code</a></p>
+</blockquote>
+<h3 id="proactor">Proactor</h3>
 <h3 id="忙轮询">忙轮询</h3>
 <p>忙轮询方式是通过不停的把所有的流从头到尾轮询一遍，查询是否有流已经准备就绪，然后又从头开始。如果所有流都没有准备就绪，那么只会白白浪费CPU时间。</p>
 <h3 id="无差别轮询">无差别轮询</h3>
@@ -367,6 +420,9 @@ select/poll/epoll都是采用I/O多路复用机制的，其中select/poll是采�
 <p>poll还有一个特点是“水平触发”，如果报告了fd后，没有被处理，那么下次poll时会再次报告该fd。</p>
 <hr>
 <h3 id="epoll">epoll</h3>
+<blockquote>
+<p><a href="https://my.oschina.net/alchemystar/blog/3008840">参考: 从 linux 源码看 epoll</a></p>
+</blockquote>
 <p>epoll是在Linux内核2.6引进的，是select和poll函数的增强版。与select相比，epoll没有文件描述符数量的限制。<br>
 epoll使用一个文件描述符管理多个文件描述符，将用户关心的文件描述符事件存放到<code>内核的一个事件列表</code>中<br>
 这样在用户空间和内核空间<code>只需拷贝一次</code>, 因为用户空间和内核空间共用一块内存</p>
@@ -392,16 +448,19 @@ epoll使用一个文件描述符管理多个文件描述符，将用户关心的
 <p>如果没有大量的 idle-connection 或者 dead-connection，epoll 的效率并不会比 select/poll 高很多<br>
 但是当遇到大量的 idle-connection，就会发现 epoll 的效率大大高于 select/poll。</p>
 </blockquote>
+<blockquote>
+<p><a href="https://colobu.com/2019/02/27/1m-go-tcp-connection-2/">百万 Go TCP 连接的思考2: 百万连接的吞吐率和延迟 </a></p>
+</blockquote>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-04-20
         
@@ -415,14 +474,14 @@ epoll使用一个文件描述符管理多个文件描述符，将用户关心的
           <a href="/tags/io/">IO</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/skills/serialization/protobuf/">
+        <a class="prev" href="/post/skills/cs/generics/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Protobuf</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-default">泛型设计</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/java/java-nio/">
-            <span class="next-text nav-default">Java-NIO.md</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/java/advancedlearning/concurrency/executorandpool/">
+            <span class="next-text nav-default">线程池</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -440,17 +499,17 @@ epoll使用一个文件描述符管理多个文件描述符，将用户关心的
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -458,11 +517,11 @@ epoll使用一个文件描述符管理多个文件描述符，将用户关心的
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -472,16 +531,21 @@ epoll使用一个文件描述符管理多个文件描述符，将用户关心的
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

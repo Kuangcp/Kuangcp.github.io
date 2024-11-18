@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>JVM - Mythos</title>
+  <title>JVM - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 J" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 JVM 1.1. JVM参数 1.2. Unified JVM Logging 1.3. JVM内存参数 1.3.1. 容器内的JVM 1.3.2. 内存参数实践 JVM 基本结构 内存区域 3.1. 运行时数据区 3.1.1. 程序计数器 3.1.2. Java虚拟机栈 3.1.3. 本地方" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/jvm/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/jvm/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="JVM" />
-<meta property="og:description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 J" />
+<meta property="og:description" content="💠 JVM 1.1. JVM参数 1.2. Unified JVM Logging 1.3. JVM内存参数 1.3.1. 容器内的JVM 1.3.2. 内存参数实践 JVM 基本结构 内存区域 3.1. 运行时数据区 3.1.1. 程序计数器 3.1.2. Java虚拟机栈 3.1.3. 本地方" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/jvm/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/jvm/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-04-02T10:56:52+00:00" />
 <meta property="article:modified_time" content="2019-04-02T10:56:52+00:00" />
+
 <meta itemprop="name" content="JVM">
-<meta itemprop="description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 J">
-<meta itemprop="datePublished" content="2019-04-02T10:56:52+00:00" />
+<meta itemprop="description" content="💠 JVM 1.1. JVM参数 1.2. Unified JVM Logging 1.3. JVM内存参数 1.3.1. 容器内的JVM 1.3.2. 内存参数实践 JVM 基本结构 内存区域 3.1. 运行时数据区 3.1.1. 程序计数器 3.1.2. Java虚拟机栈 3.1.3. 本地方"><meta itemprop="datePublished" content="2019-04-02T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2019-04-02T10:56:52+00:00" />
-<meta itemprop="wordCount" content="3584">
-
-
-
-<meta itemprop="keywords" content="JVM," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="5913">
+<meta itemprop="keywords" content="JVM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JVM"/>
-<meta name="twitter:description" content="目录 start JVM 内存区域 运行时数据区 程序计数器 Java虚拟机栈 本地方法栈 Java堆 堆内存分配策略 方法区 运行时常量池 直接内存 元空间 JVM基本参数配置 J"/>
+<meta name="twitter:description" content="💠 JVM 1.1. JVM参数 1.2. Unified JVM Logging 1.3. JVM内存参数 1.3.1. 容器内的JVM 1.3.2. 内存参数实践 JVM 基本结构 内存区域 3.1. 运行时数据区 3.1.1. 程序计数器 3.1.2. Java虚拟机栈 3.1.3. 本地方"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,80 +122,132 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 3584 words </span>
-          <span class="more-meta"> 8 mins read </span>
+          <span class="more-meta"> 约 5913 字 </span>
+          <span class="more-meta"> 预计阅读 12 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#运行时数据区">运行时数据区</a>
+    <li><a href="#jvm">JVM</a>
       <ul>
-        <li><a href="#程序计数器">程序计数器</a></li>
-        <li><a href="#java虚拟机栈">Java虚拟机栈</a></li>
-        <li><a href="#本地方法栈">本地方法栈</a></li>
-        <li><a href="#java堆">Java堆</a></li>
-        <li><a href="#方法区">方法区</a></li>
-        <li><a href="#直接内存">直接内存</a></li>
+        <li><a href="#jvm参数">JVM参数</a></li>
+        <li><a href="#unified-jvm-logging">Unified JVM Logging</a></li>
+        <li><a href="#jvm内存参数">JVM内存参数</a>
+          <ul>
+            <li><a href="#容器内的jvm">容器内的JVM</a></li>
+            <li><a href="#内存参数实践">内存参数实践</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#元空间">元空间</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#hotspot-jvm">Hotspot JVM</a></li>
-    <li><a href="#openj9">OpenJ9</a></li>
-    <li><a href="#graalvm">GraalVM</a></li>
+    <li><a href="#jvm-基本结构">JVM 基本结构</a></li>
+    <li><a href="#内存区域">内存区域</a>
+      <ul>
+        <li><a href="#运行时数据区">运行时数据区</a>
+          <ul>
+            <li><a href="#程序计数器">程序计数器</a></li>
+            <li><a href="#java虚拟机栈">Java虚拟机栈</a></li>
+            <li><a href="#本地方法栈">本地方法栈</a></li>
+            <li><a href="#heap-堆">Heap 堆</a></li>
+            <li><a href="#方法区">方法区</a></li>
+            <li><a href="#direct-memory-直接内存">Direct Memory 直接内存</a></li>
+            <li><a href="#code-cache">Code Cache</a></li>
+          </ul>
+        </li>
+        <li><a href="#metaspace-元空间">Metaspace 元空间</a></li>
+        <li><a href="#native-memory">Native Memory</a></li>
+      </ul>
+    </li>
+    <li><a href="#jvm不同实现">JVM不同实现</a>
+      <ul>
+        <li><a href="#hotspot-jvm">Hotspot JVM</a></li>
+        <li><a href="#openj9">OpenJ9</a></li>
+        <li><a href="#graalvm">GraalVM</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-04-02T10:56:52" title="April 2, 2019">April 2, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
 <li><a href="#jvm">JVM</a></li>
-<li><a href="#%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F">内存区域</a>
-<ol>
-<li><a href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA">运行时数据区</a>
-<ol>
-<li><a href="#%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8">程序计数器</a></li>
-<li><a href="#java%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88">Java虚拟机栈</a></li>
-<li><a href="#%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88">本地方法栈</a></li>
-<li><a href="#java%E5%A0%86">Java堆</a>
-<ol>
-<li><a href="#%E5%A0%86%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5">堆内存分配策略</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#jvm%E5%8F%82%E6%95%B0">JVM参数</a></li>
+<li>1.2. <a href="#unified-jvm-logging">Unified JVM Logging</a></li>
+<li>1.3. <a href="#jvm%E5%86%85%E5%AD%98%E5%8F%82%E6%95%B0">JVM内存参数</a>
+<ul>
+<li>1.3.1. <a href="#%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84jvm">容器内的JVM</a></li>
+<li>1.3.2. <a href="#%E5%86%85%E5%AD%98%E5%8F%82%E6%95%B0%E5%AE%9E%E8%B7%B5">内存参数实践</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#jvm-%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84">JVM 基本结构</a></li>
 </ol>
 </li>
-<li><a href="#%E6%96%B9%E6%B3%95%E5%8C%BA">方法区</a>
-<ol>
-<li><a href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0">运行时常量池</a></li>
+<li>
+<ol start="3">
+<li><a href="#%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F">内存区域</a></li>
 </ol>
+<ul>
+<li>3.1. <a href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA">运行时数据区</a>
+<ul>
+<li>3.1.1. <a href="#%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8">程序计数器</a></li>
+<li>3.1.2. <a href="#java%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88">Java虚拟机栈</a></li>
+<li>3.1.3. <a href="#%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88">本地方法栈</a></li>
+<li>3.1.4. <a href="#heap-%E5%A0%86">Heap 堆</a>
+<ul>
+<li>3.1.4.1. <a href="#%E5%A0%86%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5">堆内存分配策略</a></li>
+</ul>
 </li>
-<li><a href="#%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98">直接内存</a></li>
-</ol>
+<li>3.1.5. <a href="#%E6%96%B9%E6%B3%95%E5%8C%BA">方法区</a>
+<ul>
+<li>3.1.5.1. <a href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0">运行时常量池</a></li>
+</ul>
 </li>
-<li><a href="#%E5%85%83%E7%A9%BA%E9%97%B4">元空间</a></li>
-</ol>
+<li>3.1.6. <a href="#direct-memory-%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98">Direct Memory 直接内存</a></li>
+<li>3.1.7. <a href="#code-cache">Code Cache</a></li>
+</ul>
 </li>
-<li><a href="#jvm%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE">JVM基本参数配置</a></li>
-<li><a href="#jvm%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0">JVM不同实现</a>
-<ol>
-<li><a href="#hotspot-jvm">Hotspot JVM</a></li>
-<li><a href="#openj9">OpenJ9</a></li>
-<li><a href="#graalvm">GraalVM</a></li>
-</ol>
+<li>3.2. <a href="#metaspace-%E5%85%83%E7%A9%BA%E9%97%B4">Metaspace 元空间</a></li>
+<li>3.3. <a href="#native-memory">Native Memory</a></li>
+</ul>
 </li>
+<li>
+<ol start="4">
+<li><a href="#jvm%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0">JVM不同实现</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-11-22 22:56</em>|</p>
+<ul>
+<li>4.1. <a href="#hotspot-jvm">Hotspot JVM</a></li>
+<li>4.2. <a href="#openj9">OpenJ9</a></li>
+<li>4.3. <a href="#graalvm">GraalVM</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-11-14 16:40:22</p>
 <hr>
 <h1 id="jvm">JVM</h1>
 <blockquote>
-<p>Oracle 默认采用的是 Hotspot JVM</p>
+<p>JVM结构及设计</p>
 </blockquote>
+<p>Oracle JDK 默认采用的是 Hotspot JVM</p>
 <blockquote>
 <p><a href="https://docs.oracle.com/javase/specs/">Java Language and Virtual Machine Specifications</a></p>
 </blockquote>
@@ -215,7 +263,176 @@
 <ul>
 <li><a href="https://club.perfma.com/">prefma</a></li>
 </ul>
+<h2 id="jvm参数">JVM参数</h2>
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html">Command Reference for JDK8</a> | <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/man/java.html">Command Reference for JDK17</a><br>
+<a href="https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html">Official: Java HotSpot VM Options</a><br>
+<a href="https://www.baeldung.com/jvm-parameters">Guide to the Most Important JVM Parameters</a></p>
+</blockquote>
+<ul>
+<li>
+<p><a href="/Java/AdvancedLearning/JavaDebug.md#%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95">远程调试</a></p>
+</li>
+<li>
+<p><code>-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false</code></p>
+<ul>
+<li>开启无需认证 非SSL的JMX端口: 9999</li>
+</ul>
+</li>
+<li>
+<p><code>-XX:+TraceClassLoading -XX:+TraceClassUnloading</code> 输出类装载/卸载日志，可用于排查类从哪个jar加载进入JVM的</p>
+<ul>
+<li>Java9及以后替代为： <code>-Xlog:class+load=info</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>OOM</p>
+</blockquote>
+<ul>
+<li><code>-XX:+HeapDumpOnOutOfMemoryError </code></li>
+<li><code>-XX:HeapDumpPath=./java_pid&lt;pid&gt;.hprof</code> 注意路径需要存在，JVM不会创建不存在的目录</li>
+<li><code>-XX:OnOutOfMemoryError=&quot;&lt; cmd args &gt;;&lt; cmd args &gt;&quot; </code></li>
+<li><code>-XX:+UseGCOverheadLimit</code></li>
+</ul>
+<blockquote>
+<p>字符串</p>
+</blockquote>
+<ul>
+<li>-XX:+UseStringCache</li>
+<li>-XX:+UseCompressedStrings</li>
+<li>-XX:+OptimizeStringConcat</li>
+<li>-XX:+UseStringDeduplication</li>
+</ul>
+<blockquote>
+<p>编译类参数</p>
+</blockquote>
+<ul>
+<li>CICompilerCount是JIT进行热点编译的线程数，和并发标记线程数一样，热点编译也是CPU密集型任务，默认值为2。
+在CICompilerCountPerCPU开启的时候（JDK7默认关闭，JDK8默认开启），手动指定CICompilerCount是不会生效的，JVM会使用系统CPU核数进行计算。
+所以当使用JRE8并且版本小于1.8.0_131，采用默认参数时，CICompilerCount会在20左右，对业务性能影响较大，特别是启动阶段。建议升级Java版本，特殊情况要使用老版本Java 8，请加上<code>-XX:CICompilerCount=[n]</code>, 同时不能指定-XX:+CICompilerCountPerCPU ，下表给出了生产环境下常见规格的推荐值。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">CPU核数</th>
+<th style="text-align:left">1</th>
+<th style="text-align:left">2</th>
+<th style="text-align:left">4</th>
+<th style="text-align:left">8</th>
+<th style="text-align:left">16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">推荐值</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">8</td>
+</tr>
+</tbody>
+</table>
+<h2 id="unified-jvm-logging">Unified JVM Logging</h2>
+<blockquote>
+<p><a href="https://openjdk.org/jeps/158">JEP 158: Unified JVM Logging</a></p>
+</blockquote>
+<p>Java9开始，整合了GC，类加载等日志配置方式，日志级别，输出方式 正交式声明使用，更统一及灵活。</p>
+<h2 id="jvm内存参数">JVM内存参数</h2>
+<blockquote>
+<p>堆(老年代 年轻代)，堆外，元空间，栈</p>
+</blockquote>
+<p>快速确认进程内存配置</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">工具</th>
+<th style="text-align:left">命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Arthas</td>
+<td style="text-align:left"><code>jvm</code></td>
+</tr>
+<tr>
+<td style="text-align:left">OpenJDK</td>
+<td style="text-align:left"><code>jcmd pid GC.heap_info</code></td>
+</tr>
+<tr>
+<td style="text-align:left">OracleJDK</td>
+<td style="text-align:left"><code>jmap -heap pid</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>-XX:CompressedClassSpaceSize=500m</code> 压缩的类元空间大小 默认是1g</li>
+<li><code>-XX:SurvivorRatio</code> 配置 Edgen 和 单个Survivor 的比例, 如果配置为2 则是 2:1:1。 <strong>默认是8</strong></li>
+<li><code>-XX:NewRatio</code>old/new 内存的比值 <strong>默认是2</strong></li>
+<li><code>-Xmn</code> MaxNewSize 默认值是<code>Xmx</code>的1/3 即最大堆内存 MaxHeapSize 的1/3</li>
+<li><code>-Xss</code> 设置 ThreadStackSize 线程的栈内存大小 默认值 1024k</li>
+</ul>
+<blockquote>
+<p>java -XX:+PrintFlagsFinal -version</p>
+</blockquote>
+<ul>
+<li><code>-XX:+PrintFlagsInitial</code> 输出初始默认值</li>
+<li><code>-XX:+PrintFlagsFinal</code> 输出JVM最终属性值
+<ul>
+<li>MaxHeapSize 最大堆内存</li>
+<li>MaxRAMFraction 默认最大内存占物理机内存的比例 JDK6，7，8 都是4 即1/4</li>
+<li>NUMA 机制</li>
+<li><code>java -XX:+PrintFlagsFinal -version | grep &quot;Use.*GC&quot;</code> 查看默认GC实现</li>
+</ul>
+</li>
+<li><code>-XshowSettings:VM</code> 展示VM和系统信息</li>
+</ul>
 <hr>
+<p>需要理解，但是不用，尽量使用明确的 Xmx Xms</p>
+<blockquote>
+<p><a href="https://www.baeldung.com/java-jvm-parameters-rampercentage">JVM Parameters InitialRAMPercentage, MinRAMPercentage, and MaxRAMPercentage</a></p>
+</blockquote>
+<ul>
+<li>MinRAMPercentage, MaxRAMPercentage 其实都是<strong>设置堆默认最大值</strong>的， Max 和 Min 换成 Big Small可能更好理解(大内存环境和小内存环境 <code>200M划分</code>)</li>
+<li><code>-XX:InitialRAMPercentage</code> 初始堆使用值 默认1.5625， 当配置了 <code>-Xms</code> 时，该配置将被忽略</li>
+<li>InitialRAMFraction MaxRAMFraction  MinRAMFraction DefaultMaxRAMFraction 4等分值</li>
+</ul>
+<hr>
+<h3 id="容器内的jvm">容器内的JVM</h3>
+<p>容器无法感知资源限制， 8U191/10b34 及以上版本才支持</p>
+<ul>
+<li>快速实验某个Java版本的默认参数和限制 docker run -m 100MB openjdk:8 java -XX:MinRAMPercentage=80.0 -XshowSettings:VM -version</li>
+<li><a href="http://www.techug.com/post/java-and-docker-memory-limits.html">参考: Java和Docker限制的那些事儿</a><code>天坑： 低版本的Jvm无法感知到Docker的资源限制</code></li>
+<li><input disabled="" type="checkbox"> 但是有的Linux版本在后续的版本也无法感知，例如 1.8.0_342 10.0.2 仍取的主机内存, Linux 5.15内核 Manjaro23.1</li>
+</ul>
+<ol>
+<li><a href="https://stackoverflow.com/questions/64262912/java-prior-to-jdk8-update-131-applications-running-in-docker-container-cpu-m">Java (prior to JDK8 update 131) applications running in docker container CPU / Memory issues?</a></li>
+<li><a href="https://dzone.com/articles/best-practices-java-memory-arguments-for-container">Best Practices: Java Memory Arguments for Containers</a></li>
+</ol>
+<p>总结： <strong>尽量使用 Xms Xmx</strong>，而不是 RAMPercentage RAMFractionc参数（还要结合容器或宿主机计算实际值），降低维护和理解成本，控制更灵活精确，且支持所有版本JVM，不用考虑兼容性问题</p>
+<p>参数：</p>
+<ul>
+<li>-XX:ActiveProcessorCount=$CONTAINER_CORE_LIMIT 强制设置CPU量 从downawrd_api获取</li>
+<li>-Xlog:os+container=logLevel JVM报告容器信息</li>
+<li>-XX:-UseContainerSupport 关闭容器支持，默认开启</li>
+</ul>
+<hr>
+<h3 id="内存参数实践">内存参数实践</h3>
+<blockquote>
+<p><a href="https://gceasy.ycrash.cn/gc-recommendations/benefits-of-setting-initial-and-maximum-memory-size.jsp">初始和最大堆内存设置为一样的好处</a>
+<a href="https://blog.ycrash.io/benefits-of-setting-initial-and-maximum-memory-size-to-the-same-value/">Benefits of setting initial and maximum memory size to the same value</a></p>
+</blockquote>
+<ul>
+<li>避免扩容的暂停事件，提前调度充足资源的容器防止运行期扩容而被Linux被OOMKiller杀掉</li>
+</ul>
+<blockquote>
+<p><a href="http://ifeve.com/useful-jvm-flags-part-1-jvm-types-and-compiler-modes-2/">参考: JVM实用参数（一）JVM类型以及编译器模式</a><br>
+<a href="http://xxfox.perfma.com/">xxfox</a><code>Jvm参数辅助工具</code><br>
+<a href="https://blog.mythsman.com/post/5d2c12cc67f841464434a3ec/">参考: JVM动态反优化</a></p>
+</blockquote>
+<hr>
+<h1 id="jvm-基本结构">JVM 基本结构</h1>
 <p><img src="img/004-jvm-structure.drawio.svg" alt="JVM基本结构"></p>
 <ul>
 <li>类加载器子系统
@@ -255,7 +472,18 @@
 </ul>
 </li>
 </ul>
+<hr>
 <h1 id="内存区域">内存区域</h1>
+<blockquote>
+<p><a href="https://developer.jdcloud.com/article/2740">谈JVM xmx, xms等内存相关参数合理性设置</a></p>
+</blockquote>
+<p>内存参数设置的考量：</p>
+<ul>
+<li>Xmx * 110% + MaxDirectMemorySize + 系统预留内存 &lt;= 容器内存</li>
+<li>Xmx * 110% 中额外的10%是留给其他堆外内存的，是个保守估计，个别业务运行时线程较多，需自行判断，上式中左侧还需加上Xss * 线程数</li>
+<li>系统预留内存512M到1G，视容器规格而定</li>
+<li>I/O较多的业务适当提高MaxDirectMemorySize比例</li>
+</ul>
 <h2 id="运行时数据区">运行时数据区</h2>
 <p><img src="img/001-jvm-runtime-memory.drawio.svg" alt=""></p>
 <p>线程私有的内存区域: 程序计数器 本地方法栈 虚拟机栈. 生命周期与线程保持一致</p>
@@ -300,7 +528,7 @@
 </ul>
 <h3 id="本地方法栈">本地方法栈</h3>
 <p>Native Method Stack, 与虚拟机栈所发挥的作用是相似的, 只不过虚拟机栈是为虚拟机执行Java方法服务, 本地方法栈是为了虚拟机使用 Native 方法服务</p>
-<h3 id="java堆">Java堆</h3>
+<h3 id="heap-堆">Heap 堆</h3>
 <blockquote>
 <p>Java虚拟机规范中的描述是 所有对象实例以及数组都是在堆上分配, 但是由于 JIT编译器 逃逸分析 栈上分配, 标量替换等技术, 就变得没那么绝对了</p>
 </blockquote>
@@ -351,16 +579,33 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 <p>方法区存在于永久代 Perm Gen, 对应于Java8中的MetaSpace</p>
 <p>用于存放 Class 相关信息, 常量, 静态变量, 访问修饰符, 字段描述, 方法描述, JIT编译器编译后的代码等数据<br>
 在 HotSpot 虚拟机上, 方法区也看做是 永久代 Permanent Gen, 两者关系是: 方法区是Java虚拟机规范, 永久代是方法区在Hotspot上的实现<br>
-从Java8开始, 永久代已经被 MetaSpace(操作的直接内存) 取代</p>
+从Java8开始, 永久代已经被 MetaSpace(操作系统的直接内存) 取代</p>
 <p>JDK7中符号表被移动到 Native Heap中，字符串常量池和类引用被移动到 Java Heap中。</p>
 <h4 id="运行时常量池">运行时常量池</h4>
 <p>运行时常量池是方法区的一部分, 用于存放编译期生成的各种字面量和符号引用,这部分内容将在类加载后进入方法区的运行时常量池存放.</p>
-<h3 id="直接内存">直接内存</h3>
+<h3 id="direct-memory-直接内存">Direct Memory 直接内存</h3>
 <p>直接内存并不是虚拟机运行时数据区的一部分, 也不是Java虚拟机规范中定义的内存区域. 但是这部分内存也被频繁地使用, 而且也可能导致 OutOfMemoryError</p>
 <p>NIO 会经常使用, 提高性能</p>
-<h2 id="元空间">元空间</h2>
+<h3 id="code-cache">Code Cache</h3>
+<blockquote>
+<p><a href="https://www.baeldung.com/jvm-code-cache">Introduction to JVM Code Cache</a></p>
+</blockquote>
+<hr>
+<h2 id="metaspace-元空间">Metaspace 元空间</h2>
 <blockquote>
 <p>MetaSpace Java8 引入, 取代了以往的 Perm Gen</p>
+</blockquote>
+<ul>
+<li>存放内容：
+<ul>
+<li>Klass结构</li>
+<li>匿名类， Lambda表达式</li>
+<li>String.intern 的字符串</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>特性</p>
 </blockquote>
 <ul>
 <li>充分利用了Java语言规范：类及相关的元数据的生命周期与类加载器的一致。</li>
@@ -373,71 +618,157 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 </ul>
 <blockquote>
 <p><a href="https://stuefe.de/posts/metaspace/metaspace-architecture/">参考: Metaspace Architecture</a><br>
-<a href="https://stuefe.de/posts/metaspace/what-is-compressed-class-space/">参考: What is Compressed Class Space?</a></p>
+<a href="https://stuefe.de/posts/metaspace/what-is-compressed-class-space/">参考: What is Compressed Class Space?</a><br>
+<a href="https://www.javadoop.com/post/metaspace">深入理解堆外内存 Metaspace</a></p>
 </blockquote>
-<hr>
-<h1 id="jvm基本参数配置">JVM基本参数配置</h1>
+<p><a href="https://heapdump.cn/article/210111">Metaspace 解密</a></p>
+<p>-XX:MaxMetaspaceSize 指定元空间的最大空间，默认值是无限（16EB）。
+-XX:MetaspaceSize 指定元空间首次扩充的大小，默认为20.75M</p>
+<p>由于MaxMetaspaceSize未指定时，默认无上限，所以需要特别关注内存泄露的问题，如果程序动态的创建了很多类，或出现过java.lang.OutOfMemoryError:Metaspace，建议明确指定-XX:MaxMetaspaceSize。<br>
+另外Metaspace实际分配的大小是随着需要逐步扩大的，<strong>每次扩大需要一次FGC</strong>，-XX:MetaspaceSize默认的值比较小，需要频繁GC扩充到需要的大小。类似日志可以看到Metaspace引起的FGC：<code>[Full GC (Metadata GC Threshold) ...]</code></p>
+<p>因此为减少预热影响，可以将-XX:MetaspaceSize，-XX:MaxMetaspaceSize指定成相同的值。</p>
+<h2 id="native-memory">Native Memory</h2>
+<p>Native Memory 主要是JNI、Deflater/Inflater、DirectByteBuffer（nio中会用到）使用的， 当发现Java进程的堆使用率不高，但是进程占用内存RSS很高，就要怀疑这块区域了</p>
+<ul>
+<li><a href="https://github.com/Kuangcp/JavaBase/blob/master/class/src/test/java/jvm/oom/DirectMemoryOOMTest.java">Github: 测试代码</a></li>
+<li><a href="https://stackoverflow.com/questions/2689914/how-to-see-the-memory-usage-of-nio-buffers">how to see memory useage of nio buffers</a></li>
+</ul>
 <blockquote>
-<p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html">JDK8 Java 参数概览</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1129904">参考: 聊聊JVM 堆外内存泄露的BUG是如何查找的</a><br>
+<a href="https://zhuanlan.zhihu.com/p/60976273">JAVA堆外内存排查小结</a></p>
 </blockquote>
 <ul>
-<li><code>-XX:SurvivorRatio</code> 配置 Edgen 和 单个Survivor 的比例, 如果配置为2 则是 2:1:1</li>
-<li><code>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000</code>  开启远程调试端口 8000
-<ul>
-<li>If you want to debug from start of application use <code>suspend=y</code> , this will keep remote application suspended until you connect from eclipse.</li>
-</ul>
+<li>
+<p><code>-XX:MaxDirectMemorySize</code> 限制最大内存，默认值为： MaxHeapSize - Survivor 。 <code>通过工具查看的话，值为0</code></p>
 </li>
-<li><code>-XX:CompressedClassSpaceSize=500m</code> 压缩类元空间大小 默认是1g</li>
-<li><code>-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false</code>
-<ul>
-<li>开启无需认证 非SSL的JMX端口: 9999</li>
-</ul>
+<li>
+<p>启用NMT: java -XX:NativeMemoryTracking=summary 或者 detail 开销更大一些</p>
 </li>
-<li><code>-XX:+TraceClassUnloading -XX:+TraceClassLoading</code> 打印类装载</li>
-<li><code>-Xloggc:/home/logs/gc.log</code></li>
-<li><code>-Xmn</code> TODO  未设置时默认值的计算方式</li>
+<li>
+<p>查看NMT: jcmd $pid VM.native_memory <code>[detail] 对应启用时设置，输出具体内存地址信息</code></p>
+</li>
 </ul>
-<hr>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">Native Memory Tracking:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Total: <span class="nv">reserved</span><span class="o">=</span>10019737KB, <span class="nv">committed</span><span class="o">=</span>997089KB reversed保留内存 commited实际提交内存
+</span></span><span class="line"><span class="cl">-                 Java Heap <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>8222720KB, <span class="nv">committed</span><span class="o">=</span>514048KB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span>mmap: <span class="nv">reserved</span><span class="o">=</span>8222720KB, <span class="nv">committed</span><span class="o">=</span>514048KB<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">-                     Class <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>1081845KB, <span class="nv">committed</span><span class="o">=</span>34165KB<span class="o">)</span> 存储类元数据信息
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span>classes <span class="c1">#3085)</span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>14837KB <span class="c1">#3960) </span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span>mmap: <span class="nv">reserved</span><span class="o">=</span>1067008KB, <span class="nv">committed</span><span class="o">=</span>19328KB<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">-                    Thread <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>54501KB, <span class="nv">committed</span><span class="o">=</span>54501KB<span class="o">)</span>  线程占用的空间 即54线程 54M：默认栈为1M需-Xss修改
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span>thread <span class="c1">#54)</span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span>stack: <span class="nv">reserved</span><span class="o">=</span>54272KB, <span class="nv">committed</span><span class="o">=</span>54272KB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>178KB <span class="c1">#318) </span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">arena</span><span class="o">=</span>52KB <span class="c1">#95)</span>
+</span></span><span class="line"><span class="cl">-                      Code <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>250763KB, <span class="nv">committed</span><span class="o">=</span>9551KB<span class="o">)</span> JIT代码缓存
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>1163KB <span class="c1">#2588) </span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span>mmap: <span class="nv">reserved</span><span class="o">=</span>249600KB, <span class="nv">committed</span><span class="o">=</span>8388KB<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">-                        GC <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>316571KB, <span class="nv">committed</span><span class="o">=</span>291487KB<span class="o">)</span> GC算法需要的内存空间
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>16151KB <span class="c1">#155) </span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span>mmap: <span class="nv">reserved</span><span class="o">=</span>300420KB, <span class="nv">committed</span><span class="o">=</span>275336KB<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">-                  Compiler <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>183KB, <span class="nv">committed</span><span class="o">=</span>183KB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>40KB <span class="c1">#208) </span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">arena</span><span class="o">=</span>142KB <span class="c1">#15)</span>
+</span></span><span class="line"><span class="cl">-                  Internal <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>84975KB, <span class="nv">committed</span><span class="o">=</span>84975KB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>84943KB <span class="c1">#16310) </span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span>mmap: <span class="nv">reserved</span><span class="o">=</span>32KB, <span class="nv">committed</span><span class="o">=</span>32KB<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">-                    Symbol <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>4984KB, <span class="nv">committed</span><span class="o">=</span>4984KB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>3633KB <span class="c1">#26295) </span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">arena</span><span class="o">=</span>1351KB <span class="c1">#1)</span>
+</span></span><span class="line"><span class="cl">-    Native Memory Tracking <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>982KB, <span class="nv">committed</span><span class="o">=</span>982KB<span class="o">)</span> NMT自身占用内存
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>163KB <span class="c1">#2304) </span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span>tracking <span class="nv">overhead</span><span class="o">=</span>818KB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-               Arena Chunk <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>2214KB, <span class="nv">committed</span><span class="o">=</span>2214KB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>2214KB<span class="o">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h1 id="jvm不同实现">JVM不同实现</h1>
 <h2 id="hotspot-jvm">Hotspot JVM</h2>
 <p>原先 SUN 公司开发, 现为 Oracle JDK 中默认JVM</p>
 <h2 id="openj9">OpenJ9</h2>
 <p>IBM主导开发, 捐赠给Eclipse基金会</p>
 <blockquote>
-<p><a href="http://www.eclipse.org/openj9/">Officail Site</a> | <a href="https://www.ibm.com/support/knowledgecenter/SSYKE2_8.0.0/com.ibm.java.vm.80.doc/docs/j9_intro.html">IBM原文</a></p>
+<p><a href="http://www.eclipse.org/openj9/">Officail Site</a> | <a href="https://www.ibm.com/support/knowledgecenter/SSYKE2_8.0.0/com.ibm.java.vm.80.doc/docs/j9_intro.html">IBM原文</a> | <a href="https://eclipse.dev/openj9/docs/">技术文档</a></p>
 </blockquote>
-<ul>
-<li><a href="https://github.com/eclipse/openj9">Github:</a></li>
-</ul>
 <blockquote>
 <p><a href="http://www.infoq.com/cn/news/2017/09/IBM-JVM-OpenJ9-Eclipse">参考: IBM开源JVM实现OpenJ9，并提交Eclipse基金会托管)</a>
 <a href="http://www.infoq.com/cn/news/2018/03/OMR-OpenJ9">参考: Eclipse Open J9：Eclipse OMR项目提供的开源JVM</a></p>
 </blockquote>
+<hr>
 <h2 id="graalvm">GraalVM</h2>
 <blockquote>
 <p><a href="https://www.graalvm.org/">Official Site</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://www.graalvm.org/docs/reference-manual/native-image/">native image</a></p>
+<p><a href="https://www.graalvm.org/latest/docs/getting-started/">Doc</a></p>
 </blockquote>
 <ul>
-<li>安装模块 <code>gu install native-image</code></li>
+<li>安装 graalvm <code>sdk install java 17.0.11-graal</code></li>
+<li>跟随样例中执行 native-image HelloWorld， 可以发现会占满16核CPU<code>AMD 3700x</code>和1G左右内存，20s才可以编译完成</li>
 </ul>
 <blockquote>
+<p><a href="https://www.graalvm.org/java/advantages/">Accelerating Java performance</a><code>基准测试宣称快于openjdk8和11 1.55倍</code>
+<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html">GraalVM Native Image Support</a></p>
+</blockquote>
+<hr>
+<blockquote>
 <p><a href="https://www.infoq.cn/article/2018%2F05%2Foracle-graalvm-v1">参考: Oracle 发布多语种虚拟机平台 GraalVM 1.0</a><br>
-<a href="https://zhuanlan.zhihu.com/p/35849246">参考: 全栈虚拟机GraalVM初体验</a><br>
-目前来看仅够实验，一个简短的Hello world 需要消耗40s 1g 内存才能编译成原生可执行程序</p>
+<a href="https://zhuanlan.zhihu.com/p/35849246">参考: 全栈虚拟机GraalVM初体验</a></p>
 </blockquote>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2019-04-02
         
@@ -454,11 +785,11 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
         <a class="prev" href="/post/java/advancedlearning/javaserialize/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Java中的序列化</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/skills/devops/elk/">
             <span class="next-text nav-default">ELK.md</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -476,17 +807,17 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -494,11 +825,11 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -508,16 +839,21 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

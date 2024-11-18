@@ -1,91 +1,100 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>计算机基础 on Mythos</title>
-    <link>https://blogs.kuangcp.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</link>
-    <description>Recent content in 计算机基础 on Mythos</description>
+    <title>计算机基础 on Mythos · Java Developer</title>
+    <link>https://www.kuangcp.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</link>
+    <description>Recent content in 计算机基础 on Mythos · Java Developer</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 20 Apr 2019 12:16:10 +0000</lastBuildDate><atom:link href="https://blogs.kuangcp.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 20 Apr 2019 12:16:10 +0000</lastBuildDate><atom:link href="https://www.kuangcp.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>计算机中的IO</title>
-      <link>https://blogs.kuangcp.top/post/skills/cs/io/</link>
+      <title>泛型设计</title>
+      <link>https://www.kuangcp.top/post/skills/cs/generics/</link>
       <pubDate>Sat, 20 Apr 2019 12:16:10 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/skills/cs/io/</guid>
-      <description>目录 start 计算机中的IO IO模型 基础概念 Blocking IO Nonblocking IO IO multiplexing Signal driven IO Asynchronous IO 经典比喻 阻塞和非阻塞 同步和异步 多路复用 多路复用模型 忙轮询 无差别轮询 最小轮询 IO多路</description>
+      <guid>https://www.kuangcp.top/post/skills/cs/generics/</guid>
+      <description>💠 Generics 1.1. 协变 逆变 元编程 💠 2024-05-17 19:49:18 Generics 泛型和元编程的模型：Java, Go, Rust, Swift, D等 generics 协变 逆变 协变(covariant)和逆变(contravariant)</description>
+    </item>
+    
+    <item>
+      <title>计算机中的IO</title>
+      <link>https://www.kuangcp.top/post/skills/cs/io/</link>
+      <pubDate>Sat, 20 Apr 2019 12:16:10 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/skills/cs/io/</guid>
+      <description>💠 计算机中的IO 1.1. IO模型 1.1.1. Blocking IO 1.1.2. Nonblocking IO 1.1.3. IO multiplexing 1.1.4. Signal driven IO 1.1.5. Asynchronous IO 1.1.6. 经典比喻 1.2. 阻塞和非阻塞 1.3. 同步和异步 1.4. 同异步和阻塞 多路复用 2.1. 多路复用模型 2.1.1. Reactor 2.1.2. Proactor 2.1.3.</description>
     </item>
     
     <item>
       <title>HTTP</title>
-      <link>https://blogs.kuangcp.top/post/skills/network/http/</link>
+      <link>https://www.kuangcp.top/post/skills/network/http/</link>
       <pubDate>Sun, 17 Mar 2019 14:23:29 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/skills/network/http/</guid>
-      <description>目录 start HTTP 请求方法 HTTP的状态码 HTTP 缓存 Session 和 Cookie Cookie Session HTTP各个实现版本 HTTP/0.9 HTTP/1.0 HTTP/1.1 HTTP/2 HTTP/3 HTTPS HTTPS 认证流程 HSTS CORS 跨域 目录 end|2021-06-05 18:22| HTTP HyperText Transfer Protocol 超文本传输协议 他是一种用于</description>
+      <guid>https://www.kuangcp.top/post/skills/network/http/</guid>
+      <description>💠 HTTP 1.1. URI URL 1.2. 请求方法 1.2.1. CONNECT 1.2.2. GET 1.2.3. POST 1.3. 请求 Content-Type 1.3.1. Form 1.4. Response响应 1.4.1. HTTP的响应状态码 1.4.2. Header 1.5. HTTP 缓存 1.6. Session 和 Cookie 1.6.1. Cookie 1.6.2. Session 1.7. Auth 1.7.1. Basic-Auth HTTP各个实现</description>
     </item>
     
     <item>
       <title>编译原理</title>
-      <link>https://blogs.kuangcp.top/post/skills/cs/compilingprinciple/</link>
+      <link>https://www.kuangcp.top/post/skills/cs/compilingprinciple/</link>
       <pubDate>Sun, 06 Jan 2019 14:33:13 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/skills/cs/compilingprinciple/</guid>
-      <description>目录 start 编译原理 编译技术 JIT AOT AST 目录 end|2020-06-24 02:06| 编译原理 编译技术 JIT Just in time 在运行时才将源码编译成机器码 AOT Ahead of time 预先将所源码编译成机器码 AST Abstract Syntax Tree 用处: 错误提</description>
+      <guid>https://www.kuangcp.top/post/skills/cs/compilingprinciple/</guid>
+      <description>💠 编译原理 1.1. 编译技术 1.1.1. JIT 1.1.2. AOT 词法分析 语法分析 3.1. AST 工具 4.1. Antlr 💠 2023-10-22 02:47 编译原理 最简单： 词法分析 -&amp;gt; 语法分析 -&amp;gt; 语义分析 -&amp;gt; 代码生成 前端 中端 后端 词法分析 -&amp;gt; 语</description>
     </item>
     
     <item>
       <title>时间</title>
-      <link>https://blogs.kuangcp.top/post/skills/cs/time/</link>
+      <link>https://www.kuangcp.top/post/skills/cs/time/</link>
       <pubDate>Thu, 20 Dec 2018 10:44:57 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/skills/cs/time/</guid>
-      <description>目录 start 时间 基础概念 GMT UTC CST DST 目录 end|2020-06-24 02:06| 时间 基础概念 GMT 格林尼治标准时间（Greenwich Mean Time，GMT）是指位于伦敦郊区的皇家格林尼治天文台</description>
+      <guid>https://www.kuangcp.top/post/skills/cs/time/</guid>
+      <description>💠 时间 1.1. 基础概念 1.1.1. GMT 1.1.2. UTC 1.2. 时区 1.2.1. CDT 1.2.2. CST 1.2.3. DST 💠 2024-09-12 16:01:31 时间 上下四方为宇，古往今来为宙 计算机内部的计时器为石英钟，存在误差，所以需要依靠NTP服务来</description>
     </item>
     
     <item>
       <title>多种配置文件格式</title>
-      <link>https://blogs.kuangcp.top/post/skills/cs/profile/</link>
+      <link>https://www.kuangcp.top/post/skills/cs/profile/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/skills/cs/profile/</guid>
-      <description>目录 start 配置文件格式 conf或者ini Toml HOCON Properties Java中的使用 XML YAML Java中的使用 JSON BSON Smile 目录 end|2020-07-05 14:58| 配置文件格式 conf或者ini 1 2 3 4 [main] debug=true [client] timeOut=10 Toml</description>
-    </item>
-    
-    <item>
-      <title>网络安全</title>
-      <link>https://blogs.kuangcp.top/post/skills/network/websecurity/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/skills/network/websecurity/</guid>
-      <description>目录 start 网络安全 中间人攻击 Web安全 Authenticate OAuth 2.0 JWT Verfication SSL TLS 数字证书 盗链与防盗链 工具或平台 攻击手段 ARP断网攻击 SYNFlood攻击 ClickJacking CSRF 解决方案 XSS 目录 end|2021-06-05</description>
-    </item>
-    
-    <item>
-      <title>计算机组成</title>
-      <link>https://blogs.kuangcp.top/post/skills/cs/computer/</link>
-      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
-      
-      <guid>https://blogs.kuangcp.top/post/skills/cs/computer/</guid>
-      <description>目录 start 计算机历史 起源 硬件系统 内存 硬盘 CPU MESI 键盘 操作系统 编程语言 语言的的演化 通用概念 缓存 目录 end|2020-04-30 14:20| 计算机历史 起源 硬件系统 博客:【不周山之读薄 CSA</description>
+      <guid>https://www.kuangcp.top/post/skills/cs/profile/</guid>
+      <description>💠 配置文件格式 1.1. conf或者ini 1.2. Toml 1.3. HOCON 1.4. Properties 1.4.1. Java中的使用 1.5. XML 1.6. YAML 1.6.1. Java中的使用 1.7. JSON 1.7.1. BSON 1.7.2. Smile 💠 2024-11-10 13:14:39 配置文件格式 conf或者ini 1</description>
     </item>
     
     <item>
       <title>计算机网络</title>
-      <link>https://blogs.kuangcp.top/post/skills/network/network/</link>
+      <link>https://www.kuangcp.top/post/skills/network/network/</link>
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/skills/network/network/</guid>
-      <description>目录 start 网络 相关书籍和资源 网络分层架构 物理层 数据链路层 网络层 IP协议 IP地址分类 无分类编址 CIDR ARP协议 ICMP协议 传输层 TCP UDP TCP UDP 对比 应用层 HTTP &amp;amp;</description>
+      <guid>https://www.kuangcp.top/post/skills/network/network/</guid>
+      <description>💠 网络 1.1. 相关书籍和资源 网络分层架构 2.1. 物理层 2.2. 数据链路层 2.3. 网络层 2.3.1. SDN 2.3.2. IP协议 2.3.2.1. IP地址分类 2.3.2.2. 无分类编址 CIDR 2.3.3. ARP协议 2.3.4. ICMP协议 2.4. 传输层 2.4.1.</description>
+    </item>
+    
+    <item>
+      <title>计算机组成</title>
+      <link>https://www.kuangcp.top/post/skills/cs/computer/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/skills/cs/computer/</guid>
+      <description>💠 计算机历史 1.1. 起源 硬件系统 2.1. 内存 2.2. 硬盘 2.3. CPU 2.3.1. 中断 2.3.2. MESI 2.4. 键盘 操作系统 编程语言 4.1. 语言的的演化 通用概念 5.1. 缓存 Tips 6.1. 死机 💠 2024-09-30 00:05:08 计算机历史 起源 硬件系统 博</description>
+    </item>
+    
+    <item>
+      <title>网络安全</title>
+      <link>https://www.kuangcp.top/post/skills/network/websecurity/</link>
+      <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
+      
+      <guid>https://www.kuangcp.top/post/skills/network/websecurity/</guid>
+      <description>💠 Web应用网络安全 1.1. 中间人攻击 1.2. 运营商劫持 Web安全 2.1. Authenticate 2.1.1. OAuth 2.0 2.1.2. JWT 2.1.2.1. 修改密码 2.1.2.2. 退出登录 2.2. Verfication 2.3. 盗链与防盗链 2.4. 工具或平台 攻击手段 3.1. ARP断网攻</description>
     </item>
     
     <item>
       <title>字符编码</title>
-      <link>https://blogs.kuangcp.top/post/skills/cs/characterencoding/</link>
+      <link>https://www.kuangcp.top/post/skills/cs/characterencoding/</link>
       <pubDate>Sun, 21 Oct 2018 10:56:52 +0000</pubDate>
       
-      <guid>https://blogs.kuangcp.top/post/skills/cs/characterencoding/</guid>
-      <description>目录 start 字符编码 ASCII ANSI Unicode UTF UTF-8 UTF-16 UTF-32 汉字编码发展史 Java中的编码 目录 end|2021-03-17 18:06| 字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 | 阮一峰的文章有哪些常</description>
+      <guid>https://www.kuangcp.top/post/skills/cs/characterencoding/</guid>
+      <description>💠 字符编码 1.1. ASCII 1.2. ANSI 1.3. Unicode 1.3.1. UTF 1.3.1.1. 关于 BOM 1.3.1.2. UTF-8 1.3.1.3. UTF-16 1.3.1.4. UTF-32 汉字编码发展史 Java中的编码 乱码 💠 2024-09-09 17:25:40 字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 |</description>
     </item>
     
   </channel>

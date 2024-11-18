@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Junit - Mythos</title>
+  <title>Junit - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 如何使用Junit 引入依赖 Maven项目 Gradle项目 编码规范 常用注解 Rule注解的使用 断言的使用 assertThat 参数化测试 测试套件 分类测试 Jun" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 如何使用Junit 1.1. 引入依赖 1.1.1. Maven项目 1.2. 编码规范 1.3. 常用注解 1.3.1. Rule注解的使用 1.4. 断言的使用 1.4.1. assertThat 1.5. 参数化测试 1.6. 分类测试 1.7. 测试套件 Jun" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/test/junit/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/test/junit/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Junit" />
-<meta property="og:description" content="目录 start 如何使用Junit 引入依赖 Maven项目 Gradle项目 编码规范 常用注解 Rule注解的使用 断言的使用 assertThat 参数化测试 测试套件 分类测试 Jun" />
+<meta property="og:description" content="💠 如何使用Junit 1.1. 引入依赖 1.1.1. Maven项目 1.2. 编码规范 1.3. 常用注解 1.3.1. Rule注解的使用 1.4. 断言的使用 1.4.1. assertThat 1.5. 参数化测试 1.6. 分类测试 1.7. 测试套件 Jun" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/test/junit/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/test/junit/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="Junit">
-<meta itemprop="description" content="目录 start 如何使用Junit 引入依赖 Maven项目 Gradle项目 编码规范 常用注解 Rule注解的使用 断言的使用 assertThat 参数化测试 测试套件 分类测试 Jun">
-<meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 如何使用Junit 1.1. 引入依赖 1.1.1. Maven项目 1.2. 编码规范 1.3. 常用注解 1.3.1. Rule注解的使用 1.4. 断言的使用 1.4.1. assertThat 1.5. 参数化测试 1.6. 分类测试 1.7. 测试套件 Jun"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="1938">
-
-
-
-<meta itemprop="keywords" content="测试,Junit," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1908">
+<meta itemprop="keywords" content="测试,Junit," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Junit"/>
-<meta name="twitter:description" content="目录 start 如何使用Junit 引入依赖 Maven项目 Gradle项目 编码规范 常用注解 Rule注解的使用 断言的使用 assertThat 参数化测试 测试套件 分类测试 Jun"/>
+<meta name="twitter:description" content="💠 如何使用Junit 1.1. 引入依赖 1.1.1. Maven项目 1.2. 编码规范 1.3. 常用注解 1.3.1. Rule注解的使用 1.4. 断言的使用 1.4.1. assertThat 1.5. 参数化测试 1.6. 分类测试 1.7. 测试套件 Jun"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,82 +122,105 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 1938 words </span>
-          <span class="more-meta"> 4 mins read </span>
+          <span class="more-meta"> 约 1908 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#引入依赖">引入依赖</a>
+    <li><a href="#如何使用junit">如何使用Junit</a>
       <ul>
-        <li><a href="#maven项目">Maven项目</a></li>
-        <li><a href="#gradle项目">Gradle项目</a></li>
+        <li><a href="#引入依赖">引入依赖</a>
+          <ul>
+            <li><a href="#maven项目">Maven项目</a></li>
+          </ul>
+        </li>
+        <li><a href="#编码规范">编码规范</a></li>
+        <li><a href="#常用注解">常用注解</a>
+          <ul>
+            <li><a href="#rule注解的使用">Rule注解的使用</a></li>
+          </ul>
+        </li>
+        <li><a href="#断言的使用">断言的使用</a>
+          <ul>
+            <li><a href="#assertthat">assertThat</a></li>
+          </ul>
+        </li>
+        <li><a href="#参数化测试">参数化测试</a></li>
+        <li><a href="#分类测试">分类测试</a></li>
+        <li><a href="#测试套件">测试套件</a></li>
       </ul>
     </li>
-    <li><a href="#编码规范">编码规范</a></li>
-    <li><a href="#常用注解">常用注解</a>
-      <ul>
-        <li><a href="#rule注解的使用">Rule注解的使用</a></li>
-      </ul>
-    </li>
-    <li><a href="#断言的使用">断言的使用</a>
-      <ul>
-        <li><a href="#assertthat">assertThat</a></li>
-      </ul>
-    </li>
-    <li><a href="#参数化测试">参数化测试</a></li>
-    <li><a href="#测试套件">测试套件</a></li>
-    <li><a href="#分类测试">分类测试</a></li>
+    <li><a href="#junit源码解析">Junit源码解析</a></li>
+    <li><a href="#如何使用junit5">如何使用JUnit5</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-11-21T10:56:52" title="November 21, 2018">November 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8junit">如何使用Junit</a>
-<ol>
-<li><a href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96">引入依赖</a>
-<ol>
-<li><a href="#maven%E9%A1%B9%E7%9B%AE">Maven项目</a></li>
-<li><a href="#gradle%E9%A1%B9%E7%9B%AE">Gradle项目</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8junit">如何使用Junit</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96">引入依赖</a>
+<ul>
+<li>1.1.1. <a href="#maven%E9%A1%B9%E7%9B%AE">Maven项目</a></li>
+</ul>
 </li>
-<li><a href="#%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83">编码规范</a></li>
-<li><a href="#%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3">常用注解</a>
-<ol>
-<li><a href="#rule%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%BF%E7%94%A8">Rule注解的使用</a></li>
-</ol>
+<li>1.2. <a href="#%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83">编码规范</a></li>
+<li>1.3. <a href="#%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3">常用注解</a>
+<ul>
+<li>1.3.1. <a href="#rule%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%BF%E7%94%A8">Rule注解的使用</a></li>
+</ul>
 </li>
-<li><a href="#%E6%96%AD%E8%A8%80%E7%9A%84%E4%BD%BF%E7%94%A8">断言的使用</a>
-<ol>
-<li><a href="#assertthat">assertThat</a></li>
-</ol>
+<li>1.4. <a href="#%E6%96%AD%E8%A8%80%E7%9A%84%E4%BD%BF%E7%94%A8">断言的使用</a>
+<ul>
+<li>1.4.1. <a href="#assertthat">assertThat</a></li>
+</ul>
 </li>
-<li><a href="#%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95">参数化测试</a></li>
-<li><a href="#%E6%B5%8B%E8%AF%95%E5%A5%97%E4%BB%B6">测试套件</a></li>
-<li><a href="#%E5%88%86%E7%B1%BB%E6%B5%8B%E8%AF%95">分类测试</a></li>
-</ol>
+<li>1.5. <a href="#%E5%8F%82%E6%95%B0%E5%8C%96%E6%B5%8B%E8%AF%95">参数化测试</a></li>
+<li>1.6. <a href="#%E5%88%86%E7%B1%BB%E6%B5%8B%E8%AF%95">分类测试</a></li>
+<li>1.7. <a href="#%E6%B5%8B%E8%AF%95%E5%A5%97%E4%BB%B6">测试套件</a></li>
+</ul>
 </li>
+<li>
+<ol start="2">
 <li><a href="#junit%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90">Junit源码解析</a></li>
+</ol>
+</li>
+<li>
+<ol start="3">
 <li><a href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8junit5">如何使用JUnit5</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-06-04 19:41</em>|</p>
+</li>
+</ul>
+<p>💠 2024-09-27 11:12:37</p>
 <hr>
 <h1 id="如何使用junit">如何使用Junit</h1>
 <blockquote>
 <p><a href="https://github.com/junit-team/junit4/blob/master/doc/ReleaseNotes4.12.md">Official doc: 4.12</a></p>
 </blockquote>
+<blockquote>
+<p><a href="https://pdai.tech/md/develop/ut/dev-ut-x-junit.html">单元测试 - JUnit4 详解</a></p>
+</blockquote>
 <ul>
 <li>Junit4已经停止更新了, 取而代之的是 Junit5 Jupiter, 但是Spring等众多框架仍使用Junit4</li>
 </ul>
 <blockquote>
-<p>基本使用
+<p>快速使用
 <em>JUnit</em></p>
 </blockquote>
 <ul>
@@ -222,14 +241,14 @@
 <h2 id="引入依赖">引入依赖</h2>
 <h3 id="maven项目">Maven项目</h3>
 <blockquote>
-<p><a href="https://github.com/zhuifengshen/Junit4Demo">参考项目</a></p>
+<p><a href="https://github.com/zhuifengshen/Junit4Demo">参考项目 Junit4Demo</a></p>
 </blockquote>
 <blockquote>
 <p>添加依赖</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -237,70 +256,24 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>4.12<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>4.12<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p>例如该项目结构</p>
-</blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">├── pom.xml
-└── src
-    ├── main
-    │   └── java
-    │       └── com
-    │           └── github
-    │               └── kuangcp
-    │                   └── Caculate.java
-    └── test
-        └── java
-            └── com
-                └── github
-                    └── kuangcp
-                        ├── AssertTest.java
-                        └── CaculateTest.java
-</code></pre></td></tr></table>
-</div>
-</div><blockquote>
-<p>如果是Idea然后使用快捷键Ctrl Shift T即可自动创建测试类</p>
-</blockquote>
-<h3 id="gradle项目">Gradle项目</h3>
-<hr>
+</div><hr>
 <h2 id="编码规范">编码规范</h2>
-<ul>
-<li>手动创建则一般按照规范是:
 <ol>
-<li>包结构要和被测试类保持一致</li>
+<li>测试类所在的包结构要和被测试类保持一致</li>
 <li>创建一个Java类, 命名为被测试类名字后加上Test</li>
 <li>测试具体的方法: test加上方法名</li>
 <li>所有测试方法返回类型必须为void且无参数</li>
 <li>测试方法里一般使用断言进行测试, 更为直观</li>
+<li>单元测试需要切断和隔离外部系统依赖，包括但不限于 操作系统特定目录下的文件，当前时间，网络环境，外部系统调用。</li>
 </ol>
-</li>
-</ul>
 <hr>
 <h2 id="常用注解">常用注解</h2>
 <ul>
@@ -340,13 +313,17 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Rule</span> 
-    <span class="kd">public</span> <span class="n">Timeout</span> <span class="n">timeout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timeout</span><span class="o">(</span><span class="n">1000</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">org.junit.rules.Timeout</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Rule</span> 
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Timeout</span> <span class="n">timeout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timeout</span><span class="o">(</span><span class="n">1000</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="断言的使用">断言的使用</h2>
@@ -413,7 +390,7 @@
 </table>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -437,29 +414,29 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AssertTest</span> <span class="o">{</span>
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testEquals</span><span class="o">(){</span>
-        <span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="s">&#34;hi&#34;</span><span class="o">;</span>
-        <span class="n">String</span> <span class="n">b</span> <span class="o">=</span> <span class="s">&#34;hi&#34;</span><span class="o">;</span>
-        <span class="c1">// 使用assert关键字
-</span><span class="c1"></span>        <span class="k">assert</span> <span class="n">a</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
-        <span class="c1">// 使用Assert类的静态工具方法
-</span><span class="c1"></span>        <span class="n">assertEquals</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
-        <span class="k">assert</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">;</span>
-        <span class="n">assertSame</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
-        <span class="c1">// 因为trim 调用了SubString方法， 而这个方法是返回一个new的字符串
-</span><span class="c1"></span>        <span class="n">String</span> <span class="n">c</span> <span class="o">=</span> <span class="s">&#34;h&#34;</span><span class="o">+</span><span class="s">&#34;i&#34;</span><span class="o">.</span><span class="na">trim</span><span class="o">();</span>
-        <span class="n">assertEquals</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
-        <span class="n">assertSame</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testFail</span><span class="o">(){</span>
-        <span class="n">fail</span><span class="o">();</span>
-        <span class="n">fail</span><span class="o">(</span><span class="s">&#34;测试失败&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AssertTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testEquals</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="s">&#34;hi&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">b</span> <span class="o">=</span> <span class="s">&#34;hi&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 使用assert关键字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">assert</span> <span class="n">a</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 使用Assert类的静态工具方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">assertEquals</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">assertSame</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 因为trim 调用了SubString方法， 而这个方法是返回一个new的字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">c</span> <span class="o">=</span> <span class="s">&#34;h&#34;</span><span class="o">+</span><span class="s">&#34;i&#34;</span><span class="o">.</span><span class="na">trim</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">assertEquals</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">assertSame</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testFail</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fail</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fail</span><span class="o">(</span><span class="s">&#34;测试失败&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="assertthat">assertThat</h3>
 <blockquote>
@@ -479,7 +456,7 @@
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -515,81 +492,102 @@
 </span><span class="lnt">34
 </span><span class="lnt">35
 </span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 1
-</span><span class="c1"></span>    <span class="nd">@RunWith</span><span class="o">(</span><span class="n">Parameterized</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CaculateTest</span> <span class="o">{</span>
-        <span class="c1">// 2
-</span><span class="c1"></span>        <span class="kd">private</span> <span class="kt">double</span> <span class="n">numA</span><span class="o">;</span>
-        <span class="kd">private</span> <span class="kt">double</span> <span class="n">numB</span><span class="o">;</span>
-        <span class="c1">// 3
-</span><span class="c1"></span>        <span class="kd">public</span> <span class="nf">CaculateTest</span><span class="o">(</span><span class="kt">double</span> <span class="n">numA</span><span class="o">,</span> <span class="kt">double</span> <span class="n">numB</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">numA</span> <span class="o">=</span> <span class="n">numA</span><span class="o">;</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">numB</span> <span class="o">=</span> <span class="n">numB</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="c1">// 4
-</span><span class="c1"></span>        <span class="nd">@Parameterized.Parameters</span>
-        <span class="kd">public</span> <span class="kd">static</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]&gt;</span> <span class="nf">data</span><span class="o">(){</span>
-            <span class="n">Object</span><span class="o">[][]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[][]{</span>
-                    <span class="o">{</span><span class="n">2</span><span class="o">,</span> <span class="n">4</span><span class="o">},</span>
-                    <span class="o">{</span><span class="n">3</span><span class="o">,</span> <span class="n">5</span><span class="o">}</span>
-            <span class="o">};</span>
-            <span class="k">return</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="c1">// 5
-</span><span class="c1"></span>        <span class="nd">@Test</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testAdd</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-            <span class="n">Caculate</span> <span class="n">caculate</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Caculate</span><span class="o">();</span>
-            <span class="kt">double</span> <span class="n">result</span> <span class="o">=</span> <span class="n">caculate</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">numA</span><span class="o">,</span> <span class="n">numB</span><span class="o">);</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;input &#34;</span><span class="o">+</span><span class="n">numA</span><span class="o">+</span><span class="s">&#34; + &#34;</span><span class="o">+</span><span class="n">numB</span><span class="o">+</span><span class="s">&#34; = &#34;</span><span class="o">+</span><span class="n">result</span><span class="o">);</span>
-            <span class="k">assert</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">0</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="c1">// 别的方法也是可以一样的使用, 而且所有的测试方法都受到了影响 都会迭代多次
-</span><span class="c1"></span>        <span class="nd">@Test</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDevide</span><span class="o">(){</span>
-            <span class="kt">double</span> <span class="n">result</span> <span class="o">=</span> <span class="n">caculate</span><span class="o">.</span><span class="na">devide</span><span class="o">(</span><span class="n">numA</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;input &#34;</span><span class="o">+</span><span class="n">numA</span><span class="o">+</span><span class="s">&#34; + &#34;</span><span class="o">+</span><span class="n">3</span><span class="o">+</span><span class="s">&#34; = &#34;</span><span class="o">+</span><span class="n">result</span><span class="o">);</span>
-            <span class="k">assert</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">0</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@RunWith</span><span class="o">(</span><span class="n">Parameterized</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CalculateTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">private</span> <span class="kt">double</span> <span class="n">numA</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="kt">double</span> <span class="n">numB</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">public</span> <span class="nf">CalculateTest</span><span class="o">(</span><span class="kt">double</span> <span class="n">numA</span><span class="o">,</span> <span class="kt">double</span> <span class="n">numB</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">numA</span> <span class="o">=</span> <span class="n">numA</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">numB</span> <span class="o">=</span> <span class="n">numB</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nd">@Parameterized.Parameters</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kd">static</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]&gt;</span> <span class="nf">data</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Object</span><span class="o">[][]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[][]{</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">{</span><span class="n">2</span><span class="o">,</span> <span class="n">4</span><span class="o">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">{</span><span class="n">3</span><span class="o">,</span> <span class="n">5</span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">};</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testAdd</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Calculate</span> <span class="n">calc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculate</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">double</span> <span class="n">result</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">numA</span><span class="o">,</span> <span class="n">numB</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;input &#34;</span> <span class="o">+</span> <span class="n">numA</span> <span class="o">+</span> <span class="s">&#34; + &#34;</span> <span class="o">+</span> <span class="n">numB</span> <span class="o">+</span> <span class="s">&#34; = &#34;</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">assert</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDivide</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Calculate</span> <span class="n">calc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculate</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">double</span> <span class="n">result</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">divide</span><span class="o">(</span><span class="n">numA</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;input &#34;</span> <span class="o">+</span> <span class="n">numA</span> <span class="o">+</span> <span class="s">&#34; / &#34;</span> <span class="o">+</span> <span class="n">3</span> <span class="o">+</span> <span class="s">&#34; = &#34;</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">assert</span> <span class="n">result</span> <span class="o">!=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p>最后执行testAdd 测试方法的结果是: 将data方法返回的数据迭代执行testAdd,</p>
+<p>执行效果: 将data方法返回的数据作为参数， 迭代执行单元测试方法</p>
 </blockquote>
-<h2 id="测试套件">测试套件</h2>
-<blockquote>
-<p>Junit 4允许通过使用测试套件类批量运行测试类 | 批量执行测试类, 组装为一个套件,一起执行</p>
-</blockquote>
-<ul>
-<li>在当前测试类上加上如下注解:
-<ul>
-<li><code>@RunWith(Suite.class)</code></li>
-<li><code>@SuiteClasses(TestClass1.class, TestClass2.class)</code></li>
-</ul>
-</li>
-</ul>
-<p>那么在执行当前测试的时候会依次执行注解中那些测试类.<br>
-注意最好不要在该测试类中书写测试方法, 因为运行不了, 但是如果写了, 直接运行该测试类却又不会受影响</p>
+<h2 id="分类测试">分类测试</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@RunWith</span><span class="o">(</span><span class="n">Suite</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="nd">@Suite.SuiteClasses</span><span class="o">({</span><span class="n">AnnotationTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">EvenNumberCheckerTest</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SuiteTest</span> <span class="o">{</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">FastTests</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">SlowTests</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="分类测试">分类测试</h2>
+</div><ul>
+<li>在测试方法或测试类上加注解 @Category 对类或方法做标记和分类，便于测试套件使用。
+<ul>
+<li>例如 测试方法上添加 <code>@Category(SlowTests.class)</code></li>
+<li>测试套件类上添加 <code>@Categories.IncludeCategory(SlowTests.class)</code> 将会标记该测试套件只会运行 SlowTests 标记的方法</li>
+</ul>
+</li>
+</ul>
+<h2 id="测试套件">测试套件</h2>
 <blockquote>
-<p>　<a href="http://blog.csdn.net/wanghantong/article/details/28897103">参考博客</a> |  <a href="http://blog.csdn.net/neven7/article/details/42836413">JUnit4&mdash; @Annotation注解总结</a></p>
+<p>Junit 4允许通过使用测试套件类批量运行测试类 | 批量执行测试类, 组装为一个套件,一起执行</p>
 </blockquote>
+<ul>
+<li>在当前测试类上加上注解: @RunWith @Suite.SuiteClasses, 执行当前类时会依次执行注解中的测试类.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="nd">@RunWith</span><span class="o">(</span><span class="n">Suite</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Suite.SuiteClasses</span><span class="o">({</span><span class="n">AnnotationTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">EvenNumberCheckerTest</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SuiteTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意最好不要在当前测试类中写测试方法, 因为运行不了, 但是如果写了, 直接运行该测试类却又不会受影响</p>
 <hr>
 <h1 id="junit源码解析">Junit源码解析</h1>
 <blockquote>
@@ -602,11 +600,8 @@
 <hr>
 <h1 id="如何使用junit5">如何使用JUnit5</h1>
 <blockquote>
-<p><a href="http://junit.org/junit5/docs/current/user-guide/">Official doc</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://blog.csdn.net/bitgnu/article/details/78715836">参考博客</a>
-<a href="https://www.ibm.com/developerworks/cn/java/j-junit5/index.html">参考: JUnit 5 新特性</a></p>
+<p><a href="http://junit.org/junit5/docs/current/user-guide/">Official doc</a><br>
+<a href="https://pdai.tech/md/develop/ut/dev-ut-x-junit5.html">单元测试 - Junit5 详解</a></p>
 </blockquote>
 <blockquote>
 <p><a href="http://junit5.doczh.cn/overview/">参考: JUnit5用户指南</a></p>
@@ -616,11 +611,11 @@
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-11-21
         
@@ -638,11 +633,11 @@
         <a class="prev" href="/post/java/ecosystem/jpa/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">JPA</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/java/advancedlearning/jvmperformance/">
-            <span class="next-text nav-default">Jvm 性能调优</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/java/advancedlearning/jvmtool/">
+            <span class="next-text nav-default">JVM 监控&amp;诊断</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -660,17 +655,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -678,11 +673,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -692,16 +687,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

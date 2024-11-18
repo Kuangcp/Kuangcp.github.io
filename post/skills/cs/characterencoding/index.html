@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>字符编码 - Mythos</title>
+  <title>字符编码 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start 字符编码 ASCII ANSI Unicode UTF UTF-8 UTF-16 UTF-32 汉字编码发展史 Java中的编码 目录 end|2021-03-17 18:06| 字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 | 阮一峰的文章有哪些常" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 字符编码 1.1. ASCII 1.2. ANSI 1.3. Unicode 1.3.1. UTF 1.3.1.1. 关于 BOM 1.3.1.2. UTF-8 1.3.1.3. UTF-16 1.3.1.4. UTF-32 汉字编码发展史 Java中的编码 乱码 💠 2024-09-09 17:25:40 字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 |" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/skills/cs/characterencoding/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/cs/characterencoding/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="字符编码" />
-<meta property="og:description" content="目录 start 字符编码 ASCII ANSI Unicode UTF UTF-8 UTF-16 UTF-32 汉字编码发展史 Java中的编码 目录 end|2021-03-17 18:06| 字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 | 阮一峰的文章有哪些常" />
+<meta property="og:description" content="💠 字符编码 1.1. ASCII 1.2. ANSI 1.3. Unicode 1.3.1. UTF 1.3.1.1. 关于 BOM 1.3.1.2. UTF-8 1.3.1.3. UTF-16 1.3.1.4. UTF-32 汉字编码发展史 Java中的编码 乱码 💠 2024-09-09 17:25:40 字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 |" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/skills/cs/characterencoding/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/cs/characterencoding/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-10-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-10-21T10:56:52+00:00" />
+
 <meta itemprop="name" content="字符编码">
-<meta itemprop="description" content="目录 start 字符编码 ASCII ANSI Unicode UTF UTF-8 UTF-16 UTF-32 汉字编码发展史 Java中的编码 目录 end|2021-03-17 18:06| 字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 | 阮一峰的文章有哪些常">
-<meta itemprop="datePublished" content="2018-10-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 字符编码 1.1. ASCII 1.2. ANSI 1.3. Unicode 1.3.1. UTF 1.3.1.1. 关于 BOM 1.3.1.2. UTF-8 1.3.1.3. UTF-16 1.3.1.4. UTF-32 汉字编码发展史 Java中的编码 乱码 💠 2024-09-09 17:25:40 字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 |"><meta itemprop="datePublished" content="2018-10-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-10-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="1574">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="2075">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="字符编码"/>
-<meta name="twitter:description" content="目录 start 字符编码 ASCII ANSI Unicode UTF UTF-8 UTF-16 UTF-32 汉字编码发展史 Java中的编码 目录 end|2021-03-17 18:06| 字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 | 阮一峰的文章有哪些常"/>
+<meta name="twitter:description" content="💠 字符编码 1.1. ASCII 1.2. ANSI 1.3. Unicode 1.3.1. UTF 1.3.1.1. 关于 BOM 1.3.1.2. UTF-8 1.3.1.3. UTF-16 1.3.1.4. UTF-32 汉字编码发展史 Java中的编码 乱码 💠 2024-09-09 17:25:40 字符编码 字符编码笔记：ASCII，Unicode 和 UTF-8 |"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,52 +122,81 @@
         <div class="post-category">
             <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
             </div>
-          <span class="more-meta"> 1574 words </span>
-          <span class="more-meta"> 4 mins read </span>
+          <span class="more-meta"> 约 2075 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#ascii">ASCII</a></li>
-    <li><a href="#ansi">ANSI</a></li>
-    <li><a href="#unicode">Unicode</a>
+    <li><a href="#字符编码">字符编码</a>
       <ul>
-        <li><a href="#utf">UTF</a></li>
+        <li><a href="#ascii">ASCII</a></li>
+        <li><a href="#ansi">ANSI</a></li>
+        <li><a href="#unicode">Unicode</a>
+          <ul>
+            <li><a href="#utf">UTF</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
+    <li><a href="#汉字编码发展史">汉字编码发展史</a></li>
+    <li><a href="#java中的编码">Java中的编码</a></li>
+    <li><a href="#乱码">乱码</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-10-21T10:56:52" title="October 21, 2018">October 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81">字符编码</a>
-<ol>
-<li><a href="#ascii">ASCII</a></li>
-<li><a href="#ansi">ANSI</a></li>
-<li><a href="#unicode">Unicode</a>
-<ol>
-<li><a href="#utf">UTF</a>
-<ol>
-<li><a href="#utf-8">UTF-8</a></li>
-<li><a href="#utf-16">UTF-16</a></li>
-<li><a href="#utf-32">UTF-32</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81">字符编码</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#ascii">ASCII</a></li>
+<li>1.2. <a href="#ansi">ANSI</a></li>
+<li>1.3. <a href="#unicode">Unicode</a>
+<ul>
+<li>1.3.1. <a href="#utf">UTF</a>
+<ul>
+<li>1.3.1.1. <a href="#%E5%85%B3%E4%BA%8E-bom">关于 BOM</a></li>
+<li>1.3.1.2. <a href="#utf-8">UTF-8</a></li>
+<li>1.3.1.3. <a href="#utf-16">UTF-16</a></li>
+<li>1.3.1.4. <a href="#utf-32">UTF-32</a></li>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
+<li>
+<ol start="2">
 <li><a href="#%E6%B1%89%E5%AD%97%E7%BC%96%E7%A0%81%E5%8F%91%E5%B1%95%E5%8F%B2">汉字编码发展史</a></li>
+</ol>
+</li>
+<li>
+<ol start="3">
 <li><a href="#java%E4%B8%AD%E7%9A%84%E7%BC%96%E7%A0%81">Java中的编码</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-03-17 18:06</em>|</p>
+</li>
+<li>
+<ol start="4">
+<li><a href="#%E4%B9%B1%E7%A0%81">乱码</a></li>
+</ol>
+</li>
+</ul>
+<p>💠 2024-09-09 17:25:40</p>
 <hr>
 <h1 id="字符编码">字符编码</h1>
 <blockquote>
@@ -189,13 +214,14 @@
 </ul>
 </li>
 </ul>
+<p>字符集编码发展史：ASCII，IOS-8859家族， GB2312和GBK等双字节家族， Unicode字符， UTF 编码家族</p>
 <hr>
 <h2 id="ascii">ASCII</h2>
 <blockquote>
 <p>ASCII (American Standard Code for Information Interchange)  美国信息交换标准代码 属于单字节内码 并等同于国际标准ISO/IEC 646</p>
 </blockquote>
 <blockquote>
-<p><a href="https://www.cnblogs.com/xmxu/archive/2012/07/10/2584032.html">0-255 ascii 码表</a></p>
+<p><a href="https://en.wikipedia.org/wiki/ASCII">Wiki: ASCII</a></p>
 </blockquote>
 <ol>
 <li>0-31 以及 127 是控制字符或通信专用字符 （其余为可显示字符）</li>
@@ -231,9 +257,9 @@
 <p><a href="https://en.wikipedia.org/wiki/Unicode">wikipedia</a> | <a href="http://www.unicode.org/">unicode.org</a> | <a href="https://unicode-table.com/cn/">unicode table</a></p>
 </blockquote>
 <p>Unicode 是一个囊括了世界上所有字符的字符集，其中每一个字符都对应有唯一的编码值, 但是并不是一个已实现的编码方案, 不能直接使用<br>
-其实现有 UTF-8 UTF-16 UTF-32 &hellip;  目前最新版本 11 已经包括 137,439 个字符</p>
+基于此套编码值的<strong>编码实现方案</strong>有 UTF-8 UTF-16 UTF-32 &hellip;  目前最新版本 Unicode11 已经包括 137,439 个字符</p>
 <blockquote>
-<p>问题 直接看, 看不到的字符, 可能带来一些坑</p>
+<p>问题: 直接看, 看不到的字符, 可能带来一些坑</p>
 </blockquote>
 <table>
 <thead>
@@ -279,18 +305,25 @@
 <p>UTF: UCS Transformation Format, UCS: Unicode Character Set</p>
 </blockquote>
 <p>它是将Unicode编码规则和计算机的实际编码对应起来的一个规则。现在流行的UTF有2种：UTF-8和UTF-16.</p>
-<hr>
-<blockquote>
-<p>关于 BOM</p>
-</blockquote>
+<h4 id="关于-bom">关于 BOM</h4>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Byte_order_mark">wiki: bom</a></li>
-<li><a href="https://www.zhihu.com/question/20167122">知乎: 「带 BOM 的 UTF-8」和「无 BOM 的 UTF-8」有什么区别？</a></li>
+<li><a href="https://www.zhihu.com/question/20167122">知乎: 「带 BOM 的 UTF-8」和「无 BOM 的 UTF-8」有什么区别？</a><code>微软的习惯</code></li>
 </ul>
 <ol>
 <li>找出含BOM的文件  <code>grep -r $'\xEF\xBB\xBF'</code></li>
 <li>通过 vim 进行转换, 去除 <code>:set nobomb</code> 加上 BOM <code>:set bomb</code></li>
 </ol>
+<p>思考： 对于有格式的文件来说，无BOM会更省事，但是无格式的文本处理，有BOM会更省事。</p>
+<ul>
+<li>例如Java的class文件，已经有魔数 CAFEBABE， 不需要BOM来标记字符集编码，因为是二进制的。 以及Linux世界的代码和脚本默认是UTF-8，也不需要BOM</li>
+<li>但是无格式的文本文件要判断文件的字符编码就会很麻烦了,某文本如果是有中文和英文，直到读取到中文的字节串才能直到整体编码是什么，意味着读完整个文件才能判断出编码，这一点是有风险的。
+<ul>
+<li><a href="https://tika.apache.org/0.8/api/org/apache/tika/parser/txt/CharsetDetector.html#detect()">CharsetDetector</a><code>如detect方法的注释所述</code>
+Return the charset that best matches the supplied input data. Note though, that because the detection only looks at the start of the input data, there is a possibility that the returned charset will fail to handle the full set of input data.</li>
+</ul>
+</li>
+</ul>
 <h4 id="utf-8">UTF-8</h4>
 <blockquote>
 <p>UTF-8 是一种Unicode的实现方式, 是一种<code>变长编码方案</code>(1-6 字节), 在表示中文时是采用 <code>三字节 四字节</code> 的方式, 已成为WEB领域事实标准编码</p>
@@ -444,20 +477,45 @@ GBK兼容GB2312，并增加了大量不常用汉字，还加入了几乎所有�
 </tr>
 </tbody>
 </table>
+<hr>
 <h1 id="java中的编码">Java中的编码</h1>
 <blockquote>
-<p><a href="https://www.jianshu.com/p/1b00ca07b003">字符、编码和Java中的编码</a></p>
+<p><a href="https://www.jianshu.com/p/1b00ca07b003">字符、编码和Java中的编码</a><br>
+<a href="https://www.baeldung.com/java-char-encoding">Guide to Character Encoding</a></p>
 </blockquote>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/499010/java-how-to-determine-the-correct-charset-encoding-of-a-stream">Java : How to determine the correct charset encoding of a stream</a></p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/albfernandez/juniversalchardet">juniversalchardet</a> 通过字节流识别文件的字符集编码
+<ul>
+<li>UniversalDetector.detectCharset 原理是读取4K字节长度的二进制流，识别编码方案，还会尝试解析BOM头。</li>
+</ul>
+</li>
+<li>GuessEncoding</li>
+<li>ICU4j</li>
+<li>cn.hutool.core.io.CharsetDetector 字节流识别文件的字符集编码
+<ul>
+<li>原理为读取512字节长度后，穷举字符集来解码</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="乱码">乱码</h1>
+<blockquote>
+<p>顾名思义则是用了错误的编码方案去对二进制流解码</p>
+</blockquote>
+<p><img src="./img/char-error-decode-situation.webp" alt=""></p>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-10-21
         
@@ -472,11 +530,11 @@ GBK兼容GB2312，并增加了大量不常用汉字，还加入了几乎所有�
         <a class="prev" href="/post/java/tool/idea/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">IDEA</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/myblog/2018-3-15-install-deepin/">
             <span class="next-text nav-default">双硬盘安装Deepin15.5</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -494,17 +552,17 @@ GBK兼容GB2312，并增加了大量不常用汉字，还加入了几乎所有�
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -512,11 +570,11 @@ GBK兼容GB2312，并增加了大量不常用汉字，还加入了几乎所有�
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -526,16 +584,21 @@ GBK兼容GB2312，并增加了大量不常用汉字，还加入了几乎所有�
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

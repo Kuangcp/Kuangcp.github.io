@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Arch - Mythos</title>
+  <title>Arch - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start Arch 包管理 Pacman snap Yaourt Yay Tips 目录 end|2021-06-11 21:58| Arch 参考: 为什么 Archlinux 不适合服务器使用 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. Pacman 1.2.2. Yay 1.2.3. Snap Tips 💠 2024-11-14 23:06:22 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件包推荐" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/linux/arch/arch/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/arch/arch/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Arch" />
-<meta property="og:description" content="目录 start Arch 包管理 Pacman snap Yaourt Yay Tips 目录 end|2021-06-11 21:58| Arch 参考: 为什么 Archlinux 不适合服务器使用 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需" />
+<meta property="og:description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. Pacman 1.2.2. Yay 1.2.3. Snap Tips 💠 2024-11-14 23:06:22 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件包推荐" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/linux/arch/arch/" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/arch/arch/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-21T10:55:04+00:00" />
 <meta property="article:modified_time" content="2018-12-21T10:55:04+00:00" />
+
 <meta itemprop="name" content="Arch">
-<meta itemprop="description" content="目录 start Arch 包管理 Pacman snap Yaourt Yay Tips 目录 end|2021-06-11 21:58| Arch 参考: 为什么 Archlinux 不适合服务器使用 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需">
-<meta itemprop="datePublished" content="2018-12-21T10:55:04+00:00" />
+<meta itemprop="description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. Pacman 1.2.2. Yay 1.2.3. Snap Tips 💠 2024-11-14 23:06:22 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件包推荐"><meta itemprop="datePublished" content="2018-12-21T10:55:04+00:00" />
 <meta itemprop="dateModified" content="2018-12-21T10:55:04+00:00" />
-<meta itemprop="wordCount" content="614">
-
-
-
-<meta itemprop="keywords" content="Arch,基础," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1110">
+<meta itemprop="keywords" content="Arch,基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Arch"/>
-<meta name="twitter:description" content="目录 start Arch 包管理 Pacman snap Yaourt Yay Tips 目录 end|2021-06-11 21:58| Arch 参考: 为什么 Archlinux 不适合服务器使用 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需"/>
+<meta name="twitter:description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. Pacman 1.2.2. Yay 1.2.3. Snap Tips 💠 2024-11-14 23:06:22 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件包推荐"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -126,106 +122,158 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 614 words </span>
-          <span class="more-meta"> 2 mins read </span>
+          <span class="more-meta"> 约 1110 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#包管理">包管理</a>
+    <li><a href="#arch">Arch</a>
       <ul>
-        <li><a href="#pacman">Pacman</a></li>
-        <li><a href="#snap">snap</a></li>
-        <li><a href="#yaourt">Yaourt</a></li>
-        <li><a href="#yay">Yay</a></li>
+        <li><a href="#社区">社区</a></li>
+        <li><a href="#包管理">包管理</a>
+          <ul>
+            <li><a href="#pacman">Pacman</a></li>
+            <li><a href="#yay">Yay</a></li>
+            <li><a href="#snap">Snap</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
+    <li><a href="#tips">Tips</a></li>
   </ul>
 </nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-21T10:55:04" title="December 21, 2018">December 21, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#arch">Arch</a>
-<ol>
-<li><a href="#%E5%8C%85%E7%AE%A1%E7%90%86">包管理</a>
-<ol>
-<li><a href="#pacman">Pacman</a></li>
-<li><a href="#snap">snap</a></li>
-<li><a href="#yaourt">Yaourt</a></li>
-<li><a href="#yay">Yay</a></li>
+<li><a href="#arch">Arch</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E7%A4%BE%E5%8C%BA">社区</a></li>
+<li>1.2. <a href="#%E5%8C%85%E7%AE%A1%E7%90%86">包管理</a>
+<ul>
+<li>1.2.1. <a href="#pacman">Pacman</a></li>
+<li>1.2.2. <a href="#yay">Yay</a></li>
+<li>1.2.3. <a href="#snap">Snap</a></li>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
+<li>
+<ol start="2">
 <li><a href="#tips">Tips</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2021-06-11 21:58</em>|</p>
+</li>
+</ul>
+<p>💠 2024-11-14 23:06:22</p>
 <hr>
 <h1 id="arch">Arch</h1>
 <blockquote>
-<p><a href="https://www.tuicool.com/articles/byAFZr">参考: 为什么 Archlinux 不适合服务器使用</a>
-<a href="https://www.zhihu.com/question/49439472">参考: Arch Linux的用户都有理想主义倾向吗？</a>
+<p><a href="https://www.zhihu.com/question/49439472">参考: Arch Linux的用户都有理想主义倾向吗？</a>
 <a href="https://www.viseator.com/2017/07/02/arch_more/">参考: ArchLinux你可能需要知道的操作与软件包推荐</a>
-<a href="https://www.zhihu.com/question/37720991?sort=created">参考: 长期使用Arch，Gentoo等滚动更新的发行版是怎样的一种体验？</a></p>
+<a href="https://www.zhihu.com/question/37720991?sort=created">参考: 长期使用Arch，Gentoo等滚动更新的发行版是怎样的一种体验？</a>
+<a href="http://www.cnblogs.com/bluestorm/p/5929172.html">Arch Linux 安装、配置、美化和优化</a></p>
 </blockquote>
+<hr>
+<p>衍生版：</p>
 <ul>
-<li><a href="https://www.lulinux.com/archives/2787">什么Linux发行版软件最多？</a></li>
-<li><a href="http://www.cnblogs.com/bluestorm/p/5929172.html">Arch Linux 安装、配置、美化和优化</a></li>
+<li><a href="https://endeavouros.com/">EndeavourOS</a></li>
+<li><a href="/Linux/Arch/Manjaro.md">Manjaro</a></li>
+<li><a href="https://garudalinux.org/">Garuda Linux</a><code>激进的优化，目标为了游戏</code>
+<ul>
+<li><a href="https://forum.garudalinux.org/t/wayfire-black-screen-during-install-on-virtualbox/12818">Wayfire black screen during install on VirtualBox - 4xx Client Error / 417 Expectation Failed - Garuda Linux Forum</a><code>官方不支持虚拟机</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="社区">社区</h2>
+<ul>
+<li><a href="https://bbs.archlinuxcn.org/viewforum.php?id=19">arch cn bbs</a></li>
+<li><a href="https://arch.icekylin.online/">archlinux 简明指南</a></li>
 </ul>
 <h2 id="包管理">包管理</h2>
 <blockquote>
-<p><a href="https://www.theurbanpenguin.com/creating-arch-linux-packages/">Creating Arch Linux Packages</a></p>
+<p><a href="https://www.theurbanpenguin.com/creating-arch-linux-packages/">Creating Arch Linux Packages</a><br>
+<a href="https://archive.archlinux.org/packages/">Arch archive packages</a><code>软件包镜像站</code></p>
 </blockquote>
 <h3 id="pacman">Pacman</h3>
 <blockquote>
-<p><a href="https://wiki.archlinux.org/index.php/Pacman_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E5%88%A0%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85">Arch wiki: pacman </a><br>
+<p><a href="https://wiki.archlinux.org/index.php/Pacman_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E5%88%A0%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85">Arch wiki: pacman </a>
 Arch User Repository （常被称作 AUR），是一个为 Arch 用户而生的社区驱动软件仓库。Debian/Ubuntu 用户的对应类比是 PPA。</p>
 </blockquote>
 <p>/etc/pacman.conf 追加</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [archlinuxcn]
-    #The Chinese Arch Linux communities packages.
-    SigLevel = Optional TrustAll
-    #Server   = http://repo.archlinuxcn.org/$arch
-    Server   = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    [archlinuxcn]
+</span></span><span class="line"><span class="cl">    #The Chinese Arch Linux communities packages.
+</span></span><span class="line"><span class="cl">    SigLevel = Optional TrustAll
+</span></span><span class="line"><span class="cl">    #Server   = http://repo.archlinuxcn.org/$arch
+</span></span><span class="line"><span class="cl">    Server   = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+</span></span></code></pre></td></tr></table>
 </div>
-</div><ol>
-<li>
-<p><code>pacman-mirrors</code> generate pacman mirrorlist for Manjaro Linux</p>
-</li>
-<li>
-<p>-S 安装</p>
-</li>
-<li>
-<p>-R 卸载</p>
+</div><ul>
+<li><code>pacman-mirrors</code> generate pacman mirrorlist for Manjaro Linux</li>
+<li>-S 安装</li>
+<li>-R 卸载
 <ul>
 <li>-Rs 卸载以及没有被其他软件依赖的软件包</li>
 </ul>
 </li>
-<li>
-<p>-Q 查询</p>
+<li>-Q 查询
 <ul>
 <li>-Qdt 查询未被依赖的软件包</li>
 </ul>
 </li>
-</ol>
-<h3 id="snap">snap</h3>
+<li>-U 升级或添加软件包 <a href="https://archive.archlinux.org/packages/">archive</a>
+<ul>
+<li>例如 <code>pacman -U https://archive.archlinux.org/packages/c/curl/curl-8.4.0-1-x86_64.pkg.tar.zst</code> 安装curl历史版本</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<ul>
+<li>pacman yay 升级某些包时需要留意是否需要全系统升级，单独升级某个包容易造成<strong>依赖库版本不匹配</strong>
+<ul>
+<li>比如 当前手动curl 8.4.0-2 升级到 8.6.0-3，发现安装失败, 报错 <code>pacman: /usr/lib/libssl.so.3: version 'OPENSSL_3.2.0' not found (required by /usr/lib/libcurl.so.4)</code></li>
+<li>由于yay pacman也是依赖的curl，这里就有点死锁了，没法降级了</li>
+<li>从curl官网下载源码编译安装，安装路径默认 <code>/usr/local/bin/curl</code> 不是pacman默认的<code>/bin/curl</code>，只好手动复制lib过去 <code>sudo cp /usr/local/lib/libcurl.so.4.8.0 /usr/lib/libcurl.so.4.8.0</code> 新的报错 <code>curl: /usr/lib/libcurl.so.4: no version information available (required by curl)</code></li>
+<li>搜索后添加参数 重新编译 <code>./configure --enable-versioned-symbols  --with-openssl</code> 重新复制lib过去 还是一样报错信息</li>
+<li>但是发现这个报错好像是警告级别不影响实际功能，然后用上述的 pacman -U 安装指定的版本，才恢复了正常使用</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>安装deb包 <a href="https://www.baeldung.com/linux/arch-install-deb-package">How to Install a .deb Package on Arch Linux</a></p>
+</blockquote>
+<h3 id="yay">Yay</h3>
+<p>缓存目录 ~/.cache/yay</p>
+<ul>
+<li><code>pacman -S yay</code> 下一代aur管理</li>
+<li><code>alias yay='/usr/bin/yay --color=always'</code> 默认开启颜色高亮</li>
+</ul>
+<h3 id="snap">Snap</h3>
 <blockquote>
 <p>使用 pacman 安装</p>
 </blockquote>
@@ -249,92 +297,92 @@ Arch User Repository （常被称作 AUR），是一个为 Arch 用户而生的�
 </ul>
 </li>
 </ul>
-<h3 id="yaourt">Yaourt</h3>
-<blockquote>
-<p><a href="https://wiki.archlinux.org/index.php/Arch_User_Repository">Arch User Repository</a><code>但是已经暂停开发了</code></p>
-</blockquote>
-<ol>
-<li><code>/etc/pacman.conf</code> 追加
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">[archlinuxcn]
-#The Chinese Arch Linux communities packages.
-SigLevel = Optional TrustAll
-Server   = http://repo.archlinuxcn.org/$arch
-</code></pre></td></tr></table>
-</div>
-</div></li>
-<li><code>sudo pacman -Syu yaourt</code> 同步</li>
-</ol>
-<blockquote>
-<p>若遇到 签名错误  signature from &hellip; is unknown trust</p>
-</blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">    rm -R /etc/pacman.d/gnupg/
-    rm -R /root/.gnupg/ 
-    gpg --refresh-keys
-    pacman-key --init <span class="o">&amp;&amp;</span> pacman-key --populate archlinux manjaro
-    pacman-key --refresh-keys
-    pacman -Syyu
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="yay">Yay</h3>
-<ul>
-<li><code>pacman -S yay</code> 下一代aur管理</li>
-</ul>
 <hr>
 <h1 id="tips">Tips</h1>
-<ul>
-<li>
-<p>deepin-wine</p>
-</li>
-<li>
-<p><a href="https://aur.archlinux.org/packages/deepin-wxwork/">企业微信</a></p>
-</li>
-<li>
-<p><a href="https://aur.archlinux.org/packages/go-for-it/">go-for-it</a></p>
-</li>
-<li>
-<p>无法识别 USB设备</p>
+<blockquote>
+<p>无法识别 USB设备（键盘 鼠标 移动硬盘） 可能原因</p>
+</blockquote>
 <ol>
-<li>查看是usb模块 <code>sudo modprobe usb-storage</code></li>
+<li>查看是usb模块 <code>sudo modprobe usb-storage</code>
+<ol>
 <li>若报错 <code>modprobe: FATAL: Module usb-storage not found in directory /lib/modules/4.19**</code></li>
 <li>查看 <code>ls /lib/modules</code></li>
-<li>内核滚动升级 grub 没有更新, <code>update-grub</code>即可</li>
 </ol>
 </li>
-<li>
-<p>ifconfig,route在net-tools中，nslookup,dig在dnsutils中，ftp,telnet等在inetutils中,ip命令在iproute2中。</p>
+<li>Linux内核滚动升级了 但是grub 没有更新, <code>update-grub</code>即可</li>
+<li>滚动升级了，没有重启电脑</li>
+</ol>
 <ul>
-<li>sudo pacman -S net-tools dnsutils inetutils iproute2</li>
+<li>sudo pacman -S net-tools dnsutils inetutils iproute2
+<ul>
+<li>ifconfig,route 在net-tools</li>
+<li>nslookup,dig 在dnsutils</li>
+<li>ftp,telnet等 在inetutils</li>
+<li>ip 在 iproute2</li>
 </ul>
 </li>
 </ul>
+<hr>
+<blockquote>
+<p>键盘 F区 按键映射错误</p>
+</blockquote>
+<ul>
+<li>
+<p><a href="https://wiki.archlinux.org/index.php/Apple_Keyboard#Function_keys_do_not_work">Arch Wiki</a></p>
+</li>
+<li>
+<p><code>echo 2 &gt; /sys/module/hid_apple/parameters/fnmode</code> 注意重启会失效</p>
+<ul>
+<li><code>echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode</code></li>
+</ul>
+</li>
+<li>
+<p>向 /sys/module/hid_apple/parameters/fnmode 文件中写入不同的值，可切换不同的模式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    0  禁用功能键，按 ‘Fn’ + ‘F8’ 等同于 F8
+</span></span><span class="line"><span class="cl">    1  默认功能键，按 ‘F8’ 触发功能键 (play/pause)，按 ‘Fn’ + ‘F8’ 触发 F8 键
+</span></span><span class="line"><span class="cl">    2  默认非功能键，按 ‘F8’ 触发 F8 键，按 ‘Fn’ + ‘F8’ 触发功能键 (play/pause)
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>以上方法重启后失效，如果要让配置永久生效： <code>Manjaro中没有这个文件</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    # vi /etc/modprobe.d/hid_apple.conf
+</span></span><span class="line"><span class="cl">    options hid_apple fnmode=2
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>或者将命令写入登录shell /etc/profile</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>keyring 错误</p>
+</blockquote>
+<p><code>yay -Sy archlinux-keyring</code></p>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2018-12-21
         
@@ -352,11 +400,11 @@ Server   = http://repo.archlinuxcn.org/$arch
         <a class="prev" href="/post/linux/arch/manjaro/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Manjaro</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/java/spring/transactional/">
             <span class="next-text nav-default">Spring 事务</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -374,17 +422,17 @@ Server   = http://repo.archlinuxcn.org/$arch
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -392,11 +440,11 @@ Server   = http://repo.archlinuxcn.org/$arch
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -406,16 +454,21 @@ Server   = http://repo.archlinuxcn.org/$arch
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

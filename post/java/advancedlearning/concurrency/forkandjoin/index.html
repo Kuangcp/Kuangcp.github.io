@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Fork/Join - Mythos</title>
+  <title>Fork/Join - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,17 +16,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Mythos" /><meta name="description" content="目录 start ForkJoin方式 目录 end|2020-04-27 23:42| ForkJoin方式" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Fork Join 1.1. 最佳实践 1.2. 设计 1.3. 使用 💠 2024-04-08 19:45:11 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualThre" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.76.5 with theme even" />
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/forkandjoin/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/java/advancedlearning/concurrency/forkandjoin/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,23 +40,19 @@
 
 
 <meta property="og:title" content="Fork/Join" />
-<meta property="og:description" content="目录 start ForkJoin方式 目录 end|2020-04-27 23:42| ForkJoin方式" />
+<meta property="og:description" content="💠 Fork Join 1.1. 最佳实践 1.2. 设计 1.3. 使用 💠 2024-04-08 19:45:11 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualThre" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blogs.kuangcp.top/post/java/advancedlearning/concurrency/forkandjoin/" />
-<meta property="article:published_time" content="2019-06-04T19:44:41+00:00" />
-<meta property="article:modified_time" content="2019-06-04T19:44:41+00:00" />
+<meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/concurrency/forkandjoin/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-09-25T13:22:47+00:00" />
+<meta property="article:modified_time" content="2023-09-25T13:22:47+00:00" />
+
 <meta itemprop="name" content="Fork/Join">
-<meta itemprop="description" content="目录 start ForkJoin方式 目录 end|2020-04-27 23:42| ForkJoin方式">
-<meta itemprop="datePublished" content="2019-06-04T19:44:41+00:00" />
-<meta itemprop="dateModified" content="2019-06-04T19:44:41+00:00" />
-<meta itemprop="wordCount" content="27">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="💠 Fork Join 1.1. 最佳实践 1.2. 设计 1.3. 使用 💠 2024-04-08 19:45:11 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualThre"><meta itemprop="datePublished" content="2023-09-25T13:22:47+00:00" />
+<meta itemprop="dateModified" content="2023-09-25T13:22:47+00:00" />
+<meta itemprop="wordCount" content="1166">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Fork/Join"/>
-<meta name="twitter:description" content="目录 start ForkJoin方式 目录 end|2020-04-27 23:42| ForkJoin方式"/>
+<meta name="twitter:description" content="💠 Fork Join 1.1. 最佳实践 1.2. 设计 1.3. 使用 💠 2024-04-08 19:45:11 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualThre"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,40 +118,144 @@
       <h1 class="post-title">Fork/Join</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-06-04 </span>
+        <span class="post-time"> 2023-09-25 </span>
         
-          <span class="more-meta"> 27 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 约 1166 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#fork-join">Fork Join</a>
+      <ul>
+        <li><a href="#最佳实践">最佳实践</a></li>
+        <li><a href="#设计">设计</a></li>
+        <li><a href="#使用">使用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2023-09-25T13:22:47" title="September 25, 2023">September 25, 2023</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#forkjoin%E6%96%B9%E5%BC%8F">ForkJoin方式</a></li>
+<li><a href="#fork-join">Fork Join</a></li>
 </ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+<ul>
+<li>1.1. <a href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">最佳实践</a></li>
+<li>1.2. <a href="#%E8%AE%BE%E8%AE%A1">设计</a></li>
+<li>1.3. <a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-04-08 19:45:11</p>
 <hr>
-<h1 id="forkjoin方式">ForkJoin方式</h1>
+<h1 id="fork-join">Fork Join</h1>
+<blockquote>
+<p>自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(<code>Stream</code>，<code>VirtualThread</code>)</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.baeldung.com/java-fork-join">Guide to the Fork/Join Framework in Java</a></p>
+</blockquote>
+<h2 id="最佳实践">最佳实践</h2>
+<ul>
+<li>目的是为了<code>CPU密集型任务</code> 利用CPU全部资源全速执行，应<code>避免IO阻塞任务</code>提交执行
+<ul>
+<li>如果启用了虚拟线程，可以不用考虑这点，IO阻塞任务会出让CPU</li>
+</ul>
+</li>
+<li>如无必要无需创建新Pool，应使用JVM内公共Pool 即 <code>ForkJoinPool.commonPool()</code></li>
+<li>任务拆分时需要考虑合理阈值，避免子任务拆分的过大<code>无法合理均匀分布</code>或过小<code>调度和竞争成本过大</code></li>
+</ul>
+<h2 id="设计">设计</h2>
+<p>ForkJoinPool 服务处理一种比线程更小的并发单元 ForkJoinTask. 它是一种由ForkJoinPool以更轻量的方式所调度的抽象</p>
+<ul>
+<li>
+<p>通常使用两种任务</p>
+<ul>
+<li>小型 无需处理器耗时太久的任务</li>
+<li>大型 需要在直接执行前进行分解（可能多次）的任务</li>
+</ul>
+</li>
+<li>
+<p>提供了支持大型任务分解的基本方法，还有自动调度和重新调度的能力</p>
+</li>
+<li>
+<p>由 RecursiveAction 或者 RecursiveTask 派生出来的才能作为任务单元 这俩也是派生ForkJoinTask而来</p>
+<ul>
+<li>RecursiveAction 要重写的方法：<code>protected void compute()</code></li>
+<li>RecursiveTask 要重写的的方法：<code>protected Object compute()</code></li>
+</ul>
+</li>
+<li>
+<p>ForkJoinTask里的 invoke 和 invokeAll</p>
+<ul>
+<li>invoke  执行此任务的开始，如果有必要，等待它的完成，并返回其结果，或者在底层计算完成时抛出一个(未检查的)RuntimeException或错误。</li>
+<li>invokeAll 提交多个任务执行，但是只有其中有一个出现了异常，就会取消所有的task</li>
+</ul>
+</li>
+</ul>
+<p><code>ForkJoinTask和工作窃取</code></p>
+<ul>
+<li>ForkJoinTask作为RecursiveAction的超类，他是从动作中返回结果的泛型类型，所以这个类扩展了<code>ForkJoinTask&lt;Void&gt;</code>
+<ul>
+<li>这使得ForkJoinTask非常适合用MapReduce方式（Google提出的软件架构，用于大规模数据集的并行计算）返回数据集中归结出的结果</li>
+</ul>
+</li>
+<li>ForkJoinTask由ForkJoinPool调度安排，这个池是一个特殊的执行者服务。
+<ul>
+<li>这个服务维护每个线程的任务列表，并且当某个任务完成的时候，他能把挂在满负荷线程上的任务重新安排到空闲线程上去 即 <code>工作窃取</code></li>
+<li>常见的线程池设计都是一个池一个等待队列，但是FJ是每个线程一个等待队列 <code>ForkJoinPool#workQueues</code>，大大降低竞争导致CPU占用的成本</li>
+</ul>
+</li>
+</ul>
+<p><code>并行问题</code></p>
+<ul>
+<li>
+<p>可以使用分支合并方法解决的问题：</p>
+<ul>
+<li>模拟大量简单对象的运动，例如粒子效果</li>
+<li>日志文件分析</li>
+<li>从输入中计数的数据操作，比如mapreduce操作</li>
+</ul>
+</li>
+<li>
+<p>以下的列表检查是否能用 FJ 来解决问题， 如果思考的结果是肯定的，就可以适用，如果思考结果是不确定的，用其他的方式更合适</p>
+<ul>
+<li>问题的子任务是否无需与其他子任务有显式的协作或同步也可以工作？</li>
+<li>子任务是不是不会对数据进行修改，只是经过计算得出些结果？</li>
+<li>对于子任务来说，分而治之是不是很自然的事？子任务是不是会创建更多的子任务，而且他们要比派生出他们的任务粒度更细？</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用">使用</h2>
+<p><a href="https://stackoverflow.com/questions/41337451/detailed-difference-between-java8-forkjoinpool-and-executors-newworkstealingpool">Detailed difference between Java8 ForkJoinPool and Executors.newWorkStealingPool?</a></p>
+<p><a href="https://github.com/Kuangcp/JavaBase/blob/master/concurrency/src/main/java/com/github/kuangcp/forkjoin/ForkJoinEasyDemo.groovy">简单样例：Groovy 实现</a></p>
 
     </div>
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content">Mythos</span>
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
-        2019-06-04
+        2023-09-25
         
     </span>
   </p>
@@ -165,14 +265,14 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/distributed/cloudnative/">
+        <a class="prev" href="/post/linux/tool/nginxingress/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">CloudNative.md</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-default">NginxIngress</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/java/advancedlearning/concurrency/sync/">
-            <span class="next-text nav-default">Java中保证同步的方式</span>
-            <span class="next-text nav-mobile">Next</span>
+        <a class="next" href="/post/java/advancedlearning/security/readme/">
+            <span class="next-text nav-default">Java加密</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -190,17 +290,17 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="http://github.com/kuangcp" class="iconfont icon-github" title="github"></a>
-  <a href="https://blogs.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
   </span>
 
@@ -208,11 +308,11 @@
 
   <span class="copyright-year">
     &copy; 
-    2016 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span>
-    <span>Mythos</span>
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
     
-    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
   </span>
 </div>
 
@@ -222,16 +322,21 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 
 
 
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-
-
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Serialization - Mythos · Java Developer</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 序列化 1.1. 序列化协议特性 1.2. 序列化/反序列化 编码/解码 1.3. 网络通信中序列化和反序列化的组件 编码方式 2.1. TLV 解决方案 3.1. XML 3.2. JSON 3.3. MessagePack 3.4. Protobuf 3.5. FlatBuffers 3.6. SBE 3.7. capnproto 3.8. Thrift 3.9." /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.99.0 with theme even" />
+
+
+<link rel="canonical" href="https://www.kuangcp.top/post/skills/serialization/serialization/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Serialization" />
+<meta property="og:description" content="💠 序列化 1.1. 序列化协议特性 1.2. 序列化/反序列化 编码/解码 1.3. 网络通信中序列化和反序列化的组件 编码方式 2.1. TLV 解决方案 3.1. XML 3.2. JSON 3.3. MessagePack 3.4. Protobuf 3.5. FlatBuffers 3.6. SBE 3.7. capnproto 3.8. Thrift 3.9." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.kuangcp.top/post/skills/serialization/serialization/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-04-21T16:35:34+00:00" />
+<meta property="article:modified_time" content="2024-04-21T16:35:34+00:00" />
+
+<meta itemprop="name" content="Serialization">
+<meta itemprop="description" content="💠 序列化 1.1. 序列化协议特性 1.2. 序列化/反序列化 编码/解码 1.3. 网络通信中序列化和反序列化的组件 编码方式 2.1. TLV 解决方案 3.1. XML 3.2. JSON 3.3. MessagePack 3.4. Protobuf 3.5. FlatBuffers 3.6. SBE 3.7. capnproto 3.8. Thrift 3.9."><meta itemprop="datePublished" content="2024-04-21T16:35:34+00:00" />
+<meta itemprop="dateModified" content="2024-04-21T16:35:34+00:00" />
+<meta itemprop="wordCount" content="2924">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Serialization"/>
+<meta name="twitter:description" content="💠 序列化 1.1. 序列化协议特性 1.2. 序列化/反序列化 编码/解码 1.3. 网络通信中序列化和反序列化的组件 编码方式 2.1. TLV 解决方案 3.1. XML 3.2. JSON 3.3. MessagePack 3.4. Protobuf 3.5. FlatBuffers 3.6. SBE 3.7. capnproto 3.8. Thrift 3.9."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Mythos</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Mythos</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Serialization</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-04-21 </span>
+        
+          <span class="more-meta"> 约 2924 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#序列化">序列化</a>
+      <ul>
+        <li><a href="#序列化协议特性">序列化协议特性</a></li>
+        <li><a href="#序列化反序列化-编码解码">序列化/反序列化 编码/解码</a></li>
+        <li><a href="#网络通信中序列化和反序列化的组件">网络通信中序列化和反序列化的组件</a></li>
+      </ul>
+    </li>
+    <li><a href="#编码方式">编码方式</a>
+      <ul>
+        <li><a href="#tlv">TLV</a></li>
+      </ul>
+    </li>
+    <li><a href="#解决方案">解决方案</a>
+      <ul>
+        <li><a href="#xml">XML</a></li>
+        <li><a href="#json">JSON</a></li>
+        <li><a href="#messagepack">MessagePack</a></li>
+        <li><a href="#protobuf">Protobuf</a></li>
+        <li><a href="#flatbuffers">FlatBuffers</a></li>
+        <li><a href="#sbe">SBE</a></li>
+        <li><a href="#capnproto">capnproto</a></li>
+        <li><a href="#thrift">Thrift</a></li>
+        <li><a href="#avro">Avro</a></li>
+        <li><a href="#kyro">Kyro</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2024-04-21T16:35:34" title="April 21, 2024">April 21, 2024</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#%E5%BA%8F%E5%88%97%E5%8C%96">序列化</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#%E5%BA%8F%E5%88%97%E5%8C%96%E5%8D%8F%E8%AE%AE%E7%89%B9%E6%80%A7">序列化协议特性</a></li>
+<li>1.2. <a href="#%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81">序列化/反序列化 编码/解码</a></li>
+<li>1.3. <a href="#%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E4%B8%AD%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E7%BB%84%E4%BB%B6">网络通信中序列化和反序列化的组件</a></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li><a href="#%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F">编码方式</a></li>
+</ol>
+<ul>
+<li>2.1. <a href="#tlv">TLV</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#xml">XML</a></li>
+<li>3.2. <a href="#json">JSON</a></li>
+<li>3.3. <a href="#messagepack">MessagePack</a></li>
+<li>3.4. <a href="#protobuf">Protobuf</a></li>
+<li>3.5. <a href="#flatbuffers">FlatBuffers</a></li>
+<li>3.6. <a href="#sbe">SBE</a></li>
+<li>3.7. <a href="#capnproto">capnproto</a></li>
+<li>3.8. <a href="#thrift">Thrift</a></li>
+<li>3.9. <a href="#avro">Avro</a></li>
+<li>3.10. <a href="#kyro">Kyro</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-09-20 17:30:23</p>
+<hr>
+<h1 id="序列化">序列化</h1>
+<blockquote>
+<p><a href="https://tech.meituan.com/2015/02/26/serialization-vs-deserialization.html">参考: 序列化和反序列化</a></p>
+</blockquote>
+<ul>
+<li><a href="http://hessian.caucho.com/">Hessian</a></li>
+<li><a href="https://github.com/redisson/redisson/wiki/4.-%E6%95%B0%E6%8D%AE%E5%BA%8F%E5%88%97%E5%8C%96">Redisson 数据序列化</a><code>对象编码 方案列表</code></li>
+</ul>
+<h2 id="序列化协议特性">序列化协议特性</h2>
+<ol>
+<li>通用性： 跨语言，跨平台，普及流行程度</li>
+<li>强健性： 成熟度，语言/平台的公平性</li>
+<li>可调试性/可读性： 可读性高调试的成本低，例如JSON和Protobuf在查看序列化后数据，前者直接阅读后者需要工具和IDL文件做反序列化</li>
+<li>性能： 时间和空间成本</li>
+<li>扩展性：功能和业务的发展需要调整对象的字段，扩展性高的协议可以兼容共存新旧版本</li>
+</ol>
+<hr>
+<h2 id="序列化反序列化-编码解码">序列化/反序列化 编码/解码</h2>
+<blockquote>
+<p><a href="https://www.v2ex.com/t/838587">关于序列化和编码这两个概念的疑惑</a><code>序列化就是编码的一个实现，序列化强调结果，编码强调方式</code></p>
+</blockquote>
+<ul>
+<li>编码 (一种信息方式转换为另一种信息方式)， 例如音视频的编解码就是音视频信号和二进制之间的转换，DNA编解码则是将遗传信息和碱基序列的转换</li>
+<li>序列化 通常指各平台或语言将内存中的对象转换为跨平台的二进制串或字符串, 例如 C中的Struct Java中的对象 转换为XML/JSON/Protobuf</li>
+</ul>
+<h2 id="网络通信中序列化和反序列化的组件">网络通信中序列化和反序列化的组件</h2>
+<p>面对实际应用场景里，典型的网络传输（例如 RPC，Websocket）中，序列化和反序列化流程往往需要如下组件：</p>
+<ul>
+<li>IDL（Interface description language）文件
+<ul>
+<li>参与通讯的各方需要对通讯的内容需要做相关的约定（Specifications）。为了建立一个与语言和平台无关的约定，这个约定需要采用与具体开发语言、平台无关的语言来进行描述。这种语言被称为接口描述语言（IDL），采用IDL撰写的协议约定称之为IDL文件。</li>
+</ul>
+</li>
+<li>IDL Compiler：IDL文件中约定的内容为了在各语言和平台可见，需要有一个编译器，将IDL文件转换成各语言对应的动态库。</li>
+<li>Stub/Skeleton Lib：负责序列化和反序列化的工作代码。
+<ul>
+<li>Stub是一段部署在分布式系统客户端的代码，一方面接收应用层的参数，并对其序列化后通过底层协议栈发送到服务端，另一方面接收服务端序列化后的结果数据，反序列化后交给客户端应用层；</li>
+<li>Skeleton部署在服务端，其功能与Stub相反，从传输层接收序列化参数，反序列化后交给服务端应用层，并将应用层的执行结果序列化后最终传送给客户端Stub。</li>
+</ul>
+</li>
+<li>Client/Server：指的是应用层程序代码，他们面对的是IDL所生存的特定语言的class或struct。</li>
+<li>底层协议栈和互联网：序列化之后的数据通过底层的传输层、网络层、链路层以及物理层协议转换成数字信号在互联网中传递。</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="https://github.com/gchq/CyberChef">CyberChef</a> <code>encryption, encoding, compression and data analysis</code></p>
+</blockquote>
+<h1 id="编码方式">编码方式</h1>
+<p>由于通信方式通常是流式的，需要考虑二进制流和结构化信息的正确编码方式来实现可用可靠，例如TCP流中“拆包粘包问题”</p>
+<h2 id="tlv">TLV</h2>
+<p>TLV 即 Tag - Length - Value。Tag 作为该字段的唯一标识，Length 代表 Value 数据域的长度，最后的 Value 便是数据本身</p>
+<p>HTTP协议中有使用到类似的设计思想(在Header部分会声明Body的Length)</p>
+<h1 id="解决方案">解决方案</h1>
+<p>XML序列化（Xstream）无论在性能和简洁性上比较差，JSON和Protobuf使用更为广泛， Protobuf压缩率和性能更好。<br>
+常见的Web服务优先选择JSON有更大普适性（跨语言，跨系统），或者后端使用Protobuf，在网关层转为JSON。</p>
+<blockquote>
+<p>FlatBuffers 和 Cap&rsquo;n Proto、simple-binary-encoding，支持“零拷贝”反序列化.</p>
+</blockquote>
+<h2 id="xml">XML</h2>
+<p>XML历史悠久，其1.0版本早在1998年就形成标准，并被广泛使用至今。<br>
+XML的最初产生目标是对互联网文档（Document）进行标记，所以它的设计理念中就包含了对于人和机器都具备可读性。 但是，当这种标记文档的设计被用来序列化对象的时候，就显得冗长而复杂（Verbose and Complex）。<br>
+XML本质上是一种描述语言，并且具有自我描述（Self-describing）的属性，所以XML自身就被用于XML序列化的IDL。 标准的XML描述格式有两种：DTD（Document Type Definition）和XSD（XML Schema Definition）。</p>
+<p>SOAP（Simple Object Access protocol） 是一种被广泛应用的，基于XML为序列化和反序列化协议的结构化消息传递协议
+SOAP是一种采用XML进行序列化和反序列化的协议，它的IDL是WSDL. 而WSDL的描述文件是XSD，而XSD自身是一种XML文件，此时产生了递归定义</p>
+<h2 id="json">JSON</h2>
+<blockquote>
+<p>Javascript Object Notation</p>
+</blockquote>
+<ul>
+<li>优点：具备可读性，自描述性（序列化时无需IDL），数据相较XML更简洁，解析成本低，原生支持JavaScript（已是Ajax事实标准）</li>
+<li>缺点：数据信息占比仍较低</li>
+</ul>
+<hr>
+<blockquote>
+<p>二进制JSON</p>
+</blockquote>
+<ul>
+<li>JSONB JSON字符串二进制化， 例如MongoDB，PostgreSQL有使用到
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/datatype-json.html"> PostgreSQL JSON Types</a></li>
+</ul>
+</li>
+<li><a href="http://cbor.io/">CBOR</a> JSON二进制协议，多语言实现</li>
+<li><a href="https://amazon-ion.github.io/ion-docs/index.html">Amazon Ion</a> 多语言实现</li>
+<li><a href="https://github.com/FasterXML/smile-format-specification">Smile</a></li>
+</ul>
+<h2 id="messagepack">MessagePack</h2>
+<blockquote>
+<p><a href="https://github.com/msgpack">Github</a> | <a href="https://msgpack.org/">Site</a></p>
+</blockquote>
+<p>MessagePack 是一种高效的二进制序列化格式。它能让你在多种语言之间交换数据，就像 JSON 一样。但它的速度更快，体积更小。小整数被编码成一个字节，而典型的短字符串除了字符串本身外，只需要一个额外的字节。 可以理解为按特定规则压缩的JSON</p>
+<h2 id="protobuf">Protobuf</h2>
+<p><a href="/Skills/Serialization/Protobuf.md">Note: Protobuf</a></p>
+<h2 id="flatbuffers">FlatBuffers</h2>
+<p><a href="https://github.com/google/flatbuffers">Github</a> | <a href="https://flatbuffers.dev/index.html">Doc</a></p>
+<p>更轻量快速，适用于性能敏感的应用场景，例如移动端游戏。兼容protocolbuffer的proto文件</p>
+<blockquote>
+<p><a href="https://halfrost.com/flatbuffers_schema/">深入浅出 FlatBuffers 之 Schema</a></p>
+</blockquote>
+<p>FlatBuffer 是一个二进制 buffer，它使用 offset 组织嵌套对象（struct，table，vectors，等），可以使数据像任何基于指针的数据结构一样，就地访问数据。然而 FlatBuffer 与大多数内存中的数据结构不同，它使用严格的对齐规则和字节顺序来确保 buffer 是跨平台的。此外，对于 table 对象，FlatBuffers 提供前向/后向兼容性和 optional 字段，以支持大多数格式的演变。</p>
+<p>FlatBuffers 的主要目标是避免反序列化。这是通过定义二进制数据协议来实现的，一种将定义好的将数据转换为二进制数据的方法。由该协议创建的二进制结构可以 wire 发送，并且无需进一步处理即可读取，即无临时对象和额外内存分配。相比较而言，在传输 JSON 时，我们需要将数据转换为字符串，通过 wire 发送，解析字符串，并将其转换为本地对象。Flatbuffers 不需要这些操作。你用二进制装入数据，发送相同的二进制文件，并直接从二进制文件读取。</p>
+<h2 id="sbe">SBE</h2>
+<blockquote>
+<p><a href="https://github.com/real-logic/simple-binary-encoding">Simple Binary Encoding</a></p>
+</blockquote>
+<h2 id="capnproto">capnproto</h2>
+<blockquote>
+<p><a href="https://github.com/capnproto/capnproto">Cap’n Proto</a></p>
+</blockquote>
+<h2 id="thrift">Thrift</h2>
+<blockquote>
+<p><a href="https://thrift.apache.org/">官网</a>源于Facebook, 支持多种语言: C++ C# Cocoa Erlang Haskell Java Ocami Perl PHP Python Ruby Smalltalk</p>
+</blockquote>
+<p>它支持数据(对象)序列化和多种类型的<code>完整RPC服务</code>, Thrift适用于静态的数据交换, 需要预先定义IDL文件。<br>
+但是由于Thrift的序列化被内嵌于Thrift框架，Thrift框架本身并没有提供序列化和反序列化接口扩展，这导致其很难和其他应用协议共同使用（例如HTTP）。</p>
+<h2 id="avro">Avro</h2>
+<p>Avro的产生解决了JSON的冗长和没有IDL的问题，Avro属于Apache Hadoop的一个子项目。<br>
+Avro提供两种序列化格式：JSON格式或者Binary格式。Binary格式在空间开销和解析性能方面可以和Protobuf媲美，JSON格式方便测试阶段的调试。</p>
+<p>由于Avro的设计理念偏向于动态类型语言，对于动态语言为主的应用场景，Avro是更好的选择。</p>
+<p>Avro在做序列化时会将IDL定义（Schema）和数据一起传输，因此序列串具有自描述性，非常适合于做Hive、Pig和MapReduce的持久化数据格式</p>
+<h2 id="kyro">Kyro</h2>
+<blockquote>
+<p><a href="https://github.com/EsotericSoftware/kryo">Github</a></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Kuangcp</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-04-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/skills/application/android/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Android</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/skills/ecology/gateway/">
+            <span class="next-text nav-default">Gateway</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/Kuangcp" class="iconfont icon-github" title="github"></a>
+  <a href="https://www.kuangcp.top/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://gitee.com/gin9/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    <span>Kuangcp</span>
+    
+    <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>www.kuangcp.top</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+</body>
+</html>
