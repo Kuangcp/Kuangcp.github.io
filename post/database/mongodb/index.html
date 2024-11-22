@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="目录 start MongoDB 安装 客户端 目录 end|2020-04-27 23:42| MongoDB 非关系型和关系型混合文档型数据库 双刃剑MongoDB的学习和避坑 release-notes 参考: 数据存储设计Mongo同样使用B&#43;Tre" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 MongoDB 1.1. 安装 1.1.1. 服务端 1.1.2. 客户端 1.2. 使用 💠 2024-11-20 19:35:19 MongoDB 非关系型和关系型混合文档型数据库 双刃剑MongoDB的学习和避坑 release-notes 参考: 数据存储设计Mongo同样使" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="MangoDB" />
-<meta property="og:description" content="目录 start MongoDB 安装 客户端 目录 end|2020-04-27 23:42| MongoDB 非关系型和关系型混合文档型数据库 双刃剑MongoDB的学习和避坑 release-notes 参考: 数据存储设计Mongo同样使用B&#43;Tre" />
+<meta property="og:description" content="💠 MongoDB 1.1. 安装 1.1.1. 服务端 1.1.2. 客户端 1.2. 使用 💠 2024-11-20 19:35:19 MongoDB 非关系型和关系型混合文档型数据库 双刃剑MongoDB的学习和避坑 release-notes 参考: 数据存储设计Mongo同样使" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/database/mongodb/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-16T17:26:05+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:26:05+00:00" />
 
 <meta itemprop="name" content="MangoDB">
-<meta itemprop="description" content="目录 start MongoDB 安装 客户端 目录 end|2020-04-27 23:42| MongoDB 非关系型和关系型混合文档型数据库 双刃剑MongoDB的学习和避坑 release-notes 参考: 数据存储设计Mongo同样使用B&#43;Tre"><meta itemprop="datePublished" content="2018-12-16T17:26:05+00:00" />
+<meta itemprop="description" content="💠 MongoDB 1.1. 安装 1.1.1. 服务端 1.1.2. 客户端 1.2. 使用 💠 2024-11-20 19:35:19 MongoDB 非关系型和关系型混合文档型数据库 双刃剑MongoDB的学习和避坑 release-notes 参考: 数据存储设计Mongo同样使"><meta itemprop="datePublished" content="2018-12-16T17:26:05+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:26:05+00:00" />
-<meta itemprop="wordCount" content="119">
+<meta itemprop="wordCount" content="130">
 <meta itemprop="keywords" content="MongoDB,基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MangoDB"/>
-<meta name="twitter:description" content="目录 start MongoDB 安装 客户端 目录 end|2020-04-27 23:42| MongoDB 非关系型和关系型混合文档型数据库 双刃剑MongoDB的学习和避坑 release-notes 参考: 数据存储设计Mongo同样使用B&#43;Tre"/>
+<meta name="twitter:description" content="💠 MongoDB 1.1. 安装 1.1.1. 服务端 1.1.2. 客户端 1.2. 使用 💠 2024-11-20 19:35:19 MongoDB 非关系型和关系型混合文档型数据库 双刃剑MongoDB的学习和避坑 release-notes 参考: 数据存储设计Mongo同样使"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
             </div>
-          <span class="more-meta"> 119 words </span>
+          <span class="more-meta"> 130 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -141,6 +141,7 @@
             <li><a href="#客户端">客户端</a></li>
           </ul>
         </li>
+        <li><a href="#使用">使用</a></li>
       </ul>
     </li>
   </ul>
@@ -148,19 +149,24 @@
   </div>
 </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#mongodb">MongoDB</a>
-<ol>
-<li><a href="#%E5%AE%89%E8%A3%85">安装</a>
-<ol>
-<li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF">客户端</a></li>
+<li><a href="#mongodb">MongoDB</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E5%AE%89%E8%A3%85">安装</a>
+<ul>
+<li>1.1.1. <a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF">服务端</a></li>
+<li>1.1.2. <a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF">客户端</a></li>
+</ul>
 </li>
-</ol>
+<li>1.2. <a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+</ul>
+<p>💠 2024-11-20 19:35:19</p>
 <hr>
 <h1 id="mongodb">MongoDB</h1>
 <blockquote>
@@ -188,6 +194,10 @@
 <li>MongoDB自带的Shell</li>
 <li><a href="https://robomongo.org/">Robo 3T</a></li>
 </ol>
+<h2 id="使用">使用</h2>
+<blockquote>
+<p><a href="https://github.com/tapdata/geektime-mongodb-course">Mongodb 课程</a></p>
+</blockquote>
 
     </div>
 

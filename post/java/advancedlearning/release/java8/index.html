@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Java8">
 <meta itemprop="description" content="💠 Java8 1.1. 实战库项目 接口的变化 2.1. default方法 2.2. static方法 函数式 3.1. 函数式接口 3.1.1. 构造函数的引用 3.2. 函数式接口案例 Lambda 4.1. 行为参数化 4.2. Lambd"><meta itemprop="datePublished" content="2018-12-13T16:05:51+00:00" />
 <meta itemprop="dateModified" content="2018-12-13T16:05:51+00:00" />
-<meta itemprop="wordCount" content="15385">
+<meta itemprop="wordCount" content="15241">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java8"/>
 <meta name="twitter:description" content="💠 Java8 1.1. 实战库项目 接口的变化 2.1. default方法 2.2. static方法 函数式 3.1. 函数式接口 3.1.1. 构造函数的引用 3.2. 函数式接口案例 Lambda 4.1. 行为参数化 4.2. Lambd"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 15385 words </span>
+          <span class="more-meta"> 15241 words </span>
           <span class="more-meta"> 31 mins read </span>
         
       </div>
@@ -185,12 +185,7 @@
     </li>
     <li><a href="#stream">Stream</a>
       <ul>
-        <li><a href="#stream与集合">Stream与集合</a>
-          <ul>
-            <li><a href="#只能遍历一次">只能遍历一次</a></li>
-            <li><a href="#外部迭代和内部迭代">外部迭代和内部迭代</a></li>
-          </ul>
-        </li>
+        <li><a href="#stream与集合">Stream与集合</a></li>
         <li><a href="#构建流">构建流</a>
           <ul>
             <li><a href="#有限流">有限流</a></li>
@@ -203,7 +198,7 @@
             <li><a href="#数值范围">数值范围</a></li>
           </ul>
         </li>
-        <li><a href="#stream操作">Stream操作</a>
+        <li><a href="#操作分类">操作分类</a>
           <ul>
             <li><a href="#中间操作">中间操作</a></li>
             <li><a href="#终端操作">终端操作</a></li>
@@ -214,12 +209,15 @@
             <li><a href="#筛选">筛选</a></li>
             <li><a href="#映射">映射</a></li>
             <li><a href="#查找和匹配">查找和匹配</a></li>
-            <li><a href="#归约">归约</a></li>
+            <li><a href="#归约-reduce">归约 reduce</a></li>
           </ul>
         </li>
         <li><a href="#收集器的使用">收集器的使用</a>
           <ul>
-            <li><a href="#预定义收集器">预定义收集器</a></li>
+            <li><a href="#汇总-collector">汇总 collector</a></li>
+            <li><a href="#规约-reduce">规约 reduce</a></li>
+            <li><a href="#分组-groupingby">分组 groupingBy</a></li>
+            <li><a href="#分区">分区</a></li>
             <li><a href="#自定义-collector">自定义 Collector</a></li>
           </ul>
         </li>
@@ -228,7 +226,7 @@
     <li><a href="#optional">Optional</a>
       <ul>
         <li><a href="#optional类和stream接口的相似之处">Optional类和Stream接口的相似之处</a></li>
-        <li><a href="#实践读取properties某属性">实践:读取Properties某属性</a></li>
+        <li><a href="#实践-读取properties属性">实践-读取Properties属性</a></li>
       </ul>
     </li>
     <li><a href="#时间处理">时间处理</a>
@@ -323,12 +321,7 @@
 <li><a href="#stream">Stream</a></li>
 </ol>
 <ul>
-<li>5.1. <a href="#stream%E4%B8%8E%E9%9B%86%E5%90%88">Stream与集合</a>
-<ul>
-<li>5.1.1. <a href="#%E5%8F%AA%E8%83%BD%E9%81%8D%E5%8E%86%E4%B8%80%E6%AC%A1">只能遍历一次</a></li>
-<li>5.1.2. <a href="#%E5%A4%96%E9%83%A8%E8%BF%AD%E4%BB%A3%E5%92%8C%E5%86%85%E9%83%A8%E8%BF%AD%E4%BB%A3">外部迭代和内部迭代</a></li>
-</ul>
-</li>
+<li>5.1. <a href="#stream%E4%B8%8E%E9%9B%86%E5%90%88">Stream与集合</a></li>
 <li>5.2. <a href="#%E6%9E%84%E5%BB%BA%E6%B5%81">构建流</a>
 <ul>
 <li>5.2.1. <a href="#%E6%9C%89%E9%99%90%E6%B5%81">有限流</a></li>
@@ -341,7 +334,7 @@
 <li>5.3.2. <a href="#%E6%95%B0%E5%80%BC%E8%8C%83%E5%9B%B4">数值范围</a></li>
 </ul>
 </li>
-<li>5.4. <a href="#stream%E6%93%8D%E4%BD%9C">Stream操作</a>
+<li>5.4. <a href="#%E6%93%8D%E4%BD%9C%E5%88%86%E7%B1%BB">操作分类</a>
 <ul>
 <li>5.4.1. <a href="#%E4%B8%AD%E9%97%B4%E6%93%8D%E4%BD%9C">中间操作</a></li>
 <li>5.4.2. <a href="#%E7%BB%88%E7%AB%AF%E6%93%8D%E4%BD%9C">终端操作</a></li>
@@ -352,7 +345,7 @@
 <li>5.5.1. <a href="#%E7%AD%9B%E9%80%89">筛选</a></li>
 <li>5.5.2. <a href="#%E6%98%A0%E5%B0%84">映射</a></li>
 <li>5.5.3. <a href="#%E6%9F%A5%E6%89%BE%E5%92%8C%E5%8C%B9%E9%85%8D">查找和匹配</a></li>
-<li>5.5.4. <a href="#%E5%BD%92%E7%BA%A6">归约</a>
+<li>5.5.4. <a href="#%E5%BD%92%E7%BA%A6-reduce">归约 reduce</a>
 <ul>
 <li>5.5.4.1. <a href="#%E6%B1%82%E5%92%8C">求和</a></li>
 <li>5.5.4.2. <a href="#%E6%9E%81%E5%80%BC">极值</a></li>
@@ -363,20 +356,16 @@
 </li>
 <li>5.6. <a href="#%E6%94%B6%E9%9B%86%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8">收集器的使用</a>
 <ul>
-<li>5.6.1. <a href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E6%94%B6%E9%9B%86%E5%99%A8">预定义收集器</a>
+<li>5.6.1. <a href="#%E6%B1%87%E6%80%BB-collector">汇总 collector</a></li>
+<li>5.6.2. <a href="#%E8%A7%84%E7%BA%A6-reduce">规约 reduce</a></li>
+<li>5.6.3. <a href="#%E5%88%86%E7%BB%84-groupingby">分组 groupingBy</a>
 <ul>
-<li>5.6.1.1. <a href="#%E6%B1%87%E6%80%BB-collector">汇总 collector</a></li>
-<li>5.6.1.2. <a href="#%E8%A7%84%E7%BA%A6-reduce">规约 reduce</a></li>
-<li>5.6.1.3. <a href="#%E5%88%86%E7%BB%84">分组</a>
-<ul>
-<li>5.6.1.3.1. <a href="#%E5%A4%9A%E7%BA%A7%E5%88%86%E7%BB%84">多级分组</a></li>
-<li>5.6.1.3.2. <a href="#%E6%8C%89%E5%AD%90%E7%BB%84%E6%94%B6%E9%9B%86%E6%95%B0%E6%8D%AE">按子组收集数据</a></li>
+<li>5.6.3.1. <a href="#%E5%A4%9A%E7%BA%A7%E5%88%86%E7%BB%84">多级分组</a></li>
+<li>5.6.3.2. <a href="#%E6%8C%89%E5%AD%90%E7%BB%84%E6%94%B6%E9%9B%86%E6%95%B0%E6%8D%AE">按子组收集数据</a></li>
 </ul>
 </li>
-<li>5.6.1.4. <a href="#%E5%88%86%E5%8C%BA">分区</a></li>
-</ul>
-</li>
-<li>5.6.2. <a href="#%E8%87%AA%E5%AE%9A%E4%B9%89-collector">自定义 Collector</a></li>
+<li>5.6.4. <a href="#%E5%88%86%E5%8C%BA">分区</a></li>
+<li>5.6.5. <a href="#%E8%87%AA%E5%AE%9A%E4%B9%89-collector">自定义 Collector</a></li>
 </ul>
 </li>
 </ul>
@@ -387,7 +376,7 @@
 </ol>
 <ul>
 <li>6.1. <a href="#optional%E7%B1%BB%E5%92%8Cstream%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%9B%B8%E4%BC%BC%E4%B9%8B%E5%A4%84">Optional类和Stream接口的相似之处</a></li>
-<li>6.2. <a href="#%E5%AE%9E%E8%B7%B5%E8%AF%BB%E5%8F%96properties%E6%9F%90%E5%B1%9E%E6%80%A7">实践:读取Properties某属性</a></li>
+<li>6.2. <a href="#%E5%AE%9E%E8%B7%B5-%E8%AF%BB%E5%8F%96properties%E5%B1%9E%E6%80%A7">实践-读取Properties属性</a></li>
 </ul>
 </li>
 <li>
@@ -412,7 +401,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-14 16:40:22</p>
+<p>💠 2024-11-21 11:40:34</p>
 <hr>
 <h1 id="java8">Java8</h1>
 <blockquote>
@@ -587,8 +576,8 @@
 </ul>
 </li>
 </ol>
-<p>不将构造函数实例化却能够引用它，这个功能有一些有趣的应用。例如，你可以使用Map来将构造函数映射到字符串值。
-你可以创建一个giveMeFruit方法，给它一个String和一个Integer，它就可以创建出不同重量的各种水果：</p>
+<p>不将构造函数实例化却能够引用它，这个功能有一些有趣的应用。</p>
+<p>例如，你可以使用Map来将构造函数映射到字符串值。你可以创建一个giveMeFruit方法，给它一个String和一个Integer，它就可以创建出不同重量的各种水果：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -855,9 +844,9 @@ Java API中的很多方法都可以用不同的行为来参数化。这些方法
 <p><a href="https://blog.csdn.net/jiankunking/article/details/79825928">参考: Java Lambda表达式 实现原理分析</a></p>
 </blockquote>
 <blockquote>
-<p>为什么Lambda范围内的代码引用外部变量时得是final修饰的。
-因为匿名内部类的引用不允许此操作</p>
+<p>为什么Lambda范围内的代码引用外部变量时得是final修饰的。</p>
 </blockquote>
+<p>因为匿名内部类的引用不允许此操作,规避并发问题。 详见 <a href="#%E4%BD%BF%E7%94%A8%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F">局部变量的限制</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -941,7 +930,7 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<T>、 Int
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong><code>特殊的void兼容规则</code></strong>
-如果一个Lambda的主体是一个语句表达式， 它就和一个返回void的函数描述符兼容（当然需要参数列表也兼容）。
+如果一个Lambda的主体是一个语句表达式， 它就和一个返回void的函数描述符兼容（当然需要参数列表也兼容）。<br>
 例如，以下两行都是合法的，尽管List的add方法返回了一个 boolean，而不是Consumer上下文（T -&gt; void） 所要求的void：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -987,8 +976,8 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<T>、 Int
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="使用局部变量">使用局部变量</h3>
-<p>我们迄今为止所介绍的所有Lambda表达式都只用到了其主体里面的参数。但Lambda表达式也允许使用自由变量（不是参数，而是在外层作用域中定义的变量），
-就像匿名类一样。 它们被称作捕获Lambda。例如，下面的Lambda捕获了portNumber变量：</p>
+<p>前文所述的 Lambda表达式都只用到了其结构所定义的参数。但Lambda表达式也允许使用自由变量（在外层作用域中定义的变量），就像匿名类一样。 它们被称作捕获Lambda。</p>
+<p>例如，下面的Lambda捕获了portNumber变量：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -999,9 +988,9 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<T>、 Int
 </span></span><span class="line"><span class="cl">    <span class="n">Runnable</span> <span class="n">r</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">portNumber</span><span class="o">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>尽管如此，还有一点点小麻烦：关于能对这些变量做什么有一些限制。 Lambda可以没有限制地捕获（也就是在其主体中引用）实例变量和静态变量。
-但局部变量必须显式声明为final，或事实上是final。
-换句话说， Lambda表达式只能捕获指派给它们的局部变量一次。（注：捕获实例变量可以被看作捕获最终局部变量this。）</p>
+</div><p>尽管如此，还有一点点小麻烦：关于能对这些变量做什么有一些限制。
+Lambda可以没有限制地捕获 对象的实例变量和静态变量， 但局部变量必须显式声明为final，或事实上是final（生命周期内只有一次赋值）。</p>
+<p>注：捕获实例变量可以被看作捕获final修饰的局部变量 <em>this</em></p>
 <p>例如，下面的代码无法编译，因为portNumber 变量被赋值两次：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1019,28 +1008,27 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<T>、 Int
 <ul>
 <li>你可能会问自己，为什么局部变量有这些限制。
 <ol>
-<li>第一，实例变量和局部变量背后的实现有一个关键不同。实例变量都存储在堆中，而局部变量则保存在栈上。
+<li>第一，实例变量和局部变量背后的实现有一个关键的不同点。实例变量都存储在堆中，而局部变量则保存在栈上。
 <ul>
 <li>如果Lambda可以直接访问局部变量，而且Lambda是在一个线程中使用的，则使用Lambda的线程，可能会在分配该变量的线程将这个变量收回之后，去访问该变量。</li>
-<li>因此， Java在访问自由局部变量时，实际上是在访问它的副本，而不是访问原始变量。如果局部变量仅仅赋值一次那就没有什么区别了——因此就有了这个限制。</li>
+<li>因此 Java在访问自由局部变量时，实际上是在访问它的副本，而不是访问原始变量。如果局部变量仅仅赋值一次那就没有什么区别了。</li>
+<li>如前所述，这种限制存在的原因在于局部变量保存在栈上，并且隐式表示它们仅限于其所在线程访问。</li>
+<li>如果允许捕获可改变的局部变量，就会引发造成线程不安全的可能性，而这是我们不想看到的（实例变量可以，因为它们保存在堆中，而堆是在线程之间共享的）</li>
 </ul>
 </li>
-<li>第二，这一限制不鼓励你使用改变外部变量的典型命令式编程模式（这种模式会阻碍很容易做到的并行处理）。</li>
+<li>第二，这一限制不鼓励你使用改变外部变量的典型命令式编程模式（这种模式会阻碍原本很容易做到的并行处理）。</li>
 </ol>
 </li>
 </ul>
 <p><strong><code>闭包</code></strong></p>
-<p>你可能已经听说过闭包（closure，不要和Clojure编程语言混淆）这个词，你可能会想Lambda是否满足闭包的定义。
-用科学的说法来说，闭包就是一个函数的实例，且它可以无限制地访问那个函数的非本地变量。例如，闭包可以作为参数传递给另一个函数。
-它也可以访问和修改其作用域之外的变量。现在， Java 8的Lambda和匿名类可以做类似于闭包的事情：
-它们可以作为参数传递给方法，并且可以访问其作用域之外的变量。但有一个限制：它们不能修改定义Lambda的方法的局部变量的内容。
-这些变量必须是隐式最终的。可以认为Lambda是对值封闭，而不是对变量封闭。如前所述，这种限制存在的原因在于局部变量保存在栈上，
-并且隐式表示它们仅限于其所在线程。如果允许捕获可改变的局部变量，就会引发造成线程不安全的新的可能性，
-而这是我们不想看到的（实例变量可以，因为它们保存在堆中，而堆是在线程之间共享的） 。</p>
+<p>你可能已经听说过闭包（closure，不要和Clojure编程语言混淆）这个词，你可能会想Lambda是否满足闭包的定义。<br>
+用科学的说法来说，闭包就是一个函数的实例，且它可以无限制地访问那个函数的非本地变量。</p>
+<p>例如，闭包可以作为参数传递给另一个函数，那这个闭包也可以访问和修改其作用域之外的变量。<br>
+现在，Java 8的Lambda和匿名类可以做类似于闭包的事情， 它们可以作为参数传递给方法，并且可以访问其作用域之外的变量。</p>
 <h2 id="复合-lambda-表达式">复合 Lambda 表达式</h2>
-<p>在实践中，这意味着你可以把多个简单的Lambda复合成复杂的表达式。比如，你可以让两个谓词之间做一个or操作，组合成一个更大的谓词。
-而且，你还可以让一个函数的结果成为另一个函数的输入。
-窍门在于，我们即将介绍的方法都是<strong>默认方法</strong>，也就是说它们不是抽象方法。</p>
+<p>在实践中，这意味着你可以把多个简单的Lambda复合成复杂的表达式。<br>
+比如，你可以让两个谓词之间做一个or操作，组合成一个更大的谓词。而且，你还可以让一个函数的结果成为另一个函数的输入。<br>
+在字节码层面，这些方法都是匿名接口的<strong>默认方法</strong></p>
 <h3 id="比较器复合">比较器复合</h3>
 <blockquote>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&amp;mid=2247487247&amp;idx=1&amp;sn=55dc46cdde683b79864997a183c258df&amp;chksm=9bd0a297aca72b8106cb40bedade4a69d539dbdbb579bed6238a54cf30bb270b8b4a8e45ec04&amp;mpshare=1&amp;scene=1&amp;srcid=#rd">Java Comparator 珍藏版 </a></p>
@@ -1190,12 +1178,12 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<T>、 Int
 相比之下，流则是在概念上固定的数据结构（你不能添加或删除元素），其元素则是按需计算的。</p>
 <p>例如构建一个质数流, 对所有的质数处理, 如果使用集合就要把所有的质数构建出来, 然后做下一步操作, 但是流只会按需生成。<br>
 这是一种生产者－消费者的关系. 从另一个角度来说，流就像是一个延迟创建的集合：只有在消费者要求的时候才会计算值</p>
-<h3 id="只能遍历一次">只能遍历一次</h3>
+<p><strong>只能遍历一次</strong></p>
 <blockquote>
 <p>和迭代器类似，流只能遍历一次, 遍历完之后，我们就说这个流已经被消费掉了<br>
 从哲学的角度看, 集合是空间中分布的一组值, 而流是时间中分布的一组值</p>
 </blockquote>
-<h3 id="外部迭代和内部迭代">外部迭代和内部迭代</h3>
+<p><strong>外部迭代和内部迭代</strong></p>
 <ul>
 <li>
 <p>使用Collection接口需要用户去做迭代（比如用for-each），这称为外部迭代。</p>
@@ -1386,7 +1374,7 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<T>、 Int
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
-<h2 id="stream操作">Stream操作</h2>
+<h2 id="操作分类">操作分类</h2>
 <p>因为filter、sorted、map 和collect 等操作是与具体线程模型无关的高层次构件, 所以它们的内部实现可以是单线程的，也可能透明地充分利用你的多核架构</p>
 <h3 id="中间操作">中间操作</h3>
 <p>诸如 filter 或 sorted  map flatMap limit distinct 等中间操作会返回另一个流。这让多个操作可以连接起来形成一个查询。
@@ -1661,7 +1649,7 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<T>、 Int
 </ul>
 </li>
 </ul>
-<h3 id="归约">归约</h3>
+<h3 id="归约-reduce">归约 reduce</h3>
 <ul>
 <li>如何把一个流中的元素组合起来，使用 reduce 操作来表达更复杂的查询 此类查询需要将流中所有元素反复结合起来，得到一个值</li>
 <li>这样的查询可以被归类为归约操作（将流归约成一个值）。用函数式编程语言的术语来说，这称为折叠（fold）</li>
@@ -1733,7 +1721,6 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<T>、 Int
 <blockquote>
 <p>函数式编程相对于指令式编程的一个主要优势：你只需指出希望的结果——“做什么”，而不用操心执行的步骤——“如何做”</p>
 </blockquote>
-<h3 id="预定义收集器">预定义收集器</h3>
 <p>Collectors所提供的工厂方法 它们主要提供了三大功能：将流元素归约和汇总为一个值 元素分组 元素分区</p>
 <ul>
 <li>toList toMap toSet 等方法</li>
@@ -1742,7 +1729,7 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<T>、 Int
 <p>注意： toMap 方法的使用， 当 key 重复时会抛出异常
 <code>toMap(k-&gt;k, v-&gt;v, (a,b)-&gt;b);</code> 使用该方式能避免， 设置了遇到重复的策略， 后者覆盖前者</p>
 </blockquote>
-<h4 id="汇总-collector">汇总 collector</h4>
+<h3 id="汇总-collector">汇总 collector</h3>
 <blockquote>
 <p>Collectors类专门为汇总提供了一个工厂方法：Collectors.summingInt 它可接受一个把对象映射为求和所需int的函数，并返回一个收集器；该收集器在传递给普通的collect方法后即执行我们需要的汇总操作<br>
 求平均数 Collectors.averagingInt</p>
@@ -1802,7 +1789,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="规约-reduce">规约 reduce</h4>
+</div><h3 id="规约-reduce">规约 reduce</h3>
 <p>事实上，我们已经讨论的所有收集器，都是一个可以用reducing工厂方法定义的归约过程的特殊情况而已。Collectors.reducing工厂方法是所有这些特殊情况的一般化。</p>
 <ul>
 <li>例如 计算总热量 <code>int totalCalories = menu.stream().collect(reducing(0, Dish::getCalories, (i, j) -&gt; i + j));</code>
@@ -1855,7 +1842,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 <ul>
 <li><input disabled="" type="checkbox"> 设计和实现</li>
 </ul>
-<h4 id="分组">分组</h4>
+<h3 id="分组-groupingby">分组 groupingBy</h3>
 <p>一个常见的数据库操作是根据一个或多个属性对集合中的项目进行分组。</p>
 <ul>
 <li>使用 groupingBy <code>Map&lt;Dish.Type, List&lt;Dish&gt;&gt; dishesByType = menu.stream().collect(groupingBy(Dish::getType));</code>
@@ -1896,7 +1883,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span></span><span class="line"><span class="cl">            <span class="o">}));</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="多级分组">多级分组</h5>
+</div><h4 id="多级分组">多级分组</h4>
 <blockquote>
 <p>要实现多级分组，我们可以使用一个由双参数版本的 Collectors.groupingBy 工厂方法创建的收集器，它除了普通的分类函数之外，还可以接受collector类型的第二个参数。</p>
 </blockquote>
@@ -1934,7 +1921,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span></span><span class="line"><span class="cl">    <span class="o">);</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="按子组收集数据">按子组收集数据</h5>
+</div><h4 id="按子组收集数据">按子组收集数据</h4>
 <blockquote>
 <p>可以把第二个groupingBy收集器传递给外层收集器来实现多级分组。但进一步说，传递给第一个groupingBy的第二个收集器可以是任何类型</p>
 <blockquote>
@@ -2087,7 +2074,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="分区">分区</h4>
+</div><h3 id="分区">分区</h3>
 <hr>
 <h3 id="自定义-collector">自定义 Collector</h3>
 <blockquote>
@@ -2281,7 +2268,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </ul>
 </li>
 </ol>
-<h2 id="实践读取properties某属性">实践:读取Properties某属性</h2>
+<h2 id="实践-读取properties属性">实践-读取Properties属性</h2>
 <blockquote>
 <p>从properties文件中读取某个属性, 正整数就返回该值, 否则返回0</p>
 </blockquote>
@@ -2341,7 +2328,7 @@ joining工厂方法返回的收集器会把对流中每一个对象应用toStrin
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">readDuration</span><span class="o">(</span><span class="n">Properties</span> <span class="n">props</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">props</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">name</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">OptionalUtility</span><span class="o">::</span><span class="n">stringToInt</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">stringToInt</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>

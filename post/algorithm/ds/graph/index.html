@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>View.md - Mythos · Java Developer</title>
+  <title>Graph - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="目录 start 前端 基础 规范 CSS 相关库 Jquery Bootstrap LayUI 目录 end|2020-04-27 23:42| 前端 半学半就 个人导航页 基础 我所理解的前端 Javascript字典操作 js数据结构和算法（五）字典和散" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Graph 1.1. 最小生成树 💠 2024-11-18 14:46:29 Graph 「树」和「图」的根本区别：树不会包含环，图可以包含环 。 最小生成树" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://www.kuangcp.top/post/blog/view/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/algorithm/ds/graph/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,20 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="View.md" />
-<meta property="og:description" content="目录 start 前端 基础 规范 CSS 相关库 Jquery Bootstrap LayUI 目录 end|2020-04-27 23:42| 前端 半学半就 个人导航页 基础 我所理解的前端 Javascript字典操作 js数据结构和算法（五）字典和散" />
+<meta property="og:title" content="Graph" />
+<meta property="og:description" content="💠 Graph 1.1. 最小生成树 💠 2024-11-18 14:46:29 Graph 「树」和「图」的根本区别：树不会包含环，图可以包含环 。 最小生成树" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.kuangcp.top/post/blog/view/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
-<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="og:url" content="https://www.kuangcp.top/post/algorithm/ds/graph/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-11-18T14:46:29+00:00" />
+<meta property="article:modified_time" content="2024-11-18T14:46:29+00:00" />
 
-<meta itemprop="name" content="View.md">
-<meta itemprop="description" content="目录 start 前端 基础 规范 CSS 相关库 Jquery Bootstrap LayUI 目录 end|2020-04-27 23:42| 前端 半学半就 个人导航页 基础 我所理解的前端 Javascript字典操作 js数据结构和算法（五）字典和散"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="116">
+<meta itemprop="name" content="Graph">
+<meta itemprop="description" content="💠 Graph 1.1. 最小生成树 💠 2024-11-18 14:46:29 Graph 「树」和「图」的根本区别：树不会包含环，图可以包含环 。 最小生成树"><meta itemprop="datePublished" content="2024-11-18T14:46:29+00:00" />
+<meta itemprop="dateModified" content="2024-11-18T14:46:29+00:00" />
+<meta itemprop="wordCount" content="44">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="View.md"/>
-<meta name="twitter:description" content="目录 start 前端 基础 规范 CSS 相关库 Jquery Bootstrap LayUI 目录 end|2020-04-27 23:42| 前端 半学半就 个人导航页 基础 我所理解的前端 Javascript字典操作 js数据结构和算法（五）字典和散"/>
+<meta name="twitter:title" content="Graph"/>
+<meta name="twitter:description" content="💠 Graph 1.1. 最小生成树 💠 2024-11-18 14:46:29 Graph 「树」和「图」的根本区别：树不会包含环，图可以包含环 。 最小生成树"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,12 +115,12 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">View.md</h1>
+      <h1 class="post-title">Graph</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2018-11-21 </span>
+        <span class="post-time"> 2024-11-18 </span>
         
-          <span class="more-meta"> 116 words </span>
+          <span class="more-meta"> 44 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -131,21 +131,9 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#前端">前端</a>
+    <li><a href="#graph">Graph</a>
       <ul>
-        <li><a href="#基础">基础</a>
-          <ul>
-            <li><a href="#规范">规范</a></li>
-          </ul>
-        </li>
-        <li><a href="#css">CSS</a></li>
-        <li><a href="#相关库">相关库</a>
-          <ul>
-            <li><a href="#jquery">Jquery</a></li>
-            <li><a href="#bootstrap">Bootstrap</a></li>
-            <li><a href="#layui">LayUI</a></li>
-          </ul>
-        </li>
+        <li><a href="#最小生成树">最小生成树</a></li>
       </ul>
     </li>
   </ul>
@@ -153,53 +141,22 @@
   </div>
 </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#%E5%89%8D%E7%AB%AF">前端</a>
-<ol>
-<li><a href="#%E5%9F%BA%E7%A1%80">基础</a>
-<ol>
-<li><a href="#%E8%A7%84%E8%8C%83">规范</a></li>
+<li><a href="#graph">Graph</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91">最小生成树</a></li>
+</ul>
 </li>
-<li><a href="#css">CSS</a></li>
-<li><a href="#%E7%9B%B8%E5%85%B3%E5%BA%93">相关库</a>
-<ol>
-<li><a href="#jquery">Jquery</a></li>
-<li><a href="#bootstrap">Bootstrap</a></li>
-<li><a href="#layui">LayUI</a></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-04-27 23:42</em>|</p>
+</ul>
+<p>💠 2024-11-18 14:46:29</p>
 <hr>
-<h1 id="前端">前端</h1>
-<blockquote>
-<p>半学半就 <a href="https://kuangcp.github.io/main.html">个人导航页</a></p>
-</blockquote>
-<h2 id="基础">基础</h2>
-<blockquote>
-<p><a href="https://www.cnblogs.com/Smiled/p/8377188.html">我所理解的前端</a><br>
-<a href="http://blog.csdn.net/limlimlim/article/details/9088161">Javascript字典操作</a>
-<a href="https://segmentfault.com/a/1190000002447815">js数据结构和算法（五）字典和散列（hash） </a></p>
-</blockquote>
-<h3 id="规范">规范</h3>
-<ul>
-<li><a href="https://juejin.im/post/592d4a5b0ce463006b43b6da">前端开发命名规范</a></li>
-</ul>
-<h2 id="css">CSS</h2>
-<ul>
-<li><a href="http://www.html5tricks.com/9-nick-css3-menu-button.html">酷炫按钮</a></li>
-</ul>
-<h2 id="相关库">相关库</h2>
-<h3 id="jquery">Jquery</h3>
-<ul>
-<li><a href="http://www.codeceo.com/article/10-jquery-image-player.html#0-tsina-1-78156-397232819ff9a47a7b7e80a40613cfe1">10个超赞的jQuery图片滑块动画</a></li>
-</ul>
-<h3 id="bootstrap">Bootstrap</h3>
-<h3 id="layui">LayUI</h3>
+<h1 id="graph">Graph</h1>
+<p><strong>「树」和「图」的根本区别：树不会包含环，图可以包含环</strong> 。</p>
+<h2 id="最小生成树">最小生成树</h2>
 
     </div>
 
@@ -211,7 +168,7 @@
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2018-11-21
+        2024-11-18
         
     </span>
   </p>
@@ -221,13 +178,13 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/java/ecosystem/vertx/">
+        <a class="prev" href="/post/java/spring/springboot3/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Vertx</span>
+            <span class="prev-text nav-default">SpringBoot3</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/frontend/viewsolution/">
-            <span class="next-text nav-default">ViewSolution</span>
+        <a class="next" href="/post/java/gui/javafx/">
+            <span class="next-text nav-default">JavaFX</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>

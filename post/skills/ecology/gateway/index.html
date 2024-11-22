@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 网关 1.1. 功能 对比 2.1. Spring Gateway 2.2. Zuul 2.3. Kong 2.4. Nginx 2.5. Traefik 💠 2024-04-19 10:49:10 网关 概览 功能 动态路由 负载均衡 统一鉴权 审计&amp;amp;监控 协议转换 限流熔断 黑白名单 灰度发布 蓝绿 流量染" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 网关 1.1. 功能 对比 2.1. Spring Gateway 2.2. Zuul 2.3. Kong 2.4. Nginx 2.5. Traefik 💠 2024-11-20 19:35:19 网关 功能 动态路由 负载均衡 统一鉴权 审计&amp;amp;监控 协议转换 限流熔断 黑白名单 灰度发布 蓝绿 流量染色 对" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Gateway" />
-<meta property="og:description" content="💠 网关 1.1. 功能 对比 2.1. Spring Gateway 2.2. Zuul 2.3. Kong 2.4. Nginx 2.5. Traefik 💠 2024-04-19 10:49:10 网关 概览 功能 动态路由 负载均衡 统一鉴权 审计&amp;监控 协议转换 限流熔断 黑白名单 灰度发布 蓝绿 流量染" />
+<meta property="og:description" content="💠 网关 1.1. 功能 对比 2.1. Spring Gateway 2.2. Zuul 2.3. Kong 2.4. Nginx 2.5. Traefik 💠 2024-11-20 19:35:19 网关 功能 动态路由 负载均衡 统一鉴权 审计&amp;监控 协议转换 限流熔断 黑白名单 灰度发布 蓝绿 流量染色 对" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/skills/ecology/gateway/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2024-04-19T10:47:31+00:00" />
 <meta property="article:modified_time" content="2024-04-19T10:47:31+00:00" />
 
 <meta itemprop="name" content="Gateway">
-<meta itemprop="description" content="💠 网关 1.1. 功能 对比 2.1. Spring Gateway 2.2. Zuul 2.3. Kong 2.4. Nginx 2.5. Traefik 💠 2024-04-19 10:49:10 网关 概览 功能 动态路由 负载均衡 统一鉴权 审计&amp;监控 协议转换 限流熔断 黑白名单 灰度发布 蓝绿 流量染"><meta itemprop="datePublished" content="2024-04-19T10:47:31+00:00" />
+<meta itemprop="description" content="💠 网关 1.1. 功能 对比 2.1. Spring Gateway 2.2. Zuul 2.3. Kong 2.4. Nginx 2.5. Traefik 💠 2024-11-20 19:35:19 网关 功能 动态路由 负载均衡 统一鉴权 审计&amp;监控 协议转换 限流熔断 黑白名单 灰度发布 蓝绿 流量染色 对"><meta itemprop="datePublished" content="2024-04-19T10:47:31+00:00" />
 <meta itemprop="dateModified" content="2024-04-19T10:47:31+00:00" />
-<meta itemprop="wordCount" content="79">
+<meta itemprop="wordCount" content="94">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Gateway"/>
-<meta name="twitter:description" content="💠 网关 1.1. 功能 对比 2.1. Spring Gateway 2.2. Zuul 2.3. Kong 2.4. Nginx 2.5. Traefik 💠 2024-04-19 10:49:10 网关 概览 功能 动态路由 负载均衡 统一鉴权 审计&amp;监控 协议转换 限流熔断 黑白名单 灰度发布 蓝绿 流量染"/>
+<meta name="twitter:description" content="💠 网关 1.1. 功能 对比 2.1. Spring Gateway 2.2. Zuul 2.3. Kong 2.4. Nginx 2.5. Traefik 💠 2024-11-20 19:35:19 网关 功能 动态路由 负载均衡 统一鉴权 审计&amp;监控 协议转换 限流熔断 黑白名单 灰度发布 蓝绿 流量染色 对"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2024-04-19 </span>
         
-          <span class="more-meta"> 79 words </span>
+          <span class="more-meta"> 94 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -173,12 +173,9 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-04-19 10:49:10</p>
+<p>💠 2024-11-20 19:35:19</p>
 <hr>
 <h1 id="网关">网关</h1>
-<blockquote>
-<p>概览</p>
-</blockquote>
 <h2 id="功能">功能</h2>
 <p>动态路由
 负载均衡
@@ -191,6 +188,9 @@
 流量染色</p>
 <hr>
 <h1 id="对比">对比</h1>
+<blockquote>
+<p><a href="https://github.com/apache/shenyu">apache/shenyu: Apache ShenYu is a Java native API Gateway for service proxy, protocol conversion and API governance.</a></p>
+</blockquote>
 <h2 id="spring-gateway">Spring Gateway</h2>
 <h2 id="zuul">Zuul</h2>
 <h2 id="kong">Kong</h2>

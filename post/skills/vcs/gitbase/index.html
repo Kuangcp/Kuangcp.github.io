@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Git基础 开源许可证 基本命令 3.1. config 3.2. clone 3.2.1. Shallow Clone 3.2.2. sparse checkout 稀疏检出 3.3. add 3.4. rm 3.5. status 3.6. commit 3.7. restore 3.8. revert 3.9. show 3.10. log 3.10.1. 对比两个分支的差异 3.10.2. 查看文件的修改记录 3.10.3. 全分支搜" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Git基础 开源许可证 基本命令 3.1. config 3.2. clone 3.2.1. Shallow Clone 3.2.2. sparse checkout 稀疏检出 3.3. add 3.4. rm 3.5. status 3.6. commit 3.7. restore 3.8. revert 3.9. show 3.10. log 3.10.1. 对比两个分支的差异 3.10.2. 查看文件的修改记录 3.10.3. 查看目录" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="GitBase" />
-<meta property="og:description" content="💠 Git基础 开源许可证 基本命令 3.1. config 3.2. clone 3.2.1. Shallow Clone 3.2.2. sparse checkout 稀疏检出 3.3. add 3.4. rm 3.5. status 3.6. commit 3.7. restore 3.8. revert 3.9. show 3.10. log 3.10.1. 对比两个分支的差异 3.10.2. 查看文件的修改记录 3.10.3. 全分支搜" />
+<meta property="og:description" content="💠 Git基础 开源许可证 基本命令 3.1. config 3.2. clone 3.2.1. Shallow Clone 3.2.2. sparse checkout 稀疏检出 3.3. add 3.4. rm 3.5. status 3.6. commit 3.7. restore 3.8. revert 3.9. show 3.10. log 3.10.1. 对比两个分支的差异 3.10.2. 查看文件的修改记录 3.10.3. 查看目录" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/skills/vcs/gitbase/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2024-01-04T10:45:28+00:00" />
 <meta property="article:modified_time" content="2024-01-04T10:45:28+00:00" />
 
 <meta itemprop="name" content="GitBase">
-<meta itemprop="description" content="💠 Git基础 开源许可证 基本命令 3.1. config 3.2. clone 3.2.1. Shallow Clone 3.2.2. sparse checkout 稀疏检出 3.3. add 3.4. rm 3.5. status 3.6. commit 3.7. restore 3.8. revert 3.9. show 3.10. log 3.10.1. 对比两个分支的差异 3.10.2. 查看文件的修改记录 3.10.3. 全分支搜"><meta itemprop="datePublished" content="2024-01-04T10:45:28+00:00" />
+<meta itemprop="description" content="💠 Git基础 开源许可证 基本命令 3.1. config 3.2. clone 3.2.1. Shallow Clone 3.2.2. sparse checkout 稀疏检出 3.3. add 3.4. rm 3.5. status 3.6. commit 3.7. restore 3.8. revert 3.9. show 3.10. log 3.10.1. 对比两个分支的差异 3.10.2. 查看文件的修改记录 3.10.3. 查看目录"><meta itemprop="datePublished" content="2024-01-04T10:45:28+00:00" />
 <meta itemprop="dateModified" content="2024-01-04T10:45:28+00:00" />
-<meta itemprop="wordCount" content="10527">
+<meta itemprop="wordCount" content="10670">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GitBase"/>
-<meta name="twitter:description" content="💠 Git基础 开源许可证 基本命令 3.1. config 3.2. clone 3.2.1. Shallow Clone 3.2.2. sparse checkout 稀疏检出 3.3. add 3.4. rm 3.5. status 3.6. commit 3.7. restore 3.8. revert 3.9. show 3.10. log 3.10.1. 对比两个分支的差异 3.10.2. 查看文件的修改记录 3.10.3. 全分支搜"/>
+<meta name="twitter:description" content="💠 Git基础 开源许可证 基本命令 3.1. config 3.2. clone 3.2.1. Shallow Clone 3.2.2. sparse checkout 稀疏检出 3.3. add 3.4. rm 3.5. status 3.6. commit 3.7. restore 3.8. revert 3.9. show 3.10. log 3.10.1. 对比两个分支的差异 3.10.2. 查看文件的修改记录 3.10.3. 查看目录"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2024-01-04 </span>
         
-          <span class="more-meta"> 10527 words </span>
+          <span class="more-meta"> 10670 words </span>
           <span class="more-meta"> 22 mins read </span>
         
       </div>
@@ -153,7 +153,6 @@
           <ul>
             <li><a href="#对比两个分支的差异">对比两个分支的差异</a></li>
             <li><a href="#查看文件的修改记录">查看文件的修改记录</a></li>
-            <li><a href="#全分支搜索字符串">全分支搜索字符串</a></li>
             <li><a href="#查看目录或文件修改频次">查看目录或文件修改频次</a></li>
           </ul>
         </li>
@@ -272,8 +271,7 @@
 <ul>
 <li>3.10.1. <a href="#%E5%AF%B9%E6%AF%94%E4%B8%A4%E4%B8%AA%E5%88%86%E6%94%AF%E7%9A%84%E5%B7%AE%E5%BC%82">对比两个分支的差异</a></li>
 <li>3.10.2. <a href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%BF%AE%E6%94%B9%E8%AE%B0%E5%BD%95">查看文件的修改记录</a></li>
-<li>3.10.3. <a href="#%E5%85%A8%E5%88%86%E6%94%AF%E6%90%9C%E7%B4%A2%E5%AD%97%E7%AC%A6%E4%B8%B2">全分支搜索字符串</a></li>
-<li>3.10.4. <a href="#%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E6%88%96%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E9%A2%91%E6%AC%A1">查看目录或文件修改频次</a></li>
+<li>3.10.3. <a href="#%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E6%88%96%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E9%A2%91%E6%AC%A1">查看目录或文件修改频次</a></li>
 </ul>
 </li>
 <li>3.11. <a href="#blame">blame</a></li>
@@ -372,7 +370,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-11-11 17:02:19</p>
+<p>💠 2024-11-18 17:55:16</p>
 <hr>
 <h1 id="git基础">Git基础</h1>
 <blockquote>
@@ -706,6 +704,12 @@
 <p><code>git log --after='2016-03-23 9:20' --before='2017-05-10 12:00' </code> 输出指定日期的日志</p>
 </li>
 <li>
+<p><code>git log --format=format:'%h' --reverse | head -n 1</code> 获取第一个commit</p>
+</li>
+<li>
+<p><code>git log --oneline -S &quot;search keyword&quot; --source --all</code> 全部提交范围内 搜索字符串</p>
+</li>
+<li>
 <p><code>git shortlog</code> 按字母顺序输出每个人的日志</p>
 <ul>
 <li><code>--numbered</code> 按提交数排序</li>
@@ -737,50 +741,40 @@
 <p><a href="http://blog.csdn.net/u011240877/article/details/52586664">参考博客 git 对比两个分支差异</a></p>
 </blockquote>
 <blockquote>
-<p>commit差异</p>
+<p>分支间 commit 差异</p>
 </blockquote>
-<ul>
-<li>
 <p>查看<strong>dev有，master没有</strong>的那些提交</p>
 <ul>
 <li><code>git log master..dev</code> 或 <code>git log dev ^master</code> (^表示非，等价于 &ndash;not)</li>
 <li>且支持多个分支 <code>git log dev ^master ^fea/feature1</code> 表示：在dev有后两个分支没有的commit</li>
 <li>还可对比远程分支和本地分支的差别 <code>git log origin/master..master</code></li>
+<li><code>hash..HEAD</code> 同分支内查看特定commit之间的提交记录</li>
 </ul>
-</li>
-<li>
 <p>对比分支的差异： <code>git log dev...master</code> 即 非两个分支共有的commit</p>
 <ul>
 <li>显示出每个提交是在哪个分支上 <code>git log --left-right dev...master</code></li>
 <li>注意输出： commit 后面的箭头，根据我们在 <code>–left-right dev…master</code> 的顺序，左箭头 &lt; 表示是dev的提交，右箭头 &gt; 表示是 master的。</li>
 </ul>
-</li>
-<li>
 <p>对比两个tag差异 <code>git log -s &quot;v1.1.0&quot; &quot;^v1.0.6&quot;</code></p>
-</li>
-</ul>
 <blockquote>
-<p>内容差异</p>
+<p>分支间 内容差异</p>
 </blockquote>
-<ul>
-<li><code>git diff dev master</code> 查看 从dev分支切换到master分支将会发生的所有修改内容
+<p><code>git diff dev master</code> 查看 从dev分支切换到master分支将会发生的所有修改内容</p>
 <ul>
 <li>第一个分支可省略，缺省为当前分支</li>
-</ul>
-</li>
 </ul>
 <h3 id="查看文件的修改记录">查看文件的修改记录</h3>
 <ol>
 <li><code>git log fileName</code> 或者 <code>git log --pretty=oneline fileName</code> 更容易看到 sha-1 值</li>
 <li>git show sha-1的值 就能看到该次提交的所有修改</li>
 </ol>
-<h3 id="全分支搜索字符串">全分支搜索字符串</h3>
-<p>git log &ndash;oneline -S &ldquo;search keyword&rdquo; &ndash;source &ndash;all</p>
 <h3 id="查看目录或文件修改频次">查看目录或文件修改频次</h3>
 <blockquote>
-<p>查看所有提交修改的模块分布 <code>git --no-pager log --format=format:'%h' --no-merges | awk '{system(&quot; git --no-pager diff  --stat-name-width=300 --name-only &quot;$1&quot; &quot;$1&quot;~&quot;) }' | sed 's/\/.*//g' | sort | uniq -c | sort -hr</code></p>
+<p>查看所有提交修改过的文件</p>
 </blockquote>
+<p><code>git --no-pager log --format=format:'%h' --no-merges | awk '{system(&quot; git --no-pager diff  --stat-name-width=300 --name-only &quot;$1&quot; &quot;$1&quot;~&quot;) }'</code></p>
 <ul>
+<li>追加 <code>| sed 's/\/.*//g' | sort | uniq -c | sort -hr</code> 得到模块分布</li>
 <li><code>--stat-name-width=300</code> 规避路径过长被折叠成&hellip;</li>
 <li>awk 中的 system() 调用命令</li>
 <li><code>sed 's/\/.*//g'</code> 只保留第一级目录</li>
@@ -1215,14 +1209,17 @@
 <p>merge rebase squash 三种合并策略</p>
 </blockquote>
 <ul>
-<li>Merge会创建合并节点形成环</li>
-<li>Rebase是通过调整两个分支链上的提交，合并成一个链没有环</li>
-<li>Squash不是具体命令，做法是将需要合并过去的那些提交撤销得到文件修改，基于这些修改再创建一个新提交。好处是分支图上只有主要合并提交，没有中间提交信息的干扰</li>
+<li>Merge 会创建合并节点形成环</li>
+<li>Rebase 是通过调整两个分支链上的提交，合并成一个链没有环</li>
+<li>Squash 不是具体命令，做法是将需要合并过去的那些提交撤销得到文件修改，基于这些修改再创建一个新提交。好处是分支图上只有主要合并提交，没有中间提交信息的干扰</li>
 </ul>
 <p><a href="https://zhuanlan.zhihu.com/p/192972614">这才是真正的 Git——分支合并</a></p>
+<p><img src="./img/git-merge-situation.drawio.svg" alt=""></p>
 <p>Git 在合并分支的时候使用的是 三向合并策略，即当前分支和目标分支的共同祖先commit节点， 和两个分支的当前commmit节点进行比较确定哪一方发生修改需要纳入，如果两方都修改就要提示冲突</p>
 <p>根据 Git 的合并策略，在合并两个有分叉的分支（上图中的 D、E‘）时，Git 默认会选择 Recursive 策略。找到 D 和 E’的最短路径共同祖先节点 B，以 B 为 base，对 D，E‘做三向合并。</p>
-<p>B 中有 http.js，D 中有 http.js 和 main.js，E’中什么都没有。根据三向合并，B、D 中都有 http.js 且没有变更，E‘删除了 http.js，所以合并结果就是没有 http.js，没有冲突，所以 http.js 最终会被删除。</p>
+<p>B 中有 http.js； D 中有 http.js 和 main.js； E’中什么都没有。<br>
+根据三向合并，B、D 中都有 http.js 且没有变更，E‘删除了 http.js(revert会将所有内容操作取反)，所以合并结果就是没有 http.js，没有冲突，然后 http.js 最终被删除了。<br>
+<strong>问题出现了，怎么处理呢？</strong> 其实也很简单，revert掉之前的revert，即 revert E&rsquo; 节点得到 E&rsquo;&rsquo;，再将 D 和 E&rsquo;&lsquo;合并 完成dev合并到master。</p>
 <h3 id="分支问题排查">分支问题排查</h3>
 <ul>
 <li><code>git merge-base 分支1 分支2</code> 查看两个分支共同祖先（前提:两个分支通过merge命令发生的合并，如果是rebase则找不到真正的祖先节点）</li>

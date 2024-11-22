@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Java基础语法">
 <meta itemprop="description" content="💠 基础语法 1.1. 代码风格 1.2. 结构 1.2.1. 判断 1.2.2. 循环 1.3. 标准输入输出 1.4. Runtime 数据类型 2.1. 自动拆装箱 2.2. 基础数据类型 2.2.1. byte 2.2.2. char 2.2.3. boolean 2.2.4. short 2.2.5. int 2.2.6. long 2.2.7. float 2.2.8. double 2.3. 封装类型 2.3.1. String 2.3.2. Float"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="6362">
+<meta itemprop="wordCount" content="6393">
 <meta itemprop="keywords" content="基础,语法," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java基础语法"/>
 <meta name="twitter:description" content="💠 基础语法 1.1. 代码风格 1.2. 结构 1.2.1. 判断 1.2.2. 循环 1.3. 标准输入输出 1.4. Runtime 数据类型 2.1. 自动拆装箱 2.2. 基础数据类型 2.2.1. byte 2.2.2. char 2.2.3. boolean 2.2.4. short 2.2.5. int 2.2.6. long 2.2.7. float 2.2.8. double 2.3. 封装类型 2.3.1. String 2.3.2. Float"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 6362 words </span>
+          <span class="more-meta"> 6393 words </span>
           <span class="more-meta"> 13 mins read </span>
         
       </div>
@@ -388,7 +388,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-10-08 15:07:46</p>
+<p>💠 2024-11-21 11:51:03</p>
 <hr>
 <h1 id="基础语法">基础语法</h1>
 <p><img src="/Java/AdvancedLearning/img/005-java-main.km.svg" alt=""></p>
@@ -856,9 +856,9 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
 <h2 id="非原生类型">非原生类型</h2>
 <h3 id="元组">元组</h3>
 <blockquote>
-<p>Groovy 中实现了一个元组系统 Tuple</p>
+<p>Groovy 中实现了一个元组系统 Tuple， 或者使用 apache common库中的Tuple</p>
 </blockquote>
-<p>元组在语言层面, 适合应用于组合少量的多元的数据, 在多种语言中元组都是不可变的</p>
+<p>元组在语言层面, 适合应用于组合少量的不可变的多元数据, 在很多种语言中元组都是不可变的</p>
 <p>优点:</p>
 <ol>
 <li>元组可以同时存储多种类型元素，且元素类型固定，以保证数据安全， 编译器会对赋值参数类型进行检查</li>
@@ -904,7 +904,7 @@ Character  范围是 ‘\u0000’ 至 ‘\u007f’ 即 [0,127]</p>
 <blockquote>
 <p><a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op3.html">Bitwise and Bit Shift Operators</a></p>
 </blockquote>
-<p>当length是2的n次方: hash%length==hash&amp;(length-1)</p>
+<p>判断length是否为2的n次方: <code>hash%length==hash&amp;(length-1)</code></p>
 <hr>
 <h1 id="类的结构">类的结构</h1>
 <h2 id="import">import</h2>

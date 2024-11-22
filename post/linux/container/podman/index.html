@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Server - Mythos · Java Developer</title>
+  <title>Podman - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="目录 start Server 终端 内存优化 目录 end|2020-06-28 02:11| Server 服务器运维相关 终端 效率为王：终端管理工具 Tmux 内存优化 参考博客 大内存页配置实战 内存占用大, 访问随机就需要使用大内存" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Podman 💠 2024-11-20 10:28:22 Podman Podman Podman vs Docker: What are the differences? 无守护进程，可直接alias替换docker进行使用（兼容Docker）" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://www.kuangcp.top/post/blog/server/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/container/podman/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,20 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Server" />
-<meta property="og:description" content="目录 start Server 终端 内存优化 目录 end|2020-06-28 02:11| Server 服务器运维相关 终端 效率为王：终端管理工具 Tmux 内存优化 参考博客 大内存页配置实战 内存占用大, 访问随机就需要使用大内存" />
+<meta property="og:title" content="Podman" />
+<meta property="og:description" content="💠 Podman 💠 2024-11-20 10:28:22 Podman Podman Podman vs Docker: What are the differences? 无守护进程，可直接alias替换docker进行使用（兼容Docker）" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.kuangcp.top/post/blog/server/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
-<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/container/podman/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-11-20T10:28:22+00:00" />
+<meta property="article:modified_time" content="2024-11-20T10:28:22+00:00" />
 
-<meta itemprop="name" content="Server">
-<meta itemprop="description" content="目录 start Server 终端 内存优化 目录 end|2020-06-28 02:11| Server 服务器运维相关 终端 效率为王：终端管理工具 Tmux 内存优化 参考博客 大内存页配置实战 内存占用大, 访问随机就需要使用大内存"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="85">
+<meta itemprop="name" content="Podman">
+<meta itemprop="description" content="💠 Podman 💠 2024-11-20 10:28:22 Podman Podman Podman vs Docker: What are the differences? 无守护进程，可直接alias替换docker进行使用（兼容Docker）"><meta itemprop="datePublished" content="2024-11-20T10:28:22+00:00" />
+<meta itemprop="dateModified" content="2024-11-20T10:28:22+00:00" />
+<meta itemprop="wordCount" content="50">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Server"/>
-<meta name="twitter:description" content="目录 start Server 终端 内存优化 目录 end|2020-06-28 02:11| Server 服务器运维相关 终端 效率为王：终端管理工具 Tmux 内存优化 参考博客 大内存页配置实战 内存占用大, 访问随机就需要使用大内存"/>
+<meta name="twitter:title" content="Podman"/>
+<meta name="twitter:description" content="💠 Podman 💠 2024-11-20 10:28:22 Podman Podman Podman vs Docker: What are the differences? 无守护进程，可直接alias替换docker进行使用（兼容Docker）"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,12 +115,12 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Server</h1>
+      <h1 class="post-title">Podman</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2018-11-21 </span>
+        <span class="post-time"> 2024-11-20 </span>
         
-          <span class="more-meta"> 85 words </span>
+          <span class="more-meta"> 50 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -131,41 +131,30 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#server">Server</a>
-      <ul>
-        <li><a href="#终端">终端</a></li>
-        <li><a href="#内存优化">内存优化</a></li>
-      </ul>
-    </li>
+    <li><a href="#podman">Podman</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#server">Server</a>
-<ol>
-<li><a href="#%E7%BB%88%E7%AB%AF">终端</a></li>
-<li><a href="#%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96">内存优化</a></li>
+<li><a href="#podman">Podman</a></li>
 </ol>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-06-28 02:11</em>|</p>
-<hr>
-<h1 id="server">Server</h1>
-<blockquote>
-<p>服务器运维相关</p>
-</blockquote>
-<h2 id="终端">终端</h2>
-<ul>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzIwNjEwNTQ4Mw==&amp;mid=2651580395&amp;idx=1&amp;sn=d311abab344aed97fe8b5244aa51e08d&amp;chksm=8cd9f90fbbae7019fc5ee8fbe423c8027527f068bcb71ad3d7a18b85a503bc4ffd377dfb9b6d&amp;mpshare=1&amp;scene=1&amp;srcid=0110cegY48pxj9fMGcObeEMT&amp;pass_ticket=9AXPGsZExYCvgc64Pq%2Fge7rdAI7U%2F%2BG%2F5NrA4rv24OXW2BDRnIZzo5eMh%2F%2FanrNZ#rd">效率为王：终端管理工具 Tmux </a></li>
 </ul>
-<h2 id="内存优化">内存优化</h2>
+<p>💠 2024-11-20 10:28:22</p>
+<hr>
+<h1 id="podman">Podman</h1>
 <blockquote>
-<p><a href="http://www.cnblogs.com/dongzhiquan/p/5043912.html">参考博客 大内存页配置实战</a> <code>内存占用大, 访问随机就需要使用大内存页了</code>
-<a href="http://www.oracle.com/technetwork/cn/articles/servers-storage-dev/hugepages-2099009-zhs.html">Oracle官网的使用案例</a></p>
+<p><a href="https://podman.io/">Podman</a></p>
 </blockquote>
+<blockquote>
+<p><a href="https://www.imaginarycloud.com/blog/podman-vs-docker">Podman vs Docker: What are the differences?</a></p>
+</blockquote>
+<p>无守护进程，可直接alias替换docker进行使用（兼容Docker）</p>
 
     </div>
 
@@ -177,7 +166,7 @@
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2018-11-21
+        2024-11-20
         
     </span>
   </p>
@@ -187,13 +176,9 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/java/ecosystem/querydsl/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Querydsl</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="/post/java/ecosystem/solr/">
-            <span class="next-text nav-default">Solr</span>
+        
+        <a class="next" href="/post/skills/ecology/minio/">
+            <span class="next-text nav-default">MinIO</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>

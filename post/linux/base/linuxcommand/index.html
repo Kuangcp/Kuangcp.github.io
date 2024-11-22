@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Linux常用命令 - Mythos · Java Developer</title>
+  <title>Linux基础命令 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 系统常用基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-07-26 19:05:14 系统常用基础命令 Linux 命" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Linux 基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-11-21 10:49:19 Linux 基础命令 Linux 命令大全 The Art of" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,20 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Linux常用命令" />
-<meta property="og:description" content="💠 系统常用基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-07-26 19:05:14 系统常用基础命令 Linux 命" />
+<meta property="og:title" content="Linux基础命令" />
+<meta property="og:description" content="💠 Linux 基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-11-21 10:49:19 Linux 基础命令 Linux 命令大全 The Art of" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/linux/base/linuxcommand/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-15T11:11:55+00:00" />
 <meta property="article:modified_time" content="2018-12-15T11:11:55+00:00" />
 
-<meta itemprop="name" content="Linux常用命令">
-<meta itemprop="description" content="💠 系统常用基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-07-26 19:05:14 系统常用基础命令 Linux 命"><meta itemprop="datePublished" content="2018-12-15T11:11:55+00:00" />
+<meta itemprop="name" content="Linux基础命令">
+<meta itemprop="description" content="💠 Linux 基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-11-21 10:49:19 Linux 基础命令 Linux 命令大全 The Art of"><meta itemprop="datePublished" content="2018-12-15T11:11:55+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:11:55+00:00" />
-<meta itemprop="wordCount" content="1005">
+<meta itemprop="wordCount" content="999">
 <meta itemprop="keywords" content="工具," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Linux常用命令"/>
-<meta name="twitter:description" content="💠 系统常用基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-07-26 19:05:14 系统常用基础命令 Linux 命"/>
+<meta name="twitter:title" content="Linux基础命令"/>
+<meta name="twitter:description" content="💠 Linux 基础命令 1.1. 系统内置命令 1.1.1. Shell内建命令 1.2. 输入输出 1.2.1. 重定向 1.3. 管道 1.3.1. xargs 1.4. time 1.5. date 1.6. grep 1.7. script 1.8. 定时任务 1.8.1. crontab 1.8.2. Systemd 💠 2024-11-21 10:49:19 Linux 基础命令 Linux 命令大全 The Art of"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,15 +115,15 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Linux常用命令</h1>
+      <h1 class="post-title">Linux基础命令</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2018-12-15 </span>
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 1005 words </span>
-          <span class="more-meta"> 3 mins read </span>
+          <span class="more-meta"> 999 words </span>
+          <span class="more-meta"> 2 mins read </span>
         
       </div>
     </header>
@@ -133,7 +133,7 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#系统常用基础命令">系统常用基础命令</a>
+    <li><a href="#linux-基础命令">Linux 基础命令</a>
       <ul>
         <li><a href="#系统内置命令">系统内置命令</a>
           <ul>
@@ -171,7 +171,7 @@
 <ul>
 <li>
 <ol>
-<li><a href="#%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4">系统常用基础命令</a></li>
+<li><a href="#linux-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4">Linux 基础命令</a></li>
 </ol>
 <ul>
 <li>1.1. <a href="#%E7%B3%BB%E7%BB%9F%E5%86%85%E7%BD%AE%E5%91%BD%E4%BB%A4">系统内置命令</a>
@@ -202,9 +202,9 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-07-26 19:05:14</p>
+<p>💠 2024-11-21 10:49:19</p>
 <hr>
-<h1 id="系统常用基础命令">系统常用基础命令</h1>
+<h1 id="linux-基础命令">Linux 基础命令</h1>
 <blockquote>
 <p><a href="http://man.linuxde.net/">Linux 命令大全</a></p>
 </blockquote>

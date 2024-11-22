@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Linux基础">
 <meta itemprop="description" content="💠 Linux系统 1.1. Boot 1.1.1. grub 1.2. 用户管理 1.2.1. 用户 1.2.2. 用户组 1.2.3. sudo 1.2.4. 终端和登录 1.3. 环境变量 1.4. 进程 1.4.1. 信号 Signal 1.4.2. 信号量 Semaphore 1.4.3. 孤儿进程和僵死进程 1.4.3.1. 孤儿进程 1.4.3.2. 僵死进程 defunct"><meta itemprop="datePublished" content="2018-12-15T11:11:23+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:11:23+00:00" />
-<meta itemprop="wordCount" content="9037">
+<meta itemprop="wordCount" content="9030">
 <meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux基础"/>
 <meta name="twitter:description" content="💠 Linux系统 1.1. Boot 1.1.1. grub 1.2. 用户管理 1.2.1. 用户 1.2.2. 用户组 1.2.3. sudo 1.2.4. 终端和登录 1.3. 环境变量 1.4. 进程 1.4.1. 信号 Signal 1.4.2. 信号量 Semaphore 1.4.3. 孤儿进程和僵死进程 1.4.3.1. 孤儿进程 1.4.3.2. 僵死进程 defunct"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 9037 words </span>
+          <span class="more-meta"> 9030 words </span>
           <span class="more-meta"> 19 mins read </span>
         
       </div>
@@ -286,11 +286,7 @@
 <li>2.3.1. <a href="#overcommit">overcommit</a></li>
 <li>2.3.2. <a href="#oom">oom</a></li>
 <li>2.3.3. <a href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98">虚拟内存</a></li>
-<li>2.3.4. <a href="#%E4%BA%A4%E6%8D%A2%E5%86%85%E5%AD%98">交换内存</a>
-<ul>
-<li>2.3.4.1. <a href="#%E6%B8%85%E7%A9%BA%E4%BA%A4%E6%8D%A2%E5%86%85%E5%AD%98">清空交换内存</a></li>
-</ul>
-</li>
+<li>2.3.4. <a href="#%E4%BA%A4%E6%8D%A2%E5%86%85%E5%AD%98">交换内存</a></li>
 <li>2.3.5. <a href="#%E6%B8%85%E7%A9%BA%E8%AF%BB%E5%86%99%E7%BC%93%E5%AD%98">清空读写缓存</a></li>
 </ul>
 </li>
@@ -339,7 +335,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-16 17:40:15</p>
+<p>💠 2024-11-21 13:37:28</p>
 <hr>
 <h1 id="linux系统">Linux系统</h1>
 <ul>
@@ -1150,7 +1146,9 @@ SWAP = VIRT - RES</p>
 <li>进程按交换内存使用大小排序<code>for file in /proc/*/status ; do awk '/VmSwap|Name/{printf $2 &quot; &quot; $3}END{ print &quot;&quot;}' $file; done | sort -k 2 -n -r | less</code></li>
 <li><code>smem</code>  Report memory usage with shared memory divided proportionally</li>
 </ul>
-<h4 id="清空交换内存">清空交换内存</h4>
+<blockquote>
+<p>清空交换内存</p>
+</blockquote>
 <ul>
 <li>1.关闭交换分区 <code>sudo swapoff 交换分区文件</code>
 <ul>
@@ -1639,7 +1637,7 @@ snap应用都是整个打成压缩包并且将每个软件单独挂载在只读�
       <nav class="post-nav">
         <a class="prev" href="/post/linux/base/linuxcommand/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Linux常用命令</span>
+            <span class="prev-text nav-default">Linux基础命令</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         <a class="next" href="/post/go/gorestful/">
