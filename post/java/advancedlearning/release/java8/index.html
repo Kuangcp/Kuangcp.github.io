@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Java8">
 <meta itemprop="description" content="💠 Java8 1.1. 实战库项目 接口的变化 2.1. default方法 2.2. static方法 函数式 3.1. 函数式接口 3.1.1. 构造函数的引用 3.2. 函数式接口案例 Lambda 4.1. 行为参数化 4.2. Lambd"><meta itemprop="datePublished" content="2018-12-13T16:05:51+00:00" />
 <meta itemprop="dateModified" content="2018-12-13T16:05:51+00:00" />
-<meta itemprop="wordCount" content="15241">
+<meta itemprop="wordCount" content="15344">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java8"/>
 <meta name="twitter:description" content="💠 Java8 1.1. 实战库项目 接口的变化 2.1. default方法 2.2. static方法 函数式 3.1. 函数式接口 3.1.1. 构造函数的引用 3.2. 函数式接口案例 Lambda 4.1. 行为参数化 4.2. Lambd"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 15241 words </span>
+          <span class="more-meta"> 15344 words </span>
           <span class="more-meta"> 31 mins read </span>
         
       </div>
@@ -168,15 +168,15 @@
         <li><a href="#类型检查类型推断以及限制">类型检查、类型推断以及限制</a>
           <ul>
             <li><a href="#类型检查">类型检查</a></li>
-            <li><a href="#同样的lambda-不同的函数式接口">同样的Lambda 不同的函数式接口</a></li>
+            <li><a href="#一个lambda兼容不同的函数式接口">一个Lambda兼容不同的函数式接口</a></li>
             <li><a href="#类型推断">类型推断</a></li>
             <li><a href="#使用局部变量">使用局部变量</a></li>
           </ul>
         </li>
         <li><a href="#复合-lambda-表达式">复合 Lambda 表达式</a>
           <ul>
-            <li><a href="#比较器复合">比较器复合</a></li>
-            <li><a href="#谓词复合">谓词复合</a></li>
+            <li><a href="#comparator-比较器复合">Comparator 比较器复合</a></li>
+            <li><a href="#predicate-谓词复合">Predicate 谓词复合</a></li>
             <li><a href="#函数复合">函数复合</a></li>
           </ul>
         </li>
@@ -188,6 +188,7 @@
         <li><a href="#stream与集合">Stream与集合</a></li>
         <li><a href="#构建流">构建流</a>
           <ul>
+            <li><a href="#并行流">并行流</a></li>
             <li><a href="#有限流">有限流</a></li>
             <li><a href="#无限流">无限流</a></li>
           </ul>
@@ -301,15 +302,15 @@
 <li>4.4. <a href="#%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5%E3%80%81%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD%E4%BB%A5%E5%8F%8A%E9%99%90%E5%88%B6">类型检查、类型推断以及限制</a>
 <ul>
 <li>4.4.1. <a href="#%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5">类型检查</a></li>
-<li>4.4.2. <a href="#%E5%90%8C%E6%A0%B7%E7%9A%84lambda-%E4%B8%8D%E5%90%8C%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3">同样的Lambda 不同的函数式接口</a></li>
+<li>4.4.2. <a href="#%E4%B8%80%E4%B8%AAlambda%E5%85%BC%E5%AE%B9%E4%B8%8D%E5%90%8C%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3">一个Lambda兼容不同的函数式接口</a></li>
 <li>4.4.3. <a href="#%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD">类型推断</a></li>
 <li>4.4.4. <a href="#%E4%BD%BF%E7%94%A8%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F">使用局部变量</a></li>
 </ul>
 </li>
 <li>4.5. <a href="#%E5%A4%8D%E5%90%88-lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F">复合 Lambda 表达式</a>
 <ul>
-<li>4.5.1. <a href="#%E6%AF%94%E8%BE%83%E5%99%A8%E5%A4%8D%E5%90%88">比较器复合</a></li>
-<li>4.5.2. <a href="#%E8%B0%93%E8%AF%8D%E5%A4%8D%E5%90%88">谓词复合</a></li>
+<li>4.5.1. <a href="#comparator-%E6%AF%94%E8%BE%83%E5%99%A8%E5%A4%8D%E5%90%88">Comparator 比较器复合</a></li>
+<li>4.5.2. <a href="#predicate-%E8%B0%93%E8%AF%8D%E5%A4%8D%E5%90%88">Predicate 谓词复合</a></li>
 <li>4.5.3. <a href="#%E5%87%BD%E6%95%B0%E5%A4%8D%E5%90%88">函数复合</a></li>
 </ul>
 </li>
@@ -324,8 +325,9 @@
 <li>5.1. <a href="#stream%E4%B8%8E%E9%9B%86%E5%90%88">Stream与集合</a></li>
 <li>5.2. <a href="#%E6%9E%84%E5%BB%BA%E6%B5%81">构建流</a>
 <ul>
-<li>5.2.1. <a href="#%E6%9C%89%E9%99%90%E6%B5%81">有限流</a></li>
-<li>5.2.2. <a href="#%E6%97%A0%E9%99%90%E6%B5%81">无限流</a></li>
+<li>5.2.1. <a href="#%E5%B9%B6%E8%A1%8C%E6%B5%81">并行流</a></li>
+<li>5.2.2. <a href="#%E6%9C%89%E9%99%90%E6%B5%81">有限流</a></li>
+<li>5.2.3. <a href="#%E6%97%A0%E9%99%90%E6%B5%81">无限流</a></li>
 </ul>
 </li>
 <li>5.3. <a href="#%E6%95%B0%E5%80%BC%E6%B5%81">数值流</a>
@@ -401,7 +403,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-21 11:40:34</p>
+<p>💠 2024-11-27 10:56:30</p>
 <hr>
 <h1 id="java8">Java8</h1>
 <blockquote>
@@ -914,7 +916,7 @@ Function接口还有针对输出参数类型的变种： ToIntFunction<T>、 Int
 <p>Lambda的类型是从使用Lambda的上下文推断出来的。上下文（比如，接受它传递的方法的参数，或接受它的值的局部变量）中Lambda表达式需要的类型称为目标类型。
 请注意，如果Lambda表达式抛出一个异常，那么抽象方法所声明的throws语句也必须与之匹配。</p>
 </blockquote>
-<h3 id="同样的lambda-不同的函数式接口">同样的Lambda 不同的函数式接口</h3>
+<h3 id="一个lambda兼容不同的函数式接口">一个Lambda兼容不同的函数式接口</h3>
 <blockquote>
 <p>有了目标类型的概念，同一个Lambda表达式就可以与不同的函数式接口联系起来，只要它们的抽象方法签名能够兼容。</p>
 </blockquote>
@@ -1029,24 +1031,24 @@ Lambda可以没有限制地捕获 对象的实例变量和静态变量， 但局
 <p>在实践中，这意味着你可以把多个简单的Lambda复合成复杂的表达式。<br>
 比如，你可以让两个谓词之间做一个or操作，组合成一个更大的谓词。而且，你还可以让一个函数的结果成为另一个函数的输入。<br>
 在字节码层面，这些方法都是匿名接口的<strong>默认方法</strong></p>
-<h3 id="比较器复合">比较器复合</h3>
+<h3 id="comparator-比较器复合">Comparator 比较器复合</h3>
 <blockquote>
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&amp;mid=2247487247&amp;idx=1&amp;sn=55dc46cdde683b79864997a183c258df&amp;chksm=9bd0a297aca72b8106cb40bedade4a69d539dbdbb579bed6238a54cf30bb270b8b4a8e45ec04&amp;mpshare=1&amp;scene=1&amp;srcid=#rd">Java Comparator 珍藏版 </a></p>
 </blockquote>
 <ol>
 <li>单一属性比较 <code>Comparator&lt;Apple&gt; c = Comparator.comparing(Apple::getWeight);</code> (实用的<strong>Comparator.comparing</strong>方法)
 <ul>
-<li>顺序(小到大) 逆序则再调用下 reversed()</li>
+<li>默认顺序(小到大) 逆序追加 reversed()</li>
+<li>例如 按重量逆序排序, 重量一致时则再按国家排序 <code>inventory.sort(comparing(Apple::getWeight).reversed().thenComparing(Apple::getCountry));</code></li>
 </ul>
 </li>
-<li>按重量排序, 重量一致则再按国家排序 <code>inventory.sort(comparing(Apple::getWeight).thenComparing(Apple::getCountry));</code></li>
 <li>nullsFirst是Comparator功能接口的静态方法。Comparator.nullsFirst方法返回一个空值友好的比较器，该比较器将null视为小于非null。
 <ol>
 <li>nullLast 与之相反</li>
 </ol>
 </li>
 </ol>
-<h3 id="谓词复合">谓词复合</h3>
+<h3 id="predicate-谓词复合">Predicate 谓词复合</h3>
 <blockquote>
 <p>谓词接口包括三个方法： negate、 and和or，让你可以重用已有的Predicate来创建更复杂的谓词。<br>
 请注意， and和or方法是按照在表达式链中的位置，从左向右确定优先级的。因此， a.or(b).and(c)可以看作(a || b) &amp;&amp; c。</p>
@@ -1162,11 +1164,6 @@ Lambda可以没有限制地捕获 对象的实例变量和静态变量， 但局
 </blockquote>
 <ul>
 <li>通常简单的迭代使用外部迭代性能会更好，复杂操作使用Stream能让JDK为你在迭代时做优化</li>
-<li>使用 parallel() 开启并行流时要注意此时并行是依赖JVM内全局共用的Forkjoin线程池实现的，也就是说理论上会发生：
-<ul>
-<li>使用了并行流的业务代码A耗时很久会卡住使用了并行流业务代码B，这种问题发生了就比较难排查了，所以并行流通常使用较少，有异步场景均按业务独立线程池统一管理会更好</li>
-</ul>
-</li>
 </ul>
 <blockquote>
 <p><a href="https://github.com/burukeYou/JDFrame">JDFrame</a><code>封装出类似Spark Frame 的API</code></p>
@@ -1209,6 +1206,16 @@ Lambda可以没有限制地捕获 对象的实例变量和静态变量， 但局
 <blockquote>
 <p>从值序列、数组、文件来创建流，甚至由函数创建无限流</p>
 </blockquote>
+<h3 id="并行流">并行流</h3>
+<p>使用 parallel() 开启并行流时要注意此时并行是依赖JVM内全局共用的Forkjoin线程池实现的（<a href="/Java/AdvancedLearning/Concurrency/ForkAndJoin.md">Fork/Join 详解</a>）
+另外理论上会发生：使用了并行流的业务代码A耗时很久会卡住使用了并行流业务代码B，这种问题发生了就比较难排查了，所以并行流通常使用较少，有异步场景均按业务独立线程池统一管理会更好</p>
+<blockquote>
+<p>ps:</p>
+</blockquote>
+<p>已遇到两次别人的生产问题和故障，都是不知并行流实现，而想当然用来做提速， 但流里的中间或终端操作内又含有SQL查询，外部接口调用等操作。</p>
+<ul>
+<li><a href="/Java/AdvancedLearning/Tuning/JavaTroubleshoot.md#cpu">线程问题案例详解</a></li>
+</ul>
 <h3 id="有限流">有限流</h3>
 <blockquote>
 <p>由值创建流</p>

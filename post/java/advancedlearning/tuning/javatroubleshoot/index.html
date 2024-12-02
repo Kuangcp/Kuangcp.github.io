@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-18 14:31:55 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-27 10:56:30 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Java问题排查手册" />
-<meta property="og:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-18 14:31:55 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" />
+<meta property="og:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-27 10:56:30 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/tuning/javatroubleshoot/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-08-25T15:51:12+00:00" />
 <meta property="article:modified_time" content="2023-08-25T15:51:12+00:00" />
 
 <meta itemprop="name" content="Java问题排查手册">
-<meta itemprop="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-18 14:31:55 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"><meta itemprop="datePublished" content="2023-08-25T15:51:12+00:00" />
+<meta itemprop="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-27 10:56:30 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"><meta itemprop="datePublished" content="2023-08-25T15:51:12+00:00" />
 <meta itemprop="dateModified" content="2023-08-25T15:51:12+00:00" />
-<meta itemprop="wordCount" content="2209">
+<meta itemprop="wordCount" content="2635">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java问题排查手册"/>
-<meta name="twitter:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-18 14:31:55 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"/>
+<meta name="twitter:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-27 10:56:30 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/troubleshoot/"> Troubleshoot </a>
             </div>
-          <span class="more-meta"> 2209 words </span>
-          <span class="more-meta"> 5 mins read </span>
+          <span class="more-meta"> 2635 words </span>
+          <span class="more-meta"> 6 mins read </span>
         
       </div>
     </header>
@@ -176,7 +176,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-18 14:31:55</p>
+<p>💠 2024-11-27 10:56:30</p>
 <hr>
 <h1 id="troubleshoot">Troubleshoot</h1>
 <p>当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总</p>
@@ -311,7 +311,7 @@ JVM层：记录好后续排查分析故障现场的必要信息后（dump，日�
 <hr>
 <h2 id="cpu">CPU</h2>
 <blockquote>
-<p>问题：优化一个业务方法延迟，找出CPU成本高的点</p>
+<p>问题：优化一个业务接口的平均延迟，找出CPU成本高的点</p>
 </blockquote>
 <ul>
 <li>Arthas trace 指定的方法
@@ -320,12 +320,37 @@ JVM层：记录好后续排查分析故障现场的必要信息后（dump，日�
 </ul>
 </li>
 <li>JMC，JProfiler，Visualvm 等工具捕获CPU火焰图</li>
-<li>APM类监控系统。例如：CAT</li>
+<li><a href="/Skills/Ecology/APM.md">APM类监控系统</a>。例如：CAT等</li>
+</ul>
+<blockquote>
+<p>问题： 偶现单个或一批接口无响应</p>
+</blockquote>
+<ul>
+<li>外部资源紧张（高频GC，网络慢，SQL慢，缓存慢）导致这些接口平均耗时突增</li>
+<li>外部资源阻塞了，这些接口内部逻辑在阻塞等待。</li>
+<li>考虑Web容器线程池是否满了，无法接收新请求，会抛出异常返回500状态码</li>
+</ul>
+<blockquote>
+<p>问题：多个导出文件并行 单页面刷新时，一堆接口里，随机接口无响应其他接口RT正常</p>
+</blockquote>
+<ul>
+<li>另一个场景查询接口并发压测时，单页面刷新 全部接口RT变慢 复合常见逻辑 全链路资源紧张 数据竞争大</li>
+<li>原因：
+<ul>
+<li>随机接口慢：因为 拦截器 鉴权逻辑里查询权限那块使用到了并行流，业务不合理设计导致前端在轮询后端，就容易导致并行流任务随机积压，影响到随机的接口</li>
+<li>随机接口无响应长达5min（前端超时时间），其他接口正常：FJ的队列积压达到了1000+, 由于默认的并行流采用的默认FJ线程池策略是栈
+<ul>
+<li>导致在打开一个系统的页面调用的一堆接口时，一旦有一个接口在栈相对底部时，后续接口一直放在栈顶又被消费，导致这个底部的请求永远无法被消费，这个接口就一直在等待响应了。</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h3 id="线程">线程</h3>
-<blockquote>
-<p><a href="https://jstack.review">jstack.review Analyze java thread dumps</a></p>
-</blockquote>
+<ol>
+<li><a href="/Java/AdvancedLearning/JvmTool.md#jstack">Jstack 查看栈</a></li>
+<li><a href="/Java/AdvancedLearning/Concurrency/ForkAndJoin.md#tuning">Fork Join 排查手册</a></li>
+</ol>
 <hr>
 <h2 id="classloader">ClassLoader</h2>
 <p><strong>加载错误的类</strong></p>

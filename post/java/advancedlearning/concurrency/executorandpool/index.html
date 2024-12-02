@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-09-13 10:39:04 线程池 Java线程池实现原理及" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-11-26 20:13:28 线程池 Java线程池实现原理及" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="线程池" />
-<meta property="og:description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-09-13 10:39:04 线程池 Java线程池实现原理及" />
+<meta property="og:description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-11-26 20:13:28 线程池 Java线程池实现原理及" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/concurrency/executorandpool/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-04-19T12:42:09+00:00" />
 <meta property="article:modified_time" content="2019-04-19T12:42:09+00:00" />
 
 <meta itemprop="name" content="线程池">
-<meta itemprop="description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-09-13 10:39:04 线程池 Java线程池实现原理及"><meta itemprop="datePublished" content="2019-04-19T12:42:09+00:00" />
+<meta itemprop="description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-11-26 20:13:28 线程池 Java线程池实现原理及"><meta itemprop="datePublished" content="2019-04-19T12:42:09+00:00" />
 <meta itemprop="dateModified" content="2019-04-19T12:42:09+00:00" />
 <meta itemprop="wordCount" content="3842">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="线程池"/>
-<meta name="twitter:description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-09-13 10:39:04 线程池 Java线程池实现原理及"/>
+<meta name="twitter:description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-11-26 20:13:28 线程池 Java线程池实现原理及"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -190,7 +190,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-09-13 10:39:04</p>
+<p>💠 2024-11-26 20:13:28</p>
 <hr>
 <h1 id="线程池">线程池</h1>
 <blockquote>
@@ -421,9 +421,9 @@
 </blockquote>
 <blockquote>
 <p><a href="https://mp.weixin.qq.com/s/BdVqvm2wLNv05vMTieevMg"> 合理使用线程池以及线程变量 </a><br>
-<a href="https://nurkiewicz.com/2014/11/executorservice-10-tips-and-tricks.html">ExecutorService - 10 tips and tricks</a><br>
-<a href="/Java/Tool/TomcatDesign.md#%E7%BA%BF%E7%A8%8B%E6%B1%A0">Tomcat 线程池</a></p>
+<a href="https://nurkiewicz.com/2014/11/executorservice-10-tips-and-tricks.html">ExecutorService - 10 tips and tricks</a></p>
 </blockquote>
+<p><a href="/Java/Ecosystem/Servlet/TomcatDesign.md#%E7%BA%BF%E7%A8%8B%E6%B1%A0">Tomcat 线程池</a></p>
 <ul>
 <li>增加全局异常处理 <code>Thread.setUncaughtExceptionHandler()</code>, 或手动catch任务块全部代码 避免异常被吞 <a href="https://github.com/Kuangcp/JavaBase/blob/master/concurrency/src/test/java/thread/pool/PoolExceptionTest.java">测试代码</a></li>
 <li>避免局部线程池，容易遗忘线程资源回收，注意线程是GCRoot对象</li>

@@ -49,7 +49,7 @@
 <meta itemprop="name" content="数据库基础">
 <meta itemprop="description" content="💠 数据库 1.1. 事务 1.1.1. 事务的并发问题 1.2. 数据库并发控制 1.3. SQL 解析和审计 1.3.1. Slow SQL 关系型数据库设计 2.1. 范式 2.1.1. 1NF 2.1.2. 2NF 2.1.3. 3NF 2.1.4. BCNF 2.1.5. 4NF 2.2. 基本表的设计 2.2.1. 关于主键的设计 2.3."><meta itemprop="datePublished" content="2018-12-16T17:25:06+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:25:06+00:00" />
-<meta itemprop="wordCount" content="2413">
+<meta itemprop="wordCount" content="2467">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="数据库基础"/>
 <meta name="twitter:description" content="💠 数据库 1.1. 事务 1.1.1. 事务的并发问题 1.2. 数据库并发控制 1.3. SQL 解析和审计 1.3.1. Slow SQL 关系型数据库设计 2.1. 范式 2.1.1. 1NF 2.1.2. 2NF 2.1.3. 3NF 2.1.4. BCNF 2.1.5. 4NF 2.2. 基本表的设计 2.2.1. 关于主键的设计 2.3."/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
             </div>
-          <span class="more-meta"> 2413 words </span>
+          <span class="more-meta"> 2467 words </span>
           <span class="more-meta"> 5 mins read </span>
         
       </div>
@@ -167,15 +167,20 @@
         <li><a href="#视图的设计">视图的设计</a></li>
       </ul>
     </li>
-    <li><a href="#关系型和非关系型">关系型和非关系型</a></li>
-    <li><a href="#关系型数据库">关系型数据库</a></li>
-    <li><a href="#非关系型数据库">非关系型数据库</a>
+    <li><a href="#数据库分类">数据库分类</a>
       <ul>
-        <li><a href="#redis">Redis</a></li>
-        <li><a href="#rocksdb">RocksDB</a></li>
-        <li><a href="#leveldb">LevelDB</a></li>
-        <li><a href="#mangodb">MangoDB</a></li>
-        <li><a href="#gemfire">GemFire</a></li>
+        <li><a href="#关系型数据库">关系型数据库</a></li>
+        <li><a href="#非关系型数据库">非关系型数据库</a></li>
+        <li><a href="#键值对数据库">键值对数据库</a>
+          <ul>
+            <li><a href="#redis">Redis</a></li>
+            <li><a href="#rocksdb">RocksDB</a></li>
+            <li><a href="#leveldb">LevelDB</a></li>
+          </ul>
+        </li>
+        <li><a href="#向量数据库">向量数据库</a></li>
+        <li><a href="#图数据库">图数据库</a></li>
+        <li><a href="#时序数据库">时序数据库</a></li>
       </ul>
     </li>
     <li><a href="#嵌入型数据库">嵌入型数据库</a>
@@ -185,9 +190,6 @@
       </ul>
     </li>
     <li><a href="#大数据">大数据</a></li>
-    <li><a href="#向量数据库">向量数据库</a></li>
-    <li><a href="#图数据库">图数据库</a></li>
-    <li><a href="#时序数据库">时序数据库</a></li>
     <li><a href="#数据库中间件">数据库中间件</a></li>
     <li><a href="#图形化工具">图形化工具</a></li>
   </ul>
@@ -239,67 +241,49 @@
 </li>
 <li>
 <ol start="3">
-<li><a href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B">关系型和非关系型</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%B1%BB">数据库分类</a></li>
 </ol>
+<ul>
+<li>3.1. <a href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93">关系型数据库</a></li>
+<li>3.2. <a href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93">非关系型数据库</a></li>
+<li>3.3. <a href="#%E9%94%AE%E5%80%BC%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93">键值对数据库</a>
+<ul>
+<li>3.3.1. <a href="#redis">Redis</a></li>
+<li>3.3.2. <a href="#rocksdb">RocksDB</a></li>
+<li>3.3.3. <a href="#leveldb">LevelDB</a></li>
+</ul>
+</li>
+<li>3.4. <a href="#%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93">向量数据库</a></li>
+<li>3.5. <a href="#%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93">图数据库</a></li>
+<li>3.6. <a href="#%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93">时序数据库</a></li>
+</ul>
 </li>
 <li>
 <ol start="4">
-<li><a href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93">关系型数据库</a></li>
-</ol>
-</li>
-<li>
-<ol start="5">
-<li><a href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93">非关系型数据库</a></li>
-</ol>
-<ul>
-<li>5.1. <a href="#redis">Redis</a></li>
-<li>5.2. <a href="#rocksdb">RocksDB</a></li>
-<li>5.3. <a href="#leveldb">LevelDB</a></li>
-<li>5.4. <a href="#mangodb">MangoDB</a></li>
-<li>5.5. <a href="#gemfire">GemFire</a></li>
-</ul>
-</li>
-<li>
-<ol start="6">
 <li><a href="#%E5%B5%8C%E5%85%A5%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93">嵌入型数据库</a></li>
 </ol>
 <ul>
-<li>6.1. <a href="#sqlite">SQLite</a></li>
-<li>6.2. <a href="#duckdb">duckdb</a></li>
+<li>4.1. <a href="#sqlite">SQLite</a></li>
+<li>4.2. <a href="#duckdb">duckdb</a></li>
 </ul>
 </li>
 <li>
-<ol start="7">
+<ol start="5">
 <li><a href="#%E5%A4%A7%E6%95%B0%E6%8D%AE">大数据</a></li>
 </ol>
 </li>
 <li>
-<ol start="8">
-<li><a href="#%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93">向量数据库</a></li>
-</ol>
-</li>
-<li>
-<ol start="9">
-<li><a href="#%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93">图数据库</a></li>
-</ol>
-</li>
-<li>
-<ol start="10">
-<li><a href="#%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93">时序数据库</a></li>
-</ol>
-</li>
-<li>
-<ol start="11">
+<ol start="6">
 <li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E9%97%B4%E4%BB%B6">数据库中间件</a></li>
 </ol>
 </li>
 <li>
-<ol start="12">
+<ol start="7">
 <li><a href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E5%B7%A5%E5%85%B7">图形化工具</a></li>
 </ol>
 </li>
 </ul>
-<p>💠 2024-11-20 10:28:22</p>
+<p>💠 2024-11-27 18:01:03</p>
 <hr>
 <h1 id="数据库">数据库</h1>
 <blockquote>
@@ -436,13 +420,14 @@
 </ul>
 <h2 id="视图的设计">视图的设计</h2>
 <hr>
-<h1 id="关系型和非关系型">关系型和非关系型</h1>
+<h1 id="数据库分类">数据库分类</h1>
+<p>关系型，KV型，文档型，图数据库，多模数据库（混合各数据格式）</p>
+<p>关系型 vs 非关系型</p>
 <blockquote>
 <p><a href="http://www.infoq.com/cn/news/2017/10/SQL-NoSQL-mean-what?utm_source=news_about_rdbms&amp;utm_medium=link&amp;utm_campaign=rdbms">为什么说SQL正在击败NoSQL，这对数据的未来意味着什么？</a></p>
 </blockquote>
-<p>关系型，KV型，文档型，图数据库，多模数据库（混合各数据格式）</p>
 <hr>
-<h1 id="关系型数据库">关系型数据库</h1>
+<h2 id="关系型数据库">关系型数据库</h2>
 <blockquote>
 <p>代表性: Oracle, MySQL, PostgreSQL, SQL Server</p>
 </blockquote>
@@ -459,20 +444,28 @@
 <a href="https://www.postgresql.org/">PostgreSQL</a></p>
 </blockquote>
 <hr>
-<h1 id="非关系型数据库">非关系型数据库</h1>
+<h2 id="非关系型数据库">非关系型数据库</h2>
 <blockquote>
-<p>key-value 数据库: redis memcached<br>
+<p>key-value 数据库: redis<br>
 文档数据库: MongoDB<br>
-图数据库: Neo4j tugraph-db JanusGraph PG扩展<br>
-时序数据库: InfluxDB TSDB</p>
+图数据库: Neo4j<br>
+时序数据库: InfluxDB</p>
 </blockquote>
+<p>GemFire 分布式内存数据库 12306 采用的解决方案</p>
+<p><a href="/Database/MongoDB.md">MongoDB</a> 文档性数据库, 混合类型: 关系型非关系型</p>
+<hr>
+<h2 id="键值对数据库">键值对数据库</h2>
 <ul>
-<li><a href="https://github.com/ideawu/ssdb">sssdb</a> <code>键值对数据库</code></li>
+<li><a href="https://github.com/ideawu/ssdb">sssdb</a></li>
+<li><a href="https://github.com/valkey-io/valkey">valkey-io/valkey</a>Linux基金会开源分布式kv数据库</li>
 </ul>
-<h2 id="redis">Redis</h2>
+<h3 id="redis">Redis</h3>
 <blockquote>
-<p><a href="/Database/Redis.md">Redis</a>数据类型丰富，单线程纯内存高性能， 且久经考验很稳定</p>
+<p><a href="/Database/Redis.md">Redis</a> 数据类型丰富，单线程纯内存高性能，且广泛使用，久经考验很稳定，但是商业化逐步开始恶心企业<br>
+<a href="https://github.com/RedisGraph/RedisGraph">RedisGraph/RedisGraph</a>EOL</p>
 </blockquote>
+<hr>
+<p>衍生项目</p>
 <ul>
 <li><a href="https://github.com/Tencent/Tendis">Github Tendis</a><code>兼容Redis访问协议，腾讯开源的存储版，已不维护，商业还有缓存版和混合版</code>
 <ul>
@@ -492,27 +485,33 @@
 </li>
 <li><a href="https://github.com/Snapchat/KeyDB">KeyDB</a> Redis 的一个高性能分支，专注于多线程、内存效率和高吞吐量</li>
 </ul>
-<blockquote>
-<p><a href="https://github.com/RedisGraph/RedisGraph">RedisGraph/RedisGraph</a>EOL</p>
-</blockquote>
-<h2 id="rocksdb">RocksDB</h2>
+<h3 id="rocksdb">RocksDB</h3>
 <blockquote>
 <p><a href="https://github.com/facebook/rocksdb">RocksDB</a><code>FaceBook开源</code></p>
 </blockquote>
-<h2 id="leveldb">LevelDB</h2>
+<h3 id="leveldb">LevelDB</h3>
 <blockquote>
 <p><a href="https://github.com/google/leveldb">Github</a></p>
 </blockquote>
 <blockquote>
 <p><a href="https://github.com/ledisdb/ledisdb">LedisDB</a> 基于LevelDB构建Redis协议的数据库实例</p>
 </blockquote>
-<h2 id="mangodb">MangoDB</h2>
+<h2 id="向量数据库">向量数据库</h2>
+<ul>
+<li>PostgreSQL： 支持向量插件</li>
+<li><a href="https://milvus.io/">milvus</a></li>
+<li><a href="https://github.com/chroma-core/chroma">chroma</a></li>
+</ul>
 <blockquote>
-<p><a href="/Database/MongoDB.md">MongoDB</a> 文档性数据库, 混合类型: 关系型非关系型</p>
+<p><a href="https://cloud.tencent.com/developer/article/2312534">向量数据库｜一文全面了解向量数据库的基本概念、原理、算法、选型</a></p>
 </blockquote>
-<h2 id="gemfire">GemFire</h2>
+<h2 id="图数据库">图数据库</h2>
 <blockquote>
-<p>分布式内存数据库 12306 采用的解决方案</p>
+<p><a href="/Database/Graph.md">Note: 图数据库</a></p>
+</blockquote>
+<h2 id="时序数据库">时序数据库</h2>
+<blockquote>
+<p><a href="https://db-engines.com/en/ranking/time+series+dbms">DB-Engines Ranking - popularity ranking of time Series DBMS</a></p>
 </blockquote>
 <hr>
 <h1 id="嵌入型数据库">嵌入型数据库</h1>
@@ -545,24 +544,6 @@
 <p><a href="https://cn.greenplum.org">Greenplum</a><br>
 <a href="https://docs.pingcap.com/zh/">TiDB</a><br>
 <a href="https://github.com/apache/ignite">Ignite</a></p>
-<hr>
-<h1 id="向量数据库">向量数据库</h1>
-<ul>
-<li>PostgreSQL： 支持向量插件</li>
-<li><a href="https://milvus.io/">milvus</a></li>
-<li><a href="https://github.com/chroma-core/chroma">chroma</a></li>
-</ul>
-<blockquote>
-<p><a href="https://cloud.tencent.com/developer/article/2312534">向量数据库｜一文全面了解向量数据库的基本概念、原理、算法、选型</a></p>
-</blockquote>
-<h1 id="图数据库">图数据库</h1>
-<blockquote>
-<p><a href="/Database/Graph.md">Note: 图数据库</a></p>
-</blockquote>
-<h1 id="时序数据库">时序数据库</h1>
-<blockquote>
-<p><a href="https://db-engines.com/en/ranking/time+series+dbms">DB-Engines Ranking - popularity ranking of time Series DBMS</a></p>
-</blockquote>
 <hr>
 <h1 id="数据库中间件">数据库中间件</h1>
 <blockquote>

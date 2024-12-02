@@ -49,7 +49,7 @@
 <meta itemprop="name" content="JVM 监控&amp;诊断">
 <meta itemprop="description" content="💠 JVM 监控&amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1."><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="3116">
+<meta itemprop="wordCount" content="3157">
 <meta itemprop="keywords" content="JVM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JVM 监控&amp;诊断"/>
 <meta name="twitter:description" content="💠 JVM 监控&amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1."/>
@@ -123,7 +123,7 @@
             <a href="/categories/java/"> Java </a>
             <a href="/categories/troubleshoot/"> Troubleshoot </a>
             </div>
-          <span class="more-meta"> 3116 words </span>
+          <span class="more-meta"> 3157 words </span>
           <span class="more-meta"> 7 mins read </span>
         
       </div>
@@ -255,7 +255,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-18 14:31:55</p>
+<p>💠 2024-11-26 20:13:28</p>
 <hr>
 <h1 id="jvm-监控诊断">JVM 监控&amp;诊断</h1>
 <p>命令行终端</p>
@@ -482,7 +482,12 @@
 <a href="https://stackoverflow.com/questions/76476637/openjdk11-jstack-output-explanation">OpenJDK11 jstack output explanation</a><br>
 <a href="https://dzone.com/articles/how-analyze-java-thread-dumps">How to Analyze Java Thread Dumps</a></p>
 </blockquote>
-<p>扩展：通过短时间内多次获取stack分析出 活锁，死循环，死锁等问题点，但是通常这类问题只能通过修复并重启解决</p>
+<p>扩展：通过在短时间内多次获取stack分析出 活锁，死循环，死锁等问题点，但是通常这类问题只能通过修复代码并重启解决，无法热修复</p>
+<p>快速分析</p>
+<blockquote>
+<p><a href="https://jstack.review">jstack.review - Java Thread Dump Analyzer</a><code>支持多份jstack对比</code><br>
+<a href="https://github.com/spotify/threaddump-analyzer">threaddump-analyzer</a></p>
+</blockquote>
 <h3 id="实现原理">实现原理</h3>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/36224094">Jstack 源码分析</a></li>
@@ -712,6 +717,9 @@
 <p><a href="http://www.cnblogs.com/lipeineng/p/5824799.html">参考: JAVA Shallow heap &amp; Retained heap</a><br>
 <a href="https://www.cnblogs.com/javaadu/p/11161380.html">参考:  利用MAT分析JVM内存问题，从入门到精通</a><br>
 <a href="https://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.mat.ui.help%2Freference%2Foqlsyntax.html"> Official Doc: OQL Syntax</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.mat.ui.help%2Ftasks%2Fanalyzingthreads.html">Analyzing Threads</a></p>
 </blockquote>
 <p>注意: 有这样的一种场景, 从数据库获取大量的数据创建为对象, 导致瞬间的OOM 这时候即使使用 jmap 去 dump 了快照, 也看不到占用大量内存的对象, 因为MAT默认展示的是GC可达对象，需要在菜单选择看不可达对象</p>
 <p>分析思路：</p>

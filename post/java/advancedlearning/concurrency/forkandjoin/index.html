@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Fork Join 1.1. 最佳实践 1.2. 设计 1.3. 使用 💠 2024-04-08 19:45:11 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualThre" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Fork Join 1.1. 最佳实践 1.1.1. Tuning 1.2. 设计 1.3. 使用 💠 2024-11-27 10:56:30 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualTh" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Fork/Join" />
-<meta property="og:description" content="💠 Fork Join 1.1. 最佳实践 1.2. 设计 1.3. 使用 💠 2024-04-08 19:45:11 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualThre" />
+<meta property="og:description" content="💠 Fork Join 1.1. 最佳实践 1.1.1. Tuning 1.2. 设计 1.3. 使用 💠 2024-11-27 10:56:30 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualTh" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/concurrency/forkandjoin/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-09-25T13:22:47+00:00" />
 <meta property="article:modified_time" content="2023-09-25T13:22:47+00:00" />
 
 <meta itemprop="name" content="Fork/Join">
-<meta itemprop="description" content="💠 Fork Join 1.1. 最佳实践 1.2. 设计 1.3. 使用 💠 2024-04-08 19:45:11 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualThre"><meta itemprop="datePublished" content="2023-09-25T13:22:47+00:00" />
+<meta itemprop="description" content="💠 Fork Join 1.1. 最佳实践 1.1.1. Tuning 1.2. 设计 1.3. 使用 💠 2024-11-27 10:56:30 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualTh"><meta itemprop="datePublished" content="2023-09-25T13:22:47+00:00" />
 <meta itemprop="dateModified" content="2023-09-25T13:22:47+00:00" />
-<meta itemprop="wordCount" content="1166">
+<meta itemprop="wordCount" content="1379">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Fork/Join"/>
-<meta name="twitter:description" content="💠 Fork Join 1.1. 最佳实践 1.2. 设计 1.3. 使用 💠 2024-04-08 19:45:11 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualThre"/>
+<meta name="twitter:description" content="💠 Fork Join 1.1. 最佳实践 1.1.1. Tuning 1.2. 设计 1.3. 使用 💠 2024-11-27 10:56:30 Fork Join 自 Java7 引入，业务开发时存在感不怎么高，但实际上很多地方用到的一个库(Stream，VirtualTh"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2023-09-25 </span>
         
-          <span class="more-meta"> 1166 words </span>
+          <span class="more-meta"> 1379 words </span>
           <span class="more-meta"> 3 mins read </span>
         
       </div>
@@ -133,7 +133,11 @@
   <ul>
     <li><a href="#fork-join">Fork Join</a>
       <ul>
-        <li><a href="#最佳实践">最佳实践</a></li>
+        <li><a href="#最佳实践">最佳实践</a>
+          <ul>
+            <li><a href="#tuning">Tuning</a></li>
+          </ul>
+        </li>
         <li><a href="#设计">设计</a></li>
         <li><a href="#使用">使用</a></li>
       </ul>
@@ -150,13 +154,17 @@
 <li><a href="#fork-join">Fork Join</a></li>
 </ol>
 <ul>
-<li>1.1. <a href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">最佳实践</a></li>
+<li>1.1. <a href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">最佳实践</a>
+<ul>
+<li>1.1.1. <a href="#tuning">Tuning</a></li>
+</ul>
+</li>
 <li>1.2. <a href="#%E8%AE%BE%E8%AE%A1">设计</a></li>
 <li>1.3. <a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
 </ul>
 </li>
 </ul>
-<p>💠 2024-04-08 19:45:11</p>
+<p>💠 2024-11-27 10:56:30</p>
 <hr>
 <h1 id="fork-join">Fork Join</h1>
 <blockquote>
@@ -173,8 +181,29 @@
 </ul>
 </li>
 <li>如无必要无需创建新Pool，应使用JVM内公共Pool 即 <code>ForkJoinPool.commonPool()</code></li>
-<li>任务拆分时需要考虑合理阈值，避免子任务拆分的过大<code>无法合理均匀分布</code>或过小<code>调度和竞争成本过大</code></li>
+<li>任务拆分时需要考虑合理阈值，避免子任务拆分的 过大(<code>无法合理均匀分布</code>) 或 过小(<code>调度和竞争的成本过大</code>)</li>
 </ul>
+<h3 id="tuning">Tuning</h3>
+<blockquote>
+<p>存在 *.hprof 文件时的分析思路</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">OQL</span><span class="w"> </span><span class="err">查询</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="err">快速查看到堆积的任务情况</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">concurrent</span><span class="p">.</span><span class="n">ForkJoinTask</span><span class="p">[]</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="err">查看</span><span class="n">FJ池实例</span><span class="w"> </span><span class="err">可以看到</span><span class="w"> </span><span class="n">commonParallelism</span><span class="w"> </span><span class="err">属性，但是需要做位运算才能得到这个线程池的实际并发数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">concurrent</span><span class="p">.</span><span class="n">ForkJoinPool</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h2 id="设计">设计</h2>
 <p>ForkJoinPool 服务处理一种比线程更小的并发单元 ForkJoinTask. 它是一种由ForkJoinPool以更轻量的方式所调度的抽象</p>
 <ul>
@@ -187,6 +216,12 @@
 </li>
 <li>
 <p>提供了支持大型任务分解的基本方法，还有自动调度和重新调度的能力</p>
+</li>
+<li>
+<p>公共实例的创建： java.util.concurrent.ForkJoinPool#makeCommonPool</p>
+<ul>
+<li>默认使用的策略是 LIFO_QUEUE 也就是栈</li>
+</ul>
 </li>
 <li>
 <p>由 RecursiveAction 或者 RecursiveTask 派生出来的才能作为任务单元 这俩也是派生ForkJoinTask而来</p>

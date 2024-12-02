@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 持续集成 1.1. Jenkins 1.2. GoCD 1.3. Drone 1.4. flow.ci 1.5. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-09-03 14:05:18 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 持续集成 1.1. Jenkins 1.2. Argo 1.3. GoCD 1.4. Drone 1.5. flow.ci 1.6. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-11-23 18:19:10 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="ContinuousIntegration" />
-<meta property="og:description" content="💠 持续集成 1.1. Jenkins 1.2. GoCD 1.3. Drone 1.4. flow.ci 1.5. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-09-03 14:05:18 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用" />
+<meta property="og:description" content="💠 持续集成 1.1. Jenkins 1.2. Argo 1.3. GoCD 1.4. Drone 1.5. flow.ci 1.6. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-11-23 18:19:10 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/skills/devops/continuousintegration/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
 
 <meta itemprop="name" content="ContinuousIntegration">
-<meta itemprop="description" content="💠 持续集成 1.1. Jenkins 1.2. GoCD 1.3. Drone 1.4. flow.ci 1.5. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-09-03 14:05:18 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 持续集成 1.1. Jenkins 1.2. Argo 1.3. GoCD 1.4. Drone 1.5. flow.ci 1.6. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-11-23 18:19:10 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="579">
+<meta itemprop="wordCount" content="613">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ContinuousIntegration"/>
-<meta name="twitter:description" content="💠 持续集成 1.1. Jenkins 1.2. GoCD 1.3. Drone 1.4. flow.ci 1.5. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-09-03 14:05:18 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰 使用"/>
+<meta name="twitter:description" content="💠 持续集成 1.1. Jenkins 1.2. Argo 1.3. GoCD 1.4. Drone 1.5. flow.ci 1.6. 三方平台 代码质量管理 2.1. Bug跟踪 2.2. sonarqube 2.2.1. 项目端 测试平台 💠 2024-11-23 18:19:10 持续集成 参考: 持续集成 | 持续集成服务 Travis CI 教程 廖雪峰"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2018-11-21 </span>
         
-          <span class="more-meta"> 579 words </span>
+          <span class="more-meta"> 613 words </span>
           <span class="more-meta"> 2 mins read </span>
         
       </div>
@@ -134,6 +134,7 @@
     <li><a href="#持续集成">持续集成</a>
       <ul>
         <li><a href="#jenkins">Jenkins</a></li>
+        <li><a href="#argo">Argo</a></li>
         <li><a href="#gocd">GoCD</a></li>
         <li><a href="#drone">Drone</a></li>
         <li><a href="#flowci">flow.ci</a></li>
@@ -164,10 +165,11 @@
 </ol>
 <ul>
 <li>1.1. <a href="#jenkins">Jenkins</a></li>
-<li>1.2. <a href="#gocd">GoCD</a></li>
-<li>1.3. <a href="#drone">Drone</a></li>
-<li>1.4. <a href="#flowci">flow.ci</a></li>
-<li>1.5. <a href="#%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0">三方平台</a></li>
+<li>1.2. <a href="#argo">Argo</a></li>
+<li>1.3. <a href="#gocd">GoCD</a></li>
+<li>1.4. <a href="#drone">Drone</a></li>
+<li>1.5. <a href="#flowci">flow.ci</a></li>
+<li>1.6. <a href="#%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0">三方平台</a></li>
 </ul>
 </li>
 <li>
@@ -189,7 +191,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-09-03 14:05:18</p>
+<p>💠 2024-11-23 18:19:10</p>
 <hr>
 <h1 id="持续集成">持续集成</h1>
 <blockquote>
@@ -197,16 +199,14 @@
 <a href="https://www.liaoxuefeng.com/article/0014631488240837e3633d3d180476cb684ba7c10fda6f6000">廖雪峰 使用Travis进行持续集成</a><br>
 目前个人理解: 使用jenkins 结合gradle docker ，一键上传代码之后自动构建得到镜像</p>
 </blockquote>
-<blockquote>
-<p><a href="https://github.com/steveklabnik/automatically_update_github_pages_with_travis_example">利用Travis CI更新github page</a></p>
-</blockquote>
-<ul>
-<li>使用bitbucket配置私有仓库，在hub上配置docker文件的目录，进行构建，这样就会得到一个可用的镜像</li>
-</ul>
 <hr>
 <h2 id="jenkins">Jenkins</h2>
 <blockquote>
 <p><a href="Jenkins.md">详细</a></p>
+</blockquote>
+<h2 id="argo">Argo</h2>
+<blockquote>
+<p><a href="https://argoproj.github.io/cd/">Argo CD | Argo</a><code>依托K8S做分布式计算，顺带实现了CICD</code></p>
 </blockquote>
 <h2 id="gocd">GoCD</h2>
 <blockquote>
@@ -241,10 +241,16 @@
 <h2 id="三方平台">三方平台</h2>
 <ul>
 <li><a href="https://ci.appveyor.com/projects">appveyor</a></li>
+<li>Gitlab Runner</li>
+<li>云效</li>
+<li>Tapd</li>
+<li><a href="https://upupming.site/2018/04/03/gradle-travis/#travis-ci">Travis CI 学习笔记</a>
+<ul>
+<li><a href="https://github.com/steveklabnik/automatically_update_github_pages_with_travis_example">利用Travis CI更新github page</a></li>
+<li>使用bitbucket配置私有仓库，在hub上配置docker文件的目录，进行构建，这样就会得到一个可用的镜像</li>
 </ul>
-<blockquote>
-<p><a href="https://upupming.site/2018/04/03/gradle-travis/#travis-ci">Gradle + Travis CI 学习笔记</a></p>
-</blockquote>
+</li>
+</ul>
 <hr>
 <h1 id="代码质量管理">代码质量管理</h1>
 <h2 id="bug跟踪">Bug跟踪</h2>

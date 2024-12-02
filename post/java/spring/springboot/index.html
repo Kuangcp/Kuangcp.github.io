@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 SpringBoot 1.1. 思考 1.2. 参考教程 1.3. 使用SpringBootCLI 1.4. Profils 1.4.1. 多种配置文件并切换 1.4.1.1. yml方式 1.4.1.2. yml和properties结合 1.4.2. 应用配置文件 1.5. Events" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 SpringBoot 1.1. 思考 1.2. 参考教程 1.3. 使用SpringBootCLI 1.4. Profils 1.4.1. 多种配置文件 1.4.1.1. yml方式 1.4.1.2. yml和properties结合 1.4.2. 应用配置文件 1.5. Events 1.6. Logging 1.7." /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="SpringBoot" />
-<meta property="og:description" content="💠 SpringBoot 1.1. 思考 1.2. 参考教程 1.3. 使用SpringBootCLI 1.4. Profils 1.4.1. 多种配置文件并切换 1.4.1.1. yml方式 1.4.1.2. yml和properties结合 1.4.2. 应用配置文件 1.5. Events" />
+<meta property="og:description" content="💠 SpringBoot 1.1. 思考 1.2. 参考教程 1.3. 使用SpringBootCLI 1.4. Profils 1.4.1. 多种配置文件 1.4.1.1. yml方式 1.4.1.2. yml和properties结合 1.4.2. 应用配置文件 1.5. Events 1.6. Logging 1.7." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/spring/springboot/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-21T10:49:39+00:00" />
 <meta property="article:modified_time" content="2018-12-21T10:49:39+00:00" />
 
 <meta itemprop="name" content="SpringBoot">
-<meta itemprop="description" content="💠 SpringBoot 1.1. 思考 1.2. 参考教程 1.3. 使用SpringBootCLI 1.4. Profils 1.4.1. 多种配置文件并切换 1.4.1.1. yml方式 1.4.1.2. yml和properties结合 1.4.2. 应用配置文件 1.5. Events"><meta itemprop="datePublished" content="2018-12-21T10:49:39+00:00" />
+<meta itemprop="description" content="💠 SpringBoot 1.1. 思考 1.2. 参考教程 1.3. 使用SpringBootCLI 1.4. Profils 1.4.1. 多种配置文件 1.4.1.1. yml方式 1.4.1.2. yml和properties结合 1.4.2. 应用配置文件 1.5. Events 1.6. Logging 1.7."><meta itemprop="datePublished" content="2018-12-21T10:49:39+00:00" />
 <meta itemprop="dateModified" content="2018-12-21T10:49:39+00:00" />
-<meta itemprop="wordCount" content="3421">
+<meta itemprop="wordCount" content="3495">
 <meta itemprop="keywords" content="SpringBoot," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SpringBoot"/>
-<meta name="twitter:description" content="💠 SpringBoot 1.1. 思考 1.2. 参考教程 1.3. 使用SpringBootCLI 1.4. Profils 1.4.1. 多种配置文件并切换 1.4.1.1. yml方式 1.4.1.2. yml和properties结合 1.4.2. 应用配置文件 1.5. Events"/>
+<meta name="twitter:description" content="💠 SpringBoot 1.1. 思考 1.2. 参考教程 1.3. 使用SpringBootCLI 1.4. Profils 1.4.1. 多种配置文件 1.4.1.1. yml方式 1.4.1.2. yml和properties结合 1.4.2. 应用配置文件 1.5. Events 1.6. Logging 1.7."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 3421 words </span>
+          <span class="more-meta"> 3495 words </span>
           <span class="more-meta"> 7 mins read </span>
         
       </div>
@@ -140,7 +140,7 @@
         <li><a href="#使用springbootcli">使用SpringBootCLI</a></li>
         <li><a href="#profils">Profils</a>
           <ul>
-            <li><a href="#多种配置文件并切换">多种配置文件并切换</a></li>
+            <li><a href="#多种配置文件">多种配置文件</a></li>
             <li><a href="#应用配置文件">应用配置文件</a></li>
           </ul>
         </li>
@@ -187,7 +187,7 @@
 <li>1.3. <a href="#%E4%BD%BF%E7%94%A8springbootcli">使用SpringBootCLI</a></li>
 <li>1.4. <a href="#profils">Profils</a>
 <ul>
-<li>1.4.1. <a href="#%E5%A4%9A%E7%A7%8D%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%B9%B6%E5%88%87%E6%8D%A2">多种配置文件并切换</a>
+<li>1.4.1. <a href="#%E5%A4%9A%E7%A7%8D%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">多种配置文件</a>
 <ul>
 <li>1.4.1.1. <a href="#yml%E6%96%B9%E5%BC%8F">yml方式</a></li>
 <li>1.4.1.2. <a href="#yml%E5%92%8Cproperties%E7%BB%93%E5%90%88">yml和properties结合</a></li>
@@ -236,7 +236,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-22 11:50:47</p>
+<p>💠 2024-11-23 10:48:32</p>
 <hr>
 <h1 id="springboot">SpringBoot</h1>
 <blockquote>
@@ -289,6 +289,9 @@
 <li><a href="http://blog.csdn.net/melody_susan/article/details/78659696">spring boot完美集成dwr3.0.2</a></li>
 <li><a href="https://www.tianmaying.com/tutorial/spring-boot-overview">Spring Boot——开发新一代Spring Java应用</a></li>
 </ul>
+<blockquote>
+<p><a href="https://github.com/xiaour/SpringBootDemo">xiaour/SpringBootDemo: 🍃SpringBoot系列Demo；SpringBoot、MyBatis、Redis、MySql、Kafka、RocketMQ</a></p>
+</blockquote>
 <p><code>系列</code></p>
 <ul>
 <li><a href="https://github.com/guoxiaoxu/guo-projects/tree/master/guns-admin/note">一系列专栏</a></li>
@@ -354,7 +357,9 @@
 <blockquote>
 <p><a href="https://www.hifreud.com/2017/06/23/spring-boot-05-Externalized-Configuration/">参考: Spring Boot(五) - 外化配置</a></p>
 </blockquote>
-<h3 id="多种配置文件并切换">多种配置文件并切换</h3>
+<h3 id="多种配置文件">多种配置文件</h3>
+<p>JVM参数 -D 临时设置配置<br>
+例如： -Dlogging.level.com.xxx.service.impl=DEBUG</p>
 <h4 id="yml方式">yml方式</h4>
 <ul>
 <li>单文件多环境 <code>配置文件 application.yml</code>
