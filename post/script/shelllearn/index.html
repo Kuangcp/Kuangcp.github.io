@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Shell学习">
 <meta itemprop="description" content="💠 学习Shell 1.1. shell类别 1.2. 执行方式 基础结构 2.1. 输入输出 2.1.1. 输入 2.1.2. 输出 2.2. 变量 2.2.1. 变量作用域 2.2.2. 嵌套 2.3. 数据类型 2.3.1. 整型 2.3.2. 字符串 2.3.3. 数组 2.4. 结构 2.4.1. 传递参"><meta itemprop="datePublished" content="2018-12-15T12:10:46+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T12:10:46+00:00" />
-<meta itemprop="wordCount" content="3337">
+<meta itemprop="wordCount" content="3358">
 <meta itemprop="keywords" content="Shell," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Shell学习"/>
 <meta name="twitter:description" content="💠 学习Shell 1.1. shell类别 1.2. 执行方式 基础结构 2.1. 输入输出 2.1.1. 输入 2.1.2. 输出 2.2. 变量 2.2.1. 变量作用域 2.2.2. 嵌套 2.3. 数据类型 2.3.1. 整型 2.3.2. 字符串 2.3.3. 数组 2.4. 结构 2.4.1. 传递参"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 3337 words </span>
+          <span class="more-meta"> 3358 words </span>
           <span class="more-meta"> 7 mins read </span>
         
       </div>
@@ -292,7 +292,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-14 23:33:08</p>
+<p>💠 2024-12-03 19:35:05</p>
 <hr>
 <h1 id="学习shell">学习Shell</h1>
 <blockquote>
@@ -866,18 +866,28 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p>逐行遍历命令的输出</p>
+<p>逐行遍历命令的输出 while read 方式</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="k">while</span> <span class="nb">read</span> -r proc<span class="p">;</span> <span class="k">do</span>
-</span></span><span class="line"><span class="cl">      <span class="c1">#do work</span>
-</span></span><span class="line"><span class="cl">  <span class="k">done</span> <span class="o">&lt;&lt;&lt;</span> <span class="s2">&#34;</span><span class="k">$(</span>ps -ewo pid,cmd,etime <span class="p">|</span> grep python <span class="p">|</span> grep -v grep <span class="p">|</span> grep -v sh<span class="k">)</span><span class="s2">&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    ps -ewo pid,cmd,etime <span class="p">|</span> grep python <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> line<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;line: &#34;</span><span class="nv">$line</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 管道变体</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="nb">read</span> -r proc<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#do work</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span> <span class="o">&lt;&lt;&lt;</span> <span class="s2">&#34;</span><span class="k">$(</span>ps -ewo pid,cmd,etime <span class="p">|</span> grep python<span class="k">)</span><span class="s2">&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>

@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Java之GC">
 <meta itemprop="description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.3. 内存分代 1.4. 判断存活算法 1.4.1. 引用计数算法 1.4.2. 可达性分析算法 1.5. GC算法 1.5.1. 标记清除算法 1.5.2. 复制算法 1.5.3. 标记整理算法 1.6."><meta itemprop="datePublished" content="2021-05-14T20:36:48+00:00" />
 <meta itemprop="dateModified" content="2021-05-14T20:36:48+00:00" />
-<meta itemprop="wordCount" content="10745">
+<meta itemprop="wordCount" content="11359">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java之GC"/>
 <meta name="twitter:description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.3. 内存分代 1.4. 判断存活算法 1.4.1. 引用计数算法 1.4.2. 可达性分析算法 1.5. GC算法 1.5.1. 标记清除算法 1.5.2. 复制算法 1.5.3. 标记整理算法 1.6."/>
@@ -120,8 +120,8 @@
       <div class="post-meta">
         <span class="post-time"> 2021-05-14 </span>
         
-          <span class="more-meta"> 10745 words </span>
-          <span class="more-meta"> 22 mins read </span>
+          <span class="more-meta"> 11359 words </span>
+          <span class="more-meta"> 23 mins read </span>
         
       </div>
     </header>
@@ -245,7 +245,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-07-12 11:40:30</p>
+<p>💠 2024-12-04 11:50:54</p>
 <hr>
 <h1 id="gc">GC</h1>
 <blockquote>
@@ -569,9 +569,7 @@ Java中一种全局暂停现象，全局停顿，所有Java代码停止，native
 </ul>
 </li>
 </ul>
-<blockquote>
-<p><code>java -XX:+PrintCommandLineFlags -version</code> 可以通过该命令快速知道当前版本JDK默认垃圾收集器</p>
-</blockquote>
+<p>现代化的GC实现，都分为增量和全量处理，</p>
 <hr>
 <blockquote>
 <p>JVM垃圾收集器种类</p>
@@ -640,7 +638,7 @@ Java中一种全局暂停现象，全局停顿，所有Java代码停止，native
 </tbody>
 </table>
 <blockquote>
-<p>收集器搭配时的限制条件:</p>
+<p>收集器搭配时的限制</p>
 </blockquote>
 <ul>
 <li>CMS 不能和 Parallel Scavenge 一起用</li>
@@ -650,7 +648,11 @@ Java中一种全局暂停现象，全局停顿，所有Java代码停止，native
 <hr>
 <h2 id="默认垃圾收集器">默认垃圾收集器</h2>
 <ul>
-<li><code>-XX:+PrintCommandLineFlags</code> 或者查看GC日志中代的名称 <code>-XX:+PrintGCDetails</code></li>
+<li><code>-XX:+PrintCommandLineFlags</code> 查看默认参数 或者查看GC日志中代的名称 <code>-XX:+PrintGCDetails</code>
+<ul>
+<li>例如： <code>java -XX:+PrintCommandLineFlags -version</code></li>
+</ul>
+</li>
 <li>JDK 1.7 1.8 默认垃圾收集器Parallel Scavenge（新生代）+Parallel Old（老年代）</li>
 <li>JDK1.9+ 默认垃圾收集器G1</li>
 </ul>
@@ -783,11 +785,13 @@ Java中一种全局暂停现象，全局停顿，所有Java代码停止，native
 <p>CMS进入 full GC 的情况是并发收集模式跟不上应用分配内存的速度了，或者是碎片化开始变严重了。<br>
 主要体现是GC日志里可以看到 concurrent mode failure 字样，然后就开始可以看到 <code>[Full GC ... ]</code> 的日志了<br>
 这样就带来一个问题，如果CMS并发GC发生了，此时是无法利用 <code>-XX:+HeapDumpBeforeFullGC</code> 参数生成dump文件，因为不是发生 FullGC</p>
+<hr>
 <h2 id="g1">G1</h2>
 <blockquote>
 <p>Garbage First 面向服务端应用的垃圾收集器, JDK7发布, JDK9作为默认GC <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/g1_gc.html#garbage_first_garbage_collection">Oracle Doc</a></p>
 </blockquote>
 <p><code>-XX:+UseG1GC</code></p>
+<p>设计目的： 避免FullGC</p>
 <ul>
 <li>分代收集
 <ul>
@@ -805,11 +809,14 @@ Java中一种全局暂停现象，全局停顿，所有Java代码停止，native
 <li>几乎是RTSJ的特征</li>
 </ul>
 </li>
-<li><a href="https://openjdk.org/jeps/346">JEP: 内存返还</a><code>JDK12发布</code></li>
+<li><a href="https://openjdk.org/jeps/346">JEP 346: 内存自动返还</a><code>JDK12发布</code>
+<ul>
+<li>G1在12之前只有在full GC或者concurrent cycle（并发处理周期）的时候才会归还内存，由于这两个场景都是G1极力避免的，因此在大多数场景下可能不会及时归还committed Java heap memory给操作系统。除非有外部强制触发Full GC。</li>
+<li>在使用云平台的容器环境中，这种不利之处特别明显。例如一个JVM最大堆3G，当前使用到了2G，实际FullGC回收后只有500M 但是一直没达到FullGC条件，所以一直占用着1G多的内存</li>
 </ul>
-<blockquote>
-<p><a href="https://my.oschina.net/u/3959491/blog/3029276">参考: JVM系列篇：深入剖析G1收集器</a></p>
-</blockquote>
+</li>
+<li><a href="https://openjdk.org/jeps/307">JEP 307: Parallel Full GC for G1</a> JDK1.8时FullGC是单线程的， JDK10开始支持并行</li>
+</ul>
 <blockquote>
 <p>字符串常量池去重 特性(8u20引入)  <a href="https://gceasy.ycrash.cn/gc-recommendations/stringdeduplication-solution.jsp">UseStringDeduplication - 优缺点</a></p>
 </blockquote>
@@ -820,18 +827,15 @@ Java中一种全局暂停现象，全局停顿，所有Java代码停止，native
 <li>达到该年龄(经过GC次数)的String对象被认为是去重的候选对象 <code>-XX:StringDeDuplicationAgeThreshold</code></li>
 </ul>
 </li>
-<li>该策略不会清除重复字符串对象本身。其只会替换底层 char<input disabled="" type="checkbox"> 达到复用内存的目的 <a href="https://gitee.com/gin9/JavaBase/blob/master/class/src/main/java/jvm/gc/g1/StringDeduplication.java">Gitee 测试代码</a></li>
+<li>该策略不会清除重复字符串对象本身。其只会替换底层 <code>char[]</code> 达到复用内存的目的 <a href="https://gitee.com/gin9/JavaBase/blob/master/class/src/main/java/jvm/gc/g1/StringDeduplication.java">Gitee 测试代码</a></li>
 </ul>
-<blockquote>
-<p>JDK1.8时FullGC是单线程的， JDK10开始支持并行</p>
-</blockquote>
 <blockquote>
 <p><a href="https://tech.meituan.com/2016/09/23/g1.html">参考: Java Hotspot G1 GC的一些关键技术</a><br>
 <a href="https://tschatzl.github.io/2021/02/26/early-prune.html">Welcome 20% less memory usage for G1 remembered sets</a></p>
 </blockquote>
 <p>G1提供了两种GC模式，Young GC和Mixed GC，两种都是完全Stop The World的</p>
 <ul>
-<li>Young GC：选定所有年轻代里的Region。通过控制年轻代的region个数，即年轻代内存大小，来控制young GC的时间开销。</li>
+<li>Young GC：选定所有年轻代里的Region。通过控制年轻代的 Region 个数，即年轻代内存大小，来控制young GC的时间开销。</li>
 <li>Mixed GC：选定所有年轻代里的Region，外加根据 global concurrent marking 统计得出收集收益高的若干老年代Region。在用户指定的开销目标范围内尽可能选择收益高的老年代Region。</li>
 </ul>
 <p>由上面的描述可知，Mixed GC不是full GC，它只能回收部分老年代的Region，如果mixed GC实在无法跟上程序分配内存的速度，导致老年代填满无法继续进行Mixed GC，就会使用serial old GC（full GC）来收集整个GC heap。<br>
@@ -844,7 +848,7 @@ global concurrent marking 的执行过程分为四个步骤：</p>
 <li><strong>最终标记</strong>（Remark，<code>STW</code>）: 标记那些在并发标记阶段发生变化的对象，将被回收。</li>
 <li><strong>清除垃圾</strong>（Cleanup）: 清除空Region（没有存活对象的），加入到free list。</li>
 </ul>
-<p>第一阶段initial mark是共用了Young GC的暂停，这是因为他们可以复用root scan操作，所以可以说global concurrent marking是伴随Young GC而发生的。
+<p>第一阶段initial mark是共用了Young GC的暂停，这是因为他们可以复用root scan操作，所以可以说global concurrent marking是伴随Young GC而发生的。<br>
 第四阶段Cleanup只是回收了没有存活对象的Region，所以它并不需要STW。</p>
 <p>Young GC发生的时机大家都知道，那什么时候发生Mixed GC呢？其实是由一些参数控制着的，另外也控制着哪些老年代Region会被选入CSet。</p>
 <ul>
@@ -904,17 +908,35 @@ global concurrent marking 的执行过程分为四个步骤：</p>
 <td style="text-align:left"><code>-XX:G1ReservePercent=10</code></td>
 <td style="text-align:left">设置需保留的内存百分比。默认为 10%。G1 垃圾回收器会始终尝试保留 10% 的堆内存空间空闲。</td>
 </tr>
+<tr>
+<td style="text-align:left"><code>-XX:G1PeriodicGCInterval</code></td>
+<td style="text-align:left"><em>JDK12+</em> 设置周期GC的周期（ms） 默认值为0， 0表示禁用该功能</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-XX:G1PeriodicGCSystemLoadThreshold</code></td>
+<td style="text-align:left"><em>JDK12+</em> 设置阈值 当系统负载高于该阈值就触发FullGC或并行GC 0表示禁用该触发策略</td>
+</tr>
 </tbody>
 </table>
-<p>GCTimeRatio： 确定目标 GC 时间的实际公式为 [1 / (1 + GCTimeRatio)]。默认值 12 表示目标 GC 时间为 [1 / (1 + 12)]，即 7.69%。
+<p><strong>GCTimeRatio</strong>： 确定目标 GC 时间的实际公式为 [1 / (1 + GCTimeRatio)]。默认值 12 表示目标 GC 时间为 [1 / (1 + 12)]，即 7.69%。
 这意味着 JVM 可将 7.69％ 的时间用于 GC 活动，其余 92.3％ 用于处理客户活动。</p>
-<p>ParallelGCThreads： 如果逻辑处理器的数量M小于或等于 8 个，则将 n 值设置为M。如果M为5，则将 n 设为 5.如果M为 8 个以上，请将该值设置为大约 5/8 * M。
+<p><strong>ParallelGCThreads</strong>： 如果逻辑处理器的数量M小于或等于 8 个，则将 n 值设置为M。如果M为5，则将 n 设为 5.如果M为 8 个以上，请将该值设置为大约 5/8 * M。
 这种设置在大多数情况下都有效，除了较大规模的 SPARC 系统——其中 n 值可以大约是 <code>5/16 * M</code>。</p>
 <p>MaxGCPauseMillis：G1将根据先前收集的信息以及检测到的垃圾对象量预估可以执行回收的垃圾区域，尽量保证GC时间不超过设置的值。</p>
-<p>ParallelGCThreads: 使用默认值就可以了。但是在JRE版本1.8.0_131之前，JVM无法感知Docker的CPU限制，会使用宿主机的逻辑核数计算默认值。<br>
+<p><strong>ParallelGCThreads</strong>： 使用默认值就可以了。但是在JRE版本1.8.0_131之前，JVM无法感知Docker的CPU限制，会使用宿主机的逻辑核数计算默认值。<br>
 这通常会远超过容器的核数, 过多的GC线程数抢占了业务线程的CPU时间，加上线程切换的开销，较大的降低了吞吐量。因此JRE 1.8.0_131之前的版本，未明确指定ParallelGCThreads会有较大的风险。</p>
-<p>ConcGCThreads 一般称为并发标记线程数，为了减少GC的STW的时间，CMS和G1都有并发标记的过程，此时业务线程仍在工作，只是并发标记是CPU密集型任务，业务的吞吐量会下降，RT会变长。
+<p><strong>ConcGCThreads</strong>： 一般称为并发标记线程数，为了减少GC的STW的时间，CMS和G1都有并发标记的过程，此时业务线程仍在工作，只是并发标记是CPU密集型任务，业务的吞吐量会下降，RT会变长。
 ConcGCThreads的默认值不同GC策略略有不同，CMS下是(ParallelGCThreads + 3) / 4 向下取整，G1下是ParallelGCThreads / 4 四舍五入。一般来说采用默认值就可以了，但是还是由于在JRE版本1.8.0_131之前，JVM无法感知Docker的资源限制的问题，ConcGCThreads的默认值会比较大（20左右），对业务会有影响。</p>
+<p><strong>G1PeriodicGCSystemLoadThreshold</strong>： 系统会调用 getloadavg()，默认一分钟内系统返回的平均负载值低于 G1PeriodicGCSystemLoadThreshold指定的阈值，则触发full GC或者concurrent GC( 如果开启 G1PeriodicGCInvokesConcurrent )</p>
+<blockquote>
+<p>周期GC内存返还</p>
+</blockquote>
+<ul>
+<li>自上次垃圾回收完成以来已超过 G1PeriodicGCInterval ( milliseconds )， 并且此时没有正在进行的垃圾回收任务。如果 G1PeriodicGCInterval 值为零表示禁用快速回收内存的定期垃圾收集。</li>
+<li>或者达到 G1PeriodicGCSystemLoadThreshold 阈值
+如果不满足上述条件中的任何一个，则取消当期的定期垃圾回收。等一个 G1PeriodicGCInterval 时间周期后，将重新考虑是否执行定期垃圾回收。
+<a href="https://www.cnblogs.com/androidsuperman/p/11743103.html">Java12新特性 &ndash; 增强G1，自动返回未用堆内存给操作系统 - 西北野狼 - 博客园</a></li>
+</ul>
 <hr>
 <h2 id="zgc">ZGC</h2>
 <blockquote>

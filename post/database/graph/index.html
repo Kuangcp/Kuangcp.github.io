@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-11-26 20:13:28 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-12-03 19:35:05 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Graph" />
-<meta property="og:description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-11-26 20:13:28 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、" />
+<meta property="og:description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-12-03 19:35:05 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/database/graph/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2024-10-13T18:28:55+00:00" />
 <meta property="article:modified_time" content="2024-10-13T18:28:55+00:00" />
 
 <meta itemprop="name" content="Graph">
-<meta itemprop="description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-11-26 20:13:28 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、"><meta itemprop="datePublished" content="2024-10-13T18:28:55+00:00" />
+<meta itemprop="description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-12-03 19:35:05 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、"><meta itemprop="datePublished" content="2024-10-13T18:28:55+00:00" />
 <meta itemprop="dateModified" content="2024-10-13T18:28:55+00:00" />
-<meta itemprop="wordCount" content="919">
+<meta itemprop="wordCount" content="1128">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Graph"/>
-<meta name="twitter:description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-11-26 20:13:28 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、"/>
+<meta name="twitter:description" content="💠 图数据库 概念 QL 查询语言 3.1. Cypher 3.2. Gremlin 3.3. SPARQL 💠 2024-12-03 19:35:05 图数据库 Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
             </div>
-          <span class="more-meta"> 919 words </span>
-          <span class="more-meta"> 2 mins read </span>
+          <span class="more-meta"> 1128 words </span>
+          <span class="more-meta"> 3 mins read </span>
         
       </div>
     </header>
@@ -170,7 +170,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-26 20:13:28</p>
+<p>💠 2024-12-03 19:35:05</p>
 <hr>
 <h1 id="图数据库">图数据库</h1>
 <p>Neo4j、OrientDB、ArangoDB、JanusGraph、HugeGraph、Dgraph、TigerGraph、Memgraph、NebulaGraph、SurrealDB、Cayley</p>
@@ -217,22 +217,42 @@
 <p>Neo4j、RedisGraph、AgensGraph(PG+插件)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">    <span class="n">MATCH</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">RETURN</span> <span class="n">n</span> <span class="n">limit</span> <span class="mi">10</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">    <span class="c1">// 查询任意节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">RETURN</span> <span class="n">n</span> <span class="n">limit</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 查询 疾病 关联的 所有病征
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">(</span><span class="nl">d</span><span class="p">:</span><span class="err">疾病</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">:</span><span class="err">疾病的症状</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">(</span><span class="nl">s</span><span class="p">:</span><span class="err">疾病症状</span><span class="p">)</span> <span class="n">WHERE</span> <span class="n">d</span><span class="p">.</span><span class="err">名称</span> <span class="o">=</span> <span class="err">&#39;血栓形成&#39;</span> <span class="n">RETURN</span> <span class="n">s</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 查询任意层级具有检查关系的节点 例如 疾病A-疾病B-疾病C-检查D 可以查出D
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">(</span><span class="nl">n</span><span class="p">:</span><span class="n">Disease</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="nl">r</span><span class="p">:</span><span class="err">`检查`</span><span class="o">*</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="nl">e</span><span class="p">:</span><span class="n">Examination</span><span class="p">)</span>   <span class="n">WHERE</span> <span class="n">n</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="err">&#39;上呼吸道感染&#39;</span> <span class="n">RETURN</span> <span class="n">DISTINCT</span> <span class="n">e</span><span class="p">.</span><span class="n">name</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 统计函数查询
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">(</span><span class="nl">d</span><span class="p">:</span><span class="n">Disease</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="n">r1</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="nl">s</span><span class="p">:</span><span class="n">Symptom</span><span class="o">|</span><span class="n">Duration</span><span class="p">)</span> <span class="n">WHERE</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span> <span class="n">IN</span> <span class="p">[</span><span class="err">&#39;慢性支气管炎&#39;</span><span class="p">]</span> <span class="n">AND</span> <span class="n">s</span><span class="p">.</span><span class="n">name</span> <span class="n">IN</span> <span class="p">[</span><span class="err">&#39;咳嗽&#39;</span><span class="p">,</span> <span class="err">&#39;气促&#39;</span><span class="p">]</span> <span class="n">RETURN</span> <span class="n">sum</span><span class="p">(</span><span class="n">r1</span><span class="p">.</span><span class="n">weight</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 修改属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">(</span><span class="nl">n</span> <span class="p">:</span><span class="n">Disease</span><span class="p">)</span> <span class="n">Where</span> <span class="n">n</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="err">&#39;支气管扩张&#39;</span> <span class="n">SET</span> <span class="n">n</span><span class="p">.</span><span class="n">popularity</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">RETURN</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">//  删除所有关系
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">()</span><span class="o">-</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">()</span> <span class="n">delete</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 删除所有节点
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">delete</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 查询 疾病 关联的 所有病征
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MATCH</span> <span class="p">(</span><span class="nl">d</span><span class="p">:</span><span class="err">疾病</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">:</span><span class="err">疾病的症状</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">(</span><span class="nl">s</span><span class="p">:</span><span class="err">疾病症状</span><span class="p">)</span> <span class="n">WHERE</span> <span class="n">d</span><span class="p">.</span><span class="err">名称</span> <span class="o">=</span> <span class="err">&#39;血栓形成&#39;</span> <span class="n">RETURN</span> <span class="n">s</span>
+</span></span><span class="line"><span class="cl">    
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
