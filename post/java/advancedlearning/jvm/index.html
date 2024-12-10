@@ -49,7 +49,7 @@
 <meta itemprop="name" content="JVM">
 <meta itemprop="description" content="💠 JVM 1.1. JVM参数 1.2. Unified JVM Logging 1.3. JVM内存参数 1.3.1. 容器内的JVM 1.3.2. 内存参数实践 JVM 基本结构 内存区域 3.1. 运行时数据区 3.1.1. 程序计数器 3.1.2. Java虚拟机栈 3.1.3. 本地方"><meta itemprop="datePublished" content="2019-04-02T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2019-04-02T10:56:52+00:00" />
-<meta itemprop="wordCount" content="5913">
+<meta itemprop="wordCount" content="6667">
 <meta itemprop="keywords" content="JVM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JVM"/>
 <meta name="twitter:description" content="💠 JVM 1.1. JVM参数 1.2. Unified JVM Logging 1.3. JVM内存参数 1.3.1. 容器内的JVM 1.3.2. 内存参数实践 JVM 基本结构 内存区域 3.1. 运行时数据区 3.1.1. 程序计数器 3.1.2. Java虚拟机栈 3.1.3. 本地方"/>
@@ -122,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 5913 words </span>
-          <span class="more-meta"> 12 mins read </span>
+          <span class="more-meta"> 6667 words </span>
+          <span class="more-meta"> 14 mins read </span>
         
       </div>
     </header>
@@ -154,13 +154,17 @@
             <li><a href="#java虚拟机栈">Java虚拟机栈</a></li>
             <li><a href="#本地方法栈">本地方法栈</a></li>
             <li><a href="#heap-堆">Heap 堆</a></li>
-            <li><a href="#方法区">方法区</a></li>
-            <li><a href="#direct-memory-直接内存">Direct Memory 直接内存</a></li>
+            <li><a href="#方法区-java7">方法区 Java7</a></li>
+          </ul>
+        </li>
+        <li><a href="#native-memory-非堆内存">Native Memory 非堆内存</a>
+          <ul>
+            <li><a href="#nmt-native-memory-tracking">NMT Native Memory Tracking</a></li>
+            <li><a href="#metaspace-元空间">Metaspace 元空间</a></li>
+            <li><a href="#directmemory-堆外内存">DirectMemory 堆外内存</a></li>
             <li><a href="#code-cache">Code Cache</a></li>
           </ul>
         </li>
-        <li><a href="#metaspace-元空间">Metaspace 元空间</a></li>
-        <li><a href="#native-memory">Native Memory</a></li>
       </ul>
     </li>
     <li><a href="#jvm不同实现">JVM不同实现</a>
@@ -212,17 +216,17 @@
 <li>3.1.4.1. <a href="#%E5%A0%86%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5">堆内存分配策略</a></li>
 </ul>
 </li>
-<li>3.1.5. <a href="#%E6%96%B9%E6%B3%95%E5%8C%BA">方法区</a>
+<li>3.1.5. <a href="#%E6%96%B9%E6%B3%95%E5%8C%BA-java7">方法区 Java7</a></li>
+</ul>
+</li>
+<li>3.2. <a href="#native-memory-%E9%9D%9E%E5%A0%86%E5%86%85%E5%AD%98">Native Memory 非堆内存</a>
 <ul>
-<li>3.1.5.1. <a href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0">运行时常量池</a></li>
+<li>3.2.1. <a href="#nmt-native-memory-tracking">NMT Native Memory Tracking</a></li>
+<li>3.2.2. <a href="#metaspace-%E5%85%83%E7%A9%BA%E9%97%B4">Metaspace 元空间</a></li>
+<li>3.2.3. <a href="#directmemory-%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98">DirectMemory 堆外内存</a></li>
+<li>3.2.4. <a href="#code-cache">Code Cache</a></li>
 </ul>
 </li>
-<li>3.1.6. <a href="#direct-memory-%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98">Direct Memory 直接内存</a></li>
-<li>3.1.7. <a href="#code-cache">Code Cache</a></li>
-</ul>
-</li>
-<li>3.2. <a href="#metaspace-%E5%85%83%E7%A9%BA%E9%97%B4">Metaspace 元空间</a></li>
-<li>3.3. <a href="#native-memory">Native Memory</a></li>
 </ul>
 </li>
 <li>
@@ -236,7 +240,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-14 16:40:22</p>
+<p>💠 2024-12-10 22:28:33</p>
 <hr>
 <h1 id="jvm">JVM</h1>
 <blockquote>
@@ -263,6 +267,9 @@
 <p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html">Command Reference for JDK8</a> | <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/man/java.html">Command Reference for JDK17</a><br>
 <a href="https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html">Official: Java HotSpot VM Options</a><br>
 <a href="https://www.baeldung.com/jvm-parameters">Guide to the Most Important JVM Parameters</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://journal.kazmodan.com/docs/%E7%BC%96%E7%A8%8B%E7%94%9F%E6%80%81/Java/JVM/JVM%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/">Jvm启动参数配置建议 | 郭工gyf的记录</a></p>
 </blockquote>
 <ul>
 <li>
@@ -338,6 +345,14 @@
 <blockquote>
 <p>堆(老年代 年轻代)，堆外，元空间，栈</p>
 </blockquote>
+<blockquote>
+<p>内存参数设置的考量： Xmx * 110% + MaxDirectMemorySize + 系统预留内存 &lt;= 容器内存</p>
+</blockquote>
+<ul>
+<li>Xmx * 110% 中额外的10%是留给其他堆外内存的，是个保守估计，个别业务运行时线程较多时，还需加上 Xss * 线程数</li>
+<li>系统预留内存512M到1G，视容器规格而定</li>
+<li>I/O较多的业务适当提高MaxDirectMemorySize比例（Netty和NIO使用到）</li>
+</ul>
 <p>快速确认进程内存配置</p>
 <table>
 <thead>
@@ -367,6 +382,11 @@
 <li><code>-XX:NewRatio</code>old/new 内存的比值 <strong>默认是2</strong></li>
 <li><code>-Xmn</code> MaxNewSize 默认值是<code>Xmx</code>的1/3 即最大堆内存 MaxHeapSize 的1/3</li>
 <li><code>-Xss</code> 设置 ThreadStackSize 线程的栈内存大小 默认值 1024k</li>
+<li><code>-XX:+AlwaysPreTouch</code> 堆内存分配时，直接分配物理内存而不是虚拟内存，分配的物理内存会做0值初始化（单线程执行），好处是后续申请内存时无须分配和初始化，缺点是启动更耗时。
+<ul>
+<li>申请内存的场景（年轻代晋升，新对象分配）</li>
+</ul>
+</li>
 </ul>
 <blockquote>
 <p>java -XX:+PrintFlagsFinal -version</p>
@@ -469,24 +489,30 @@
 </ul>
 <hr>
 <h1 id="内存区域">内存区域</h1>
+<p><img src="./img/007-jvm-memory.webp" alt="alt text"></p>
+<p><code>glibc</code></p>
+<p>注意所有内存的申请和返还都是通过 glibc 实现的，因此不建议使用Alpine作为基础镜像，因为会有行为上的不一致，Alpine使用的是 musl libc(核心源码只有不到 400 行)。<br>
+不过标准的glibc库也有一些设计需要关心，例如 MALLOC_ARENA_MAX 。</p>
 <blockquote>
-<p><a href="https://developer.jdcloud.com/article/2740">谈JVM xmx, xms等内存相关参数合理性设置</a></p>
+<p><a href="https://juejin.cn/post/6844903574154002445">从一次 CTF 出题谈 musl libc 堆漏洞利用本文通过一道 CTF 题目展示 musl libc 堆溢出漏洞的利 - 掘金</a></p>
 </blockquote>
-<p>内存参数设置的考量：</p>
-<ul>
-<li>Xmx * 110% + MaxDirectMemorySize + 系统预留内存 &lt;= 容器内存</li>
-<li>Xmx * 110% 中额外的10%是留给其他堆外内存的，是个保守估计，个别业务运行时线程较多，需自行判断，上式中左侧还需加上Xss * 线程数</li>
-<li>系统预留内存512M到1G，视容器规格而定</li>
-<li>I/O较多的业务适当提高MaxDirectMemorySize比例</li>
-</ul>
+<hr>
+<blockquote>
+<p><a href="https://www.pengzna.top/article/Java-Memory/">Java 进程内存占用及可观测性调研&amp;内存异常排查最佳实践</a><code>深入探究内存分布细节</code><br>
+<a href="https://developer.jdcloud.com/article/2740">谈JVM xmx, xms等内存相关参数合理性设置</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/1612939/why-does-the-sun-jvm-continue-to-consume-ever-more-rss-memory-even-when-the-heap">java - Why does the Sun JVM continue to consume ever more RSS memory even when the heap, etc sizes are stable? - Stack Overflow</a></p>
+</blockquote>
 <h2 id="运行时数据区">运行时数据区</h2>
+<p><img src="./img/008-jvm-run-memory-area.webp" alt="alt text"></p>
 <p><img src="img/001-jvm-runtime-memory.drawio.svg" alt=""></p>
 <p>线程私有的内存区域: 程序计数器 本地方法栈 虚拟机栈. 生命周期与线程保持一致</p>
 <h3 id="程序计数器">程序计数器</h3>
 <p>可以看作是当前线程所执行的字节码的行号指示器, 这个内存区域是唯一一个在JVM规范中没有规定任何 OutOfMemoryError 的区域</p>
 <h3 id="java虚拟机栈">Java虚拟机栈</h3>
 <blockquote>
-<p>HotSpot 中不区分Java虚拟机栈和本地方法栈, 虽然 -Xoss 存在(设置本地方法栈大小)但是是无效的, 只能通过 -Xss 设置</p>
+<p>HotSpot 中不区分Java虚拟机栈和本地方法栈, 虽然 -Xoss 存在(设置本地方法栈大小)但是是无效的, 只能通过 -Xss 设置 且可以通过NMT看到所有线程数及占用的非堆内存</p>
 </blockquote>
 <p><img src="img/002-method-stack.drawio.svg" alt=""></p>
 <ul>
@@ -570,77 +596,55 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 新生代内存不能过大也不能过小, 过大则老年代内存过小, 导致频繁 FullGC<br>
 过小则导致对象全在老年代分配,新生代上无法分配(Allocation Failure) 也将导致频繁 Full GC</p>
 </blockquote>
-<h3 id="方法区">方法区</h3>
+<h3 id="方法区-java7">方法区 Java7</h3>
 <p>方法区存在于永久代 Perm Gen, 对应于Java8中的MetaSpace</p>
 <p>用于存放 Class 相关信息, 常量, 静态变量, 访问修饰符, 字段描述, 方法描述, JIT编译器编译后的代码等数据<br>
 在 HotSpot 虚拟机上, 方法区也看做是 永久代 Permanent Gen, 两者关系是: 方法区是Java虚拟机规范, 永久代是方法区在Hotspot上的实现<br>
 从Java8开始, 永久代已经被 MetaSpace(操作系统的直接内存) 取代</p>
 <p>JDK7中符号表被移动到 Native Heap中，字符串常量池和类引用被移动到 Java Heap中。</p>
-<h4 id="运行时常量池">运行时常量池</h4>
 <p>运行时常量池是方法区的一部分, 用于存放编译期生成的各种字面量和符号引用,这部分内容将在类加载后进入方法区的运行时常量池存放.</p>
-<h3 id="direct-memory-直接内存">Direct Memory 直接内存</h3>
-<p>直接内存并不是虚拟机运行时数据区的一部分, 也不是Java虚拟机规范中定义的内存区域. 但是这部分内存也被频繁地使用, 而且也可能导致 OutOfMemoryError</p>
-<p>NIO 会经常使用, 提高性能</p>
-<h3 id="code-cache">Code Cache</h3>
-<blockquote>
-<p><a href="https://www.baeldung.com/jvm-code-cache">Introduction to JVM Code Cache</a></p>
-</blockquote>
-<hr>
-<h2 id="metaspace-元空间">Metaspace 元空间</h2>
-<blockquote>
-<p>MetaSpace Java8 引入, 取代了以往的 Perm Gen</p>
-</blockquote>
-<ul>
-<li>存放内容：
-<ul>
-<li>Klass结构</li>
-<li>匿名类， Lambda表达式</li>
-<li>String.intern 的字符串</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>特性</p>
-</blockquote>
-<ul>
-<li>充分利用了Java语言规范：类及相关的元数据的生命周期与类加载器的一致。</li>
-<li>每个类加载器都有它的内存区域-元空间</li>
-<li>只进行线性分配</li>
-<li>不会单独回收某个类（除了重定义类 RedefineClasses 或类加载失败）</li>
-<li>没有GC扫描或压缩</li>
-<li>元空间里的对象不会被转移</li>
-<li>如果GC发现某个类加载器不再存活，会对整个元空间进行集体回收</li>
-</ul>
-<blockquote>
-<p><a href="https://stuefe.de/posts/metaspace/metaspace-architecture/">参考: Metaspace Architecture</a><br>
-<a href="https://stuefe.de/posts/metaspace/what-is-compressed-class-space/">参考: What is Compressed Class Space?</a><br>
-<a href="https://www.javadoop.com/post/metaspace">深入理解堆外内存 Metaspace</a></p>
-</blockquote>
-<p><a href="https://heapdump.cn/article/210111">Metaspace 解密</a></p>
-<p>-XX:MaxMetaspaceSize 指定元空间的最大空间，默认值是无限（16EB）。
--XX:MetaspaceSize 指定元空间首次扩充的大小，默认为20.75M</p>
-<p>由于MaxMetaspaceSize未指定时，默认无上限，所以需要特别关注内存泄露的问题，如果程序动态的创建了很多类，或出现过java.lang.OutOfMemoryError:Metaspace，建议明确指定-XX:MaxMetaspaceSize。<br>
-另外Metaspace实际分配的大小是随着需要逐步扩大的，<strong>每次扩大需要一次FGC</strong>，-XX:MetaspaceSize默认的值比较小，需要频繁GC扩充到需要的大小。类似日志可以看到Metaspace引起的FGC：<code>[Full GC (Metadata GC Threshold) ...]</code></p>
-<p>因此为减少预热影响，可以将-XX:MetaspaceSize，-XX:MaxMetaspaceSize指定成相同的值。</p>
-<h2 id="native-memory">Native Memory</h2>
-<p>Native Memory 主要是JNI、Deflater/Inflater、DirectByteBuffer（nio中会用到）使用的， 当发现Java进程的堆使用率不高，但是进程占用内存RSS很高，就要怀疑这块区域了</p>
+<h2 id="native-memory-非堆内存">Native Memory 非堆内存</h2>
+<p>Native Memory 主要是JNI、线程栈、编译器、符号表、Deflater/Inflater、DirectByteBuffer（nio中会用到）使用的</p>
+<p>当发现Java进程的堆使用率不高，但是进程占用内存RSS很高，就要怀疑这块区域了</p>
 <ul>
 <li><a href="https://github.com/Kuangcp/JavaBase/blob/master/class/src/test/java/jvm/oom/DirectMemoryOOMTest.java">Github: 测试代码</a></li>
-<li><a href="https://stackoverflow.com/questions/2689914/how-to-see-the-memory-usage-of-nio-buffers">how to see memory useage of nio buffers</a></li>
 </ul>
 <blockquote>
 <p><a href="https://cloud.tencent.com/developer/article/1129904">参考: 聊聊JVM 堆外内存泄露的BUG是如何查找的</a><br>
-<a href="https://zhuanlan.zhihu.com/p/60976273">JAVA堆外内存排查小结</a></p>
+<a href="https://zhuanlan.zhihu.com/p/60976273">JAVA堆外内存排查小结</a><br>
+<a href="https://blog.malt.engineering/java-in-k8s-how-weve-reduced-memory-usage-without-changing-any-code-cbef5d740ad">Java in K8s: how we’ve reduced memory usage without changing any code</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.pengzna.top/article/Java-Memory/">Java 进程内存占用及可观测性调研&amp;内存异常排查最佳实践</a></p>
+</blockquote>
+<p>还有两种内存 Native Memory Tracking 没有记录，那就是：</p>
+<ul>
+<li>MMap Buffer：文件映射内存</li>
+<li>JNI 方法里的内存分配</li>
+</ul>
+<blockquote>
+<p><a href="https://www.bro-code.in/blog/java-debugging-native-memory-leak">Java – Debugging Native Memory Leaks</a></p>
+</blockquote>
+<h3 id="nmt-native-memory-tracking">NMT Native Memory Tracking</h3>
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/tooldescr007.html">Native Memory Tracking</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/tooldescr022.html#BABHIFJC">NMT Memory Categories</a><code>内存各分类说明</code></p>
 </blockquote>
 <ul>
-<li>
-<p><code>-XX:MaxDirectMemorySize</code> 限制最大内存，默认值为： MaxHeapSize - Survivor 。 <code>通过工具查看的话，值为0</code></p>
-</li>
-<li>
-<p>启用NMT: java -XX:NativeMemoryTracking=summary 或者 detail 开销更大一些</p>
-</li>
-<li>
-<p>查看NMT: jcmd $pid VM.native_memory <code>[detail] 对应启用时设置，输出具体内存地址信息</code></p>
+<li>启用NMT: java -XX:NativeMemoryTracking=summary 或者 detail 开销更大一些</li>
+<li>查看NMT: jcmd $pid VM.native_memory <code>[detail] 对应启用时设置，输出具体内存地址信息</code>
+<ul>
+<li>summary 缺省参数，查看概览</li>
+<li>detail detail模式才支持，查看内存地址明细</li>
+<li>baseline 设置当前时刻为基线</li>
+<li>summary.diff 对比前文设置的基线的变化值</li>
+<li>detail.diff detail模式对比前文设置的基线的变化值</li>
+<li>shutdown 停止 Tracking</li>
+<li>scale 设置展示的单位值默认KB (MB or GB)</li>
+<li>statistics detail模式输出统计信息</li>
+</ul>
 </li>
 </ul>
 <blockquote>
@@ -681,12 +685,10 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 </span><span class="lnt">31
 </span><span class="lnt">32
 </span><span class="lnt">33
-</span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">Native Memory Tracking:
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Total: <span class="nv">reserved</span><span class="o">=</span>10019737KB, <span class="nv">committed</span><span class="o">=</span>997089KB reversed保留内存 commited实际提交内存
+</span></span><span class="line"><span class="cl">Total: <span class="nv">reserved</span><span class="o">=</span>10019737KB, <span class="nv">committed</span><span class="o">=</span>997089KB <span class="o">()</span> reversed保留内存 （ps中的VSZ）  commited实际提交内存 （ps中的RSS）
 </span></span><span class="line"><span class="cl">-                 Java Heap <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>8222720KB, <span class="nv">committed</span><span class="o">=</span>514048KB<span class="o">)</span>
 </span></span><span class="line"><span class="cl">                            <span class="o">(</span>mmap: <span class="nv">reserved</span><span class="o">=</span>8222720KB, <span class="nv">committed</span><span class="o">=</span>514048KB<span class="o">)</span> 
 </span></span><span class="line"><span class="cl">-                     Class <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>1081845KB, <span class="nv">committed</span><span class="o">=</span>34165KB<span class="o">)</span> 存储类元数据信息
@@ -707,7 +709,7 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 </span></span><span class="line"><span class="cl">-                  Compiler <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>183KB, <span class="nv">committed</span><span class="o">=</span>183KB<span class="o">)</span>
 </span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>40KB <span class="c1">#208) </span>
 </span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">arena</span><span class="o">=</span>142KB <span class="c1">#15)</span>
-</span></span><span class="line"><span class="cl">-                  Internal <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>84975KB, <span class="nv">committed</span><span class="o">=</span>84975KB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-                  Internal <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>84975KB, <span class="nv">committed</span><span class="o">=</span>84975KB<span class="o">)</span>  DirectMemory区域
 </span></span><span class="line"><span class="cl">                            <span class="o">(</span><span class="nv">malloc</span><span class="o">=</span>84943KB <span class="c1">#16310) </span>
 </span></span><span class="line"><span class="cl">                            <span class="o">(</span>mmap: <span class="nv">reserved</span><span class="o">=</span>32KB, <span class="nv">committed</span><span class="o">=</span>32KB<span class="o">)</span> 
 </span></span><span class="line"><span class="cl">-                    Symbol <span class="o">(</span><span class="nv">reserved</span><span class="o">=</span>4984KB, <span class="nv">committed</span><span class="o">=</span>4984KB<span class="o">)</span>
@@ -721,6 +723,68 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
+<h3 id="metaspace-元空间">Metaspace 元空间</h3>
+<blockquote>
+<p>MetaSpace Java8 引入, 取代了以往的 Perm Gen</p>
+</blockquote>
+<ul>
+<li>存放内容：
+<ul>
+<li>Klass结构</li>
+<li>匿名类， Lambda表达式</li>
+<li>String.intern 的字符串</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>特性</p>
+</blockquote>
+<ul>
+<li>充分利用了Java语言规范：类及相关的元数据的生命周期与类加载器的一致。</li>
+<li>每个类加载器都有它的内存区域-元空间</li>
+<li>只进行线性分配</li>
+<li>不会单独回收某个类（除了重定义类 RedefineClasses 或类加载失败）</li>
+<li>没有GC扫描或压缩</li>
+<li>元空间里的对象不会被转移</li>
+<li>如果GC发现某个类加载器不再存活，会对整个元空间进行集体回收</li>
+</ul>
+<blockquote>
+<p><a href="https://stuefe.de/posts/metaspace/metaspace-architecture/">参考: Metaspace Architecture</a><br>
+<a href="https://stuefe.de/posts/metaspace/what-is-compressed-class-space/">参考: What is Compressed Class Space?</a><br>
+<a href="https://www.javadoop.com/post/metaspace">深入理解堆外内存 Metaspace</a></p>
+</blockquote>
+<p><a href="https://heapdump.cn/article/210111">Metaspace 解密 - 你假笨</a></p>
+<p>-XX:MaxMetaspaceSize 指定元空间的最大空间，默认值是无限（16EB）
+-XX:MetaspaceSize 指定元空间首次扩充的大小，默认为20.75M</p>
+<p>由于MaxMetaspaceSize未指定时，默认无上限，所以需要特别关注内存泄露的问题<br>
+如果程序动态的创建了很多类（反射，Lambda等等）或出现过java.lang.OutOfMemoryError:Metaspace， 建议明确指定-XX:MaxMetaspaceSize</p>
+<p>Metaspace实际分配的大小是随着需要逐步扩大的，<strong>每次扩大需要执行一次FGC</strong>，-XX:MetaspaceSize默认的值是比较小的，需要频繁GC扩充到实际需要的大小。<br>
+类似日志可以看到Metaspace引起的FGC：<code>[Full GC (Metadata GC Threshold) ...]</code>， 因此为减少预热影响，可以将-XX:MetaspaceSize，-XX:MaxMetaspaceSize指定成相同的值。</p>
+<h3 id="directmemory-堆外内存">DirectMemory 堆外内存</h3>
+<p>常说的堆外内存都是指这块，即NIO使用到的缓冲区内存（直接操作系统申请，不受GC控制）。<br>
+通常出现在NMT监控中的 Internal 部分，如果发现这部分增长明显，需要排查NIO相关的代码使用和配置了。</p>
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/2689914/how-to-see-the-memory-usage-of-nio-buffers">how to see memory useage of nio buffers</a></p>
+</li>
+<li>
+<p><code>-XX:MaxDirectMemorySize</code> 限制最大内存</p>
+<ul>
+<li>该参数只能限制 DirectByteBuffer（Bits）申请内存的最大值，无法限制Unsafe申请内存</li>
+<li><code>如果未手动指定值，通过jcmd工具查看的值为0,实际取值参考：</code>
+<ul>
+<li>使用CMS,Parallel GC时默认值为： MaxHeapSize - Survivor</li>
+<li>使用G1时最大默认是 MaxHeapSize</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="code-cache">Code Cache</h3>
+<blockquote>
+<p><a href="https://www.baeldung.com/jvm-code-cache">Introduction to JVM Code Cache</a></p>
+</blockquote>
+<hr>
 <h1 id="jvm不同实现">JVM不同实现</h1>
 <h2 id="hotspot-jvm">Hotspot JVM</h2>
 <p>原先 SUN 公司开发, 现为 Oracle JDK 中默认JVM</p>

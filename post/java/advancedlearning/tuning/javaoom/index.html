@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 OOM 1.1. 简单案例 1.2. Heap space OOM 1.3. Metaspace OOM 1.4. Compressed Class Space OOM 1.5. Direct Memory OOM 1.6. GC overhead limit exceeded 分析 💠 2024-11-18 14:31:55 OOM 注意OOM并不代表Java进程一定会退出，如果导致OOM的地方能被cat" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 OOM 1.1. 简单案例 1.2. Heap space OOM 1.3. Metaspace OOM 1.4. Compressed Class Space OOM 1.5. No Heap Memory Leak 1.6. Direct Memory OOM 1.7. GC overhead limit exceeded 分析 💠 2024-12-10 22:06:23 OOM 注意OOM并不代表Java进程一定会退出，如果导致OOM的地方" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="JavaOOM" />
-<meta property="og:description" content="💠 OOM 1.1. 简单案例 1.2. Heap space OOM 1.3. Metaspace OOM 1.4. Compressed Class Space OOM 1.5. Direct Memory OOM 1.6. GC overhead limit exceeded 分析 💠 2024-11-18 14:31:55 OOM 注意OOM并不代表Java进程一定会退出，如果导致OOM的地方能被cat" />
+<meta property="og:description" content="💠 OOM 1.1. 简单案例 1.2. Heap space OOM 1.3. Metaspace OOM 1.4. Compressed Class Space OOM 1.5. No Heap Memory Leak 1.6. Direct Memory OOM 1.7. GC overhead limit exceeded 分析 💠 2024-12-10 22:06:23 OOM 注意OOM并不代表Java进程一定会退出，如果导致OOM的地方" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/tuning/javaoom/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2024-03-06T14:09:01+00:00" />
 <meta property="article:modified_time" content="2024-03-06T14:09:01+00:00" />
 
 <meta itemprop="name" content="JavaOOM">
-<meta itemprop="description" content="💠 OOM 1.1. 简单案例 1.2. Heap space OOM 1.3. Metaspace OOM 1.4. Compressed Class Space OOM 1.5. Direct Memory OOM 1.6. GC overhead limit exceeded 分析 💠 2024-11-18 14:31:55 OOM 注意OOM并不代表Java进程一定会退出，如果导致OOM的地方能被cat"><meta itemprop="datePublished" content="2024-03-06T14:09:01+00:00" />
+<meta itemprop="description" content="💠 OOM 1.1. 简单案例 1.2. Heap space OOM 1.3. Metaspace OOM 1.4. Compressed Class Space OOM 1.5. No Heap Memory Leak 1.6. Direct Memory OOM 1.7. GC overhead limit exceeded 分析 💠 2024-12-10 22:06:23 OOM 注意OOM并不代表Java进程一定会退出，如果导致OOM的地方"><meta itemprop="datePublished" content="2024-03-06T14:09:01+00:00" />
 <meta itemprop="dateModified" content="2024-03-06T14:09:01+00:00" />
-<meta itemprop="wordCount" content="1021">
+<meta itemprop="wordCount" content="1078">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JavaOOM"/>
-<meta name="twitter:description" content="💠 OOM 1.1. 简单案例 1.2. Heap space OOM 1.3. Metaspace OOM 1.4. Compressed Class Space OOM 1.5. Direct Memory OOM 1.6. GC overhead limit exceeded 分析 💠 2024-11-18 14:31:55 OOM 注意OOM并不代表Java进程一定会退出，如果导致OOM的地方能被cat"/>
+<meta name="twitter:description" content="💠 OOM 1.1. 简单案例 1.2. Heap space OOM 1.3. Metaspace OOM 1.4. Compressed Class Space OOM 1.5. No Heap Memory Leak 1.6. Direct Memory OOM 1.7. GC overhead limit exceeded 分析 💠 2024-12-10 22:06:23 OOM 注意OOM并不代表Java进程一定会退出，如果导致OOM的地方"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/troubleshoot/"> Troubleshoot </a>
             </div>
-          <span class="more-meta"> 1021 words </span>
+          <span class="more-meta"> 1078 words </span>
           <span class="more-meta"> 3 mins read </span>
         
       </div>
@@ -139,6 +139,7 @@
         <li><a href="#heap-space-oom">Heap space OOM</a></li>
         <li><a href="#metaspace-oom">Metaspace OOM</a></li>
         <li><a href="#compressed-class-space-oom">Compressed Class Space OOM</a></li>
+        <li><a href="#no-heap-memory-leak">No Heap Memory Leak</a></li>
         <li><a href="#direct-memory-oom">Direct Memory OOM</a></li>
         <li><a href="#gc-overhead-limit-exceeded">GC overhead limit exceeded</a></li>
       </ul>
@@ -160,8 +161,9 @@
 <li>1.2. <a href="#heap-space-oom">Heap space OOM</a></li>
 <li>1.3. <a href="#metaspace-oom">Metaspace OOM</a></li>
 <li>1.4. <a href="#compressed-class-space-oom">Compressed Class Space OOM</a></li>
-<li>1.5. <a href="#direct-memory-oom">Direct Memory OOM</a></li>
-<li>1.6. <a href="#gc-overhead-limit-exceeded">GC overhead limit exceeded</a></li>
+<li>1.5. <a href="#no-heap-memory-leak">No Heap Memory Leak</a></li>
+<li>1.6. <a href="#direct-memory-oom">Direct Memory OOM</a></li>
+<li>1.7. <a href="#gc-overhead-limit-exceeded">GC overhead limit exceeded</a></li>
 </ul>
 </li>
 <li>
@@ -170,13 +172,14 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-11-18 14:31:55</p>
+<p>💠 2024-12-10 22:06:23</p>
 <hr>
 <h1 id="oom">OOM</h1>
 <blockquote>
 <p>注意OOM并不代表Java进程一定会退出，如果导致OOM的地方能被catch，且泄漏点能随着这次任务的终止而可回收的话，JVM将继续正常运行。<br>
 <a href="https://stackoverflow.com/questions/72865015/why-jvm-can-recovery-from-oom-java-heap-space-by-itself">Why JVM can recovery from OOM Java heap space by itself</a></p>
 </blockquote>
+<p><a href="https://github.com/openjdk/jdk8/blob/6a383433a9f4661a96a90b2a4c7b5b9a85720031/hotspot/src/share/vm/memory/universe.cpp#L1049">OOM异常类在JVM启动就加载了各种类型</a></p>
 <h2 id="简单案例">简单案例</h2>
 <p>例如</p>
 <div class="highlight"><div class="chroma">
@@ -315,8 +318,16 @@ java.lang.OutOfMemoryError: Requested array size exceeds VM limit</p>
 <a href="https://www.dongcb.com/818.html">https://www.dongcb.com/818.html</a></p>
 <p><a href="https://juejin.cn/post/7114516283290288158">https://juejin.cn/post/7114516283290288158</a></p>
 <h2 id="compressed-class-space-oom">Compressed Class Space OOM</h2>
+<h2 id="no-heap-memory-leak">No Heap Memory Leak</h2>
+<blockquote>
+<p>非堆内存泄漏</p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.malt.engineering/java-in-k8s-how-weve-reduced-memory-usage-without-changing-any-code-cbef5d740ad">Java in K8s: how we’ve reduced memory usage without changing any code | by Mickael Jeanroy | malt-engineering</a></p>
+</blockquote>
 <h2 id="direct-memory-oom">Direct Memory OOM</h2>
 <p><a href="https://tech.meituan.com/2018/10/18/netty-direct-memory-screening.html">Netty堆外内存泄露排查盛宴</a></p>
+<hr>
 <h2 id="gc-overhead-limit-exceeded">GC overhead limit exceeded</h2>
 <blockquote>
 <p><a href="https://stackoverflow.com/questions/1393486/error-java-lang-outofmemoryerror-gc-overhead-limit-exceeded">Error java.lang.OutOfMemoryError: GC overhead limit exceeded</a></p>

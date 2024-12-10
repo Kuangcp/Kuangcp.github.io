@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-27 10:56:30 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-12-06 19:28:00 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Java问题排查手册" />
-<meta property="og:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-27 10:56:30 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" />
+<meta property="og:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-12-06 19:28:00 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/tuning/javatroubleshoot/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-08-25T15:51:12+00:00" />
 <meta property="article:modified_time" content="2023-08-25T15:51:12+00:00" />
 
 <meta itemprop="name" content="Java问题排查手册">
-<meta itemprop="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-27 10:56:30 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"><meta itemprop="datePublished" content="2023-08-25T15:51:12+00:00" />
+<meta itemprop="description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-12-06 19:28:00 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"><meta itemprop="datePublished" content="2023-08-25T15:51:12+00:00" />
 <meta itemprop="dateModified" content="2023-08-25T15:51:12+00:00" />
-<meta itemprop="wordCount" content="2635">
+<meta itemprop="wordCount" content="2644">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java问题排查手册"/>
-<meta name="twitter:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-11-27 10:56:30 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"/>
+<meta name="twitter:description" content="💠 Troubleshoot 1.1. GC 1.1.1. 主要关注指标 1.2. Memory 1.3. CPU 1.3.1. 线程 1.4. ClassLoader 💠 2024-12-06 19:28:00 Troubleshoot 当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总 Troubleshooting: Oracle: Java8 | Oracle: Java11 【JVM进阶之路"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/troubleshoot/"> Troubleshoot </a>
             </div>
-          <span class="more-meta"> 2635 words </span>
+          <span class="more-meta"> 2644 words </span>
           <span class="more-meta"> 6 mins read </span>
         
       </div>
@@ -176,7 +176,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-27 10:56:30</p>
+<p>💠 2024-12-06 19:28:00</p>
 <hr>
 <h1 id="troubleshoot">Troubleshoot</h1>
 <p>当遇到需要对某个Java应用性能调优，故障处理时的技能或思路汇总</p>
@@ -283,7 +283,7 @@ JVM层：记录好后续排查分析故障现场的必要信息后（dump，日�
 <ul>
 <li>应用程序中预期使用的内存量是否仅包含 Java 堆大小？或者这个总和是否也考虑了 JVM 或应用程序消耗的本机 RAM？
 <ul>
-<li>使用的 RAM 量如何计算？ 该统计信息是否会考虑操作系统报告的 JVM 进程驻留内存大小？Java堆上当前数据的数量是否也包括在内？<code>RAM量严格来说包含 堆，堆外，元空间，二进制库</code></li>
+<li>使用的 RAM 量如何计算？ 该统计信息是否会考虑操作系统报告的 JVM 进程驻留内存大小？Java堆上当前数据的数量是否也包括在内？<code>RAM占用量严格来说包含 堆，堆外，元空间，二进制库</code></li>
 </ul>
 </li>
 <li>有没有可能永远不会超过预期的内存消耗？如果有的话，可能会超过预期的内存消耗多少？ 又可以超过多长时间呢？<code>取决于宿主机，通常不建议超限制运行，不利于容器调度</code></li>
@@ -306,7 +306,8 @@ JVM层：记录好后续排查分析故障现场的必要信息后（dump，日�
 </li>
 </ul>
 <blockquote>
-<p><a href="/Java/AdvancedLearning/Tuning/JavaOOM.md">Java OOM 排查手册</a></p>
+<p><a href="/Java/AdvancedLearning/Tuning/JavaOOM.md">Java OOM 排查手册</a><br>
+<a href="/Java/AdvancedLearning/JvmTool.md#jmc">JVM工具： JMC</a></p>
 </blockquote>
 <hr>
 <h2 id="cpu">CPU</h2>
