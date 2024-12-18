@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Linux基础">
 <meta itemprop="description" content="💠 Linux系统 1.1. Boot 1.1.1. grub 1.2. 用户管理 1.2.1. 用户 1.2.2. 用户组 1.2.3. sudo 1.3. Terminal 终端 1.3.1. 终端对比 1.3.2. 终端中渲染图片 1.3.3. 终端的彩色输出 1.3.3.1. ls配置彩色输出 1.3.4. 终端快捷键 1.4. 环境变"><meta itemprop="datePublished" content="2018-12-15T11:11:23+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:11:23+00:00" />
-<meta itemprop="wordCount" content="10255">
+<meta itemprop="wordCount" content="10497">
 <meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux基础"/>
 <meta name="twitter:description" content="💠 Linux系统 1.1. Boot 1.1.1. grub 1.2. 用户管理 1.2.1. 用户 1.2.2. 用户组 1.2.3. sudo 1.3. Terminal 终端 1.3.1. 终端对比 1.3.2. 终端中渲染图片 1.3.3. 终端的彩色输出 1.3.3.1. ls配置彩色输出 1.3.4. 终端快捷键 1.4. 环境变"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 10255 words </span>
+          <span class="more-meta"> 10497 words </span>
           <span class="more-meta"> 21 mins read </span>
         
       </div>
@@ -188,6 +188,13 @@
             <li><a href="#虚拟内存">虚拟内存</a></li>
             <li><a href="#交换内存">交换内存</a></li>
             <li><a href="#清空读写缓存">清空读写缓存</a></li>
+          </ul>
+        </li>
+        <li><a href="#内存管理">内存管理</a>
+          <ul>
+            <li><a href="#glibc-ptmalloc2">glibc ptmalloc2</a></li>
+            <li><a href="#jemalloc">jemalloc</a></li>
+            <li><a href="#musl-malloc">musl malloc</a></li>
           </ul>
         </li>
       </ul>
@@ -303,6 +310,13 @@
 <li>2.3.5. <a href="#%E6%B8%85%E7%A9%BA%E8%AF%BB%E5%86%99%E7%BC%93%E5%AD%98">清空读写缓存</a></li>
 </ul>
 </li>
+<li>2.4. <a href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86">内存管理</a>
+<ul>
+<li>2.4.1. <a href="#glibc-ptmalloc2">glibc ptmalloc2</a></li>
+<li>2.4.2. <a href="#jemalloc">jemalloc</a></li>
+<li>2.4.3. <a href="#musl-malloc">musl malloc</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -336,7 +350,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-12-06 19:28:00</p>
+<p>💠 2024-12-12 15:30:08</p>
 <hr>
 <h1 id="linux系统">Linux系统</h1>
 <ul>
@@ -1606,10 +1620,19 @@ P、V操作应分别紧靠临界区的头尾部，临界区的代码应尽可能
 <a href="https://help.aliyun.com/zh/alinux/support/causes-of-and-solutions-to-the-issue-of-oom-killer-being-triggered">Alibaba Cloud Linux出现OOM Killer强制释放进程占用内存的原因及解决方案_Alibaba Cloud Linux(Alinux)-阿里云帮助中心</a></p>
 </blockquote>
 <h3 id="虚拟内存">虚拟内存</h3>
+<p>很重要的设计，隔离了物理内存，降低应用端负担。</p>
+<ul>
+<li>cat /proc/pid/maps 或者 pmap -x pid 命令来查看进程的 用户态虚拟内存空间的实际分布。</li>
+<li>cat /proc/iomem 命令来查看进程的 内核态虚拟内存空间的的实际分布。</li>
+</ul>
 <blockquote>
 <p><a href="https://serverfault.com/questions/138427/what-does-virtual-memory-size-in-top-mean">参考: What does Virtual memory size in top mean?</a><br>
 <a href="https://www.logicmonitor.com/blog/the-right-way-to-monitor-virtual-memory-on-linux/">参考: The Right Way to Monitor Virtual Memory on Linux</a></p>
 </blockquote>
+<blockquote>
+<p><a href="https://www.xiaolincoding.com/os/3_memory/linux_mem.html">4.6 深入理解 Linux 虚拟内存管理 | 小林coding</a></p>
+</blockquote>
+<hr>
 <h3 id="交换内存">交换内存</h3>
 <blockquote>
 <p>swapon, swapoff - enable/disable devices and files for paging and swapping</p>
@@ -1675,6 +1698,26 @@ SWAP = VIRT - RES</p>
 <blockquote>
 <p>注意sync命令是为了将内存中buffer写入磁盘，避免这部分内存被直接释放导致数据不一致</p>
 </blockquote>
+<h2 id="内存管理">内存管理</h2>
+<p>glibc, musl, jemalloc, System Alloc 等等实现</p>
+<blockquote>
+<p><a href="https://users.rust-lang.org/t/optimizing-rust-binaries-observation-of-musl-versus-glibc-and-jemalloc-versus-system-alloc/8499">Optimizing Rust Binaries: Observation of Musl versus Glibc and Jemalloc versus System Alloc</a></p>
+</blockquote>
+<h3 id="glibc-ptmalloc2">glibc ptmalloc2</h3>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Glibc">glibc - Wikipedia</a></p>
+</blockquote>
+<p>glibc本身是C的实现，封装了系统调用，大部分Linux发行版的默认内存管理都是glibc中的malloc</p>
+<p><strong>thread arena</strong></p>
+<blockquote>
+<p><a href="https://gotplt.org/posts/malloc-per-thread-arenas-in-glibc.html">Malloc per-thread arenas in glibc</a><br>
+<a href="https://codearcana.com/posts/2016/07/11/arena-leak-in-glibc.html">Arena &ldquo;leak&rdquo; in glibc</a><br>
+<a href="https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/">Understanding glibc malloc – sploitF-U-N</a><br>
+<a href="http://pwn4.fun/2016/04/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3glibc-malloc/">深入理解glibc malloc | BruceFan&rsquo;s Blog</a></p>
+</blockquote>
+<h3 id="jemalloc">jemalloc</h3>
+<h3 id="musl-malloc">musl malloc</h3>
+<p>Alpine发行版所使用</p>
 <hr>
 <h1 id="常见对比">常见对比</h1>
 <h2 id="文件系统对比">文件系统对比</h2>
