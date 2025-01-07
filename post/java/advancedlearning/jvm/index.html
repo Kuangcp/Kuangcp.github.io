@@ -49,7 +49,7 @@
 <meta itemprop="name" content="JVM">
 <meta itemprop="description" content="💠 JVM 1.1. JVM参数 1.2. JVM内存参数 1.2.1. 容器内的JVM 1.2.2. 内存参数实践 1.3. Unified JVM Logging JVM 基本结构 2.1. 堆内存管理 2.2. 非堆内存管理 glibc 内存区域 3.1. 运行时数据区 3.1.1. 程序计数"><meta itemprop="datePublished" content="2019-04-02T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2019-04-02T10:56:52+00:00" />
-<meta itemprop="wordCount" content="7051">
+<meta itemprop="wordCount" content="7328">
 <meta itemprop="keywords" content="JVM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JVM"/>
 <meta name="twitter:description" content="💠 JVM 1.1. JVM参数 1.2. JVM内存参数 1.2.1. 容器内的JVM 1.2.2. 内存参数实践 1.3. Unified JVM Logging JVM 基本结构 2.1. 堆内存管理 2.2. 非堆内存管理 glibc 内存区域 3.1. 运行时数据区 3.1.1. 程序计数"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 7051 words </span>
+          <span class="more-meta"> 7328 words </span>
           <span class="more-meta"> 15 mins read </span>
         
       </div>
@@ -177,6 +177,11 @@
         <li><a href="#hotspot-jvm">Hotspot JVM</a></li>
         <li><a href="#openj9">OpenJ9</a></li>
         <li><a href="#graalvm">GraalVM</a></li>
+      </ul>
+    </li>
+    <li><a href="#extend">Extend</a>
+      <ul>
+        <li><a href="#crac">CRaC</a></li>
       </ul>
     </li>
   </ul>
@@ -248,8 +253,16 @@
 <li>4.3. <a href="#graalvm">GraalVM</a></li>
 </ul>
 </li>
+<li>
+<ol start="5">
+<li><a href="#extend">Extend</a></li>
+</ol>
+<ul>
+<li>5.1. <a href="#crac">CRaC</a></li>
 </ul>
-<p>💠 2024-12-12 15:04:18</p>
+</li>
+</ul>
+<p>💠 2024-12-24 10:16:38</p>
 <hr>
 <h1 id="jvm">JVM</h1>
 <blockquote>
@@ -842,10 +855,22 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
 <p><a href="https://www.graalvm.org/java/advantages/">Accelerating Java performance</a><code>基准测试宣称快于openjdk8和11 1.55倍</code>
 <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html">GraalVM Native Image Support</a></p>
 </blockquote>
+<p>GraalVM是一种AOT编译器，需要单独对特定平台（Windows，Linux，macOS）编译出产物</p>
+<p>在 GraalVM 中，我们无法使用一些 Java 功能，如在运行时加载任意类。此外，许多可观察性和测试框架都不支持 GraalVM，因为它不允许在运行时生成动态代码，也无法运行 Java 代理。</p>
 <hr>
 <blockquote>
 <p><a href="https://www.infoq.cn/article/2018%2F05%2Foracle-graalvm-v1">参考: Oracle 发布多语种虚拟机平台 GraalVM 1.0</a><br>
 <a href="https://zhuanlan.zhihu.com/p/35849246">参考: 全栈虚拟机GraalVM初体验</a></p>
+</blockquote>
+<h1 id="extend">Extend</h1>
+<h2 id="crac">CRaC</h2>
+<blockquote>
+<p><a href="https://wiki.openjdk.org/display/crac">OpenJDK Wiki</a><br>
+<a href="https://docs.spring.io/spring-boot/reference/packaging/checkpoint-restore.html">Checkpoint and Restore With the JVM :: Spring Boot</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://docs.spring.io/spring-framework/reference/integration/checkpoint-restore.html">JVM Checkpoint Restore :: Spring Framework</a><br>
+因为其实现的原理，可预见的要处理很多和时间有关的业务问题，例如调度。并且无法实现GraalVM那样的AOT实现对字节码的完全预热，只能快进到Bean准备就绪的状态，也就是省去了进程创建到Bean容器可用的时间。目前来看投入产出比很低，没有实践意义。</p>
 </blockquote>
 
     </div>
@@ -914,7 +939,7 @@ JVM是基于堆栈的虚拟机.JVM为每个新创建的线程都分配一个堆�
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Kuangcp</span>
     
     <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>

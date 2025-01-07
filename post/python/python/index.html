@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Python 基础">
 <meta itemprop="description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应用 3.1."><meta itemprop="datePublished" content="2018-12-13T16:00:45+00:00" />
 <meta itemprop="dateModified" content="2018-12-13T16:00:45+00:00" />
-<meta itemprop="wordCount" content="7349">
+<meta itemprop="wordCount" content="7383">
 <meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python 基础"/>
 <meta name="twitter:description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应用 3.1."/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/python/"> Python </a>
             </div>
-          <span class="more-meta"> 7349 words </span>
+          <span class="more-meta"> 7383 words </span>
           <span class="more-meta"> 15 mins read </span>
         
       </div>
@@ -169,7 +169,6 @@
             <li><a href="#http">http</a></li>
             <li><a href="#virtualenv">virtualenv</a></li>
             <li><a href="#pip">pip</a></li>
-            <li><a href="#matplotlib">matplotlib</a></li>
           </ul>
         </li>
         <li><a href="#文件操作">文件操作</a>
@@ -263,11 +262,11 @@
 <li>3.1.2. <a href="#virtualenv">virtualenv</a></li>
 <li>3.1.3. <a href="#pip">pip</a>
 <ul>
-<li>3.1.3.1. <a href="#requirements-files">Requirements files</a></li>
-<li>3.1.3.2. <a href="#%E5%8F%91%E5%B8%83%E5%8C%85%E5%88%B0-pypi">发布包到 pypi</a></li>
+<li>3.1.3.1. <a href="#%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86">依赖管理</a></li>
+<li>3.1.3.2. <a href="#requirements-files">Requirements files</a></li>
+<li>3.1.3.3. <a href="#%E5%8F%91%E5%B8%83%E5%88%B0pypi">发布到pypi</a></li>
 </ul>
 </li>
-<li>3.1.4. <a href="#matplotlib">matplotlib</a></li>
 </ul>
 </li>
 <li>3.2. <a href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C">文件操作</a>
@@ -304,7 +303,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-12-12 17:45:49</p>
+<p>💠 2025-01-02 11:23:43</p>
 <hr>
 <h1 id="python">Python</h1>
 <blockquote>
@@ -595,7 +594,7 @@
 <li><code>join('')</code> 列表转化成字符串的方法</li>
 <li><code>cmp(str1,str2)</code> 比较两个字符串是否相等</li>
 <li><code>+</code>  进行拼接 可以拼接字符串 列表</li>
-<li><code>a in b</code> 判断a是否在b里存在</li>
+<li><code>a in b</code> 相当于Java的 b.contains(a)</li>
 <li><code>*</code> 重复序列  例如 <code>print &quot;-&quot;*20</code> 就会输出20个 -</li>
 <li><code>b = &quot;www.github.com&quot; </code>  <code>c = b.split(&quot;.&quot;)</code> <code>&quot;#&quot;.join(c)</code> 实现了将字符串的 . 换成了#</li>
 <li><code>&quot;i am %s %d&quot; % (&quot;python&quot;,67)  </code>%s %d %f 和C语言一样占位符
@@ -606,6 +605,7 @@
 </ul>
 </li>
 <li><code>title()</code> 首字母大写</li>
+<li><code>strip()</code></li>
 </ul>
 </li>
 </ul>
@@ -1174,18 +1174,14 @@
 <p>python -m module_name</p>
 <h3 id="http">http</h3>
 <ul>
-<li>快速启动一个 HTTP Web 服务器 <code>http.server [port]</code></li>
+<li>快速启动一个 HTTP Web 服务器 <code>python -mhttp.server [port]</code></li>
 </ul>
 <h3 id="virtualenv">virtualenv</h3>
-<blockquote>
-<p><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000">廖雪峰 virtualenv</a></p>
-</blockquote>
-<p><strong>虽然也可以用apt安装 python-venv, 但是最好不要这样,避免后续模块升级后不必要的冲突</strong></p>
 <ul>
-<li>创建环境 <code>python3 -m venv web</code> 或者 <code>virtualenv --no-site-packages web</code> 不将系统中安装的包带入该环境</li>
+<li>创建环境 <code>python3 -m venv web</code></li>
 <li>启动环境 <code>source web/bin/activate</code>
 <ul>
-<li>在环境中使用的pip python 都是环境中的, 其实就是修改了系统的环境变量指向</li>
+<li>在环境中使用的pip python命令都是web目录下的, 其实就是修改了系统的环境变量指向</li>
 </ul>
 </li>
 <li>停用环境 <code>deactivate</code></li>
@@ -1193,9 +1189,6 @@
 <h3 id="pip">pip</h3>
 <blockquote>
 <p><a href="https://pip.readthedocs.io/en/stable/">pip</a> | <a href="https://pip.pypa.io/en/stable/reference/pip_install/">doc</a> | <a href="https://packaging.python.org/tutorials/installing-packages/">guide</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://docs.astral.sh/uv/">uv</a> Rust实现的包管理</p>
 </blockquote>
 <ol>
 <li>作为Python的包管理器, 包的可执行文件默认在 /usr/local/bin 目录下(全局)
@@ -1228,13 +1221,15 @@
 <li>或者单次安装到全局 &ndash;break-system-packages</li>
 </ul>
 <blockquote>
-<p>3.10 后 pip 作为子模块</p>
+<p>3.10 后 pip 作为子模块使用</p>
 </blockquote>
 <ul>
 <li>安装 <code>python -m ensurepip --upgrade</code></li>
 <li>使用 <code>python -m pip install pkgName</code></li>
 <li>升级 <code>python -m pip install --upgrade pip</code></li>
 </ul>
+<h4 id="依赖管理">依赖管理</h4>
+<p>当发现环境内一个包有多个版本时，可以通过直接打开python解释器，import包,执行 包名._version 查看， 例如 <code>pandas._version</code> 或 <code>pandas.__version__</code></p>
 <h4 id="requirements-files">Requirements files</h4>
 <blockquote>
 <p><a href="https://pip.readthedocs.io/en/1.1/requirements.html">pip官方文档 Requirements files</a></p>
@@ -1251,7 +1246,7 @@
 <p>使用 <code>pip install -r requirements.txt</code></p>
 </li>
 </ol>
-<h4 id="发布包到-pypi">发布包到 pypi</h4>
+<h4 id="发布到pypi">发布到pypi</h4>
 <blockquote>
 <p><a href="https://packaging.python.org/guides/distributing-packages-using-setuptools/?highlight=pypirc#id78">Official : about package</a></p>
 </blockquote>
@@ -1285,7 +1280,6 @@
 <li>python3 setup.py checkdocs</li>
 </ol>
 </blockquote>
-<h3 id="matplotlib">matplotlib</h3>
 <hr>
 <h2 id="文件操作">文件操作</h2>
 <ul>
@@ -1567,6 +1561,10 @@
 </span><span class="lnt">19
 </span><span class="lnt">20
 </span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="c1"># 标准输出</span>
@@ -1585,6 +1583,10 @@
 </span></span><span class="line"><span class="cl">    <span class="n">rowFmt</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="n">LOG_FORMAT</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="n">DATE_FORMAT</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">stdout_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">rowFmt</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stdout_handler</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 按天滚动日志</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log_file_handler</span> <span class="o">=</span> <span class="n">TimedRotatingFileHandler</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&#34;run.log&#34;</span><span class="p">,</span> <span class="n">when</span><span class="o">=</span><span class="s2">&#34;D&#34;</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">log_file_handler</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1"># Pycharm 跳转 类似Java IDEA的 (xxx.java:100) 特定格式 logback配置 \\(%F:%line\\)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">LOG_FORMAT</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">%(asctime)s</span><span class="s2">.</span><span class="si">%(msecs)03d</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2"> File </span><span class="se">\&#34;</span><span class="si">%(filename)s</span><span class="se">\&#34;</span><span class="s2">, line </span><span class="si">%(lineno)s</span><span class="s2"> </span><span class="si">%(funcName)s</span><span class="s2">  </span><span class="si">%(message)s</span><span class="s2">&#34;</span>
@@ -1795,7 +1797,7 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Kuangcp</span>
     
     <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>

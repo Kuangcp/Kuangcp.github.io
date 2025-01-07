@@ -49,7 +49,7 @@
 <meta itemprop="name" content="JVM 监控&amp;诊断">
 <meta itemprop="description" content="💠 JVM 监控&amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1."><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="3449">
+<meta itemprop="wordCount" content="3504">
 <meta itemprop="keywords" content="JVM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JVM 监控&amp;诊断"/>
 <meta name="twitter:description" content="💠 JVM 监控&amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1."/>
@@ -123,7 +123,7 @@
             <a href="/categories/java/"> Java </a>
             <a href="/categories/troubleshoot/"> Troubleshoot </a>
             </div>
-          <span class="more-meta"> 3449 words </span>
+          <span class="more-meta"> 3504 words </span>
           <span class="more-meta"> 7 mins read </span>
         
       </div>
@@ -263,7 +263,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-12-06 19:28:00</p>
+<p>💠 2024-12-27 15:59:09</p>
 <hr>
 <h1 id="jvm-监控诊断">JVM 监控&amp;诊断</h1>
 <p>命令行终端</p>
@@ -285,7 +285,7 @@
 <p><code>JVM Tool Interface</code></p>
 <h1 id="jdk自带工具">JDK自带工具</h1>
 <blockquote>
-<p>都是jdk的bin目录下的工具，注意使用时要和目标JVM同一个JDK版本，以及同一个用户。</p>
+<p>都是jdk的bin目录下的工具，注意使用时要和目标JVM同一个JDK版本，以及同一个用户，衍生的工具如Arthas等等同理。</p>
 </blockquote>
 <h2 id="java">java</h2>
 <blockquote>
@@ -500,7 +500,8 @@
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/36224094">Jstack 源码分析</a></li>
 </ul>
-<p><a href="https://stackoverflow.com/questions/26140182/running-jmap-getting-unable-to-open-socket-file">jmap -F and jstack -F</a><code>jmap和jstack 默认及加-F选项背后实现机制及优缺点</code></p>
+<p>通常来说 jstack pid 报错无法attach时，意味着是高负载情况了，可以加-F参数尝试<br>
+<a href="https://stackoverflow.com/questions/26140182/running-jmap-getting-unable-to-open-socket-file">jmap -F and jstack -F</a><code>jmap和jstack 默认及加-F选项背后实现机制及优缺点</code></p>
 <ul>
 <li><a href="http://openjdk.java.net/groups/hotspot/docs/Serviceability.html#battach">Dynamic Attach Mechanism</a></li>
 <li><a href="http://openjdk.java.net/groups/hotspot/docs/Serviceability.html#bsa">HotSpot Serviceability Agent</a></li>
@@ -863,7 +864,7 @@ dump指令是将内存的数据dump到磁盘，线程继续在收集 stop 则是
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Kuangcp</span>
     
     <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>

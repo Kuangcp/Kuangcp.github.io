@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title> - Mythos · Java Developer</title>
+  <title>Alpine基础 - Mythos · Java Developer</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="决策树 机器学习——决策树模型 CART决策树原理（分类树与回归树）" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Alpine 1.1. BusyBox 💠 2024-12-24 10:16:38 Alpine Official Site 从K8S及应用层兼容考虑，都不推荐Alpine做基础镜像！ 是否适合用作Docker基础镜像 Alpine Linux，一个只有 5M 的 Docker 镜" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.99.0 with theme even" />
 
 
-<link rel="canonical" href="https://www.kuangcp.top/post/ml/tree/decisiontree/" />
+<link rel="canonical" href="https://www.kuangcp.top/post/linux/light/alpine/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,20 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="决策树 机器学习——决策树模型 CART决策树原理（分类树与回归树）" />
+<meta property="og:title" content="Alpine基础" />
+<meta property="og:description" content="💠 Alpine 1.1. BusyBox 💠 2024-12-24 10:16:38 Alpine Official Site 从K8S及应用层兼容考虑，都不推荐Alpine做基础镜像！ 是否适合用作Docker基础镜像 Alpine Linux，一个只有 5M 的 Docker 镜" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.kuangcp.top/post/ml/tree/decisiontree/" /><meta property="article:section" content="post" />
+<meta property="og:url" content="https://www.kuangcp.top/post/linux/light/alpine/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
+<meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
 
-
-
-<meta itemprop="name" content="">
-<meta itemprop="description" content="决策树 机器学习——决策树模型 CART决策树原理（分类树与回归树）">
-
-<meta itemprop="wordCount" content="32">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="决策树 机器学习——决策树模型 CART决策树原理（分类树与回归树）"/>
+<meta itemprop="name" content="Alpine基础">
+<meta itemprop="description" content="💠 Alpine 1.1. BusyBox 💠 2024-12-24 10:16:38 Alpine Official Site 从K8S及应用层兼容考虑，都不推荐Alpine做基础镜像！ 是否适合用作Docker基础镜像 Alpine Linux，一个只有 5M 的 Docker 镜"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="wordCount" content="276">
+<meta itemprop="keywords" content="Alpine,基础," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Alpine基础"/>
+<meta name="twitter:description" content="💠 Alpine 1.1. BusyBox 💠 2024-12-24 10:16:38 Alpine Official Site 从K8S及应用层兼容考虑，都不推荐Alpine做基础镜像！ 是否适合用作Docker基础镜像 Alpine Linux，一个只有 5M 的 Docker 镜"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,12 +115,14 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">Alpine基础</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 0001-01-01 </span>
-        
-          <span class="more-meta"> 32 words </span>
+        <span class="post-time"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 276 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -131,17 +133,55 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#决策树">决策树</a></li>
+    <li><a href="#alpine">Alpine</a>
+      <ul>
+        <li><a href="#busybox">BusyBox</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h1 id="决策树">决策树</h1>
+      <p>💠</p>
+<ul>
+<li>
+<ol>
+<li><a href="#alpine">Alpine</a></li>
+</ol>
+<ul>
+<li>1.1. <a href="#busybox">BusyBox</a></li>
+</ul>
+</li>
+</ul>
+<p>💠 2024-12-24 10:16:38</p>
+<hr>
+<h1 id="alpine">Alpine</h1>
 <blockquote>
-<p><a href="https://cloud.tencent.com/developer/article/2374508?areaId=106001">机器学习——决策树模型</a>
-<a href="https://cloud.tencent.com/developer/article/1813348">CART决策树原理（分类树与回归树）</a></p>
+<p><a href="https://www.alpinelinux.org/">Official Site</a></p>
 </blockquote>
+<blockquote>
+<p>从K8S及应用层兼容考虑，都不推荐Alpine做基础镜像！<br>
+<a href="https://cloud.tencent.com/developer/article/1632733">是否适合用作Docker基础镜像</a><br>
+<a href="https://www.infoq.cn/article/2016/01/Alpine-Linux-5M-Docker">Alpine Linux，一个只有 5M 的 Docker 镜像</a></p>
+</blockquote>
+<ul>
+<li><a href="https://stackoverflow.com/questions/65181012/does-alpine-have-known-dns-issue-within-kubernetes">Does Alpine have known DNS issue within Kubernetes?</a></li>
+<li>优点是镜像很小 但是缺点是工具集和相关底层库实现和Ubuntu等主流发行版不一致，可能导致应用出现不一致情况，终端内的工具集也是不统一的
+<ul>
+<li>alpine 使用的musl 主流使用的glibc</li>
+<li>即使从优点来说 由于镜像底层的文件系统是多层，所以多次分发镜像时，基础镜像小也就没有了优势</li>
+</ul>
+</li>
+</ul>
+<h2 id="busybox">BusyBox</h2>
+<blockquote>
+<p>里面各种工具命令能满足大部分需求, 但是命令参数，实现的功能都和原始的工具有差异，有裁剪</p>
+</blockquote>
+<ul>
+<li>真正的 ls 属于<code>coreutils</code>包</li>
+<li>真正的 ps 属于 <code>procps</code> 包</li>
+</ul>
 
     </div>
 
@@ -153,7 +193,7 @@
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        0001-01-01
+        2018-11-21
         
     </span>
   </p>
@@ -161,15 +201,18 @@
   
 </div>
 <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="/tags/alpine/">Alpine</a>
+          <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+          </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/ml/linear/logistic/">
+        <a class="prev" href="/post/java/ecosystem/activiti/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">Activiti</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/skills/media/audioformat/">
-            <span class="next-text nav-default"></span>
+        <a class="next" href="/post/functional/clojure/">
+            <span class="next-text nav-default">Clojure</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -207,7 +250,7 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Kuangcp</span>
     
     <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>

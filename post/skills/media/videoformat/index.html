@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 视频格式 💠 2024-09-05 15:59:26 视频格式 TODO digital_video_introduction" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 音视频格式 1.1. 音频格式 1.1.1. WAV 1.1.2. FLAC 1.1.3. MP3 1.1.4. HLS 💠 2025-01-03 17:45:03 音视频格式 digital_video_introduction 音频格式 WAV MP3 AAC FLAC PCM &#43; Header = WAV(只是一层容器) PCM 格式 - 認識音檔（公開版本） audio - Convert from PCM" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="视频格式" />
-<meta property="og:description" content="💠 视频格式 💠 2024-09-05 15:59:26 视频格式 TODO digital_video_introduction" />
+<meta property="og:description" content="💠 音视频格式 1.1. 音频格式 1.1.1. WAV 1.1.2. FLAC 1.1.3. MP3 1.1.4. HLS 💠 2025-01-03 17:45:03 音视频格式 digital_video_introduction 音频格式 WAV MP3 AAC FLAC PCM &#43; Header = WAV(只是一层容器) PCM 格式 - 認識音檔（公開版本） audio - Convert from PCM" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/skills/media/videoformat/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-04-14T14:37:45+00:00" />
 <meta property="article:modified_time" content="2021-04-14T14:37:45+00:00" />
 
 <meta itemprop="name" content="视频格式">
-<meta itemprop="description" content="💠 视频格式 💠 2024-09-05 15:59:26 视频格式 TODO digital_video_introduction"><meta itemprop="datePublished" content="2021-04-14T14:37:45+00:00" />
+<meta itemprop="description" content="💠 音视频格式 1.1. 音频格式 1.1.1. WAV 1.1.2. FLAC 1.1.3. MP3 1.1.4. HLS 💠 2025-01-03 17:45:03 音视频格式 digital_video_introduction 音频格式 WAV MP3 AAC FLAC PCM &#43; Header = WAV(只是一层容器) PCM 格式 - 認識音檔（公開版本） audio - Convert from PCM"><meta itemprop="datePublished" content="2021-04-14T14:37:45+00:00" />
 <meta itemprop="dateModified" content="2021-04-14T14:37:45+00:00" />
-<meta itemprop="wordCount" content="14">
+<meta itemprop="wordCount" content="88">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="视频格式"/>
-<meta name="twitter:description" content="💠 视频格式 💠 2024-09-05 15:59:26 视频格式 TODO digital_video_introduction"/>
+<meta name="twitter:description" content="💠 音视频格式 1.1. 音频格式 1.1.1. WAV 1.1.2. FLAC 1.1.3. MP3 1.1.4. HLS 💠 2025-01-03 17:45:03 音视频格式 digital_video_introduction 音频格式 WAV MP3 AAC FLAC PCM &#43; Header = WAV(只是一层容器) PCM 格式 - 認識音檔（公開版本） audio - Convert from PCM"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-04-14 </span>
         
-          <span class="more-meta"> 14 words </span>
+          <span class="more-meta"> 88 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -131,7 +131,18 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#视频格式">视频格式</a></li>
+    <li><a href="#音视频格式">音视频格式</a>
+      <ul>
+        <li><a href="#音频格式">音频格式</a>
+          <ul>
+            <li><a href="#wav">WAV</a></li>
+            <li><a href="#flac">FLAC</a></li>
+            <li><a href="#mp3">MP3</a></li>
+            <li><a href="#hls">HLS</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -141,16 +152,39 @@
 <ul>
 <li>
 <ol>
-<li><a href="#%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F">视频格式</a></li>
+<li><a href="#%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A0%BC%E5%BC%8F">音视频格式</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#%E9%9F%B3%E9%A2%91%E6%A0%BC%E5%BC%8F">音频格式</a>
+<ul>
+<li>1.1.1. <a href="#wav">WAV</a></li>
+<li>1.1.2. <a href="#flac">FLAC</a></li>
+<li>1.1.3. <a href="#mp3">MP3</a></li>
+<li>1.1.4. <a href="#hls">HLS</a></li>
+</ul>
 </li>
 </ul>
-<p>💠 2024-09-05 15:59:26</p>
+</li>
+</ul>
+<p>💠 2025-01-03 17:45:03</p>
 <hr>
-<h1 id="视频格式">视频格式</h1>
-<p>TODO</p>
+<h1 id="音视频格式">音视频格式</h1>
 <blockquote>
 <p><a href="https://github.com/leandromoreira/digital_video_introduction">digital_video_introduction</a></p>
+</blockquote>
+<h2 id="音频格式">音频格式</h2>
+<p>WAV MP3 AAC FLAC</p>
+<p>PCM + Header = WAV(只是一层容器)</p>
+<blockquote>
+<p><a href="https://zonble.github.io/understanding_audio_files/pcm/">PCM 格式 - 認識音檔（公開版本）</a><br>
+<a href="https://stackoverflow.com/questions/21131595/convert-from-pcm-to-wav-is-it-possible">audio - Convert from PCM to WAV. Is it Possible? - Stack Overflow</a></p>
+</blockquote>
+<h3 id="wav">WAV</h3>
+<h3 id="flac">FLAC</h3>
+<h3 id="mp3">MP3</h3>
+<h3 id="hls">HLS</h3>
+<blockquote>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc8216">RFC 8216 - HTTP Live Streaming</a></p>
 </blockquote>
 
     </div>
@@ -217,7 +251,7 @@
   <span class="copyright-year">
     &copy; 
     2016 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span>
     <span>Kuangcp</span>
     
     <br/><span><a href='http://beian.miit.gov.cn/'; target=_blank>赣ICP备17014189号</a></span>
