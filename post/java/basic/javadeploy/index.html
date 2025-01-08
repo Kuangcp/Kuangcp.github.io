@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 Tips 3.1. Java在Linux上的时区问题 3.2. 容器中J" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 安全加固 3.1. 代码混淆 3.2. 加密Class Tips 4.1. Java" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Java应用的部署" />
-<meta property="og:description" content="💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 Tips 3.1. Java在Linux上的时区问题 3.2. 容器中J" />
+<meta property="og:description" content="💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 安全加固 3.1. 代码混淆 3.2. 加密Class Tips 4.1. Java" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/basic/javadeploy/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
 
 <meta itemprop="name" content="Java应用的部署">
-<meta itemprop="description" content="💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 Tips 3.1. Java在Linux上的时区问题 3.2. 容器中J"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 安全加固 3.1. 代码混淆 3.2. 加密Class Tips 4.1. Java"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="1196">
+<meta itemprop="wordCount" content="1424">
 <meta itemprop="keywords" content="部署," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java应用的部署"/>
-<meta name="twitter:description" content="💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 Tips 3.1. Java在Linux上的时区问题 3.2. 容器中J"/>
+<meta name="twitter:description" content="💠 部署运行 1.1. 打包Jar 1.2. 打包可执行Jar 1.3. 打包War 1.4. 打包Docker镜像 配置文件 2.1. 命令行参数 安全加固 3.1. 代码混淆 3.2. 加密Class Tips 4.1. Java"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 1196 words </span>
+          <span class="more-meta"> 1424 words </span>
           <span class="more-meta"> 3 mins read </span>
         
       </div>
@@ -144,6 +144,12 @@
     <li><a href="#配置文件">配置文件</a>
       <ul>
         <li><a href="#命令行参数">命令行参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#安全加固">安全加固</a>
+      <ul>
+        <li><a href="#代码混淆">代码混淆</a></li>
+        <li><a href="#加密class">加密Class</a></li>
       </ul>
     </li>
     <li><a href="#tips">Tips</a>
@@ -180,15 +186,24 @@
 </li>
 <li>
 <ol start="3">
+<li><a href="#%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA">安全加固</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86">代码混淆</a></li>
+<li>3.2. <a href="#%E5%8A%A0%E5%AF%86class">加密Class</a></li>
+</ul>
+</li>
+<li>
+<ol start="4">
 <li><a href="#tips">Tips</a></li>
 </ol>
 <ul>
-<li>3.1. <a href="#java%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98">Java在Linux上的时区问题</a></li>
-<li>3.2. <a href="#%E5%AE%B9%E5%99%A8%E4%B8%ADjvm%E4%BF%A1%E5%8F%B7%E5%8F%8A%E5%8F%82%E6%95%B0%E6%8E%A5%E6%94%B6%E9%97%AE%E9%A2%98">容器中Jvm信号及参数接收问题</a></li>
+<li>4.1. <a href="#java%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98">Java在Linux上的时区问题</a></li>
+<li>4.2. <a href="#%E5%AE%B9%E5%99%A8%E4%B8%ADjvm%E4%BF%A1%E5%8F%B7%E5%8F%8A%E5%8F%82%E6%95%B0%E6%8E%A5%E6%94%B6%E9%97%AE%E9%A2%98">容器中Jvm信号及参数接收问题</a></li>
 </ul>
 </li>
 </ul>
-<p>💠 2024-10-08 15:07:46</p>
+<p>💠 2025-01-08 21:39:42</p>
 <hr>
 <h1 id="部署运行">部署运行</h1>
 <blockquote>
@@ -355,6 +370,30 @@
 </div><h2 id="命令行参数">命令行参数</h2>
 <blockquote>
 <p><a href="https://jcommander.org/">jcommander</a></p>
+</blockquote>
+<hr>
+<h1 id="安全加固">安全加固</h1>
+<p>class混淆，加密class，使用花指令，使得class文件不能反编译（利用反编译工具漏洞）；安全性一般，还是有花指令破解器</p>
+<h2 id="代码混淆">代码混淆</h2>
+<p>低成本且影响小效果好，并引申出别的用途（压缩apk大小😅）</p>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/2537568/best-java-obfuscator">obfuscation - Best Java obfuscator? - Stack Overflow</a><br>
+<a href="https://java-source.net/open-source/obfuscators">Open Source Obfuscators in Java</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://allatori.com/">Allatori Java Obfuscator - Professional Java Obfuscation</a><br>
+<a href="https://www.guardsquare.com/manual/configuration/usage">ProGuard Manual: Usage | Guardsquare</a></p>
+</blockquote>
+<h2 id="加密class">加密Class</h2>
+<p>难点在于即使自定义了类加载器，加载进JVM运行的时候内存上仍是明文字节，还是有手段dump到真实的class</p>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/4257027/how-can-you-protect-encrypt-your-java-classes">encryption - How can you protect/encrypt your Java classes? - Stack Overflow</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.infoworld.com/article/2171002/cracking-java-byte-code-encryption.html">Cracking Java byte-code encryption | InfoWorld</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/serengil/encrypted-class-loader">serengil/encrypted-class-loader: Enabling to run encrypted java classes</a></p>
 </blockquote>
 <hr>
 <h1 id="tips">Tips</h1>
