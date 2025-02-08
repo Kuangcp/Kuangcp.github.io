@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.3. 内存分代 1.4. 判断存活算法 1.4.1. 引用计数算法 1.4.2. 可达性分析算法 1.5. GC算法 1.5.1. 标记清除算法 1.5.2. 复制算法 1.5.3. 标记整理算法 1.6." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.2.3. 内存分代 1.2.4. 引用类型 1.3. 判断存活算法 1.3.1. 引用计数算法 1.3.2. 可达性分析算法 1.4. GC算法 1.4.1. 标记清除算法 1.4.2. 复制算法 1.4.3. 标记" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Java之GC" />
-<meta property="og:description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.3. 内存分代 1.4. 判断存活算法 1.4.1. 引用计数算法 1.4.2. 可达性分析算法 1.5. GC算法 1.5.1. 标记清除算法 1.5.2. 复制算法 1.5.3. 标记整理算法 1.6." />
+<meta property="og:description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.2.3. 内存分代 1.2.4. 引用类型 1.3. 判断存活算法 1.3.1. 引用计数算法 1.3.2. 可达性分析算法 1.4. GC算法 1.4.1. 标记清除算法 1.4.2. 复制算法 1.4.3. 标记" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/jvmgc/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-05-14T20:36:48+00:00" />
 <meta property="article:modified_time" content="2021-05-14T20:36:48+00:00" />
 
 <meta itemprop="name" content="Java之GC">
-<meta itemprop="description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.3. 内存分代 1.4. 判断存活算法 1.4.1. 引用计数算法 1.4.2. 可达性分析算法 1.5. GC算法 1.5.1. 标记清除算法 1.5.2. 复制算法 1.5.3. 标记整理算法 1.6."><meta itemprop="datePublished" content="2021-05-14T20:36:48+00:00" />
+<meta itemprop="description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.2.3. 内存分代 1.2.4. 引用类型 1.3. 判断存活算法 1.3.1. 引用计数算法 1.3.2. 可达性分析算法 1.4. GC算法 1.4.1. 标记清除算法 1.4.2. 复制算法 1.4.3. 标记"><meta itemprop="datePublished" content="2021-05-14T20:36:48+00:00" />
 <meta itemprop="dateModified" content="2021-05-14T20:36:48+00:00" />
-<meta itemprop="wordCount" content="11467">
+<meta itemprop="wordCount" content="11487">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java之GC"/>
-<meta name="twitter:description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.3. 内存分代 1.4. 判断存活算法 1.4.1. 引用计数算法 1.4.2. 可达性分析算法 1.5. GC算法 1.5.1. 标记清除算法 1.5.2. 复制算法 1.5.3. 标记整理算法 1.6."/>
+<meta name="twitter:description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.2.3. 内存分代 1.2.4. 引用类型 1.3. 判断存活算法 1.3.1. 引用计数算法 1.3.2. 可达性分析算法 1.4. GC算法 1.4.1. 标记清除算法 1.4.2. 复制算法 1.4.3. 标记"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-05-14 </span>
         
-          <span class="more-meta"> 11467 words </span>
+          <span class="more-meta"> 11487 words </span>
           <span class="more-meta"> 23 mins read </span>
         
       </div>
@@ -138,9 +138,10 @@
           <ul>
             <li><a href="#stw">STW</a></li>
             <li><a href="#安全点">安全点</a></li>
+            <li><a href="#内存分代">内存分代</a></li>
+            <li><a href="#引用类型">引用类型</a></li>
           </ul>
         </li>
-        <li><a href="#内存分代">内存分代</a></li>
         <li><a href="#判断存活算法">判断存活算法</a>
           <ul>
             <li><a href="#引用计数算法">引用计数算法</a></li>
@@ -192,23 +193,24 @@
 <ul>
 <li>1.2.1. <a href="#stw">STW</a></li>
 <li>1.2.2. <a href="#%E5%AE%89%E5%85%A8%E7%82%B9">安全点</a></li>
+<li>1.2.3. <a href="#%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3">内存分代</a></li>
+<li>1.2.4. <a href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B">引用类型</a></li>
 </ul>
 </li>
-<li>1.3. <a href="#%E5%86%85%E5%AD%98%E5%88%86%E4%BB%A3">内存分代</a></li>
-<li>1.4. <a href="#%E5%88%A4%E6%96%AD%E5%AD%98%E6%B4%BB%E7%AE%97%E6%B3%95">判断存活算法</a>
+<li>1.3. <a href="#%E5%88%A4%E6%96%AD%E5%AD%98%E6%B4%BB%E7%AE%97%E6%B3%95">判断存活算法</a>
 <ul>
-<li>1.4.1. <a href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E7%AE%97%E6%B3%95">引用计数算法</a></li>
-<li>1.4.2. <a href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95">可达性分析算法</a></li>
+<li>1.3.1. <a href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E7%AE%97%E6%B3%95">引用计数算法</a></li>
+<li>1.3.2. <a href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95">可达性分析算法</a></li>
 </ul>
 </li>
-<li>1.5. <a href="#gc%E7%AE%97%E6%B3%95">GC算法</a>
+<li>1.4. <a href="#gc%E7%AE%97%E6%B3%95">GC算法</a>
 <ul>
-<li>1.5.1. <a href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95">标记清除算法</a></li>
-<li>1.5.2. <a href="#%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95">复制算法</a></li>
-<li>1.5.3. <a href="#%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95">标记整理算法</a></li>
+<li>1.4.1. <a href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95">标记清除算法</a></li>
+<li>1.4.2. <a href="#%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95">复制算法</a></li>
+<li>1.4.3. <a href="#%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95">标记整理算法</a></li>
 </ul>
 </li>
-<li>1.6. <a href="#gc-callback">GC Callback</a></li>
+<li>1.5. <a href="#gc-callback">GC Callback</a></li>
 </ul>
 </li>
 <li>
@@ -245,7 +247,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-12-04 13:58:29</p>
+<p>💠 2025-01-16 16:26:11</p>
 <hr>
 <h1 id="gc">GC</h1>
 <blockquote>
@@ -327,12 +329,6 @@
 <li><code>perm gen</code> / <code>MetaSpace</code> 内存空间不足时，也会触发一次 Full GC；</li>
 <li>System.gc()、heap dump、jcmd pid GC.run 等指定触发GC时，默认触发 Full GC。</li>
 </ul>
-<blockquote>
-<p>默认GC</p>
-</blockquote>
-<p>JDK 7，默认是 Parallel Scavenge + Serial Old。
-JDK 8 及 JDK 7u40 之后的版本，默认是 Parallel Scavenge + Parallel Old。
-JDK 9 到 JDK 17，默认是 G1。</p>
 <hr>
 <h2 id="gc术语">GC术语</h2>
 <ul>
@@ -435,7 +431,7 @@ Java中一种全局暂停现象，全局停顿，所有Java代码停止，native
 <p>再再增加下面三个参数，可以知道更多VM里发生的事情。可惜JVM不会因为设了这三个参数，就把安全点日志转移到vm.log里面来，而是白白打印了两次。</p>
 <p><code>-XX:+UnlockDiagnosticVMOptions -XX:+LogVMOutput -XX:LogFile=/dev/shm/vm.log</code></p>
 <hr>
-<h2 id="内存分代">内存分代</h2>
+<h3 id="内存分代">内存分代</h3>
 <blockquote>
 <p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/generations.html#sthref16">Oracle Java8 Doc: Generation</a></p>
 </blockquote>
@@ -452,6 +448,12 @@ Java中一种全局暂停现象，全局停顿，所有Java代码停止，native
 直到我18岁的时候，爸爸说我成人了，该去社会上闯闯了。于是我就去了年老代那边，年老代里，人很多，并且年龄都挺大的，我在这里也认识了很多人。<br>
 在年老代里，我生活了20年(每次GC加一岁)，然后被回收。</p>
 </blockquote>
+<h3 id="引用类型">引用类型</h3>
+<p>Java 引用是 Java 虚拟机为了实现更加灵活的对象生命周期管理而设计的对象包装类，一共有四种引用类型，分别是强引用、软引用、弱引用和虚引用</p>
+<blockquote>
+<p><a href="https://blog.shiftleft.io/understanding-jvm-soft-references-for-great-good-and-building-a-cache-244a4f7bb85d">How to Use Java SoftReferences to Build an Efficient Cache</a></p>
+</blockquote>
+<hr>
 <h2 id="判断存活算法">判断存活算法</h2>
 <h3 id="引用计数算法">引用计数算法</h3>
 <blockquote>
@@ -647,8 +649,9 @@ Java中一种全局暂停现象，全局停顿，所有Java代码停止，native
 </ul>
 <hr>
 <h2 id="默认垃圾收集器">默认垃圾收集器</h2>
-<p>JDK 1.7 1.8 默认垃圾收集器Parallel Scavenge（新生代）+Parallel Old（老年代）<br>
-JDK1.9+ 默认垃圾收集器G1</p>
+<p>JDK 7，默认是 Parallel Scavenge + Serial Old。
+JDK 8 及 JDK 7u40 之后的版本，默认是 Parallel Scavenge + Parallel Old。
+JDK 9 到 JDK 17，默认是 G1。</p>
 <p><code>-XX:+PrintCommandLineFlags</code> 查看默认参数 或者查看GC日志中代的名称 <code>-XX:+PrintGCDetails</code></p>
 <ul>
 <li>例如： <code>java -XX:+PrintCommandLineFlags -version</code></li>

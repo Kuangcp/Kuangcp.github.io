@@ -49,7 +49,7 @@
 <meta itemprop="name" content="网络安全">
 <meta itemprop="description" content="💠 Web应用网络安全 1.1. 中间人攻击 1.2. 运营商劫持 Web安全 2.1. Authenticate 2.1.1. OAuth 2.0 2.1.2. JWT 2.1.2.1. 修改密码 2.1.2.2. 退出登录 2.2. Verfication 2.3. 盗链与防盗链 2.4. 工具或平台 攻击手段 3.1. ARP断网攻"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="2655">
+<meta itemprop="wordCount" content="2661">
 <meta itemprop="keywords" content="网络," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="网络安全"/>
 <meta name="twitter:description" content="💠 Web应用网络安全 1.1. 中间人攻击 1.2. 运营商劫持 Web安全 2.1. Authenticate 2.1.1. OAuth 2.0 2.1.2. JWT 2.1.2.1. 修改密码 2.1.2.2. 退出登录 2.2. Verfication 2.3. 盗链与防盗链 2.4. 工具或平台 攻击手段 3.1. ARP断网攻"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
             </div>
-          <span class="more-meta"> 2655 words </span>
+          <span class="more-meta"> 2661 words </span>
           <span class="more-meta"> 6 mins read </span>
         
       </div>
@@ -157,8 +157,8 @@
         <li><a href="#arp断网攻击">ARP断网攻击</a></li>
         <li><a href="#dos">DOS</a>
           <ul>
-            <li><a href="#cc-challenge-collapsar-attack">CC challenge collapsar attack</a></li>
-            <li><a href="#synflood攻击">SYNFlood攻击</a></li>
+            <li><a href="#cc-攻击">CC 攻击</a></li>
+            <li><a href="#syn-flood-攻击">SYN Flood 攻击</a></li>
           </ul>
         </li>
         <li><a href="#clickjacking">ClickJacking</a></li>
@@ -215,8 +215,8 @@
 <li>3.1. <a href="#arp%E6%96%AD%E7%BD%91%E6%94%BB%E5%87%BB">ARP断网攻击</a></li>
 <li>3.2. <a href="#dos">DOS</a>
 <ul>
-<li>3.2.1. <a href="#cc-challenge-collapsar-attack">CC challenge collapsar attack</a></li>
-<li>3.2.2. <a href="#synflood%E6%94%BB%E5%87%BB">SYNFlood攻击</a></li>
+<li>3.2.1. <a href="#cc-%E6%94%BB%E5%87%BB">CC 攻击</a></li>
+<li>3.2.2. <a href="#syn-flood-%E6%94%BB%E5%87%BB">SYN Flood 攻击</a></li>
 </ul>
 </li>
 <li>3.3. <a href="#clickjacking">ClickJacking</a></li>
@@ -229,7 +229,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-06-17 19:57:32</p>
+<p>💠 2025-02-06 17:03:57</p>
 <hr>
 <h1 id="web应用网络安全">Web应用网络安全</h1>
 <blockquote>
@@ -358,16 +358,19 @@ SQL注入是用户的数据被当成了表示SQL语义的部分，改变了原�
 </blockquote>
 <hr>
 <h2 id="dos">DOS</h2>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Denial-of-service_attack">Denial-of-service_attack</a></li>
-</ul>
+<p><a href="https://en.wikipedia.org/wiki/Denial-of-service_attack">Wiki: Denial-of-service_attack</a></p>
 <blockquote>
-<p><a href="https://github.com/Samsar4/Ethical-Hacking-Labs/blob/master/9-Denial-of-Service/2-DDoS-using-HOIC.md">DDoS attack using HOIC</a></p>
+<p><a href="https://github.com/topics/dos-attack-tool">dos-attack-tool · GitHub Topics</a><br>
+<a href="https://github.com/Samsar4/Ethical-Hacking-Labs/blob/master/9-Denial-of-Service/2-DDoS-using-HOIC.md">DDoS attack using HOIC</a></p>
 </blockquote>
-<h3 id="cc-challenge-collapsar-attack">CC challenge collapsar attack</h3>
-<p>CC攻击是攻击者借助代理服务器生成指向受害主机的合法请求，实现DDoS和伪装攻击。攻击者通过控制某些主机不停地发送大量数据包给对方服务器，造成服务器资源耗尽，直至宕机崩溃。</p>
-<p>例如对站点的部分接口或页面发起大量客户端线程访问。</p>
-<h3 id="synflood攻击">SYNFlood攻击</h3>
+<h3 id="cc-攻击">CC 攻击</h3>
+<p>Challenge Collapsar Attack</p>
+<blockquote>
+<p><a href="https://support.huaweicloud.com/intl/en-us/aad_faq/aad_01_0202.html">What Are the Differences Between DDoS Attacks and Challenge Collapsar Attacks?_Anti-DDoS Service</a></p>
+</blockquote>
+<p>CC攻击是攻击者借助代理服务器生成指向受害主机的合法请求，实现DDoS和伪装攻击。攻击者通过控制某些主机不停地发送大量数据包给对方服务器，造成服务器资源耗尽，直至宕机崩溃。<br>
+例如对站点的部分接口或页面发起大量客户端线程访问。</p>
+<h3 id="syn-flood-攻击">SYN Flood 攻击</h3>
 <blockquote>
 <p>洪水攻击 <a href="http://xfocus.net/articles/200106/208.html">参考博客</a> SYN Flood是当前最流行的DoS（拒绝服务攻击）与DDoS（分布式拒绝服务攻击）的方式之一，这是一种利用TCP协议缺陷，发送大量伪造的TCP连接请求，从而使得被攻击方资源耗尽（CPU满负荷或内存不足）的攻击方式。</p>
 </blockquote>

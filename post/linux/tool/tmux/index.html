@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Tmux 基本操作 2.1. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2024-09-20 11:52:03 Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Tmux 基本操作 2.1. 快捷键 2.2. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2025-01-21 14:41:56 Tmux Arch wiki: tmux tmux简洁教程及config关键配置" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Tmux" />
-<meta property="og:description" content="💠 Tmux 基本操作 2.1. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2024-09-20 11:52:03 Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程" />
+<meta property="og:description" content="💠 Tmux 基本操作 2.1. 快捷键 2.2. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2025-01-21 14:41:56 Tmux Arch wiki: tmux tmux简洁教程及config关键配置" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/linux/tool/tmux/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-02-28T17:43:53+00:00" />
 <meta property="article:modified_time" content="2019-02-28T17:43:53+00:00" />
 
 <meta itemprop="name" content="Tmux">
-<meta itemprop="description" content="💠 Tmux 基本操作 2.1. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2024-09-20 11:52:03 Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程"><meta itemprop="datePublished" content="2019-02-28T17:43:53+00:00" />
+<meta itemprop="description" content="💠 Tmux 基本操作 2.1. 快捷键 2.2. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2025-01-21 14:41:56 Tmux Arch wiki: tmux tmux简洁教程及config关键配置"><meta itemprop="datePublished" content="2019-02-28T17:43:53+00:00" />
 <meta itemprop="dateModified" content="2019-02-28T17:43:53+00:00" />
-<meta itemprop="wordCount" content="726">
+<meta itemprop="wordCount" content="774">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tmux"/>
-<meta name="twitter:description" content="💠 Tmux 基本操作 2.1. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2024-09-20 11:52:03 Tmux Arch wiki: tmux tmux简洁教程及config关键配置 参考: 程"/>
+<meta name="twitter:description" content="💠 Tmux 基本操作 2.1. 快捷键 2.2. 编译安装 配置 3.1. 个人配置 3.2. 键绑定 3.3. 切换 TPM插件管理 4.1. tmux-resurrect 4.2. maglev 4.3. copycat Advanced Tips 💠 2025-01-21 14:41:56 Tmux Arch wiki: tmux tmux简洁教程及config关键配置"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/%E5%B7%A5%E5%85%B7/"> 工具 </a>
             </div>
-          <span class="more-meta"> 726 words </span>
+          <span class="more-meta"> 774 words </span>
           <span class="more-meta"> 2 mins read </span>
         
       </div>
@@ -136,6 +136,7 @@
     <li><a href="#tmux">Tmux</a></li>
     <li><a href="#基本操作">基本操作</a>
       <ul>
+        <li><a href="#快捷键">快捷键</a></li>
         <li><a href="#编译安装">编译安装</a></li>
       </ul>
     </li>
@@ -172,7 +173,8 @@
 <li><a href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">基本操作</a></li>
 </ol>
 <ul>
-<li>2.1. <a href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">编译安装</a></li>
+<li>2.1. <a href="#%E5%BF%AB%E6%8D%B7%E9%94%AE">快捷键</a></li>
+<li>2.2. <a href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">编译安装</a></li>
 </ul>
 </li>
 <li>
@@ -206,7 +208,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-09-20 11:52:03</p>
+<p>💠 2025-01-21 14:41:56</p>
 <hr>
 <h1 id="tmux">Tmux</h1>
 <blockquote>
@@ -227,31 +229,77 @@
 <hr>
 <h1 id="基本操作">基本操作</h1>
 <ul>
-<li>新建会话 <code>tmux new -s myth</code></li>
+<li>新建会话 <code>tmux new -s test</code></li>
 <li>连接会话 <code>tmux a -t test</code></li>
+<li>关闭会话 <code>tmux kill-session -t test</code></li>
 <li>显示所有 <code>tmux ls</code></li>
 <li>重新加载配置文件 <code>tmux source ~/.tmux.conf</code></li>
 </ul>
-<blockquote>
-<p>快捷键</p>
-</blockquote>
+<h2 id="快捷键">快捷键</h2>
 <ul>
-<li>prefix
-<ul>
-<li>? 帮助</li>
-<li>s 选择 session</li>
-<li>w 选择 window</li>
-<li>d deattach 脱离</li>
-<li>j 下 panel</li>
-<li>k 上 panel</li>
-<li>; 最近的 panel</li>
-<li>$ 重命名 session</li>
-<li>, 重命名 panel</li>
-<li>Alt+方向键 往指定方向扩展当前 panel 大小</li>
-</ul>
-</li>
 <li>Alt+方向键 跳转到对应方向的panel上</li>
 </ul>
+<blockquote>
+<p>Prefix + 以下键 组合实现的功能</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">键</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">?</td>
+<td style="text-align:left">帮助</td>
+</tr>
+<tr>
+<td style="text-align:left">s</td>
+<td style="text-align:left">选择 session</td>
+</tr>
+<tr>
+<td style="text-align:left">w</td>
+<td style="text-align:left">选择 window</td>
+</tr>
+<tr>
+<td style="text-align:left">d</td>
+<td style="text-align:left">deattach 脱离</td>
+</tr>
+<tr>
+<td style="text-align:left">k</td>
+<td style="text-align:left">上 panel</td>
+</tr>
+<tr>
+<td style="text-align:left">j</td>
+<td style="text-align:left">下 panel</td>
+</tr>
+<tr>
+<td style="text-align:left">h</td>
+<td style="text-align:left">左 panel</td>
+</tr>
+<tr>
+<td style="text-align:left">l</td>
+<td style="text-align:left">右 panel</td>
+</tr>
+<tr>
+<td style="text-align:left">;</td>
+<td style="text-align:left">最近的 panel</td>
+</tr>
+<tr>
+<td style="text-align:left">$</td>
+<td style="text-align:left">重命名 session</td>
+</tr>
+<tr>
+<td style="text-align:left">,</td>
+<td style="text-align:left">重命名 panel</td>
+</tr>
+<tr>
+<td style="text-align:left">Alt+方向键</td>
+<td style="text-align:left">往指定方向扩展当前 panel 大小</td>
+</tr>
+</tbody>
+</table>
 <hr>
 <h2 id="编译安装">编译安装</h2>
 <blockquote>
@@ -268,7 +316,8 @@
 </blockquote>
 <h2 id="个人配置">个人配置</h2>
 <blockquote>
-<p><a href="https://gitee.com/gin9/Configs/blob/master/Linux/tmux/tmux.conf">Tmux配置文件</a></p>
+<p><a href="https://gitee.com/gin9/Configs/blob/master/Linux/tmux/tmux.conf">Tmux配置文件</a><br>
+<a href="https://gitee.com/gin9/Configs/blob/master/Linux/tmux/sim-tmux.conf">服务器简洁版配置文件</a></p>
 </blockquote>
 <p>步骤</p>
 <ol>
@@ -315,7 +364,7 @@
 <ul>
 <li>send-keys
 <ul>
-<li>例如 <code>bind-key -T root F9 send-keys 'cola' Enter</code> F9即可在终端运行 git-cola</li>
+<li>例如 <code>bind-key -T root F9 send-keys 'cola' Enter</code> F9即可在Tmux内的终端运行 git-cola</li>
 </ul>
 </li>
 <li>run-shell</li>

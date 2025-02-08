@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Nginx">
 <meta itemprop="description" content="💠 Nginx 1.1. Nginx的安装 1.1.1. 命令安装 1.1.2. 编译安装 1.1.3. Docker安装 1.2. 命令参数 可视化管理工具 内置变量 配置使用 4.1. 静态资源Web服务器 4.2. 反向代理多个服务"><meta itemprop="datePublished" content="2018-12-15T12:05:09+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T12:05:09+00:00" />
-<meta itemprop="wordCount" content="3096">
+<meta itemprop="wordCount" content="3232">
 <meta itemprop="keywords" content="Nginx," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nginx"/>
 <meta name="twitter:description" content="💠 Nginx 1.1. Nginx的安装 1.1.1. 命令安装 1.1.2. 编译安装 1.1.3. Docker安装 1.2. 命令参数 可视化管理工具 内置变量 配置使用 4.1. 静态资源Web服务器 4.2. 反向代理多个服务"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/%E5%B7%A5%E5%85%B7/"> 工具 </a>
             </div>
-          <span class="more-meta"> 3096 words </span>
+          <span class="more-meta"> 3232 words </span>
           <span class="more-meta"> 7 mins read </span>
         
       </div>
@@ -163,7 +163,7 @@
           </ul>
         </li>
         <li><a href="#配置websocket反向代理">配置Websocket反向代理</a></li>
-        <li><a href="#转发代理">转发代理</a></li>
+        <li><a href="#代理-http转发">代理-HTTP转发</a></li>
         <li><a href="#防盗链">防盗链</a></li>
         <li><a href="#gzip">gzip</a></li>
         <li><a href="#负载均衡">负载均衡</a>
@@ -236,7 +236,7 @@
 </ul>
 </li>
 <li>4.4. <a href="#%E9%85%8D%E7%BD%AEwebsocket%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86">配置Websocket反向代理</a></li>
-<li>4.5. <a href="#%E8%BD%AC%E5%8F%91%E4%BB%A3%E7%90%86">转发代理</a></li>
+<li>4.5. <a href="#%E4%BB%A3%E7%90%86-http%E8%BD%AC%E5%8F%91">代理-HTTP转发</a></li>
 <li>4.6. <a href="#%E9%98%B2%E7%9B%97%E9%93%BE">防盗链</a></li>
 <li>4.7. <a href="#gzip">gzip</a></li>
 <li>4.8. <a href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1">负载均衡</a>
@@ -274,7 +274,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-09-20 17:30:23</p>
+<p>💠 2025-01-22 11:45:30</p>
 <hr>
 <h1 id="nginx">Nginx</h1>
 <blockquote>
@@ -586,6 +586,7 @@
 <blockquote>
 <p><a href="http://www.cnblogs.com/tintin1926/archive/2012/07/12/2587311.html">nginx搭建https服务</a> | <a href="http://letus.club/2016/04/08/nginx-http2-letsencrypt/">nginx http/2</a></p>
 </blockquote>
+<p>如果使用caddy就会很简单，它会自动续签 lets crypt</p>
 <h3 id="自签发证书">自签发证书</h3>
 <ul>
 <li><a href="/Linux/Base/LinuxNetwork.md#%E8%87%AA%E7%AD%BE%E5%8F%91%E8%AF%81%E4%B9%A6">Linux: 自签发证书</a></li>
@@ -639,7 +640,7 @@
 </span></span><span class="line"><span class="cl">            <span class="na">proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;</span>
 </span></span><span class="line"><span class="cl">            <span class="na">proxy_set_header Host $http_host;</span>
 </span></span><span class="line"><span class="cl">            <span class="na">proxy_set_header X-Nginx-Proxt true;</span>
-</span></span><span class="line"><span class="cl">            <span class="na">proxy_pass https://one;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">proxy_pass http://one; # 注意Nginx已经配置了SSL，后端只需支持http协议即可</span>
 </span></span><span class="line"><span class="cl">            <span class="na">proxy_redirect off;</span>
 </span></span><span class="line"><span class="cl">        <span class="na">}</span>
 </span></span><span class="line"><span class="cl">    <span class="na">}</span>
@@ -863,7 +864,7 @@
 </span></span><span class="line"><span class="cl"><span class="na">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="转发代理">转发代理</h2>
+</div><h2 id="代理-http转发">代理-HTTP转发</h2>
 <blockquote>
 <p>例如 aaa.com 需要VPN等方式才能访问，Nginx所在的主机能访问，就可以这么配置，然后配置DNS将 aaa.com 解析到Nginx的主机上，就可以实现其他客户机不安装VPN 直接访问 aaa.com</p>
 </blockquote>
@@ -916,6 +917,29 @@
 </span></span><span class="line"><span class="cl">  gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
 </span></span></code></pre></td></tr></table>
 </div>
+</div><p>当前Nginx代理上游开启了gzip的服务，并解压其gzip响应</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">	server_name xxxx.cn;
+</span></span><span class="line"><span class="cl">	location / {
+</span></span><span class="line"><span class="cl">    proxy_set_header Accept-Encoding &#34;&#34;; # 禁用代理请求开启gzip
+</span></span><span class="line"><span class="cl">    gzip off; # 禁用gzip
+</span></span><span class="line"><span class="cl">		proxy_pass http://x.x.x.x:8080/;
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
 </div><h2 id="负载均衡">负载均衡</h2>
 <blockquote>
 <p><a href="https://segmentfault.com/a/1190000012479902">Nginx 反向代理 负载均衡 虚拟主机配置</a></p>
@@ -923,7 +947,7 @@
 <p>分为四层和七层：</p>
 <ul>
 <li>在四层只依据ip的报文转发（修改进入时目的ip<code>从nginx改成upstream的IP</code>，修改返回时发送ip）</li>
-<li>在七层依据数据内容做转发，例如按http请求后缀做转发 *.jpg 到A服务器 *.jsp到B服务器</li>
+<li>在七层依据数据内容做转发，例如按http请求后缀做转发 *.jpg 到A服务器 *.jsp 到B服务器</li>
 </ul>
 <h3 id="负载均衡策略">负载均衡策略</h3>
 <blockquote>

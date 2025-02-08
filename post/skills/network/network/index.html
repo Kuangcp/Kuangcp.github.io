@@ -49,7 +49,7 @@
 <meta itemprop="name" content="计算机网络">
 <meta itemprop="description" content="💠 网络 1.1. 相关书籍和资源 网络分层架构 2.1. 物理层 2.2. 数据链路层 2.3. 网络层 2.3.1. SDN 2.3.2. IP协议 2.3.2.1. IP地址分类 2.3.2.2. 无分类编址 CIDR 2.3.3. ARP协议 2.3.4. ICMP协议 2.4. 传输层 2.4.1."><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="9466">
+<meta itemprop="wordCount" content="9574">
 <meta itemprop="keywords" content="基础,网络," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="计算机网络"/>
 <meta name="twitter:description" content="💠 网络 1.1. 相关书籍和资源 网络分层架构 2.1. 物理层 2.2. 数据链路层 2.3. 网络层 2.3.1. SDN 2.3.2. IP协议 2.3.2.1. IP地址分类 2.3.2.2. 无分类编址 CIDR 2.3.3. ARP协议 2.3.4. ICMP协议 2.4. 传输层 2.4.1."/>
@@ -122,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础 </a>
             </div>
-          <span class="more-meta"> 9466 words </span>
-          <span class="more-meta"> 19 mins read </span>
+          <span class="more-meta"> 9574 words </span>
+          <span class="more-meta"> 20 mins read </span>
         
       </div>
     </header>
@@ -364,7 +364,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-18 10:21:24</p>
+<p>💠 2025-01-17 19:59:46</p>
 <hr>
 <h1 id="网络">网络</h1>
 <h2 id="相关书籍和资源">相关书籍和资源</h2>
@@ -1078,6 +1078,12 @@ DOT <code>DNS over TLS</code> 853端口</p>
 <p><a href="https://en.wikipedia.org/wiki/Proxy">wikipedia</a><br>
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Proxy_servers_and_tunneling">Proxy servers and tunneling</a></p>
 </blockquote>
+<p>可按网络层来分 4层(tcp udp)和7层(http)等等。</p>
+<p>TCP转发:  用于少数端口的穿透</p>
+<blockquote>
+<p><a href="https://codeberg.org/gruf/tcpee">gruf/tcpee: simple multi-threaded TCP proxy in Go - Codeberg.org</a><code>注意proxy-proto设置为false可正常使用</code><br>
+<a href="https://github.com/eirture/tcp-proxy">eirture/tcp-proxy: A TCP proxy command line tool, written in Golang</a></p>
+</blockquote>
 <h2 id="代理协议">代理协议</h2>
 <h3 id="http代理">HTTP代理</h3>
 <p>例如 mitmproxy</p>
@@ -1188,6 +1194,8 @@ Socks代理只是简单地传递数据包，而不必关心是何种应用协议
 </ol>
 <hr>
 <h1 id="网络工具">网络工具</h1>
+<p>延迟： tcping
+路由: traceroute</p>
 <h2 id="代理工具">代理工具</h2>
 <blockquote>
 <p><a href="https://alternativeto.net/software/charles/?platform=linux">Alternatives to Charles for Linux</a></p>

@@ -211,7 +211,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-09-11 14:55:54</p>
+<p>💠 2025-01-16 16:26:11</p>
 <hr>
 <h1 id="ssh">SSH</h1>
 <blockquote>
@@ -229,19 +229,19 @@
 </ul>
 <blockquote>
 <p><code>ssh -i 私钥绝对路径 user@host</code> 采用指定私钥登录(一般默认是<code>.ssh/id_rsa</code>)</p>
-<blockquote>
-<p>私钥文件必须是 600 权限<br>
-去除私钥的口令 <code>openssl rsa -in ~/.ssh/id_rsa -out ~/.ssh/id_rsa_new</code> <em>在GitForWindows里面虽然有openssl,但是这个命令却执行不了</em><br>
-<code>ssh-add 私钥</code> 添加私钥到OpenSSH的认证代理</p>
 </blockquote>
-</blockquote>
-<p>使用密码方式免去密码登录</p>
+<ul>
+<li>私钥文件必须是 600 权限</li>
+<li>去除私钥的口令 <code>openssl rsa -in ~/.ssh/id_rsa -out ~/.ssh/id_rsa_new</code> <em>在GitForWindows里面虽然有openssl,但是这个命令却执行不了</em></li>
+<li><code>ssh-add 私钥</code> 添加私钥到OpenSSH的认证代理</li>
+</ul>
 <blockquote>
+<p>使用密码方式，一次性登录</p>
+</blockquote>
 <ol>
 <li>安装sshpass <a href="https://linux.cn/article-8086-1.html">完整教程</a></li>
 <li>sshpass -p &lsquo;密码&rsquo; 后接正常的ssh命令 ssh user@host</li>
 </ol>
-</blockquote>
 <blockquote>
 <p>ssh登录然后执行一系列命令, sudo会执行不了 需要加 -t 参数才行</p>
 </blockquote>

@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2024-11-26" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2025-01-17" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="PostgreSQL" />
-<meta property="og:description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2024-11-26" />
+<meta property="og:description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2025-01-17" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/database/postgresql/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-16T17:27:21+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:27:21+00:00" />
 
 <meta itemprop="name" content="PostgreSQL">
-<meta itemprop="description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2024-11-26"><meta itemprop="datePublished" content="2018-12-16T17:27:21+00:00" />
+<meta itemprop="description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2025-01-17"><meta itemprop="datePublished" content="2018-12-16T17:27:21+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:27:21+00:00" />
-<meta itemprop="wordCount" content="1809">
+<meta itemprop="wordCount" content="1826">
 <meta itemprop="keywords" content="PostgreSQL," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="PostgreSQL"/>
-<meta name="twitter:description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2024-11-26"/>
+<meta name="twitter:description" content="💠 Postgresql 安装 2.1. Docker方式 管理 3.1. 终端命令行使用 3.2. 用户和角色权限 3.2.1. 创建用户 3.2.2. 修改权限 基础数据类型 DDL 图数据库 6.1. AgensGraph 应用 7.1. Java使用 7.2. 导入导出 💠 2025-01-17"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
             </div>
-          <span class="more-meta"> 1809 words </span>
+          <span class="more-meta"> 1826 words </span>
           <span class="more-meta"> 4 mins read </span>
         
       </div>
@@ -225,7 +225,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-26 20:13:28</p>
+<p>💠 2025-01-17 19:59:46</p>
 <hr>
 <h1 id="postgresql">Postgresql</h1>
 <blockquote>
@@ -283,11 +283,6 @@
 <li><code>\prompt [文本]名称</code> 提示用户设定内部变数</li>
 <li><code>\password [username]</code> 改密码</li>
 <li><code>\q</code> exit</li>
-<li>可以使用pg_dump和pg_dumpall来完成。比如备份sales数据库：
-<ul>
-<li>pg_dump drupal&gt;/opt/Postgresql/backup/1.bak</li>
-</ul>
-</li>
 </ul>
 <h2 id="用户和角色权限">用户和角色权限</h2>
 <h3 id="创建用户">创建用户</h3>
@@ -308,7 +303,21 @@
 <p><a href="http://www.linuxidc.com/Linux/2013-04/83564p2.htm">修改默认登录不需要密码的配置</a></p>
 </li>
 </ul>
-<h3 id="修改权限">修改权限</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="w">    </span><span class="c1">-- 创建用户 创建库 授权
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">u_xxx</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">&#39;xxxxxxx&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="k">OWNER</span><span class="w"> </span><span class="n">u_xxx</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">u_xxx</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="修改权限">修改权限</h3>
 <blockquote>
 <p><a href="http://blog.csdn.net/beiigang/article/details/8604578">参考博客</a>
 <a href="http://www.cnblogs.com/stephen-liu74/archive/2012/05/18/2302639.html">参考博客_角色</a>
@@ -496,6 +505,13 @@
 <p>导出</p>
 </blockquote>
 <p>copy 方式，单连接复制出查询语句的结果</p>
+<ul>
+<li>可以使用pg_dump和pg_dumpall来完成。比如备份sales数据库：
+<ul>
+<li>pg_dump drupal &gt; /opt/Postgresql/backup/1.bak</li>
+</ul>
+</li>
+</ul>
 <p><a href="/Java/AdvancedLearning/JDBC.md#%E9%95%BF%E8%BF%9E%E6%8E%A5%E6%B5%81%E5%BC%8F%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE">JDBC： 长连接流式导出数据</a></p>
 
     </div>

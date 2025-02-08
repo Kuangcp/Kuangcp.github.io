@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-12-10 22:06:23 线程池 Java线程池实现原理及" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2025-02-06 18:51:23 线程池 Java线程池实现原理及" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="线程池" />
-<meta property="og:description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-12-10 22:06:23 线程池 Java线程池实现原理及" />
+<meta property="og:description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2025-02-06 18:51:23 线程池 Java线程池实现原理及" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/concurrency/executorandpool/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-04-19T12:42:09+00:00" />
 <meta property="article:modified_time" content="2019-04-19T12:42:09+00:00" />
 
 <meta itemprop="name" content="线程池">
-<meta itemprop="description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-12-10 22:06:23 线程池 Java线程池实现原理及"><meta itemprop="datePublished" content="2019-04-19T12:42:09+00:00" />
+<meta itemprop="description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2025-02-06 18:51:23 线程池 Java线程池实现原理及"><meta itemprop="datePublished" content="2019-04-19T12:42:09+00:00" />
 <meta itemprop="dateModified" content="2019-04-19T12:42:09+00:00" />
-<meta itemprop="wordCount" content="3839">
+<meta itemprop="wordCount" content="3907">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="线程池"/>
-<meta name="twitter:description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2024-12-10 22:06:23 线程池 Java线程池实现原理及"/>
+<meta name="twitter:description" content="💠 线程池 1.1. ExecutorService 接口 1.2. Executors 1.3. CompletionService 接口 1.4. ScheduledThreadPoolExecutor STPE 1.5. 分支合并框架 Fork/Join Spring 2.1. ThreadPoolTaskExecutor 实践 3.1. 线程池 参数优化 监控 3.2. 业务线程池 3.3. 停止线程池 💠 2025-02-06 18:51:23 线程池 Java线程池实现原理及"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2019-04-19 </span>
         
-          <span class="more-meta"> 3839 words </span>
+          <span class="more-meta"> 3907 words </span>
           <span class="more-meta"> 8 mins read </span>
         
       </div>
@@ -190,7 +190,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-12-10 22:06:23</p>
+<p>💠 2025-02-06 18:51:23</p>
 <hr>
 <h1 id="线程池">线程池</h1>
 <blockquote>
@@ -375,19 +375,26 @@
 <p>核心API： 提交任务</p>
 </blockquote>
 <ul>
-<li><code>schedule(Runnable command, long delay, TimeUnit unit)</code></li>
-<li><code>schedule(Callable&lt;V&gt; callable, long delay, TimeUnit unit)</code></li>
-<li><code>scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit)</code>
+<li>
+<p>单次 <code>schedule(Runnable command, long delay, TimeUnit unit)</code></p>
+</li>
+<li>
+<p>单次 <code>schedule(Callable&lt;V&gt; callable, long delay, TimeUnit unit)</code></p>
+</li>
+<li>
+<p>定时 <code>scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit)</code></p>
 <ul>
 <li>不管上一次Runnable执行结束的时间，总是以固定延迟时间执行 即 上一个Runnable执行开始时候 + 延时时间 = 下一个Runnable执行的时间点</li>
 </ul>
 </li>
-<li><code>scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)</code>
+<li>
+<p>定时 <code>scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)</code></p>
 <ul>
 <li>当上一个Runnable执行结束后+固定延迟 = 下一个Runnable执行的时间点</li>
 </ul>
 </li>
 </ul>
+<p><strong>注意</strong>: 定时类API有声明：当某次任务抛出异常时，后续的调度会挂起，所以异步任务需要大范围的 try catch，业务自己处理异常</p>
 <blockquote>
 <p>如何实现调度: <a href="https://juejin.cn/post/7035415187783942152">ScheduledThreadPoolExecutor实现原理</a> | <a href="https://github.com/Kuangcp/JavaBase/blob/master/concurrency/src/test/java/thread/schdule/SchedulerPoolTest.java">验证单元测试</a></p>
 </blockquote>
