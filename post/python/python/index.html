@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应用 3.1." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.2.5. JSON 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Python 基础" />
-<meta property="og:description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应用 3.1." />
+<meta property="og:description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.2.5. JSON 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/python/python/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-13T16:00:45+00:00" />
 <meta property="article:modified_time" content="2018-12-13T16:00:45+00:00" />
 
 <meta itemprop="name" content="Python 基础">
-<meta itemprop="description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应用 3.1."><meta itemprop="datePublished" content="2018-12-13T16:00:45+00:00" />
+<meta itemprop="description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.2.5. JSON 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应"><meta itemprop="datePublished" content="2018-12-13T16:00:45+00:00" />
 <meta itemprop="dateModified" content="2018-12-13T16:00:45+00:00" />
-<meta itemprop="wordCount" content="7383">
+<meta itemprop="wordCount" content="7431">
 <meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python 基础"/>
-<meta name="twitter:description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应用 3.1."/>
+<meta name="twitter:description" content="💠 Python 基础 2.1. 代码风格 2.2. 序列 2.2.1. 列表 list 2.2.2. 元组 tuple 2.2.3. 字符串 str 2.2.3.1. 字符串编码问题 2.2.4. 字典 dict 2.2.5. JSON 2.3. 运算符 2.4. 函数 2.5. 包 2.6. 类 2.6.1. 继承 2.7. 异常 2.8. 读取命令行参数 2.8.1. docopt 2.8.2. Python Fire 应"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/python/"> Python </a>
             </div>
-          <span class="more-meta"> 7383 words </span>
+          <span class="more-meta"> 7431 words </span>
           <span class="more-meta"> 15 mins read </span>
         
       </div>
@@ -143,6 +143,7 @@
             <li><a href="#元组-tuple">元组 tuple</a></li>
             <li><a href="#字符串-str">字符串 str</a></li>
             <li><a href="#字典-dict">字典 dict</a></li>
+            <li><a href="#json">JSON</a></li>
           </ul>
         </li>
         <li><a href="#运算符">运算符</a></li>
@@ -173,7 +174,7 @@
         </li>
         <li><a href="#文件操作">文件操作</a>
           <ul>
-            <li><a href="#json">JSON</a></li>
+            <li><a href="#json-1">JSON</a></li>
             <li><a href="#conf或者ini">conf或者ini</a></li>
           </ul>
         </li>
@@ -232,6 +233,7 @@
 </ul>
 </li>
 <li>2.2.4. <a href="#%E5%AD%97%E5%85%B8-dict">字典 dict</a></li>
+<li>2.2.5. <a href="#json">JSON</a></li>
 </ul>
 </li>
 <li>2.3. <a href="#%E8%BF%90%E7%AE%97%E7%AC%A6">运算符</a></li>
@@ -262,9 +264,10 @@
 <li>3.1.2. <a href="#virtualenv">virtualenv</a></li>
 <li>3.1.3. <a href="#pip">pip</a>
 <ul>
-<li>3.1.3.1. <a href="#%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86">依赖管理</a></li>
-<li>3.1.3.2. <a href="#requirements-files">Requirements files</a></li>
-<li>3.1.3.3. <a href="#%E5%8F%91%E5%B8%83%E5%88%B0pypi">发布到pypi</a></li>
+<li>3.1.3.1. <a href="#pipx">pipx</a></li>
+<li>3.1.3.2. <a href="#%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86">依赖管理</a></li>
+<li>3.1.3.3. <a href="#requirements-files">Requirements files</a></li>
+<li>3.1.3.4. <a href="#%E5%8F%91%E5%B8%83%E5%88%B0pypi">发布到pypi</a></li>
 </ul>
 </li>
 </ul>
@@ -303,7 +306,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2025-01-02 11:23:43</p>
+<p>💠 2025-05-08 18:58:49</p>
 <hr>
 <h1 id="python">Python</h1>
 <blockquote>
@@ -691,6 +694,11 @@
 <li>字典套字典</li>
 </ul>
 </li>
+</ul>
+<h3 id="json">JSON</h3>
+<ul>
+<li>反序列化 <code>json.loads('{}')</code></li>
+<li>序列化 <code>json.dumps(obj)</code></li>
 </ul>
 <h2 id="运算符">运算符</h2>
 <ul>
@@ -1228,6 +1236,12 @@
 <li>使用 <code>python -m pip install pkgName</code></li>
 <li>升级 <code>python -m pip install --upgrade pip</code></li>
 </ul>
+<h4 id="pipx">pipx</h4>
+<blockquote>
+<p><a href="https://github.com/pypa/pipx">pypa/pipx: Install and Run Python Applications in Isolated Environments</a></p>
+</blockquote>
+<p>py -m pip install &ndash;user pipx &ndash;break-system-packages</p>
+<p>pipx 安装到系统上，类似于 go install 替代 go get</p>
 <h4 id="依赖管理">依赖管理</h4>
 <p>当发现环境内一个包有多个版本时，可以通过直接打开python解释器，import包,执行 包名._version 查看， 例如 <code>pandas._version</code> 或 <code>pandas.__version__</code></p>
 <h4 id="requirements-files">Requirements files</h4>
@@ -1451,7 +1465,7 @@
 </tbody>
 </table>
 <hr>
-<h3 id="json">JSON</h3>
+<h3 id="json-1">JSON</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1

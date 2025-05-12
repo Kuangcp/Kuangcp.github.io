@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 常见问题 1.3.1. 异常被吞 1.3.2. 异常栈被隐藏 1.3.3. 应该使用大块的try还是细颗粒度的try? 1.3.4. try和for谁包住谁更好?" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 最佳实践 1.3.1. 异常被吞问题 1.3.2. 不填充异常栈 1.3.3. 异常栈被隐藏 1.3.4. 应该使用大块的try还是细颗粒度的try? 1.3.5. try和f" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Java异常处理" />
-<meta property="og:description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 常见问题 1.3.1. 异常被吞 1.3.2. 异常栈被隐藏 1.3.3. 应该使用大块的try还是细颗粒度的try? 1.3.4. try和for谁包住谁更好?" />
+<meta property="og:description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 最佳实践 1.3.1. 异常被吞问题 1.3.2. 不填充异常栈 1.3.3. 异常栈被隐藏 1.3.4. 应该使用大块的try还是细颗粒度的try? 1.3.5. try和f" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/basic/javaexception/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-13T16:15:05+00:00" />
 <meta property="article:modified_time" content="2018-12-13T16:15:05+00:00" />
 
 <meta itemprop="name" content="Java异常处理">
-<meta itemprop="description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 常见问题 1.3.1. 异常被吞 1.3.2. 异常栈被隐藏 1.3.3. 应该使用大块的try还是细颗粒度的try? 1.3.4. try和for谁包住谁更好?"><meta itemprop="datePublished" content="2018-12-13T16:15:05+00:00" />
+<meta itemprop="description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 最佳实践 1.3.1. 异常被吞问题 1.3.2. 不填充异常栈 1.3.3. 异常栈被隐藏 1.3.4. 应该使用大块的try还是细颗粒度的try? 1.3.5. try和f"><meta itemprop="datePublished" content="2018-12-13T16:15:05+00:00" />
 <meta itemprop="dateModified" content="2018-12-13T16:15:05+00:00" />
-<meta itemprop="wordCount" content="2977">
+<meta itemprop="wordCount" content="3139">
 <meta itemprop="keywords" content="异常处理," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java异常处理"/>
-<meta name="twitter:description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 常见问题 1.3.1. 异常被吞 1.3.2. 异常栈被隐藏 1.3.3. 应该使用大块的try还是细颗粒度的try? 1.3.4. try和for谁包住谁更好?"/>
+<meta name="twitter:description" content="💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 最佳实践 1.3.1. 异常被吞问题 1.3.2. 不填充异常栈 1.3.3. 异常栈被隐藏 1.3.4. 应该使用大块的try还是细颗粒度的try? 1.3.5. try和f"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 2977 words </span>
-          <span class="more-meta"> 6 mins read </span>
+          <span class="more-meta"> 3139 words </span>
+          <span class="more-meta"> 7 mins read </span>
         
       </div>
     </header>
@@ -137,9 +137,10 @@
       <ul>
         <li><a href="#异常的继承关系">异常的继承关系</a></li>
         <li><a href="#常见异常">常见异常</a></li>
-        <li><a href="#常见问题">常见问题</a>
+        <li><a href="#最佳实践">最佳实践</a>
           <ul>
-            <li><a href="#异常被吞">异常被吞</a></li>
+            <li><a href="#异常被吞问题">异常被吞问题</a></li>
+            <li><a href="#不填充异常栈">不填充异常栈</a></li>
             <li><a href="#异常栈被隐藏">异常栈被隐藏</a></li>
             <li><a href="#应该使用大块的try还是细颗粒度的try">应该使用大块的try还是细颗粒度的try?</a></li>
             <li><a href="#try和for谁包住谁更好">try和for谁包住谁更好?</a></li>
@@ -173,12 +174,13 @@
 <ul>
 <li>1.1. <a href="#%E5%BC%82%E5%B8%B8%E7%9A%84%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB">异常的继承关系</a></li>
 <li>1.2. <a href="#%E5%B8%B8%E8%A7%81%E5%BC%82%E5%B8%B8">常见异常</a></li>
-<li>1.3. <a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a>
+<li>1.3. <a href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">最佳实践</a>
 <ul>
-<li>1.3.1. <a href="#%E5%BC%82%E5%B8%B8%E8%A2%AB%E5%90%9E">异常被吞</a></li>
-<li>1.3.2. <a href="#%E5%BC%82%E5%B8%B8%E6%A0%88%E8%A2%AB%E9%9A%90%E8%97%8F">异常栈被隐藏</a></li>
-<li>1.3.3. <a href="#%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%9D%97%E7%9A%84try%E8%BF%98%E6%98%AF%E7%BB%86%E9%A2%97%E7%B2%92%E5%BA%A6%E7%9A%84try">应该使用大块的try还是细颗粒度的try?</a></li>
-<li>1.3.4. <a href="#try%E5%92%8Cfor%E8%B0%81%E5%8C%85%E4%BD%8F%E8%B0%81%E6%9B%B4%E5%A5%BD">try和for谁包住谁更好?</a></li>
+<li>1.3.1. <a href="#%E5%BC%82%E5%B8%B8%E8%A2%AB%E5%90%9E%E9%97%AE%E9%A2%98">异常被吞问题</a></li>
+<li>1.3.2. <a href="#%E4%B8%8D%E5%A1%AB%E5%85%85%E5%BC%82%E5%B8%B8%E6%A0%88">不填充异常栈</a></li>
+<li>1.3.3. <a href="#%E5%BC%82%E5%B8%B8%E6%A0%88%E8%A2%AB%E9%9A%90%E8%97%8F">异常栈被隐藏</a></li>
+<li>1.3.4. <a href="#%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%9D%97%E7%9A%84try%E8%BF%98%E6%98%AF%E7%BB%86%E9%A2%97%E7%B2%92%E5%BA%A6%E7%9A%84try">应该使用大块的try还是细颗粒度的try?</a></li>
+<li>1.3.5. <a href="#try%E5%92%8Cfor%E8%B0%81%E5%8C%85%E4%BD%8F%E8%B0%81%E6%9B%B4%E5%A5%BD">try和for谁包住谁更好?</a></li>
 </ul>
 </li>
 </ul>
@@ -203,7 +205,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-11-06 10:59:32</p>
+<p>💠 2025-02-08 15:22:46</p>
 <hr>
 <h1 id="异常">异常</h1>
 <blockquote>
@@ -219,18 +221,45 @@ Error一般是指与虚拟机相关的问题，如系统崩溃，虚拟机错误
 <p>非受检异常： 继承于RunTimeException或Error. 其他的都属于受检异常</p>
 <h2 id="常见异常">常见异常</h2>
 <blockquote>
-<p>常发生于集合并发修改和迭代时 <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html">ConcurrentModificationException</a></p>
+<p>常发生于集合并发修改和迭代时 <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ConcurrentModificationException.html">ConcurrentModificationException</a><br>
+常发生依赖版本冲突 ClassNotFound NoSuchMethodException 等等</p>
 </blockquote>
 <hr>
-<h2 id="常见问题">常见问题</h2>
-<h3 id="异常被吞">异常被吞</h3>
+<h2 id="最佳实践">最佳实践</h2>
+<h3 id="异常被吞问题">异常被吞问题</h3>
 <blockquote>
 <ul>
-<li>catch 代码块中出现异常</li>
+<li>catch 代码块中出现异常 会导致栈中看不到try块中的异常</li>
+<li>线程池提交的任务未catch，异常溢出到线程内，未处理妥善会吞异常信息</li>
 </ul>
 </blockquote>
-<p>会导致栈中看不到try块中的异常</p>
-<h3 id="异常栈被隐藏">异常栈被隐藏</h3>
+<h3 id="不填充异常栈">不填充异常栈</h3>
+<p>捕获栈帧填充错误信息是靠 fillInStackTrace 实现，手动重写为空实现就可以降低异常创建时的成本，可用于业务型，原因明确的异常 做业务的中断以及告警等场景。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MsgBizException</span> <span class="kd">extends</span> <span class="n">RuntimeException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="nf">MsgBizException</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">super</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kd">synchronized</span> <span class="n">Throwable</span> <span class="nf">fillInStackTrace</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="异常栈被隐藏">异常栈被隐藏</h3>
 <blockquote>
 <p><a href="https://jjlu521016.github.io/2018/12/12/java%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF%E4%B8%8D%E8%A7%81%E4%BA%86.html">Java堆栈信息不见了 </a></p>
 </blockquote>

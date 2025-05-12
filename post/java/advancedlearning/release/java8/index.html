@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Java8">
 <meta itemprop="description" content="💠 Java8 1.1. 实战库项目 接口的变化 2.1. default方法 2.2. static方法 函数式 3.1. 函数式接口 3.1.1. 构造函数的引用 3.2. 函数式接口案例 Lambda 4.1. 行为参数化 4.2. Lambd"><meta itemprop="datePublished" content="2018-12-13T16:05:51+00:00" />
 <meta itemprop="dateModified" content="2018-12-13T16:05:51+00:00" />
-<meta itemprop="wordCount" content="15399">
+<meta itemprop="wordCount" content="15698">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java8"/>
 <meta name="twitter:description" content="💠 Java8 1.1. 实战库项目 接口的变化 2.1. default方法 2.2. static方法 函数式 3.1. 函数式接口 3.1.1. 构造函数的引用 3.2. 函数式接口案例 Lambda 4.1. 行为参数化 4.2. Lambd"/>
@@ -122,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 15399 words </span>
-          <span class="more-meta"> 31 mins read </span>
+          <span class="more-meta"> 15698 words </span>
+          <span class="more-meta"> 32 mins read </span>
         
       </div>
     </header>
@@ -403,7 +403,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-12-10 22:06:23</p>
+<p>💠 2025-04-30 11:30:56</p>
 <hr>
 <h1 id="java8">Java8</h1>
 <blockquote>
@@ -436,20 +436,39 @@
 <h1 id="接口的变化">接口的变化</h1>
 <h2 id="default方法">default方法</h2>
 <blockquote>
-<p>接口中也能写具有方法体的方法了</p>
-</blockquote>
-<ol>
-<li>调用方式: <code>接口.super.方法</code></li>
-</ol>
-<h2 id="static方法">static方法</h2>
 <p>类似于Scala Ruby trait/mixin 这种默认接口实现</p>
-<ol>
-<li>调用方式: static 方法 <code>接口.方法</code></li>
-</ol>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="k">default</span> <span class="kt">void</span> <span class="nf">implForExtend</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为了给Collection接口增加 Stream 有关的Api且保持兼容性而做的设计，不然加完StreamApi后历史SDK全部编译失败，因为未实现新api。</p>
+<h2 id="static方法">static方法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">utilMethod</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>类似于函数式，一个纯函数</p>
 <hr>
 <h1 id="函数式">函数式</h1>
 <blockquote>
-<p><a href="http://www.cnblogs.com/lovesqcc/p/6083759.html">参考  Java8函数接口实现回调及Groovy闭包的代码示例</a>
+<p><a href="http://www.cnblogs.com/lovesqcc/p/6083759.html">参考 Java8函数接口实现回调及Groovy闭包的代码示例</a>
 <a href="http://ifeve.com/jjava-util-function-java8/">Function接口 – Java8中java.util.function包下的函数式接口</a></p>
 </blockquote>
 <p>An informative annotation type used to indicate that an interface type declaration is intended to be a functional interface as defined by the Java Language Specification.</p>
@@ -1470,6 +1489,17 @@ Lambda可以没有限制地捕获 对象的实例变量和静态变量， 但局
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>limit出现在并行流中成本会明显增加，因为是获取特定数量且有序的元素</p>
+</blockquote>
+<ul>
+<li>注意无限流但是某些原因导致元素数量为有限个时, 会陷入产生无限流的实现方循环很久甚至死循环
+<ul>
+<li>例如 <code>new Random().ints(0, 6).distinct().distinct().limit(10)</code></li>
+<li>此处的Random.ints会陷入RandomIntsSpliterator.tryAdvance循环中直到long最大值 jstack就可以看到线程一直在循环</li>
+</ul>
+</li>
+</ul>
 <h3 id="终端操作">终端操作</h3>
 <p>TerminalOp 接口</p>
 <blockquote>
@@ -1737,9 +1767,17 @@ Lambda可以没有限制地捕获 对象的实例变量和静态变量， 但局
 <li>toList toMap toSet 等方法</li>
 </ul>
 <blockquote>
-<p>注意： toMap 方法的使用， 当 key 重复时会抛出异常
-<code>toMap(k-&gt;k, v-&gt;v, (a,b)-&gt;b);</code> 使用该方式能避免， 设置了遇到重复的策略， 后者覆盖前者</p>
+<p>注意： toMap 方法的使用， 当 key 重复时会抛出异常</p>
 </blockquote>
+<ul>
+<li><code>toMap(k-&gt;k, v-&gt;v, (a,b)-&gt;b);</code> 使用该方式能避免， 设置了遇到重复的策略， 后者覆盖前者</li>
+</ul>
+<blockquote>
+<p>toMap方式 当value出现null时 会抛出NPE</p>
+</blockquote>
+<ul>
+<li>Collectors.toMap 在底层使用的是 Map::merge 方法，而 merge 方法不允许 null value</li>
+</ul>
 <h3 id="汇总-collector">汇总 collector</h3>
 <blockquote>
 <p>Collectors类专门为汇总提供了一个工厂方法：Collectors.summingInt 它可接受一个把对象映射为求和所需int的函数，并返回一个收集器；该收集器在传递给普通的collect方法后即执行我们需要的汇总操作<br>
@@ -2446,19 +2484,33 @@ It can be accessed using other duration-based units, such as minutes and hours.<
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 常见格式
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="c1">// 解析
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 常见格式
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">DateTimeFormatter</span> <span class="n">format</span> <span class="o">=</span> <span class="n">DateTimeFormatter</span><span class="o">.</span><span class="na">ofPattern</span><span class="o">(</span><span class="s">&#34;yyyyMMdd&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">LocalDate</span> <span class="n">parse</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;20171018&#34;</span><span class="o">,</span> <span class="n">format</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 格式不全时（年月日）需特殊处理 补全对应默认值
+</span></span><span class="line"><span class="cl">    <span class="c1">// 格式不全时（年月日）需特殊处理 补全对应默认值 否则会抛异常
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">DateTimeFormatter</span> <span class="n">monthFMT</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTimeFormatterBuilder</span><span class="o">()</span>
 </span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">appendPattern</span><span class="o">(</span><span class="s">&#34;yyyy&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">parseDefaulting</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">MONTH_OF_YEAR</span><span class="o">,</span> <span class="n">1</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">parseDefaulting</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">,</span> <span class="n">1</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">toFormatter</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">    <span class="n">LocalDate</span> <span class="n">parse</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;2017&#34;</span><span class="o">,</span> <span class="n">monthFMT</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 格式化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">format</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 计算日期差值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Period</span> <span class="n">between</span> <span class="o">=</span> <span class="n">Period</span><span class="o">.</span><span class="na">between</span><span class="o">(</span><span class="n">birth</span><span class="o">.</span><span class="na">toLocalDate</span><span class="o">(),</span> <span class="n">checkDt</span><span class="o">.</span><span class="na">toLocalDate</span><span class="o">());</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="localtime">LocalTime</h3>

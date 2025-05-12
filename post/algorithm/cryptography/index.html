@@ -49,7 +49,7 @@
 <meta itemprop="name" content="密码学">
 <meta itemprop="description" content="💠 密码学 古典密码学 2.1. 凯撒密码 2.2. 简单替换密码 2.3. 多表加密 2.4. 一次性密码本 现代密码学 3.1. 编码 3.2. 伪随机数生成器 3.3. 对称密码 3.3.1. DES 3.3.2. AES 3.3.2.1. 混合模式 3.3.2.1.1. AES-CCM 3.3.2.1.2. AES-GCM 3.3.3. 分组"><meta itemprop="datePublished" content="2023-09-08T11:54:36+00:00" />
 <meta itemprop="dateModified" content="2023-09-08T11:54:36+00:00" />
-<meta itemprop="wordCount" content="5782">
+<meta itemprop="wordCount" content="6183">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="密码学"/>
 <meta name="twitter:description" content="💠 密码学 古典密码学 2.1. 凯撒密码 2.2. 简单替换密码 2.3. 多表加密 2.4. 一次性密码本 现代密码学 3.1. 编码 3.2. 伪随机数生成器 3.3. 对称密码 3.3.1. DES 3.3.2. AES 3.3.2.1. 混合模式 3.3.2.1.1. AES-CCM 3.3.2.1.2. AES-GCM 3.3.3. 分组"/>
@@ -120,8 +120,8 @@
       <div class="post-meta">
         <span class="post-time"> 2023-09-08 </span>
         
-          <span class="more-meta"> 5782 words </span>
-          <span class="more-meta"> 12 mins read </span>
+          <span class="more-meta"> 6183 words </span>
+          <span class="more-meta"> 13 mins read </span>
         
       </div>
     </header>
@@ -277,7 +277,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2025-01-09 15:40:40</p>
+<p>💠 2025-05-09 18:34:05</p>
 <hr>
 <h1 id="密码学">密码学</h1>
 <blockquote>
@@ -396,8 +396,7 @@
 <h3 id="aes">AES</h3>
 <p>Advanced Encryption Standard。在全世界范围进行公开竞选， 有15个算法进入候选范围，最终 Rijndael 获胜成为AES</p>
 <p>同为分组加密算法，分组长度为128比特，密钥长度可选（128，192，256位），使用SPN结构进行多轮加密。 详细过程参考书籍《图解密码技术》<br>
-而且加密过程的步骤可以并行计算，性能较DES也更好。<br>
-Rijndael算法背后是严谨的数学论证：明文到密文的计算过程全部可以用数学公式来表达。</p>
+而且加密过程的步骤可以并行计算，性能较DES也更好。Rijndael算法背后是严谨的数学论证：明文到密文的计算过程全部可以用数学公式来表达。</p>
 <p>例如128位密钥长度的生成方式：Random生成16位字节数组，或者任意Ascii码16位字符串（强度更弱）</p>
 <h4 id="混合模式">混合模式</h4>
 <h5 id="aes-ccm">AES-CCM</h5>
@@ -561,8 +560,18 @@ CFB，OFB和CBC类似都需要IV，只是当前明文分组的处理方式不同
 <li>一次性口令： one-time password. 通常用于服务端对客户端的合法性认证。</li>
 </ul>
 <h3 id="md4-md5">MD4 MD5</h3>
-<p>MD4 是由Rivest于1990年设计，能产生128bit的散列值，之后Dobbertin提出寻找MD4散列碰撞的方法，已经不安全了。
-MD5 是由Rivest于1991年设计，能产生128bit的散列值， 但是MD5的强抗碰撞性已经被攻破，也已经不安全了。</p>
+<p>MD4 是由Rivest于1990年设计，能产生128bit的散列值，之后Dobbertin提出寻找MD4散列碰撞的方法，已经不安全了。</p>
+<p>MD5 是由Rivest于1991年设计，能产生128bit的散列值， 但是MD5的强抗碰撞性已经被攻破，也已经不安全了。</p>
+<blockquote>
+<p>处理流程</p>
+</blockquote>
+<ul>
+<li>填充：MD5算法首先对输入数据进行填充，使其长度可以被<em>512</em>整除。填充的方法是在原始数据后面追加一个“1”，然后添加足够数量的“0”，最后添加一个64位的整数表示原始数据的长度。</li>
+<li>初始化缓冲区：MD5算法使用了一个64位的缓冲区，分为四个16位部分，用来存储中间结果和最终结果。这四个部分被初始化为特定的常数。</li>
+<li>处理分组：填充后的数据被划分为长度为512位的分组，每个分组又划分为16个32位的子分组。然后，通过一系列的位操作和模加运算，每个分组都被处理并更新缓冲区的内容。这个过程涉及四个主要的轮函数和一系列的非线性函数。</li>
+<li>输出：处理完所有分组后，缓冲区中的内容就是最终的哈希值。这个哈希值是一个128位的数，通常表示为32个十六进制数</li>
+</ul>
+<p>所以对二进制流分块后迭代计算MD5值，避免了磁盘操作，性能更好（块大小是512的整数倍即可）。例如通过URL计算文件的MD5可以使用4K缓冲区来计算完整的MD5值</p>
 <h3 id="sha-1">SHA-1</h3>
 <p>SHA-1 SHA-256 SHA-384 SHA-512</p>
 <p>SHA-1 是由 NIST（National Institute of Standards and Technology）设计，能产生160bit的散列值，

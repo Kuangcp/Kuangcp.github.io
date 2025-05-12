@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Linux性能分析">
 <meta itemprop="description" content="💠 Linux性能分析和管理 基准测试 运行状况信息 3.1. 分析工具 内核参数 内存情况 5.1. free 5.2. smem 性能监测 6.1. perf 6.2. top 6.3. smem 6.4. vmstat 6.5. pidstat 6.6. mpstat 6.7. iostat 6.8. ifstat 进程管理 7.1. pidof 7.2. pgrep 7.3. sar"><meta itemprop="datePublished" content="2018-12-15T11:16:27+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:16:27+00:00" />
-<meta itemprop="wordCount" content="8326">
+<meta itemprop="wordCount" content="8536">
 <meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux性能分析"/>
 <meta name="twitter:description" content="💠 Linux性能分析和管理 基准测试 运行状况信息 3.1. 分析工具 内核参数 内存情况 5.1. free 5.2. smem 性能监测 6.1. perf 6.2. top 6.3. smem 6.4. vmstat 6.5. pidstat 6.6. mpstat 6.7. iostat 6.8. ifstat 进程管理 7.1. pidof 7.2. pgrep 7.3. sar"/>
@@ -122,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 8326 words </span>
-          <span class="more-meta"> 17 mins read </span>
+          <span class="more-meta"> 8536 words </span>
+          <span class="more-meta"> 18 mins read </span>
         
       </div>
     </header>
@@ -318,7 +318,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-12-10 22:06:23</p>
+<p>💠 2025-05-07 17:32:24</p>
 <hr>
 <h1 id="linux性能分析和管理">Linux性能分析和管理</h1>
 <h1 id="基准测试">基准测试</h1>
@@ -1485,12 +1485,56 @@
 <p>change root directory 更改root目录 最古老的容器技术</p>
 </blockquote>
 <ul>
-<li><code>mkdir 目录 </code> 复制相关目录过来，就能把系统迁移过来了</li>
-<li><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Linux_DaPeng_mingling100/p262.jpg" alt="p262"></li>
-<li><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Linux_DaPeng_mingling100/p263.jpg" alt="p263"></li>
-<li><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Linux_DaPeng_mingling100/p264.jpg" alt="p264"></li>
-<li><img src="https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Linux_DaPeng_mingling100/p265.jpg" alt="p265"></li>
+<li>仅限root用于有权限使用</li>
+<li>提供一定的资源隔离，但不能完全防止用户逃离该环境</li>
 </ul>
+<!-- ![p262](https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Linux_DaPeng_mingling100/p262.jpg)
+![p263](https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Linux_DaPeng_mingling100/p263.jpg)
+![p264](https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Linux_DaPeng_mingling100/p264.jpg)
+![p265](https://raw.githubusercontent.com/Kuangcp/ImageRepos/master/Tech/Book/Linux_DaPeng_mingling100/p265.jpg) -->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    mkdir newroot
+</span></span><span class="line"><span class="cl">    mkdir -p newroot/bin/
+</span></span><span class="line"><span class="cl">    cp /bin/bash newroot/bin/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    chroot newroot <span class="c1"># 会发现报错 bash不存在，是因为共享库没有复制过来</span>
+</span></span><span class="line"><span class="cl">    ldd /bin/bash
+</span></span><span class="line"><span class="cl">    <span class="c1"># 不同系统组织方式不一样 按ldd的输出，将so放置到 /lib64/ 或者 /usr/lib /usr/lib64 下</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># [lib]# ldd /bin/bash 例如Manjaro系统输出如下</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#        linux-vdso.so.1 (0x00007ffe4ade2000)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#        libreadline.so.8 =&gt; /usr/lib/libreadline.so.8 (0x00007f6e88d62000)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#        libc.so.6 =&gt; /usr/lib/libc.so.6 (0x00007f6e88b80000)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#        libncursesw.so.6 =&gt; /usr/lib/libncursesw.so.6 (0x00007f6e88b09000)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#        /lib64/ld-linux-x86-64.so.2 =&gt; /usr/lib64/ld-linux-x86-64.so.2 (0x00007f6e88f0b000)</span>
+</span></span><span class="line"><span class="cl">    cp /usr/lib/libreadline.so.8 newroot/usr/lib/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    chroot newroot <span class="c1"># 能进入bash了</span>
+</span></span><span class="line"><span class="cl">    ls <span class="c1"># 保存不存在，同样的使用ldd，复制相应的so文件过来，就可以了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/435805234">Linux隔离技术-CHROOT - 知乎</a></p>
+</blockquote>
 <h1 id="关机重启">关机/重启</h1>
 <blockquote>
 <p>shutdown | reboot | halt | poweroff | init</p>

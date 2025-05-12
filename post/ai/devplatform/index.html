@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 开发平台 1.1. Dify 💠 2025-01-10 16:30:07 开发平台 Dify Dify | Dify" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 开发平台 RAG 2.1. QAnything 综合平台 3.1. FastGPT 3.2. Dify 3.3. RagFlow 3.3.1. Tips 💠 2025-04-30 11:30:56 开发平台 RAG QAnything netease-youdao/QAnything: Question and Answer based on Anything. 来自工业界的 RAG 服务，有道 QAnything 源码全流程深度解析 - 知乎 为RAG而生-BC" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="DevPlatform" />
-<meta property="og:description" content="💠 开发平台 1.1. Dify 💠 2025-01-10 16:30:07 开发平台 Dify Dify | Dify" />
+<meta property="og:description" content="💠 开发平台 RAG 2.1. QAnything 综合平台 3.1. FastGPT 3.2. Dify 3.3. RagFlow 3.3.1. Tips 💠 2025-04-30 11:30:56 开发平台 RAG QAnything netease-youdao/QAnything: Question and Answer based on Anything. 来自工业界的 RAG 服务，有道 QAnything 源码全流程深度解析 - 知乎 为RAG而生-BC" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/ai/devplatform/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2025-01-10T16:30:07+00:00" />
 <meta property="article:modified_time" content="2025-01-10T16:30:07+00:00" />
 
 <meta itemprop="name" content="DevPlatform">
-<meta itemprop="description" content="💠 开发平台 1.1. Dify 💠 2025-01-10 16:30:07 开发平台 Dify Dify | Dify"><meta itemprop="datePublished" content="2025-01-10T16:30:07+00:00" />
+<meta itemprop="description" content="💠 开发平台 RAG 2.1. QAnything 综合平台 3.1. FastGPT 3.2. Dify 3.3. RagFlow 3.3.1. Tips 💠 2025-04-30 11:30:56 开发平台 RAG QAnything netease-youdao/QAnything: Question and Answer based on Anything. 来自工业界的 RAG 服务，有道 QAnything 源码全流程深度解析 - 知乎 为RAG而生-BC"><meta itemprop="datePublished" content="2025-01-10T16:30:07+00:00" />
 <meta itemprop="dateModified" content="2025-01-10T16:30:07+00:00" />
-<meta itemprop="wordCount" content="18">
+<meta itemprop="wordCount" content="210">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DevPlatform"/>
-<meta name="twitter:description" content="💠 开发平台 1.1. Dify 💠 2025-01-10 16:30:07 开发平台 Dify Dify | Dify"/>
+<meta name="twitter:description" content="💠 开发平台 RAG 2.1. QAnything 综合平台 3.1. FastGPT 3.2. Dify 3.3. RagFlow 3.3.1. Tips 💠 2025-04-30 11:30:56 开发平台 RAG QAnything netease-youdao/QAnything: Question and Answer based on Anything. 来自工业界的 RAG 服务，有道 QAnything 源码全流程深度解析 - 知乎 为RAG而生-BC"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2025-01-10 </span>
         
-          <span class="more-meta"> 18 words </span>
+          <span class="more-meta"> 210 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -131,9 +131,21 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#开发平台">开发平台</a>
+    <li><a href="#开发平台">开发平台</a></li>
+    <li><a href="#rag">RAG</a>
       <ul>
+        <li><a href="#qanything">QAnything</a></li>
+      </ul>
+    </li>
+    <li><a href="#综合平台">综合平台</a>
+      <ul>
+        <li><a href="#fastgpt">FastGPT</a></li>
         <li><a href="#dify">Dify</a></li>
+        <li><a href="#ragflow">RagFlow</a>
+          <ul>
+            <li><a href="#tips">Tips</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -147,17 +159,65 @@
 <ol>
 <li><a href="#%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0">开发平台</a></li>
 </ol>
+</li>
+<li>
+<ol start="2">
+<li><a href="#rag">RAG</a></li>
+</ol>
 <ul>
-<li>1.1. <a href="#dify">Dify</a></li>
+<li>2.1. <a href="#qanything">QAnything</a></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li><a href="#%E7%BB%BC%E5%90%88%E5%B9%B3%E5%8F%B0">综合平台</a></li>
+</ol>
+<ul>
+<li>3.1. <a href="#fastgpt">FastGPT</a></li>
+<li>3.2. <a href="#dify">Dify</a></li>
+<li>3.3. <a href="#ragflow">RagFlow</a>
+<ul>
+<li>3.3.1. <a href="#tips">Tips</a></li>
 </ul>
 </li>
 </ul>
-<p>💠 2025-01-10 16:30:07</p>
+</li>
+</ul>
+<p>💠 2025-04-30 11:30:56</p>
 <hr>
 <h1 id="开发平台">开发平台</h1>
+<h1 id="rag">RAG</h1>
+<h2 id="qanything">QAnything</h2>
+<blockquote>
+<p><a href="https://github.com/netease-youdao/QAnything">netease-youdao/QAnything: Question and Answer based on Anything.</a><br>
+<a href="https://zhuanlan.zhihu.com/p/697031773">来自工业界的 RAG 服务，有道 QAnything 源码全流程深度解析 - 知乎</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/681370855">为RAG而生-BCE embedding技术报告 - 知乎</a></p>
+</blockquote>
+<p>更新频率低，可作为学习参考</p>
+<hr>
+<h1 id="综合平台">综合平台</h1>
+<h2 id="fastgpt">FastGPT</h2>
+<blockquote>
+<p><a href="https://github.com/labring/FastGPT">labring/FastGPT</a></p>
+</blockquote>
+<p>知识库平台</p>
+<blockquote>
+<p><a href="https://hustyichi.github.io/2024/07/04/fastgpt/">一款纯 js 实现的大模型应用服务 FastGPT 解读 - 易迟的博客 | Bryan Blog</a><br>
+<a href="https://juejin.cn/column/7350107540326236169">FastGPT解密 - cumber的专栏 - 掘金</a></p>
+</blockquote>
 <h2 id="dify">Dify</h2>
 <blockquote>
 <p><a href="https://docs.dify.ai/zh-hans">Dify | Dify</a></p>
+</blockquote>
+<h2 id="ragflow">RagFlow</h2>
+<blockquote>
+<p><a href="https://github.com/infiniflow/ragflow?tab=readme-ov-file">infiniflow/ragflow: RAGFlow is an open-source RAG (Retrieval-Augmented Generation) engine based on deep document understanding.</a></p>
+</blockquote>
+<h3 id="tips">Tips</h3>
+<blockquote>
+<p><a href="https://github.com/langgenius/dify/issues/12068">IF ELSE can cause the Stream output of LLM nodes to fail</a> if else连接的流式LLM输出变非流了</p>
 </blockquote>
 
     </div>
@@ -180,7 +240,11 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/skills/network/tcp/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">TCP</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         <a class="next" href="/post/skills/media/audioprocessing/">
             <span class="next-text nav-default">音频处理</span>
             <span class="next-text nav-mobile">Next</span>

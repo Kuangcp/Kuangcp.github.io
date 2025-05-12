@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. Pacman 1.2.2. Yay 1.2.3. Snap Tips 💠 2024-12-03 19:35:05 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件包推荐" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. 打包 1.2.2. Pacman 1.2.3. Yay 1.2.4. Snap Tips 💠 2025-05-08 18:58:49 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Arch" />
-<meta property="og:description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. Pacman 1.2.2. Yay 1.2.3. Snap Tips 💠 2024-12-03 19:35:05 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件包推荐" />
+<meta property="og:description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. 打包 1.2.2. Pacman 1.2.3. Yay 1.2.4. Snap Tips 💠 2025-05-08 18:58:49 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/linux/arch/arch/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-21T10:55:04+00:00" />
 <meta property="article:modified_time" content="2018-12-21T10:55:04+00:00" />
 
 <meta itemprop="name" content="Arch">
-<meta itemprop="description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. Pacman 1.2.2. Yay 1.2.3. Snap Tips 💠 2024-12-03 19:35:05 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件包推荐"><meta itemprop="datePublished" content="2018-12-21T10:55:04+00:00" />
+<meta itemprop="description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. 打包 1.2.2. Pacman 1.2.3. Yay 1.2.4. Snap Tips 💠 2025-05-08 18:58:49 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件"><meta itemprop="datePublished" content="2018-12-21T10:55:04+00:00" />
 <meta itemprop="dateModified" content="2018-12-21T10:55:04+00:00" />
-<meta itemprop="wordCount" content="1334">
+<meta itemprop="wordCount" content="1381">
 <meta itemprop="keywords" content="Arch,基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Arch"/>
-<meta name="twitter:description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. Pacman 1.2.2. Yay 1.2.3. Snap Tips 💠 2024-12-03 19:35:05 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件包推荐"/>
+<meta name="twitter:description" content="💠 Arch 1.1. 社区 1.2. 包管理 1.2.1. 打包 1.2.2. Pacman 1.2.3. Yay 1.2.4. Snap Tips 💠 2025-05-08 18:58:49 Arch 参考: Arch Linux的用户都有理想主义倾向吗？ 参考: ArchLinux你可能需要知道的操作与软件"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 1334 words </span>
+          <span class="more-meta"> 1381 words </span>
           <span class="more-meta"> 3 mins read </span>
         
       </div>
@@ -138,6 +138,7 @@
         <li><a href="#社区">社区</a></li>
         <li><a href="#包管理">包管理</a>
           <ul>
+            <li><a href="#打包">打包</a></li>
             <li><a href="#pacman">Pacman</a></li>
             <li><a href="#yay">Yay</a></li>
             <li><a href="#snap">Snap</a></li>
@@ -161,9 +162,10 @@
 <li>1.1. <a href="#%E7%A4%BE%E5%8C%BA">社区</a></li>
 <li>1.2. <a href="#%E5%8C%85%E7%AE%A1%E7%90%86">包管理</a>
 <ul>
-<li>1.2.1. <a href="#pacman">Pacman</a></li>
-<li>1.2.2. <a href="#yay">Yay</a></li>
-<li>1.2.3. <a href="#snap">Snap</a></li>
+<li>1.2.1. <a href="#%E6%89%93%E5%8C%85">打包</a></li>
+<li>1.2.2. <a href="#pacman">Pacman</a></li>
+<li>1.2.3. <a href="#yay">Yay</a></li>
+<li>1.2.4. <a href="#snap">Snap</a></li>
 </ul>
 </li>
 </ul>
@@ -174,7 +176,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-12-03 19:35:05</p>
+<p>💠 2025-05-08 18:58:49</p>
 <hr>
 <h1 id="arch">Arch</h1>
 <blockquote>
@@ -204,6 +206,11 @@
 <p><a href="https://www.theurbanpenguin.com/creating-arch-linux-packages/">Creating Arch Linux Packages</a><br>
 <a href="https://archive.archlinux.org/packages/">Arch archive packages</a><code>软件包镜像站</code></p>
 </blockquote>
+<h3 id="打包">打包</h3>
+<blockquote>
+<p><a href="https://wiki.archlinuxcn.org/wiki/PKGBUILD">PKGBUILD - Arch Linux 中文维基</a></p>
+</blockquote>
+<p>编写好PKGBUILD文件后，执行 makepkg构建出包，然后 pacman -U xxx.tar.zst</p>
 <h3 id="pacman">Pacman</h3>
 <blockquote>
 <p><a href="https://wiki.archlinux.org/title/Pacman">pacman - ArchWiki</a>  <a href="https://wiki.archlinuxcn.org/wiki/Pacman">pacman - Arch Linux 中文维基</a></p>

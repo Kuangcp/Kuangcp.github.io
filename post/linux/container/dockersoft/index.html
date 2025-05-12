@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Docker的应用">
 <meta itemprop="description" content="💠 Docker应用 1.1. 个人镜像 1.2. Linux发行版 1.2.1. Ubuntu-ssh 1.2.2. Alpine-ssh 1.2.3. Centos-ssh 1.3. Java 1.3.1. Local 1.3.2. Jib 1.4. NodeJs 1.5. 中间件 1.6. 数据库 1.6.1. PostgreSQL 1.6.2. Oracle 1.6.3. MySQL 1.6.4. MongoDB 1.6.5. Redis 1.7. 持续集成 1.7.1. flow.ci 1.7.2. Jenkins 1.8. Git服务"><meta itemprop="datePublished" content="2018-12-15T11:27:31+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:27:31+00:00" />
-<meta itemprop="wordCount" content="1627">
+<meta itemprop="wordCount" content="1629">
 <meta itemprop="keywords" content="工具使用经验," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Docker的应用"/>
 <meta name="twitter:description" content="💠 Docker应用 1.1. 个人镜像 1.2. Linux发行版 1.2.1. Ubuntu-ssh 1.2.2. Alpine-ssh 1.2.3. Centos-ssh 1.3. Java 1.3.1. Local 1.3.2. Jib 1.4. NodeJs 1.5. 中间件 1.6. 数据库 1.6.1. PostgreSQL 1.6.2. Oracle 1.6.3. MySQL 1.6.4. MongoDB 1.6.5. Redis 1.7. 持续集成 1.7.1. flow.ci 1.7.2. Jenkins 1.8. Git服务"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/docker/"> Docker </a>
             </div>
-          <span class="more-meta"> 1627 words </span>
+          <span class="more-meta"> 1629 words </span>
           <span class="more-meta"> 4 mins read </span>
         
       </div>
@@ -253,7 +253,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-23 16:13:43</p>
+<p>💠 2025-05-08 18:58:49</p>
 <hr>
 <h1 id="docker应用">Docker应用</h1>
 <blockquote>
@@ -502,7 +502,7 @@
 </blockquote>
 <ol>
 <li>获取镜像：<code>docker pull redis </code> 使用 <code>docker pull redis:alpine</code> 镜像可以更小</li>
-<li>运行默认配置的容器：<code>docker run --name test-redis -d redis</code></li>
+<li>运行默认配置的容器：<code>docker run --name test-redis -p 6667:6379 -d redis</code></li>
 <li>或者 使用本地配置文件启动redis容器
 <ul>
 <li><code>sudo docker run -v /myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf --name myredis redis redis-server /usr/local/etc/redis/redis.conf</code></li>

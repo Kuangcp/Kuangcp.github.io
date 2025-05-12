@@ -239,7 +239,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-08-26 16:31:06</p>
+<p>💠 2025-04-18 09:37:55</p>
 <hr>
 <h1 id="dockerfile">Dockerfile</h1>
 <h2 id="使用入门案例">使用入门案例</h2>
@@ -430,7 +430,7 @@
 <p>对于 alpine 以及 Ubuntu ln -s 建立到时间文件的软链接就已经够了, 但是确保没问题就最好还是修改下 时区文件</p>
 </blockquote>
 <h4 id="修改-hosts">修改 hosts</h4>
-<p>由于Docker动态分配pod的虚拟ip，所以hosts会动态生成，单纯使用RUN命令在Dockerfile中修改hosts文件是不生效的。
+<p>由于Docker动态分配pod的虚拟ip，所以hosts会动态生成，单纯使用RUN命令在Dockerfile中修改hosts文件是<strong>不生效的</strong>。<br>
 正确方式为:</p>
 <ul>
 <li>Docker  <code>docker run –add-host host:ip</code></li>

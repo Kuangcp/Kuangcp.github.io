@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="目录 start Go-Restful Gin Iris 目录 end|2020-07-05 14:58| Go-microservices Go 的 web框架 microservices 参考: Building a REST Service with Golang - Part 2 (Basic Webserver) 参考: Making a RESTful JSON API in Go Github:go-restful Gin Github gin-example demo: mybook Iris iris go-kit go-kit go-zero doc" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Go-microservices 1.1. Gin 1.2. Hertz 1.3. Iris 1.4. go-kit 1.5. go-zero 💠 2025-05-09 18:34:05 Go-microservices Go 的 web框架 microservices 参考: Building a REST Service with Golang - Part 2 (Basic Webserver) 参考: Making a RESTful JSON API in Go Github:go-restful Implementing hexagonal architecture in Go | by Andy Beak | Medium andybeak/hexagonal-demo Gin Github gin-example demo: mybook Hertz cloudwego/hertz: Go HTTP" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="GoRestful" />
-<meta property="og:description" content="目录 start Go-Restful Gin Iris 目录 end|2020-07-05 14:58| Go-microservices Go 的 web框架 microservices 参考: Building a REST Service with Golang - Part 2 (Basic Webserver) 参考: Making a RESTful JSON API in Go Github:go-restful Gin Github gin-example demo: mybook Iris iris go-kit go-kit go-zero doc" />
+<meta property="og:description" content="💠 Go-microservices 1.1. Gin 1.2. Hertz 1.3. Iris 1.4. go-kit 1.5. go-zero 💠 2025-05-09 18:34:05 Go-microservices Go 的 web框架 microservices 参考: Building a REST Service with Golang - Part 2 (Basic Webserver) 参考: Making a RESTful JSON API in Go Github:go-restful Implementing hexagonal architecture in Go | by Andy Beak | Medium andybeak/hexagonal-demo Gin Github gin-example demo: mybook Hertz cloudwego/hertz: Go HTTP" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/go/gorestful/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-14T09:26:23+00:00" />
 <meta property="article:modified_time" content="2018-12-14T09:26:23+00:00" />
 
 <meta itemprop="name" content="GoRestful">
-<meta itemprop="description" content="目录 start Go-Restful Gin Iris 目录 end|2020-07-05 14:58| Go-microservices Go 的 web框架 microservices 参考: Building a REST Service with Golang - Part 2 (Basic Webserver) 参考: Making a RESTful JSON API in Go Github:go-restful Gin Github gin-example demo: mybook Iris iris go-kit go-kit go-zero doc"><meta itemprop="datePublished" content="2018-12-14T09:26:23+00:00" />
+<meta itemprop="description" content="💠 Go-microservices 1.1. Gin 1.2. Hertz 1.3. Iris 1.4. go-kit 1.5. go-zero 💠 2025-05-09 18:34:05 Go-microservices Go 的 web框架 microservices 参考: Building a REST Service with Golang - Part 2 (Basic Webserver) 参考: Making a RESTful JSON API in Go Github:go-restful Implementing hexagonal architecture in Go | by Andy Beak | Medium andybeak/hexagonal-demo Gin Github gin-example demo: mybook Hertz cloudwego/hertz: Go HTTP"><meta itemprop="datePublished" content="2018-12-14T09:26:23+00:00" />
 <meta itemprop="dateModified" content="2018-12-14T09:26:23+00:00" />
-<meta itemprop="wordCount" content="55">
+<meta itemprop="wordCount" content="84">
 <meta itemprop="keywords" content="Web,Restful," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GoRestful"/>
-<meta name="twitter:description" content="目录 start Go-Restful Gin Iris 目录 end|2020-07-05 14:58| Go-microservices Go 的 web框架 microservices 参考: Building a REST Service with Golang - Part 2 (Basic Webserver) 参考: Making a RESTful JSON API in Go Github:go-restful Gin Github gin-example demo: mybook Iris iris go-kit go-kit go-zero doc"/>
+<meta name="twitter:description" content="💠 Go-microservices 1.1. Gin 1.2. Hertz 1.3. Iris 1.4. go-kit 1.5. go-zero 💠 2025-05-09 18:34:05 Go-microservices Go 的 web框架 microservices 参考: Building a REST Service with Golang - Part 2 (Basic Webserver) 参考: Making a RESTful JSON API in Go Github:go-restful Implementing hexagonal architecture in Go | by Andy Beak | Medium andybeak/hexagonal-demo Gin Github gin-example demo: mybook Hertz cloudwego/hertz: Go HTTP"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/go/"> Go </a>
             </div>
-          <span class="more-meta"> 55 words </span>
+          <span class="more-meta"> 84 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -136,6 +136,7 @@
     <li><a href="#go-microservices">Go-microservices</a>
       <ul>
         <li><a href="#gin">Gin</a></li>
+        <li><a href="#hertz">Hertz</a></li>
         <li><a href="#iris">Iris</a></li>
         <li><a href="#go-kit">go-kit</a></li>
         <li><a href="#go-zero">go-zero</a></li>
@@ -146,16 +147,22 @@
   </div>
 </div>
     <div class="post-content">
-      <p><strong>目录 start</strong></p>
+      <p>💠</p>
+<ul>
+<li>
 <ol>
-<li><a href="#go-restful">Go-Restful</a>
-<ol>
-<li><a href="#gin">Gin</a></li>
-<li><a href="#iris">Iris</a></li>
+<li><a href="#go-microservices">Go-microservices</a></li>
 </ol>
+<ul>
+<li>1.1. <a href="#gin">Gin</a></li>
+<li>1.2. <a href="#hertz">Hertz</a></li>
+<li>1.3. <a href="#iris">Iris</a></li>
+<li>1.4. <a href="#go-kit">go-kit</a></li>
+<li>1.5. <a href="#go-zero">go-zero</a></li>
+</ul>
 </li>
-</ol>
-<p><strong>目录 end</strong>|<em>2020-07-05 14:58</em>|</p>
+</ul>
+<p>💠 2025-05-09 18:34:05</p>
 <hr>
 <h1 id="go-microservices">Go-microservices</h1>
 <blockquote>
@@ -168,6 +175,10 @@
 <p><a href="https://thenewstack.io/make-a-restful-json-api-go/">参考: Making a RESTful JSON API in Go</a></p>
 </blockquote>
 <p><a href="https://github.com/emicklei/go-restful">Github:go-restful</a></p>
+<blockquote>
+<p><a href="https://medium.com/@andy.beak/implementing-hexagonal-architecture-in-go-50ef96f93b45">Implementing hexagonal architecture in Go | by Andy Beak | Medium</a><br>
+<a href="https://github.com/andybeak/hexagonal-demo">andybeak/hexagonal-demo</a></p>
+</blockquote>
 <h2 id="gin">Gin</h2>
 <blockquote>
 <p><a href="https://github.com/gin-gonic/gin">Github</a></p>
@@ -175,6 +186,10 @@
 <blockquote>
 <p><a href="https://github.com/EDDYCJY/go-gin-example">gin-example</a><br>
 <a href="https://github.com/Kuangcp/GoBase/tree/master/mybook">demo: mybook</a></p>
+</blockquote>
+<h2 id="hertz">Hertz</h2>
+<blockquote>
+<p><a href="https://github.com/cloudwego/hertz">cloudwego/hertz: Go HTTP framework with high-performance and strong-extensibility for building micro-services.</a></p>
 </blockquote>
 <h2 id="iris">Iris</h2>
 <blockquote>

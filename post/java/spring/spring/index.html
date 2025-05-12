@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Spring">
 <meta itemprop="description" content="💠 Spring 1.1. 配置使用 1.1.1. 通过构建工具 1.1.2. 注解方式 1.1.2.1. xml文件配置 1.1.2.2. 常用的注解 1.1.3. xml方式 1.1.3.1. xml方式和注解方式的比较 1.2. Spring技巧 1.2.1. 获取Conte"><meta itemprop="datePublished" content="2018-12-21T10:46:01+00:00" />
 <meta itemprop="dateModified" content="2018-12-21T10:46:01+00:00" />
-<meta itemprop="wordCount" content="7364">
+<meta itemprop="wordCount" content="7513">
 <meta itemprop="keywords" content="Spring," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Spring"/>
 <meta name="twitter:description" content="💠 Spring 1.1. 配置使用 1.1.1. 通过构建工具 1.1.2. 注解方式 1.1.2.1. xml文件配置 1.1.2.2. 常用的注解 1.1.3. xml方式 1.1.3.1. xml方式和注解方式的比较 1.2. Spring技巧 1.2.1. 获取Conte"/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 7364 words </span>
+          <span class="more-meta"> 7513 words </span>
           <span class="more-meta"> 15 mins read </span>
         
       </div>
@@ -174,8 +174,13 @@
         <li><a href="#scheduling">Scheduling</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#异步">异步</a></li>
-        <li><a href="#resttemplate">RestTemplate</a></li>
-        <li><a href="#webclient">WebClient</a></li>
+        <li><a href="#http-rpc">HTTP RPC</a>
+          <ul>
+            <li><a href="#feign">Feign</a></li>
+            <li><a href="#resttemplate">RestTemplate</a></li>
+            <li><a href="#webclient">WebClient</a></li>
+          </ul>
+        </li>
         <li><a href="#utils">Utils</a>
           <ul>
             <li><a href="#reflectionutils">ReflectionUtils</a></li>
@@ -257,14 +262,19 @@
 <li>2.5. <a href="#scheduling">Scheduling</a></li>
 <li>2.6. <a href="#events">Events</a></li>
 <li>2.7. <a href="#%E5%BC%82%E6%AD%A5">异步</a></li>
-<li>2.8. <a href="#resttemplate">RestTemplate</a></li>
-<li>2.9. <a href="#webclient">WebClient</a></li>
-<li>2.10. <a href="#utils">Utils</a>
+<li>2.8. <a href="#http-rpc">HTTP RPC</a>
 <ul>
-<li>2.10.1. <a href="#reflectionutils">ReflectionUtils</a></li>
+<li>2.8.1. <a href="#feign">Feign</a></li>
+<li>2.8.2. <a href="#resttemplate">RestTemplate</a></li>
+<li>2.8.3. <a href="#webclient">WebClient</a></li>
 </ul>
 </li>
-<li>2.11. <a href="#spel">SpEL</a></li>
+<li>2.9. <a href="#utils">Utils</a>
+<ul>
+<li>2.9.1. <a href="#reflectionutils">ReflectionUtils</a></li>
+</ul>
+</li>
+<li>2.10. <a href="#spel">SpEL</a></li>
 </ul>
 </li>
 <li>
@@ -281,7 +291,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2025-01-23 16:38:24</p>
+<p>💠 2025-05-06 11:19:53</p>
 <hr>
 <h1 id="spring">Spring</h1>
 <blockquote>
@@ -950,14 +960,54 @@ ApplicationContexts可以在其bean定义中自动检测 BeanPostProcessor bean�
 <li>任务通信问题：</li>
 </ul>
 <hr>
-<h2 id="resttemplate">RestTemplate</h2>
+<h2 id="http-rpc">HTTP RPC</h2>
+<h3 id="feign">Feign</h3>
+<p>注解定义的FeignApi 在启动阶段 FeignClientsRegistrar 完成Bean初始化</p>
+<p>重试逻辑：feign.SynchronousMethodHandler#invoke</p>
+<blockquote>
+<p><a href="https://github.com/OpenFeign/feign/issues/1100">Feign Client don&rsquo;t reauthentificate on expired refresh token Oauth2 · Issue #1100 · OpenFeign/feign</a></p>
+</blockquote>
+<p>注册自定义解释器逻辑</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@EnableFeignClients</span><span class="o">(</span><span class="n">basePackages</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34;com.abc.msg.api.service&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    <span class="o">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">FeignClientManager</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">RequestInterceptor</span> <span class="nf">globalRequestInterceptor</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">requestTemplate</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 传递traceId
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">requestTemplate</span><span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="n">TraceUtil</span><span class="o">.</span><span class="na">traceId</span><span class="o">,</span> <span class="n">TraceUtil</span><span class="o">.</span><span class="na">getTraceId</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="resttemplate">RestTemplate</h3>
 <blockquote>
 <p><a href="https://github.com/spring-projects/spring-framework/issues/12564">大文件OOM问题</a> 发送文件时将文件的字节全部读取到内存中再发送，文件大且多时容易OOM</p>
 </blockquote>
 <blockquote>
 <p><a href="https://stackoverflow.com/questions/56336439/resttemplate-throwing-generic-400-bad-request-but-custom-server-sent-message-is">RestTemplate throwing generic 400 Bad Request, but custom server sent message is not is lost - Stack Overflow</a>异常响应码时，信息被吞</p>
 </blockquote>
-<h2 id="webclient">WebClient</h2>
+<h3 id="webclient">WebClient</h3>
 <blockquote>
 <p><a href="https://docs.spring.io/spring-framework/reference/web/webflux-webclient.html">WebClient :: Spring Framework</a></p>
 </blockquote>

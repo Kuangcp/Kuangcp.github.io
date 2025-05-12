@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. JDBC 4.1.1.2. Tomcat 4.1.2. JDK9 jigsaw 4.2. 加载和连接 4.3. 方法句柄 Agent 反编" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Java的字节码" />
-<meta property="og:description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠" />
+<meta property="og:description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. JDBC 4.1.1.2. Tomcat 4.1.2. JDK9 jigsaw 4.2. 加载和连接 4.3. 方法句柄 Agent 反编" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/javaclass/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
 
 <meta itemprop="name" content="Java的字节码">
-<meta itemprop="description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. JDBC 4.1.1.2. Tomcat 4.1.2. JDK9 jigsaw 4.2. 加载和连接 4.3. 方法句柄 Agent 反编"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="2484">
+<meta itemprop="wordCount" content="3031">
 <meta itemprop="keywords" content="字节码," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java的字节码"/>
-<meta name="twitter:description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠"/>
+<meta name="twitter:description" content="💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. JDBC 4.1.1.2. Tomcat 4.1.2. JDK9 jigsaw 4.2. 加载和连接 4.3. 方法句柄 Agent 反编"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,8 +122,8 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 2484 words </span>
-          <span class="more-meta"> 5 mins read </span>
+          <span class="more-meta"> 3031 words </span>
+          <span class="more-meta"> 7 mins read </span>
         
       </div>
     </header>
@@ -150,6 +150,7 @@
         <li><a href="#类加载器">类加载器</a>
           <ul>
             <li><a href="#特殊场景">特殊场景</a></li>
+            <li><a href="#jdk9-jigsaw">JDK9 jigsaw</a></li>
           </ul>
         </li>
         <li><a href="#加载和连接">加载和连接</a></li>
@@ -197,9 +198,11 @@
 <ul>
 <li>4.1.1. <a href="#%E7%89%B9%E6%AE%8A%E5%9C%BA%E6%99%AF">特殊场景</a>
 <ul>
-<li>4.1.1.1. <a href="#tomcat">Tomcat</a></li>
+<li>4.1.1.1. <a href="#jdbc">JDBC</a></li>
+<li>4.1.1.2. <a href="#tomcat">Tomcat</a></li>
 </ul>
 </li>
+<li>4.1.2. <a href="#jdk9-jigsaw">JDK9 jigsaw</a></li>
 </ul>
 </li>
 <li>4.2. <a href="#%E5%8A%A0%E8%BD%BD%E5%92%8C%E8%BF%9E%E6%8E%A5">加载和连接</a></li>
@@ -222,11 +225,11 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-06-13 11:01:29</p>
+<p>💠 2025-05-06 19:23:42</p>
 <hr>
 <h1 id="字节码以及类加载">字节码以及类加载</h1>
 <blockquote>
-<p><a href="https://github.com/Kuangcp/JavaBase/tree/master/class">个人相关代码</a></p>
+<p><a href="https://github.com/Kuangcp/JavaBase/tree/master/class">相关示例代码</a></p>
 </blockquote>
 <hr>
 <blockquote>
@@ -340,6 +343,9 @@ javassist</p>
 <p><a href="https://www.cnblogs.com/wmyskxz/p/13575224.html#_label4">参考:  一文带你深扒ClassLoader内核，揭开它的神秘面纱！ </a><code>深入源码，举例清晰</code></p>
 </blockquote>
 <blockquote>
+<p><a href="https://juejin.cn/post/6844903794627608589">深入分析Java类加载器原理本文分析了双亲委派模型的实现原理，并通过代码示例说明了什么时候需要实现自己的类加载器以及如何 - 掘金</a></p>
+</blockquote>
+<blockquote>
 <p>双亲委派模型(<code>parents delegation model</code>） 实现代码：<code>java.lang.ClassLoader#loadClass(java.lang.String, boolean)</code>
 其工作原理是，如果一个类加载器收到了类加载请求(只讨论首次加载，已经加载过的会走缓存), 它并不会自己先去加载，而是委托给父类的加载器去执行<br>
 如果父类加载器还存在其父类加载器，则进一步向上委托，依次递归，请求最终将到达顶层的启动类加载器<br>
@@ -371,7 +377,25 @@ javassist</p>
 </ol>
 </blockquote>
 <h3 id="特殊场景">特殊场景</h3>
-<h4 id="tomcat">Tomcat</h4>
+<p>JDBC,JNBI,Tomcat 等</p>
+<h4 id="jdbc">JDBC</h4>
+<p>例如 DriverManager.getConnection(); 创建JDBC连接， java.sql.DriverManager#loadInitialDrivers 静态代码块中实现了驱动类的加载，同时 DriverManager位于 rt.jar， 会被BootStrap 加载，但是驱动实现类通常在外部目录，第三方的类不能被根加载器加载。</p>
+<p>JDBC中通过引入ThreadContextClassLoader（线程上下文加载器，默认情况下是AppClassLoader）的方式破坏了双亲委派原则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span> <span class="n">ServiceLoader</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span> <span class="nf">load</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span> <span class="n">service</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ClassLoader</span> <span class="n">cl</span> <span class="o">=</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getContextClassLoader</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ServiceLoader</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">service</span><span class="o">,</span> <span class="n">cl</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="tomcat">Tomcat</h4>
 <blockquote>
 <p><a href="https://www.cnblogs.com/aspirant/p/8991830.html">参考: 图解Tomcat类加载机制</a></p>
 </blockquote>
@@ -381,9 +405,52 @@ javassist</p>
 <li><em>SharedClassLoader</em> 各个Webapp共享的类加载器，加载路径<code>/shared/*</code>中的class对于所有Webapp可见，但是对于Tomcat容器不可见；</li>
 <li><em>WebappClassLoader</em> 各个Webapp私有的类加载器，加载路径<code>/WebApp/WEB-INF/*</code>中的class只对当前Webapp可见；</li>
 </ul>
-<p>其中WebApp类加载器和Jsp类加载器通常会存在多个实例，每一个Web应用程序对应一个WebApp类加载器，每一个JSP文件对应一个Jsp类加载器。</p>
+<p>为了实现不同Tomcat容器间的隔离， WebApp类加载器和Jsp类加载器通常会存在多个实例，每一个Web应用对应一个WebApp类加载器<code>WebAppClassLoader</code>，每一个JSP文件对应一个Jsp类加载器。</p>
 <p>WebApp类加载器就为了类隔离而违背了双亲委派模型，仅自身负责加载类，不向上传递</p>
-<hr>
+<h3 id="jdk9-jigsaw">JDK9 jigsaw</h3>
+<blockquote>
+<p><a href="https://hollischuang.github.io/toBeTopJavaer/#/basement/jvm/moduler">模块化（jboss modules、osgi、jigsaw）</a></p>
+</blockquote>
+<p>在JDK9中，整个JDK都基于模块化进行构建，以前的rt.jar, tool.jar被拆分成数十个模块，编译的时候只编译实际用到的模块，同时各个类加载器各司其职，只加载自己负责的模块。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">findLoadedClass</span><span class="o">(</span><span class="n">cn</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 找到当前类属于哪个模块
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">LoadedModule</span> <span class="n">loadedModule</span> <span class="o">=</span> <span class="n">findLoadedModule</span><span class="o">(</span><span class="n">cn</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">loadedModule</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//获取当前模块的类加载器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">BuiltinClassLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">loadedModule</span><span class="o">.</span><span class="na">loader</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//进行类加载
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">c</span> <span class="o">=</span> <span class="n">findClassInModuleOrNull</span><span class="o">(</span><span class="n">loadedModule</span><span class="o">,</span> <span class="n">cn</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 找不到模块信息才会进行双亲委派
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">if</span> <span class="o">(</span><span class="n">parent</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">c</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="na">loadClassOrNull</span><span class="o">(</span><span class="n">cn</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h2 id="加载和连接">加载和连接</h2>
 <blockquote>
 <p><a href="http://ifeve.com/%e7%ac%ac%e4%b8%83%e7%ab%a0-%e8%99%9a%e6%8b%9f%e6%9c%ba%e7%b1%bb%e5%8a%a0%e8%bd%bd%e6%9c%ba%e5%88%b6/">参考: 第七章.虚拟机类加载机制</a></p>
@@ -500,6 +567,9 @@ javassist</p>
 <a href="https://www.ibm.com/developerworks/cn/java/j-lo-instrumentation/">Java 5 特性 Instrumentation 实践</a>
 <a href="https://blog.csdn.net/javierhui111/article/details/3830833">java组件中的热插拔（osgi)</a>
 <a href="https://www.cnblogs.com/cm4j/p/hot_deploy.html">agentmain 方式 </a></p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/studyLog-share/p/4720603.html">Java 类的热替换 —— 概念、设计与实现 - 时空穿越者 - 博客园</a></p>
+</blockquote>
 <p>相关项目:</p>
 <p><a href="https://github.com/youxijishu/game-hot-update">game-hot-update</a> | <a href="https://www.cnblogs.com/wgslucky/p/9127681.html">游戏服务器之Java热更新</a>
 <a href="https://github.com/chaopeng/groovy-hotswap-demo">groovy hotswap demo</a></p>

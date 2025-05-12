@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. AQS 3.3. 功能" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. 功能类 3.2.1." /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Java并发" />
-<meta property="og:description" content="💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. AQS 3.3. 功能" />
+<meta property="og:description" content="💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. 功能类 3.2.1." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/advancedlearning/javaconcurrency/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
 
 <meta itemprop="name" content="Java并发">
-<meta itemprop="description" content="💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. AQS 3.3. 功能"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. 功能类 3.2.1."><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="7351">
+<meta itemprop="wordCount" content="7393">
 <meta itemprop="keywords" content="Concurrency," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java并发"/>
-<meta name="twitter:description" content="💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. AQS 3.3. 功能"/>
+<meta name="twitter:description" content="💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. 功能类 3.2.1."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 7351 words </span>
+          <span class="more-meta"> 7393 words </span>
           <span class="more-meta"> 15 mins read </span>
         
       </div>
@@ -240,19 +240,18 @@
 <li>3.1.1. <a href="#%E8%AF%BB%E5%86%99%E9%94%81">读写锁</a></li>
 </ul>
 </li>
-<li>3.2. <a href="#aqs">AQS</a></li>
-<li>3.3. <a href="#%E5%8A%9F%E8%83%BD%E7%B1%BB">功能类</a>
+<li>3.2. <a href="#%E5%8A%9F%E8%83%BD%E7%B1%BB">功能类</a>
 <ul>
-<li>3.3.1. <a href="#%E5%8E%9F%E5%AD%90%E7%B1%BB">原子类</a></li>
-<li>3.3.2. <a href="#lock">Lock</a></li>
-<li>3.3.3. <a href="#countdownlatch">CountDownLatch</a></li>
-<li>3.3.4. <a href="#cyclicbarrier">CyclicBarrier</a></li>
-<li>3.3.5. <a href="#semaphore">Semaphore</a></li>
-<li>3.3.6. <a href="#phaser">Phaser</a></li>
-<li>3.3.7. <a href="#exchanger">Exchanger</a></li>
-<li>3.3.8. <a href="#concurrenthashmap">ConcurrentHashMap</a></li>
-<li>3.3.9. <a href="#concurrentskiplistmap">ConcurrentSkipListMap</a></li>
-<li>3.3.10. <a href="#copyonwritearraylist">CopyOnWriteArrayList</a></li>
+<li>3.2.1. <a href="#%E5%8E%9F%E5%AD%90%E7%B1%BB">原子类</a></li>
+<li>3.2.2. <a href="#lock">Lock</a></li>
+<li>3.2.3. <a href="#countdownlatch">CountDownLatch</a></li>
+<li>3.2.4. <a href="#cyclicbarrier">CyclicBarrier</a></li>
+<li>3.2.5. <a href="#semaphore">Semaphore</a></li>
+<li>3.2.6. <a href="#phaser">Phaser</a></li>
+<li>3.2.7. <a href="#exchanger">Exchanger</a></li>
+<li>3.2.8. <a href="#concurrenthashmap">ConcurrentHashMap</a></li>
+<li>3.2.9. <a href="#concurrentskiplistmap">ConcurrentSkipListMap</a></li>
+<li>3.2.10. <a href="#copyonwritearraylist">CopyOnWriteArrayList</a></li>
 </ul>
 </li>
 </ul>
@@ -280,7 +279,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-11-10 13:59:35</p>
+<p>💠 2025-05-06 19:23:42</p>
 <hr>
 <h1 id="java并发">Java并发</h1>
 <blockquote>
@@ -337,6 +336,9 @@
 </ul>
 </li>
 </ul>
+<blockquote>
+<p><a href="https://www.cnblogs.com/krock/p/14151080.html">JVM重新认识（一）oop-klass模型&ndash;HSDB使用验证 - 蒙恬括 - 博客园</a></p>
+</blockquote>
 <hr>
 <h2 id="理论知识">理论知识</h2>
 <p><code>线程模型</code></p>

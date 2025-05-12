@@ -49,7 +49,7 @@
 <meta itemprop="name" content="JVM 监控&amp;诊断">
 <meta itemprop="description" content="💠 JVM 监控&amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1."><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="3517">
+<meta itemprop="wordCount" content="3585">
 <meta itemprop="keywords" content="JVM," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JVM 监控&amp;诊断"/>
 <meta name="twitter:description" content="💠 JVM 监控&amp;诊断 JVMTI JDK自带工具 3.1. java 3.1.1. 环境变量的使用 3.2. jps 3.3. jstat 3.4. jinfo 3.5. jmap 3.6. jhat 3.6.1. OQL 3.6.2. HPROF 3.7. jstack 3.7.1. 实现原理 3.8. jcmd 3.9. jhsdb 终端类工具 4.1. Arthas 4.2. async-profiler jvm-sandbox 图形化工具 6.1."/>
@@ -123,7 +123,7 @@
             <a href="/categories/java/"> Java </a>
             <a href="/categories/troubleshoot/"> Troubleshoot </a>
             </div>
-          <span class="more-meta"> 3517 words </span>
+          <span class="more-meta"> 3585 words </span>
           <span class="more-meta"> 8 mins read </span>
         
       </div>
@@ -263,7 +263,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2025-01-20 19:25:00</p>
+<p>💠 2025-04-19 19:25:00</p>
 <hr>
 <h1 id="jvm-监控诊断">JVM 监控&amp;诊断</h1>
 <p>命令行终端</p>
@@ -402,6 +402,10 @@
 <li>提示attach失败时 可修改 <code>echo 0 &gt; /proc/sys/kernel/yama/ptrace_scope</code>  jmap依赖ptrace实现，此选项放开ptrace仅支持父进程执行的限制</li>
 </ul>
 </li>
+</ul>
+<p>注意 centos7.9里，如果当前用户在没有权限的目录下执行dump命令 <strong>低级失误</strong></p>
+<ul>
+<li>将默认创建在 /tmp/hsperfdata_username/ 目录下，由于tmp的清理特性，随时会丢失。</li>
 </ul>
 <hr>
 <h2 id="jhat">jhat</h2>

@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Linux文件系统">
 <meta itemprop="description" content="💠 IO 1.1. IO中断 1.2. DMA 1.3. 零拷贝 文件管理 2.1. 查找文件 2.1.1. find 2.2. 查看文件 2.2.1. stat 2.2.2. file 2.2.3. tree 2.2.4. ls 2.2.5. wc 2.2.6. cat 2.2.7. less 2.2.8. tail 2.2.9. head 2.2.10. ldd 2.3. 比较文件内容 2.3.1. diff 2.3.2. meld 2.3.3. VsCode 2.4. 文件变更命令 2.4.1."><meta itemprop="datePublished" content="2018-12-15T11:14:54+00:00" />
 <meta itemprop="dateModified" content="2018-12-15T11:14:54+00:00" />
-<meta itemprop="wordCount" content="6577">
+<meta itemprop="wordCount" content="6890">
 <meta itemprop="keywords" content="基础," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux文件系统"/>
 <meta name="twitter:description" content="💠 IO 1.1. IO中断 1.2. DMA 1.3. 零拷贝 文件管理 2.1. 查找文件 2.1.1. find 2.2. 查看文件 2.2.1. stat 2.2.2. file 2.2.3. tree 2.2.4. ls 2.2.5. wc 2.2.6. cat 2.2.7. less 2.2.8. tail 2.2.9. head 2.2.10. ldd 2.3. 比较文件内容 2.3.1. diff 2.3.2. meld 2.3.3. VsCode 2.4. 文件变更命令 2.4.1."/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 6577 words </span>
+          <span class="more-meta"> 6890 words </span>
           <span class="more-meta"> 14 mins read </span>
         
       </div>
@@ -351,7 +351,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-12-05 15:02:22</p>
+<p>💠 2025-03-02 19:53:11</p>
 <hr>
 <h1 id="io">IO</h1>
 <p>对于一次Network IO (这里我们以read举例)，它会涉及到两个系统对象:</p>
@@ -867,6 +867,19 @@ vimdiff</p>
 <p><a href="https://github.com/spacedriveapp/spacedrive">spacedrive</a></p>
 </blockquote>
 <h3 id="ext3-ext4">ext3 ext4</h3>
+<blockquote>
+<p><a href="https://brinnatt.com/primary/%E7%AC%AC-4-%E7%AB%A0-linux-ext-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">第 4 章 Linux ext 文件系统</a></p>
+</blockquote>
+<ul>
+<li>简单来说是依据分区大小得到最大inode数，通常 16k空间一个inode（可通过 mkfs.ext4 -i 参数指定, 默认值在 <code>/etc/mke2fs.conf</code> 有定义），例如 10G空间 640K个inode</li>
+<li>inode数量 = 分区大小字节 / inode_ratio
+<ul>
+<li>inode_ratio 默认16K 含义为 bytes/inode 比例</li>
+<li>inode_size ext3 默认128 ext4 默认256 这个值越大，inode占用的空间就越大</li>
+</ul>
+</li>
+<li>大量小文件时，可以考虑降低inode_ratio值，但是会导致实际存放文件的空间减小，反之亦然</li>
+</ul>
 <h3 id="tmpfs">Tmpfs</h3>
 <blockquote>
 <p>虚拟内存文件系统 <a href="https://wiki.archlinux.org/index.php/Tmpfs">wiki</a></p>
@@ -994,13 +1007,20 @@ vimdiff</p>
 </blockquote>
 <ul>
 <li>-h 可读性 human readable</li>
+<li>-i 查看inodes索引情况，大量小文件创建时也会导致inode空间耗尽，可按需使用 xfs jfs 等无限inode文件系统</li>
 <li>-T 查看挂载文件系统的类型信息</li>
 <li>-a 所有文件系统</li>
 <li>-l 只显示本地文件系统</li>
 </ul>
-<p>如果留意到 <code>/分区</code> Avail空间明显小于Size减去Used<br>
-是因为 ext2/3/4 文件系统默认预留了5%的空间给root用户，为了防止普通用户写满磁盘后影响到root用户系统级应用数据落盘，从而引发系统故障<br>
-所以如果home目录单独分了区，就可以取消改设定，如果只有一个分区 / 就不建议删除保留设置。</p>
+<blockquote>
+<p>如果留意到 <code>/分区</code> Avail空间明显小于Size减去Used</p>
+</blockquote>
+<ul>
+<li>
+<p>是因为 ext2/3/4 文件系统默认预留了5%的空间给root用户，为了防止普通用户写满磁盘后影响到root用户系统级应用数据落盘，从而引发系统故障</p>
+</li>
+<li>
+<p>所以如果home目录单独分了区，就可以取消改设定，如果只有一个分区 / 就不建议删除保留设置。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1009,15 +1029,19 @@ vimdiff</p>
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># 查看块情况</span>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    <span class="c1"># 查看分区的块情况</span>
 </span></span><span class="line"><span class="cl">    sudo tune2fs -l /dev/sda8
 </span></span><span class="line"><span class="cl">    <span class="c1"># 设置保留块比例为0%</span>
 </span></span><span class="line"><span class="cl">    sudo tune2fs -m <span class="m">0</span> /dev/sda8
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>duf 现代化 df</li>
-<li>pydf</li>
+</div></li>
+<li>
+<p>duf 现代化 df</p>
+</li>
+<li>
+<p>pydf</p>
+</li>
 </ul>
 <h3 id="du">du</h3>
 <ul>
@@ -1272,6 +1296,7 @@ vimdiff</p>
 <li>注意：目录不能有空格 等特殊字符</li>
 </ul>
 </li>
+<li>重点在于 Exec 和 Icon 的值，Exec 仅相当于当前用户执行 Exec的命令，如果发现应用启动异常只能去脚本或二进制文件调试，通常是环境变量差别</li>
 </ul>
 
     </div>

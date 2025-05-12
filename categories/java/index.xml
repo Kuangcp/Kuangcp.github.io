@@ -13,7 +13,7 @@
       <pubDate>Wed, 04 Oct 2023 11:46:08 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/log/</guid>
-      <description>💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j2 3.1. 配置 3.1.1. 自定义Appender Logback 4.1. 配置理解 4.1.1. 根节点 属性 4.1.2. 子节点 4.1.3. 设置上下文名称： 4.1.4. 设置变量： 4.1.5. 获取时间戳字符串：</description>
+      <description>💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j2 3.1. 安全 3.2. 配置 3.2.1. 自定义Plugin Logback 4.1. 配置理解 4.1.1. 根节点 属性 4.1.2. 子节点 4.1.3. 设置上下文名称： 4.1.4. 设置变量： 4.1.5. 获取时间戳字符串</description>
     </item>
     
     <item>
@@ -94,7 +94,7 @@
       <pubDate>Fri, 05 Apr 2019 22:38:44 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/advancedlearning/javaserialize/</guid>
-      <description>💠 Java中的序列化 1.1. Serializable 1.1.1. JDK序列化和反序列化 编解码框架 2.1. LZ4 2.2. fast-serialization 2.3. Snappy 2.4. Kryo 2.5. JSON 2.6. Protobuf 2.7. Marshalling Tips 3.1. JSON字符串反序列化时泛型丢失问题 💠 2024-11-18 14:31:55 Java</description>
+      <description>💠 Java中的序列化 1.1. Serializable 1.1.1. JDK序列化和反序列化 编解码框架 2.1. LZ4 2.2. fast-serialization 2.3. Snappy 2.4. Kryo 2.5. JSON 2.6. Protobuf 2.7. Marshalling Tips 3.1. JSON字符串反序列化时泛型丢失问题 💠 2025-05-06 19:23:42 Java</description>
     </item>
     
     <item>
@@ -175,7 +175,7 @@
       <pubDate>Fri, 21 Dec 2018 10:50:38 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/spring/springbootdatabase/</guid>
-      <description>💠 数据库模块 1.1. 多数据源配置 1.2. 连接池 1.2.1. c3p0 1.2.2. druid 1.2.3. HikariCP 1.3. Relational Database 1.3.1. JPA 1.3.1.1. Configuration 1.3.1.2. Jpa数据分页 1.3.1.3. 原生SQL 1.3.1.4. Mysql 1.3.1.5. 映射关系 1.3.1.5.1. 一对一 1.3.1.5.2. 一对多 1.3.1.5.3. 多对多 1.3.2. Mybatis 1.4. Non Relational database 1.4.1.</description>
+      <description>💠 数据库模块 1.1. 多数据源配置 1.2. 连接池 1.2.1. c3p0 1.2.2. druid 1.2.2.1. 问题 1.2.3. HikariCP 1.3. Relational Database 1.3.1. JPA 1.3.1.1. Configuration 1.3.1.2. Jpa数据分页 1.3.1.3. 原生SQL 1.3.1.4. Mysql 1.3.1.5. 映射关系 1.3.1.5.1. 一对一 1.3.1.5.2. 一对多 1.3.1.5.3. 多对多 1.3.2. Mybatis 1.4. Non</description>
     </item>
     
     <item>
@@ -301,7 +301,7 @@
       <pubDate>Thu, 13 Dec 2018 16:15:05 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/basic/javaexception/</guid>
-      <description>💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 常见问题 1.3.1. 异常被吞 1.3.2. 异常栈被隐藏 1.3.3. 应该使用大块的try还是细颗粒度的try? 1.3.4. try和for谁包住谁更好?</description>
+      <description>💠 异常 1.1. 异常的继承关系 1.2. 常见异常 1.3. 最佳实践 1.3.1. 异常被吞问题 1.3.2. 不填充异常栈 1.3.3. 异常栈被隐藏 1.3.4. 应该使用大块的try还是细颗粒度的try? 1.3.5. try和f</description>
     </item>
     
     <item>
@@ -364,7 +364,7 @@
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/advancedlearning/javaio/</guid>
-      <description>目录 start Java中的IO IO 简史 BIO NIO AIO 字节流 字符流 应用 文件IO 读取配置文件 可执行jar读取外部配置文件 Maven项目 网络IO NIO Buffer 目录 end|2023-07-24 18:06| Java</description>
+      <description>💠 Java中的IO 1.1. IO 简史 1.1.1. BIO 1.1.2. NIO 1.1.3. AIO 1.2. 字节流 1.3. 字符流 1.4. 应用 1.4.1. 文件IO 1.4.1.1. 计算文件MD5 1.4.1.2. 读取配置文件 1.4.1.2.1. 可执行jar读取外部配置文件 1.4.1.2.2. Mave</description>
     </item>
     
     <item>
@@ -382,7 +382,7 @@
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/test/javatest/</guid>
-      <description>💠 Java的测试 1.1. 断言 1.1.1. 正式代码 1.1.2. 测试代码 1.2. 单元测试 1.3. 代码覆盖率 测试框架 2.1. Junit 2.1.1. Idea上Junit的使用 2.2. TestNG 2.3. Mock框架 2.3.1. Mockito 2.3.2. EasyMock 2.4. DBUnit 2.5. 基准</description>
+      <description>💠 Java的测试 1.1. 断言 1.1.1. 正式代码 1.1.2. 测试代码 1.2. 单元测试 1.3. 代码覆盖率 测试框架 2.1. Junit 2.1.1. Junit5 2.1.2. Idea上Junit的使用 2.2. TestNG 2.3. Mock框架 2.3.1. Mockito 2.3.2. EasyMock 2.4. DBUnit 2.5.</description>
     </item>
     
     <item>
@@ -427,7 +427,7 @@
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/advancedlearning/javaconcurrency/</guid>
-      <description>💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. AQS 3.3. 功能</description>
+      <description>💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. 功能类 3.2.1.</description>
     </item>
     
     <item>
@@ -472,7 +472,7 @@
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/advancedlearning/javaclass/</guid>
-      <description>💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. Tomcat 4.2. 加载和连接 4.3. 方法句柄 Agent 反编译 热部署 💠</description>
+      <description>💠 字节码以及类加载 编译优化 2.1. JIT 即时编译 字节码 3.1. 字节码相关框架 3.2. 常量池 类加载机制 4.1. 类加载器 4.1.1. 特殊场景 4.1.1.1. JDBC 4.1.1.2. Tomcat 4.1.2. JDK9 jigsaw 4.2. 加载和连接 4.3. 方法句柄 Agent 反编</description>
     </item>
     
     <item>
@@ -499,7 +499,7 @@
       <pubDate>Wed, 21 Nov 2018 10:56:52 +0000</pubDate>
       
       <guid>https://www.kuangcp.top/post/java/advancedlearning/javanetwork/</guid>
-      <description>💠 Java网络编程 1.1. 基础 1.1.1. Socket 1.2. Tips 💠 2024-11-18 14:31:55 Java网络编程 参考: Java网络教程 java proxy 基础 获取主机网络信息 获取本地ip Getting the IP address of the current machine using Java Socket 码农翻</description>
+      <description>💠 Java网络编程 1.1. 基础 1.2. Socket 1.2.1. Tuning 1.3. Tips 💠 2025-03-13 10:41:25 Java网络编程 参考: Java网络教程 java proxy 基础 获取主机网络信息 获取本地ip Getting the IP address of the current machine using Java Socket 码</description>
     </item>
     
     <item>

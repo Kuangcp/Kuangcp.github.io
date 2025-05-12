@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j2 3.1. 配置 3.1.1. 自定义Appender Logback 4.1. 配置理解 4.1.1. 根节点 属性 4.1.2. 子节点 4.1.3. 设置上下文名称： 4.1.4. 设置变量： 4.1.5. 获取时间戳字符串：" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j2 3.1. 安全 3.2. 配置 3.2.1. 自定义Plugin Logback 4.1. 配置理解 4.1.1. 根节点 属性 4.1.2. 子节点 4.1.3. 设置上下文名称： 4.1.4. 设置变量： 4.1.5. 获取时间戳字符串" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Java中的日志" />
-<meta property="og:description" content="💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j2 3.1. 配置 3.1.1. 自定义Appender Logback 4.1. 配置理解 4.1.1. 根节点 属性 4.1.2. 子节点 4.1.3. 设置上下文名称： 4.1.4. 设置变量： 4.1.5. 获取时间戳字符串：" />
+<meta property="og:description" content="💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j2 3.1. 安全 3.2. 配置 3.2.1. 自定义Plugin Logback 4.1. 配置理解 4.1.1. 根节点 属性 4.1.2. 子节点 4.1.3. 设置上下文名称： 4.1.4. 设置变量： 4.1.5. 获取时间戳字符串" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/log/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-10-04T11:46:08+00:00" />
 <meta property="article:modified_time" content="2023-10-04T11:46:08+00:00" />
 
 <meta itemprop="name" content="Java中的日志">
-<meta itemprop="description" content="💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j2 3.1. 配置 3.1.1. 自定义Appender Logback 4.1. 配置理解 4.1.1. 根节点 属性 4.1.2. 子节点 4.1.3. 设置上下文名称： 4.1.4. 设置变量： 4.1.5. 获取时间戳字符串："><meta itemprop="datePublished" content="2023-10-04T11:46:08+00:00" />
+<meta itemprop="description" content="💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j2 3.1. 安全 3.2. 配置 3.2.1. 自定义Plugin Logback 4.1. 配置理解 4.1.1. 根节点 属性 4.1.2. 子节点 4.1.3. 设置上下文名称： 4.1.4. 设置变量： 4.1.5. 获取时间戳字符串"><meta itemprop="datePublished" content="2023-10-04T11:46:08+00:00" />
 <meta itemprop="dateModified" content="2023-10-04T11:46:08+00:00" />
-<meta itemprop="wordCount" content="6363">
+<meta itemprop="wordCount" content="6421">
 <meta itemprop="keywords" content="Log," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java中的日志"/>
-<meta name="twitter:description" content="💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j2 3.1. 配置 3.1.1. 自定义Appender Logback 4.1. 配置理解 4.1.1. 根节点 属性 4.1.2. 子节点 4.1.3. 设置上下文名称： 4.1.4. 设置变量： 4.1.5. 获取时间戳字符串："/>
+<meta name="twitter:description" content="💠 日志系统 概念 2.1. slf4j 接口 2.2. MDC Log4j2 3.1. 安全 3.2. 配置 3.2.1. 自定义Plugin Logback 4.1. 配置理解 4.1.1. 根节点 属性 4.1.2. 子节点 4.1.3. 设置上下文名称： 4.1.4. 设置变量： 4.1.5. 获取时间戳字符串"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 6363 words </span>
+          <span class="more-meta"> 6421 words </span>
           <span class="more-meta"> 13 mins read </span>
         
       </div>
@@ -143,9 +143,10 @@
     </li>
     <li><a href="#log4j2">Log4j2</a>
       <ul>
+        <li><a href="#安全">安全</a></li>
         <li><a href="#配置">配置</a>
           <ul>
-            <li><a href="#自定义appender">自定义Appender</a></li>
+            <li><a href="#自定义plugin">自定义Plugin</a></li>
           </ul>
         </li>
       </ul>
@@ -205,9 +206,10 @@
 <li><a href="#log4j2">Log4j2</a></li>
 </ol>
 <ul>
-<li>3.1. <a href="#%E9%85%8D%E7%BD%AE">配置</a>
+<li>3.1. <a href="#%E5%AE%89%E5%85%A8">安全</a></li>
+<li>3.2. <a href="#%E9%85%8D%E7%BD%AE">配置</a>
 <ul>
-<li>3.1.1. <a href="#%E8%87%AA%E5%AE%9A%E4%B9%89appender">自定义Appender</a></li>
+<li>3.2.1. <a href="#%E8%87%AA%E5%AE%9A%E4%B9%89plugin">自定义Plugin</a></li>
 </ul>
 </li>
 </ul>
@@ -259,7 +261,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2025-01-23 16:38:24</p>
+<p>💠 2025-02-11 11:26:37</p>
 <hr>
 <h1 id="日志系统">日志系统</h1>
 <blockquote>
@@ -305,13 +307,15 @@
 <p><a href="https://logging.apache.org/log4j/2.x/manual/configuration.html">官方文档, 配置详解</a>
 听说是为了解决Log4j无法在多环境使用的问题 , 也就是类似于 SpringBoot 多profile的功能</p>
 </blockquote>
+<h2 id="安全">安全</h2>
 <blockquote>
-<p><a href="https://segmentfault.com/a/1190000022741931">java - 基于log4j2简易实现日志告警</a></p>
+<p><a href="https://www.freebuf.com/articles/web/320390.html">apache-Log4j2 远程命令执行漏洞复现及反弹shell - FreeBuf网络安全行业门户</a></p>
 </blockquote>
 <h2 id="配置">配置</h2>
-<h3 id="自定义appender">自定义Appender</h3>
+<h3 id="自定义plugin">自定义Plugin</h3>
 <blockquote>
-<p><a href="https://stackoverflow.com/questions/24205093/how-to-create-a-custom-appender-in-log4j2">java - How to Create a Custom Appender in log4j2? - Stack Overflow</a></p>
+<p><a href="https://stackoverflow.com/questions/24205093/how-to-create-a-custom-appender-in-log4j2">java - How to Create a Custom Appender in log4j2? - Stack Overflow</a><br>
+<a href="https://segmentfault.com/a/1190000022741931">java - 基于log4j2简易实现日志告警</a></p>
 </blockquote>
 <ol>
 <li>log4j2.xml</li>
@@ -370,6 +374,10 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
+<blockquote>
+<p><a href="https://logging.apache.org/log4j/2.x/manual/plugins.html">Plugins :: Apache Log4j</a>  2.0等高版本，额外需要配置注解处理</p>
+</blockquote>
+<hr>
 <h1 id="logback">Logback</h1>
 <ul>
 <li><a href="https://github.com/Kuangcp/Notes/blob/master/ConfigFiles/Log/logback.xml">logback简单示例</a></li>

@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Java的测试 1.1. 断言 1.1.1. 正式代码 1.1.2. 测试代码 1.2. 单元测试 1.3. 代码覆盖率 测试框架 2.1. Junit 2.1.1. Idea上Junit的使用 2.2. TestNG 2.3. Mock框架 2.3.1. Mockito 2.3.2. EasyMock 2.4. DBUnit 2.5. 基准" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Java的测试 1.1. 断言 1.1.1. 正式代码 1.1.2. 测试代码 1.2. 单元测试 1.3. 代码覆盖率 测试框架 2.1. Junit 2.1.1. Junit5 2.1.2. Idea上Junit的使用 2.2. TestNG 2.3. Mock框架 2.3.1. Mockito 2.3.2. EasyMock 2.4. DBUnit 2.5." /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Java中的测试" />
-<meta property="og:description" content="💠 Java的测试 1.1. 断言 1.1.1. 正式代码 1.1.2. 测试代码 1.2. 单元测试 1.3. 代码覆盖率 测试框架 2.1. Junit 2.1.1. Idea上Junit的使用 2.2. TestNG 2.3. Mock框架 2.3.1. Mockito 2.3.2. EasyMock 2.4. DBUnit 2.5. 基准" />
+<meta property="og:description" content="💠 Java的测试 1.1. 断言 1.1.1. 正式代码 1.1.2. 测试代码 1.2. 单元测试 1.3. 代码覆盖率 测试框架 2.1. Junit 2.1.1. Junit5 2.1.2. Idea上Junit的使用 2.2. TestNG 2.3. Mock框架 2.3.1. Mockito 2.3.2. EasyMock 2.4. DBUnit 2.5." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/java/test/javatest/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-11-21T10:56:52+00:00" />
 <meta property="article:modified_time" content="2018-11-21T10:56:52+00:00" />
 
 <meta itemprop="name" content="Java中的测试">
-<meta itemprop="description" content="💠 Java的测试 1.1. 断言 1.1.1. 正式代码 1.1.2. 测试代码 1.2. 单元测试 1.3. 代码覆盖率 测试框架 2.1. Junit 2.1.1. Idea上Junit的使用 2.2. TestNG 2.3. Mock框架 2.3.1. Mockito 2.3.2. EasyMock 2.4. DBUnit 2.5. 基准"><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
+<meta itemprop="description" content="💠 Java的测试 1.1. 断言 1.1.1. 正式代码 1.1.2. 测试代码 1.2. 单元测试 1.3. 代码覆盖率 测试框架 2.1. Junit 2.1.1. Junit5 2.1.2. Idea上Junit的使用 2.2. TestNG 2.3. Mock框架 2.3.1. Mockito 2.3.2. EasyMock 2.4. DBUnit 2.5."><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="2136">
+<meta itemprop="wordCount" content="2152">
 <meta itemprop="keywords" content="测试," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java中的测试"/>
-<meta name="twitter:description" content="💠 Java的测试 1.1. 断言 1.1.1. 正式代码 1.1.2. 测试代码 1.2. 单元测试 1.3. 代码覆盖率 测试框架 2.1. Junit 2.1.1. Idea上Junit的使用 2.2. TestNG 2.3. Mock框架 2.3.1. Mockito 2.3.2. EasyMock 2.4. DBUnit 2.5. 基准"/>
+<meta name="twitter:description" content="💠 Java的测试 1.1. 断言 1.1.1. 正式代码 1.1.2. 测试代码 1.2. 单元测试 1.3. 代码覆盖率 测试框架 2.1. Junit 2.1.1. Junit5 2.1.2. Idea上Junit的使用 2.2. TestNG 2.3. Mock框架 2.3.1. Mockito 2.3.2. EasyMock 2.4. DBUnit 2.5."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 2136 words </span>
+          <span class="more-meta"> 2152 words </span>
           <span class="more-meta"> 5 mins read </span>
         
       </div>
@@ -149,6 +149,7 @@
       <ul>
         <li><a href="#junit">Junit</a>
           <ul>
+            <li><a href="#junit5">Junit5</a></li>
             <li><a href="#idea上junit的使用">Idea上Junit的使用</a></li>
           </ul>
         </li>
@@ -197,7 +198,8 @@
 <ul>
 <li>2.1. <a href="#junit">Junit</a>
 <ul>
-<li>2.1.1. <a href="#idea%E4%B8%8Ajunit%E7%9A%84%E4%BD%BF%E7%94%A8">Idea上Junit的使用</a></li>
+<li>2.1.1. <a href="#junit5">Junit5</a></li>
+<li>2.1.2. <a href="#idea%E4%B8%8Ajunit%E7%9A%84%E4%BD%BF%E7%94%A8">Idea上Junit的使用</a></li>
 </ul>
 </li>
 <li>2.2. <a href="#testng">TestNG</a></li>
@@ -221,7 +223,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2025-01-22 11:45:30</p>
+<p>💠 2025-04-16 10:16:34</p>
 <hr>
 <h1 id="java的测试">Java的测试</h1>
 <blockquote>
@@ -287,6 +289,13 @@ assert适用那些你知道具体是什么错误，你和你的调用者已经�
 <li>原因:</li>
 </ul>
 </li>
+</ul>
+<h3 id="junit5">Junit5</h3>
+<blockquote>
+<p><a href="https://junit.org/junit5/docs/current/user-guide/#overview">JUnit 5 User Guide</a></p>
+</blockquote>
+<ul>
+<li>重复运行test <code>@RepeatedTest(10)</code></li>
 </ul>
 <h3 id="idea上junit的使用">Idea上Junit的使用</h3>
 <p><em>可以使用TestMe插件</em></p>

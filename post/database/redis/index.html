@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. Stream 3.7. GEO地理位置 Scan Pipelining Pub/Sub发" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. JSON 3.7. Stream 3.8. GEO地理位置 Scan Pipelining Pub/Su" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Redis" />
-<meta property="og:description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. Stream 3.7. GEO地理位置 Scan Pipelining Pub/Sub发" />
+<meta property="og:description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. JSON 3.7. Stream 3.8. GEO地理位置 Scan Pipelining Pub/Su" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/database/redis/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2018-12-16T17:28:55+00:00" />
 <meta property="article:modified_time" content="2018-12-16T17:28:55+00:00" />
 
 <meta itemprop="name" content="Redis">
-<meta itemprop="description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. Stream 3.7. GEO地理位置 Scan Pipelining Pub/Sub发"><meta itemprop="datePublished" content="2018-12-16T17:28:55+00:00" />
+<meta itemprop="description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. JSON 3.7. Stream 3.8. GEO地理位置 Scan Pipelining Pub/Su"><meta itemprop="datePublished" content="2018-12-16T17:28:55+00:00" />
 <meta itemprop="dateModified" content="2018-12-16T17:28:55+00:00" />
-<meta itemprop="wordCount" content="4375">
+<meta itemprop="wordCount" content="4419">
 <meta itemprop="keywords" content="Redis," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Redis"/>
-<meta name="twitter:description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. Stream 3.7. GEO地理位置 Scan Pipelining Pub/Sub发"/>
+<meta name="twitter:description" content="💠 Redis 1.1. Book 安装和配置 2.1. Windows 2.2. Linux 2.2.1. Docker 方式 2.2.2. 解压即用 2.3. Redis配置文件 数据类型 3.1. String 3.1.1. BitMap 3.1.2. HyperLogLog 3.2. List 3.3. Set 3.4. Zset 3.5. Hash 3.6. JSON 3.7. Stream 3.8. GEO地理位置 Scan Pipelining Pub/Su"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
             </div>
-          <span class="more-meta"> 4375 words </span>
+          <span class="more-meta"> 4419 words </span>
           <span class="more-meta"> 9 mins read </span>
         
       </div>
@@ -162,6 +162,7 @@
         <li><a href="#set">Set</a></li>
         <li><a href="#zset">Zset</a></li>
         <li><a href="#hash">Hash</a></li>
+        <li><a href="#json">JSON</a></li>
         <li><a href="#stream">Stream</a></li>
         <li><a href="#geo地理位置">GEO地理位置</a></li>
       </ul>
@@ -242,8 +243,9 @@
 <li>3.3. <a href="#set">Set</a></li>
 <li>3.4. <a href="#zset">Zset</a></li>
 <li>3.5. <a href="#hash">Hash</a></li>
-<li>3.6. <a href="#stream">Stream</a></li>
-<li>3.7. <a href="#geo%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE">GEO地理位置</a></li>
+<li>3.6. <a href="#json">JSON</a></li>
+<li>3.7. <a href="#stream">Stream</a></li>
+<li>3.8. <a href="#geo%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE">GEO地理位置</a></li>
 </ul>
 </li>
 <li>
@@ -302,7 +304,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2024-09-14 11:51:16</p>
+<p>💠 2025-05-09 14:24:14</p>
 <hr>
 <h1 id="redis">Redis</h1>
 <blockquote>
@@ -598,7 +600,14 @@
 <li>HSCAN</li>
 <li>HSTRLEN</li>
 </ul>
+<h2 id="json">JSON</h2>
+<blockquote>
+<p><a href="https://redis.io/docs/latest/develop/data-types/json/">JSON | Docs</a><code>Redis6开始原生支持JSON操作</code></p>
+</blockquote>
 <h2 id="stream">Stream</h2>
+<blockquote>
+<p><a href="https://redis.io/docs/latest/develop/data-types/streams/">Redis Streams | Docs</a><code>Redis5开始支持</code></p>
+</blockquote>
 <hr>
 <h2 id="geo地理位置">GEO地理位置</h2>
 <ul>

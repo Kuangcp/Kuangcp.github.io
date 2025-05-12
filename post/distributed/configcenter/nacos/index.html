@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Nacos 1.1. Design Tips 💠 2024-04-07 13:37:31 Nacos Nacos Design Tips 集群模式出现节点数据不一致的情况 检查日志看是否网络中断或超时导致 重启集群 Nacos 客户端 SocketTimeOut 异常 检查网络问题 检查应用端GC问题" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Kuangcp" /><meta name="description" content="💠 Nacos 1.1. Design Tips 💠 2025-05-06 11:19:53 Nacos Nacos Design 配置加载 spring.cloud.config.override-none 默认false 设置true后,会优先使用本地配置（本地环境变量，本地properties文件等）覆盖远程配置" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Nacos" />
-<meta property="og:description" content="💠 Nacos 1.1. Design Tips 💠 2024-04-07 13:37:31 Nacos Nacos Design Tips 集群模式出现节点数据不一致的情况 检查日志看是否网络中断或超时导致 重启集群 Nacos 客户端 SocketTimeOut 异常 检查网络问题 检查应用端GC问题" />
+<meta property="og:description" content="💠 Nacos 1.1. Design Tips 💠 2025-05-06 11:19:53 Nacos Nacos Design 配置加载 spring.cloud.config.override-none 默认false 设置true后,会优先使用本地配置（本地环境变量，本地properties文件等）覆盖远程配置" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.kuangcp.top/post/distributed/configcenter/nacos/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2024-01-11T23:00:53+00:00" />
 <meta property="article:modified_time" content="2024-01-11T23:00:53+00:00" />
 
 <meta itemprop="name" content="Nacos">
-<meta itemprop="description" content="💠 Nacos 1.1. Design Tips 💠 2024-04-07 13:37:31 Nacos Nacos Design Tips 集群模式出现节点数据不一致的情况 检查日志看是否网络中断或超时导致 重启集群 Nacos 客户端 SocketTimeOut 异常 检查网络问题 检查应用端GC问题"><meta itemprop="datePublished" content="2024-01-11T23:00:53+00:00" />
+<meta itemprop="description" content="💠 Nacos 1.1. Design Tips 💠 2025-05-06 11:19:53 Nacos Nacos Design 配置加载 spring.cloud.config.override-none 默认false 设置true后,会优先使用本地配置（本地环境变量，本地properties文件等）覆盖远程配置"><meta itemprop="datePublished" content="2024-01-11T23:00:53+00:00" />
 <meta itemprop="dateModified" content="2024-01-11T23:00:53+00:00" />
-<meta itemprop="wordCount" content="70">
+<meta itemprop="wordCount" content="188">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nacos"/>
-<meta name="twitter:description" content="💠 Nacos 1.1. Design Tips 💠 2024-04-07 13:37:31 Nacos Nacos Design Tips 集群模式出现节点数据不一致的情况 检查日志看是否网络中断或超时导致 重启集群 Nacos 客户端 SocketTimeOut 异常 检查网络问题 检查应用端GC问题"/>
+<meta name="twitter:description" content="💠 Nacos 1.1. Design Tips 💠 2025-05-06 11:19:53 Nacos Nacos Design 配置加载 spring.cloud.config.override-none 默认false 设置true后,会优先使用本地配置（本地环境变量，本地properties文件等）覆盖远程配置"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2024-01-11 </span>
         
-          <span class="more-meta"> 70 words </span>
+          <span class="more-meta"> 188 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -158,13 +158,25 @@
 </ol>
 </li>
 </ul>
-<p>💠 2024-04-07 13:37:31</p>
+<p>💠 2025-05-06 11:19:53</p>
 <hr>
 <h1 id="nacos">Nacos</h1>
 <blockquote>
 <p><a href="https://nacos.io/en-us/">Nacos</a></p>
 </blockquote>
 <h2 id="design">Design</h2>
+<blockquote>
+<p>配置加载</p>
+</blockquote>
+<p>spring.cloud.config.override-none 默认false 设置true后,会优先使用本地配置（本地环境变量，本地properties文件等）覆盖远程配置（此配置需要配置在远程Nacos上）</p>
+<ul>
+<li>org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration#insertPropertySources 处理逻辑</li>
+</ul>
+<p>org.springframework.util.PropertyPlaceholderHelper#parseStringValue<br>
+org.springframework.core.env.PropertySourcesPropertyResolver#logKeyFound 按顺序从 source 列表加载到第一个配置值就return</p>
+<ul>
+<li>logging.level.org.springframework.core.env=DEBUG 开启日志查看加载情况</li>
+</ul>
 <h1 id="tips">Tips</h1>
 <blockquote>
 <p>集群模式出现节点数据不一致的情况</p>
