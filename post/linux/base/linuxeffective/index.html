@@ -49,7 +49,7 @@
 <meta itemprop="name" content="高效的Linux">
 <meta itemprop="description" content="💠 高效的Linux 1.1. 效率工具 1.1.1. 协作工具 1.1.2. 目录跳转 1.1.3. xdotool 1.1.4. rofi 1.1.5. 远程工具 1.2. 零散工具集合 1.2.1. 剪贴板管理 1.3. 硬件检测工具 1.4. 文本处理 1.5. 文件操作 1.6. 安全工具 1.6.1. gpg"><meta itemprop="datePublished" content="2019-04-18T22:04:15+00:00" />
 <meta itemprop="dateModified" content="2019-04-18T22:04:15+00:00" />
-<meta itemprop="wordCount" content="2490">
+<meta itemprop="wordCount" content="2530">
 <meta itemprop="keywords" content="Effective," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="高效的Linux"/>
 <meta name="twitter:description" content="💠 高效的Linux 1.1. 效率工具 1.1.1. 协作工具 1.1.2. 目录跳转 1.1.3. xdotool 1.1.4. rofi 1.1.5. 远程工具 1.2. 零散工具集合 1.2.1. 剪贴板管理 1.3. 硬件检测工具 1.4. 文本处理 1.5. 文件操作 1.6. 安全工具 1.6.1. gpg"/>
@@ -123,8 +123,8 @@
             <a href="/categories/linux/"> Linux </a>
             <a href="/categories/wiki/"> WIKI </a>
             </div>
-          <span class="more-meta"> 2490 words </span>
-          <span class="more-meta"> 5 mins read </span>
+          <span class="more-meta"> 2530 words </span>
+          <span class="more-meta"> 6 mins read </span>
         
       </div>
     </header>
@@ -193,6 +193,7 @@
     <li><a href="#外设">外设</a>
       <ul>
         <li><a href="#鼠标">鼠标</a></li>
+        <li><a href="#显卡">显卡</a></li>
       </ul>
     </li>
     <li><a href="#tips">Tips</a></li>
@@ -283,6 +284,7 @@
 </ol>
 <ul>
 <li>5.1. <a href="#%E9%BC%A0%E6%A0%87">鼠标</a></li>
+<li>5.2. <a href="#%E6%98%BE%E5%8D%A1">显卡</a></li>
 </ul>
 </li>
 <li>
@@ -291,7 +293,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2025-05-09 14:24:14</p>
+<p>💠 2025-05-15 15:33:14</p>
 <hr>
 <h1 id="高效的linux">高效的Linux</h1>
 <blockquote>
@@ -405,22 +407,28 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">  <span class="c1">#!/bin/bash</span>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">tmd</span><span class="o">=</span>xfce4-terminal
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nv">tmd</span><span class="o">=</span>xfce4-terminal
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="nv">PID</span><span class="o">=</span><span class="k">$(</span>pgrep -x <span class="nv">$tmd</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">[[</span> <span class="nv">$PID</span> -ne <span class="s2">&#34;&#34;</span> <span class="o">]]</span>
-</span></span><span class="line"><span class="cl">  <span class="k">then</span>
-</span></span><span class="line"><span class="cl">      xdotool windowactivate <span class="sb">`</span>xdotool search --pid <span class="nv">$PID</span> <span class="p">|</span> tail -1<span class="sb">`</span>
-</span></span><span class="line"><span class="cl">  <span class="k">else</span>
-</span></span><span class="line"><span class="cl">      <span class="nv">$tmd</span>
-</span></span><span class="line"><span class="cl">  <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PID</span><span class="o">=</span><span class="k">$(</span>pgrep -x <span class="nv">$tmd</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="nv">$PID</span> -ne <span class="s2">&#34;&#34;</span> <span class="o">]]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    xdotool windowactivate <span class="sb">`</span>xdotool search --pid <span class="nv">$PID</span> <span class="p">|</span> tail -1<span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$tmd</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="rofi">rofi</h3>
-<p><a href="https://github.com/davatorium/rofi">Github rofi</a> 窗口切换</p>
+<p><a href="https://github.com/davatorium/rofi">Github rofi</a> 窗口切换，命令执行</p>
+<blockquote>
+<p><a href="https://wiki.archlinuxcn.org/wiki/Rofi">Rofi - Arch Linux 中文维基</a></p>
+</blockquote>
 <p>设置 <code>rofi -show window</code> 快捷键为 右Alt</p>
+<ul>
+<li>rofi-theme-selector 预览主题 Alt-A 保存选择</li>
+</ul>
 <h3 id="远程工具">远程工具</h3>
 <p><a href="https://www.joxrays.com/linux-rdp-windows/">rdesktop and xfreerdp</a></p>
 <p>rdesktop xfreerdp</p>
@@ -545,6 +553,7 @@ Supervisor 进程监控管理</p>
 </blockquote>
 <ul>
 <li>检测健康状况 <code>smartctl -Hc /dev/sda9</code></li>
+<li>查看全部信息 <code>smartctl -a /dev/sda</code></li>
 </ul>
 <hr>
 <h2 id="文本处理">文本处理</h2>
@@ -783,6 +792,10 @@ Supervisor 进程监控管理</p>
 <ul>
 <li>solaar Logitech鼠标Options修改</li>
 </ul>
+<h2 id="显卡">显卡</h2>
+<blockquote>
+<p><a href="/Linux/Arch/Manjaro.md#%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8">Manjaro 显卡</a></p>
+</blockquote>
 <hr>
 <h1 id="tips">Tips</h1>
 <ul>

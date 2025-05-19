@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Java并发">
 <meta itemprop="description" content="💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. 功能类 3.2.1."><meta itemprop="datePublished" content="2018-11-21T10:56:52+00:00" />
 <meta itemprop="dateModified" content="2018-11-21T10:56:52+00:00" />
-<meta itemprop="wordCount" content="7393">
+<meta itemprop="wordCount" content="7405">
 <meta itemprop="keywords" content="Concurrency," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java并发"/>
 <meta name="twitter:description" content="💠 Java并发 1.1. JMM Java内存模型 1.2. 理论知识 1.2.1. 可能的问题 1.2.2. 好的习惯 关键字 2.1. synchronized 2.1.1. 正确使用 2.2. volatile 2.2.1. 正确使用 现代并发JUC包 3.1. 概念 3.1.1. 读写锁 3.2. 功能类 3.2.1."/>
@@ -122,7 +122,7 @@
         <div class="post-category">
             <a href="/categories/java/"> Java </a>
             </div>
-          <span class="more-meta"> 7393 words </span>
+          <span class="more-meta"> 7405 words </span>
           <span class="more-meta"> 15 mins read </span>
         
       </div>
@@ -174,9 +174,6 @@
             <li><a href="#semaphore">Semaphore</a></li>
             <li><a href="#phaser">Phaser</a></li>
             <li><a href="#exchanger">Exchanger</a></li>
-            <li><a href="#concurrenthashmap">ConcurrentHashMap</a></li>
-            <li><a href="#concurrentskiplistmap">ConcurrentSkipListMap</a></li>
-            <li><a href="#copyonwritearraylist">CopyOnWriteArrayList</a></li>
           </ul>
         </li>
       </ul>
@@ -185,9 +182,12 @@
     <li><a href="#实践">实践</a>
       <ul>
         <li><a href="#任务建模">任务建模</a></li>
+        <li><a href="#concurrenthashmap">ConcurrentHashMap</a></li>
+        <li><a href="#concurrentskiplistmap">ConcurrentSkipListMap</a></li>
+        <li><a href="#copyonwritearraylist">CopyOnWriteArrayList</a></li>
         <li><a href="#queue">Queue</a>
           <ul>
-            <li><a href="#blockingqueue-interface">BlockingQueue interface</a></li>
+            <li><a href="#blockingqueue">BlockingQueue</a></li>
           </ul>
         </li>
       </ul>
@@ -249,9 +249,6 @@
 <li>3.2.5. <a href="#semaphore">Semaphore</a></li>
 <li>3.2.6. <a href="#phaser">Phaser</a></li>
 <li>3.2.7. <a href="#exchanger">Exchanger</a></li>
-<li>3.2.8. <a href="#concurrenthashmap">ConcurrentHashMap</a></li>
-<li>3.2.9. <a href="#concurrentskiplistmap">ConcurrentSkipListMap</a></li>
-<li>3.2.10. <a href="#copyonwritearraylist">CopyOnWriteArrayList</a></li>
 </ul>
 </li>
 </ul>
@@ -267,11 +264,14 @@
 </ol>
 <ul>
 <li>5.1. <a href="#%E4%BB%BB%E5%8A%A1%E5%BB%BA%E6%A8%A1">任务建模</a></li>
-<li>5.2. <a href="#queue">Queue</a>
+<li>5.2. <a href="#concurrenthashmap">ConcurrentHashMap</a></li>
+<li>5.3. <a href="#concurrentskiplistmap">ConcurrentSkipListMap</a></li>
+<li>5.4. <a href="#copyonwritearraylist">CopyOnWriteArrayList</a></li>
+<li>5.5. <a href="#queue">Queue</a>
 <ul>
-<li>5.2.1. <a href="#blockingqueue-interface">BlockingQueue interface</a>
+<li>5.5.1. <a href="#blockingqueue">BlockingQueue</a>
 <ul>
-<li>5.2.1.1. <a href="#transferqueue-interface">TransferQueue interface</a></li>
+<li>5.5.1.1. <a href="#transferqueue">TransferQueue</a></li>
 </ul>
 </li>
 </ul>
@@ -279,7 +279,7 @@
 </ul>
 </li>
 </ul>
-<p>💠 2025-05-06 19:23:42</p>
+<p>💠 2025-05-13 14:25:46</p>
 <hr>
 <h1 id="java并发">Java并发</h1>
 <blockquote>
@@ -760,53 +760,6 @@
 </blockquote>
 <h3 id="phaser">Phaser</h3>
 <h3 id="exchanger">Exchanger</h3>
-<h3 id="concurrenthashmap">ConcurrentHashMap</h3>
-<ul>
-<li><code>ConcurrentHashMap</code> 是 HashMap的并发版本</li>
-<li>修改HashMap，并不需要将整个结构都锁住，只要锁住即将修改的桶（就是单个元素）
-<ul>
-<li>好的HashMap 实现，在读取时不需要锁，写入时只要锁住要修改的单个桶 Java能达到这个标准，但是需要程序员去操作底层的细节才能实现</li>
-</ul>
-</li>
-<li><code>ConcurrentHashMap</code>类 还实现了ConcurrentMap接口，有些提供了还提供了原子操作的新方法
-<ul>
-<li><code>putIfAbsent()</code> 如果还没有对应键，就把键/值添加进去</li>
-<li><code>remove()</code> 如果键存在而且值与当前状态相等，则用原子方式移除键值对</li>
-<li><code>replace()</code> API 为HashMap中原子替换的操作方法提供了两种不同的形式</li>
-</ul>
-</li>
-<li>key value 均不允许为null</li>
-</ul>
-<blockquote>
-<p>1.7 到 1.8 改动</p>
-</blockquote>
-<ul>
-<li>数据结构：取消了 Segment 分段锁的数据结构，取而代之的是数组+链表+红黑树的结构。</li>
-<li>保证线程安全机制：JDK1.7 采用Segment 的分段锁机制实现线程安全，其中 Segment 继承自 ReentrantLock 。JDK1.8采用CAS+synchronized保证线程安全。</li>
-<li>锁的粒度：JDK1.7 是对需要进行数据操作的 Segment 加锁，JDK1.8调整为对每个数组元素加锁（Node）。</li>
-<li>链表转化为红黑树：定位节点的 hash 算法简化会带来弊端，hash冲突加剧，因此在链表节点数量大于 8（且数据总量大于等于 64）时，会将链表转化为红黑树进行存储。</li>
-<li>查询时间复杂度：从JDK1.7的遍历链表O(n)， JDK1.8 变成遍历红黑树O(logN)。</li>
-</ul>
-<p>ConcurrentHashMap的迭代器是弱一致性</p>
-<h3 id="concurrentskiplistmap">ConcurrentSkipListMap</h3>
-<p>基于跳表实现的并发有序Map</p>
-<p>ConcurrentSkipListMap的迭代器是弱一致性的，它不会抛出ConcurrentModificationException异常，但是无法保证迭代器遍历的元素是一个完整的快照。因此，在迭代器遍历ConcurrentSkipListMap时，可能会遗漏或重复遍历某些元素。</p>
-<h3 id="copyonwritearraylist">CopyOnWriteArrayList</h3>
-<ul>
-<li>标准的ArrayList的替代，通过写时复制语义来实现线程安全性，也就是说修改列表的任何操作都会创建一个列表底层数组的新副本
-<ul>
-<li>这就意味着所有成形的迭代器都不会遇到意料之外的修改 （脏读）</li>
-</ul>
-</li>
-<li>这一般需要很大的开销，但是当遍历操作的数量大大超过可变操作的数量时，这种方法可能比其他替代方法更 有效。在不能或不想进行同步遍历
-<ul>
-<li>适用于读操作多于写操作时，比如事件监听器、缓存等</li>
-</ul>
-</li>
-<li>但又需要从并发线程中排除冲突时，它也很有用。“快照”风格的迭代器方法在创建迭代器时使用了对数组状态的引用。此数组在迭代器的生存期内不会更改，</li>
-<li>因此不可能发生冲突，并且迭代器保证不会抛出 ConcurrentModificationException。创建迭代器以后，迭代器就不会反映列表的添加、移除或者更改。</li>
-<li>在迭代器上进行的元素更改操作（remove、set 和 add）不受支持。这些方法将抛出 UnsupportedOperationException。</li>
-</ul>
 <hr>
 <h1 id="结构化并发">结构化并发</h1>
 <p><a href="https://openjdk.org/jeps/453">Structured Concurrency</a></p>
@@ -818,6 +771,14 @@
 </blockquote>
 <p>在技术和业务角度，都应该考虑抽象和分层，将近似的事情放在一个线程池内，更有利于针对性设置参数达到整体的效率优化。<br>
 例如Tomcat中的 <a href="/Java/Ecosystem/Servlet/TomcatDesign.md#nioendpoint">NioEndpoint</a> 将 接受连接，收连接数据，执行连接任务和发送响应，拆分成三个线程池</p>
+<blockquote>
+<p><a href="https://javaguide.cn/java/concurrent/java-concurrent-collections.html">Java 常见并发容器总结 | JavaGuide</a></p>
+</blockquote>
+<p>ConcurrentHashMap
+CopyOnWriteArrayList
+ConcurrentLinkedQueue
+BlockingQueue
+ConcurrentSkipListMap</p>
 <h2 id="任务建模">任务建模</h2>
 <blockquote>
 <p>要把目标代码做成可调用（执行者调用）的结构，而不是单独开线程运行 <a href="https://github.com/Kuangcp/JavaBase/blob/master/concurrency/src/main/java/com/github/kuangcp/schedule/CreateModel.groovy">示例代码</a></p>
@@ -846,6 +807,53 @@
 <li>可以基于FutureTask的Runnable特性，把任务写成Callable然后封装进一个有执行者地调度并在必要时可以取消的FutureTask</li>
 </ul>
 <hr>
+<h2 id="concurrenthashmap">ConcurrentHashMap</h2>
+<ul>
+<li><code>ConcurrentHashMap</code> 是 HashMap的并发版本</li>
+<li>修改HashMap，并不需要将整个结构都锁住，只要锁住即将修改的桶（就是单个元素）
+<ul>
+<li>好的HashMap 实现，在读取时不需要锁，写入时只要锁住要修改的单个桶 Java能达到这个标准，但是需要程序员去操作底层的细节才能实现</li>
+</ul>
+</li>
+<li><code>ConcurrentHashMap</code>类 还实现了ConcurrentMap接口，有些提供了还提供了原子操作的新方法
+<ul>
+<li><code>putIfAbsent()</code> 如果还没有对应键，就把键/值添加进去</li>
+<li><code>remove()</code> 如果键存在而且值与当前状态相等，则用原子方式移除键值对</li>
+<li><code>replace()</code> API 为HashMap中原子替换的操作方法提供了两种不同的形式</li>
+</ul>
+</li>
+<li>key value 均不允许为null</li>
+</ul>
+<blockquote>
+<p>1.7 到 1.8 改动</p>
+</blockquote>
+<ul>
+<li>数据结构：取消了 Segment 分段锁的数据结构，取而代之的是数组+链表+红黑树的结构。</li>
+<li>保证线程安全机制：JDK1.7 采用Segment 的分段锁机制实现线程安全，其中 Segment 继承自 ReentrantLock 。JDK1.8采用CAS+synchronized保证线程安全。</li>
+<li>锁的粒度：JDK1.7 是对需要进行数据操作的 Segment 加锁，JDK1.8调整为对每个数组元素加锁（Node）。</li>
+<li>链表转化为红黑树：定位节点的 hash 算法简化会带来弊端，hash冲突加剧，因此在链表节点数量大于 8（且数据总量大于等于 64）时，会将链表转化为红黑树进行存储。</li>
+<li>查询时间复杂度：从JDK1.7的遍历链表O(n)， JDK1.8 变成遍历红黑树O(logN)。</li>
+</ul>
+<p>ConcurrentHashMap的迭代器是弱一致性</p>
+<h2 id="concurrentskiplistmap">ConcurrentSkipListMap</h2>
+<p>基于跳表实现的并发有序Map</p>
+<p>ConcurrentSkipListMap的迭代器是弱一致性的，它不会抛出ConcurrentModificationException异常，但是无法保证迭代器遍历的元素是一个完整的快照。因此，在迭代器遍历ConcurrentSkipListMap时，可能会遗漏或重复遍历某些元素。</p>
+<h2 id="copyonwritearraylist">CopyOnWriteArrayList</h2>
+<ul>
+<li>标准的ArrayList的替代，通过写时复制语义来实现线程安全性，也就是说修改列表的任何操作都会创建一个列表底层数组的新副本
+<ul>
+<li>这就意味着所有成形的迭代器都不会遇到意料之外的修改 （脏读）</li>
+</ul>
+</li>
+<li>这一般需要很大的开销，但是当遍历操作的数量大大超过可变操作的数量时，这种方法可能比其他替代方法更 有效。在不能或不想进行同步遍历
+<ul>
+<li>适用于读操作多于写操作时，比如事件监听器、缓存等</li>
+</ul>
+</li>
+<li>但又需要从并发线程中排除冲突时，它也很有用。“快照”风格的迭代器方法在创建迭代器时使用了对数组状态的引用。此数组在迭代器的生存期内不会更改，</li>
+<li>因此不可能发生冲突，并且迭代器保证不会抛出 ConcurrentModificationException。创建迭代器以后，迭代器就不会反映列表的添加、移除或者更改。</li>
+<li>在迭代器上进行的元素更改操作（remove、set 和 add）不受支持。这些方法将抛出 UnsupportedOperationException。</li>
+</ul>
 <h2 id="queue">Queue</h2>
 <table>
 <thead>
@@ -902,7 +910,7 @@
 <li><a href="https://github.com/LMAX-Exchange/disruptor">Github</a> <a href="https://lmax-exchange.github.io/disruptor/user-guide/index.html">User Guide</a></li>
 <li>经过验证可以发现由于控制是使用无锁的CAS实现，当队列空置时，CPU空耗高占用很明显。也就是说这个队列适合对繁忙且延迟敏感的业务。</li>
 </ul>
-<h3 id="blockingqueue-interface">BlockingQueue interface</h3>
+<h3 id="blockingqueue">BlockingQueue</h3>
 <ul>
 <li>基本方法
 <ul>
@@ -961,7 +969,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="transferqueue-interface">TransferQueue interface</h4>
+<h4 id="transferqueue">TransferQueue</h4>
 <ul>
 <li>本质上是多了一项 transfer()操作的BlockingQueue， 如果接收线程处于等待状态， 该操作会马上把工作项传给他。</li>
 <li>否则就会阻塞直到取走工作项的线程出现 即 正在处理工作项的线程在交付当前工作项之前不会开始其他工作项的处理工作，</li>

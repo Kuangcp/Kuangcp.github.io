@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Java之GC">
 <meta itemprop="description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.2.3. 内存分代 1.2.4. 引用类型 1.3. 判断存活算法 1.3.1. 引用计数算法 1.3.2. 可达性分析算法 1.4. GC算法 1.4.1. 标记清除算法 1.4.2. 复制算法 1.4.3. 标记"><meta itemprop="datePublished" content="2021-05-14T20:36:48+00:00" />
 <meta itemprop="dateModified" content="2021-05-14T20:36:48+00:00" />
-<meta itemprop="wordCount" content="11487">
+<meta itemprop="wordCount" content="11495">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java之GC"/>
 <meta name="twitter:description" content="💠 GC 1.1. GC类型 1.2. GC术语 1.2.1. STW 1.2.2. 安全点 1.2.3. 内存分代 1.2.4. 引用类型 1.3. 判断存活算法 1.3.1. 引用计数算法 1.3.2. 可达性分析算法 1.4. GC算法 1.4.1. 标记清除算法 1.4.2. 复制算法 1.4.3. 标记"/>
@@ -120,7 +120,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-05-14 </span>
         
-          <span class="more-meta"> 11487 words </span>
+          <span class="more-meta"> 11495 words </span>
           <span class="more-meta"> 23 mins read </span>
         
       </div>
@@ -247,7 +247,7 @@
 </ol>
 </li>
 </ul>
-<p>💠 2025-01-16 16:26:11</p>
+<p>💠 2025-05-15 21:25:20</p>
 <hr>
 <h1 id="gc">GC</h1>
 <blockquote>
@@ -533,12 +533,18 @@ Java中一种全局暂停现象，全局停顿，所有Java代码停止，native
 <li><code>-XX:GCLogFileSize=&lt; file size &gt;[ unit ]</code></li>
 <li><code>-XX:MaxTenuringThreshold=15</code> 年轻代对象晋升年龄阈值 默认值15</li>
 </ul>
+<p>JDK11及以上</p>
+<p><code>-Xlog:gc*,classhisto*=trace:file=/opt/dremio/data/log/gc.log:uptime,time,tags,level:filecount=1,filesize=4M</code></p>
 <hr>
 <h1 id="gc日志">GC日志</h1>
 <ol>
 <li>默认第一列是<strong>JVM启动的秒数</strong>，为了可读性一般会加配置 <code>-XX:+PrintGCDateStamps</code>,</li>
 <li>路径可追加进程id <code>-Xloggc:/apps/logs/gc-%p.log</code> 以及 <code>%t</code> JVM启动时间</li>
-<li>日志滚动策略 <code>-XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=14 -XX:GCLogFileSize=100M</code> <strong>但是实际上不实用</strong>，并非按Logback等框架的思路滚动。重启后会重新从0计数覆盖掉最旧的gc日志 <a href="https://dzone.com/articles/try-to-avoid-xxusegclogfilerotation">Try to Avoid -XX:+UseGCLogFileRotation</a></li>
+<li>日志滚动策略 <code>-XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=14 -XX:GCLogFileSize=100M</code> <strong>但是实际上不实用</strong>
+<ul>
+<li>并非按Logback等框架的思路滚动。重启后会重新从0计数覆盖掉最旧的gc日志 <a href="https://dzone.com/articles/try-to-avoid-xxusegclogfilerotation">Try to Avoid -XX:+UseGCLogFileRotation</a></li>
+</ul>
+</li>
 </ol>
 <blockquote>
 <p><a href="https://github.com/chewiebug/GCViewer">Github: GCViewer</a><br>
